@@ -4,6 +4,8 @@ A custom Slay the Spire 1 character inspired by World of Warcraft's Shadow Pries
 
 Apply distinct damage-over-time debuffs, attack afflicted enemies to generate Insanity, and reach 10 Insanity to trigger a temporary Voidform with cheaper, stronger Attack cards.
 
+Under consideration: replace automatic activation with a zero-cost retained card generated at 10 Insanity, so the player chooses when to enter Voidform. See the [activation card proposal](docs/voidform-activation-proposal.md).
+
 ## Project status
 
 Design stage. This repository contains the initial design and decision records; there is no playable mod or build setup yet. VS Code is the intended editor. The character and project names are working names.

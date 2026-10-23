@@ -4,7 +4,7 @@ The first playable milestone should demonstrate the starting deck, two distinct 
 
 ## Resolve the core rules
 
-Choose starter costs and quantities, card types, DoT timing, Insanity persistence, and activation/reset ordering. Record the choices in the [decision log](decisions.md) and update the [character design](character-design.md).
+Choose Shield's cost, starter quantities, card types, DoT timing, and threshold/activation ordering. Both DoTs now cost 1 energy, and Insanity persistence and reset points are confirmed. Resolve whether the [retained activation card](voidform-activation-proposal.md) replaces automatic activation. Record the choices in the [decision log](decisions.md) and update the [character design](character-design.md).
 
 ## Establish a runnable character
 
@@ -21,6 +21,8 @@ Verify that each effect produces exactly three intended ticks, reapplication ref
 Implement the custom Insanity bar, generation from direct damage, threshold activation, attack discounts, damage bonus, and expiry. The display should make it clear how close the player is to Voidform and whether it is active.
 
 Verify the owner's example: three Mind Spikes against an enemy with two DoTs generate 6 Insanity. Once the unresolved rules are chosen, also check threshold crossing during multihit attacks, fully blocked hits, overflow, and restoration of card costs at expiry.
+
+If the activation card proposal is accepted, also verify that the card can be held across turns, Voidform starts only on play, a full hand does not lose the earned activation, and the final charge rules prevent unintended duplicate activations.
 
 ## Playtest the combat loop
 

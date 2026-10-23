@@ -15,11 +15,17 @@ Accepted choices establish the current design baseline. Proposed defaults and un
 | D007 | Later cards will synergize with how many unique DoTs are on a target. | Distinct afflictions are a foundation for future card design. |
 | D008 | The starting relic is Voidform and provides a custom Insanity bar. | The core resource mechanic is available at the start of a run. |
 | D009 | Gain 1 Insanity per DoT on the target per direct damage source. | Two DoTs plus three Mind Spikes produce 6 Insanity. |
-| D010 | Automatically enter Voidform at 10 Insanity. | Activation is triggered by the meter rather than an activation card. |
+| D010 | Automatically enter Voidform at 10 Insanity. | Original accepted trigger. A retained activation card is now proposed as its replacement; see P001 below. |
 | D011 | In Voidform, all Attack cards cost 1 less energy and deal 50% more damage. | The burst reward applies to Attack cards; edge cases remain open. |
 | D012 | Voidform ends at the end of the turn. | The remaining hand and energy affect how much value the form provides. |
 | D013 | Establish a repository and record the design before gameplay implementation. | This initial commit contains documentation and repository housekeeping only. |
 | D014 | Use a public GitHub repository named sts-shadow-priest. | The repository is intended to be publicly readable. |
+| D015 | Vampiric Touch and Shadow Word: Pain each cost 1 energy. | Both starter DoT costs are settled. Power Word: Shield's cost remains unconfirmed. |
+| D016 | Insanity persists between turns and resets to zero after combat and when Voidform ends. | Progress can accumulate across turns, but does not survive combat or a completed Voidform. |
+
+## Proposal under discussion on October 23 2026
+
+**P001: On-demand Voidform.** The owner proposed generating a new zero-cost card with Retain when Insanity reaches 10. Its effect reads "Enter Voidform." This would replace D010's automatic activation and let the player choose the burst turn. The proposal and suggested lifecycle rules are in [Voidform activation card proposal](voidform-activation-proposal.md). Exhaust, meter capping, and duplicate prevention are suggestions, not accepted additions.
 
 ## Earlier concepts replaced by this baseline
 

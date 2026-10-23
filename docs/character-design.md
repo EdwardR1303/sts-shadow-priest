@@ -2,7 +2,7 @@
 
 The character combines distinct damage-over-time effects with direct attacks. DoTs provide sustained damage and make each subsequent direct damage source generate more Insanity. At 10 Insanity, the starting relic activates Voidform for the remainder of the turn.
 
-The rules below capture the owner's initial design on October 23, 2026. Unspecified details are tracked in [Open questions](open-questions.md).
+The rules below capture the owner's design and confirmed clarifications on October 23, 2026. Unspecified details are tracked in [Open questions](open-questions.md). An [on-demand activation card](voidform-activation-proposal.md) is proposed as a replacement for automatic Voidform activation.
 
 ## Starting deck
 
@@ -10,8 +10,8 @@ The rules below capture the owner's initial design on October 23, 2026. Unspecif
 | --- | --- | --- | --- | --- |
 | Mind Spike | Basic attack replacing Strike | 1 | Deal 6 damage. | Undecided |
 | Power Word: Shield | Basic defense replacing Defend | Undecided | Gain 5 Block. | Undecided |
-| Vampiric Touch | Apply a distinct DoT | Undecided | Apply Vampiric Touch: 5 damage each turn for 3 turns. | 1 proposed |
-| Shadow Word: Pain | Apply a distinct DoT | Undecided | Apply Shadow Word: Pain: 5 damage each turn for 3 turns. | 1 proposed |
+| Vampiric Touch | Apply a distinct DoT | 1 | Apply Vampiric Touch: 5 damage each turn for 3 turns. | 1 proposed |
+| Shadow Word: Pain | Apply a distinct DoT | 1 | Apply Shadow Word: Pain: 5 damage each turn for 3 turns. | 1 proposed |
 
 Four Mind Spikes, four Power Word: Shields, one Vampiric Touch, and one Shadow Word: Pain form the proposed ten-card starting deck. Exact quantities are not yet confirmed. Upgrades and the formal card types of the defense and DoT cards are also undecided.
 
@@ -33,11 +33,13 @@ The starting relic is named **Voidform**. It provides a custom Insanity bar and 
 
 Each direct damage source generates 1 Insanity per unique DoT on its target. For the owner's example, an enemy with two DoTs grants 2 Insanity for each Mind Spike. Three Mind Spikes against that enemy generate 6 Insanity in total.
 
-The exact definition of a direct damage source remains open, including multihit attacks, attacks against several enemies, fully blocked hits, and non-card damage. Meter persistence and reset behavior also remain open.
+Insanity persists between turns. It resets to zero after combat and when Voidform ends.
+
+The exact definition of a direct damage source remains open, including multihit attacks, attacks against several enemies, fully blocked hits, and non-card damage. Threshold consumption, overflow, and generation during Voidform remain open.
 
 ## Voidform
 
-Upon reaching **10 Insanity**, Voidform activates automatically:
+The original accepted trigger is automatic activation upon reaching **10 Insanity**. The proposed retained activation card would replace this trigger; it has not yet been finalized. Either trigger uses these accepted Voidform effects:
 
 - All Attack cards cost 1 less energy.
 - All Attack cards deal 50% more damage.

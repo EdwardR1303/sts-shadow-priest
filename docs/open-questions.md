@@ -6,7 +6,7 @@ These choices are unresolved. Suggestions from the discussion are recorded as pr
 
 | ID | Question | Proposal or context |
 | --- | --- | --- |
-| Q001 | What do Power Word: Shield, Vampiric Touch, and Shadow Word: Pain cost? | 1 energy each was suggested, but not confirmed. |
+| Q001 | What does Power Word: Shield cost? | 1 energy is proposed. Vampiric Touch and Shadow Word: Pain are now confirmed at 1 energy each (D015). |
 | Q002 | What are the starting quantities? | Proposed: four Mind Spikes, four Shields, one Touch, and one Pain. |
 | Q003 | What card types should Shield and the two DoT cards have? | This matters because Voidform explicitly discounts and strengthens Attack cards. |
 | Q004 | What are the upgraded versions? | No upgrade values selected. |
@@ -25,8 +25,7 @@ These choices are unresolved. Suggestions from the discussion are recorded as pr
 
 | ID | Question | Proposal or context |
 | --- | --- | --- |
-| Q010 | Does Insanity persist between turns? | Proposed: yes. Otherwise the starter deck may struggle to reach 10 in one turn. |
-| Q011 | When does Insanity reset or get spent? | Proposed: reset after combat and when Voidform ends. Threshold consumption and overflow are undecided. |
+| Q011 | Is Insanity consumed at the threshold or on activation, and can it overflow? | Persistence between turns and resets after combat and at Voidform expiry are confirmed (D016). The proposed activation card suggests holding the meter at 10 until Voidform ends. |
 | Q012 | Does each hit of a multihit card generate Insanity separately? | Proposed: yes. A three-hit attack against two DoTs would generate 6. |
 | Q013 | What does direct damage include beyond a basic attack? | Decide treatment of fully blocked or zero-damage hits, HP loss, relics, retaliation, and damage from other effects. DoT ticks were proposed to be excluded. |
 | Q014 | How do attacks against multiple enemies generate Insanity? | Decide whether each target contributes using its own unique-DoT count. |
@@ -36,11 +35,18 @@ These choices are unresolved. Suggestions from the discussion are recorded as pr
 
 | ID | Question | Proposal or context |
 | --- | --- | --- |
-| Q016 | Does the hit that reaches 10 Insanity gain the damage bonus? | Resolve event ordering, including later hits of the same card. |
+| Q016 | Does the hit that reaches 10 Insanity gain the damage bonus? | Relevant if activation remains automatic. With the proposed activation card, the bonus would begin only when that card is played. |
 | Q017 | Can Insanity accumulate during Voidform or cause another activation in the same turn? | No rule selected. |
 | Q018 | How does the discount work with zero-cost attacks, X-cost attacks, and other cost changes? | Define the cost floor and restore only this relic's discount on expiry. |
 | Q019 | How does the 50% bonus round and combine with Strength, Weak, Vulnerable, and other modifiers? | Base Mind Spike is 6 to 9; less straightforward cases need a rule. |
-| Q020 | What happens if Voidform activates after the player has spent their useful hand? | Test automatic activation as designed. Drawing one card on entry is an optional adjustment suggested in discussion, not an accepted relic effect. |
+| Q020 | Should a retained activation card replace automatic activation? | The owner proposed a zero-cost card with Retain and "Enter Voidform" at 10 Insanity. It would allow saving the burst for a useful hand. See the proposal document. |
+| Q021 | Should the activation card be a Skill with Exhaust, and should only one charge exist at a time? | Both are recommendations. Also define behavior if the card is copied, discarded, recovered, or cannot enter a full hand. |
+
+## Resolved questions
+
+- Q010: Insanity persists between turns (D016).
+- Q001 is partially resolved: both DoTs cost 1 energy (D015); Shield's cost remains open.
+- Q011 is partially resolved: reset to zero after combat and when Voidform ends (D016); threshold spending and overflow remain open.
 
 ## Balance questions for playtests
 
