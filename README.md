@@ -4,18 +4,33 @@ A custom Slay the Spire 1 character inspired by World of Warcraft's Shadow Pries
 
 Survive while applying distinct damage-over-time debuffs and attacking afflicted enemies to generate Insanity. At 10 Insanity, gain a retained activation card and choose when to unleash a temporary Voidform with cheaper, stronger Attack cards.
 
-The [Voidform activation card](docs/voidform-activation.md) costs 0 energy, has Retain, and exhausts when played. Its remaining charge-management rules are still under discussion.
+The [Voidform activation card](docs/voidform-activation.md) costs 0 energy, has Retain, and exhausts when played. The prototype holds one charge at a time.
 
 ## Project status
 
-Design stage. This repository contains the initial design and decision records; there is no playable mod or build setup yet. VS Code is the intended editor. The character and project names are working names.
+Version 0.1.0 is a starting-deck prototype for VS Code: a selectable character, four starter cards, separate refreshing DoTs, an Insanity bar, and on-demand Voidform. Artwork uses BasicMod placeholders. Rewards temporarily use the Ironclad pool; a complete Shadow Priest reward pool and balance pass are future work.
+
+## Build and play on Windows
+
+Install the Steam game and subscribe to ModTheSpire, BaseMod, and StSLib, then run:
+
+```powershell
+./scripts/setup.ps1
+./scripts/build.ps1
+./scripts/playtest.ps1 -SkipBuild
+```
+
+Setup discovers the game and installs checksum-verified portable Java 8 and Maven under local app data, without global PATH changes. Playtesting defaults to **3840 x 2160 borderless** and uses separate saves in `.playtest/`. Choose **The Shadow Priest** in a Standard run.
+
+For a smaller window, add `-Width 1920 -Height 1080 -Windowed`. VS Code also has setup, build, playtest, and deploy tasks. See [development and testing](docs/development.md) for details.
 
 ## Design documents
 
 - [Character design](docs/character-design.md): starting cards, DoTs, Insanity, and the starting relic.
 - [Decision log](docs/decisions.md): accepted choices and the earlier concepts they replace.
 - [Open questions](docs/open-questions.md): rules that still need decisions, with suggestions clearly marked.
-- [Prototype plan](docs/prototype-plan.md): proposed implementation order and playtest questions.
+- [Prototype plan](docs/prototype-plan.md): completed milestone and remaining playtest questions.
+- [Prototype rules](docs/prototype-rules.md): exact mechanics and provisional defaults implemented in 0.1.0.
 
 ## Recording changes
 
@@ -23,7 +38,7 @@ Update the character design when a choice is accepted, record the change in the 
 
 ## Development references
 
-Candidate starting points for the later implementation:
+Implementation references:
 
 - [BasicMod template and tutorial](https://github.com/Alchyr/BasicMod)
 - [Adding a character](https://github.com/Alchyr/BasicMod/wiki/Adding-a-Character)
@@ -31,4 +46,4 @@ Candidate starting points for the later implementation:
 - [BaseMod](https://github.com/daviscook477/BaseMod)
 - [StSLib](https://github.com/kiooeht/StSLib)
 
-Template choice and toolchain versions have not been selected.
+Character scaffolding and placeholder assets are adapted from BasicMod's `character` branch at `412662e8dc391e6aad517704ede09f2b1f5db221`. The [MIT notice](licenses/BasicMod-MIT.txt) is preserved and included in the JAR. Game files and dependency JARs are not committed or bundled into the mod.

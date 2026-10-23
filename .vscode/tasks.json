@@ -1,0 +1,9 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {"label":"Shadow Priest: setup","type":"shell","command":"powershell","args":["-NoProfile","-ExecutionPolicy","Bypass","-File","${workspaceFolder}/scripts/setup.ps1"],"problemMatcher":[]},
+    {"label":"Shadow Priest: build and test","type":"shell","command":"powershell","args":["-NoProfile","-ExecutionPolicy","Bypass","-File","${workspaceFolder}/scripts/build.ps1"],"group":{"kind":"build","isDefault":true},"problemMatcher":[]},
+    {"label":"Shadow Priest: isolated playtest","type":"shell","command":"powershell","args":["-NoProfile","-ExecutionPolicy","Bypass","-File","${workspaceFolder}/scripts/playtest.ps1"],"problemMatcher":[]},
+    {"label":"Shadow Priest: deploy to Steam","type":"shell","command":"powershell","args":["-NoProfile","-ExecutionPolicy","Bypass","-File","${workspaceFolder}/scripts/build.ps1","-Deploy"],"problemMatcher":[]}
+  ]
+}

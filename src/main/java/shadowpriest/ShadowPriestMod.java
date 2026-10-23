@@ -1,0 +1,62 @@
+package shadowpriest;
+
+import basemod.BaseMod;
+import basemod.interfaces.*;
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.evacipated.cardcrawl.modthespire.lib.SpireInitializer;
+import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.core.Settings;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.helpers.FontHelper;
+import com.megacrit.cardcrawl.helpers.ImageMaster;
+import com.megacrit.cardcrawl.localization.*;
+import com.megacrit.cardcrawl.rooms.AbstractRoom;
+import com.megacrit.cardcrawl.unlock.UnlockTracker;
+import shadowpriest.cards.*;
+import shadowpriest.character.ShadowPriest;
+import shadowpriest.relics.VoidformRelic;
+import shadowpriest.dev.CombatSmokeTest;
+
+@SpireInitializer
+public class ShadowPriestMod implements EditCharactersSubscriber, EditCardsSubscriber,
+        EditRelicsSubscriber, EditStringsSubscriber, EditKeywordsSubscriber,
+        PostUpdateSubscriber, PostRenderSubscriber {
+    public static String makeID(String id) { return "shadowpriest:" + id; }
+    public static String characterPath(String file) { return "shadowpriest/images/character/" + file; }
+    public static void initialize() { BaseMod.subscribe(new ShadowPriestMod()); ShadowPriest.Meta.registerColor(); }
+    @Override public void receiveEditCharacters() { ShadowPriest.Meta.registerCharacter(); }
+    @Override public void receiveEditCards() {
+        for (AbstractCard c : new AbstractCard[]{new MindSpike(), new PowerWordShield(), new VampiricTouch(), new ShadowWordPain(), new EnterVoidform()}) {
+            BaseMod.addCard(c); UnlockTracker.unlockCard(c.cardID);
+        }
+    }
+    @Override public void receiveEditRelics() { BaseMod.addRelicToCustomPool(new VoidformRelic(), ShadowPriest.Meta.CARD_COLOR); }
+    @Override public void receiveEditStrings() {
+        String path = "shadowpriest/localization/eng/";
+        BaseMod.loadCustomStringsFile(CardStrings.class, path + "CardStrings.json");
+        BaseMod.loadCustomStringsFile(CharacterStrings.class, path + "CharacterStrings.json");
+        BaseMod.loadCustomStringsFile(RelicStrings.class, path + "RelicStrings.json");
+    }
+    @Override public void receiveEditKeywords() {
+        BaseMod.addKeyword("shadowpriest", "Vampiric Touch", new String[]{"touch"}, "A unique DoT. Deals #b5 damage before the enemy acts. Ignores Block and Strength. Reapplying refreshes its duration.");
+        BaseMod.addKeyword("shadowpriest", "Shadow Word: Pain", new String[]{"pain"}, "A unique DoT. Deals #b5 damage before the enemy acts. Ignores Block and Strength. Reapplying refreshes its duration.");
+        BaseMod.addKeyword("shadowpriest", "Voidform", new String[]{"voidform"}, "Attacks cost #b1 less and deal #b50% more damage until turn end. X costs are unchanged.");
+    }
+    @Override public void receivePostUpdate() {
+        VoidformRelic relic = VoidformRelic.current();
+        if (relic != null) relic.deliverReadyCard();
+        if (Boolean.getBoolean("shadowpriest.smoketest")) CombatSmokeTest.update();
+    }
+    @Override public void receivePostRender(SpriteBatch sb) {
+        VoidformRelic relic = VoidformRelic.current();
+        if (relic == null || AbstractDungeon.currMapNode == null || AbstractDungeon.getCurrRoom() == null || AbstractDungeon.getCurrRoom().phase != AbstractRoom.RoomPhase.COMBAT) return;
+        float s = Settings.scale, x = 30 * s, y = Settings.HEIGHT - 140 * s, w = 230 * s;
+        sb.setColor(new Color(0.09f, 0.06f, 0.14f, 0.95f)); sb.draw(ImageMaster.WHITE_SQUARE_IMG, x, y, w, 20 * s);
+        sb.setColor(relic.state.active() ? Color.MAGENTA : new Color(0.52f, 0.25f, 0.85f, 1f));
+        sb.draw(ImageMaster.WHITE_SQUARE_IMG, x, y, w * relic.state.amount() / 10f, 20 * s);
+        sb.setColor(Color.WHITE);
+        String text = relic.state.active() ? "VOIDFORM - this turn" : relic.state.ready() ? "VOIDFORM READY" : "Insanity " + relic.state.amount() + " / 10";
+        FontHelper.renderFontLeftTopAligned(sb, FontHelper.tipBodyFont, text, x, y + 46 * s, Color.WHITE);
+    }
+}

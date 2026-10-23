@@ -1,0 +1,10 @@
+{
+  "modid": "shadowpriest",
+  "name": "Shadow Priest",
+  "author_list": ["EdwardR1303"],
+  "description": "Survive the setup. Afflict enemies, build Insanity, and unleash Voidform. Starting-deck prototype with placeholder artwork and Ironclad reward cards.",
+  "version": "0.1.0",
+  "sts_version": "12-18-2022",
+  "mts_version": "3.30.0",
+  "dependencies": ["basemod", "stslib"]
+}

@@ -24,10 +24,13 @@ Accepted choices establish the current design baseline. Proposed defaults and un
 | D016 | Insanity persists between turns and resets to zero after combat and when Voidform ends. | Progress can accumulate across turns, but does not survive combat or a completed Voidform. |
 | D017 | At 10 Insanity, generate a zero-cost card with Retain that enters Voidform and exhausts when played. | Replaces D010. The player can hold the earned burst for a later turn. |
 | D018 | Focus the class on stalling and surviving through setup, then unleashing a massive burst turn. | Coordinating a damage amplifier, cooldowns, and consumables in a raid is the intended inspiration. Specific support cards are not yet chosen. |
+| D019 | Proceed with the complete first-playable milestone and suggested defaults. | Implement the 4/4/1/1 deck, 1-cost Shield, Skill types, enemy-start DoT ticks, per-hit generation, and one capped charge. |
+| D020 | Use provisional edge-case rules to make the prototype testable. | Blocked hits count; DoTs bypass Block but respect enemy damage hooks; Artifact blocks application; X costs remain unchanged; template stats and simple upgrades are used. These implementation choices under D019 remain adjustable. See the prototype rules. |
+| D021 | Use a 3840 x 2160 display for playtesting. | The launcher defaults to 4K borderless for readability; dimensions can be overridden explicitly. |
 
 ## Activation proposal outcome on October 23 2026
 
-**P001: On-demand Voidform** became D017 following the owner's agreement that Exhaust is mandatory and that the class should prepare for a chosen burst turn. The [Voidform activation card](voidform-activation.md) records the accepted card and remaining lifecycle suggestions. Skill as its card type, meter capping, duplicate prevention, and stopping generation during Voidform are still recommendations.
+**P001: On-demand Voidform** became D017 following the owner's agreement that Exhaust is mandatory and that the class should prepare for a chosen burst turn. D019 subsequently authorized the first-playable defaults, including Skill as the card type, meter capping, one charge, and stopping generation during Voidform. [Prototype rules](prototype-rules.md) specify the implemented lifecycle.
 
 ## Earlier concepts replaced by this baseline
 

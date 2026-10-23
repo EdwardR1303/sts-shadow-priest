@@ -11,7 +11,11 @@ libs/
 # Local editor and operating system files
 .idea/
 *.iml
-.vscode/
+.vscode/settings.json
+.local/
+.playtest/
+.smoketest/
+.mvn/maven.config
 .DS_Store
 Thumbs.db
 Desktop.ini

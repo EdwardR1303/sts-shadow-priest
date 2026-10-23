@@ -1,6 +1,6 @@
 # Voidform activation card
 
-The core card design was accepted on October 23, 2026. It replaces automatic activation at 10 Insanity. Voidform's damage bonus, cost reduction, and end-of-turn expiry remain the same. The charge-management rules below remain recommendations.
+The core card design and first-playable defaults were accepted on October 23, 2026. The card replaces automatic activation at 10 Insanity. Voidform's damage bonus, cost reduction, and end-of-turn expiry remain the same. The prototype lifecycle is specified below.
 
 ## Accepted behavior
 
@@ -17,7 +17,7 @@ Working name: **Enter Voidform**.
 | Energy cost | 0, accepted |
 | Retain | Yes, accepted |
 | Effect | Enter Voidform, accepted |
-| Card type | Skill, assistant recommendation |
+| Card type | Skill, prototype default |
 | Exhaust | Yes, accepted |
 | Acquisition | Generated at 10 Insanity; not part of the permanent starting deck |
 
@@ -27,9 +27,9 @@ Card text:
 
 Exhaust prevents the used card from entering the ordinary draw/discard cycle. It does not by itself settle copying or recovery behavior, so activation should also have an explicit charge rule.
 
-## Recommended charge lifecycle
+## Prototype charge lifecycle
 
-This lifecycle combines the accepted card behavior and reset points with recommended charge restrictions. The one-charge limit, meter cap, delayed delivery, and pause in generation during Voidform are not yet accepted:
+This lifecycle implements the accepted card behavior and authorized first-playable defaults:
 
 1. Build Insanity from 0 to 10 through the agreed direct-damage mechanic.
 2. At 10, mark one Voidform activation ready and add the activation card to hand when space allows.
@@ -45,6 +45,6 @@ This model separates building the resource, holding a ready activation, and usin
 
 Choosing the activation turn makes the same bonus more powerful because the player can wait for a hand with several attacks. A retained card also occupies hand space, so waiting has a cost. Keep the initial threshold of 10 for testing and observe how often waiting improves the burst.
 
-The main implementation details to resolve are full-hand delivery, discard or loss of an unused activation card, and copying or recovering the card. An earned charge should not disappear merely because the hand was full when the threshold was reached.
+Full-hand delivery waits for a slot. Discarded unused activation cards can be drawn again. If an unused activation is lost entirely, the ready charge can deliver a replacement. Charge serials prevent old or copied cards from spending an activation twice or spending a later charge. See [Prototype rules](prototype-rules.md) for the complete behavior.
 
 The intended feel is a combat ability that becomes ready through attacks and waits for the player's input, allowing the player to survive the setup and coordinate a major burst turn.
