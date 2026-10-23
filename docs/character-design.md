@@ -1,8 +1,8 @@
 # Shadow Priest character design
 
-The character combines distinct damage-over-time effects with direct attacks. DoTs provide sustained damage and make each subsequent direct damage source generate more Insanity. At 10 Insanity, the starting relic activates Voidform for the remainder of the turn.
+The character focuses on surviving a setup phase and then committing to a massive burst turn. Distinct damage-over-time effects provide sustained damage and make subsequent direct damage sources generate more Insanity. At 10 Insanity, the starting relic generates a retained activation card so the player chooses the Voidform turn.
 
-The rules below capture the owner's design and confirmed clarifications on October 23, 2026. Unspecified details are tracked in [Open questions](open-questions.md). An [on-demand activation card](voidform-activation-proposal.md) is proposed as a replacement for automatic Voidform activation.
+The rules below capture the owner's design and confirmed clarifications on October 23, 2026. Unspecified details are tracked in [Open questions](open-questions.md). The [on-demand activation card](voidform-activation.md) replaces automatic Voidform activation.
 
 ## Starting deck
 
@@ -39,16 +39,32 @@ The exact definition of a direct damage source remains open, including multihit 
 
 ## Voidform
 
-The original accepted trigger is automatic activation upon reaching **10 Insanity**. The proposed retained activation card would replace this trigger; it has not yet been finalized. Either trigger uses these accepted Voidform effects:
+Upon reaching **10 Insanity**, receive a generated card that costs **0 energy**, has **Retain**, and reads **"Enter Voidform. Exhaust."** The player enters Voidform by playing this card, not by reaching the threshold alone. The card's working name is Enter Voidform; its formal card type remains undecided.
+
+While Voidform is active:
 
 - All Attack cards cost 1 less energy.
 - All Attack cards deal 50% more damage.
 - Voidform ends at the end of the turn.
 
-For a later Mind Spike played while Voidform is active, the straightforward base case is 0 energy and 9 damage, before other modifiers. Whether the attack that reaches the threshold itself receives the damage bonus is undecided.
+For a Mind Spike played while Voidform is active, the straightforward base case is 0 energy and 9 damage, before other modifiers. The attack that earns the activation card does not itself activate the bonus; the activation card must first be played.
 
 Cost floors, X-cost attacks, damage rounding, modifier ordering, overflow Insanity, and further Insanity generation during Voidform need explicit rules before implementation.
 
 ## Intended play pattern
 
 Apply different DoTs, maintain them without stacking duplicates, then use direct attacks to build toward a Voidform burst. Identical initial DoT damage is intentional in the current baseline: their separate identities already matter to Insanity generation and future synergies.
+
+The owner's intended feel is the coordinated raid burst: line up a damage amplifier, cooldowns, and consumables, then unload. This is the design inspiration, not a commitment to implement Bloodlust or any particular cooldown or potion as a card.
+
+The class should have tools to survive while assembling that window. Draw order creates uncertainty in when DoTs and direct attacks become available; Insanity generation itself currently has no random roll. Retaining the activation card lets the player respond to that uncertainty and decide when their hand is ready.
+
+## Future card design directions
+
+Suggested roles for later cards, not accepted card effects:
+
+- Defense that helps maintain the setup while leaving some opportunity to apply DoTs and attack.
+- Hand preparation through selective draw, retention, or similar effects to assemble a useful burst hand.
+- Payoffs for having several unique DoTs active when the player commits to Voidform.
+
+The design tension is how long to prepare before committing. Playtests should check that defense buys time without making indefinite waiting the obvious best choice, and that a prepared burst feels substantially stronger than an ordinary attack turn.

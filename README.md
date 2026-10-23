@@ -2,9 +2,9 @@
 
 A custom Slay the Spire 1 character inspired by World of Warcraft's Shadow Priest archetype.
 
-Apply distinct damage-over-time debuffs, attack afflicted enemies to generate Insanity, and reach 10 Insanity to trigger a temporary Voidform with cheaper, stronger Attack cards.
+Survive while applying distinct damage-over-time debuffs and attacking afflicted enemies to generate Insanity. At 10 Insanity, gain a retained activation card and choose when to unleash a temporary Voidform with cheaper, stronger Attack cards.
 
-Under consideration: replace automatic activation with a zero-cost retained card generated at 10 Insanity, so the player chooses when to enter Voidform. See the [activation card proposal](docs/voidform-activation-proposal.md).
+The [Voidform activation card](docs/voidform-activation.md) costs 0 energy, has Retain, and exhausts when played. Its remaining charge-management rules are still under discussion.
 
 ## Project status
 

@@ -25,7 +25,7 @@ These choices are unresolved. Suggestions from the discussion are recorded as pr
 
 | ID | Question | Proposal or context |
 | --- | --- | --- |
-| Q011 | Is Insanity consumed at the threshold or on activation, and can it overflow? | Persistence between turns and resets after combat and at Voidform expiry are confirmed (D016). The proposed activation card suggests holding the meter at 10 until Voidform ends. |
+| Q011 | Is Insanity consumed at the threshold or on activation, and can it overflow? | Persistence between turns and resets after combat and at Voidform expiry are confirmed (D016). Holding the meter at 10 until Voidform ends remains a recommendation. |
 | Q012 | Does each hit of a multihit card generate Insanity separately? | Proposed: yes. A three-hit attack against two DoTs would generate 6. |
 | Q013 | What does direct damage include beyond a basic attack? | Decide treatment of fully blocked or zero-damage hits, HP loss, relics, retaliation, and damage from other effects. DoT ticks were proposed to be excluded. |
 | Q014 | How do attacks against multiple enemies generate Insanity? | Decide whether each target contributes using its own unique-DoT count. |
@@ -35,16 +35,17 @@ These choices are unresolved. Suggestions from the discussion are recorded as pr
 
 | ID | Question | Proposal or context |
 | --- | --- | --- |
-| Q016 | Does the hit that reaches 10 Insanity gain the damage bonus? | Relevant if activation remains automatic. With the proposed activation card, the bonus would begin only when that card is played. |
 | Q017 | Can Insanity accumulate during Voidform or cause another activation in the same turn? | No rule selected. |
 | Q018 | How does the discount work with zero-cost attacks, X-cost attacks, and other cost changes? | Define the cost floor and restore only this relic's discount on expiry. |
 | Q019 | How does the 50% bonus round and combine with Strength, Weak, Vulnerable, and other modifiers? | Base Mind Spike is 6 to 9; less straightforward cases need a rule. |
-| Q020 | Should a retained activation card replace automatic activation? | The owner proposed a zero-cost card with Retain and "Enter Voidform" at 10 Insanity. It would allow saving the burst for a useful hand. See the proposal document. |
-| Q021 | Should the activation card be a Skill with Exhaust, and should only one charge exist at a time? | Both are recommendations. Also define behavior if the card is copied, discarded, recovered, or cannot enter a full hand. |
+| Q021 | Should the activation card be a Skill, and should only one charge exist at a time? | These remain recommendations. Exhaust is confirmed in D017. Also define behavior if the card is copied, discarded, recovered, or cannot enter a full hand. |
 
 ## Resolved questions
 
 - Q010: Insanity persists between turns (D016).
+- Q016: Earning the activation card does not trigger the damage bonus. Playing the card enters Voidform (D017).
+- Q020: The retained, zero-cost activation card replaces automatic activation (D017).
+- Q021 is partially resolved: the activation card exhausts (D017); its type and charge limits remain open.
 - Q001 is partially resolved: both DoTs cost 1 energy (D015); Shield's cost remains open.
 - Q011 is partially resolved: reset to zero after combat and when Voidform ends (D016); threshold spending and overflow remain open.
 
@@ -54,7 +55,9 @@ These choices are unresolved. Suggestions from the discussion are recorded as pr
 - Do two mechanically identical starter DoTs create useful sequencing choices through their distinct identities?
 - Does refreshing a DoT feel useful often enough to justify drawing it again?
 - Does the 10-Insanity threshold produce satisfying burst turns without excessive multihit or multi-target acceleration?
-- Does ending Voidform at turn end frequently waste the activation?
+- Can the player survive setup consistently enough to earn a satisfying burst without making waiting indefinitely optimal?
+- Does the available hand support a massive burst when Voidform is played, or does the player need additional draw or hand-preparation tools?
+- Does retaining the activation card offer a meaningful choice between using the current hand and waiting for a better window?
 
 ## Project choices for implementation
 
