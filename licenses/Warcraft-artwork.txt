@@ -1,0 +1,20 @@
+World of Warcraft spell icons
+
+The following artwork is from World of Warcraft by Blizzard Entertainment.
+It is third-party artwork, not covered by the BasicMod MIT license.
+All rights to the original artwork remain with its respective owner.
+
+Retrieved from Wowhead's icon CDN on October 23, 2026:
+
+Vampiric Touch (spell_holy_stoicism)
+Resource: shadowpriest/images/powers/vampiric_touch.jpg
+Source: https://wow.zamimg.com/images/wow/icons/large/spell_holy_stoicism.jpg
+Reference: https://www.wowhead.com/spell=34914/vampiric-touch
+
+Shadow Word: Pain (spell_shadow_shadowwordpain)
+Resource: shadowpriest/images/powers/shadow_word_pain.jpg
+Source: https://wow.zamimg.com/images/wow/icons/large/spell_shadow_shadowwordpain.jpg
+Reference: https://www.wowhead.com/spell=589/shadow-word-pain
+
+The source images are stored unchanged. The game scales them for its small
+debuff icons and larger power displays.

@@ -8,7 +8,7 @@ The [Voidform activation card](docs/voidform-activation.md) costs 0 energy, has 
 
 ## Project status
 
-Version 0.1.0 is a starting-deck prototype for VS Code: a selectable character, four starter cards, separate refreshing DoTs, an Insanity bar, and on-demand Voidform. Artwork uses BasicMod placeholders. Rewards temporarily use the Ironclad pool; a complete Shadow Priest reward pool and balance pass are future work.
+Version 0.1.0 is a starting-deck prototype for VS Code: a selectable character, four starter cards, separate refreshing DoTs, an Insanity bar, and on-demand Voidform. Touch and Pain use their World of Warcraft debuff icons; other artwork uses BasicMod placeholders. Rewards temporarily use the Ironclad pool; a complete Shadow Priest reward pool and balance pass are future work.
 
 ## Build and play on Windows
 
@@ -47,3 +47,5 @@ Implementation references:
 - [StSLib](https://github.com/kiooeht/StSLib)
 
 Character scaffolding and placeholder assets are adapted from BasicMod's `character` branch at `412662e8dc391e6aad517704ede09f2b1f5db221`. The [MIT notice](licenses/BasicMod-MIT.txt) is preserved and included in the JAR. Game files and dependency JARs are not committed or bundled into the mod.
+
+The two World of Warcraft debuff icons are credited separately in [Warcraft artwork](licenses/Warcraft-artwork.txt), also included in the JAR.

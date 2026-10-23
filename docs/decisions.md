@@ -27,6 +27,7 @@ Accepted choices establish the current design baseline. Proposed defaults and un
 | D019 | Proceed with the complete first-playable milestone and suggested defaults. | Implement the 4/4/1/1 deck, 1-cost Shield, Skill types, enemy-start DoT ticks, per-hit generation, and one capped charge. |
 | D020 | Use provisional edge-case rules to make the prototype testable. | Blocked hits count; DoTs bypass Block but respect enemy damage hooks; Artifact blocks application; X costs remain unchanged; template stats and simple upgrades are used. These implementation choices under D019 remain adjustable. See the prototype rules. |
 | D021 | Use a 3840 x 2160 display for playtesting. | The launcher defaults to 4K borderless for readability; dimensions can be overridden explicitly. |
+| D022 | Use the actual World of Warcraft icons for Touch and Pain debuffs (October 23, 2026). | Replace Poison/Vulnerable placeholders in the debuff row and larger power displays; preserve duration counters. Source attribution is recorded separately from the BasicMod license. |
 
 ## Activation proposal outcome on October 23 2026
 
