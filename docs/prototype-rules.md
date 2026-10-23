@@ -43,4 +43,4 @@ The attack that earns the card does not itself activate Voidform. Turn-end expir
 
 ## Presentation
 
-The relic counter and a labeled purple bar show building, ready, and active states. Touch and Pain display their original World of Warcraft spell icons, with remaining turns overlaid by the game. Character animation, portraits, card images, and relic icon are BasicMod placeholders. The launcher defaults to 4K borderless as requested.
+The relic counter and a labeled purple bar beneath the energy orb show building, ready, and active states. Touch and Pain display their original World of Warcraft spell icons, with remaining turns overlaid by the game. The combat character uses generated Transcendence-inspired artwork, with a shadow tint, subtle idle bob, and pulsing purple glow while Voidform is active. Character-select, rest-site, death, card, and relic images remain BasicMod placeholders. See [character artwork](character-art.md) for the asset and generation prompt. The launcher defaults to 4K borderless as requested.

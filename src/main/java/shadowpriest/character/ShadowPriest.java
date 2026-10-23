@@ -3,7 +3,6 @@ package shadowpriest.character;
 import basemod.BaseMod;
 import basemod.abstracts.CustomEnergyOrb;
 import basemod.abstracts.CustomPlayer;
-import basemod.animations.SpriterAnimation;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.math.MathUtils;
@@ -119,14 +118,14 @@ public class ShadowPriest extends CustomPlayer {
     public ShadowPriest() {
         super(getNames()[0], Meta.SHADOW_PRIEST,
                 new CustomEnergyOrb(orbTextures, characterPath("energyorb/vfx.png"), layerSpeeds), //Energy Orb
-                new SpriterAnimation(characterPath("animation/default.scml"))); //Animation
+                new ShadowPriestAnimation());
 
         initializeClass(null,
                 SHOULDER_2,
                 SHOULDER_1,
                 CORPSE,
                 getLoadout(),
-                20.0F, -20.0F, 200.0F, 250.0F, //Character hitbox. x y position, then width and height.
+                0.0F, -10.0F, 220.0F, 310.0F, //Match the tall regalia silhouette.
                 new EnergyManager(ENERGY_PER_TURN));
 
         //Location for text bubbles. You can adjust it as necessary later. For most characters, these values are fine.

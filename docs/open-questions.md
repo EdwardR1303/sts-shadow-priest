@@ -27,4 +27,4 @@ The first playable prototype now has explicit rules for every core mechanic. See
 
 Build a small Shadow Priest reward pool to replace the temporary Ironclad rewards. Prioritize defense, hand preparation, unique-DoT payoffs, and burst tools. Decide whether future DoTs differ through healing, duration, utility, or damage.
 
-Original art, animation, sound, final naming, project licensing, and Workshop publication remain undecided. No public release or balance claim is implied by the playable prototype.
+The combat sprite now uses generated Transcendence-inspired artwork with a Voidform glow. Remaining character-select, rest-site, death, card, and relic art, fuller animation, sound, final naming, project licensing, and Workshop publication remain undecided. No public release or balance claim is implied by the playable prototype.

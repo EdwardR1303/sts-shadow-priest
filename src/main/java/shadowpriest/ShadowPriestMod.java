@@ -13,6 +13,7 @@ import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.localization.*;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
+import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 import shadowpriest.cards.*;
 import shadowpriest.character.ShadowPriest;
 import shadowpriest.relics.VoidformRelic;
@@ -51,12 +52,18 @@ public class ShadowPriestMod implements EditCharactersSubscriber, EditCardsSubsc
     @Override public void receivePostRender(SpriteBatch sb) {
         VoidformRelic relic = VoidformRelic.current();
         if (relic == null || AbstractDungeon.currMapNode == null || AbstractDungeon.getCurrRoom() == null || AbstractDungeon.getCurrRoom().phase != AbstractRoom.RoomPhase.COMBAT) return;
-        float s = Settings.scale, x = 30 * s, y = Settings.HEIGHT - 140 * s, w = 230 * s;
-        sb.setColor(new Color(0.09f, 0.06f, 0.14f, 0.95f)); sb.draw(ImageMaster.WHITE_SQUARE_IMG, x, y, w, 20 * s);
+        EnergyPanel orb = AbstractDungeon.overlayMenu.energyPanel;
+        if (orb == null || orb.isHidden || AbstractDungeon.isScreenUp) return;
+        float s = Settings.scale, w = 172 * s, h = 14 * s;
+        float x = orb.current_x - w / 2f, y = orb.current_y - 112 * s;
+        float oldColor = sb.getPackedColor();
+        sb.setColor(new Color(0.31f, 0.21f, 0.43f, 1f));
+        sb.draw(ImageMaster.WHITE_SQUARE_IMG, x - 2 * s, y - 2 * s, w + 4 * s, h + 4 * s);
+        sb.setColor(new Color(0.09f, 0.06f, 0.14f, 0.95f)); sb.draw(ImageMaster.WHITE_SQUARE_IMG, x, y, w, h);
         sb.setColor(relic.state.active() ? Color.MAGENTA : new Color(0.52f, 0.25f, 0.85f, 1f));
-        sb.draw(ImageMaster.WHITE_SQUARE_IMG, x, y, w * relic.state.amount() / 10f, 20 * s);
-        sb.setColor(Color.WHITE);
-        String text = relic.state.active() ? "VOIDFORM - this turn" : relic.state.ready() ? "VOIDFORM READY" : "Insanity " + relic.state.amount() + " / 10";
-        FontHelper.renderFontLeftTopAligned(sb, FontHelper.tipBodyFont, text, x, y + 46 * s, Color.WHITE);
+        sb.draw(ImageMaster.WHITE_SQUARE_IMG, x, y, w * relic.state.amount() / 10f, h);
+        String text = relic.state.active() ? "VOIDFORM" : relic.state.ready() ? "VOIDFORM READY" : "Insanity " + relic.state.amount() + " / 10";
+        FontHelper.renderFontCentered(sb, FontHelper.tipBodyFont, text, orb.current_x, y + 30 * s, Color.WHITE, 0.8f);
+        sb.setColor(oldColor);
     }
 }

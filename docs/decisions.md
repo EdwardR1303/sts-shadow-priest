@@ -28,6 +28,8 @@ Accepted choices establish the current design baseline. Proposed defaults and un
 | D020 | Use provisional edge-case rules to make the prototype testable. | Blocked hits count; DoTs bypass Block but respect enemy damage hooks; Artifact blocks application; X costs remain unchanged; template stats and simple upgrades are used. These implementation choices under D019 remain adjustable. See the prototype rules. |
 | D021 | Use a 3840 x 2160 display for playtesting. | The launcher defaults to 4K borderless for readability; dimensions can be overridden explicitly. |
 | D022 | Use the actual World of Warcraft icons for Touch and Pain debuffs (October 23, 2026). | Replace Poison/Vulnerable placeholders in the debuff row and larger power displays; preserve duration counters. Source attribution is recorded separately from the BasicMod license. |
+| D023 | Move Insanity just beneath the energy orb (October 23, 2026). | Anchor the compact meter to the orb's live position, with building, ready, and active labels. |
+| D024 | Use a shadowy priest in Tier 2-inspired regalia, glowing purple during Voidform (October 23, 2026). | Replace the combat placeholder with generated transparent artwork; add idle motion and an active-state-driven purple glow. |
 
 ## Activation proposal outcome on October 23 2026
 
