@@ -5,8 +5,8 @@ The first playable prototype now has explicit rules for every core mechanic. See
 ## Resolved for the prototype
 
 - Starting deck: four 1-energy Mind Spikes, four 1-energy Shields, one Touch and one Pain. Shield and both DoTs are Skills.
-- Character: 70 HP, 99 gold, 3 energy, 5-card draw. Provisional upgrades: 9 damage, 8 Block, and four-turn DoTs.
-- DoTs: tick before the enemy acts, refresh duration without an immediate tick, bypass Block and offensive modifiers, respect Intangible and Artifact. Only Touch and Pain count toward Insanity.
+- Character: 70 HP, 99 gold, 3 energy, 5-card draw. Upgrades: 9 damage, 8 Block, and 6-damage/four-turn DoTs.
+- DoTs: tick before the enemy acts, replace damage and duration on reapplication without an immediate tick, bypass Block and offensive modifiers, respect Intangible and Artifact. Only Touch and Pain count toward Insanity.
 - Insanity: each player-owned normal hit counts each target's distinct DoTs, including blocked hits. Multihit and area attacks count per hit and target. Meter caps at 10 with one charge; no generation while ready or active.
 - Activation: a retained, zero-cost, exhausting Skill. Full hands defer delivery. Charge identifiers prevent copied or recovered cards from spending a charge twice.
 - Voidform: discount positive Attack energy costs by one without changing card cost fields; leave X costs unchanged. Apply 1.5x final outgoing Attack damage, using normal rounding and defenses. Reset at turn end and combat end.
@@ -27,4 +27,4 @@ The first playable prototype now has explicit rules for every core mechanic. See
 
 Build a small Shadow Priest reward pool to replace the temporary Ironclad rewards. Prioritize defense, hand preparation, unique-DoT payoffs, and burst tools. Decide whether future DoTs differ through healing, duration, utility, or damage.
 
-The combat sprite now uses generated Transcendence-inspired artwork with a Voidform glow. Remaining character-select, rest-site, death, card, and relic art, fuller animation, sound, final naming, project licensing, and Workshop publication remain undecided. No public release or balance claim is implied by the playable prototype.
+The combat sprite uses generated Transcendence-inspired artwork with a Voidform glow. Starter cards use framed retail WoW icons; the starter relic uses a transparent adaptation of the Voidform icon. Remaining character-select, rest-site, death, Enter Voidform, and future card art, fuller animation, sound, final naming, project licensing, and Workshop publication remain undecided. No public release or balance claim is implied by the playable prototype.

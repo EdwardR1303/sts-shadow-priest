@@ -3,7 +3,10 @@ package shadowpriest.relics;
 import basemod.BaseMod;
 import basemod.abstracts.CustomRelic;
 import basemod.interfaces.AlternateCardCostModifier;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Pixmap;
+import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
@@ -12,7 +15,6 @@ import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import shadowpriest.cards.EnterVoidform;
@@ -24,8 +26,27 @@ public class VoidformRelic extends CustomRelic implements AlternateCardCostModif
     public static final String ID = "shadowpriest:Voidform";
     public final InsanityState state = new InsanityState();
     public VoidformRelic() {
-        super(ID, ImageMaster.loadImage("shadowpriest/images/badge.png"), RelicTier.STARTER, LandingSound.MAGICAL);
+        super(ID, Art.SMALL, RelicTier.STARTER, LandingSound.MAGICAL);
         counter = 0;
+    }
+    @Override public void loadLargeImg() { largeImg = Art.LARGE; }
+    private static final class Art {
+        private static final Texture SMALL = load(128);
+        private static final Texture LARGE = load(256);
+        private static Texture load(int size) {
+            Pixmap source = new Pixmap(Gdx.files.internal("shadowpriest/images/relics/voidform_cutout.png"));
+            Pixmap scaled = new Pixmap(size, size, Pixmap.Format.RGBA8888);
+            try {
+                Pixmap.setFilter(Pixmap.Filter.BiLinear);
+                // Relic canvases are 128/256 px; padding keeps the organic shape inside the UI slot.
+                int inset = size / 8;
+                scaled.drawPixmap(source, 0, 0, source.getWidth(), source.getHeight(),
+                    inset, inset, size - inset * 2, size - inset * 2);
+                Texture texture = new Texture(scaled);
+                texture.setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
+                return texture;
+            } finally { source.dispose(); scaled.dispose(); }
+        }
     }
     public static VoidformRelic current() {
         if (AbstractDungeon.player == null) return null;

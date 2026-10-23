@@ -13,19 +13,19 @@ The rules below capture the owner's design and prototype defaults on October 23,
 | Vampiric Touch | Skill applying a distinct DoT | 1 | Apply Vampiric Touch: 5 damage each turn for 3 turns. | 1 |
 | Shadow Word: Pain | Skill applying a distinct DoT | 1 | Apply Shadow Word: Pain: 5 damage each turn for 3 turns. | 1 |
 
-Four Mind Spikes, four Power Word: Shields, one Vampiric Touch, and one Shadow Word: Pain form the ten-card prototype deck. Provisional upgrades are 9 damage, 8 Block, and four-turn DoT durations respectively.
+Four Mind Spikes, four Power Word: Shields, one Vampiric Touch, and one Shadow Word: Pain form the ten-card prototype deck. Mind Spike upgrades to 9 damage; Shield upgrades to 8 Block. Both DoTs upgrade to 6 damage per tick for 4 turns (+1 damage and +1 duration).
 
 Vampiric Touch has no agreed healing or Block effect. Its current effect is solely the DoT specified above.
 
 ## Damage over time
 
 - Vampiric Touch and Shadow Word: Pain are separate debuffs that can coexist on one enemy.
-- Each deals 5 damage each turn for 3 turns.
+- Each deals 5 damage each turn for 3 turns, or 6 damage each turn for 4 turns when upgraded.
 - Strength does not modify this DoT damage.
-- Reapplying the same DoT refreshes its duration rather than increasing its damage or stacking its duration.
+- Reapplying the same DoT replaces its damage and duration with the new card's values; neither value stacks.
 - Future cards will synergize with the number of unique DoTs on a target.
 
-One uninterrupted application supplies three ticks totaling 15 base damage. Both debuffs supply 10 base damage per tick cycle while they coexist. Ticks occur before the enemy acts, starting on its next turn after application. They bypass Block and ignore offensive modifiers; enemy damage hooks such as Intangible still apply. Artifact blocks application or refresh.
+One uninterrupted base application supplies three ticks totaling 15 damage; an upgraded application supplies four ticks totaling 24 damage. Both base debuffs supply 10 damage per tick cycle, or 12 when both are upgraded. Ticks occur before the enemy acts, starting on its next turn after application. They bypass Block and ignore offensive modifiers; enemy damage hooks such as Intangible still apply. Artifact blocks both damage and duration changes on application or refresh.
 
 ## Starting relic and Insanity
 

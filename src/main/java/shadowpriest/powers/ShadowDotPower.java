@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
+import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
@@ -16,8 +17,14 @@ public class ShadowDotPower extends AbstractPower {
     public static final String TOUCH = "shadowpriest:Touch";
     public static final String PAIN = "shadowpriest:Pain";
     public static final int DAMAGE = 5;
+    public int damagePerTurn;
+    private Integer incomingDamage;
     public ShadowDotPower(AbstractCreature owner, String id, int turns) {
+        this(owner, id, turns, DAMAGE);
+    }
+    public ShadowDotPower(AbstractCreature owner, String id, int turns, int damage) {
         this.owner = owner; ID = id; amount = turns;
+        damagePerTurn = damage;
         name = TOUCH.equals(id) ? "Vampiric Touch" : "Shadow Word: Pain";
         type = PowerType.DEBUFF; isTurnBased = true;
         TextureAtlas.AtlasRegion[] icons = TOUCH.equals(id) ? Icons.TOUCH : Icons.PAIN;
@@ -42,15 +49,33 @@ public class ShadowDotPower extends AbstractPower {
             return region;
         }
     }
-    @Override public void stackPower(int turns) { amount = turns; updateDescription(); }
+    public static ApplyPowerAction apply(AbstractCreature target, AbstractCreature source, String id, int turns, int damage) {
+        ShadowDotPower incoming = new ShadowDotPower(target, id, turns, damage);
+        return new ApplyPowerAction(target, source, incoming, turns) {
+            @Override public void update() {
+                AbstractPower existing = target == null ? null : target.getPower(id);
+                ShadowDotPower current = existing instanceof ShadowDotPower ? (ShadowDotPower) existing : null;
+                // Transfer tick damage only if the engine actually calls stackPower. Artifact and
+                // other application vetoes still run through the normal ApplyPowerAction pipeline.
+                if (current != null) current.incomingDamage = incoming.damagePerTurn;
+                try { super.update(); }
+                finally { if (current != null) current.incomingDamage = null; }
+            }
+        };
+    }
+    @Override public void stackPower(int turns) {
+        amount = turns;
+        if (incomingDamage != null) damagePerTurn = incomingDamage;
+        updateDescription();
+    }
     @Override public void updateDescription() {
-        description = "Before acting, lose #b5 HP. #b" + amount + " turn(s) remaining. Reapplying refreshes duration. Ignores Block and Strength.";
+        description = "Before acting, lose #b" + damagePerTurn + " HP. #b" + amount + " turn(s) remaining. Reapplying replaces damage and duration. Ignores Block and Strength.";
     }
     @Override public void atStartOfTurn() {
         if (amount <= 0 || owner.isDeadOrEscaped()) return;
         flashWithoutSound();
         // HP_LOSS skips attack calculations, so explicitly honor the monster's Intangible.
-        int damage = owner.hasPower("Intangible") || owner.hasPower("IntangiblePlayer") ? 1 : DAMAGE;
+        int damage = owner.hasPower("Intangible") || owner.hasPower("IntangiblePlayer") ? 1 : damagePerTurn;
         addToBot(new DamageAction(owner, new DamageInfo(AbstractDungeon.player, damage, DamageInfo.DamageType.HP_LOSS), AbstractGameAction.AttackEffect.POISON));
         addToBot(new ReducePowerAction(owner, AbstractDungeon.player, this, 1));
     }

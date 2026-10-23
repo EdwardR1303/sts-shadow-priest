@@ -8,7 +8,7 @@ The [Voidform activation card](docs/voidform-activation.md) costs 0 energy, has 
 
 ## Project status
 
-Version 0.1.0 is a starting-deck prototype for VS Code: a selectable character, four starter cards, separate refreshing DoTs, an Insanity bar beneath the energy orb, and on-demand Voidform. The combat priest wears Transcendence-inspired regalia and glows purple during Voidform. Touch and Pain use their World of Warcraft debuff icons; other artwork uses BasicMod placeholders. Rewards temporarily use the Ironclad pool; a complete Shadow Priest reward pool and balance pass are future work.
+Version 0.1.0 is a starting-deck prototype for VS Code: a selectable character, four starter cards, separate refreshing DoTs, an Insanity bar beneath the energy orb, and on-demand Voidform. The combat priest wears Transcendence-inspired regalia and glows purple during Voidform. Starter cards use framed retail WoW ability icons, Touch/Pain use matching debuff icons, and the Voidform relic uses a transparent cutout adapted from its WoW icon. Other artwork uses BasicMod placeholders. Rewards temporarily use the Ironclad pool; a complete Shadow Priest reward pool and balance pass are future work.
 
 ## Build and play on Windows
 
@@ -26,12 +26,15 @@ For a smaller window, add `-Width 1920 -Height 1080 -Windowed`. VS Code also has
 
 ## Design documents
 
+- [Card design guide](docs/card-design-guide.md): start designing cards in [the JSON catalog](design/cards.json), with [a reusable template](design/card-template.json), complete upgrades, and VS Code validation.
 - [Character design](docs/character-design.md): starting cards, DoTs, Insanity, and the starting relic.
 - [Decision log](docs/decisions.md): accepted choices and the earlier concepts they replace.
 - [Open questions](docs/open-questions.md): rules that still need decisions, with suggestions clearly marked.
 - [Prototype plan](docs/prototype-plan.md): completed milestone and remaining playtest questions.
 - [Prototype rules](docs/prototype-rules.md): exact mechanics and provisional defaults implemented in 0.1.0.
 - [Character artwork](docs/character-art.md): generated combat sprite, Voidform presentation, and source prompt.
+- [Starter card artwork](docs/starter-card-art.md): original ability icons, shared frame, and generation prompt.
+- [Voidform relic artwork](docs/relic-art.md): transparent icon adaptation and generation prompt.
 
 ## Recording changes
 
@@ -49,4 +52,4 @@ Implementation references:
 
 Character scaffolding and placeholder assets are adapted from BasicMod's `character` branch at `412662e8dc391e6aad517704ede09f2b1f5db221`. The [MIT notice](licenses/BasicMod-MIT.txt) is preserved and included in the JAR. Game files and dependency JARs are not committed or bundled into the mod.
 
-The two World of Warcraft debuff icons are credited separately in [Warcraft artwork](licenses/Warcraft-artwork.txt), also included in the JAR.
+The World of Warcraft ability icons are credited separately in [Warcraft artwork](licenses/Warcraft-artwork.txt), also included in the JAR.

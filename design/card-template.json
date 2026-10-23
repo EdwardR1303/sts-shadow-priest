@@ -1,0 +1,55 @@
+{
+  "$schema": "./cards.schema.json",
+  "version": 1,
+  "cards": [
+    {
+      "id": "shadowpriest:NewCard",
+      "name": "New Card",
+      "status": "DRAFT",
+      "type": "SKILL",
+      "rarity": "COMMON",
+      "sources": [
+        "REWARD_POOL"
+      ],
+      "startingCopies": 0,
+      "tags": [],
+      "designIntent": "TODO: What decision does this card add to the setup / survival / burst loop?",
+      "base": {
+        "cost": 1,
+        "target": "SELF",
+        "text": "Gain 5 Block.",
+        "stats": {
+          "block": 5
+        },
+        "keywords": [],
+        "effects": [
+          "Gain 5 Block."
+        ]
+      },
+      "upgrade": {
+        "summary": "+3 Block.",
+        "card": {
+          "cost": 1,
+          "target": "SELF",
+          "text": "Gain 8 Block.",
+          "stats": {
+            "block": 8
+          },
+          "keywords": [],
+          "effects": [
+            "Gain 8 Block."
+          ]
+        }
+      },
+      "rulesNotes": [
+        "TODO: Specify timing, targeting, and interactions with DoTs and Voidform."
+      ],
+      "balanceNotes": "TODO: Why this cost and rarity? What should we watch in playtests?",
+      "art": {
+        "wowAbility": "",
+        "icon": "",
+        "direction": "TODO: Describe the artwork."
+      }
+    }
+  ]
+}

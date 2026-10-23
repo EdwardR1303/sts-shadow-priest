@@ -1,0 +1,254 @@
+{
+  "$schema": "./cards.schema.json",
+  "version": 1,
+  "cards": [
+    {
+      "id": "shadowpriest:MindSpike",
+      "name": "Mind Spike",
+      "status": "IMPLEMENTED",
+      "type": "ATTACK",
+      "rarity": "BASIC",
+      "sources": [
+        "STARTER_DECK"
+      ],
+      "startingCopies": 4,
+      "tags": [
+        "STRIKE",
+        "STARTER_STRIKE"
+      ],
+      "designIntent": "Basic attack; build Insanity by hitting a target with distinct DoTs.",
+      "base": {
+        "cost": 1,
+        "target": "ENEMY",
+        "text": "Deal 6 damage.",
+        "stats": {
+          "damage": 6
+        },
+        "keywords": [],
+        "effects": [
+          "Deal 6 damage."
+        ]
+      },
+      "upgrade": {
+        "summary": "+3 damage.",
+        "card": {
+          "cost": 1,
+          "target": "ENEMY",
+          "text": "Deal 9 damage.",
+          "stats": {
+            "damage": 9
+          },
+          "keywords": [],
+          "effects": [
+            "Deal 9 damage."
+          ]
+        }
+      },
+      "rulesNotes": [],
+      "balanceNotes": "Prototype values; balance is subject to playtesting.",
+      "art": {
+        "wowAbility": "Mind Spike",
+        "icon": "spell_priest_mindspike",
+        "direction": "Original retail icon with the shared violet-and-gold frame."
+      }
+    },
+    {
+      "id": "shadowpriest:PowerWordShield",
+      "name": "Power Word: Shield",
+      "status": "IMPLEMENTED",
+      "type": "SKILL",
+      "rarity": "BASIC",
+      "sources": [
+        "STARTER_DECK"
+      ],
+      "startingCopies": 4,
+      "tags": [
+        "STARTER_DEFEND"
+      ],
+      "designIntent": "Survive while preparing a Voidform burst turn.",
+      "base": {
+        "cost": 1,
+        "target": "SELF",
+        "text": "Gain 5 Block.",
+        "stats": {
+          "block": 5
+        },
+        "keywords": [],
+        "effects": [
+          "Gain 5 Block."
+        ]
+      },
+      "upgrade": {
+        "summary": "+3 Block.",
+        "card": {
+          "cost": 1,
+          "target": "SELF",
+          "text": "Gain 8 Block.",
+          "stats": {
+            "block": 8
+          },
+          "keywords": [],
+          "effects": [
+            "Gain 8 Block."
+          ]
+        }
+      },
+      "rulesNotes": [],
+      "balanceNotes": "Prototype values; balance is subject to playtesting.",
+      "art": {
+        "wowAbility": "Power Word: Shield",
+        "icon": "spell_holy_powerwordshield",
+        "direction": "Original retail icon with the shared violet-and-gold frame."
+      }
+    },
+    {
+      "id": "shadowpriest:VampiricTouch",
+      "name": "Vampiric Touch",
+      "status": "IMPLEMENTED",
+      "type": "SKILL",
+      "rarity": "BASIC",
+      "sources": [
+        "STARTER_DECK"
+      ],
+      "startingCopies": 1,
+      "tags": [],
+      "designIntent": "Maintain a distinct DoT to deal delayed damage and support Insanity generation.",
+      "base": {
+        "cost": 1,
+        "target": "ENEMY",
+        "text": "Apply Touch: 5 damage for 3 turns. Ticks before the enemy acts. Reapplying refreshes.",
+        "stats": {
+          "tickDamage": 5,
+          "duration": 3
+        },
+        "keywords": [],
+        "effects": [
+          "Apply Touch: 5 damage for 3 turns. Ticks before the enemy acts. Reapplying refreshes."
+        ]
+      },
+      "upgrade": {
+        "summary": "+1 damage per tick and +1 turn (15 total becomes 24).",
+        "card": {
+          "cost": 1,
+          "target": "ENEMY",
+          "text": "Apply Touch: 6 damage for 4 turns. Ticks before the enemy acts. Reapplying refreshes.",
+          "stats": {
+            "tickDamage": 6,
+            "duration": 4
+          },
+          "keywords": [],
+          "effects": [
+            "Apply Touch: 6 damage for 4 turns. Ticks before the enemy acts. Reapplying refreshes."
+          ]
+        }
+      },
+      "rulesNotes": [
+        "Ticks before the enemy acts, then loses one turn; no immediate tick on application.",
+        "Reapplication replaces damage AND duration with the played card's values; values do not stack.",
+        "HP-loss ticks bypass Block and ignore Strength, Weak, Vulnerable and Voidform. Enemy damage hooks such as Intangible still apply.",
+        "Artifact blocks application and refresh.",
+        "Each of Touch and Pain counts as one unique DoT for Insanity. Ticks do not generate Insanity."
+      ],
+      "balanceNotes": "Prototype values; balance is subject to playtesting.",
+      "art": {
+        "wowAbility": "Vampiric Touch",
+        "icon": "spell_holy_stoicism",
+        "direction": "Original retail icon with the shared violet-and-gold frame."
+      }
+    },
+    {
+      "id": "shadowpriest:ShadowWordPain",
+      "name": "Shadow Word: Pain",
+      "status": "IMPLEMENTED",
+      "type": "SKILL",
+      "rarity": "BASIC",
+      "sources": [
+        "STARTER_DECK"
+      ],
+      "startingCopies": 1,
+      "tags": [],
+      "designIntent": "Maintain a distinct DoT to deal delayed damage and support Insanity generation.",
+      "base": {
+        "cost": 1,
+        "target": "ENEMY",
+        "text": "Apply Pain: 5 damage for 3 turns. Ticks before the enemy acts. Reapplying refreshes.",
+        "stats": {
+          "tickDamage": 5,
+          "duration": 3
+        },
+        "keywords": [],
+        "effects": [
+          "Apply Pain: 5 damage for 3 turns. Ticks before the enemy acts. Reapplying refreshes."
+        ]
+      },
+      "upgrade": {
+        "summary": "+1 damage per tick and +1 turn (15 total becomes 24).",
+        "card": {
+          "cost": 1,
+          "target": "ENEMY",
+          "text": "Apply Pain: 6 damage for 4 turns. Ticks before the enemy acts. Reapplying refreshes.",
+          "stats": {
+            "tickDamage": 6,
+            "duration": 4
+          },
+          "keywords": [],
+          "effects": [
+            "Apply Pain: 6 damage for 4 turns. Ticks before the enemy acts. Reapplying refreshes."
+          ]
+        }
+      },
+      "rulesNotes": [
+        "Ticks before the enemy acts, then loses one turn; no immediate tick on application.",
+        "Reapplication replaces damage AND duration with the played card's values; values do not stack.",
+        "HP-loss ticks bypass Block and ignore Strength, Weak, Vulnerable and Voidform. Enemy damage hooks such as Intangible still apply.",
+        "Artifact blocks application and refresh.",
+        "Each of Touch and Pain counts as one unique DoT for Insanity. Ticks do not generate Insanity."
+      ],
+      "balanceNotes": "Prototype values; balance is subject to playtesting.",
+      "art": {
+        "wowAbility": "Shadow Word: Pain",
+        "icon": "spell_shadow_shadowwordpain",
+        "direction": "Original retail icon with the shared violet-and-gold frame."
+      }
+    },
+    {
+      "id": "shadowpriest:EnterVoidform",
+      "name": "Enter Voidform",
+      "status": "IMPLEMENTED",
+      "type": "SKILL",
+      "rarity": "SPECIAL",
+      "sources": [
+        "GENERATED"
+      ],
+      "startingCopies": 0,
+      "tags": [],
+      "designIntent": "Hold the earned activation until a strong burst turn.",
+      "base": {
+        "cost": 0,
+        "target": "SELF",
+        "text": "Retain. Enter Voidform. Exhaust.",
+        "stats": {},
+        "keywords": [
+          "RETAIN",
+          "EXHAUST"
+        ],
+        "effects": [
+          "Spend this card's ready charge and enter Voidform until the player's turn ends."
+        ]
+      },
+      "upgrade": null,
+      "rulesNotes": [
+        "Generated when the starter relic reaches 10 Insanity; not a permanent starter or reward.",
+        "One pending charge at a time. Full hands defer delivery. Copied or recovered cards cannot reuse a spent charge.",
+        "Voidform reduces Attack energy costs by 1 (minimum 0; excludes X-cost) and multiplies Attack damage by 1.5.",
+        "Insanity stops accumulating while ready or active; it resets when Voidform ends and after combat."
+      ],
+      "balanceNotes": "Prototype values; balance is subject to playtesting.",
+      "art": {
+        "wowAbility": "Voidform",
+        "icon": "",
+        "direction": "Generated card still uses placeholder art."
+      }
+    }
+  ]
+}

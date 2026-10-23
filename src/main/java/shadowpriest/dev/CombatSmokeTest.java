@@ -225,7 +225,59 @@ public final class CombatSmokeTest {
         steps.add(() -> {
             check(relic.state.amount() == 3, "An area Attack counts each target's distinct DoTs (2 plus 1)");
         });
+        steps.add(() -> {
+            p.hand.clear(); relic.reset(); m.powers.clear(); m.currentBlock = 0;
+            for (PriestCard card : new PriestCard[]{new MindSpike(), new PowerWordShield(), new VampiricTouch(), new ShadowWordPain()}) {
+                com.badlogic.gdx.graphics.Texture portrait = basemod.abstracts.CustomCard.getPortraitImage(card);
+                check(card.portrait.getRegionWidth() == 250 && card.portrait.getRegionHeight() == 190
+                    && portrait.getWidth() == 500 && portrait.getHeight() == 380, card.name + " has small and inspection artwork");
+            }
+            VampiricTouch touch = new VampiricTouch(); touch.upgrade();
+            ShadowDotCard copy = (ShadowDotCard) touch.makeStatEquivalentCopy();
+            check(copy.magicNumber == 6 && copy.turns() == 4 && copy.cost == 1, "Upgraded DoT copies preserve 6 damage, 4 turns, and 1 energy");
+            play(touch, m);
+        });
+        steps.add(() -> { ShadowWordPain pain = new ShadowWordPain(); pain.upgrade(); play(pain, m); });
+        steps.add(() -> {
+            check(dot(ShadowDotPower.TOUCH).damagePerTurn == 6 && dot(ShadowDotPower.TOUCH).amount == 4
+                && dot(ShadowDotPower.PAIN).damagePerTurn == 6 && dot(ShadowDotPower.PAIN).amount == 4,
+                "Both upgraded DoTs apply 6 damage for 4 turns");
+            p.powers.add(new StrengthPower(p, 10)); p.powers.add(new WeakPower(p, 2, false));
+            m.powers.add(new VulnerablePower(m, 2, false)); m.currentBlock = 40;
+            hp = m.currentHealth; tickDots();
+        });
+        steps.add(CombatSmokeTest::tickDots);
+        steps.add(CombatSmokeTest::tickDots);
+        steps.add(CombatSmokeTest::tickDots);
+        steps.add(() -> {
+            check(m.currentHealth == hp - 48 && m.currentBlock == 40 && ShadowDotPower.count(m) == 0 && relic.state.amount() == 0,
+                "Upgraded DoTs deal four fixed 6-damage ticks each, then expire");
+            p.powers.clear(); m.powers.clear(); m.currentBlock = 0;
+            play(new VampiricTouch(), m);
+        });
+        steps.add(() -> { VampiricTouch touch = new VampiricTouch(); touch.upgrade(); play(touch, m); });
+        steps.add(() -> {
+            check(dot(ShadowDotPower.TOUCH).damagePerTurn == 6 && dot(ShadowDotPower.TOUCH).amount == 4,
+                "Upgraded reapplication replaces base tick damage and duration");
+            play(new VampiricTouch(), m);
+        });
+        steps.add(() -> {
+            check(dot(ShadowDotPower.TOUCH).damagePerTurn == 5 && dot(ShadowDotPower.TOUCH).amount == 3,
+                "Base reapplication replaces upgraded damage and duration without stacking");
+            add(new ApplyPowerAction(m, p, new ArtifactPower(m, 1), 1));
+        });
+        steps.add(() -> { VampiricTouch touch = new VampiricTouch(); touch.upgrade(); play(touch, m); });
+        steps.add(() -> {
+            check(dot(ShadowDotPower.TOUCH).damagePerTurn == 5 && dot(ShadowDotPower.TOUCH).amount == 3 && !m.hasPower(ArtifactPower.POWER_ID),
+                "Artifact blocks both damage and duration changes on an upgraded refresh");
+            ShadowWordPain pain = new ShadowWordPain(); pain.upgrade(); play(pain, m);
+        });
+        steps.add(() -> { hp = m.currentHealth; tickDots(); });
+        steps.add(() -> check(m.currentHealth == hp - 11 && dot(ShadowDotPower.TOUCH).damagePerTurn == 5 && dot(ShadowDotPower.PAIN).damagePerTurn == 6,
+            "Mixed base and upgraded DoTs retain independent tick damage"));
     }
+
+    private static ShadowDotPower dot(String id) { return (ShadowDotPower) m.getPower(id); }
 
     private static void tickDots() {
         for (AbstractPower power : new ArrayList<>(m.powers)) if (power instanceof ShadowDotPower) power.atStartOfTurn();

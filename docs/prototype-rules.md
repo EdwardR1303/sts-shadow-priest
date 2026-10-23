@@ -10,8 +10,8 @@ Template defaults: 70 HP, 3 energy, 5 cards drawn each turn, 99 gold, no orb slo
 | --- | --- | --- | --- | --- | --- |
 | Mind Spike | 4 | Attack | 1 | Deal 6 damage. | 9 damage |
 | Power Word: Shield | 4 | Skill | 1 | Gain 5 Block. | 8 Block |
-| Vampiric Touch | 1 | Skill | 1 | Touch: 5 damage per tick for 3 turns. | 4 turns |
-| Shadow Word: Pain | 1 | Skill | 1 | Pain: 5 damage per tick for 3 turns. | 4 turns |
+| Vampiric Touch | 1 | Skill | 1 | Touch: 5 damage per tick for 3 turns. | 6 damage per tick for 4 turns |
+| Shadow Word: Pain | 1 | Skill | 1 | Pain: 5 damage per tick for 3 turns. | 6 damage per tick for 4 turns |
 | Enter Voidform | Generated | Skill | 0 | Retain. Enter Voidform. Exhaust. | Cannot upgrade |
 
 Simple upgrades keep campfires and events usable during testing. Neither DoT heals. Shop and reward cards temporarily use the Ironclad pool so the prototype can continue beyond the first fight. These are not the final class rewards.
@@ -19,8 +19,8 @@ Simple upgrades keep campfires and events usable during testing. Neither DoT hea
 ## Damage over time
 
 - Touch and Pain coexist with independent duration counters.
-- Each deals 5 HP-loss damage before the enemy acts, then loses one remaining turn. The first tick occurs on the next enemy turn after application, not immediately on play.
-- Reapplication sets duration to the played card's duration. It does not stack damage or duration or trigger a tick. A base application can refresh an upgraded four-turn effect to three turns.
+- Each deals 5 HP-loss damage (6 when upgraded) before the enemy acts, then loses one remaining turn. The first tick occurs on the next enemy turn after application, not immediately on play. Base total: 15 over 3 ticks; upgraded total: 24 over 4 ticks.
+- Reapplication replaces damage and duration with the played card's values. It does not add damage or duration or trigger a tick. A base application replaces an upgraded effect with 5 damage for 3 turns; an upgraded application replaces a base effect with 6 damage for 4 turns.
 - Damage bypasses Block and ignores Strength, Weak, Vulnerable, and Voidform. Enemy damage hooks, including Intangible, still apply.
 - Artifact blocks application or refresh.
 - Only Touch and Pain count toward the unique-DoT total. Poison and other mods' debuffs do not count.
@@ -43,4 +43,4 @@ The attack that earns the card does not itself activate Voidform. Turn-end expir
 
 ## Presentation
 
-The relic counter and a labeled purple bar beneath the energy orb show building, ready, and active states. Touch and Pain display their original World of Warcraft spell icons, with remaining turns overlaid by the game. The combat character uses generated Transcendence-inspired artwork, with a shadow tint, subtle idle bob, and pulsing purple glow while Voidform is active. Character-select, rest-site, death, card, and relic images remain BasicMod placeholders. See [character artwork](character-art.md) for the asset and generation prompt. The launcher defaults to 4K borderless as requested.
+The relic counter and a labeled purple bar beneath the energy orb show building, ready, and active states. Touch and Pain display their original World of Warcraft spell icons, with remaining turns overlaid by the game. All four starter card portraits use the original retail ability icons with a shared violet-and-gold frame. The combat character uses generated Transcendence-inspired artwork, with a shadow tint, subtle idle bob, and pulsing purple glow while Voidform is active. The Voidform relic uses a transparent, irregular cutout adapted from its WoW icon. Character-select, rest-site, death, and Enter Voidform images remain BasicMod placeholders. See [character artwork](character-art.md), [starter card artwork](starter-card-art.md), and [relic artwork](relic-art.md) for assets and generation prompts. The launcher defaults to 4K borderless as requested.

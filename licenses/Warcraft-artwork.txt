@@ -16,5 +16,25 @@ Resource: shadowpriest/images/powers/shadow_word_pain.jpg
 Source: https://wow.zamimg.com/images/wow/icons/large/spell_shadow_shadowwordpain.jpg
 Reference: https://www.wowhead.com/spell=589/shadow-word-pain
 
-The source images are stored unchanged. The game scales them for its small
-debuff icons and larger power displays.
+Mind Spike (spell_priest_mindspike)
+Resource: shadowpriest/images/cards/icons/mind_spike.jpg
+Source: https://wow.zamimg.com/images/wow/icons/large/spell_priest_mindspike.jpg
+Reference: https://www.wowhead.com/spell=73510/mind-spike
+
+Power Word: Shield (spell_holy_powerwordshield)
+Resource: shadowpriest/images/cards/icons/power_word_shield.jpg
+Source: https://wow.zamimg.com/images/wow/icons/large/spell_holy_powerwordshield.jpg
+Reference: https://www.wowhead.com/spell=17/power-word-shield
+
+Voidform (spell_priest_voidform)
+Resource: shadowpriest/images/relics/voidform_source.jpg
+Adapted relic: shadowpriest/images/relics/voidform_cutout.png
+Source: https://wow.zamimg.com/images/wow/icons/large/spell_priest_voidform.jpg
+Reference: https://www.wowhead.com/spell=228264/voidform
+The relic cutout is an image-generation adaptation of this original icon.
+Its prompt and presentation are documented in docs/relic-art.md.
+
+The source images are stored unchanged. The game scales them for debuffs,
+power displays, and framed starter card portraits. The surrounding card frame
+was generated separately; its prompt and composition are documented in
+docs/starter-card-art.md.

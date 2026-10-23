@@ -1,7 +1,7 @@
 {
   "shadowpriest:MindSpike": {"NAME":"Mind Spike","DESCRIPTION":"Deal !D! damage."},
   "shadowpriest:PowerWordShield": {"NAME":"Power Word: Shield","DESCRIPTION":"Gain !B! Block."},
-  "shadowpriest:VampiricTouch": {"NAME":"Vampiric Touch","DESCRIPTION":"Apply shadowpriest:Touch for !M! turns. NL Deals 5 damage before the enemy acts each turn. NL Reapplying refreshes duration."},
-  "shadowpriest:ShadowWordPain": {"NAME":"Shadow Word: Pain","DESCRIPTION":"Apply shadowpriest:Pain for !M! turns. NL Deals 5 damage before the enemy acts each turn. NL Reapplying refreshes duration."},
+  "shadowpriest:VampiricTouch": {"NAME":"Vampiric Touch","DESCRIPTION":"Apply shadowpriest:Touch: !M! damage for !shadowpriest:Turns! turns. NL Ticks before the enemy acts. NL Reapplying refreshes."},
+  "shadowpriest:ShadowWordPain": {"NAME":"Shadow Word: Pain","DESCRIPTION":"Apply shadowpriest:Pain: !M! damage for !shadowpriest:Turns! turns. NL Ticks before the enemy acts. NL Reapplying refreshes."},
   "shadowpriest:EnterVoidform": {"NAME":"Enter Voidform","DESCRIPTION":"Retain. NL Enter shadowpriest:Voidform. NL Exhaust."}
 }

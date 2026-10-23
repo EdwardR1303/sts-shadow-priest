@@ -1,0 +1,265 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Shadow Priest card designs",
+  "description": "Design-only catalog; editing it does not change the Java mod.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "version",
+    "cards"
+  ],
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "version": {
+      "const": 1
+    },
+    "cards": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/card"
+      }
+    }
+  },
+  "definitions": {
+    "cardState": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "cost",
+        "target",
+        "text",
+        "stats",
+        "keywords",
+        "effects"
+      ],
+      "properties": {
+        "cost": {
+          "description": "Energy cost: an integer, X, or UNPLAYABLE.",
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 0
+            },
+            {
+              "enum": [
+                "X",
+                "UNPLAYABLE"
+              ]
+            }
+          ]
+        },
+        "target": {
+          "enum": [
+            "ENEMY",
+            "ALL_ENEMY",
+            "SELF",
+            "NONE",
+            "SELF_AND_ENEMY",
+            "ALL"
+          ]
+        },
+        "text": {
+          "type": "string",
+          "description": "Player-facing text with actual numbers; no Java placeholders."
+        },
+        "stats": {
+          "type": "object",
+          "description": "Named numeric values; add your own when a mechanic needs them.",
+          "additionalProperties": {
+            "type": "number"
+          },
+          "properties": {
+            "damage": {
+              "type": "number"
+            },
+            "block": {
+              "type": "number"
+            },
+            "draw": {
+              "type": "number"
+            },
+            "tickDamage": {
+              "type": "number"
+            },
+            "duration": {
+              "type": "number"
+            },
+            "hits": {
+              "type": "number"
+            },
+            "insanity": {
+              "type": "number"
+            },
+            "energy": {
+              "type": "number"
+            },
+            "bonusPerDot": {
+              "type": "number"
+            }
+          }
+        },
+        "keywords": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "enum": [
+              "RETAIN",
+              "EXHAUST",
+              "ETHEREAL",
+              "INNATE"
+            ]
+          }
+        },
+        "effects": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Ordered rules in plain language. These are design notes, not executable actions."
+        }
+      }
+    },
+    "card": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "name",
+        "status",
+        "type",
+        "rarity",
+        "sources",
+        "startingCopies",
+        "tags",
+        "designIntent",
+        "base",
+        "upgrade",
+        "rulesNotes",
+        "balanceNotes",
+        "art"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^shadowpriest:[A-Za-z][A-Za-z0-9]*$"
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "status": {
+          "enum": [
+            "DRAFT",
+            "READY_FOR_REVIEW",
+            "APPROVED",
+            "IMPLEMENTED",
+            "CUT"
+          ]
+        },
+        "type": {
+          "enum": [
+            "ATTACK",
+            "SKILL",
+            "POWER",
+            "STATUS",
+            "CURSE"
+          ]
+        },
+        "rarity": {
+          "enum": [
+            "BASIC",
+            "COMMON",
+            "UNCOMMON",
+            "RARE",
+            "SPECIAL",
+            "CURSE"
+          ]
+        },
+        "sources": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "enum": [
+              "STARTER_DECK",
+              "REWARD_POOL",
+              "GENERATED",
+              "EVENT",
+              "SHOP_ONLY"
+            ]
+          }
+        },
+        "startingCopies": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "designIntent": {
+          "type": "string"
+        },
+        "base": {
+          "$ref": "#/definitions/cardState"
+        },
+        "upgrade": {
+          "description": "Null means it cannot upgrade. Otherwise card contains the complete upgraded state, not just changes.",
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "summary",
+                "card"
+              ],
+              "properties": {
+                "summary": {
+                  "type": "string"
+                },
+                "card": {
+                  "$ref": "#/definitions/cardState"
+                }
+              }
+            }
+          ]
+        },
+        "rulesNotes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "balanceNotes": {
+          "type": "string"
+        },
+        "art": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "wowAbility",
+            "icon",
+            "direction"
+          ],
+          "properties": {
+            "wowAbility": {
+              "type": "string"
+            },
+            "icon": {
+              "type": "string"
+            },
+            "direction": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -30,6 +30,10 @@ Accepted choices establish the current design baseline. Proposed defaults and un
 | D022 | Use the actual World of Warcraft icons for Touch and Pain debuffs (October 23, 2026). | Replace Poison/Vulnerable placeholders in the debuff row and larger power displays; preserve duration counters. Source attribution is recorded separately from the BasicMod license. |
 | D023 | Move Insanity just beneath the energy orb (October 23, 2026). | Anchor the compact meter to the orb's live position, with building, ready, and active labels. |
 | D024 | Use a shadowy priest in Tier 2-inspired regalia, glowing purple during Voidform (October 23, 2026). | Replace the combat placeholder with generated transparent artwork; add idle motion and an active-state-driven purple glow. |
+| D025 | Starter card artwork uses actual retail WoW ability icons with some stylization (October 23, 2026). | Preserve the icon art and surround it with a shared violet-and-gold frame in normal and enlarged card views. |
+| D026 | Upgrading either DoT adds 1 damage per tick and 1 turn (October 23, 2026). | Base 5 x 3 becomes 6 x 4. Reapplication replaces both values; Artifact blocks both changes. Supersedes duration-only prototype upgrades. |
+| D027 | Use WoW's Voidform icon for the starting relic, with a relic-shaped silhouette (October 23, 2026). | Adapt the icon into a transparent organic cutout, with padding for normal and enlarged relic displays. |
+| D028 | Provide a card-design template including rarity and upgrades (October 23, 2026). | Maintain a design-only JSON catalog, reusable template, local schema, and guide; complete base and upgraded states make proposed changes explicit. |
 
 ## Activation proposal outcome on October 23 2026
 

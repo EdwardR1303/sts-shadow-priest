@@ -28,6 +28,7 @@ public class ShadowPriestMod implements EditCharactersSubscriber, EditCardsSubsc
     public static void initialize() { BaseMod.subscribe(new ShadowPriestMod()); ShadowPriest.Meta.registerColor(); }
     @Override public void receiveEditCharacters() { ShadowPriest.Meta.registerCharacter(); }
     @Override public void receiveEditCards() {
+        BaseMod.addDynamicVariable(new DotTurnsVariable());
         for (AbstractCard c : new AbstractCard[]{new MindSpike(), new PowerWordShield(), new VampiricTouch(), new ShadowWordPain(), new EnterVoidform()}) {
             BaseMod.addCard(c); UnlockTracker.unlockCard(c.cardID);
         }
@@ -40,8 +41,8 @@ public class ShadowPriestMod implements EditCharactersSubscriber, EditCardsSubsc
         BaseMod.loadCustomStringsFile(RelicStrings.class, path + "RelicStrings.json");
     }
     @Override public void receiveEditKeywords() {
-        BaseMod.addKeyword("shadowpriest", "Vampiric Touch", new String[]{"touch"}, "A unique DoT. Deals #b5 damage before the enemy acts. Ignores Block and Strength. Reapplying refreshes its duration.");
-        BaseMod.addKeyword("shadowpriest", "Shadow Word: Pain", new String[]{"pain"}, "A unique DoT. Deals #b5 damage before the enemy acts. Ignores Block and Strength. Reapplying refreshes its duration.");
+        BaseMod.addKeyword("shadowpriest", "Vampiric Touch", new String[]{"touch"}, "A unique DoT. Deals the applied damage before the enemy acts. Ignores Block and Strength. Reapplying replaces damage and duration.");
+        BaseMod.addKeyword("shadowpriest", "Shadow Word: Pain", new String[]{"pain"}, "A unique DoT. Deals the applied damage before the enemy acts. Ignores Block and Strength. Reapplying replaces damage and duration.");
         BaseMod.addKeyword("shadowpriest", "Voidform", new String[]{"voidform"}, "Attacks cost #b1 less and deal #b50% more damage until turn end. X costs are unchanged.");
     }
     @Override public void receivePostUpdate() {
