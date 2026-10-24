@@ -73,6 +73,8 @@ These decisions are implemented in [the second reward-card batch](card-batch-02.
 
 | D047 | Misery is an Uncommon relic triggered by direct Touch applications, not existing-only DoT increases. | Qualifying sources can apply Touch to an unafflicted target. Mirror the incoming application amount into Pain, respecting duration caps and normal debuff application rules. Exclude Void Bolt, Void Volley, and Mind Flay: Insanity maintenance. Design agreed; implementation pending. |
 | D048 | Idol of Y'Shaarj draws one card per card that actually spends energy during Voidform. | One draw regardless of energy amount, after the card resolves. Exclude zero-cost, discounted-to-zero, and free plays; X-cost cards qualify only with positive energy consumption. Design agreed; implementation pending. |
+| D049 | Add a Boss relic that doubles natural DoT ticks while consuming only one duration stack. | Two separate ticks before the enemy acts, followed by one stack reduction, even on the last stack. Each tick benefits from Mastery and can trigger Embrace normally. Psychic Link, Madness, and Halo are unchanged. Name and implementation pending. |
+| D050 | Add a Boss relic that replaces starting combat copies of Curses with unupgraded Void Bolts. | Preserve the permanent deck and its Curse count for Inescapable Torment, independent of relic order. Replacements last one combat; later-added Curses and Status cards are unaffected. Neither new Boss relic replaces Voidform. Name and implementation pending. |
 
 ## Activation proposal outcome on October 23 2026
 

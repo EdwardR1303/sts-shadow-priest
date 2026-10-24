@@ -66,6 +66,20 @@ _No designs yet._
 ### Idol of Yogg-Saron
 - **Effect:** Entering Voidform grants 3 energy
 
+### Double DoT Ticks (name pending)
+
+- **Effect:** Your DoTs tick twice naturally, but lose only 1 duration stack.
+- **Rules:** Keep the existing timing before the afflicted enemy acts. Resolve two separate damage ticks, then remove one duration stack, including when only one stack remains. This produces two total natural ticks, not two extra ticks. Each tick uses current Mastery and normal damage prevention rules; each Touch tick that removes enemy HP can trigger Vampiric Embrace. Psychic Link's bonus ticks are unchanged. Madness does not tick, and Halo is an aura, so neither is affected.
+- **Replaces:** None; supplements the Voidform starter relic.
+- **Status:** Mechanics agreed; final name pending. Not implemented.
+
+### Curse Conversion (name pending)
+
+- **Effect:** At the start of each combat, replace all Curses in your combat deck with Void Bolts.
+- **Rules:** Replace each starting combat copy of a Curse with one unupgraded Void Bolt. Do not alter the permanent deck. The replacements last only for that combat; Curses added later in combat are not converted. Status cards and unplayable non-Curse cards do not qualify. Inescapable Torment still counts Curses in the permanent deck for its starting Mastery, regardless of relic acquisition or trigger order.
+- **Replaces:** None; supplements the Voidform starter relic.
+- **Status:** Mechanics agreed; final name pending. Not implemented.
+
 ## Shop
 
 _No designs yet._
