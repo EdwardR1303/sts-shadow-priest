@@ -50,7 +50,7 @@ When ready, change your entry to `READY_FOR_REVIEW`. We can review it together, 
 
 ## Rarity tallies
 
-`cards.md` contains a generated tally table in Attacks/Skills/Powers order. It counts every named design under its rarity and type headings, including drafts; it does not count upgraded versions or repeated starter copies. Refresh it after adding, removing, moving, or renaming cards:
+`cards.md` contains tallies beside each rarity heading in Attacks/Skills/Powers order, for example `## Common (7/6/2)`. They count every named design under its rarity and type headings, including drafts; they do not count upgraded versions or repeated starter copies. Refresh them after adding, removing, moving, or renaming cards:
 
 ```powershell
 python scripts/update-card-tallies.py

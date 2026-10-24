@@ -7,18 +7,10 @@ A trailing `?` on a card name marks an unreviewed design. Removing it means the 
 The structured [card catalog](design/cards.json) includes complete base and upgraded versions. The fifth batch implements eight new cards and Mastery. Mind Soothe and Mental Fortitude remain drafts; newer additions below may still await review.
 
 <!-- card-tallies:start -->
-X/Y/Z = **Attacks/Skills/Powers**. Counts include drafts and unreviewed designs in this file; upgrades and repeated starting copies do not count separately.
-
-| Rarity | X/Y/Z | Total |
-| --- | --- | ---: |
-| Basic | 1/3/0 | 4 |
-| Common | 7/6/2 | 15 |
-| Uncommon | 4/5/3 | 12 |
-| Rare | 2/3/2 | 7 |
-| **Total** | **14/17/7** | **38** |
+X/Y/Z = **Attacks/Skills/Powers**. Counts beside each rarity heading include drafts and unreviewed designs in this file; upgrades and repeated starting copies do not count separately.
 <!-- card-tallies:end -->
 
-## Basic
+## Basic (1/3/0)
 
 ### Attacks
 
@@ -50,7 +42,7 @@ X/Y/Z = **Attacks/Skills/Powers**. Counts include drafts and unreviewed designs 
 - **Upgrade:** Cost becomes 0 energy; damage remains 3 per tick.
 - **Rules:** Apply 5 stacks, restoring remaining ticks to the cap of 5. Each natural tick removes one stack. Base damage is 3, modified by current Mastery but independent of stack count or application source.
 
-## Common
+## Common (7/6/2)
 
 ### Attacks
 
@@ -162,7 +154,7 @@ X/Y/Z = **Attacks/Skills/Powers**. Counts include drafts and unreviewed designs 
 - **Upgrade:** Gain 2 Insanity instead.
 - **Rules:** Multiple copies stack. All Insanity gain follows the Voidform relic's restrictions, including its recovery turn.
 
-## Uncommon
+## Uncommon (4/5/3)
 
 ### Attacks
 
@@ -252,7 +244,7 @@ X/Y/Z = **Attacks/Skills/Powers**. Counts include drafts and unreviewed designs 
 - **Upgrade:** Cost becomes 1 energy.
 
 
-## Rare
+## Rare (2/3/2)
 
 ### Attacks
 

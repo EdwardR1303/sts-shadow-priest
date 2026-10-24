@@ -11,20 +11,21 @@ END = "<!-- card-tallies:end -->"
 
 def refresh(text):
     counts = {r: [0, 0, 0] for r in RARITIES}
-    present, names = set(), set()
+    headings, names = {}, set()
     rarity = kind = None
     fenced = False
-    for line in text.splitlines():
+    source_lines = text.splitlines(keepends=True)
+    for index, line in enumerate(source_lines):
         if line.startswith("```"):
             fenced = not fenced
         if fenced:
             continue
         if line.startswith("## "):
-            heading = line[3:].strip()
+            heading = re.sub(r" \(\d+/\d+/\d+\)$", "", line[3:].strip())
             rarity = heading if heading in counts else None
             kind = None
             if rarity:
-                present.add(rarity)
+                headings[index] = rarity
         elif line.startswith("### "):
             heading = line[4:].strip()
             kind = TYPES.index(heading) if heading in TYPES else None
@@ -36,16 +37,13 @@ def refresh(text):
                 raise ValueError("Duplicate card heading: " + line)
             names.add(name)
             counts[rarity][kind] += 1
-    lines = [START, "X/Y/Z = **Attacks/Skills/Powers**. Counts include drafts and unreviewed designs in this file; upgrades and repeated starting copies do not count separately.", "", "| Rarity | X/Y/Z | Total |", "| --- | --- | ---: |"]
-    total = [0, 0, 0]
-    for rarity in RARITIES:
-        if rarity not in present:
-            continue
-        values = counts[rarity]
-        lines.append("| " + rarity + " | " + "/".join(map(str, values)) + " | " + str(sum(values)) + " |")
-        total = [a+b for a, b in zip(total, values)]
-    lines += ["| **Total** | **" + "/".join(map(str, total)) + "** | **" + str(sum(total)) + "** |", END]
-    block = "\n".join(lines)
+    if not headings:
+        raise ValueError("No rarity heading found")
+    for index, rarity in headings.items():
+        ending = "\n" if source_lines[index].endswith("\n") else ""
+        source_lines[index] = "## " + rarity + " (" + "/".join(map(str, counts[rarity])) + ")" + ending
+    text = "".join(source_lines)
+    block = "\n".join([START, "X/Y/Z = **Attacks/Skills/Powers**. Counts beside each rarity heading include drafts and unreviewed designs in this file; upgrades and repeated starting copies do not count separately.", END])
     if START in text:
         if END not in text:
             raise ValueError("Missing tally end marker")
