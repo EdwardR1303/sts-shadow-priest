@@ -304,9 +304,9 @@
       }
     },
     {
-      "id": "shadowpriest:ShadowMend",
-      "name": "Shadow Mend",
-      "status": "IMPLEMENTED",
+      "id": "shadowpriest:FlashHeal",
+      "name": "Flash Heal",
+      "status": "APPROVED",
       "type": "SKILL",
       "rarity": "COMMON",
       "sources": [
@@ -314,7 +314,7 @@
       ],
       "startingCopies": 0,
       "tags": [],
-      "designIntent": "Recover health at an increasing energy cost.",
+      "designIntent": "Recover health with increasing energy cost per copy.",
       "base": {
         "cost": 1,
         "target": "SELF",
@@ -329,7 +329,7 @@
         ]
       },
       "upgrade": {
-        "summary": "+3 healing.",
+        "summary": "Heal for 9 HP.",
         "card": {
           "cost": 1,
           "target": "SELF",
@@ -345,13 +345,15 @@
         }
       },
       "rulesNotes": [
-        "Implementation edge cases: docs/card-batch-01.md."
+        "The cost increase affects only the played copy and resets after combat.",
+        "Approved rename of the previous Shadow Mend; runtime rename pending.",
+        "Runtime currently exposes this behavior under shadowpriest:ShadowMend. Rename and save compatibility need implementation; the new debt design is separate."
       ],
-      "balanceNotes": "First reward-card batch; numbers require human full-run balance testing.",
+      "balanceNotes": "Approved for implementation; numbers and repeatable draw/healing interactions require playtesting.",
       "art": {
-        "wowAbility": "Shadow Mend",
+        "wowAbility": "Flash Heal",
         "icon": "",
-        "direction": "Temporary prototype portrait; ability artwork remains future work."
+        "direction": "Use matching existing WoW ability art where available; otherwise create thematic Shadow Priest artwork. Asset selection pending."
       }
     },
     {
@@ -2120,6 +2122,415 @@
         "wowAbility": "",
         "icon": "shadow_committal.png",
         "direction": "Original generated shadow-priest artwork inside the shared card frame; prompt in docs/card-batch-05.md."
+      }
+    },
+    {
+      "id": "shadowpriest:BloodMagic",
+      "name": "Blood Magic",
+      "status": "APPROVED",
+      "type": "ATTACK",
+      "rarity": "COMMON",
+      "sources": [
+        "REWARD_POOL"
+      ],
+      "startingCopies": 0,
+      "tags": [],
+      "designIntent": "Immediate damage at a health cost.",
+      "base": {
+        "cost": 2,
+        "target": "ENEMY",
+        "text": "Deal 18 damage. Lose 3 HP.",
+        "stats": {
+          "damage": 18,
+          "hpLoss": 3
+        },
+        "keywords": [],
+        "effects": [
+          "Deal 18 damage. Lose 3 HP."
+        ]
+      },
+      "upgrade": {
+        "summary": "Deal 24 damage; HP loss remains 3.",
+        "card": {
+          "cost": 2,
+          "target": "ENEMY",
+          "text": "Deal 24 damage. Lose 3 HP.",
+          "stats": {
+            "damage": 24,
+            "hpLoss": 3
+          },
+          "keywords": [],
+          "effects": [
+            "Deal 24 damage. Lose 3 HP."
+          ]
+        }
+      },
+      "rulesNotes": [
+        "Approved; not implemented."
+      ],
+      "balanceNotes": "Approved for implementation; numbers and repeatable draw/healing interactions require playtesting.",
+      "art": {
+        "wowAbility": "Blood Magic",
+        "icon": "",
+        "direction": "Use matching existing WoW ability art where available; otherwise create thematic Shadow Priest artwork. Asset selection pending."
+      }
+    },
+    {
+      "id": "shadowpriest:ShadowMend",
+      "name": "Shadow Mend",
+      "status": "APPROVED",
+      "type": "SKILL",
+      "rarity": "COMMON",
+      "sources": [
+        "REWARD_POOL"
+      ],
+      "startingCopies": 0,
+      "tags": [],
+      "designIntent": "Trade immediate healing for accumulating health loss on later turns.",
+      "base": {
+        "cost": 1,
+        "target": "SELF",
+        "text": "Heal 10 HP. Add 2 to your Shadow Mend debt. At the start of each turn, lose HP equal to your debt.",
+        "stats": {
+          "heal": 10,
+          "debt": 2
+        },
+        "keywords": [],
+        "effects": [
+          "Heal 10 HP. Add 2 to your Shadow Mend debt. At the start of each turn, lose HP equal to your debt."
+        ]
+      },
+      "upgrade": {
+        "summary": "Add 1 debt instead of 2; healing remains 10 HP.",
+        "card": {
+          "cost": 1,
+          "target": "SELF",
+          "text": "Heal 10 HP. Add 1 to your Shadow Mend debt. At the start of each turn, lose HP equal to your debt.",
+          "stats": {
+            "heal": 10,
+            "debt": 1
+          },
+          "keywords": [],
+          "effects": [
+            "Heal 10 HP. Add 1 to your Shadow Mend debt. At the start of each turn, lose HP equal to your debt."
+          ]
+        }
+      },
+      "rulesNotes": [
+        "Each cast adds its debt to one debuff lasting this combat. Starting next turn, resolve the combined debt as one HP-loss event each turn; it does not decay. Artifact can prevent a debt application and debuff cleansing can remove accumulated debt, without undoing healing. Tithe Evasion reduces the combined event once, not once per cast. Purify Disease does not remove this debt.",
+        "Approved rework; not implemented."
+      ],
+      "balanceNotes": "Approved for implementation; numbers and repeatable draw/healing interactions require playtesting.",
+      "art": {
+        "wowAbility": "Shadow Mend",
+        "icon": "",
+        "direction": "Use matching existing WoW ability art where available; otherwise create thematic Shadow Priest artwork. Asset selection pending."
+      }
+    },
+    {
+      "id": "shadowpriest:VoidShield",
+      "name": "Void Shield",
+      "status": "APPROVED",
+      "type": "SKILL",
+      "rarity": "COMMON",
+      "sources": [
+        "REWARD_POOL"
+      ],
+      "startingCopies": 0,
+      "tags": [],
+      "designIntent": "Convert stored Insanity or active Voidform into defense.",
+      "base": {
+        "cost": 1,
+        "target": "SELF",
+        "text": "Gain 2 Block for each Insanity. Voidform counts as having 10 Insanity.",
+        "stats": {
+          "blockPerInsanity": 2,
+          "insanity": 0
+        },
+        "keywords": [],
+        "effects": [
+          "Gain 2 Block for each Insanity. Voidform counts as having 10 Insanity."
+        ]
+      },
+      "upgrade": {
+        "summary": "Gain 2 Insanity first.",
+        "card": {
+          "cost": 1,
+          "target": "SELF",
+          "text": "Gain 2 Insanity. Gain 2 Block for each Insanity. Voidform counts as having 10 Insanity.",
+          "stats": {
+            "blockPerInsanity": 2,
+            "insanity": 2
+          },
+          "keywords": [],
+          "effects": [
+            "Gain 2 Insanity. Gain 2 Block for each Insanity. Voidform counts as having 10 Insanity."
+          ]
+        }
+      },
+      "rulesNotes": [
+        "Resolve Insanity gain before calculating Block. All Insanity gain obeys the normal cap, ready/active restrictions, and recovery turn. Both ordinary and permanent Voidform count as 10. Grant Block once; Dexterity and ordinary Block modifiers apply once to the total.",
+        "Approved; not implemented."
+      ],
+      "balanceNotes": "Approved for implementation; numbers and repeatable draw/healing interactions require playtesting.",
+      "art": {
+        "wowAbility": "Void Shield",
+        "icon": "",
+        "direction": "Use matching existing WoW ability art where available; otherwise create thematic Shadow Priest artwork. Asset selection pending."
+      }
+    },
+    {
+      "id": "shadowpriest:Insight",
+      "name": "Insight",
+      "status": "APPROVED",
+      "type": "SKILL",
+      "rarity": "COMMON",
+      "sources": [
+        "REWARD_POOL"
+      ],
+      "startingCopies": 0,
+      "tags": [],
+      "designIntent": "Bring card access forward to the current turn.",
+      "base": {
+        "cost": 0,
+        "target": "SELF",
+        "text": "Draw 2 cards. Next turn, draw 1 fewer card.",
+        "stats": {
+          "draw": 2,
+          "nextTurnDrawReduction": 1
+        },
+        "keywords": [],
+        "effects": [
+          "Draw 2 cards. Next turn, draw 1 fewer card."
+        ]
+      },
+      "upgrade": {
+        "summary": "Draw 3 cards.",
+        "card": {
+          "cost": 0,
+          "target": "SELF",
+          "text": "Draw 3 cards. Next turn, draw 1 fewer card.",
+          "stats": {
+            "draw": 3,
+            "nextTurnDrawReduction": 1
+          },
+          "keywords": [],
+          "effects": [
+            "Draw 3 cards. Next turn, draw 1 fewer card."
+          ]
+        }
+      },
+      "rulesNotes": [
+        "Multiple plays add their next-turn draw penalties. The penalty affects the next turn's normal draw, not every draw effect, and then expires. The upgrade retains the same penalty.",
+        "Approved; not implemented."
+      ],
+      "balanceNotes": "Approved for implementation; numbers and repeatable draw/healing interactions require playtesting.",
+      "art": {
+        "wowAbility": "Insight",
+        "icon": "",
+        "direction": "Use matching existing WoW ability art where available; otherwise create thematic Shadow Priest artwork. Asset selection pending."
+      }
+    },
+    {
+      "id": "shadowpriest:TitheEvasion",
+      "name": "Tithe Evasion",
+      "status": "APPROVED",
+      "type": "POWER",
+      "rarity": "COMMON",
+      "sources": [
+        "REWARD_POOL"
+      ],
+      "startingCopies": 0,
+      "tags": [],
+      "designIntent": "Support the three named self-damage effects.",
+      "base": {
+        "cost": 1,
+        "target": "SELF",
+        "text": "Whenever Blood Magic, Shadow Word: Death, or Shadow Mend causes you to lose HP, lose 1 less. This benefit does not stack.",
+        "stats": {
+          "hpLossReduction": 1
+        },
+        "keywords": [],
+        "effects": [
+          "Whenever Blood Magic, Shadow Word: Death, or Shadow Mend causes you to lose HP, lose 1 less. This benefit does not stack."
+        ]
+      },
+      "upgrade": {
+        "summary": "Lose 2 less instead.",
+        "card": {
+          "cost": 1,
+          "target": "SELF",
+          "text": "Whenever Blood Magic, Shadow Word: Death, or Shadow Mend causes you to lose HP, lose 2 less. This benefit does not stack.",
+          "stats": {
+            "hpLossReduction": 2
+          },
+          "keywords": [],
+          "effects": [
+            "Whenever Blood Magic, Shadow Word: Death, or Shadow Mend causes you to lose HP, lose 2 less. This benefit does not stack."
+          ]
+        }
+      },
+      "rulesNotes": [
+        "Only the three named sources qualify, including Shadow Mend's combined debt tick. Exclude all other sources, including enemy Attacks, Beat of Death, Curses, Statuses, relics, and other classes' cards. Floor each qualifying HP loss at zero. Track the highest benefit granted this combat: equal or weaker copies are unplayable; an upgraded copy replaces the base benefit. Reset tracking after combat.",
+        "Approved; not implemented."
+      ],
+      "balanceNotes": "Approved for implementation; numbers and repeatable draw/healing interactions require playtesting.",
+      "art": {
+        "wowAbility": "Tithe Evasion",
+        "icon": "",
+        "direction": "Use matching existing WoW ability art where available; otherwise create thematic Shadow Priest artwork. Asset selection pending."
+      }
+    },
+    {
+      "id": "shadowpriest:Piety",
+      "name": "Piety",
+      "status": "APPROVED",
+      "type": "SKILL",
+      "rarity": "UNCOMMON",
+      "sources": [
+        "REWARD_POOL"
+      ],
+      "startingCopies": 0,
+      "tags": [],
+      "designIntent": "Find missing card types without Piety copies blocking the Skill condition.",
+      "base": {
+        "cost": 0,
+        "target": "SELF",
+        "text": "If your hand has no Attacks, draw 2 Attacks. If your hand has no Skills other than Piety, draw 2 Skills. Exhaust.",
+        "stats": {
+          "attackDraw": 2,
+          "skillDraw": 2
+        },
+        "keywords": [
+          "EXHAUST"
+        ],
+        "effects": [
+          "If your hand has no Attacks, draw 2 Attacks. If your hand has no Skills other than Piety, draw 2 Skills. Exhaust."
+        ]
+      },
+      "upgrade": {
+        "summary": "Remove Exhaust.",
+        "card": {
+          "cost": 0,
+          "target": "SELF",
+          "text": "If your hand has no Attacks, draw 2 Attacks. If your hand has no Skills other than Piety, draw 2 Skills.",
+          "stats": {
+            "attackDraw": 2,
+            "skillDraw": 2
+          },
+          "keywords": [],
+          "effects": [
+            "If your hand has no Attacks, draw 2 Attacks. If your hand has no Skills other than Piety, draw 2 Skills."
+          ]
+        }
+      },
+      "rulesNotes": [
+        "After the played card leaves the hand, snapshot both conditions before drawing. Ignore all copies of Piety, upgraded or not, when checking for Skills. Both effects can trigger; resolve Attack draws first. Draw random matching cards from the draw pile only, without reshuffling, subject to hand capacity and available matches. Piety remains a Skill eligible to be drawn; its exclusion applies only to the hand check.",
+        "Approved; not implemented."
+      ],
+      "balanceNotes": "Approved for implementation; numbers and repeatable draw/healing interactions require playtesting.",
+      "art": {
+        "wowAbility": "Piety",
+        "icon": "",
+        "direction": "Use matching existing WoW ability art where available; otherwise create thematic Shadow Priest artwork. Asset selection pending."
+      }
+    },
+    {
+      "id": "shadowpriest:Voidphasing",
+      "name": "Voidphasing",
+      "status": "APPROVED",
+      "type": "SKILL",
+      "rarity": "UNCOMMON",
+      "sources": [
+        "REWARD_POOL"
+      ],
+      "startingCopies": 0,
+      "tags": [],
+      "designIntent": "Defend while retaining cards for a future burst turn.",
+      "base": {
+        "cost": 3,
+        "target": "SELF",
+        "text": "Retain your hand this turn. Gain 5 Block for each card in your hand.",
+        "stats": {
+          "blockPerCard": 5
+        },
+        "keywords": [],
+        "effects": [
+          "Retain your hand this turn. Gain 5 Block for each card in your hand."
+        ]
+      },
+      "upgrade": {
+        "summary": "Gain 7 Block per card instead.",
+        "card": {
+          "cost": 3,
+          "target": "SELF",
+          "text": "Retain your hand this turn. Gain 7 Block for each card in your hand.",
+          "stats": {
+            "blockPerCard": 7
+          },
+          "keywords": [],
+          "effects": [
+            "Retain your hand this turn. Gain 7 Block for each card in your hand."
+          ]
+        }
+      },
+      "rulesNotes": [
+        "Count cards remaining in hand when the Block effect resolves, excluding the played card. Grant Block once; Dexterity and ordinary Block modifiers apply once to the total, not per card. Retain the hand for this turn's end only; this does not retain Block or prevent ordinary Ethereal exhaustion.",
+        "Approved; not implemented."
+      ],
+      "balanceNotes": "Approved for implementation; numbers and repeatable draw/healing interactions require playtesting.",
+      "art": {
+        "wowAbility": "Voidphasing",
+        "icon": "",
+        "direction": "Use matching existing WoW ability art where available; otherwise create thematic Shadow Priest artwork. Asset selection pending."
+      }
+    },
+    {
+      "id": "shadowpriest:Serendipity",
+      "name": "Serendipity",
+      "status": "APPROVED",
+      "type": "SKILL",
+      "rarity": "RARE",
+      "sources": [
+        "REWARD_POOL"
+      ],
+      "startingCopies": 0,
+      "tags": [],
+      "designIntent": "Convert the hand between offensive and defensive card types.",
+      "base": {
+        "cost": 0,
+        "target": "SELF",
+        "text": "Choose one: Discard all Skills and draw that many Attacks; or discard all Attacks and draw that many Skills. Exhaust.",
+        "stats": {},
+        "keywords": [
+          "EXHAUST"
+        ],
+        "effects": [
+          "Choose one: Discard all Skills and draw that many Attacks; or discard all Attacks and draw that many Skills. Exhaust."
+        ]
+      },
+      "upgrade": {
+        "summary": "Remove Exhaust.",
+        "card": {
+          "cost": 0,
+          "target": "SELF",
+          "text": "Choose one: Discard all Skills and draw that many Attacks; or discard all Attacks and draw that many Skills.",
+          "stats": {},
+          "keywords": [],
+          "effects": [
+            "Choose one: Discard all Skills and draw that many Attacks; or discard all Attacks and draw that many Skills."
+          ]
+        }
+      },
+      "rulesNotes": [
+        "Exclude the played Serendipity from the hand and discard count. Count cards actually discarded. Draw random matching cards from the draw pile only, without reshuffling, subject to hand capacity and available matches. Other Serendipity copies are ordinary Skills for this effect.",
+        "Approved; not implemented."
+      ],
+      "balanceNotes": "Approved for implementation; numbers and repeatable draw/healing interactions require playtesting.",
+      "art": {
+        "wowAbility": "Serendipity",
+        "icon": "",
+        "direction": "Use matching existing WoW ability art where available; otherwise create thematic Shadow Priest artwork. Asset selection pending."
       }
     }
   ]

@@ -4,7 +4,7 @@ Cards are grouped by rarity, then type. Upgrades change only the listed values o
 
 A trailing `?` on a card name marks an unreviewed design. Removing it means the design is agreed, not necessarily implemented.
 
-The structured [card catalog](design/cards.json) includes complete base and upgraded versions. The fifth batch implements eight new cards and Mastery. Mind Soothe and Mental Fortitude remain drafts; newer additions below may still await review.
+The structured [card catalog](design/cards.json) includes complete base and upgraded versions. The fifth batch implements eight new cards and Mastery. The next batch of nine designs, including the Flash Heal / Shadow Mend split, is approved and awaits implementation. Mind Soothe and Mental Fortitude remain drafts.
 
 <!-- card-tallies:start -->
 X/Y/Z = **Attacks/Skills/Powers**. Counts beside each rarity heading include drafts and unreviewed designs in this file; upgrades and repeated starting copies do not count separately.
@@ -42,7 +42,7 @@ X/Y/Z = **Attacks/Skills/Powers**. Counts beside each rarity heading include dra
 - **Upgrade:** Cost becomes 0 energy; damage remains 3 per tick.
 - **Rules:** Apply 5 stacks, restoring remaining ticks to the cap of 5. Each natural tick removes one stack. Base damage is 3, modified by current Mastery but independent of stack count or application source.
 
-## Common (7/6/2)
+## Common (8/9/3)
 
 ### Attacks
 
@@ -51,6 +51,13 @@ X/Y/Z = **Attacks/Skills/Powers**. Counts beside each rarity heading include dra
 - **Cost:** 1 energy
 - **Effect:** Deal 2 damage 3 times.
 - **Upgrade:** Deal damage 4 times.
+
+#### Blood Magic
+
+- **Cost:** 2 energy
+- **Effect:** Deal 18 damage. Lose 3 HP.
+- **Upgrade:** Deal 24 damage; HP loss remains 3.
+- **Status:** Approved; not implemented.
 
 #### Shadow Word: Death
 
@@ -102,11 +109,21 @@ X/Y/Z = **Attacks/Skills/Powers**. Counts beside each rarity heading include dra
 - **Effect:** Gain 10 Block and 1 Blur.
 - **Upgrade:** Gain 15 Block.
 
+#### Flash Heal
+
+- **Cost:** 1 energy
+- **Effect:** Heal 6 HP. Increase this card's cost by 1 this combat.
+- **Upgrade:** Heal for 9 HP.
+- **Rules:** The cost increase affects only the played copy and resets after combat.
+- **Status:** Approved rename of the previous Shadow Mend; runtime rename pending.
+
 #### Shadow Mend
 
 - **Cost:** 1 energy
-- **Effect:** Heal yourself for 6 HP. Increase this card's cost by 1.
-- **Upgrade:** Heal for 9 HP.
+- **Effect:** Heal 10 HP. Add 2 to your Shadow Mend debt. At the start of each turn, lose HP equal to your debt.
+- **Upgrade:** Add 1 debt instead of 2; healing remains 10 HP.
+- **Rules:** Each cast adds its debt to one debuff lasting this combat. Starting next turn, resolve the combined debt as one HP-loss event each turn; it does not decay. Artifact can prevent a debt application and debuff cleansing can remove accumulated debt, without undoing healing. Tithe Evasion reduces the combined event once, not once per cast. Purify Disease does not remove this debt.
+- **Status:** Approved rework; not implemented.
 
 #### Fade
 
@@ -128,6 +145,22 @@ X/Y/Z = **Attacks/Skills/Powers**. Counts beside each rarity heading include dra
 - **Effect:** Remove all Block from the target.
 - **Upgrade:** Also remove all Artifact from the target.
 - **Status:** Implemented; full-run balance testing remains.
+
+#### Void Shield
+
+- **Cost:** 1 energy
+- **Effect:** Gain 2 Block for each Insanity. Voidform counts as having 10 Insanity.
+- **Upgrade:** Gain 2 Insanity first.
+- **Rules:** Resolve Insanity gain before calculating Block. All Insanity gain obeys the normal cap, ready/active restrictions, and recovery turn. Both ordinary and permanent Voidform count as 10. Grant Block once; Dexterity and ordinary Block modifiers apply once to the total.
+- **Status:** Approved; not implemented.
+
+#### Insight
+
+- **Cost:** 0 energy
+- **Effect:** Draw 2 cards. Next turn, draw 1 fewer card.
+- **Upgrade:** Draw 3 cards.
+- **Rules:** Multiple plays add their next-turn draw penalties. The penalty affects the next turn's normal draw, not every draw effect, and then expires. The upgrade retains the same penalty.
+- **Status:** Approved; not implemented.
 
 #### Mind Soothe ?
 
@@ -154,7 +187,15 @@ X/Y/Z = **Attacks/Skills/Powers**. Counts beside each rarity heading include dra
 - **Upgrade:** Gain 2 Insanity instead.
 - **Rules:** Multiple copies stack. All Insanity gain follows the Voidform relic's restrictions, including its recovery turn.
 
-## Uncommon (4/5/3)
+#### Tithe Evasion
+
+- **Cost:** 1 energy
+- **Effect:** Whenever Blood Magic, Shadow Word: Death, or Shadow Mend causes you to lose HP, lose 1 less. This benefit does not stack.
+- **Upgrade:** Lose 2 less instead.
+- **Rules:** Only the three named sources qualify, including Shadow Mend's combined debt tick. Exclude all other sources, including enemy Attacks, Beat of Death, Curses, Statuses, relics, and other classes' cards. Floor each qualifying HP loss at zero. Track the highest benefit granted this combat: equal or weaker copies are unplayable; an upgraded copy replaces the base benefit. Reset tracking after combat.
+- **Status:** Approved; not implemented.
+
+## Uncommon (4/7/3)
 
 ### Attacks
 
@@ -186,6 +227,22 @@ X/Y/Z = **Attacks/Skills/Powers**. Counts beside each rarity heading include dra
 - **Rules:** One Attack card play: Psychic Link triggers once, while each hit generates Insanity normally. Choose a living target separately for each bolt, after resolving the previous bolt and its stacks. Never create missing DoTs; Touch/Pain cap at 5. At zero energy, fire no bolts unless an external effect increases X. Chemical X adds two bolts. Free play preserves energy; Voidform amplifies damage without discounting X.
 
 ### Skills
+
+#### Piety
+
+- **Cost:** 0 energy
+- **Effect:** If your hand has no Attacks, draw 2 Attacks. If your hand has no Skills other than Piety, draw 2 Skills. Exhaust.
+- **Upgrade:** Remove Exhaust.
+- **Rules:** After the played card leaves the hand, snapshot both conditions before drawing. Ignore all copies of Piety, upgraded or not, when checking for Skills. Both effects can trigger; resolve Attack draws first. Draw random matching cards from the draw pile only, without reshuffling, subject to hand capacity and available matches. Piety remains a Skill eligible to be drawn; its exclusion applies only to the hand check.
+- **Status:** Approved; not implemented.
+
+#### Voidphasing
+
+- **Cost:** 3 energy
+- **Effect:** Retain your hand this turn. Gain 5 Block for each card in your hand.
+- **Upgrade:** Gain 7 Block per card instead.
+- **Rules:** Count cards remaining in hand when the Block effect resolves, excluding the played card. Grant Block once; Dexterity and ordinary Block modifiers apply once to the total, not per card. Retain the hand for this turn's end only; this does not retain Block or prevent ordinary Ethereal exhaustion.
+- **Status:** Approved; not implemented.
 
 #### Halo
 
@@ -244,7 +301,7 @@ X/Y/Z = **Attacks/Skills/Powers**. Counts beside each rarity heading include dra
 - **Upgrade:** Cost becomes 1 energy.
 
 
-## Rare (2/3/2)
+## Rare (2/4/2)
 
 ### Attacks
 
@@ -286,6 +343,14 @@ X/Y/Z = **Attacks/Skills/Powers**. Counts beside each rarity heading include dra
 - **Upgrade:** Cost becomes 1 energy.
 - **Rules:** Artifact can block the stun. Natural DoT ticks still resolve during the skipped enemy action. Multiple copies can stun on consecutive turns; validate this interaction during playtesting.
 - **Status:** Implemented; full-run balance testing remains.
+
+#### Serendipity
+
+- **Cost:** 0 energy
+- **Effect:** Choose one: Discard all Skills and draw that many Attacks; or discard all Attacks and draw that many Skills. Exhaust.
+- **Upgrade:** Remove Exhaust.
+- **Rules:** Exclude the played Serendipity from the hand and discard count. Count cards actually discarded. Draw random matching cards from the draw pile only, without reshuffling, subject to hand capacity and available matches. Other Serendipity copies are ordinary Skills for this effect.
+- **Status:** Approved; not implemented.
 
 ### Powers
 
