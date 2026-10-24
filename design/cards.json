@@ -1521,6 +1521,604 @@
         "icon": "achievement_boss_generalvezax_01",
         "direction": "Archived WoW ability icon inside the shared violet-and-gold card frame; also used by the exposure debuff."
       }
+    },
+    {
+      "id": "shadowpriest:Penance",
+      "name": "Penance",
+      "status": "APPROVED",
+      "type": "ATTACK",
+      "rarity": "COMMON",
+      "sources": [
+        "REWARD_POOL"
+      ],
+      "startingCopies": 0,
+      "tags": [
+        "DEFENSE",
+        "DAMAGE_CONVERSION"
+      ],
+      "designIntent": "Convert direct offense into immediate defense.",
+      "base": {
+        "cost": 1,
+        "target": "SELF_AND_ENEMY",
+        "text": "Deal 6 damage. Gain Block equal to the enemy HP removed by this hit.",
+        "stats": {
+          "damage": 6
+        },
+        "keywords": [],
+        "effects": [
+          "Record the target HP before the hit.",
+          "Deal 6 normal Attack damage.",
+          "Gain Block equal to the actual HP removed by this direct hit, capped at the recorded HP."
+        ]
+      },
+      "upgrade": {
+        "summary": "+2 damage.",
+        "card": {
+          "cost": 1,
+          "target": "SELF_AND_ENEMY",
+          "text": "Deal 8 damage. Gain Block equal to the enemy HP removed by this hit.",
+          "stats": {
+            "damage": 8
+          },
+          "keywords": [],
+          "effects": [
+            "Record the target HP before the hit.",
+            "Deal 8 normal Attack damage.",
+            "Gain Block equal to the actual HP removed by this direct hit, capped at the recorded HP."
+          ]
+        }
+      },
+      "rulesNotes": [
+        "Only this direct hit counts: exclude absorbed damage, overkill, DoT damage, and Psychic Link damage.",
+        "Dexterity does not modify the converted Block. Strength and normal Attack damage modifiers affect the hit and therefore the amount converted.",
+        "A killing blow still grants Block for the actual HP removed.",
+        "Use the ordinary single-hit Insanity and once-per-card Psychic Link rules.",
+        "Before implementation, specify whether Frail modifies the conversion; Dexterity exclusion alone does not settle every Block modifier."
+      ],
+      "balanceNotes": "Test conversion with Voidform, enemy Block, low-health targets, and attack-scaling effects. Values agreed; do not silently double count damage sources.",
+      "art": {
+        "wowAbility": "Penance",
+        "icon": "",
+        "direction": "Verify and use the actual WoW ability icon inside the shared card frame before implementation."
+      }
+    },
+    {
+      "id": "shadowpriest:Atonement",
+      "name": "Atonement",
+      "status": "APPROVED",
+      "type": "ATTACK",
+      "rarity": "COMMON",
+      "sources": [
+        "REWARD_POOL"
+      ],
+      "startingCopies": 0,
+      "tags": [
+        "DEFENSE",
+        "DOT_SYNERGY"
+      ],
+      "designIntent": "Reward maintaining several unique DoTs with defense while attacking.",
+      "base": {
+        "cost": 1,
+        "target": "SELF_AND_ENEMY",
+        "text": "Deal 5 damage. Gain 3 Block for each unique DoT on the target.",
+        "stats": {
+          "damage": 5,
+          "blockPerDot": 3
+        },
+        "keywords": [],
+        "effects": [
+          "Snapshot the number of unique class DoTs on the target.",
+          "Deal 5 normal Attack damage.",
+          "Gain 3 Block per snapshotted DoT as one Block grant, with ordinary Block modifiers applied once."
+        ]
+      },
+      "upgrade": {
+        "summary": "+2 damage and +1 Block per unique DoT.",
+        "card": {
+          "cost": 1,
+          "target": "SELF_AND_ENEMY",
+          "text": "Deal 7 damage. Gain 4 Block for each unique DoT on the target.",
+          "stats": {
+            "damage": 7,
+            "blockPerDot": 4
+          },
+          "keywords": [],
+          "effects": [
+            "Snapshot the number of unique class DoTs on the target.",
+            "Deal 7 normal Attack damage.",
+            "Gain 4 Block per snapshotted DoT as one Block grant, with ordinary Block modifiers applied once."
+          ]
+        }
+      },
+      "rulesNotes": [
+        "Touch, Pain, and Madness each count once, regardless of stack count; Halo does not count.",
+        "Snapshot before the hit so killing the target does not erase the Block reward.",
+        "Dexterity applies once to the total, not once per DoT.",
+        "Use the ordinary single-hit Insanity and once-per-card Psychic Link rules."
+      ],
+      "balanceNotes": "At three DoTs the base Block is 9/12 before modifiers. Evaluate early fights without setup as well as free Voidform attacks.",
+      "art": {
+        "wowAbility": "Atonement",
+        "icon": "",
+        "direction": "Verify and use the actual WoW ability icon inside the shared card frame before implementation."
+      }
+    },
+    {
+      "id": "shadowpriest:PurifyDisease",
+      "name": "Purify Disease",
+      "status": "APPROVED",
+      "type": "SKILL",
+      "rarity": "COMMON",
+      "sources": [
+        "REWARD_POOL"
+      ],
+      "startingCopies": 0,
+      "tags": [
+        "DEFENSE",
+        "CLEANSE"
+      ],
+      "designIntent": "Provide a cheap, targeted answer to common debilitating debuffs.",
+      "base": {
+        "cost": 0,
+        "target": "SELF",
+        "text": "Remove Weak, Frail, and Vulnerable from yourself. Exhaust.",
+        "stats": {},
+        "keywords": [
+          "EXHAUST"
+        ],
+        "effects": [
+          "Remove all Weak, Frail, and Vulnerable from the player.",
+          "Exhaust."
+        ]
+      },
+      "upgrade": {
+        "summary": "Gain Retain.",
+        "card": {
+          "cost": 0,
+          "target": "SELF",
+          "text": "Retain. Remove Weak, Frail, and Vulnerable from yourself. Exhaust.",
+          "stats": {},
+          "keywords": [
+            "RETAIN",
+            "EXHAUST"
+          ],
+          "effects": [
+            "Remove all Weak, Frail, and Vulnerable from the player.",
+            "Exhaust."
+          ]
+        }
+      },
+      "rulesNotes": [
+        "Only the named debuffs are removed.",
+        "Does not remove Surrender exposure, negative stats, or other debuffs."
+      ],
+      "balanceNotes": "Zero energy compensates for a situational draw. Retain lets the upgrade wait for the relevant turn.",
+      "art": {
+        "wowAbility": "Purify Disease",
+        "icon": "",
+        "direction": "Verify and use the actual WoW ability icon inside the shared card frame before implementation."
+      }
+    },
+    {
+      "id": "shadowpriest:DispelMagic",
+      "name": "Dispel Magic",
+      "status": "APPROVED",
+      "type": "SKILL",
+      "rarity": "COMMON",
+      "sources": [
+        "REWARD_POOL"
+      ],
+      "startingCopies": 0,
+      "tags": [
+        "UTILITY",
+        "ARTIFACT_REMOVAL"
+      ],
+      "designIntent": "Clear enemy defenses so direct attacks and DoT applications can land.",
+      "base": {
+        "cost": 0,
+        "target": "ENEMY",
+        "text": "Remove all Block from the target.",
+        "stats": {},
+        "keywords": [],
+        "effects": [
+          "Remove all current Block from the target."
+        ]
+      },
+      "upgrade": {
+        "summary": "Also remove all Artifact.",
+        "card": {
+          "cost": 0,
+          "target": "ENEMY",
+          "text": "Remove all Block and Artifact from the target.",
+          "stats": {},
+          "keywords": [],
+          "effects": [
+            "Remove all current Block from the target.",
+            "Remove all Artifact from the target."
+          ]
+        }
+      },
+      "rulesNotes": [
+        "Remove current Block, not powers that generate future Block.",
+        "The upgraded removal clears all Artifact charges; it is removal rather than a debuff application.",
+        "Does not remove Strength or other enemy buffs.",
+        "Does not Exhaust."
+      ],
+      "balanceNotes": "Situational zero-cost utility. Mass Dispel retains its all-enemy reach and positive Strength removal.",
+      "art": {
+        "wowAbility": "Dispel Magic",
+        "icon": "",
+        "direction": "Verify and use the actual WoW ability icon inside the shared card frame before implementation."
+      }
+    },
+    {
+      "id": "shadowpriest:MindSoothe",
+      "name": "Mind Soothe",
+      "status": "DRAFT",
+      "type": "SKILL",
+      "rarity": "COMMON",
+      "sources": [
+        "REWARD_POOL"
+      ],
+      "startingCopies": 0,
+      "tags": [
+        "DEFENSE",
+        "DOT_SYNERGY"
+      ],
+      "designIntent": "Give maintaining multiple DoTs a defensive payoff for one enemy turn.",
+      "base": {
+        "cost": 0,
+        "target": "ENEMY",
+        "text": "Until your next turn, the target deals 1 less Attack damage per unique DoT on it.",
+        "stats": {
+          "reductionPerDot": 1,
+          "additionalReduction": 0
+        },
+        "keywords": [],
+        "effects": [
+          "Snapshot the number of unique class DoTs on the target.",
+          "Until the next player turn, reduce each incoming Attack hit from this target by that count before Block."
+        ]
+      },
+      "upgrade": {
+        "summary": "Increase the total per-hit reduction by 1.",
+        "card": {
+          "cost": 0,
+          "target": "ENEMY",
+          "text": "Until your next turn, the target deals 1 less Attack damage per unique DoT on it, plus 1 less.",
+          "stats": {
+            "reductionPerDot": 1,
+            "additionalReduction": 1
+          },
+          "keywords": [],
+          "effects": [
+            "Snapshot the number of unique class DoTs on the target.",
+            "Until the next player turn, reduce each incoming Attack hit from this target by that count plus 1 before Block."
+          ]
+        }
+      },
+      "rulesNotes": [
+        "UNAPPROVED PROPOSAL: this replacement was suggested for discussion and has not been accepted.",
+        "The previous Weak/Frail draft is superseded as a direction: ordinary enemy Block gains do not respond to standard Frail, and a Weak-only replacement overlaps a colorless card.",
+        "Proposed unique DoTs are Touch, Pain, and Madness, counted once each.",
+        "The proposed effect changes Attack damage before Block, not all HP loss like Fade.",
+        "Artifact behavior, duplicate-cast stacking, modifier ordering, and zero-DoT behavior need review before implementation."
+      ],
+      "balanceNotes": "Provisional 0-cost design. Test multihit mitigation and setup dependence if approved; do not implement this draft as an accepted design.",
+      "art": {
+        "wowAbility": "Mind Soothe",
+        "icon": "",
+        "direction": "Verify and use the actual WoW ability icon inside the shared card frame before implementation."
+      }
+    },
+    {
+      "id": "shadowpriest:BodyAndSoul",
+      "name": "Body and Soul",
+      "status": "APPROVED",
+      "type": "POWER",
+      "rarity": "UNCOMMON",
+      "sources": [
+        "REWARD_POOL"
+      ],
+      "startingCopies": 0,
+      "tags": [
+        "DEFENSE",
+        "DODGE"
+      ],
+      "designIntent": "Provide persistent supplemental defense without guaranteeing protection on a specific turn.",
+      "base": {
+        "cost": 2,
+        "target": "SELF",
+        "text": "Each incoming Attack hit has a 20% chance to miss. This benefit does not stack.",
+        "stats": {
+          "dodgeChancePercent": 20
+        },
+        "keywords": [],
+        "effects": [
+          "Set the combat dodge benefit to 20% if it improves the previous benefit."
+        ]
+      },
+      "upgrade": {
+        "summary": "Increase dodge chance to 30%.",
+        "card": {
+          "cost": 2,
+          "target": "SELF",
+          "text": "Each incoming Attack hit has a 30% chance to miss. This benefit does not stack.",
+          "stats": {
+            "dodgeChancePercent": 30
+          },
+          "keywords": [],
+          "effects": [
+            "Set the combat dodge benefit to 30% if it improves the previous benefit."
+          ]
+        }
+      },
+      "rulesNotes": [
+        "Roll independently for each incoming Attack hit, including individual multihits.",
+        "A miss prevents the hit damage before consuming Block. This does not promise to cancel non-damage effects of the enemy move.",
+        "Use the highest benefit granted this combat. Equal or weaker copies are unplayable, following Fortitude.",
+        "An upgrade after the base replaces 20% with 30%; it does not add 30 percentage points.",
+        "Reset benefit tracking after combat.",
+        "Does not dodge HP-loss or non-Attack damage."
+      ],
+      "balanceNotes": "Test damage variance, lethal-hit reliability, and interaction with Surrender. Do not allow additive copies to reach guaranteed immunity.",
+      "art": {
+        "wowAbility": "Body and Soul",
+        "icon": "",
+        "direction": "Verify and use the actual WoW ability icon inside the shared card frame before implementation."
+      }
+    },
+    {
+      "id": "shadowpriest:MentalFortitude",
+      "name": "Mental Fortitude",
+      "status": "DRAFT",
+      "type": "SKILL",
+      "rarity": "UNCOMMON",
+      "sources": [
+        "REWARD_POOL"
+      ],
+      "startingCopies": 0,
+      "tags": [
+        "DEFENSE",
+        "SCALING",
+        "MASTERY"
+      ],
+      "designIntent": "Trade direct Attack strength for repeatable defensive and potentially DoT scaling.",
+      "base": {
+        "cost": 2,
+        "target": "SELF",
+        "text": "Gain 2 Dexterity and 2 Mastery. Lose 2 Strength.",
+        "stats": {
+          "dexterity": 2,
+          "mastery": 2,
+          "strength": -2
+        },
+        "keywords": [],
+        "effects": [
+          "Gain 2 Dexterity.",
+          "Gain 2 Mastery.",
+          "Lose 2 Strength."
+        ]
+      },
+      "upgrade": {
+        "summary": "Provisional: gain 3 Dexterity and 3 Mastery; retain the 2 Strength loss.",
+        "card": {
+          "cost": 2,
+          "target": "SELF",
+          "text": "Gain 3 Dexterity and 3 Mastery. Lose 2 Strength.",
+          "stats": {
+            "dexterity": 3,
+            "mastery": 3,
+            "strength": -2
+          },
+          "keywords": [],
+          "effects": [
+            "Gain 3 Dexterity.",
+            "Gain 3 Mastery.",
+            "Lose 2 Strength."
+          ]
+        }
+      },
+      "rulesNotes": [
+        "PARTIALLY UNRESOLVED: losing 2 Strength rather than losing Mastery is confirmed; no Exhaust is intended.",
+        "This draft retains the original Dexterity AND Mastery gains. Confirmation is still pending whether only Dexterity should remain.",
+        "The original 2-energy cost and 2/3 stat gains are retained provisionally, not newly approved.",
+        "Stats last for combat.",
+        "Mastery can be negative; damaging DoT ticks floor at zero without removing their stacks or changing Madness into a ticking effect.",
+        "Resolve Artifact/cleansing behavior for the Strength penalty under normal stat-debuff rules before implementation."
+      ],
+      "balanceNotes": "Do not implement until the retained benefits and final cost are confirmed. Test repeated use, reduced Attack damage, and Penance conversion.",
+      "art": {
+        "wowAbility": "Mental Fortitude",
+        "icon": "",
+        "direction": "Verify and use the actual WoW ability icon inside the shared card frame before implementation."
+      }
+    },
+    {
+      "id": "shadowpriest:InsidiousIre",
+      "name": "Insidious Ire",
+      "status": "APPROVED",
+      "type": "POWER",
+      "rarity": "UNCOMMON",
+      "sources": [
+        "REWARD_POOL"
+      ],
+      "startingCopies": 0,
+      "tags": [
+        "DOT_SYNERGY",
+        "MASTERY",
+        "MULTIHIT"
+      ],
+      "designIntent": "Reward full DoT setup with Mastery-scaling multihit Attack damage.",
+      "base": {
+        "cost": 2,
+        "target": "SELF",
+        "text": "Each Attack hit against an enemy with Touch, Pain, and Madness deals 1 additional damage plus your Mastery, to a minimum bonus of 0.",
+        "stats": {
+          "bonusDamage": 1,
+          "masteryCoefficient": 1,
+          "minimumBonus": 0
+        },
+        "keywords": [],
+        "effects": [
+          "For each direct Attack hit, check whether its target currently has Touch, Pain, and Madness.",
+          "If qualified, add max(0, 1 + current Mastery) damage to that hit."
+        ]
+      },
+      "upgrade": {
+        "summary": "Increase the per-hit base bonus from 1 to 2; Mastery scaling stays at 1 per point.",
+        "card": {
+          "cost": 2,
+          "target": "SELF",
+          "text": "Each Attack hit against an enemy with Touch, Pain, and Madness deals 2 additional damage plus your Mastery, to a minimum bonus of 0.",
+          "stats": {
+            "bonusDamage": 2,
+            "masteryCoefficient": 1,
+            "minimumBonus": 0
+          },
+          "keywords": [],
+          "effects": [
+            "For each direct Attack hit, check whether its target currently has Touch, Pain, and Madness.",
+            "If qualified, add max(0, 2 + current Mastery) damage to that hit."
+          ]
+        }
+      },
+      "rulesNotes": [
+        "Bonus is per hit, including every hit of X-cost cards, not once per card.",
+        "Use current Mastery and current qualifying DoTs separately for each hit.",
+        "The bonus is strictly additive and never negative. Negative Mastery may eliminate it but must never cause this Power to lower Attack damage.",
+        "The upgrade does not grant Mastery.",
+        "DoT ticks and Halo are not direct Attack hits and receive no bonus.",
+        "Duplicate-Power stacking and precise ordering with other damage modifiers must be specified before implementation."
+      ],
+      "balanceNotes": "Approved initial formula; 2 energy remains the provisional testing cost. Watch high-Mastery X-cost bursts and Voidform amplification.",
+      "art": {
+        "wowAbility": "Insidious Ire",
+        "icon": "",
+        "direction": "Verify and use the actual WoW ability icon inside the shared card frame before implementation."
+      }
+    },
+    {
+      "id": "shadowpriest:PetrifyingScream",
+      "name": "Petrifying Scream",
+      "status": "APPROVED",
+      "type": "SKILL",
+      "rarity": "RARE",
+      "sources": [
+        "REWARD_POOL"
+      ],
+      "startingCopies": 0,
+      "tags": [
+        "DEFENSE",
+        "STUN"
+      ],
+      "designIntent": "Buy a setup and DoT turn by interrupting one enemy action.",
+      "base": {
+        "cost": 2,
+        "target": "ENEMY",
+        "text": "Stun the target for 1 turn. Exhaust.",
+        "stats": {
+          "stunTurns": 1
+        },
+        "keywords": [
+          "EXHAUST"
+        ],
+        "effects": [
+          "Apply 1 turn of Stun to the target.",
+          "Exhaust."
+        ]
+      },
+      "upgrade": {
+        "summary": "Cost reduced to 1.",
+        "card": {
+          "cost": 1,
+          "target": "ENEMY",
+          "text": "Stun the target for 1 turn. Exhaust.",
+          "stats": {
+            "stunTurns": 1
+          },
+          "keywords": [
+            "EXHAUST"
+          ],
+          "effects": [
+            "Apply 1 turn of Stun to the target.",
+            "Exhaust."
+          ]
+        }
+      },
+      "rulesNotes": [
+        "Artifact can block Stun.",
+        "Natural DoT ticks still resolve during the skipped enemy action.",
+        "Only one Skill design exists; the duplicate Power listing was a mistake.",
+        "Multiple copies can stun on consecutive turns; no additional immunity rule has been approved."
+      ],
+      "balanceNotes": "Rare placement reflects prevention plus an extra DoT/setup turn. Validate boss action sequences, consecutive stuns, and Embrace healing.",
+      "art": {
+        "wowAbility": "Petrifying Scream",
+        "icon": "",
+        "direction": "Verify and use the actual WoW ability icon inside the shared card frame before implementation."
+      }
+    },
+    {
+      "id": "shadowpriest:ShadowCommittal",
+      "name": "Shadow Committal",
+      "status": "APPROVED",
+      "type": "POWER",
+      "rarity": "RARE",
+      "sources": [
+        "REWARD_POOL"
+      ],
+      "startingCopies": 0,
+      "tags": [
+        "VOIDFORM",
+        "SCALING",
+        "MASTERY"
+      ],
+      "designIntent": "Convert cards played during a burst window into lasting combat scaling.",
+      "base": {
+        "cost": 3,
+        "target": "SELF",
+        "text": "During Voidform, playing an Attack grants 1 Strength, a Skill grants 1 Dexterity, and a Power grants 1 Mastery.",
+        "stats": {
+          "strengthPerAttack": 1,
+          "dexterityPerSkill": 1,
+          "masteryPerPower": 1
+        },
+        "keywords": [],
+        "effects": [
+          "While Voidform is active, grant the corresponding stat after each triggering Attack, Skill, or Power resolves."
+        ]
+      },
+      "upgrade": {
+        "summary": "Cost reduced to 2.",
+        "card": {
+          "cost": 2,
+          "target": "SELF",
+          "text": "During Voidform, playing an Attack grants 1 Strength, a Skill grants 1 Dexterity, and a Power grants 1 Mastery.",
+          "stats": {
+            "strengthPerAttack": 1,
+            "dexterityPerSkill": 1,
+            "masteryPerPower": 1
+          },
+          "keywords": [],
+          "effects": [
+            "While Voidform is active, grant the corresponding stat after each triggering Attack, Skill, or Power resolves."
+          ]
+        }
+      },
+      "rulesNotes": [
+        "Granted stats persist until combat ends, including after ordinary Voidform ends.",
+        "Resolve each stat gain after its triggering card, so the triggering Attack does not benefit from the Strength it generates.",
+        "This Power initial play does not trigger its own newly applied effect.",
+        "Works during Surrender lasting Voidform; no additional cap or restriction was approved.",
+        "Duplicate-Power stacking and cards that enter Voidform during their own resolution need explicit timing decisions before implementation."
+      ],
+      "balanceNotes": "Keep proposed values for initial testing. Evaluate both successful Surrender combinations and hands burdened by expensive setup Powers.",
+      "art": {
+        "wowAbility": "",
+        "icon": "",
+        "direction": "Create original shadow-priest-themed artwork matching the existing card frame."
+      }
     }
   ]
 }

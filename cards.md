@@ -4,6 +4,8 @@ Cards are grouped by rarity, then type. Upgrades change only the listed values o
 
 A trailing `?` on a card name marks an unreviewed design. Removing it means the design is agreed, not necessarily implemented.
 
+The structured [card catalog](design/cards.json) includes complete base and upgraded versions. The newest batch contains eight approved designs and two drafts (Mind Soothe and Mental Fortitude); none of those ten is implemented yet.
+
 ## Basic
 
 ### Attacks
@@ -58,6 +60,22 @@ A trailing `?` on a card name marks an unreviewed design. Removing it means the 
 - **Effect:** Deal 8 damage, plus 2 damage for each DoT on the target.
 - **Upgrade:** Deal 10 damage, plus 3 damage for each DoT on the target.
 
+#### Penance
+
+- **Cost:** 1 energy
+- **Effect:** Deal 6 damage. Gain Block equal to the enemy HP removed by this hit.
+- **Upgrade:** Deal 8 damage.
+- **Rules:** Count only actual HP removed by Penance's direct hit, capped at the target's HP before the hit. Exclude damage absorbed by Block, overkill, DoTs, and Psychic Link. Dexterity does not modify this Block; Strength and other Attack damage modifiers can increase it through the hit's damage.
+- **Status:** Agreed; not implemented.
+
+#### Atonement
+
+- **Cost:** 1 energy
+- **Effect:** Deal 5 damage. Gain 3 Block for each unique DoT on the target.
+- **Upgrade:** Deal 7 damage and gain 4 Block per unique DoT.
+- **Rules:** Count Touch, Pain, and Madness once each, regardless of stacks. Snapshot the count before damage so a killing blow still grants Block. Grant Block once; Dexterity and other ordinary Block modifiers apply once to the total.
+- **Status:** Agreed; not implemented.
+
 #### Tentacle Slam
 
 - **Cost:** 2 energy
@@ -91,6 +109,30 @@ A trailing `?` on a card name marks an unreviewed design. Removing it means the 
 - **Cost:** 1 energy
 - **Effect:** Until your next turn, whenever you would lose HP, lose 1 less, like Tungsten Rod.
 - **Upgrade:** Lose 2 less HP instead.
+
+#### Purify Disease
+
+- **Cost:** 0 energy
+- **Effect:** Remove Weak, Frail, and Vulnerable from yourself. Exhaust.
+- **Upgrade:** Gain Retain.
+- **Rules:** Remove only the three named debuffs, not Surrender to Madness's damage penalty or other debuffs.
+- **Status:** Agreed; not implemented.
+
+#### Dispel Magic
+
+- **Cost:** 0 energy
+- **Effect:** Remove all Block from the target.
+- **Upgrade:** Also remove all Artifact from the target.
+- **Status:** Agreed; not implemented.
+
+#### Mind Soothe ?
+
+- **Cost:** 0 energy
+- **Effect (proposal):** Until your next turn, the target deals 1 less Attack damage per unique DoT on it.
+- **Upgrade (proposal):** Reduce its Attack damage by 1 additional point.
+- **Rules (proposal):** Snapshot the unique DoT count when played. Reduce each Attack hit from that target before Block. Artifact behavior and duplicate-cast stacking remain open.
+- **Status:** Draft; replacement not yet approved. Standard Frail does not reduce ordinary enemy Block gains, and the Weak-only replacement overlaps an existing colorless card. The catalog records this proposed replacement without treating it as accepted.
+
 
 ### Powers
 
@@ -166,7 +208,30 @@ A trailing `?` on a card name marks an unreviewed design. Removing it means the 
 - **Effect:** Select and draw 1 Power from your draw pile.
 - **Upgrade:** Play the selected Power.
 
+#### Mental Fortitude ?
+
+- **Cost:** 2 energy
+- **Effect (provisional):** Gain 2 Dexterity and 2 Mastery. Lose 2 Strength.
+- **Upgrade (provisional):** Gain 3 Dexterity and 3 Mastery instead; still lose 2 Strength.
+- **Status:** Draft. Losing 2 Strength and keeping the card repeatable without Exhaust are confirmed. The catalog provisionally retains both original stat gains and the original cost; confirmation is pending whether both gains or only Dexterity should remain.
+
 ### Powers
+
+#### Body and Soul
+
+- **Cost:** 2 energy
+- **Effect:** Each incoming Attack hit has a 20% chance to miss.
+- **Upgrade:** Increase the chance to 30%.
+- **Rules:** Roll independently for each hit, including each hit of a multihit Attack. A miss prevents that hit's damage before Block is consumed. Copies do not add their chances: track the highest benefit granted this combat, with equal or weaker copies unplayable, following Fortitude's rule. The upgrade replaces 20% with 30%. Reset after combat.
+- **Status:** Agreed; not implemented.
+
+#### Insidious Ire
+
+- **Cost:** 2 energy
+- **Effect:** Each direct Attack hit against an enemy with Touch, Pain, and Madness deals 1 additional damage, plus your Mastery.
+- **Upgrade:** Increase the base bonus to 2 additional damage, plus your Mastery; the upgrade does not grant Mastery.
+- **Rules:** Apply the bonus per hit, including each hit of X-cost Attacks. Use current Mastery and check the target's three DoTs for each hit. The additional damage is max(0, 1 + Mastery), or max(0, 2 + Mastery) when upgraded. Negative Mastery can eliminate the bonus but never make Insidious Ire reduce Attack damage. DoT ticks and Halo do not receive this bonus.
+- **Status:** Mechanics agreed for testing, including the nonnegative damage bonus. Keep 2 energy as the provisional cost. Not implemented.
 
 #### Psychic Link
 
@@ -210,7 +275,23 @@ A trailing `?` on a card name marks an unreviewed design. Removing it means the 
 - **Upgrade:** Cost becomes 1 energy.
 - **Rules:** Preserve negative Strength and powers that generate future Strength or Block. Removal is not blocked by Artifact. Does not Exhaust.
 
+#### Petrifying Scream
+
+- **Cost:** 2 energy
+- **Effect:** Stun the target for 1 turn. Exhaust.
+- **Upgrade:** Cost becomes 1 energy.
+- **Rules:** Artifact can block the stun. Natural DoT ticks still resolve during the skipped enemy action. Multiple copies can stun on consecutive turns; validate this interaction during playtesting.
+- **Status:** Agreed; not implemented.
+
 ### Powers
+
+#### Shadow Committal
+
+- **Cost:** 3 energy
+- **Effect:** During Voidform, playing an Attack grants 1 Strength, a Skill grants 1 Dexterity, and a Power grants 1 Mastery. These stats last for the rest of combat.
+- **Upgrade:** Cost becomes 2 energy.
+- **Rules:** Resolve the stat gain after the triggering card. This Power's own initial play does not trigger its newly applied effect. Keep the proposed values for testing, including interactions with Surrender to Madness and the cost of setting up multiple Powers.
+- **Status:** Agreed for initial testing; not implemented.
 
 #### Vampiric Embrace
 
@@ -229,6 +310,7 @@ A trailing `?` on a card name marks an unreviewed design. Removing it means the 
 
 ## Class design rules
 
-- Touch and Pain deal fixed damage and cap at 5 remaining ticks from every source, including duration extension and spreading. Madness is the separate accumulating mechanic.
+- Mastery adds 1 damage per point to damaging DoT ticks and can be negative, reducing their damage to a minimum of zero. Negative Mastery does not remove DoT stacks or make Madness tick. Mastery remains a design awaiting implementation.
+- Touch and Pain have fixed base damage, modified by Mastery once implemented, and cap at 5 remaining ticks from every source, including duration extension and spreading. Stack count and application source do not change their base damage. Madness is the separate accumulating mechanic.
 - Shadow Priest class cards do not apply Vulnerable. Access through events, relics, colorless cards, or other outside sources is allowed.
 - Sustain is an intended reward for building and setting up the Touch, Psychic Link, and Embrace engine. Validate it against the A20 Heart as well as ordinary encounters; controlled mechanics checks do not establish full-run balance.
