@@ -34,15 +34,31 @@ _No designs yet._
 
 ## Uncommon
 
-_No designs yet._
+### Misery
+
+- **Effect:** Whenever you directly apply Vampiric Touch to an enemy, also apply that many Shadow Word: Pain stacks.
+- **Rules:** Qualifying effects must be capable of applying Touch when it is absent. Includes Vampiric Touch, Tentacle Slam, and Void Blast's Touch applications. Excludes existing-only stack increases from Void Bolt, Void Volley, and Mind Flay: Insanity. Use the incoming Touch application amount, not the target's total stacks or the amount of duration actually gained at the cap. Both DoTs retain their five-stack cap. If Artifact prevents Touch from being applied, Misery does not trigger; the resulting Pain application follows normal debuff application rules.
+- **Status:** Agreed; not implemented.
+
+### Idol of C'Thun
+- **Effect:** At the start of combat, add a Tentacle Slam card to your hand
+
 
 ## Rare
 
-_No designs yet._
+### Idol of Y'Shaarj
+
+- **Effect:** During Voidform, whenever you play a card that spends energy, draw 1 card.
+- **Rules:** Trigger once per paid card, regardless of how much energy it spends, and resolve the draw after that card's effects. Count actual energy consumed, not printed cost. Zero-cost cards, cards discounted to zero, and free plays do not trigger it. An X-cost card triggers once only if it consumes positive energy; Chemical X's extra effects do not count as energy spent. Applies to Attacks, Skills, and Powers.
+- **Status:** Agreed; not implemented.
+
+### Idol of N'Zoth
+- **Effect:** Gain 1 Mastery after playing a power
 
 ## Boss
 
-_No designs yet._
+### Idol of Yogg-Saron
+- **Effect:** Entering Voidform grants 3 energy
 
 ## Shop
 

@@ -71,6 +71,9 @@ These decisions are implemented in [the second reward-card batch](card-batch-02.
 | D045 | Void Volley resolves X random Void Bolt effects as one uncommon Attack card. | Base 8 damage/1 stack per bolt, upgraded 10/2. Reselect living targets per bolt, generate Insanity per hit, and trigger Psychic Link once per card. |
 | D046 | Void Torrent is a rare X-cost Attack whose base hits escalate 4,8,12,... or upgraded 5,10,15,... on one target. | Reset each play, calculate modifiers per hit, stop when the target dies, and do not redirect. X costs remain undiscounted; both new X cards support Chemical X and free plays. Torrent supplies the fourth native rare, ending D043 supplements. |
 
+| D047 | Misery is an Uncommon relic triggered by direct Touch applications, not existing-only DoT increases. | Qualifying sources can apply Touch to an unafflicted target. Mirror the incoming application amount into Pain, respecting duration caps and normal debuff application rules. Exclude Void Bolt, Void Volley, and Mind Flay: Insanity maintenance. Design agreed; implementation pending. |
+| D048 | Idol of Y'Shaarj draws one card per card that actually spends energy during Voidform. | One draw regardless of energy amount, after the card resolves. Exclude zero-cost, discounted-to-zero, and free plays; X-cost cards qualify only with positive energy consumption. Design agreed; implementation pending. |
+
 ## Activation proposal outcome on October 23 2026
 
 **P001: On-demand Voidform** became D017 following the owner's agreement that Exhaust is mandatory and that the class should prepare for a chosen burst turn. D019 subsequently authorized the first-playable defaults, including Skill as the card type, meter capping, one charge, and stopping generation during Voidform. [Prototype rules](prototype-rules.md) specify the implemented lifecycle.
