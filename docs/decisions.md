@@ -76,6 +76,8 @@ These decisions are implemented in [the second reward-card batch](card-batch-02.
 | D049 | Add a Boss relic that doubles natural DoT ticks while consuming only one duration stack. | Two separate ticks before the enemy acts, followed by one stack reduction, even on the last stack. Each tick benefits from Mastery and can trigger Embrace normally. Psychic Link, Madness, and Halo are unchanged. Name and implementation pending. |
 | D050 | Add a Boss relic that replaces starting combat copies of Curses with unupgraded Void Bolts. | Preserve the permanent deck and its Curse count for Inescapable Torment, independent of relic order. Replacements last one combat; later-added Curses and Status cards are unaffected. Neither new Boss relic replaces Voidform. Name and implementation pending. |
 
+| D051 | Shadowy Preparation is a Common relic granting 1 starting Insanity per enemy present at combat start. | Grant once after the combat reset, respecting the normal cap and activation-card rules. Later summons do not trigger additional gain. Design agreed; implementation pending. |
+
 ## Activation proposal outcome on October 23 2026
 
 **P001: On-demand Voidform** became D017 following the owner's agreement that Exhaust is mandatory and that the class should prepare for a chosen burst turn. D019 subsequently authorized the first-playable defaults, including Skill as the card type, meter capping, one charge, and stopping generation during Voidform. [Prototype rules](prototype-rules.md) specify the implemented lifecycle.

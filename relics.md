@@ -30,7 +30,11 @@ There is no standard card-style upgrade field. If a relic replaces or improves a
 
 ## Common
 
-_No designs yet._
+### Shadowy Preparation
+
+- **Effect:** At the start of each combat, gain 1 Insanity for each enemy.
+- **Rules:** Count enemies present at combat start and grant the bonus once, after the combat's Insanity reset. Later summons do not grant additional Insanity. Use the normal Insanity cap and charge rules; reaching 10 grants the activation card rather than automatically entering Voidform.
+- **Status:** Agreed; not implemented.
 
 ## Uncommon
 
