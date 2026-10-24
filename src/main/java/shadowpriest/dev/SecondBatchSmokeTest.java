@@ -60,10 +60,10 @@ final class SecondBatchSmokeTest {
             check(EnergyPanel.totalCount == 2 && relic.state.amount() == 0, "Reaping Madness costs one and does not grant Insanity immediately");
             play(upgraded(new ReapingMadness()), null, 3);
         });
-        q.add(() -> { check(p.getPower(ReapingMadnessPower.POWER_ID).amount == 3, "Base and upgraded Reaping Madness stack to three per turn"); endTurn(true); });
+        q.add(() -> { check(p.getPower(ReapingMadnessPower.POWER_ID).amount == 30, "Base and upgraded Reaping Madness stack to 30 per turn"); endTurn(true); });
         q.add(() -> {
-            check(relic.state.amount() == 3, "Reaping Madness grants Insanity at actual turn end");
-            relic.gainInsanity(7); relic.activate(relic.state.charge());
+            check(relic.state.amount() == 30, "Reaping Madness grants Insanity at actual turn end");
+            relic.gainInsanity(70); relic.activate(relic.state.charge());
         });
         q.add(() -> endTurn(true));
         q.add(() -> {
@@ -77,10 +77,10 @@ final class SecondBatchSmokeTest {
                 "Recovery blocks end-of-turn Reaping Madness and clears at the following turn start");
             play(new MindSpike(), m, 3);
         });
-        q.add(() -> { check(relic.state.amount() == 2, "Normal attack generation resumes after recovery"); endTurn(true); });
+        q.add(() -> { check(relic.state.amount() == 20, "Normal attack generation resumes after recovery"); endTurn(true); });
         q.add(() -> {
-            check(relic.state.amount() == 5, "Passive generation also resumes after recovery");
-            reset(); play(upgraded(new ReapingMadness()), null, 3); relic.gainInsanity(9);
+            check(relic.state.amount() == 50, "Passive generation also resumes after recovery");
+            reset(); play(upgraded(new ReapingMadness()), null, 3); relic.gainInsanity(90);
         });
         q.add(() -> endTurn(true));
         q.add(() -> {
@@ -89,11 +89,11 @@ final class SecondBatchSmokeTest {
             charge = relic.state.charge(); endTurn(true);
         });
         q.add(() -> {
-            check(relic.state.amount() == 10 && relic.state.charge() == charge, "Reaping cannot overflow or create a second ready charge");
+            check(relic.state.amount() == 100 && relic.state.charge() == charge, "Reaping cannot overflow or create a second ready charge");
             reset(); hp = m.currentHealth; play(new ShadowWordMadness(), m, 3);
         });
         q.add(() -> {
-            check(MadnessPower.stacks(m) == 5 && m.currentHealth == hp - 5 && relic.state.amount() == 1,
+            check(MadnessPower.stacks(m) == 5 && m.currentHealth == hp - 5 && relic.state.amount() == 10,
                 "Madness applies five before its single hit and immediately counts for Insanity");
             play(new ShadowWordMadness(), m, 3);
         });
@@ -120,7 +120,7 @@ final class SecondBatchSmokeTest {
             relic.reset(); play(new MindSear(), null, 1);
         });
         q.add(() -> {
-            check(relic.state.amount() == 4, "Area attacks count Madness independently on every affected enemy");
+            check(relic.state.amount() == 40, "Area attacks count Madness independently on every affected enemy");
             reset(); m.powers.add(new ArtifactPower(m, 1)); hp = m.currentHealth; play(new ShadowWordMadness(), m, 3);
         });
         q.add(() -> {
@@ -130,7 +130,7 @@ final class SecondBatchSmokeTest {
         });
         q.add(() -> {
             check(MadnessPower.stacks(m) == 10 && m.currentHealth == hp - 10, "Blocked Madness application still hits for existing stacks");
-            reset(); p.powers.add(new StrengthPower(p, 2)); relic.gainInsanity(10); relic.activate(relic.state.charge());
+            reset(); p.powers.add(new StrengthPower(p, 2)); relic.gainInsanity(100); relic.activate(relic.state.charge());
         });
         q.add(() -> { hp = m.currentHealth; play(new ShadowWordMadness(), m, 0); });
         q.add(() -> {
@@ -138,12 +138,12 @@ final class SecondBatchSmokeTest {
             reset(); m.powers.add(new MadnessPower(m, 5)); m.addBlock(30); hp = m.currentHealth; play(new ShadowWordMadness(), m, 3);
         });
         q.add(() -> {
-            check(m.currentHealth == hp && relic.state.amount() == 1, "Blocked Madness hit respects Block and still generates one Insanity");
+            check(m.currentHealth == hp && relic.state.amount() == 10, "Blocked Madness hit respects Block and still generates 10 Insanity");
             reset(); p.powers.add(new PsychicLinkPower(p, 1)); m.powers.add(new ShadowDotPower(m, ShadowDotPower.TOUCH, 3));
             hp = m.currentHealth; play(new ShadowWordMadness(), m, 3);
         });
         q.add(() -> {
-            check(m.currentHealth == hp - 10 && relic.state.amount() == 2, "Madness triggers Psychic Link once and counts Touch plus Madness");
+            check(m.currentHealth == hp - 10 && relic.state.amount() == 20, "Madness triggers Psychic Link once and counts Touch plus Madness");
             hp = m.currentHealth; play(new Halo(), null, 3);
         });
         q.add(() -> {
@@ -176,7 +176,7 @@ final class SecondBatchSmokeTest {
         });
         q.add(() -> {
             check(!p.hasPower(second.ID) && m.currentHealth == hp - 5, "The later Halo keeps its own final pulse and then expires");
-            reset(); relic.gainInsanity(10); relic.activate(relic.state.charge());
+            reset(); relic.gainInsanity(100); relic.activate(relic.state.charge());
         });
         q.add(() -> {
             check(!new Halo().canUse(p, null) || VoidformRelic.effectiveCost(new Halo(), 1) == 1, "Voidform does not discount Halo");

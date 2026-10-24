@@ -7,7 +7,7 @@ Four reviewed designs add two Common Powers, one Uncommon Attack, and one Uncomm
 | Card | Cost | Base | Upgrade |
 | --- | --- | --- | --- |
 | Power Word: Fortitude | 0 | Nonstacking benefit of 2 Dexterity; equal or weaker copies become unplayable | Benefit of 3 Dexterity |
-| Reaping Madness | 1 | Gain 1 Insanity at end of turn | Gain 2 |
+| Reaping Madness | 1 | Gain 10 Insanity at end of turn | Gain 20 |
 | Shadow Word: Madness | 1 | Apply 5 Madness, then hit the selected enemy for its total stacks | Apply 5 to all enemies, then hit only the selected enemy |
 | Halo | 1 | Separate aura dealing 3 damage to all enemies at end of turn, three times | 5 damage per pulse |
 

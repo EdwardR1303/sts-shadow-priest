@@ -165,8 +165,8 @@
   },
   "shadowpriest:VoidShield": {
     "NAME": "Void Shield",
-    "DESCRIPTION": "Gain 2 Block per Insanity. NL shadowpriest:Voidform counts as 10 Insanity.",
-    "UPGRADE_DESCRIPTION": "Gain 2 Insanity. NL Gain 2 Block per Insanity. NL shadowpriest:Voidform counts as 10 Insanity."
+    "DESCRIPTION": "Gain 2 Block per 10 Insanity. NL shadowpriest:Voidform counts as 100 Insanity.",
+    "UPGRADE_DESCRIPTION": "Gain 20 Insanity. NL Gain 2 Block per 10 Insanity. NL shadowpriest:Voidform counts as 100 Insanity."
   },
   "shadowpriest:Insight": {
     "NAME": "Insight",

@@ -240,7 +240,7 @@
       },
       "upgrade": null,
       "rulesNotes": [
-        "Generated when the starter relic reaches 10 Insanity; not a permanent starter or reward.",
+        "Generated when the starter relic reaches 100 Insanity; not a permanent starter or reward.",
         "One pending charge at a time. Full hands defer delivery. Copied or recovered cards cannot reuse a spent charge.",
         "Voidform reduces Attack energy costs by 1 (minimum 0; excludes X-cost) and multiplies Attack damage by 1.5.",
         "Insanity stops accumulating while ready or active; it resets when Voidform ends and after combat."
@@ -931,27 +931,27 @@
       "base": {
         "cost": 1,
         "target": "SELF",
-        "text": "At the end of your turn, gain 1 Insanity.",
+        "text": "At the end of your turn, gain 10 Insanity.",
         "stats": {
-          "insanity": 1
+          "insanity": 10
         },
         "keywords": [],
         "effects": [
-          "Gain 1 Insanity at each player end of turn, subject to relic restrictions."
+          "Gain 10 Insanity at each player end of turn, subject to relic restrictions."
         ]
       },
       "upgrade": {
-        "summary": "Gain 2 Insanity per turn instead of 1.",
+        "summary": "Gain 20 Insanity per turn instead of 10.",
         "card": {
           "cost": 1,
           "target": "SELF",
-          "text": "At the end of your turn, gain 2 Insanity.",
+          "text": "At the end of your turn, gain 20 Insanity.",
           "stats": {
-            "insanity": 2
+            "insanity": 20
           },
           "keywords": [],
           "effects": [
-            "Gain 2 Insanity at each player end of turn, subject to relic restrictions."
+            "Gain 20 Insanity at each player end of turn, subject to relic restrictions."
           ]
         }
       },
@@ -2234,34 +2234,34 @@
       "base": {
         "cost": 1,
         "target": "SELF",
-        "text": "Gain 2 Block for each Insanity. Voidform counts as having 10 Insanity.",
+        "text": "Gain 2 Block for each 10 Insanity. Voidform counts as having 100 Insanity.",
         "stats": {
-          "blockPerInsanity": 2,
-          "insanity": 0
+          "insanity": 0,
+          "blockPerTenInsanity": 2
         },
         "keywords": [],
         "effects": [
-          "Gain 2 Block for each Insanity. Voidform counts as having 10 Insanity."
+          "Gain 2 Block for each 10 Insanity. Voidform counts as having 100 Insanity."
         ]
       },
       "upgrade": {
-        "summary": "Gain 2 Insanity first.",
+        "summary": "Gain 20 Insanity first.",
         "card": {
           "cost": 1,
           "target": "SELF",
-          "text": "Gain 2 Insanity. Gain 2 Block for each Insanity. Voidform counts as having 10 Insanity.",
+          "text": "Gain 20 Insanity. Gain 2 Block for each 10 Insanity. Voidform counts as having 100 Insanity.",
           "stats": {
-            "blockPerInsanity": 2,
-            "insanity": 2
+            "insanity": 20,
+            "blockPerTenInsanity": 2
           },
           "keywords": [],
           "effects": [
-            "Gain 2 Insanity. Gain 2 Block for each Insanity. Voidform counts as having 10 Insanity."
+            "Gain 20 Insanity. Gain 2 Block for each 10 Insanity. Voidform counts as having 100 Insanity."
           ]
         }
       },
       "rulesNotes": [
-        "Resolve Insanity gain before calculating Block. All Insanity gain obeys the normal cap, ready/active restrictions, and recovery turn. Both ordinary and permanent Voidform count as 10. Grant Block once; Dexterity and ordinary Block modifiers apply once to the total."
+        "Resolve Insanity gain before calculating Block. All Insanity gain obeys the normal cap, ready/active restrictions, and recovery turn. Both ordinary and permanent Voidform count as 100. Grant Block once; Dexterity and ordinary Block modifiers apply once to the total."
       ],
       "balanceNotes": "Implemented; validate full-run balance, including repeated use and A20 Heart performance.",
       "art": {

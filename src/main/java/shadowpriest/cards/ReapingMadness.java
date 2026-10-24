@@ -9,12 +9,12 @@ public class ReapingMadness extends PriestCard {
     public static final String ID = "shadowpriest:ReapingMadness";
     public ReapingMadness() {
         super(ID, 1, CardType.POWER, CardRarity.COMMON, CardTarget.SELF);
-        baseMagicNumber = magicNumber = 1;
+        baseMagicNumber = magicNumber = 10;
     }
     @Override public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot(new ApplyPowerAction(p, p, new ReapingMadnessPower(p, magicNumber), magicNumber));
     }
     @Override public void upgrade() {
-        if (!upgraded) { upgradeName(); upgradeMagicNumber(1); }
+        if (!upgraded) { upgradeName(); upgradeMagicNumber(10); }
     }
 }

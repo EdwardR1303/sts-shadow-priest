@@ -144,17 +144,17 @@ public final class CardBatchSmokeTest {
             reset(); dots(m); enemyHp = m.currentHealth; play(new MindFlay(), m, 3);
         });
         q.add(() -> {
-            check(m.currentHealth == enemyHp - 6 && relic.state.amount() == 6, "Mind Flay hits three times for six damage and six Insanity");
+            check(m.currentHealth == enemyHp - 6 && relic.state.amount() == 60, "Mind Flay hits three times for six damage and 60 Insanity");
             reset(); dots(m); p.powers.add(new StrengthPower(p, 2)); enemyHp = m.currentHealth;
             play(upgraded(new MindFlay()), m, 3);
         });
         q.add(() -> {
-            check(m.currentHealth == enemyHp - 16 && relic.state.amount() == 8, "Mind Flay+ has four Strength-scaled hits and eight Insanity");
+            check(m.currentHealth == enemyHp - 16 && relic.state.amount() == 80, "Mind Flay+ has four Strength-scaled hits and 80 Insanity");
             reset(); dots(m); enemyHp = m.currentHealth; play(new MindBlast(), m, 3);
         });
         q.add(() -> {
-            check(m.currentHealth == enemyHp - 12 && relic.state.amount() == 2, "Mind Blast adds damage for two distinct DoTs, but is one hit");
-            reset(); dots(m); relic.state.gain(10); relic.activate(relic.state.charge());
+            check(m.currentHealth == enemyHp - 12 && relic.state.amount() == 20, "Mind Blast adds damage for two distinct DoTs, but is one hit");
+            reset(); dots(m); relic.state.gain(100); relic.activate(relic.state.charge());
         });
         q.add(() -> { enemyHp = m.currentHealth; play(upgraded(new MindBlast()), m, 0); });
         q.add(() -> {
@@ -180,7 +180,7 @@ public final class CardBatchSmokeTest {
             reset(); dots(m); enemyHp = m.currentHealth; play(new MindFlayInsanity(), m, 3);
         });
         q.add(() -> {
-            check(m.currentHealth == enemyHp - 12 && relic.state.amount() == 6 && EnergyPanel.totalCount == 0,
+            check(m.currentHealth == enemyHp - 12 && relic.state.amount() == 60 && EnergyPanel.totalCount == 0,
                 "Mind Flay: Insanity spends three energy for three normal hits");
             check(m.getPower(ShadowDotPower.TOUCH).amount == 5 && m.getPower(ShadowDotPower.PAIN).amount == 5,
                 "Mind Flay: Insanity extends each existing DoT up to five without changing its damage");
@@ -188,7 +188,7 @@ public final class CardBatchSmokeTest {
         });
         q.add(() -> {
             check(m.currentHealth == enemyHp - 4 && m.getPower(ShadowDotPower.TOUCH).amount == 4
-                && relic.state.amount() == 2, "Upgraded X=0 Mind Flay adds one turn and one hit");
+                && relic.state.amount() == 20, "Upgraded X=0 Mind Flay adds one turn and one hit");
             reset(); dots(m); card = new MindFlayInsanity(); card.freeToPlayOnce = true; enemyHp = m.currentHealth;
             play(card, m, 2);
         });
@@ -198,13 +198,13 @@ public final class CardBatchSmokeTest {
             play(new MindSear(), null, 2);
         });
         q.add(() -> {
-            check(m.currentHealth == enemyHp - 6 && other.currentHealth == otherHp - 6 && relic.state.amount() == 8
+            check(m.currentHealth == enemyHp - 6 && other.currentHealth == otherHp - 6 && relic.state.amount() == 80
                 && EnergyPanel.totalCount == 0, "Mind Sear deals repeated area damage and counts each target's DoTs");
             reset(); p.relics.add(new ChemicalX()); dots(m); enemyHp = m.currentHealth;
             play(upgraded(new MindSear()), null, 0);
         });
         q.add(() -> {
-            check(m.currentHealth == enemyHp - 9 && relic.state.amount() == 6, "Chemical X and upgraded X=0 add three Mind Sear hits");
+            check(m.currentHealth == enemyHp - 9 && relic.state.amount() == 60, "Chemical X and upgraded X=0 add three Mind Sear hits");
             p.relics.removeIf(r -> r instanceof ChemicalX);
             reset(); card = upgraded(new Dispersion()); turn = GameActionManager.turn;
             play(card, null, 3);
@@ -276,7 +276,7 @@ public final class CardBatchSmokeTest {
             check(m.currentHealth == enemyHp - 13 && other.currentHealth == otherHp - 5,
                 "Psychic Link triggers once per Attack card, not once per hit, on all Touch targets");
             check(m.getPower(ShadowDotPower.TOUCH).amount == 3 && other.getPower(ShadowDotPower.TOUCH).amount == 3
-                && relic.state.amount() == 8, "Link bonus ticks preserve duration and generate no extra Insanity");
+                && relic.state.amount() == 80, "Link bonus ticks preserve duration and generate no extra Insanity");
             relic.reset(); p.powers.add(new StrengthPower(p, 20)); p.powers.add(new WeakPower(p, 2, false));
             m.addBlock(999); other.addBlock(999); enemyHp = m.currentHealth; otherHp = other.currentHealth;
             play(new MindSpike(), m, 3);

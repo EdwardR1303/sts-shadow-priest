@@ -146,7 +146,7 @@ public final class CombatSmokeTest {
         steps.add(() -> play(new MindSpike(), m));
         steps.add(() -> play(new MindSpike(), m));
         steps.add(() -> {
-            check(relic.state.amount() == 6, "Three fully blocked Mind Spikes into two DoTs generate 6 Insanity");
+            check(relic.state.amount() == 60 && relic.counter == 60 && !relic.state.ready(), "Three fully blocked Mind Spikes into two DoTs generate 60 Insanity and update the counter");
             // Earlier fixture applications created several different DoT card instances.
             // Their return behavior is tested separately; keep this charge-delivery hand controlled.
             shadowpriest.mechanics.ReturningDots.clear();
@@ -155,7 +155,7 @@ public final class CombatSmokeTest {
             AbstractDungeon.overlayMenu.endTurnButton.disable(true); p.endTurnQueued = true;
         });
         steps.add(() -> {
-            check(com.megacrit.cardcrawl.actions.GameActionManager.turn > turn && relic.state.amount() == 6, "Insanity persists across an actual enemy turn");
+            check(com.megacrit.cardcrawl.actions.GameActionManager.turn > turn && relic.state.amount() == 60, "Insanity persists across an actual enemy turn");
             play(new MindSpike(), m);
         });
         steps.add(() -> play(new MindSpike(), m));
@@ -204,7 +204,7 @@ public final class CombatSmokeTest {
             check(spike.damage == 6 && VoidformRelic.effectiveCost(spike, 1) == 1, "Attack cost and damage return to normal");
             relic.reset(); // Full-hand delivery is independent of the recovery scenario.
             p.hand.clear(); for (int i=0; i<10; i++) p.hand.addToTop(new PowerWordShield());
-            relic.state.gain(10);
+            relic.state.gain(100);
         });
         steps.add(() -> check(findToken() == null && relic.state.ready(), "A full hand preserves the earned charge"));
         steps.add(() -> p.hand.removeTopCard());
@@ -230,7 +230,7 @@ public final class CombatSmokeTest {
             play(new TwinStrike(), m);
         });
         steps.add(() -> {
-            check(relic.state.amount() == 4, "A two-hit Attack into two DoTs generates 4 Insanity");
+            check(relic.state.amount() == 40, "A two-hit Attack into two DoTs generates 40 Insanity");
             relic.reset();
             second = new Cultist(300f, 0f); second.maxHealth = second.currentHealth = 1000;
             add(new SpawnMonsterAction(second, false));
@@ -240,7 +240,7 @@ public final class CombatSmokeTest {
             play(new Cleave(), null);
         });
         steps.add(() -> {
-            check(relic.state.amount() == 3, "An area Attack counts each target's distinct DoTs (2 plus 1)");
+            check(relic.state.amount() == 30, "An area Attack counts each target's distinct DoTs (2 plus 1)");
         });
         steps.add(() -> {
             p.hand.clear(); relic.reset(); m.powers.clear(); m.currentBlock = 0;

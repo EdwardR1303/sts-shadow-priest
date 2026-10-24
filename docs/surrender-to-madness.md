@@ -12,7 +12,7 @@ An implemented Rare Skill that turns a temporary burst into a commitment for the
 
 ## Voidform lifecycle
 
-Surrender enters immediately when its queued effect resolves, without requiring ten Insanity or a ready activation card. It can override the ordinary recovery restriction. If already in ordinary Voidform, it extends that same Power; the damage bonus and discount do not stack and this is not another entry into Voidform.
+Surrender enters immediately when its queued effect resolves, without requiring 100 Insanity or a ready activation card. It can override the ordinary recovery restriction. If already in ordinary Voidform, it extends that same Power; the damage bonus and discount do not stack and this is not another entry into Voidform.
 
 The existing benefits remain: Attack cards cost one less, with a floor of zero, and deal 50% more damage. X costs are unchanged. Because Surrender is a Skill, ordinary Voidform does not discount it. Its permanent state and its damage penalty both last only for the current combat.
 

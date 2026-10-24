@@ -149,9 +149,9 @@ X/Y/Z = **Attacks/Skills/Powers**. Counts beside each rarity heading include dra
 #### Void Shield
 
 - **Cost:** 1 energy
-- **Effect:** Gain 2 Block for each Insanity. Voidform counts as having 10 Insanity.
-- **Upgrade:** Gain 2 Insanity first.
-- **Rules:** Resolve Insanity gain before calculating Block. All Insanity gain obeys the normal cap, ready/active restrictions, and recovery turn. Both ordinary and permanent Voidform count as 10. Grant Block once; Dexterity and ordinary Block modifiers apply once to the total.
+- **Effect:** Gain 2 Block for each 10 Insanity. Voidform counts as having 100 Insanity.
+- **Upgrade:** Gain 20 Insanity first.
+- **Rules:** Resolve Insanity gain before calculating Block. All Insanity gain obeys the normal cap, ready/active restrictions, and recovery turn. Both ordinary and permanent Voidform count as 100. Grant Block once; Dexterity and ordinary Block modifiers apply once to the total.
 - **Status:** Implemented; full-run balance testing remains.
 
 #### Insight
@@ -183,8 +183,8 @@ X/Y/Z = **Attacks/Skills/Powers**. Counts beside each rarity heading include dra
 #### Reaping Madness
 
 - **Cost:** 1 energy
-- **Effect:** At the end of your turn, gain 1 Insanity.
-- **Upgrade:** Gain 2 Insanity instead.
+- **Effect:** At the end of your turn, gain 10 Insanity.
+- **Upgrade:** Gain 20 Insanity instead.
 - **Rules:** Multiple copies stack. All Insanity gain follows the Voidform relic's restrictions, including its recovery turn.
 
 #### Tithe Evasion

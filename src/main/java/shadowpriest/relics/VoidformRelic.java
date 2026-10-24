@@ -85,7 +85,7 @@ public class VoidformRelic extends CustomRelic implements AlternateCardCostModif
     @Override public void onAttack(DamageInfo info, int damageAmount, AbstractCreature target) {
         if (info.owner != AbstractDungeon.player || info.type != DamageInfo.DamageType.NORMAL || target == null || target.isPlayer) return;
         // Hook runs before death cleanup, so killing blows use the target's current debuffs too.
-        gainInsanity(ShadowDotPower.count(target));
+        gainInsanity(ShadowDotPower.count(target) * InsanityState.PER_DOT);
     }
     public void gainInsanity(int amount) {
         boolean wasReady = state.ready();

@@ -38,12 +38,12 @@ final class SurrenderSmokeTest {
                 "Surrender registers as a rare exhaust Skill with a two-cost upgraded copy");
             check(c.portrait.getRegionWidth() == 250 && art.getWidth() == 500 && art.getHeight() == 380,
                 "Surrender loads its archived WoW icon at both portrait sizes");
-            relic.gainInsanity(2); card = new SurrenderToMadness(); play(card, null, 3);
+            relic.gainInsanity(20); card = new SurrenderToMadness(); play(card, null, 3);
         });
         q.add(() -> {
             check(EnergyPanel.totalCount == 0 && p.exhaustPile.contains(card) && relic.state.surrendered()
                 && VoidformRelic.isPermanent() && relic.state.amount() == 0,
-                "Surrender spends three, exhausts, and enters lasting Voidform from only two Insanity");
+                "Surrender spends three, exhausts, and enters lasting Voidform from only 20 Insanity");
             check(p.hasPower(SurrenderExposurePower.POWER_ID)
                 && p.getPower(SurrenderExposurePower.POWER_ID).type == AbstractPower.PowerType.DEBUFF,
                 "Surrender applies its damage exposure as a separate debuff");
@@ -101,7 +101,7 @@ final class SurrenderSmokeTest {
         q.add(() -> {
             check(VoidformRelic.isActive() && VoidformRelic.isPermanent() && p.hasPower(SurrenderExposurePower.POWER_ID)
                 && !relic.state.recovering(), "Surrender's benefit and penalty both survive a real turn boundary without recovery");
-            relic.gainInsanity(10);
+            relic.gainInsanity(100);
             check(relic.state.amount() == 0 && p.hand.group.stream().noneMatch(c -> c instanceof EnterVoidform),
                 "Lasting Voidform generates no Insanity or new activation charge");
             play(new MindSpike(), m, 0);
@@ -141,12 +141,12 @@ final class SurrenderSmokeTest {
         q.add(() -> {
             check(p.currentHealth == hp - 10, "Orange Pellets restores ordinary incoming Attack damage");
             p.relics.removeIf(r -> r instanceof OrangePellets); reset();
-            relic.gainInsanity(10); oldToken = new EnterVoidform(relic.state.charge());
+            relic.gainInsanity(100); oldToken = new EnterVoidform(relic.state.charge());
             play(upgraded(new SurrenderToMadness()), null, 2);
         });
         q.add(() -> {
             check(!oldToken.canUse(p, null) && !relic.state.ready(), "Surrender invalidates a previously earned activation card");
-            reset(); relic.gainInsanity(10); relic.activate(relic.state.charge());
+            reset(); relic.gainInsanity(100); relic.activate(relic.state.charge());
         });
         q.add(() -> {
             originalPower = (VoidformPower)p.getPower(VoidformPower.POWER_ID); play(upgraded(new SurrenderToMadness()), null, 3);
@@ -158,7 +158,7 @@ final class SurrenderSmokeTest {
         });
         q.add(() -> {
             check(m.currentHealth == 991, "Extending existing Voidform does not stack its damage multiplier");
-            reset(); relic.gainInsanity(10); relic.activate(relic.state.charge());
+            reset(); relic.gainInsanity(100); relic.activate(relic.state.charge());
         });
         q.add(() -> { for (int i = 0; i < 15; i++) p.drawPile.addToTop(new PowerWordShield()); endTurn(true); });
         q.add(() -> {

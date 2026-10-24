@@ -23,8 +23,8 @@ There is no standard card-style upgrade field. If a relic replaces or improves a
 
 ### Voidform
 
-- **Effect:** Each direct Attack hit generates 1 Insanity per unique DoT on its target. At 10 Insanity, receive a 0-cost, Retain, Exhaust card: Enter Voidform. During Voidform, Attacks cost 1 less energy and deal 50% more damage until the end of the turn.
-- **Rules:** Fully blocked direct hits still generate Insanity; DoT ticks and Halo do not. Touch, Pain, and Madness each count as one unique DoT regardless of stacks. Insanity persists between turns, caps at 10, and resets when Voidform or combat ends. Hold only one charge; gain no Insanity while ready or active. Gain no Insanity during the entire turn after entering Voidform. The cost discount has a floor of zero and leaves X costs unchanged. A full hand delays delivery of the activation card until space is available.
+- **Effect:** Each direct Attack hit generates 10 Insanity per unique DoT on its target. At 100 Insanity, receive a 0-cost, Retain, Exhaust card: Enter Voidform. During Voidform, Attacks cost 1 less energy and deal 50% more damage until the end of the turn.
+- **Rules:** Fully blocked direct hits still generate Insanity; DoT ticks and Halo do not. Touch, Pain, and Madness each count as one unique DoT regardless of stacks. Insanity persists between turns, caps at 100, and resets when Voidform or combat ends. Hold only one charge; gain no Insanity while ready or active. Gain no Insanity during the entire turn after entering Voidform. The cost discount has a floor of zero and leaves X costs unchanged. A full hand delays delivery of the activation card until space is available.
 - **Art:** WoW Voidform icon adapted into an organic relic silhouette with transparent padding.
 - **Status:** Implemented.
 
@@ -32,8 +32,8 @@ There is no standard card-style upgrade field. If a relic replaces or improves a
 
 ### Shadowy Preparation
 
-- **Effect:** At the start of each combat, gain 1 Insanity for each enemy.
-- **Rules:** Count enemies present at combat start and grant the bonus once, after the combat's Insanity reset. Later summons do not grant additional Insanity. Use the normal Insanity cap and charge rules; reaching 10 grants the activation card rather than automatically entering Voidform.
+- **Effect:** At the start of each combat, gain 10 Insanity for each enemy.
+- **Rules:** Count enemies present at combat start and grant the bonus once, after the combat's Insanity reset. Later summons do not grant additional Insanity. Use the normal Insanity cap and charge rules; reaching 100 grants the activation card rather than automatically entering Voidform.
 - **Status:** Agreed; not implemented.
 
 ## Uncommon

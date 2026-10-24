@@ -112,3 +112,7 @@ For each new choice, record its date, the rule accepted, and any earlier choice 
 - **D063:** Implement Dragonwrath at 20/25%, Xal'atath at four/five independent +2-stat rolls, and Val'anyr at 5/10 starting Block with retention until exact depletion plus an independent once-per-combat lethal rescue. Use orange cards and floating sprites rendered from the actual WoW models.
 
 The earlier agreed boss-only chance, one-Legendary permanent-deck limit, identity acquisition history, and permanent-copy restrictions are implemented as specified in [Legendary rules](legendary-cards.md).
+
+## Insanity scale on October 24 2026
+
+- **D064:** Multiply all Insanity resource values by ten without changing combat pacing. The cap/activation threshold is 100; each direct hit generates 10 per unique DoT; Reaping Madness grants 10/20 per turn; Void Shield+ grants 20 first. Void Shield gives 2 Block per 10 Insanity, and active Voidform counts as 100, preserving its 20 base Block at full charge. Shadowy Preparation's design becomes 10 starting Insanity per enemy. This supersedes the numeric units in earlier decisions and test reports; DoT/Madness stacks, costs, damage bonuses, recovery timing, and charge counts are unchanged.

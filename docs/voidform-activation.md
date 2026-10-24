@@ -1,10 +1,10 @@
 # Voidform activation card
 
-The core card design and first-playable defaults were accepted on October 23, 2026. The card replaces automatic activation at 10 Insanity. Voidform's damage bonus, cost reduction, and end-of-turn expiry remain the same. The prototype lifecycle is specified below.
+The core card design and first-playable defaults were accepted on October 23, 2026. The card replaces automatic activation at 100 Insanity. Voidform's damage bonus, cost reduction, and end-of-turn expiry remain the same. The prototype lifecycle is specified below.
 
 ## Accepted behavior
 
-When Insanity reaches 10, receive a new card that costs 0 energy, has Retain, and reads "Enter Voidform. Exhaust."
+When Insanity reaches 100, receive a new card that costs 0 energy, has Retain, and reads "Enter Voidform. Exhaust."
 
 This lets the player earn the transformation during one turn and choose when to use it. Reaching the threshold with the final attack no longer forces the entire burst window to expire before a useful hand arrives.
 
@@ -19,7 +19,7 @@ Working name: **Enter Voidform**.
 | Effect | Enter Voidform, accepted |
 | Card type | Skill, prototype default |
 | Exhaust | Yes, accepted |
-| Acquisition | Generated at 10 Insanity; not part of the permanent starting deck |
+| Acquisition | Generated at 100 Insanity; not part of the permanent starting deck |
 
 Card text:
 
@@ -31,9 +31,9 @@ Exhaust prevents the used card from entering the ordinary draw/discard cycle. It
 
 This lifecycle implements the accepted card behavior and authorized first-playable defaults:
 
-1. Build Insanity from 0 to 10 through the agreed direct-damage mechanic.
-2. At 10, mark one Voidform activation ready and add the activation card to hand when space allows.
-3. Cap Insanity at 10 while ready. Further attacks do not create more activation cards or bank another charge.
+1. Build Insanity from 0 to 100 through the agreed direct-damage mechanic.
+2. At 100, mark one Voidform activation ready and add the activation card to hand when space allows.
+3. Cap Insanity at 100 while ready. Further attacks do not create more activation cards or bank another charge.
 4. Retain the card until the player chooses to play it. Playing it consumes the ready activation, enters Voidform, and exhausts the card.
 5. Do not generate Insanity or new activation cards while Voidform is active.
 6. At turn end, Voidform ends and Insanity resets to zero, as already confirmed. The next charge can be built afterward.

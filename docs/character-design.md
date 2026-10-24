@@ -1,6 +1,6 @@
 # Shadow Priest character design
 
-The character focuses on surviving a setup phase and then committing to a massive burst turn. Distinct damage-over-time effects provide sustained damage and make subsequent direct damage sources generate more Insanity. At 10 Insanity, the starting relic generates a retained activation card so the player chooses the Voidform turn.
+The character focuses on surviving a setup phase and then committing to a massive burst turn. Distinct damage-over-time effects provide sustained damage and make subsequent direct damage sources generate more Insanity. At 100 Insanity, the starting relic generates a retained activation card so the player chooses the Voidform turn.
 
 The rules below capture the owner's design and prototype defaults on October 23, 2026. [Prototype rules](prototype-rules.md) specify the implementation edge cases and provisional upgrades; [Open questions](open-questions.md) tracks future design work. The [on-demand activation card](voidform-activation.md) replaces automatic Voidform activation.
 
@@ -31,15 +31,15 @@ Each uninterrupted base application totals 15 damage. Upgraded Touch totals 20 o
 
 The starting relic is named **Voidform**. It provides a custom Insanity bar and the transformation mechanic.
 
-Each direct damage source generates 1 Insanity per unique DoT on its target. For the owner's example, an enemy with two DoTs grants 2 Insanity for each Mind Spike. Three Mind Spikes against that enemy generate 6 Insanity in total.
+Each direct damage source generates 10 Insanity per unique DoT on its target. For the owner's example, an enemy with two DoTs grants 20 Insanity for each Mind Spike. Three Mind Spikes against that enemy generate 60 Insanity in total.
 
 Insanity persists between turns. It resets to zero after combat and when Voidform ends.
 
-The prototype counts each player-owned normal attack damage event, including blocked hits and killing blows. Multihit and multi-target attacks count each target hit separately. Touch, Pain, and positive Madness stacks each contribute one to the count. Madness never ticks or decays, while Halo is a player aura that does not count as a DoT. The meter caps at 10 and stops gaining while ready, active, or recovering; there is no overflow or banked second charge.
+The prototype counts each player-owned normal attack damage event, including blocked hits and killing blows. Multihit and multi-target attacks count each target hit separately. Touch, Pain, and positive Madness stacks each contribute one to the count. Madness never ticks or decays, while Halo is a player aura that does not count as a DoT. The meter caps at 100 and stops gaining while ready, active, or recovering; there is no overflow or banked second charge.
 
 ## Voidform
 
-Upon reaching **10 Insanity**, receive a generated Skill that costs **0 energy**, has **Retain**, and reads **"Enter Voidform. Exhaust."** The player enters Voidform by playing this card, not by reaching the threshold alone. Its working name is Enter Voidform.
+Upon reaching **100 Insanity**, receive a generated Skill that costs **0 energy**, has **Retain**, and reads **"Enter Voidform. Exhaust."** The player enters Voidform by playing this card, not by reaching the threshold alone. Its working name is Enter Voidform.
 
 While Voidform is active:
 

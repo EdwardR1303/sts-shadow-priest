@@ -4,39 +4,50 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class InsanityStateTest {
-    @Test public void twoDotsAndThreeHitsProduceSixAndPersist() {
+    @Test public void gainsUsePointsAndOnlyOneHundredReadiesVoidform() {
         InsanityState s = new InsanityState();
-        s.gain(2); s.gain(2); s.gain(2); s.endTurn();
-        assertEquals(6, s.amount()); assertFalse(s.ready());
+        s.gain(10); assertEquals(10, s.amount()); assertFalse(s.ready());
+        s.gain(89); assertEquals(99, s.amount()); assertFalse(s.ready());
+        s.gain(1); assertEquals(100, s.amount()); assertTrue(s.ready());
+    }
+    @Test public void nonpositiveGainsAreIgnoredAndHugeGainsCapSafely() {
+        InsanityState s = new InsanityState();
+        s.gain(30); s.gain(0); s.gain(-10); assertEquals(30, s.amount());
+        s.gain(Integer.MAX_VALUE); assertEquals(100, s.amount()); assertTrue(s.ready());
+    }
+    @Test public void twoDotsAndThreeHitsProduceSixtyAndPersist() {
+        InsanityState s = new InsanityState();
+        s.gain(20); s.gain(20); s.gain(20); s.endTurn();
+        assertEquals(60, s.amount()); assertFalse(s.ready());
     }
     @Test public void thresholdCapsOneChargeUntilChosen() {
-        InsanityState s = new InsanityState(); s.gain(9); s.gain(2);
-        int token = s.charge(); s.gain(100); s.endTurn();
-        assertEquals(10, s.amount()); assertEquals(token, s.charge());
+        InsanityState s = new InsanityState(); s.gain(90); s.gain(20);
+        int token = s.charge(); s.gain(1000); s.endTurn();
+        assertEquals(100, s.amount()); assertEquals(token, s.charge());
         assertTrue(s.ready()); assertFalse(s.active());
         assertTrue(s.activate(token)); assertFalse(s.activate(token));
-        s.gain(5); assertEquals(10, s.amount());
+        s.gain(50); assertEquals(100, s.amount());
         s.endTurn(); assertEquals(0, s.amount()); assertFalse(s.active());
     }
     @Test public void oldOrCopiedTokensCannotSpendANewCharge() {
-        InsanityState s = new InsanityState(); s.gain(10); int old = s.charge();
-        s.activate(old); s.endTurn(); s.startTurn(); s.endTurn(); s.startTurn(); s.gain(10);
+        InsanityState s = new InsanityState(); s.gain(100); int old = s.charge();
+        s.activate(old); s.endTurn(); s.startTurn(); s.endTurn(); s.startTurn(); s.gain(100);
         assertFalse(s.activate(old)); assertTrue(s.activate(s.charge()));
     }
     @Test public void combatResetInvalidatesReadyCards() {
-        InsanityState s = new InsanityState(); s.gain(10); int old = s.charge();
+        InsanityState s = new InsanityState(); s.gain(100); int old = s.charge();
         s.reset(); assertEquals(0, s.amount()); assertFalse(s.activate(old));
     }
     @Test public void recoveryBlocksTheEntireFollowingTurn() {
-        InsanityState s = new InsanityState(); s.gain(10); s.activate(s.charge());
-        s.endTurn(); s.gain(2); assertEquals(0, s.amount());
+        InsanityState s = new InsanityState(); s.gain(100); s.activate(s.charge());
+        s.endTurn(); s.gain(20); assertEquals(0, s.amount());
         s.startTurn(); assertTrue(s.recovering());
-        s.gain(10); s.endTurn(); s.gain(2); assertEquals(0, s.amount());
-        s.startTurn(); assertFalse(s.recovering()); s.gain(2); assertEquals(2, s.amount());
+        s.gain(100); s.endTurn(); s.gain(20); assertEquals(0, s.amount());
+        s.startTurn(); assertFalse(s.recovering()); s.gain(20); assertEquals(20, s.amount());
     }
     @Test public void combatResetClearsRecovery() {
-        InsanityState s = new InsanityState(); s.gain(10); s.activate(s.charge()); s.endTurn();
-        s.reset(); assertFalse(s.recovering()); s.gain(3); assertEquals(3, s.amount());
+        InsanityState s = new InsanityState(); s.gain(100); s.activate(s.charge()); s.endTurn();
+        s.reset(); assertFalse(s.recovering()); s.gain(30); assertEquals(30, s.amount());
     }
     @Test public void costsRespectExistingChangesAndNeverMutateNegativeCosts() {
         assertEquals(0, InsanityState.effectiveCost(1, true, true));
@@ -48,23 +59,23 @@ public class InsanityStateTest {
         assertEquals(1, InsanityState.effectiveCost(1, true, false));
     }
     @Test public void surrenderBypassesThresholdAndPersistsUntilCombatReset() {
-        InsanityState s = new InsanityState(); s.gain(2);
+        InsanityState s = new InsanityState(); s.gain(20);
         assertTrue(s.surrender()); assertTrue(s.active()); assertTrue(s.surrendered());
-        for (int i = 0; i < 5; i++) { s.endTurn(); s.startTurn(); s.gain(10); }
+        for (int i = 0; i < 5; i++) { s.endTurn(); s.startTurn(); s.gain(100); }
         assertTrue(s.active()); assertEquals(0, s.amount()); assertFalse(s.ready());
         assertFalse(s.recovering()); assertFalse(s.surrender());
         s.reset(); assertFalse(s.active()); assertFalse(s.surrendered());
-        s.gain(10); assertTrue(s.activate(s.charge())); s.endTurn(); assertFalse(s.active());
+        s.gain(100); assertTrue(s.activate(s.charge())); s.endTurn(); assertFalse(s.active());
     }
     @Test public void surrenderInvalidatesReadyTokens() {
-        InsanityState s = new InsanityState(); s.gain(10); int token = s.charge();
+        InsanityState s = new InsanityState(); s.gain(100); int token = s.charge();
         s.surrender(); assertFalse(s.activate(token)); assertFalse(s.ready());
         assertNotEquals(token, s.charge());
     }
     @Test public void surrenderExtendsActiveFormAndCanBypassRecovery() {
-        InsanityState s = new InsanityState(); s.gain(10); s.activate(s.charge());
+        InsanityState s = new InsanityState(); s.gain(100); s.activate(s.charge());
         assertTrue(s.surrender()); s.endTurn(); assertTrue(s.active());
-        s.reset(); s.gain(10); s.activate(s.charge()); s.endTurn(); s.startTurn();
+        s.reset(); s.gain(100); s.activate(s.charge()); s.endTurn(); s.startTurn();
         assertTrue(s.recovering()); assertTrue(s.surrender()); assertFalse(s.recovering());
         s.endTurn(); assertTrue(s.active());
     }

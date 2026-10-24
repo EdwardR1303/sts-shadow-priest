@@ -27,9 +27,9 @@ Neither DoT inherently heals; Vampiric Embrace rewards damaging Touch ticks with
 
 ## Insanity and activation
 
-Each player-owned normal attack damage event gains 1 Insanity per unique DoT on its target. Each hit of a multihit attack counts independently, and multi-target attacks use each enemy's own DoTs. Fully blocked and zero-damage normal hits count. Killing blows count before debuff cleanup. HP-loss and retaliation damage do not count.
+Each player-owned normal attack damage event gains 10 Insanity per unique DoT on its target. Each hit of a multihit attack counts independently, and multi-target attacks use each enemy's own DoTs. Fully blocked and zero-damage normal hits count. Killing blows count before debuff cleanup. HP-loss and retaliation damage do not count.
 
-Insanity persists between turns and caps at 10. There is no random generation roll; draw order affects setup. At 10, one activation becomes ready and generates Enter Voidform. A full hand defers delivery until a slot opens. No further Insanity is gained while ready, active, or recovering. Reaping Madness provides 1/2 Insanity per copy at player turn end under these same restrictions.
+Insanity persists between turns and caps at 100. There is no random generation roll; draw order affects setup. At 100, one activation becomes ready and generates Enter Voidform. A full hand defers delivery until a slot opens. No further Insanity is gained while ready, active, or recovering. Reaping Madness provides 10/20 Insanity per copy at player turn end under these same restrictions.
 
 The card is retained. If discarded, it can be drawn again. If the unused card is lost entirely, the ready charge can deliver a replacement. Each charge has a serial number: copied or recovered activation cards cannot spend a used charge or an unrelated later charge.
 

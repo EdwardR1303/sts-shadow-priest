@@ -7,7 +7,7 @@ Implemented October 24, 2026. The catalog contains 49 collectible designs (4 Bas
 | Flash Heal | Common Skill, 1 energy: heal 6; this copy costs 1 more this combat | Heal 9 |
 | Blood Magic | Common Attack, 2 energy: 18 damage; lose 3 HP | 24 damage |
 | Shadow Mend | Common Skill, 1 energy: heal 10; add 2 debt | Add 1 debt; heal remains 10 |
-| Void Shield | Common Skill, 1 energy: 2 Block per Insanity; Voidform counts as 10 | Gain 2 Insanity first |
+| Void Shield | Common Skill, 1 energy: 2 Block per 10 Insanity; Voidform counts as 100 | Gain 20 Insanity first |
 | Insight | Common Skill, 0 energy: draw 2; draw 1 fewer next turn | Draw 3 now |
 | Mind Soothe | Common Skill, 0 energy: target deals 1 less Attack damage per unique DoT this turn | Add 1 flat reduction |
 | Tithe Evasion | Common Power, 1 energy: named self-damage sources lose 1 less HP | Lose 2 less HP |
@@ -27,7 +27,7 @@ Shadow Mend heals first, then adds to a single combat-long debuff. Starting next
 
 Tithe Evasion only reduces Blood Magic, Shadow Word: Death, and Shadow Mend debt. It subtracts once per qualifying event, floored at zero. Enemy damage, Beat of Death, Curses, Statuses, relics, and other classes' effects do not qualify. Highest-benefit tracking makes equal/weaker copies unplayable even after cleansing; the upgrade replaces the earlier benefit.
 
-Void Shield grants one total Block amount, applying Dexterity once. Its upgrade gains Insanity first and obeys readiness, recovery, and active-form restrictions. Both ordinary and permanent Voidform count as ten, including permanent form without the starter relic.
+Void Shield grants one total Block amount, applying Dexterity once. Its upgrade gains Insanity first and obeys readiness, recovery, and active-form restrictions. Both ordinary and permanent Voidform count as 100, including permanent form without the starter relic.
 
 Mind Soothe snapshots Touch/Pain/Madness at play time. Each application is an Artifact-blockable debuff; copies add reduction for that enemy turn. Each normal Attack hit loses that amount in outgoing final damage calculation before Block, floored at zero. It expires after the enemy turn. Base with no DoTs does nothing; upgrade still reduces damage by one.
 

@@ -68,8 +68,8 @@ public class ShadowPriestMod implements EditCharactersSubscriber, EditCardsSubsc
         sb.draw(ImageMaster.WHITE_SQUARE_IMG, x - 2 * s, y - 2 * s, w + 4 * s, h + 4 * s);
         sb.setColor(new Color(0.09f, 0.06f, 0.14f, 0.95f)); sb.draw(ImageMaster.WHITE_SQUARE_IMG, x, y, w, h);
         sb.setColor(relic.state.active() ? Color.MAGENTA : new Color(0.52f, 0.25f, 0.85f, 1f));
-        sb.draw(ImageMaster.WHITE_SQUARE_IMG, x, y, w * (relic.state.active() ? 1f : relic.state.amount() / 10f), h);
-        String text = relic.state.surrendered() ? "SURRENDERED" : relic.state.recovering() ? "RECOVERING" : relic.state.active() ? "VOIDFORM" : relic.state.ready() ? "VOIDFORM READY" : "Insanity " + relic.state.amount() + " / 10";
+        sb.draw(ImageMaster.WHITE_SQUARE_IMG, x, y, w * (relic.state.active() ? 1f : relic.state.amount() / (float)shadowpriest.mechanics.InsanityState.THRESHOLD), h);
+        String text = relic.state.surrendered() ? "SURRENDERED" : relic.state.recovering() ? "RECOVERING" : relic.state.active() ? "VOIDFORM" : relic.state.ready() ? "VOIDFORM READY" : "Insanity " + relic.state.amount() + " / " + shadowpriest.mechanics.InsanityState.THRESHOLD;
         FontHelper.renderFontCentered(sb, FontHelper.tipBodyFont, text, orb.current_x, y + 30 * s, Color.WHITE, 0.8f);
         sb.setColor(oldColor);
     }

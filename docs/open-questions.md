@@ -7,7 +7,7 @@ The first playable prototype now has explicit rules for every core mechanic. See
 - Starting deck: four 1-energy Mind Spikes, four 1-energy Shields, one Touch and one Pain. Shield and both DoTs are Skills.
 - Character: 70 HP, 99 gold, 3 energy, 5-card draw. Upgrades: 9 damage, 8 Block, Touch applying 4 ticks of fixed 5 damage, and Pain applying 5 ticks of fixed 3 damage for zero energy. Played DoTs return at turn end.
 - DoTs: tick before the enemy acts, add remaining ticks up to 5 on application without an immediate tick, bypass Block and offensive modifiers, respect Intangible and Artifact. Touch, Pain, and positive Madness stacks each count once toward Insanity. Madness never ticks or decays; Halo is an independent player aura, not a DoT.
-- Insanity: each player-owned normal hit counts each target's distinct DoTs, including blocked hits. Multihit and area attacks count per hit and target. Meter caps at 10 with one charge; no generation while ready, active, or recovering. Recovery blocks the entire turn after entering Voidform, including end-of-turn effects.
+- Insanity: each player-owned normal hit counts each target's distinct DoTs, including blocked hits. Multihit and area attacks count per hit and target. Meter caps at 100 with one charge; no generation while ready, active, or recovering. Recovery blocks the entire turn after entering Voidform, including end-of-turn effects.
 - Activation: a retained, zero-cost, exhausting Skill. Full hands defer delivery. Charge identifiers prevent copied or recovered cards from spending a charge twice.
 - Voidform: discount positive Attack energy costs by one without changing card cost fields; leave X costs unchanged. Apply 1.5x final outgoing Attack damage, using normal rounding and defenses. Reset at turn end and combat end.
 - Toolchain: Java 8, Maven, ModTheSpire, BaseMod, StSLib, VS Code tasks. BasicMod assets are temporary.
@@ -17,7 +17,7 @@ The first playable prototype now has explicit rules for every core mechanic. See
 - Is 15 delayed damage per 1-energy DoT too strong, especially when it bypasses Block?
 - Do shorter Touch maintenance and longer Pain duration create useful sequencing choices?
 - How often does refreshing an existing DoT feel useful?
-- Does 10 Insanity allow satisfying burst turns without making multihit or area attacks dominant?
+- Does 100 Insanity allow satisfying burst turns without making multihit or area attacks dominant?
 - Can the player survive setup reliably? Does waiting become too safe or repetitive?
 - Does the hand contain enough attacks when Voidform is ready, or do we need draw, retention, or preparation cards?
 - How often is holding the activation better than playing it immediately?

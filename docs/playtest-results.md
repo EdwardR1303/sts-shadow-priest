@@ -161,6 +161,14 @@ The catalog validates against its schema with **50 unique implemented entries**:
 
 Earlier attempts exposed a missing power-icon region, which was replaced with the actual ability icon, and stale pool/draft assertions, which were updated to the approved roster. These were rerun successfully. The save test checks the CustomSavable JSON roundtrip, not an end-to-end quit/resume run. No A20 Heart win-rate or full-run balance claim is made.
 
+## Insanity rescaled to 100
+
+On October 24, 2026, the Insanity unit changed from a 10-point to a 100-point meter. Maven `clean verify` passed **12 unit tests**, and the full isolated game suite passed **435 checks** at 1920 x 1080, ending in `ALL CHECKS PASSED`.
+
+Direct hits now grant 10 Insanity per unique DoT, Reaping Madness grants 10/20, and Void Shield+ grants 20 before granting 2 Block per 10 Insanity. Tests confirm three blocked Mind Spikes into two DoTs produce 60 on both state and relic counter; the same number of hits earns the activation card. Reaping stacking, the 100-point cap, recovery restrictions, X-cost attacks, Dragonwrath repeats, Surrender, and combat reset all pass. Void Shield still grants 19 Block at 80 Insanity with 3 Dexterity, and 20 base Block at full charge or in Voidform. Its updated upgraded-card text was visually reviewed in a game-rendered image.
+
+The added unit cases verify that gains accept actual resource points, 99 is not ready but 100 is, nonpositive gains do nothing, and oversized gains cap without integer overflow. Earlier reports retain their historical numbers; D064 and the current card/relic documents define the new units. The catalog still validates with 50 entries. Restart the game to load the new build; this rescale does not change the intended pace or rewards of generating Insanity.
+
 ## Limits
 
 These are correctness checks in a controlled encounter, not a full-run balance study. Only BaseMod and StSLib were loaded alongside this mod. Interactions with other mods, every relic or card, save/reload during combat, and long-run progression have not been exhaustively tested. The X-cost check verifies exclusion from the discount, not every X-cost card's effects.

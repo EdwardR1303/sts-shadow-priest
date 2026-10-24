@@ -2,7 +2,8 @@ package shadowpriest.mechanics;
 
 /** Combat-only state. Charge serials invalidate copied/recovered activation cards. */
 public final class InsanityState {
-    public static final int THRESHOLD = 10;
+    public static final int THRESHOLD = 100;
+    public static final int PER_DOT = 10;
     private int insanity;
     private boolean active;
     private boolean surrendered;
@@ -17,9 +18,10 @@ public final class InsanityState {
     public boolean recovering() { return !active && recoveryStarts > 0; }
     public void startTurn() { if (recoveryStarts > 0) recoveryStarts--; }
 
-    public void gain(int uniqueDots) {
-        if (active || ready() || recoveryStarts > 0 || uniqueDots <= 0) return;
-        insanity = Math.min(THRESHOLD, insanity + uniqueDots);
+    /** Accept resource points; attack callers convert their unique-DoT count first. */
+    public void gain(int points) {
+        if (active || ready() || recoveryStarts > 0 || points <= 0) return;
+        insanity += Math.min(THRESHOLD - insanity, points);
         if (ready()) charge++;
     }
 

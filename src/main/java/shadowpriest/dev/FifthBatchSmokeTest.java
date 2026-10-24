@@ -179,7 +179,7 @@ final class FifthBatchSmokeTest {
         });
         q.add(() -> {
             check(m.currentHealth==978,"Ire adds no damage to the separate Mastery-enhanced Link tick");
-            reset(); allDots(m); p.powers.add(new MasteryPower(p,2)); p.powers.add(new InsidiousIrePower(p,1)); relic.gainInsanity(10); relic.activate(relic.state.charge());
+            reset(); allDots(m); p.powers.add(new MasteryPower(p,2)); p.powers.add(new InsidiousIrePower(p,1)); relic.gainInsanity(100); relic.activate(relic.state.charge());
         });
         q.add(() -> play(new VoidTorrent(),m,3));
         q.add(() -> {
@@ -217,7 +217,7 @@ final class FifthBatchSmokeTest {
         q.add(() -> play(new MindSpike(),m,3));
         q.add(() -> {
             check(m.currentHealth==994 && stat("Strength")==0 && MasteryPower.current()==0,"Committal grants no stats outside Voidform and does not trigger itself");
-            relic.gainInsanity(10); relic.activate(relic.state.charge());
+            relic.gainInsanity(100); relic.activate(relic.state.charge());
         });
         q.add(() -> { m.currentHealth=1000; play(new MindFlay(),m,0); });
         q.add(() -> {
