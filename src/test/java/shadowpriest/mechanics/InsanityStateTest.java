@@ -47,4 +47,25 @@ public class InsanityStateTest {
         assertEquals(1, InsanityState.effectiveCost(1, false, true));
         assertEquals(1, InsanityState.effectiveCost(1, true, false));
     }
+    @Test public void surrenderBypassesThresholdAndPersistsUntilCombatReset() {
+        InsanityState s = new InsanityState(); s.gain(2);
+        assertTrue(s.surrender()); assertTrue(s.active()); assertTrue(s.surrendered());
+        for (int i = 0; i < 5; i++) { s.endTurn(); s.startTurn(); s.gain(10); }
+        assertTrue(s.active()); assertEquals(0, s.amount()); assertFalse(s.ready());
+        assertFalse(s.recovering()); assertFalse(s.surrender());
+        s.reset(); assertFalse(s.active()); assertFalse(s.surrendered());
+        s.gain(10); assertTrue(s.activate(s.charge())); s.endTurn(); assertFalse(s.active());
+    }
+    @Test public void surrenderInvalidatesReadyTokens() {
+        InsanityState s = new InsanityState(); s.gain(10); int token = s.charge();
+        s.surrender(); assertFalse(s.activate(token)); assertFalse(s.ready());
+        assertNotEquals(token, s.charge());
+    }
+    @Test public void surrenderExtendsActiveFormAndCanBypassRecovery() {
+        InsanityState s = new InsanityState(); s.gain(10); s.activate(s.charge());
+        assertTrue(s.surrender()); s.endTurn(); assertTrue(s.active());
+        s.reset(); s.gain(10); s.activate(s.charge()); s.endTurn(); s.startTurn();
+        assertTrue(s.recovering()); assertTrue(s.surrender()); assertFalse(s.recovering());
+        s.endTurn(); assertTrue(s.active());
+    }
 }

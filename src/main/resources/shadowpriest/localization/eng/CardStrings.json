@@ -116,5 +116,9 @@
   "shadowpriest:VoidTorrent": {
     "NAME": "Void Torrent",
     "DESCRIPTION": "Deal damage X times to an enemy. NL First hit: !D!. NL Each hit's base damage increases by !M!."
+  },
+  "shadowpriest:SurrenderToMadness": {
+    "NAME": "Surrender to Madness",
+    "DESCRIPTION": "Enter shadowpriest:Voidform for the rest of combat. NL Take double damage from enemy Attacks. NL Exhaust."
   }
 }

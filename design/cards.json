@@ -1457,6 +1457,70 @@
         "icon": "spell_priest_voidsear",
         "direction": "Actual WoW ability icon inside the shared violet-and-gold card frame."
       }
+    },
+    {
+      "id": "shadowpriest:SurrenderToMadness",
+      "name": "Surrender to Madness",
+      "status": "IMPLEMENTED",
+      "type": "SKILL",
+      "rarity": "RARE",
+      "sources": [
+        "REWARD_POOL"
+      ],
+      "startingCopies": 0,
+      "tags": [],
+      "designIntent": "Commit to sustained Voidform offense at the risk of doubled incoming Attack damage, or build around preventing the drawback.",
+      "base": {
+        "cost": 3,
+        "target": "SELF",
+        "text": "Enter Voidform for the rest of combat. Take double damage from enemy Attacks. Exhaust.",
+        "stats": {
+          "incomingAttackMultiplier": 2
+        },
+        "keywords": [
+          "EXHAUST"
+        ],
+        "effects": [
+          "Enter or extend Voidform for the rest of combat, bypassing Insanity and recovery.",
+          "Apply a separate double incoming Attack damage debuff before Block.",
+          "Exhaust."
+        ]
+      },
+      "upgrade": {
+        "summary": "Cost reduced to 2; retain the full drawback.",
+        "card": {
+          "cost": 2,
+          "target": "SELF",
+          "text": "Enter Voidform for the rest of combat. Take double damage from enemy Attacks. Exhaust.",
+          "stats": {
+            "incomingAttackMultiplier": 2
+          },
+          "keywords": [
+            "EXHAUST"
+          ],
+          "effects": [
+            "Enter or extend Voidform for the rest of combat, bypassing Insanity and recovery.",
+            "Apply a separate double incoming Attack damage debuff before Block.",
+            "Exhaust."
+          ]
+        }
+      },
+      "rulesNotes": [
+        "Permanent means until combat ends; combat reset restores the normal Insanity and recovery lifecycle.",
+        "Existing ordinary Voidform is extended, not reapplied; no stacking multipliers or extra entry event.",
+        "Ready activation cards become invalid; further Surrender copies are unplayable, including after cleansing the drawback.",
+        "Artifact present before application can block exposure. Artifact gained later does not remove it. Orange Pellets can cleanse it without ending Voidform.",
+        "Normal Attack damage doubles before Block and combines with other modifiers. HP-loss and non-Attack damage are unchanged; Intangible and other prevention apply normally.",
+        "Attack costs fall by one, to a minimum of zero; X costs and Skill/Power costs are unchanged.",
+        "Free/duplicated effects cannot apply the bargain twice. The card works without the starter relic.",
+        "Proposed relics in relics.md remain unimplemented; their future entry triggers should fire only on a new transition into Voidform."
+      ],
+      "balanceNotes": "Test the exposed and cleansed versions separately, including immediate lethal turns, sustained defense, and future Yogg-Saron synergy.",
+      "art": {
+        "wowAbility": "Surrender to Madness",
+        "icon": "achievement_boss_generalvezax_01",
+        "direction": "Archived WoW ability icon inside the shared violet-and-gold card frame; also used by the exposure debuff."
+      }
     }
   ]
 }

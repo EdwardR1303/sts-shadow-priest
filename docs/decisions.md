@@ -78,6 +78,9 @@ These decisions are implemented in [the second reward-card batch](card-batch-02.
 
 | D051 | Shadowy Preparation is a Common relic granting 1 starting Insanity per enemy present at combat start. | Grant once after the combat reset, respecting the normal cap and activation-card rules. Later summons do not trigger additional gain. Design agreed; implementation pending. |
 
+| D052 | Surrender to Madness is a Rare Skill costing 3/2 energy, Exhaust, entering or extending Voidform for the rest of combat. | Bypass threshold and recovery, invalidate ready charges, and block additional copies. Existing Voidform is extended without a second entry. Ordinary Insanity behavior returns after combat. |
+| D053 | Surrender applies double incoming Attack damage as a separate normal debuff. | Artifact may prevent it; Orange Pellets may cleanse it while Voidform remains. This replaces the earlier inseparable-penalty proposal. Multiply before Block, preserve HP-loss and non-Attack damage, and keep the penalty unchanged on upgrade. |
+
 ## Activation proposal outcome on October 23 2026
 
 **P001: On-demand Voidform** became D017 following the owner's agreement that Exhaust is mandatory and that the class should prepare for a chosen burst turn. D019 subsequently authorized the first-playable defaults, including Skill as the card type, meter capping, one charge, and stopping generation during Voidform. [Prototype rules](prototype-rules.md) specify the implemented lifecycle.

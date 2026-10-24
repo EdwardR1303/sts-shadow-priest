@@ -94,3 +94,9 @@ Spell reference: https://www.wowhead.com/spell=263165/void-torrent
 Original icon: spell_priest_voidsear
 Source: https://wow.zamimg.com/images/wow/icons/large/spell_priest_voidsear.jpg
 Local file: shadowpriest/images/cards/icons/void_torrent.jpg
+
+Surrender to Madness card and debuff icon
+Ability reference: https://warcraft.wiki.gg/wiki/Surrender_to_Madness
+Original icon: achievement_boss_generalvezax_01 (verified from the archived ability infobox)
+Source: https://wow.zamimg.com/images/wow/icons/large/achievement_boss_generalvezax_01.jpg
+Local file: shadowpriest/images/cards/icons/surrender_to_madness.jpg

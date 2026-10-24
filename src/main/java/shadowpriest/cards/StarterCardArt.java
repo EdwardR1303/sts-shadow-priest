@@ -27,6 +27,7 @@ final class StarterCardArt {
             case VoidBolt.ID: icon = "cards/icons/void_bolt.jpg"; break;
             case VoidVolley.ID: icon = "cards/icons/void_volley.jpg"; break;
             case VoidTorrent.ID: icon = "cards/icons/void_torrent.jpg"; break;
+            case SurrenderToMadness.ID: icon = "cards/icons/surrender_to_madness.jpg"; break;
             default: return null;
         }
         if (CACHE.containsKey(id)) return CACHE.get(id);

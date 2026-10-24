@@ -195,6 +195,14 @@ A trailing `?` on a card name marks an unreviewed design. Removing it means the 
 
 ### Skills
 
+#### Surrender to Madness
+
+- **Cost:** 3 energy
+- **Effect:** Enter Voidform for the rest of combat. Take double damage from enemy Attacks for the rest of combat. Exhaust.
+- **Upgrade:** Cost becomes 2 energy; the benefit and damage penalty are unchanged.
+- **Rules:** Bypass the Insanity threshold and recovery restriction. If already in ordinary Voidform, extend that form instead of entering again or stacking its bonuses. Consume/invalidate any ready activation charge. Further copies are unplayable after surrendering, even if the penalty is cleansed. Apply the damage penalty as a separate debuff: Artifact can prevent it and Orange Pellets can remove it without ending Voidform. Multiply normal incoming Attack damage before Block; HP-loss and non-Attack damage are unchanged. Both effects last only for this combat. X costs are unchanged. Works without the starter relic.
+- **Status:** Implemented.
+
 #### Mass Dispel
 
 - **Cost:** 2 energy

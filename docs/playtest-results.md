@@ -100,8 +100,26 @@ The existing reward checks now verify ten native Commons, nine native Uncommons,
 
 After all checks passed, automatic shutdown logged a `ClosedByInterruptException` while the game's background writer validated an isolated `.smoketest/preferences/SHADOW_PRIEST` preference file. Combat assertions completed before shutdown; this run does not validate save/reload. Normal game saves were not used. See [fourth-batch rules](card-batch-04.md) for exact semantics and artwork sources.
 
+## Surrender to Madness
+
+On October 23, 2026, Maven `clean verify` passed all **10 unit tests**, and the full combined suite passed all **265 actual-game checks** at 1920 x 1080 windowed, ending with `ALL CHECKS PASSED`. The three added unit tests cover lasting state across turns, bypassing the threshold/recovery, invalidating ready charges, extending active Voidform, and reset to the ordinary combat lifecycle.
+
+The reward-only suite subsequently passed all **223 checks** after the permanent-state meter label and Voidform keyword description were updated. The final localization correction links the card's Voidform text to that keyword; a final `clean verify` validated the packaged build.
+
+The 32 added game checks cover:
+
+- Rare Skill registration, base/upgrade energy costs, Exhaust, upgraded copies, and both portrait sizes using the archived WoW ability icon.
+- Entry below ten Insanity, disabled repeat plays, free amplified Attacks, X-cost damage/energy, actual persistence across an enemy turn, and absence of new Insanity or activation charges.
+- Doubling Attack damage before Block, matching enemy intent previews, multihit damage, combination with Vulnerable, and unchanged HP-loss and non-Attack damage.
+- Intangible capping incoming damage, Fade reducing subsequent HP loss, and Desperate Prayer recovering a survived doubled hit.
+- Artifact preventing exposure while preserving Voidform; later Artifact not removing an existing penalty; actual Orange Pellets activation through Skill, Power, and Attack plays cleansing only the penalty.
+- Cleansing not enabling another Surrender, invalidating an earned charge, extending the same active Power without stacking bonuses, bypassing recovery, and queued duplicates consuming only one Artifact.
+- Lasting Voidform and its discount working without the starter relic; controlled combat cleanup restoring normal state and playability.
+
+The catalog validates against its schema with 29 unique entries. The source icon was visually inspected and verified alongside its attribution in the built JAR. Proposed non-starter relics and Mastery remain unimplemented; no claim is made about testing their future combinations with Surrender. Full-run balance, including A20 Heart performance with and without cleansing, remains for human playtests. See [Surrender rules](surrender-to-madness.md).
+
 ## Limits
 
 These are correctness checks in a controlled encounter, not a full-run balance study. Only BaseMod and StSLib were loaded alongside this mod. Interactions with other mods, every relic or card, save/reload during combat, and long-run progression have not been exhaustively tested. The X-cost check verifies exclusion from the discount, not every X-cost card's effects.
 
-Some art remains placeholder. Rewards now contain ten Shadow Priest Commons, nine Uncommons, and four Rares, with no Ironclad supplements. Question Card can generate four distinct native boss choices. Human playtests should evaluate setup damage taken, time to earn Voidform, hand quality at activation, sustain, Madness spreading, and whether waiting or immediate activation is more enjoyable.
+Some art remains placeholder. Rewards now contain ten Shadow Priest Commons, nine Uncommons, and five Rares, with no Ironclad supplements. Question Card can generate four distinct native boss choices. Human playtests should evaluate setup damage taken, time to earn Voidform, hand quality at activation, sustain, Madness spreading, and whether waiting or immediate activation is more enjoyable.

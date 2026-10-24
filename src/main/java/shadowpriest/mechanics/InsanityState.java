@@ -5,12 +5,14 @@ public final class InsanityState {
     public static final int THRESHOLD = 10;
     private int insanity;
     private boolean active;
+    private boolean surrendered;
     private int charge;
     private int recoveryStarts;
 
     public int amount() { return insanity; }
     public int charge() { return charge; }
     public boolean active() { return active; }
+    public boolean surrendered() { return surrendered; }
     public boolean ready() { return insanity == THRESHOLD && !active; }
     public boolean recovering() { return !active && recoveryStarts > 0; }
     public void startTurn() { if (recoveryStarts > 0) recoveryStarts--; }
@@ -28,10 +30,17 @@ public final class InsanityState {
         return true;
     }
 
+    /** Bypass charge/recovery once; an already active form is extended, not entered again. */
+    public boolean surrender() {
+        if (surrendered) return false;
+        surrendered = true; active = true; insanity = 0; recoveryStarts = 0; charge++;
+        return true;
+    }
     public void endTurn() {
+        if (surrendered) return;
         if (active) { insanity = 0; active = false; charge++; }
     }
-    public void reset() { insanity = 0; active = false; recoveryStarts = 0; charge++; }
+    public void reset() { insanity = 0; active = false; surrendered = false; recoveryStarts = 0; charge++; }
 
     public static int effectiveCost(int original, boolean attack, boolean active) {
         return active && attack && original > 0 ? original - 1 : original;

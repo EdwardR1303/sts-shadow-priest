@@ -292,6 +292,7 @@ public final class CardBatchSmokeTest {
         SecondBatchSmokeTest.append(q);
         ThirdBatchSmokeTest.append(q);
         FourthBatchSmokeTest.append(q);
+        SurrenderSmokeTest.append(q);
         q.add(() -> {
             reset(); p.currentHealth = 5; play(new DesperatePrayer(), null, 3);
         });

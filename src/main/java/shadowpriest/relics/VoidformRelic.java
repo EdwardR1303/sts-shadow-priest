@@ -53,7 +53,14 @@ public class VoidformRelic extends CustomRelic implements AlternateCardCostModif
         AbstractRelic relic = AbstractDungeon.player.getRelic(ID);
         return relic instanceof VoidformRelic ? (VoidformRelic) relic : null;
     }
-    public static boolean isActive() { VoidformRelic r = current(); return r != null && r.state.active(); }
+    public static boolean isActive() {
+        VoidformRelic r = current(); return (r != null && r.state.active()) || isPermanent();
+    }
+    public static boolean isPermanent() {
+        return AbstractDungeon.player != null
+            && AbstractDungeon.player.getPower(VoidformPower.POWER_ID) instanceof VoidformPower
+            && ((VoidformPower)AbstractDungeon.player.getPower(VoidformPower.POWER_ID)).permanent;
+    }
     public static int effectiveCost(AbstractCard card, int cost) {
         return InsanityState.effectiveCost(cost, card.type == AbstractCard.CardType.ATTACK && card.cost >= 0, isActive());
     }
@@ -110,9 +117,13 @@ public class VoidformRelic extends CustomRelic implements AlternateCardCostModif
         stopPulse(); flash();
         addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new VoidformPower(AbstractDungeon.player)));
     }
+    public void surrender() {
+        state.surrender(); counter = state.amount(); stopPulse(); flash();
+    }
     @Override public void onPlayerEndTurn() {
         if (!state.active()) return;
         state.endTurn(); counter = state.amount(); stopPulse();
+        if (state.active()) return;
         addToBot(new RemoveSpecificPowerAction(AbstractDungeon.player, AbstractDungeon.player, VoidformPower.POWER_ID));
         AbstractDungeon.player.hand.applyPowers();
     }
