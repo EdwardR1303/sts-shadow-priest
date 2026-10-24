@@ -100,3 +100,52 @@ Ability reference: https://warcraft.wiki.gg/wiki/Surrender_to_Madness
 Original icon: achievement_boss_generalvezax_01 (verified from the archived ability infobox)
 Source: https://wow.zamimg.com/images/wow/icons/large/achievement_boss_generalvezax_01.jpg
 Local file: shadowpriest/images/cards/icons/surrender_to_madness.jpg
+
+Penance card icon
+Spell reference: https://www.wowhead.com/spell=47540
+Verified name and icon: https://nether.wowhead.com/tooltip/spell/47540
+Original icon: spell_holy_penance
+Source: https://wow.zamimg.com/images/wow/icons/large/spell_holy_penance.jpg
+Local file: shadowpriest/images/cards/icons/penance.jpg
+
+Atonement card icon
+Spell reference: https://www.wowhead.com/spell=81749
+Verified name and icon: https://nether.wowhead.com/tooltip/spell/81749
+Original icon: ability_priest_atonement
+Source: https://wow.zamimg.com/images/wow/icons/large/ability_priest_atonement.jpg
+Local file: shadowpriest/images/cards/icons/atonement.jpg
+
+Purify Disease card icon
+Spell reference: https://www.wowhead.com/spell=213634
+Verified name and icon: https://nether.wowhead.com/tooltip/spell/213634
+Original icon: spell_holy_nullifydisease
+Source: https://wow.zamimg.com/images/wow/icons/large/spell_holy_nullifydisease.jpg
+Local file: shadowpriest/images/cards/icons/purify_disease.jpg
+
+Dispel Magic card icon
+Spell reference: https://www.wowhead.com/spell=528
+Verified name and icon: https://nether.wowhead.com/tooltip/spell/528
+Original icon: spell_nature_nullifydisease
+Source: https://wow.zamimg.com/images/wow/icons/large/spell_nature_nullifydisease.jpg
+Local file: shadowpriest/images/cards/icons/dispel_magic.jpg
+
+Body and Soul card icon
+Spell reference: https://www.wowhead.com/spell=64129
+Verified name and icon: https://nether.wowhead.com/tooltip/spell/64129
+Original icon: spell_holy_symbolofhope
+Source: https://wow.zamimg.com/images/wow/icons/large/spell_holy_symbolofhope.jpg
+Local file: shadowpriest/images/cards/icons/body_and_soul.jpg
+
+Insidious Ire card icon
+Spell reference: https://www.wowhead.com/spell=373213
+Verified name and icon: https://nether.wowhead.com/tooltip/spell/373213
+Original icon: spell_fire_twilightcano
+Source: https://wow.zamimg.com/images/wow/icons/large/spell_fire_twilightcano.jpg
+Local file: shadowpriest/images/cards/icons/insidious_ire.jpg
+
+Petrifying Scream card icon
+Spell reference: https://www.wowhead.com/spell=55676
+Verified name and icon: https://nether.wowhead.com/tooltip/spell/55676
+Original icon: spell_shadow_psychichorrors
+Source: https://wow.zamimg.com/images/wow/icons/large/spell_shadow_psychichorrors.jpg
+Local file: shadowpriest/images/cards/icons/petrifying_scream.jpg

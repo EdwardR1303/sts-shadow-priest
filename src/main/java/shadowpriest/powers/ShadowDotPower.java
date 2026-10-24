@@ -51,18 +51,20 @@ public class ShadowDotPower extends AbstractPower {
         updateDescription();
     }
     @Override public void updateDescription() {
-        description = "Before acting, lose #b" + damagePerTurn + " HP, then remove one stack. #b" + amount + " tick(s) remaining. Applications add stacks, up to #b5. Ignores Block and Strength.";
+        description = "Before acting, lose #b" + tickDamage() + " HP, then remove one stack. #b" + amount + " tick(s) remaining. Applications add stacks, up to #b5. Ignores Block and Strength.";
     }
     @Override public void atStartOfTurn() {
         if (amount <= 0 || owner.isDeadOrEscaped()) return;
         bonusTick();
         addToBot(new ReducePowerAction(owner, AbstractDungeon.player, this, 1));
     }
+    public int tickDamage() { return Math.max(0, damagePerTurn + MasteryPower.current()); }
     public void bonusTick() {
         if (amount <= 0 || owner.isDeadOrEscaped()) return;
         flashWithoutSound();
         // HP_LOSS skips attack calculations, so explicitly honor the monster's Intangible.
-        int damage = owner.hasPower("Intangible") || owner.hasPower("IntangiblePlayer") ? 1 : damagePerTurn;
+        int damage = tickDamage();
+        if (owner.hasPower("Intangible") || owner.hasPower("IntangiblePlayer")) damage = Math.min(1, damage);
         addToBot(new shadowpriest.actions.DotTickAction(owner, damage, TOUCH.equals(ID)));
     }
     public static int count(AbstractCreature target) {

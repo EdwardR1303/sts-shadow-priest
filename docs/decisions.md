@@ -81,6 +81,14 @@ These decisions are implemented in [the second reward-card batch](card-batch-02.
 | D052 | Surrender to Madness is a Rare Skill costing 3/2 energy, Exhaust, entering or extending Voidform for the rest of combat. | Bypass threshold and recovery, invalidate ready charges, and block additional copies. Existing Voidform is extended without a second entry. Ordinary Insanity behavior returns after combat. |
 | D053 | Surrender applies double incoming Attack damage as a separate normal debuff. | Artifact may prevent it; Orange Pellets may cleanse it while Voidform remains. This replaces the earlier inseparable-penalty proposal. Multiply before Block, preserve HP-loss and non-Attack damage, and keep the penalty unchanged on upgrade. |
 
+## Fifth batch implementation on October 24 2026
+
+- **D054:** Implement the eight approved defensive/scaling cards. Preserve Mind Soothe and Mental Fortitude as unregistered drafts. Penance converts actual direct HP removal without Dexterity/Frail recalculation; Atonement uses one ordinary Block grant and a pre-hit unique-DoT snapshot.
+- **D055:** Mastery can be positive or negative and modifies natural/bonus damaging DoT ticks, floored at zero. Intangible cannot increase zero damage; zero ticks do not heal Embrace. Use the Strength icon recolored purple.
+- **D056:** Ire contributes max(0, 1 + Mastery), upgraded max(0, 2 + Mastery), per qualifying Attack hit. Copies stack their contributions; the bonus participates in normal damage calculation before Voidform amplification. Committal samples Voidform at play time and grants stats after resolution; existing copies can reward a later copy, but a new copy never rewards itself.
+- **D057:** Body and Soul uses independent seeded rolls per enemy Attack hit and the highest granted chance per combat. Misses preserve Block. Scream uses Artifact-blockable Stun while allowing natural DoT ticks and consecutive stuns from additional copies.
+- **D058:** Maintain rarity tallies in `cards.md` as Attacks/Skills/Powers, counting draft designs but not upgrades or duplicate starting copies. Refresh from headings with `scripts/update-card-tallies.py`.
+
 ## Activation proposal outcome on October 23 2026
 
 **P001: On-demand Voidform** became D017 following the owner's agreement that Exhaust is mandatory and that the class should prepare for a chosen burst turn. D019 subsequently authorized the first-playable defaults, including Skill as the card type, meter capping, one charge, and stopping generation during Voidform. [Prototype rules](prototype-rules.md) specify the implemented lifecycle.

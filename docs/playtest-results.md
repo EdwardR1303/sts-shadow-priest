@@ -118,8 +118,28 @@ The 32 added game checks cover:
 
 The catalog validates against its schema with 29 unique entries. The source icon was visually inspected and verified alongside its attribution in the built JAR. Proposed non-starter relics and Mastery remain unimplemented; no claim is made about testing their future combinations with Surrender. Full-run balance, including A20 Heart performance with and without cleansing, remains for human playtests. See [Surrender rules](surrender-to-madness.md).
 
+## Fifth reward-card batch and Mastery
+
+Across October 23-24, 2026, `clean verify` passed all **10 unit tests**. The focused fifth-batch suite passed **69 actual-game checks**, and the full combined regression suite passed **331 checks**, both at 1920 x 1080 windowed and ending in `ALL CHECKS PASSED`.
+
+The 66 added combat checks cover:
+
+- Registration, upgraded copies, rarity pool counts (14/11/7), both portrait sizes for eight cards, and exclusion of the two unresolved drafts.
+- Penance's HP-only conversion, blocked/fully blocked hits, Strength, Dexterity/Frail exclusion, Link exclusion, and overkill capping.
+- Atonement's unique-DoT count, once-only Block modifiers, and pre-kill snapshot.
+- Purify's exact debuff whitelist, Retain/Exhaust, and Dispel's base/upgraded removal without deleting Strength.
+- Seeded dodge success/failure, independent multihit rolls, preserved Block, non-Attack exclusions, nonstacking upgrades, and highest-benefit tracking/reset.
+- Positive/negative Mastery, both DoTs, Link, duration consumption at zero damage, Intangible's zero floor, Embrace eligibility, Artifact, and stacking through zero.
+- Ire's per-hit base/upgraded formula, nonnegative bonus, three-DoT condition, per-target area damage, Link exclusion, escalating X hits with Voidform, and mixed-copy stacking.
+- Scream's costs, Exhaust, Artifact, actual skipped enemy actions with continuing DoT ticks/healing, and consecutive stuns.
+- Committal's Voidform condition, stat gain after the triggering card, once-per-card multihits, existing/new Power copies, persistent stats after ordinary Voidform, and continuing Surrender turns.
+
+An initial consecutive-stun assertion included damage from the uncontrolled second enemy; the fixture was corrected to keep that enemy idle before rerunning successfully. No stun restriction was added to mask the fixture failure.
+
+The seven original WoW icons were verified through named spell metadata and visually inspected. Shadow Committal uses original generated art. The final build repeated all 69 focused checks after the title-layout adjustment. All eight upgraded cards were rendered by the game for visual review; Shadow Committal uses a smaller title font to clear the energy orb. The rendered Mastery icon was inspected and retains the Strength silhouette in purple. See [batch rules and artwork prompt](card-batch-05.md). These tests establish controlled behavior; full-run balance, A20 Heart performance, and combinations with unimplemented relics remain open.
+
 ## Limits
 
 These are correctness checks in a controlled encounter, not a full-run balance study. Only BaseMod and StSLib were loaded alongside this mod. Interactions with other mods, every relic or card, save/reload during combat, and long-run progression have not been exhaustively tested. The X-cost check verifies exclusion from the discount, not every X-cost card's effects.
 
-Some art remains placeholder. Rewards now contain ten Shadow Priest Commons, nine Uncommons, and five Rares, with no Ironclad supplements. Question Card can generate four distinct native boss choices. Human playtests should evaluate setup damage taken, time to earn Voidform, hand quality at activation, sustain, Madness spreading, and whether waiting or immediate activation is more enjoyable.
+Some art remains placeholder. Rewards now contain fourteen Shadow Priest Commons, eleven Uncommons, and seven Rares, with no Ironclad supplements. Question Card can generate four distinct native boss choices. Human playtests should evaluate setup damage taken, time to earn Voidform, hand quality at activation, sustain, Madness spreading, and whether waiting or immediate activation is more enjoyable.

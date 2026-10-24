@@ -28,6 +28,14 @@ final class StarterCardArt {
             case VoidVolley.ID: icon = "cards/icons/void_volley.jpg"; break;
             case VoidTorrent.ID: icon = "cards/icons/void_torrent.jpg"; break;
             case SurrenderToMadness.ID: icon = "cards/icons/surrender_to_madness.jpg"; break;
+            case Penance.ID: icon = "cards/icons/penance.jpg"; break;
+            case Atonement.ID: icon = "cards/icons/atonement.jpg"; break;
+            case PurifyDisease.ID: icon = "cards/icons/purify_disease.jpg"; break;
+            case DispelMagic.ID: icon = "cards/icons/dispel_magic.jpg"; break;
+            case BodyAndSoul.ID: icon = "cards/icons/body_and_soul.jpg"; break;
+            case InsidiousIre.ID: icon = "cards/icons/insidious_ire.jpg"; break;
+            case PetrifyingScream.ID: icon = "cards/icons/petrifying_scream.jpg"; break;
+            case ShadowCommittal.ID: icon = "cards/icons/shadow_committal.png"; break;
             default: return null;
         }
         if (CACHE.containsKey(id)) return CACHE.get(id);

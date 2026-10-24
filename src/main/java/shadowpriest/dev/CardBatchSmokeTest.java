@@ -38,12 +38,21 @@ public final class CardBatchSmokeTest {
         }
     }
     public static void append(Queue<Runnable> q) {
+        if (Boolean.getBoolean("shadowpriest.latestbatchonly")) {
+            q.add(() -> {
+                p = AbstractDungeon.player; m = AbstractDungeon.getMonsters().monsters.get(0);
+                other = AbstractDungeon.getMonsters().monsters.get(1); relic = VoidformRelic.current(); reset();
+            });
+            FifthBatchSmokeTest.append(q);
+            q.add(() -> CombatSmokeTest.finish(null));
+            return;
+        }
         q.add(() -> {
             p = AbstractDungeon.player; m = AbstractDungeon.getMonsters().monsters.get(0);
             other = AbstractDungeon.getMonsters().monsters.get(1); relic = VoidformRelic.current();
             reset();
-            check(AbstractDungeon.commonCardPool.size() == 10 && AbstractDungeon.uncommonCardPool.size() == 9,
-                "Reward pools contain ten custom commons and nine custom uncommons");
+            check(AbstractDungeon.commonCardPool.size() == 14 && AbstractDungeon.uncommonCardPool.size() == 11,
+                "Reward pools contain fourteen custom commons and eleven custom uncommons");
             check(AbstractDungeon.commonCardPool.group.stream().allMatch(c -> c.cardID.startsWith("shadowpriest:"))
                 && AbstractDungeon.uncommonCardPool.group.stream().allMatch(c -> c.cardID.startsWith("shadowpriest:")),
                 "Normal reward pools use the new Shadow Priest cards");
@@ -293,6 +302,7 @@ public final class CardBatchSmokeTest {
         ThirdBatchSmokeTest.append(q);
         FourthBatchSmokeTest.append(q);
         SurrenderSmokeTest.append(q);
+        FifthBatchSmokeTest.append(q);
         q.add(() -> {
             reset(); p.currentHealth = 5; play(new DesperatePrayer(), null, 3);
         });
@@ -318,7 +328,7 @@ public final class CardBatchSmokeTest {
             com.evacipated.cardcrawl.mod.stslib.blockmods.BlockModifierManager.removeAllBlockInstances(monster);
             monster.currentBlock = 0; monster.currentHealth = monster.maxHealth = 1000;
         }
-        relic.reset(); PowerWordFortitude.resetBenefit(); ReturningDots.clear(); selection = null;
+        relic.reset(); BodyAndSoul.resetBenefit(); PowerWordFortitude.resetBenefit(); ReturningDots.clear(); selection = null;
     }
     static void dots(AbstractMonster target) {
         target.powers.add(new ShadowDotPower(target, ShadowDotPower.TOUCH, 3));

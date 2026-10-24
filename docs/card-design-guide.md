@@ -1,12 +1,12 @@
 # Designing cards
 
-Start in [design/cards.json](../design/cards.json). It contains 39 entries: four implemented starters, 24 implemented reward cards, the generated Enter Voidform card, eight approved new designs, and two drafts. The owner can also write ideas in plain English in their working cards.md file; reviewed batches are translated into this catalog before implementation. Copy the object inside `cards` from [card-template.json](../design/card-template.json), paste it at the end of the catalog's `cards` array, and change its ID and name. The template's Block values are examples, not an approved new card.
+Start in [design/cards.json](../design/cards.json). It contains 39 entries: four implemented starters, 32 implemented reward cards, the generated Enter Voidform card, and two drafts. The owner can also write ideas in plain English in their working cards.md file; reviewed batches are translated into this catalog before implementation. Copy the object inside `cards` from [card-template.json](../design/card-template.json), paste it at the end of the catalog's `cards` array, and change its ID and name. The template's Block values are examples, not an approved new card.
 
 These files are design documents. They do not automatically add cards to the game; approved designs still need Java implementation, localization, art, and testing. The implemented examples describe the current prototype, while new entries start as `DRAFT`.
 
 In the working `cards.md`, a trailing `?` marks an unreviewed card. Remove it after agreement and record the design as `APPROVED` in the catalog. Fortitude, Reaping Madness, Shadow Word: Madness, and Halo have completed review and implementation. Existing WoW abilities should use their actual ability artwork; invented abilities should receive matching original thematic artwork.
 
-The newest approved designs are Penance, Atonement, Purify Disease, Dispel Magic, Body and Soul, Insidious Ire, Petrifying Scream, and Shadow Committal. Mind Soothe's replacement and Mental Fortitude's retained stat gains remain `DRAFT`; their complete candidate values are recorded for review, not authorized as final gameplay. Blank icon fields mean artwork still needs verification or creation. Catalog status does not add a card to live rewards.
+The newest implemented cards are Penance, Atonement, Purify Disease, Dispel Magic, Body and Soul, Insidious Ire, Petrifying Scream, and Shadow Committal. Mind Soothe's replacement and Mental Fortitude's retained stat gains remain `DRAFT`; their complete candidate values are recorded for review, not authorized as final gameplay. Blank icon fields mean artwork still needs verification or creation. Catalog status does not add a card to live rewards.
 
 ## Fields
 
@@ -47,3 +47,14 @@ For conditional or scaling cards, describe the formula and its timing in `effect
 The local [JSON Schema](../design/cards.schema.json) supplies completion and validation through each file's `$schema` reference. Use Ctrl+Space for choices. JSON requires double quotes, commas between entries, and no trailing commas or comments; use the note fields for discussion. The schema catches missing fields and invalid choices, but it cannot judge balance, unique IDs, or consistency between prose and numeric values.
 
 When ready, change your entry to `READY_FOR_REVIEW`. We can review it together, then mark an accepted design `APPROVED` before implementation. Keep the [prototype rules](prototype-rules.md) and implemented entries synchronized when a change ships.
+
+## Rarity tallies
+
+`cards.md` contains a generated tally table in Attacks/Skills/Powers order. It counts every named design under its rarity and type headings, including drafts; it does not count upgraded versions or repeated starter copies. Refresh it after adding, removing, moving, or renaming cards:
+
+```powershell
+python scripts/update-card-tallies.py
+python scripts/update-card-tallies.py --check
+```
+
+VS Code also has **Shadow Priest: refresh card tallies**. The script derives counts from the current Markdown roster rather than the implemented JSON catalog, so new ideas count immediately when refreshed. Keep the generated markers intact. During design reviews and implementation updates, refresh these tallies after editing `cards.md`.

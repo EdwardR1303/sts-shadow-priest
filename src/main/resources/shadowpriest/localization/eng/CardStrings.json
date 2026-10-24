@@ -120,5 +120,39 @@
   "shadowpriest:SurrenderToMadness": {
     "NAME": "Surrender to Madness",
     "DESCRIPTION": "Enter shadowpriest:Voidform for the rest of combat. NL Take double damage from enemy Attacks. NL Exhaust."
+  },
+  "shadowpriest:Penance": {
+    "NAME": "Penance",
+    "DESCRIPTION": "Deal !D! damage. NL Gain Block equal to enemy HP removed by this hit."
+  },
+  "shadowpriest:Atonement": {
+    "NAME": "Atonement",
+    "DESCRIPTION": "Deal !D! damage. NL Gain !M! Block per unique DoT on the target."
+  },
+  "shadowpriest:PurifyDisease": {
+    "NAME": "Purify Disease",
+    "DESCRIPTION": "Remove Weak, Frail, and Vulnerable from yourself. NL Exhaust.",
+    "UPGRADE_DESCRIPTION": "Retain. NL Remove Weak, Frail, and Vulnerable from yourself. NL Exhaust."
+  },
+  "shadowpriest:DispelMagic": {
+    "NAME": "Dispel Magic",
+    "DESCRIPTION": "Remove all Block from the target.",
+    "UPGRADE_DESCRIPTION": "Remove all Block and Artifact from the target."
+  },
+  "shadowpriest:BodyAndSoul": {
+    "NAME": "Body and Soul",
+    "DESCRIPTION": "Each enemy Attack hit has a !M!% chance to miss. NL Does not stack."
+  },
+  "shadowpriest:InsidiousIre": {
+    "NAME": "Insidious Ire",
+    "DESCRIPTION": "Each Attack hit against a target with all 3 DoTs deals !M! + shadowpriest:Mastery extra damage (minimum 0)."
+  },
+  "shadowpriest:PetrifyingScream": {
+    "NAME": "Petrifying Scream",
+    "DESCRIPTION": "Stun the target for 1 turn. NL Exhaust."
+  },
+  "shadowpriest:ShadowCommittal": {
+    "NAME": "Shadow Committal",
+    "DESCRIPTION": "In shadowpriest:Voidform, playing an Attack grants 1 Strength, a Skill grants 1 Dexterity, and a Power grants 1 shadowpriest:Mastery."
   }
 }

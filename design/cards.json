@@ -147,7 +147,8 @@
       "rulesNotes": [
         "Fixed 5 damage per tick, independent of stacks and application source.",
         "Applications and duration extension add remaining ticks up to 5; natural ticks consume one.",
-        "Psychic Link ticks consume no duration. Artifact blocks applications."
+        "Psychic Link ticks consume no duration. Artifact blocks applications.",
+        "Current Mastery modifies all natural and bonus tick damage, floored at zero. Zero-damage natural ticks still spend duration; Intangible cannot increase a zero tick."
       ],
       "balanceNotes": "Touch deals 15/21 total over 3 turns; Pain deals 15/25 total over 5 turns. Returns enable repeated application and multi-target setup.",
       "art": {
@@ -202,7 +203,8 @@
       "rulesNotes": [
         "Fixed 3 damage per tick, independent of stacks and application source.",
         "Applications and duration extension add remaining ticks up to 5; natural ticks consume one.",
-        "Artifact blocks applications."
+        "Artifact blocks applications.",
+        "Current Mastery modifies all natural and bonus tick damage, floored at zero. Zero-damage natural ticks still spend duration; Intangible cannot increase a zero tick."
       ],
       "balanceNotes": "Touch deals 15/21 total over 3 turns; Pain deals 15/25 total over 5 turns. Returns enable repeated application and multi-target setup.",
       "art": {
@@ -1525,7 +1527,7 @@
     {
       "id": "shadowpriest:Penance",
       "name": "Penance",
-      "status": "APPROVED",
+      "status": "IMPLEMENTED",
       "type": "ATTACK",
       "rarity": "COMMON",
       "sources": [
@@ -1573,19 +1575,19 @@
         "Dexterity does not modify the converted Block. Strength and normal Attack damage modifiers affect the hit and therefore the amount converted.",
         "A killing blow still grants Block for the actual HP removed.",
         "Use the ordinary single-hit Insanity and once-per-card Psychic Link rules.",
-        "Before implementation, specify whether Frail modifies the conversion; Dexterity exclusion alone does not settle every Block modifier."
+        "Exact HP conversion also bypasses Frail recalculation; normal external Block-gain hooks still apply."
       ],
       "balanceNotes": "Test conversion with Voidform, enemy Block, low-health targets, and attack-scaling effects. Values agreed; do not silently double count damage sources.",
       "art": {
         "wowAbility": "Penance",
-        "icon": "",
-        "direction": "Verify and use the actual WoW ability icon inside the shared card frame before implementation."
+        "icon": "spell_holy_penance",
+        "direction": "Verified actual WoW ability icon inside the shared card frame; attribution in licenses/Warcraft-artwork.txt."
       }
     },
     {
       "id": "shadowpriest:Atonement",
       "name": "Atonement",
-      "status": "APPROVED",
+      "status": "IMPLEMENTED",
       "type": "ATTACK",
       "rarity": "COMMON",
       "sources": [
@@ -1639,14 +1641,14 @@
       "balanceNotes": "At three DoTs the base Block is 9/12 before modifiers. Evaluate early fights without setup as well as free Voidform attacks.",
       "art": {
         "wowAbility": "Atonement",
-        "icon": "",
-        "direction": "Verify and use the actual WoW ability icon inside the shared card frame before implementation."
+        "icon": "ability_priest_atonement",
+        "direction": "Verified actual WoW ability icon inside the shared card frame; attribution in licenses/Warcraft-artwork.txt."
       }
     },
     {
       "id": "shadowpriest:PurifyDisease",
       "name": "Purify Disease",
-      "status": "APPROVED",
+      "status": "IMPLEMENTED",
       "type": "SKILL",
       "rarity": "COMMON",
       "sources": [
@@ -1695,14 +1697,14 @@
       "balanceNotes": "Zero energy compensates for a situational draw. Retain lets the upgrade wait for the relevant turn.",
       "art": {
         "wowAbility": "Purify Disease",
-        "icon": "",
-        "direction": "Verify and use the actual WoW ability icon inside the shared card frame before implementation."
+        "icon": "spell_holy_nullifydisease",
+        "direction": "Verified actual WoW ability icon inside the shared card frame; attribution in licenses/Warcraft-artwork.txt."
       }
     },
     {
       "id": "shadowpriest:DispelMagic",
       "name": "Dispel Magic",
-      "status": "APPROVED",
+      "status": "IMPLEMENTED",
       "type": "SKILL",
       "rarity": "COMMON",
       "sources": [
@@ -1747,8 +1749,8 @@
       "balanceNotes": "Situational zero-cost utility. Mass Dispel retains its all-enemy reach and positive Strength removal.",
       "art": {
         "wowAbility": "Dispel Magic",
-        "icon": "",
-        "direction": "Verify and use the actual WoW ability icon inside the shared card frame before implementation."
+        "icon": "spell_nature_nullifydisease",
+        "direction": "Verified actual WoW ability icon inside the shared card frame; attribution in licenses/Warcraft-artwork.txt."
       }
     },
     {
@@ -1814,7 +1816,7 @@
     {
       "id": "shadowpriest:BodyAndSoul",
       "name": "Body and Soul",
-      "status": "APPROVED",
+      "status": "IMPLEMENTED",
       "type": "POWER",
       "rarity": "UNCOMMON",
       "sources": [
@@ -1864,8 +1866,8 @@
       "balanceNotes": "Test damage variance, lethal-hit reliability, and interaction with Surrender. Do not allow additive copies to reach guaranteed immunity.",
       "art": {
         "wowAbility": "Body and Soul",
-        "icon": "",
-        "direction": "Verify and use the actual WoW ability icon inside the shared card frame before implementation."
+        "icon": "spell_holy_symbolofhope",
+        "direction": "Verified actual WoW ability icon inside the shared card frame; attribution in licenses/Warcraft-artwork.txt."
       }
     },
     {
@@ -1937,7 +1939,7 @@
     {
       "id": "shadowpriest:InsidiousIre",
       "name": "Insidious Ire",
-      "status": "APPROVED",
+      "status": "IMPLEMENTED",
       "type": "POWER",
       "rarity": "UNCOMMON",
       "sources": [
@@ -1989,19 +1991,19 @@
         "The bonus is strictly additive and never negative. Negative Mastery may eliminate it but must never cause this Power to lower Attack damage.",
         "The upgrade does not grant Mastery.",
         "DoT ticks and Halo are not direct Attack hits and receive no bonus.",
-        "Duplicate-Power stacking and precise ordering with other damage modifiers must be specified before implementation."
+        "Copies stack their contributions; apply the nonnegative bonus in normal Attack calculations before power modifiers and Voidform amplification."
       ],
       "balanceNotes": "Approved initial formula; 2 energy remains the provisional testing cost. Watch high-Mastery X-cost bursts and Voidform amplification.",
       "art": {
         "wowAbility": "Insidious Ire",
-        "icon": "",
-        "direction": "Verify and use the actual WoW ability icon inside the shared card frame before implementation."
+        "icon": "spell_fire_twilightcano",
+        "direction": "Verified actual WoW ability icon inside the shared card frame; attribution in licenses/Warcraft-artwork.txt."
       }
     },
     {
       "id": "shadowpriest:PetrifyingScream",
       "name": "Petrifying Scream",
-      "status": "APPROVED",
+      "status": "IMPLEMENTED",
       "type": "SKILL",
       "rarity": "RARE",
       "sources": [
@@ -2055,14 +2057,14 @@
       "balanceNotes": "Rare placement reflects prevention plus an extra DoT/setup turn. Validate boss action sequences, consecutive stuns, and Embrace healing.",
       "art": {
         "wowAbility": "Petrifying Scream",
-        "icon": "",
-        "direction": "Verify and use the actual WoW ability icon inside the shared card frame before implementation."
+        "icon": "spell_shadow_psychichorrors",
+        "direction": "Verified actual WoW ability icon inside the shared card frame; attribution in licenses/Warcraft-artwork.txt."
       }
     },
     {
       "id": "shadowpriest:ShadowCommittal",
       "name": "Shadow Committal",
-      "status": "APPROVED",
+      "status": "IMPLEMENTED",
       "type": "POWER",
       "rarity": "RARE",
       "sources": [
@@ -2111,13 +2113,13 @@
         "Resolve each stat gain after its triggering card, so the triggering Attack does not benefit from the Strength it generates.",
         "This Power initial play does not trigger its own newly applied effect.",
         "Works during Surrender lasting Voidform; no additional cap or restriction was approved.",
-        "Duplicate-Power stacking and cards that enter Voidform during their own resolution need explicit timing decisions before implementation."
+        "Copies stack. Sample Voidform eligibility at play time, not after resolving a card that enters Voidform."
       ],
       "balanceNotes": "Keep proposed values for initial testing. Evaluate both successful Surrender combinations and hands burdened by expensive setup Powers.",
       "art": {
         "wowAbility": "",
-        "icon": "",
-        "direction": "Create original shadow-priest-themed artwork matching the existing card frame."
+        "icon": "shadow_committal.png",
+        "direction": "Original generated shadow-priest artwork inside the shared card frame; prompt in docs/card-batch-05.md."
       }
     }
   ]

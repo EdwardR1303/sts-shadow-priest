@@ -13,7 +13,7 @@ The rules below capture the owner's design and prototype defaults on October 23,
 | Vampiric Touch | Skill applying a distinct DoT | 1 | Apply Vampiric Touch: 5 damage each turn for 3 turns. | 1 |
 | Shadow Word: Pain | Skill applying a distinct DoT | 1 | Apply Shadow Word: Pain: 3 damage each turn for 5 turns. | 1 |
 
-Four Mind Spikes, four Power Word: Shields, one Vampiric Touch, and one Shadow Word: Pain form the ten-card prototype deck. Mind Spike upgrades to 9 damage; Shield upgrades to 8 Block. Touch upgrades to applying 4 remaining ticks of fixed 5 damage; Pain upgrades to costing 0 while applying 5 ticks of fixed 3 damage. Only played DoT cards return to hand after end-turn discard.
+Four Mind Spikes, four Power Word: Shields, one Vampiric Touch, and one Shadow Word: Pain form the ten-card prototype deck. Mind Spike upgrades to 9 damage; Shield upgrades to 8 Block. Touch upgrades to applying 4 remaining ticks of base 5 damage; Pain upgrades to costing 0 while applying 5 ticks of base 3 damage. Only played DoT cards return to hand after end-turn discard.
 
 Vampiric Touch has no agreed healing or Block effect. Its current effect is solely the DoT specified above.
 
@@ -22,7 +22,7 @@ Vampiric Touch has no agreed healing or Block effect. Its current effect is sole
 - Vampiric Touch and Shadow Word: Pain are separate debuffs that can coexist on one enemy.
 - Touch always deals 5 damage and applies 3/4 ticks; Pain always deals 3 and applies 5 ticks for 1/0 energy.
 - Strength does not modify this DoT damage.
-- Reapplication adds remaining ticks up to a universal cap of 5. Duration extension obeys the same cap. Damage is fixed by DoT type.
+- Reapplication adds remaining ticks up to a universal cap of 5. Duration extension obeys the same cap. Base damage is fixed by DoT type; current Mastery modifies each tick, floored at zero.
 - Future cards will synergize with the number of unique DoTs on a target.
 
 Each uninterrupted base application totals 15 damage. Upgraded Touch totals 20 over 4 ticks; upgraded Pain totals 15 over 5 ticks at zero energy. While both are active, they always supply 8 damage per tick cycle. Ticks occur before the enemy acts, starting on its next turn after application. They bypass Block and ignore offensive modifiers; enemy damage hooks such as Intangible still apply. Artifact blocks applications and their duration additions.
@@ -64,7 +64,7 @@ The class should have tools to survive while assembling that window. Draw order 
 
 **Second implemented batch:** Fortitude, Reaping Madness, Shadow Word: Madness, and Halo are specified in the [card catalog](../design/cards.json) and decisions D033-D036. Madness adds a permanent, nonticking debuff that counts as one unique DoT; Halo is a separate player aura per cast, not a DoT. The Voidform relic update blocks every source of Insanity for the entire turn after entering Voidform. See [the second batch rules](card-batch-02.md) for exact interactions and artwork.
 
-The four implemented reward batches plus Surrender to Madness now supply 24 cards across these roles. [The latest batch](card-batch-04.md) adds Void Bolt, Void Volley, and Void Torrent, with ten Commons, nine Uncommons, and five Rares in total. Every reward pool is native:
+The five implemented reward batches plus Surrender to Madness now supply 32 cards across these roles. [The latest batch](card-batch-05.md) adds defensive cards and positive/negative Mastery, with fourteen Commons, eleven Uncommons, and seven Rares in total. Every reward pool is native:
 
 - Defense that helps maintain the setup while leaving some opportunity to apply DoTs and attack.
 - Hand preparation through selective draw, retention, or similar effects to assemble a useful burst hand.
