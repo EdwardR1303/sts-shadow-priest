@@ -67,6 +67,10 @@ These decisions are implemented in [the second reward-card batch](card-batch-02.
 | D042 | Vampiric Embrace costs 3 and heals 1/2 per damaging Touch event, with stacking copies and no per-turn cap. | Include natural and Psychic Link ticks per enemy. Actual HP loss is required; normal healing restrictions apply. Sustain rewards setup; validate Heart mechanics and full-run balance. |
 | D043 | Add three native rares while retaining temporary Ironclad supplements until at least four native rares exist. | Engine review found that Question Card requests four distinct boss rares and the duplicate-rejection loop cannot terminate with only three. Common/uncommon rewards remain native. This compatibility fallback is covered by an actual reward-generation check. |
 
+| D044 | Void Bolt adds 1/2 stacks to each existing DoT after dealing 8/10 damage for 1 energy. | Include existing Madness, never introduce missing effects; Touch/Pain extension caps at five and Madness application checks Artifact. |
+| D045 | Void Volley resolves X random Void Bolt effects as one uncommon Attack card. | Base 8 damage/1 stack per bolt, upgraded 10/2. Reselect living targets per bolt, generate Insanity per hit, and trigger Psychic Link once per card. |
+| D046 | Void Torrent is a rare X-cost Attack whose base hits escalate 4,8,12,... or upgraded 5,10,15,... on one target. | Reset each play, calculate modifiers per hit, stop when the target dies, and do not redirect. X costs remain undiscounted; both new X cards support Chemical X and free plays. Torrent supplies the fourth native rare, ending D043 supplements. |
+
 ## Activation proposal outcome on October 23 2026
 
 **P001: On-demand Voidform** became D017 following the owner's agreement that Exhaust is mandatory and that the class should prepare for a chosen burst turn. D019 subsequently authorized the first-playable defaults, including Skill as the card type, meter capping, one charge, and stopping generation during Voidform. [Prototype rules](prototype-rules.md) specify the implemented lifecycle.

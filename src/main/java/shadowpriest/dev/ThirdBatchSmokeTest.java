@@ -30,9 +30,9 @@ final class ThirdBatchSmokeTest {
         q.add(() -> {
             p = AbstractDungeon.player; m = AbstractDungeon.getMonsters().monsters.get(0);
             other = AbstractDungeon.getMonsters().monsters.get(1); relic = VoidformRelic.current(); reset();
-            check(AbstractDungeon.rareCardPool.size() >= 4 && AbstractDungeon.rareCardPool.group.stream()
-                .filter(c -> c.cardID.startsWith("shadowpriest:")).count() == 3,
-                "Three native rares join a sufficiently large temporary rare pool");
+            check(AbstractDungeon.rareCardPool.size() == 4 && AbstractDungeon.rareCardPool.group.stream()
+                .filter(c -> c.cardID.startsWith("shadowpriest:")).count() == 4,
+                "Four native rares form the entire rare reward pool");
             com.megacrit.cardcrawl.rooms.AbstractRoom room = AbstractDungeon.currMapNode.room;
             com.megacrit.cardcrawl.relics.QuestionCard question = new com.megacrit.cardcrawl.relics.QuestionCard();
             p.relics.add(question);

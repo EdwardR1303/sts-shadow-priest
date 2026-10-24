@@ -65,6 +65,13 @@ A trailing `?` on a card name marks an unreviewed design. Removing it means the 
 - **Upgrade:** Deal 10 damage, cost becomes 1 energy.
 - **Rules:** Only the selected enemy takes direct damage, before Touch is applied. Applications add stacks up to 5. Position is measured between the player and selected enemy, in either direction. Psychic Link can trigger the newly applied Touch after this Attack.
 
+#### Void Bolt
+
+- **Cost:** 1 energy
+- **Effect:** Deal 8 damage. Add 1 stack to each existing DoT on the target.
+- **Upgrade:** Deal 10 damage and add 2 stacks instead.
+- **Rules:** Damage happens first. Extend existing Touch/Pain up to 5 and add Madness only if already present. Never create a missing DoT or increase future applications. Duration extension follows Mind Flay: Insanity; additional Madness is an application that Artifact can block.
+
 ### Skills
 
 #### Bulwark
@@ -125,6 +132,13 @@ A trailing `?` on a card name marks an unreviewed design. Removing it means the 
 - **Effect:** Deal 3 damage to all enemies X times.
 - **Upgrade:** Deal damage X + 1 times.
 
+#### Void Volley
+
+- **Cost:** X energy
+- **Effect:** Hurl X Void Bolts at random enemies. Each deals 8 damage, then adds 1 stack to each existing DoT on its target.
+- **Upgrade:** Each bolt deals 10 damage and adds 2 stacks.
+- **Rules:** One Attack card play: Psychic Link triggers once, while each hit generates Insanity normally. Choose a living target separately for each bolt, after resolving the previous bolt and its stacks. Never create missing DoTs; Touch/Pain cap at 5. At zero energy, fire no bolts unless an external effect increases X. Chemical X adds two bolts. Free play preserves energy; Voidform amplifies damage without discounting X.
+
 ### Skills
 
 #### Halo
@@ -164,6 +178,13 @@ A trailing `?` on a card name marks an unreviewed design. Removing it means the 
 ## Rare
 
 ### Attacks
+
+#### Void Torrent
+
+- **Cost:** X energy
+- **Effect:** Deal damage X times to one enemy. Base damage starts at 4 and increases by 4 each hit: 4, 8, 12, and so on.
+- **Upgrade:** Start at 5 and increase by 5 each hit.
+- **Rules:** Every play starts a new sequence. Calculate normal damage modifiers and rounding separately for each hit. Generate Insanity per hit and trigger Psychic Link once per card. Stop when the selected target dies; never redirect remaining hits. Zero energy gives no hits unless an external effect increases X. Chemical X adds two hits. Free play preserves energy; Voidform amplifies damage without discounting X.
 
 #### Void Blast
 

@@ -104,5 +104,17 @@
   "shadowpriest:VampiricEmbrace": {
     "NAME": "Vampiric Embrace",
     "DESCRIPTION": "Whenever shadowpriest:Touch removes enemy HP, heal !M! HP."
+  },
+  "shadowpriest:VoidBolt": {
+    "NAME": "Void Bolt",
+    "DESCRIPTION": "Deal !D! damage. NL Add !M! stack(s) to each existing DoT. NL Touch and Pain cap at 5."
+  },
+  "shadowpriest:VoidVolley": {
+    "NAME": "Void Volley",
+    "DESCRIPTION": "X times: deal !D! damage to a random enemy, then add !M! stack(s) to each existing DoT. NL Touch and Pain cap at 5."
+  },
+  "shadowpriest:VoidTorrent": {
+    "NAME": "Void Torrent",
+    "DESCRIPTION": "Deal damage X times to an enemy. NL First hit: !D!. NL Each hit's base damage increases by !M!."
   }
 }

@@ -84,8 +84,24 @@ The 39 added checks cover:
 
 All four source WoW icons were inspected, loaded by the game, and packaged with attribution. See [third-batch rules and artwork sources](card-batch-03.md). The Invincible checks exercise that power in a controlled encounter; they do not establish an A20 Heart victory or balanced full-run sustain.
 
+## Fourth reward-card batch
+
+On October 23, 2026, Maven `clean verify` passed all 7 unit tests, and the full suite passed all **233 actual-game checks** at 1920 x 1080 windowed. The result ended with `ALL CHECKS PASSED`. Reward-only mode now contains 191 checks; this batch was validated through the combined run.
+
+The 32 new checks cover:
+
+- Registration, upgraded copies, and both WoW portrait sizes for Void Bolt, Void Volley, and Void Torrent.
+- Bolt's base/upgraded damage and energy, existing-only DoT maintenance, capped duration, existing Madness growth, Artifact behavior, and free amplified damage during Voidform.
+- Volley resolving three hits with one Psychic Link trigger and one Embrace healing event; Insanity and maintenance per hit; upgraded values and caps; target-specific modifiers; and selecting a survivor after a killing bolt while excluding half-dead enemies.
+- Both X cards at zero energy, Chemical X at zero energy, free play preserving energy, and undiscounted X with amplified damage during Voidform.
+- Torrent's escalating base/upgraded sequences, reset on reuse, unchanged stored starting damage, separate modifiers and rounding per hit, blocked-hit Insanity generation, and stopping without retargeting after killing its selected enemy.
+
+The existing reward checks now verify ten native Commons, nine native Uncommons, four native Rares with no Ironclad supplements, and actual generation of four distinct boss rares with Question Card. The 28-entry catalog passed schema and unique-ID validation. Source icons were visually inspected and verified with their attribution inside the built JAR.
+
+After all checks passed, automatic shutdown logged a `ClosedByInterruptException` while the game's background writer validated an isolated `.smoketest/preferences/SHADOW_PRIEST` preference file. Combat assertions completed before shutdown; this run does not validate save/reload. Normal game saves were not used. See [fourth-batch rules](card-batch-04.md) for exact semantics and artwork sources.
+
 ## Limits
 
 These are correctness checks in a controlled encounter, not a full-run balance study. Only BaseMod and StSLib were loaded alongside this mod. Interactions with other mods, every relic or card, save/reload during combat, and long-run progression have not been exhaustively tested. The X-cost check verifies exclusion from the discount, not every X-cost card's effects.
 
-Some art remains placeholder. Rewards now contain nine Shadow Priest Commons, eight Uncommons, and three Rares. Ironclad rares temporarily supplement the rare pool until at least four native rares exist, allowing Question Card to generate four distinct boss choices safely. Human playtests should evaluate setup damage taken, time to earn Voidform, hand quality at activation, sustain, Madness spreading, and whether waiting or immediate activation is more enjoyable.
+Some art remains placeholder. Rewards now contain ten Shadow Priest Commons, nine Uncommons, and four Rares, with no Ironclad supplements. Question Card can generate four distinct native boss choices. Human playtests should evaluate setup damage taken, time to earn Voidform, hand quality at activation, sustain, Madness spreading, and whether waiting or immediate activation is more enjoyable.

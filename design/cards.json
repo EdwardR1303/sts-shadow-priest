@@ -1295,6 +1295,168 @@
         "icon": "spell_shadow_unsummonbuilding",
         "direction": "Actual WoW ability icon inside the shared violet-and-gold card frame."
       }
+    },
+    {
+      "id": "shadowpriest:VoidBolt",
+      "name": "Void Bolt",
+      "status": "IMPLEMENTED",
+      "type": "ATTACK",
+      "rarity": "COMMON",
+      "sources": [
+        "REWARD_POOL"
+      ],
+      "startingCopies": 0,
+      "tags": [],
+      "designIntent": "Maintain existing DoTs while attacking; increment existing Madness.",
+      "base": {
+        "cost": 1,
+        "target": "ENEMY",
+        "text": "Deal 8 damage. Add 1 stack to each existing DoT on the target.",
+        "stats": {
+          "damage": 8,
+          "magicNumber": 1
+        },
+        "keywords": [],
+        "effects": [
+          "Deal 8 damage. Add 1 stack to each existing DoT on the target."
+        ]
+      },
+      "upgrade": {
+        "summary": "Deal 10 damage. Add 2 stacks to each existing DoT on the target.",
+        "card": {
+          "cost": 1,
+          "target": "ENEMY",
+          "text": "Deal 10 damage. Add 2 stacks to each existing DoT on the target.",
+          "stats": {
+            "damage": 10,
+            "magicNumber": 2
+          },
+          "keywords": [],
+          "effects": [
+            "Deal 10 damage. Add 2 stacks to each existing DoT on the target."
+          ]
+        }
+      },
+      "rulesNotes": [
+        "Damage before maintenance; never introduce missing Touch, Pain, or Madness.",
+        "Touch/Pain duration extension caps at 5 and follows Mind Flay: Insanity, without an Artifact check.",
+        "Additional Madness uses normal application rules, including Artifact."
+      ],
+      "balanceNotes": "Reviewed initial values; evaluate burst scaling, upkeep, and energy investment in full runs.",
+      "art": {
+        "wowAbility": "Void Bolt",
+        "icon": "ability_ironmaidens_convulsiveshadows",
+        "direction": "Actual WoW ability icon inside the shared violet-and-gold card frame."
+      }
+    },
+    {
+      "id": "shadowpriest:VoidVolley",
+      "name": "Void Volley",
+      "status": "IMPLEMENTED",
+      "type": "ATTACK",
+      "rarity": "UNCOMMON",
+      "sources": [
+        "REWARD_POOL"
+      ],
+      "startingCopies": 0,
+      "tags": [],
+      "designIntent": "Random multihit damage and maintenance with per-hit Insanity generation.",
+      "base": {
+        "cost": "X",
+        "target": "ALL_ENEMY",
+        "text": "X times: deal 8 damage to a random enemy, then add 1 stack to each existing DoT.",
+        "stats": {
+          "damage": 8,
+          "magicNumber": 1
+        },
+        "keywords": [],
+        "effects": [
+          "X times: deal 8 damage to a random enemy, then add 1 stack to each existing DoT."
+        ]
+      },
+      "upgrade": {
+        "summary": "X times: deal 10 damage to a random enemy, then add 2 stacks to each existing DoT.",
+        "card": {
+          "cost": "X",
+          "target": "ALL_ENEMY",
+          "text": "X times: deal 10 damage to a random enemy, then add 2 stacks to each existing DoT.",
+          "stats": {
+            "damage": 10,
+            "magicNumber": 2
+          },
+          "keywords": [],
+          "effects": [
+            "X times: deal 10 damage to a random enemy, then add 2 stacks to each existing DoT."
+          ]
+        }
+      },
+      "rulesNotes": [
+        "Resolve Void Bolt effects, not additional card plays: Psychic Link triggers once for Volley.",
+        "Choose a living target separately after each bolt and maintenance; dead and half-dead enemies are ineligible.",
+        "Each hit uses normal target-specific damage modifiers and generates Insanity normally.",
+        "Never create missing DoTs. Touch/Pain cap at 5; existing Madness applications check Artifact.",
+        "Zero energy gives no bolts without an external X bonus; Chemical X adds two. Free play preserves energy. Voidform does not discount X."
+      ],
+      "balanceNotes": "Reviewed initial values; evaluate burst scaling, upkeep, and energy investment in full runs.",
+      "art": {
+        "wowAbility": "Void Volley",
+        "icon": "inv12_ability_priest_voidvolley",
+        "direction": "Actual WoW ability icon inside the shared violet-and-gold card frame."
+      }
+    },
+    {
+      "id": "shadowpriest:VoidTorrent",
+      "name": "Void Torrent",
+      "status": "IMPLEMENTED",
+      "type": "ATTACK",
+      "rarity": "RARE",
+      "sources": [
+        "REWARD_POOL"
+      ],
+      "startingCopies": 0,
+      "tags": [],
+      "designIntent": "Reward investing energy into a single-target Voidform burst.",
+      "base": {
+        "cost": "X",
+        "target": "ENEMY",
+        "text": "Hit one enemy X times, starting at 4 base damage and increasing by 4 each hit.",
+        "stats": {
+          "damage": 4,
+          "magicNumber": 4
+        },
+        "keywords": [],
+        "effects": [
+          "Hit one enemy X times, starting at 4 base damage and increasing by 4 each hit."
+        ]
+      },
+      "upgrade": {
+        "summary": "Hit one enemy X times, starting at 5 base damage and increasing by 5 each hit.",
+        "card": {
+          "cost": "X",
+          "target": "ENEMY",
+          "text": "Hit one enemy X times, starting at 5 base damage and increasing by 5 each hit.",
+          "stats": {
+            "damage": 5,
+            "magicNumber": 5
+          },
+          "keywords": [],
+          "effects": [
+            "Hit one enemy X times, starting at 5 base damage and increasing by 5 each hit."
+          ]
+        }
+      },
+      "rulesNotes": [
+        "Base sequences are 4,8,12,... and upgraded 5,10,15,...; reset on every play.",
+        "Each hit independently calculates normal modifiers and rounding from its own base, never from previous modified damage.",
+        "Selected target remains fixed; remaining hits stop when it dies. One Psychic Link trigger per card, Insanity per hit.",
+        "Zero energy gives no hits without an external X bonus; Chemical X adds two. Free play preserves energy. Voidform does not discount X."
+      ],
+      "balanceNotes": "Reviewed initial values; evaluate burst scaling, upkeep, and energy investment in full runs.",
+      "art": {
+        "wowAbility": "Void Torrent",
+        "icon": "spell_priest_voidsear",
+        "direction": "Actual WoW ability icon inside the shared violet-and-gold card frame."
+      }
     }
   ]
 }

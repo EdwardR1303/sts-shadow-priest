@@ -8,7 +8,7 @@ The [Voidform activation card](docs/voidform-activation.md) costs 0 energy, has 
 
 ## Project status
 
-Version 0.1.0 is a playable prototype for VS Code: a selectable character, four starters, 20 reward cards, fixed-damage DoTs with a five-tick cap, an Insanity bar beneath the energy orb, and on-demand Voidform. The combat priest wears Transcendence-inspired regalia and glows purple during Voidform. Starter cards use framed retail WoW ability icons, Touch/Pain use matching debuff icons, and the Voidform relic uses a transparent cutout adapted from its WoW icon. Fortitude, Madness, and Halo also use their WoW icons; Reaping Madness has original thematic artwork. Earlier reward-card portraits and other unfinished artwork still use placeholders. Voidform now enforces a full recovery turn with no Insanity gain. Common and uncommon rewards are native; three new class rares share the rare pool with temporary Ironclad supplements until at least four native rares exist. A broader rare pool and full-run balance pass remain future work.
+Version 0.1.0 is a playable prototype for VS Code: a selectable character, four starters, 23 reward cards, fixed-damage DoTs with a five-tick cap, an Insanity bar beneath the energy orb, and on-demand Voidform. The combat priest wears Transcendence-inspired regalia and glows purple during Voidform. Starter cards use framed retail WoW ability icons, Touch/Pain use matching debuff icons, and the Voidform relic uses a transparent cutout adapted from its WoW icon. Fortitude, Madness, and Halo also use their WoW icons; Reaping Madness has original thematic artwork. Earlier reward-card portraits and other unfinished artwork still use placeholders. Voidform now enforces a full recovery turn with no Insanity gain. All reward pools are native: ten Commons, nine Uncommons, and four Rares. Void Torrent supplies the fourth rare, so the temporary Ironclad supplements are no longer used. A broader rare pool and full-run balance pass remain future work.
 
 ## Build and play on Windows
 
@@ -27,6 +27,7 @@ For a smaller window, add `-Width 1920 -Height 1080 -Windowed`. VS Code also has
 ## Design documents
 
 - [Card design guide](docs/card-design-guide.md): start designing cards in [the JSON catalog](design/cards.json), with [a reusable template](design/card-template.json), complete upgrades, and VS Code validation.
+- [Fourth reward-card batch](docs/card-batch-04.md): Void Bolt, Void Volley, escalating Void Torrent, and fully native rare rewards.
 - [Third reward-card batch](docs/card-batch-03.md): capped fixed-damage DoTs, Tentacle Slam, additive Void Blast, Mass Dispel, and stacking Embrace.
 - [Second reward-card batch](docs/card-batch-02.md): Fortitude, Reaping Madness, Madness, Halo, and Voidform recovery; [artwork and source prompt](docs/card-batch-02-art.md).
 - [First reward-card batch](docs/card-batch-01.md): implemented designs, upgrades, and interaction rules.

@@ -1,5 +1,7 @@
 # Third reward batch and fixed-damage DoTs
 
+This records the third batch. [The fourth batch](card-batch-04.md) expands rewards and ends the temporary Ironclad rare supplements.
+
 This batch adds Tentacle Slam, Void Blast, Mass Dispel, and Vampiric Embrace, and replaces variable-damage DoT applications with fixed damage and a five-tick cap. The class now has nine Commons, eight Uncommons, and three Rares. The rare reward pool temporarily includes Ironclad rares alongside the new cards: Question Card can request four distinct boss rares, so three native rares alone would exhaust the game's duplicate-rejection loop. The fallback is removed automatically once at least four native rares exist.
 
 ## Touch and Pain

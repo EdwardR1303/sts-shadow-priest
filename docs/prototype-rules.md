@@ -14,7 +14,7 @@ Template defaults: 70 HP, 3 energy, 5 cards drawn each turn, 99 gold, no orb slo
 | Shadow Word: Pain | 1 | Skill | 1 | Pain: 3 damage per tick; apply 5 stacks. | Cost 0; fixed 3 damage |
 | Enter Voidform | Generated | Skill | 0 | Retain. Enter Voidform. Exhaust. | Cannot upgrade |
 
-Neither DoT heals. Played DoT cards return to hand after end-turn discard; unplayed cards discard normally. The class supplies nine Commons, eight Uncommons, and three Rares. Rare rewards retain Ironclad supplements until at least four native rares exist, so effects requesting four distinct rare choices cannot exhaust the pool. See [the first reward-card batch](card-batch-01.md) for the first 12 rewards, and [the second batch](card-batch-02.md) for the four additions and recovery rules. [The third batch](card-batch-03.md) adds four more cards and supersedes the old DoT refresh and upgrade values.
+Neither DoT inherently heals; Vampiric Embrace rewards damaging Touch ticks with healing. Played DoT cards return to hand after end-turn discard; unplayed cards discard normally. The class supplies ten Commons, nine Uncommons, and four Rares. All reward pools are native; the fourth rare allows four distinct boss choices without Ironclad supplements. See [the first reward-card batch](card-batch-01.md) for the first 12 rewards, and [the second batch](card-batch-02.md) for the four additions and recovery rules. [The third batch](card-batch-03.md) adds four more cards and supersedes the old DoT refresh and upgrade values. [The fourth batch](card-batch-04.md) adds Void Bolt, Void Volley, and Void Torrent.
 
 ## Damage over time
 

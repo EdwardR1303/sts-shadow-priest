@@ -42,8 +42,8 @@ public final class CardBatchSmokeTest {
             p = AbstractDungeon.player; m = AbstractDungeon.getMonsters().monsters.get(0);
             other = AbstractDungeon.getMonsters().monsters.get(1); relic = VoidformRelic.current();
             reset();
-            check(AbstractDungeon.commonCardPool.size() == 9 && AbstractDungeon.uncommonCardPool.size() == 8,
-                "Reward pools contain nine custom commons and eight custom uncommons");
+            check(AbstractDungeon.commonCardPool.size() == 10 && AbstractDungeon.uncommonCardPool.size() == 9,
+                "Reward pools contain ten custom commons and nine custom uncommons");
             check(AbstractDungeon.commonCardPool.group.stream().allMatch(c -> c.cardID.startsWith("shadowpriest:"))
                 && AbstractDungeon.uncommonCardPool.group.stream().allMatch(c -> c.cardID.startsWith("shadowpriest:")),
                 "Normal reward pools use the new Shadow Priest cards");
@@ -291,6 +291,7 @@ public final class CardBatchSmokeTest {
         });
         SecondBatchSmokeTest.append(q);
         ThirdBatchSmokeTest.append(q);
+        FourthBatchSmokeTest.append(q);
         q.add(() -> {
             reset(); p.currentHealth = 5; play(new DesperatePrayer(), null, 3);
         });

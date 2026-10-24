@@ -76,3 +76,21 @@ Vampiric Embrace (spell_shadow_unsummonbuilding)
 Resource: shadowpriest/images/cards/icons/vampiric_embrace.jpg
 Source: https://wow.zamimg.com/images/wow/icons/large/spell_shadow_unsummonbuilding.jpg
 Reference: https://www.wowhead.com/spell=15286
+
+Void Bolt card icon
+Spell reference: https://www.wowhead.com/spell=205448/void-bolt
+Original icon: ability_ironmaidens_convulsiveshadows
+Source: https://wow.zamimg.com/images/wow/icons/large/ability_ironmaidens_convulsiveshadows.jpg
+Local file: shadowpriest/images/cards/icons/void_bolt.jpg
+
+Void Volley card icon
+Spell reference: https://www.wowhead.com/spell=1242173/void-volley
+Original icon: inv12_ability_priest_voidvolley
+Source: https://wow.zamimg.com/images/wow/icons/large/inv12_ability_priest_voidvolley.jpg
+Local file: shadowpriest/images/cards/icons/void_volley.jpg
+
+Void Torrent card icon
+Spell reference: https://www.wowhead.com/spell=263165/void-torrent
+Original icon: spell_priest_voidsear
+Source: https://wow.zamimg.com/images/wow/icons/large/spell_priest_voidsear.jpg
+Local file: shadowpriest/images/cards/icons/void_torrent.jpg

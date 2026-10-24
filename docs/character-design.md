@@ -64,7 +64,7 @@ The class should have tools to survive while assembling that window. Draw order 
 
 **Second implemented batch:** Fortitude, Reaping Madness, Shadow Word: Madness, and Halo are specified in the [card catalog](../design/cards.json) and decisions D033-D036. Madness adds a permanent, nonticking debuff that counts as one unique DoT; Halo is a separate player aura per cast, not a DoT. The Voidform relic update blocks every source of Insanity for the entire turn after entering Voidform. See [the second batch rules](card-batch-02.md) for exact interactions and artwork.
 
-The three implemented reward batches now supply 20 cards across these roles. [The latest batch](card-batch-03.md) adds Tentacle Slam, Void Blast, Mass Dispel, and Vampiric Embrace, with nine Commons, eight Uncommons, and three Rares in total:
+The four implemented reward batches now supply 23 cards across these roles. [The latest batch](card-batch-04.md) adds Void Bolt, Void Volley, and Void Torrent, with ten Commons, nine Uncommons, and four Rares in total. Every reward pool is native:
 
 - Defense that helps maintain the setup while leaving some opportunity to apply DoTs and attack.
 - Hand preparation through selective draw, retention, or similar effects to assemble a useful burst hand.
