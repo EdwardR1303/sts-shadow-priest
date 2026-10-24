@@ -13,7 +13,7 @@ If discovery fails, pass `-SteamApps 'S:/SteamLibrary/steamapps'` to setup with 
 
 Setup installs a portable Eclipse Temurin Java 8 JDK and Maven 3.9.11 if needed, with checksum verification. It writes ignored local configuration in `.local/`, `.mvn/maven.config`, and `.vscode/settings.json`. Install VS Code's recommended Extension Pack for Java. Global PATH settings are unchanged.
 
-Build runs Maven `clean verify`, including unit tests for persistent accumulation, threshold capping, single-use charge validation, combat reset, and cost edge cases. It does not deploy automatically.
+Build runs Maven `clean verify`, including unit tests for persistent accumulation, threshold capping, single-use charge validation, combat reset, full-turn recovery, and cost edge cases. It does not deploy automatically.
 
 ## Interactive playtest
 
@@ -23,7 +23,7 @@ Build runs Maven `clean verify`, including unit tests for persistent accumulatio
 
 This starts only BaseMod, StSLib, and Shadow Priest in `.playtest/`, with a local game-JAR copy and separate saves/preferences. It does not change the regular ModTheSpire mod selection. Close the test game before rebuilding and relaunching.
 
-The display defaults to 3840 x 2160 borderless, 60 FPS, VSync. Override with `-Width 1920 -Height 1080 -Windowed` if desired. Select The Shadow Priest in a Standard run. The class has its custom ten-card deck and Voidform relic; common/uncommon rewards use the 12 new Shadow Priest cards, while rares temporarily use Ironclad cards.
+The display defaults to 3840 x 2160 borderless, 60 FPS, VSync. Override with `-Width 1920 -Height 1080 -Windowed` if desired. Select The Shadow Priest in a Standard run. The class has its custom ten-card deck and Voidform relic; common/uncommon rewards use the 16 Shadow Priest reward cards, while rares temporarily use Ironclad cards.
 
 Logs are `.playtest/console.log` and `.playtest/error.log`. The isolated game may report unavailable Steam integration; local combat can still run without achievements or cloud saves. BaseMod's console can be enabled through its in-game settings for manual card and encounter setup.
 
@@ -37,7 +37,7 @@ This uses a separate `.smoketest/` session, starts a seeded run and controlled e
 
 These checks need the installed game and a working graphics session, so they are separate from ordinary Maven tests. The driver only runs with the `shadowpriest.smoketest` JVM property. Normal play never automatically starts a run or manipulates combat.
 
-The full suite currently covers 115 checks, including the starter mechanics and first reward-card batch. To run only the 73-check reward-card suite (including startup checks):
+The full suite currently covers 162 checks, including the starter mechanics and both reward-card batches. To run only the 120-check reward-card suite (including startup checks):
 
 ```powershell
 ./scripts/playtest.ps1 -SkipBuild -CardBatchOnly -Width 1920 -Height 1080 -Windowed

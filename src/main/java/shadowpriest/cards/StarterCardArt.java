@@ -16,6 +16,10 @@ final class StarterCardArt {
             case PowerWordShield.ID: icon = "cards/icons/power_word_shield.jpg"; break;
             case VampiricTouch.ID: icon = "powers/vampiric_touch.jpg"; break;
             case ShadowWordPain.ID: icon = "powers/shadow_word_pain.jpg"; break;
+            case PowerWordFortitude.ID: icon = "cards/icons/power_word_fortitude.jpg"; break;
+            case ReapingMadness.ID: icon = "cards/icons/reaping_madness.png"; break;
+            case ShadowWordMadness.ID: icon = "cards/icons/shadow_word_madness.jpg"; break;
+            case Halo.ID: icon = "cards/icons/halo.jpg"; break;
             default: return null;
         }
         if (CACHE.containsKey(id)) return CACHE.get(id);

@@ -860,6 +860,225 @@
         "icon": "",
         "direction": "Temporary prototype portrait; ability artwork remains future work."
       }
+    },
+    {
+      "id": "shadowpriest:PowerWordFortitude",
+      "name": "Power Word: Fortitude",
+      "status": "IMPLEMENTED",
+      "type": "POWER",
+      "rarity": "COMMON",
+      "sources": [
+        "REWARD_POOL"
+      ],
+      "startingCopies": 0,
+      "tags": [],
+      "designIntent": "An efficient nonstacking defensive buff; redundant copies become dead draws.",
+      "base": {
+        "cost": 0,
+        "target": "SELF",
+        "text": "Gain 2 Dexterity. This benefit does not stack. Unplayable if Fortitude has already granted at least this much Dexterity this combat.",
+        "stats": {
+          "dexterityBenefit": 2
+        },
+        "keywords": [],
+        "effects": [
+          "Grant only the difference between 2 and the highest previous Fortitude benefit.",
+          "Record the highest Fortitude benefit this combat."
+        ]
+      },
+      "upgrade": {
+        "summary": "Raise the nonstacking benefit from 2 to 3 Dexterity.",
+        "card": {
+          "cost": 0,
+          "target": "SELF",
+          "text": "Gain 3 Dexterity. This benefit does not stack. Unplayable if Fortitude has already granted at least this much Dexterity this combat.",
+          "stats": {
+            "dexterityBenefit": 3
+          },
+          "keywords": [],
+          "effects": [
+            "Grant only the difference between 3 and the highest previous Fortitude benefit.",
+            "Record the highest Fortitude benefit this combat."
+          ]
+        }
+      },
+      "rulesNotes": [
+        "Track Fortitude independently of other Dexterity sources and subsequent Dexterity losses.",
+        "Base followed by upgrade grants 2, then only 1 additional Dexterity.",
+        "Equal or weaker copies cannot be played; this does not turn the card into a Curse.",
+        "Clear contribution tracking after combat."
+      ],
+      "balanceNotes": "The free first copy is intentionally strong; duplicate dead draws are the tradeoff.",
+      "art": {
+        "wowAbility": "Power Word: Fortitude",
+        "icon": "spell_holy_wordfortitude",
+        "direction": "Actual WoW ability icon inside the shared violet-and-gold card frame."
+      }
+    },
+    {
+      "id": "shadowpriest:ReapingMadness",
+      "name": "Reaping Madness",
+      "status": "IMPLEMENTED",
+      "type": "POWER",
+      "rarity": "COMMON",
+      "sources": [
+        "REWARD_POOL"
+      ],
+      "startingCopies": 0,
+      "tags": [],
+      "designIntent": "Make defensive setup turns advance the next burst.",
+      "base": {
+        "cost": 1,
+        "target": "SELF",
+        "text": "At the end of your turn, gain 1 Insanity.",
+        "stats": {
+          "insanity": 1
+        },
+        "keywords": [],
+        "effects": [
+          "Gain 1 Insanity at each player end of turn, subject to relic restrictions."
+        ]
+      },
+      "upgrade": {
+        "summary": "Gain 2 Insanity per turn instead of 1.",
+        "card": {
+          "cost": 1,
+          "target": "SELF",
+          "text": "At the end of your turn, gain 2 Insanity.",
+          "stats": {
+            "insanity": 2
+          },
+          "keywords": [],
+          "effects": [
+            "Gain 2 Insanity at each player end of turn, subject to relic restrictions."
+          ]
+        }
+      },
+      "rulesNotes": [
+        "Multiple copies stack.",
+        "No gain while Voidform is ready or active.",
+        "Voidform recovery blocks all Insanity gain for the entire turn after entering Voidform, including this end-of-turn gain.",
+        "Reaching 10 at end of turn makes Enter Voidform available on the next player turn, subject to hand space."
+      ],
+      "balanceNotes": "Watch whether stacking passive generation makes DoT setup unnecessary.",
+      "art": {
+        "wowAbility": "Reaping Madness",
+        "icon": "reaping_madness.png",
+        "direction": "Original generated spectral hand gathering violet psychic energy, inside the shared card frame."
+      }
+    },
+    {
+      "id": "shadowpriest:ShadowWordMadness",
+      "name": "Shadow Word: Madness",
+      "status": "IMPLEMENTED",
+      "type": "ATTACK",
+      "rarity": "UNCOMMON",
+      "sources": [
+        "REWARD_POOL"
+      ],
+      "startingCopies": 0,
+      "tags": [],
+      "designIntent": "Establish a permanent unique DoT for synergies and build slow damage scaling through repeated casts.",
+      "base": {
+        "cost": 1,
+        "target": "ENEMY",
+        "text": "Apply 5 Madness to an enemy. Deal damage equal to its Madness.",
+        "stats": {
+          "madnessStacks": 5
+        },
+        "keywords": [],
+        "effects": [
+          "Add 5 Madness to the selected enemy.",
+          "Deal one normal Attack hit using its resulting total Madness as base damage."
+        ]
+      },
+      "upgrade": {
+        "summary": "Spread the 5-stack application to all enemies; damage remains single-target.",
+        "card": {
+          "cost": 1,
+          "target": "ENEMY",
+          "text": "Apply 5 Madness to ALL enemies. Deal damage to the selected enemy equal to its Madness.",
+          "stats": {
+            "madnessStacks": 5
+          },
+          "keywords": [],
+          "effects": [
+            "Add 5 Madness to all current enemies.",
+            "Deal one normal Attack hit to the selected enemy using its resulting total Madness as base damage."
+          ]
+        }
+      },
+      "rulesNotes": [
+        "Madness stacks add together, persist on the enemy, and never tick or decay.",
+        "Any positive number of Madness stacks counts as one unique DoT for synergies.",
+        "Madness has no duration; duration extension has no effect on it.",
+        "Apply stacks before calculating the hit. Normal Attack modifiers and Insanity generation apply.",
+        "The upgraded card still requires one enemy target for its damage."
+      ],
+      "balanceNotes": "The upgrade improves immediate setup across enemies rather than raising stack growth. Watch permanent DoT synergy value.",
+      "art": {
+        "wowAbility": "Shadow Word: Madness",
+        "icon": "inv12_ability_priest_powerwordmadness_eye",
+        "direction": "Actual WoW ability icon inside the shared violet-and-gold card frame."
+      }
+    },
+    {
+      "id": "shadowpriest:Halo",
+      "name": "Halo",
+      "status": "IMPLEMENTED",
+      "type": "SKILL",
+      "rarity": "UNCOMMON",
+      "sources": [
+        "REWARD_POOL"
+      ],
+      "startingCopies": 0,
+      "tags": [],
+      "designIntent": "Build overlapping waves of sustained area damage with independent player auras.",
+      "base": {
+        "cost": 1,
+        "target": "SELF",
+        "text": "Gain a Halo aura. At the end of your turn, deal 3 damage to ALL enemies for 3 turns.",
+        "stats": {
+          "pulseDamage": 3,
+          "duration": 3
+        },
+        "keywords": [],
+        "effects": [
+          "Create a separate Halo aura with 3 pulses remaining.",
+          "At each player end of turn, deal 3 damage to all current enemies, then consume one pulse."
+        ]
+      },
+      "upgrade": {
+        "summary": "Increase each pulse from 3 to 5 damage; duration stays 3 turns.",
+        "card": {
+          "cost": 1,
+          "target": "SELF",
+          "text": "Gain a Halo aura. At the end of your turn, deal 5 damage to ALL enemies for 3 turns.",
+          "stats": {
+            "pulseDamage": 5,
+            "duration": 3
+          },
+          "keywords": [],
+          "effects": [
+            "Create a separate Halo aura with 3 pulses remaining.",
+            "At each player end of turn, deal 5 damage to all current enemies, then consume one pulse."
+          ]
+        }
+      },
+      "rulesNotes": [
+        "First pulse occurs at the end of the casting turn, followed by two more pulses.",
+        "Each cast creates a separate aura with its own damage and remaining duration; it does not refresh an existing aura.",
+        "Pulses affect enemies present when they trigger, including later summons.",
+        "Pulses respect Block, ignore Strength and Voidform damage bonuses, and generate no Insanity.",
+        "Halo is not a DoT and cannot be extended by enemy DoT duration effects.",
+        "As a Skill, Halo does not trigger Psychic Link or receive the Voidform Attack cost discount."
+      ],
+      "balanceNotes": "Test overlapping auras as sustained area damage alongside Mind Sear burst turns.",
+      "art": {
+        "wowAbility": "Halo",
+        "icon": "ability_priest_halo",
+        "direction": "Actual WoW ability icon inside the shared violet-and-gold card frame."
+      }
     }
   ]
 }

@@ -71,5 +71,22 @@
   "shadowpriest:PsychicLink": {
     "NAME": "Psychic Link",
     "DESCRIPTION": "Whenever you play an Attack, trigger shadowpriest:Touch damage on ALL afflicted enemies without reducing its duration."
+  },
+  "shadowpriest:PowerWordFortitude": {
+    "NAME": "Power Word: Fortitude",
+    "DESCRIPTION": "Gain !M! Dexterity. NL This benefit does not stack. NL Unplayable if Fortitude already granted this much this combat."
+  },
+  "shadowpriest:ReapingMadness": {
+    "NAME": "Reaping Madness",
+    "DESCRIPTION": "At the end of your turn, gain !M! Insanity."
+  },
+  "shadowpriest:ShadowWordMadness": {
+    "NAME": "Shadow Word: Madness",
+    "DESCRIPTION": "Apply !M! shadowpriest:madness. NL Deal damage equal to its total (!D!).",
+    "UPGRADE_DESCRIPTION": "Apply !M! shadowpriest:madness to ALL enemies. NL Deal damage to the selected enemy equal to its total (!D!)."
+  },
+  "shadowpriest:Halo": {
+    "NAME": "Halo",
+    "DESCRIPTION": "At the end of your turn, deal !M! damage to ALL enemies for 3 turns. NL Each cast creates a separate aura."
   }
 }

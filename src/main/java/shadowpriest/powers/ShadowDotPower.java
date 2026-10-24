@@ -12,7 +12,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 
-/** amount is remaining turns, never damage stacks. Only these two IDs count for Insanity. */
+/** Touch/Pain amount is remaining turns. Madness has separate, permanent stack semantics. */
 public class ShadowDotPower extends AbstractPower {
     public static final String TOUCH = "shadowpriest:Touch";
     public static final String PAIN = "shadowpriest:Pain";
@@ -85,6 +85,7 @@ public class ShadowDotPower extends AbstractPower {
     }
     public static int count(AbstractCreature target) {
         if (target == null) return 0;
-        return (target.hasPower(TOUCH) ? 1 : 0) + (target.hasPower(PAIN) ? 1 : 0);
+        return (target.hasPower(TOUCH) ? 1 : 0) + (target.hasPower(PAIN) ? 1 : 0)
+            + (target.hasPower(MadnessPower.POWER_ID) && target.getPower(MadnessPower.POWER_ID).amount > 0 ? 1 : 0);
     }
 }

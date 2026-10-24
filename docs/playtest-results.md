@@ -49,6 +49,22 @@ This batch supersedes the earlier DoT values: Touch is now 5 damage for 3 turns 
 
 See [the implementation rules](card-batch-01.md) for the exact card values and edge-case decisions. New reward-card portraits and power icons are temporary. This validation establishes controlled combat behavior; full-run balance and human review of the new cards remain pending.
 
+## Second reward-card batch and recovery
+
+On October 23, 2026, Maven `clean verify` passed all 7 unit tests. The reward-card suite passed 120 actual-game checks, followed by the full combined suite passing all 162 checks at 1920 x 1080 windowed. Both game runs ended with `ALL CHECKS PASSED`.
+
+The 47 added checks cover:
+
+- Registration and upgraded copies for Fortitude, Reaping Madness, Madness, and Halo; loading all four portraits at normal and inspection sizes.
+- Fortitude granting its own 2/3 Dexterity independently of other sources, granting only the upgrade difference, blocking equal/weaker copies even after Dexterity loss, and clearing its flag after combat.
+- Reaping's cost, deferred gain, stacking, threshold delivery, and charge cap.
+- Actual turn transitions through Voidform and recovery: blocked attacks and end-of-turn gain throughout the recovery turn, then both sources resuming. Unit tests also cover recovery reset at combat end.
+- Madness applying before damage, adding permanent stacks, never ticking or decaying, ignoring duration extension, and counting as one unique DoT for Mind Blast and area-hit Insanity.
+- Madness+ spreading only stacks, Artifact blocking new stacks while preserving damage from existing stacks, normal damage modifiers and Block, Voidform's discount, and one Psychic Link trigger.
+- Halo costing one as a Skill, no immediate damage or Psychic Link trigger, end-of-turn pulses respecting Block and ignoring offensive modifiers, no extra Insanity, separate base/upgraded aura counters, independent expiry, and no Voidform damage or cost bonus.
+
+The source icons and generated Reaping Madness artwork were inspected; all four images and source attribution were verified inside the built JAR. The reused card framing path was exercised in-game. Human review of final presentation and full-run balance remains pending. See [second-batch rules](card-batch-02.md) and [artwork provenance and prompt](card-batch-02-art.md).
+
 ## Limits
 
 These are correctness checks in a controlled encounter, not a full-run balance study. Only BaseMod and StSLib were loaded alongside this mod. Interactions with other mods, every relic or card, save/reload during combat, and long-run progression have not been exhaustively tested. The X-cost check verifies exclusion from the discount, not every X-cost card's effects.

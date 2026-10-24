@@ -71,14 +71,18 @@ public class VoidformRelic extends CustomRelic implements AlternateCardCostModif
     }
     @Override public String getUpdatedDescription() { return DESCRIPTIONS[0]; }
     @Override public AbstractRelic makeCopy() { return new VoidformRelic(); }
-    @Override public void atPreBattle() { reset(); shadowpriest.mechanics.ReturningDots.clear(); }
-    @Override public void onVictory() { reset(); shadowpriest.mechanics.ReturningDots.clear(); }
+    @Override public void atPreBattle() { reset(); shadowpriest.mechanics.ReturningDots.clear(); shadowpriest.cards.PowerWordFortitude.resetBenefit(); }
+    @Override public void onVictory() { reset(); shadowpriest.mechanics.ReturningDots.clear(); shadowpriest.cards.PowerWordFortitude.resetBenefit(); }
+    @Override public void atTurnStart() { state.startTurn(); }
     @Override public void onUnequip() { reset(); }
     @Override public void onAttack(DamageInfo info, int damageAmount, AbstractCreature target) {
         if (info.owner != AbstractDungeon.player || info.type != DamageInfo.DamageType.NORMAL || target == null || target.isPlayer) return;
         // Hook runs before death cleanup, so killing blows use the target's current debuffs too.
+        gainInsanity(ShadowDotPower.count(target));
+    }
+    public void gainInsanity(int amount) {
         boolean wasReady = state.ready();
-        state.gain(ShadowDotPower.count(target));
+        state.gain(amount);
         counter = state.amount();
         if (!wasReady && state.ready()) { flash(); beginLongPulse(); }
     }

@@ -2,6 +2,8 @@
 
 Implemented from the owner's 16-card draft snapshot on October 23, 2026. The working `cards.md` remains the owner's scratchpad; later edits are not automatically included in this batch. [The JSON catalog](../design/cards.json) records the implemented base and upgraded versions.
 
+This document preserves the first batch's scope. [The second batch](card-batch-02.md) subsequently adds four rewards, permanent nonticking Madness, and Voidform recovery; see it for the current additions to these rules.
+
 ## Cards
 
 | Rarity | Card | Cost | Base | Upgrade |

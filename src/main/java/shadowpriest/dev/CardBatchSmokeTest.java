@@ -42,8 +42,8 @@ public final class CardBatchSmokeTest {
             p = AbstractDungeon.player; m = AbstractDungeon.getMonsters().monsters.get(0);
             other = AbstractDungeon.getMonsters().monsters.get(1); relic = VoidformRelic.current();
             reset();
-            check(AbstractDungeon.commonCardPool.size() == 6 && AbstractDungeon.uncommonCardPool.size() == 6,
-                "Reward pools contain six custom commons and six custom uncommons");
+            check(AbstractDungeon.commonCardPool.size() == 8 && AbstractDungeon.uncommonCardPool.size() == 8,
+                "Reward pools contain eight custom commons and eight custom uncommons");
             check(AbstractDungeon.commonCardPool.group.stream().allMatch(c -> c.cardID.startsWith("shadowpriest:"))
                 && AbstractDungeon.uncommonCardPool.group.stream().allMatch(c -> c.cardID.startsWith("shadowpriest:")),
                 "Normal reward pools use the new Shadow Priest cards");
@@ -288,6 +288,9 @@ public final class CardBatchSmokeTest {
         q.add(() -> play(new MindSpike(), m, 3));
         q.add(() -> {
             check(m.currentHealth == enemyHp - 16, "Two Psychic Links provide two bonus ticks without recursion");
+        });
+        SecondBatchSmokeTest.append(q);
+        q.add(() -> {
             reset(); p.currentHealth = 5; play(new DesperatePrayer(), null, 3);
         });
         q.add(() -> {
@@ -302,7 +305,7 @@ public final class CardBatchSmokeTest {
         });
     }
 
-    private static void reset() {
+    static void reset() {
         p.powers.clear();
         com.evacipated.cardcrawl.mod.stslib.blockmods.BlockModifierManager.removeAllBlockInstances(p);
         p.currentBlock = 0; p.currentHealth = 200; p.maxHealth = 500;
@@ -312,21 +315,21 @@ public final class CardBatchSmokeTest {
             com.evacipated.cardcrawl.mod.stslib.blockmods.BlockModifierManager.removeAllBlockInstances(monster);
             monster.currentBlock = 0; monster.currentHealth = monster.maxHealth = 1000;
         }
-        relic.reset(); ReturningDots.clear(); selection = null;
+        relic.reset(); PowerWordFortitude.resetBenefit(); ReturningDots.clear(); selection = null;
     }
-    private static void dots(AbstractMonster target) {
+    static void dots(AbstractMonster target) {
         target.powers.add(new ShadowDotPower(target, ShadowDotPower.TOUCH, 3, 5));
         target.powers.add(new ShadowDotPower(target, ShadowDotPower.PAIN, 5, 3));
     }
-    private static <T extends AbstractCard> T upgraded(T c) { c.upgrade(); return c; }
-    private static void play(AbstractCard c, AbstractMonster target, int energy) {
+    static <T extends AbstractCard> T upgraded(T c) { c.upgrade(); return c; }
+    static void play(AbstractCard c, AbstractMonster target, int energy) {
         p.drawPile.removeCard(c); p.discardPile.removeCard(c);
         EnergyPanel.totalCount = energy; c.energyOnUse = energy;
         if (!p.hand.contains(c)) p.hand.addToTop(c);
         if (!c.canUse(p, target)) throw new AssertionError("Cannot play " + c.cardID + ": " + c.cantUseMessage);
         p.useCard(c, target, energy);
     }
-    private static void endTurn(boolean quietMonsters) {
+    static void endTurn(boolean quietMonsters) {
         turn = GameActionManager.turn;
         // Run the actual enemy phase so atEndOfRound powers expire normally.
         // These controlled Cultists use an empty move rather than skipping the phase.

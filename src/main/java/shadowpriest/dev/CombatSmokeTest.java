@@ -201,6 +201,7 @@ public final class CombatSmokeTest {
             check(com.megacrit.cardcrawl.actions.GameActionManager.turn > turn && !relic.state.active() && relic.state.amount() == 0, "Actual end turn expires Voidform and resets Insanity");
             MindSpike spike = new MindSpike(); spike.applyPowers();
             check(spike.damage == 6 && VoidformRelic.effectiveCost(spike, 1) == 1, "Attack cost and damage return to normal");
+            relic.reset(); // Full-hand delivery is independent of the recovery scenario.
             p.hand.clear(); for (int i=0; i<10; i++) p.hand.addToTop(new PowerWordShield());
             relic.state.gain(10);
         });

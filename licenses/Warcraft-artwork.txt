@@ -38,3 +38,21 @@ The source images are stored unchanged. The game scales them for debuffs,
 power displays, and framed starter card portraits. The surrounding card frame
 was generated separately; its prompt and composition are documented in
 docs/starter-card-art.md.
+
+Power Word: Fortitude (spell_holy_wordfortitude)
+Resource: shadowpriest/images/cards/icons/power_word_fortitude.jpg
+Source: https://wow.zamimg.com/images/wow/icons/large/spell_holy_wordfortitude.jpg
+Reference: https://www.wowhead.com/spell=21562
+
+Shadow Word: Madness (inv12_ability_priest_powerwordmadness_eye)
+Resource: shadowpriest/images/cards/icons/shadow_word_madness.jpg
+Source: https://wow.zamimg.com/images/wow/icons/large/inv12_ability_priest_powerwordmadness_eye.jpg
+Reference: https://www.wowhead.com/spell=335467
+
+Halo (ability_priest_halo)
+Resource: shadowpriest/images/cards/icons/halo.jpg
+Source: https://wow.zamimg.com/images/wow/icons/large/ability_priest_halo.jpg
+Reference: https://www.wowhead.com/spell=120517
+
+Reaping Madness is original generated artwork, not a Blizzard source icon.
+Its prompt and resource are documented in docs/card-batch-02-art.md.

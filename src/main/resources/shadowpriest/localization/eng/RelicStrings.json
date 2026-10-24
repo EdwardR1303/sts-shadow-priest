@@ -1,7 +1,9 @@
 {
   "shadowpriest:Voidform": {
-    "NAME":"Voidform",
-    "FLAVOR":"Wait for the moment. Then let everything go.",
-    "DESCRIPTIONS":["Each direct attack hit gains 1 #yInsanity per unique Shadow Priest DoT on the target, even if blocked. At #b10, gain a #b0-cost retained card to enter #yVoidform. NL In Voidform, Attacks cost #b1 less and deal #b50% more damage this turn. X costs are unchanged. NL Insanity persists between turns. One charge at a time; no gain while ready or active. Resets when Voidform ends or combat ends."]
+    "NAME": "Voidform",
+    "FLAVOR": "Wait for the moment. Then let everything go.",
+    "DESCRIPTIONS": [
+      "Each direct attack hit gains 1 #yInsanity per unique Shadow Priest DoT on the target, even if blocked. At #b10, gain a #b0-cost retained card to enter #yVoidform. NL In Voidform, Attacks cost #b1 less and deal #b50% more damage this turn. X costs are unchanged. NL Insanity persists between turns. One charge at a time; no gain while ready or active. Resets when Voidform ends or combat ends. NL You cannot gain Insanity the turn after entering Voidform."
+    ]
   }
 }

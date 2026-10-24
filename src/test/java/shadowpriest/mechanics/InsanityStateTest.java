@@ -20,12 +20,23 @@ public class InsanityStateTest {
     }
     @Test public void oldOrCopiedTokensCannotSpendANewCharge() {
         InsanityState s = new InsanityState(); s.gain(10); int old = s.charge();
-        s.activate(old); s.endTurn(); s.gain(10);
+        s.activate(old); s.endTurn(); s.startTurn(); s.endTurn(); s.startTurn(); s.gain(10);
         assertFalse(s.activate(old)); assertTrue(s.activate(s.charge()));
     }
     @Test public void combatResetInvalidatesReadyCards() {
         InsanityState s = new InsanityState(); s.gain(10); int old = s.charge();
         s.reset(); assertEquals(0, s.amount()); assertFalse(s.activate(old));
+    }
+    @Test public void recoveryBlocksTheEntireFollowingTurn() {
+        InsanityState s = new InsanityState(); s.gain(10); s.activate(s.charge());
+        s.endTurn(); s.gain(2); assertEquals(0, s.amount());
+        s.startTurn(); assertTrue(s.recovering());
+        s.gain(10); s.endTurn(); s.gain(2); assertEquals(0, s.amount());
+        s.startTurn(); assertFalse(s.recovering()); s.gain(2); assertEquals(2, s.amount());
+    }
+    @Test public void combatResetClearsRecovery() {
+        InsanityState s = new InsanityState(); s.gain(10); s.activate(s.charge()); s.endTurn();
+        s.reset(); assertFalse(s.recovering()); s.gain(3); assertEquals(3, s.amount());
     }
     @Test public void costsRespectExistingChangesAndNeverMutateNegativeCosts() {
         assertEquals(0, InsanityState.effectiveCost(1, true, true));

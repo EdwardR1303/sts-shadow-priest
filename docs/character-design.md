@@ -35,7 +35,7 @@ Each direct damage source generates 1 Insanity per unique DoT on its target. For
 
 Insanity persists between turns. It resets to zero after combat and when Voidform ends.
 
-The prototype counts each player-owned normal attack damage event, including blocked hits and killing blows. Multihit and multi-target attacks count each target hit separately. Only Touch and Pain contribute to the count. The meter caps at 10 and stops gaining while ready or active; there is no overflow or banked second charge.
+The prototype counts each player-owned normal attack damage event, including blocked hits and killing blows. Multihit and multi-target attacks count each target hit separately. Touch, Pain, and positive Madness stacks each contribute one to the count. Madness never ticks or decays, while Halo is a player aura that does not count as a DoT. The meter caps at 10 and stops gaining while ready, active, or recovering; there is no overflow or banked second charge.
 
 ## Voidform
 
@@ -46,6 +46,7 @@ While Voidform is active:
 - All Attack cards cost 1 less energy.
 - All Attack cards deal 50% more damage.
 - Voidform ends at the end of the turn.
+- All Insanity generation is blocked for the entire following turn, including Reaping Madness at turn end. It resumes at the next turn start.
 
 For a Mind Spike played while Voidform is active, the straightforward base case is 0 energy and 9 damage, before other modifiers. The attack that earns the activation card does not itself activate the bonus; the activation card must first be played.
 
@@ -60,6 +61,8 @@ The owner's intended feel is the coordinated raid burst: line up a damage amplif
 The class should have tools to survive while assembling that window. Draw order creates uncertainty in when DoTs and direct attacks become available; Insanity generation itself currently has no random roll. Retaining the activation card lets the player respond to that uncertainty and decide when their hand is ready.
 
 ## Reward-card design
+
+**Second implemented batch:** Fortitude, Reaping Madness, Shadow Word: Madness, and Halo are specified in the [card catalog](../design/cards.json) and decisions D033-D036. Madness adds a permanent, nonticking debuff that counts as one unique DoT; Halo is a separate player aura per cast, not a DoT. The Voidform relic update blocks every source of Insanity for the entire turn after entering Voidform. See [the second batch rules](card-batch-02.md) for exact interactions and artwork.
 
 The [first implemented reward-card batch](card-batch-01.md) now supplies 12 cards across these roles:
 

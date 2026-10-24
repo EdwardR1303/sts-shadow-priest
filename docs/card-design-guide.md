@@ -1,8 +1,10 @@
 # Designing cards
 
-Start in [design/cards.json](../design/cards.json). It contains the four implemented starters, 12 reward cards, and the generated Enter Voidform card as worked examples. The owner can also write ideas in plain English in their working cards.md file; reviewed batches are translated into this catalog before implementation. Copy the object inside `cards` from [card-template.json](../design/card-template.json), paste it at the end of the catalog's `cards` array, and change its ID and name. The template's Block values are examples, not an approved new card.
+Start in [design/cards.json](../design/cards.json). It contains the four implemented starters, 16 reward cards, and the generated Enter Voidform card as worked examples. The owner can also write ideas in plain English in their working cards.md file; reviewed batches are translated into this catalog before implementation. Copy the object inside `cards` from [card-template.json](../design/card-template.json), paste it at the end of the catalog's `cards` array, and change its ID and name. The template's Block values are examples, not an approved new card.
 
 These files are design documents. They do not automatically add cards to the game; approved designs still need Java implementation, localization, art, and testing. The implemented examples describe the current prototype, while new entries start as `DRAFT`.
+
+In the working `cards.md`, a trailing `?` marks an unreviewed card. Remove it after agreement and record the design as `APPROVED` in the catalog. Fortitude, Reaping Madness, Shadow Word: Madness, and Halo have completed review and implementation. Existing WoW abilities should use their actual ability artwork; invented abilities should receive matching original thematic artwork.
 
 ## Fields
 

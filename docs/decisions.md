@@ -44,6 +44,17 @@ Accepted choices establish the current design baseline. Proposed defaults and un
 | D031 | Keep Foresight reusable because its dead draws after Powers are gone are intentional. | Base tutors one Power for 0 energy; upgraded plays that Power for free. Neither version Exhausts or grants Retain. |
 | D032 | Use the revised defense, multihit, self-damage, and Psychic Link designs at their proposed rarities and values for the first test. | Preserve Shadow Mend's rising cost, Death's per-hit backlash, Dispersion's Retain upgrade, and Link's per-Attack bonus Touch tick. Implementation edge rules are documented for review rather than silently changing balance. |
 
+## Second reward-card designs approved on October 23 2026
+
+These decisions are implemented in [the second reward-card batch](card-batch-02.md). Removing a trailing `?` in the working card draft marks review complete, not implementation complete.
+
+| ID | Choice | Consequence |
+| --- | --- | --- |
+| D033 | Fortitude remains a Common, 0-energy Power granting a nonstacking 2/3 Dexterity benefit. | Track the highest Fortitude contribution this combat, independent of other Dexterity or later losses. Upgrade after base adds only 1. Equal or weaker copies are unplayable. |
+| D034 | Reaping Madness is a Common, 1-energy Power granting 1/2 Insanity at end of turn; copies stack. Add a recovery turn to the Voidform relic. | Every Insanity source is blocked for the entire turn after entering Voidform, including end-of-turn effects. Existing ready/active restrictions and resets remain. |
+| D035 | Madness does not tick or decay. Shadow Word: Madness is an Uncommon, 1-energy Attack applying 5 stacks before one hit equal to the selected target's total Madness. | Positive stacks count as one unique DoT; reapplication adds stacks. No duration extension applies. The upgrade applies 5 to all enemies but still damages only the selected target. This replaces the proposed 8-stack upgrade and earlier ticking concept. |
+| D036 | Halo is an Uncommon, 1-energy Skill creating a separate player aura per cast. | Each aura deals 3/5 damage to all current enemies at the end of the casting turn and the next two turns. Pulses respect Block, ignore Strength and Voidform's damage bonus, and generate no Insanity. Halo is not a DoT or Attack and does not trigger Psychic Link. |
+
 ## Activation proposal outcome on October 23 2026
 
 **P001: On-demand Voidform** became D017 following the owner's agreement that Exhaust is mandatory and that the class should prepare for a chosen burst turn. D019 subsequently authorized the first-playable defaults, including Skill as the card type, meter capping, one charge, and stopping generation during Voidform. [Prototype rules](prototype-rules.md) specify the implemented lifecycle.
