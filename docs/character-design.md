@@ -11,21 +11,21 @@ The rules below capture the owner's design and prototype defaults on October 23,
 | Mind Spike | Basic Attack replacing Strike | 1 | Deal 6 damage. | 4 |
 | Power Word: Shield | Basic Skill replacing Defend | 1 | Gain 5 Block. | 4 |
 | Vampiric Touch | Skill applying a distinct DoT | 1 | Apply Vampiric Touch: 5 damage each turn for 3 turns. | 1 |
-| Shadow Word: Pain | Skill applying a distinct DoT | 1 | Apply Shadow Word: Pain: 5 damage each turn for 3 turns. | 1 |
+| Shadow Word: Pain | Skill applying a distinct DoT | 1 | Apply Shadow Word: Pain: 3 damage each turn for 5 turns. | 1 |
 
-Four Mind Spikes, four Power Word: Shields, one Vampiric Touch, and one Shadow Word: Pain form the ten-card prototype deck. Mind Spike upgrades to 9 damage; Shield upgrades to 8 Block. Both DoTs upgrade to 6 damage per tick for 4 turns (+1 damage and +1 duration).
+Four Mind Spikes, four Power Word: Shields, one Vampiric Touch, and one Shadow Word: Pain form the ten-card prototype deck. Mind Spike upgrades to 9 damage; Shield upgrades to 8 Block. Touch upgrades to 7 damage for 3 turns; Pain upgrades to 5 damage for 5 turns. Only played DoT cards return to hand after end-turn discard.
 
 Vampiric Touch has no agreed healing or Block effect. Its current effect is solely the DoT specified above.
 
 ## Damage over time
 
 - Vampiric Touch and Shadow Word: Pain are separate debuffs that can coexist on one enemy.
-- Each deals 5 damage each turn for 3 turns, or 6 damage each turn for 4 turns when upgraded.
+- Touch deals 5/7 damage for 3 turns; Pain deals 3/5 damage for 5 turns. Upgrades change damage, not duration.
 - Strength does not modify this DoT damage.
 - Reapplying the same DoT replaces its damage and duration with the new card's values; neither value stacks.
 - Future cards will synergize with the number of unique DoTs on a target.
 
-One uninterrupted base application supplies three ticks totaling 15 damage; an upgraded application supplies four ticks totaling 24 damage. Both base debuffs supply 10 damage per tick cycle, or 12 when both are upgraded. Ticks occur before the enemy acts, starting on its next turn after application. They bypass Block and ignore offensive modifiers; enemy damage hooks such as Intangible still apply. Artifact blocks both damage and duration changes on application or refresh.
+Each uninterrupted base application totals 15 damage. Upgraded Touch totals 21 over 3 turns; upgraded Pain totals 25 over 5 turns. While both are active, they supply 8 damage per tick cycle, or 12 when both are upgraded. Ticks occur before the enemy acts, starting on its next turn after application. They bypass Block and ignore offensive modifiers; enemy damage hooks such as Intangible still apply. Artifact blocks both damage and duration changes on application or refresh.
 
 ## Starting relic and Insanity
 
@@ -53,15 +53,15 @@ The discount has a floor of zero and leaves X-cost cards unchanged. It overlays 
 
 ## Intended play pattern
 
-Apply different DoTs, maintain them without stacking duplicates, then use direct attacks to build toward a Voidform burst. Identical initial DoT damage is intentional in the current baseline: their separate identities already matter to Insanity generation and future synergies.
+Apply different DoTs, maintain them without stacking duplicates, then use direct attacks to build toward a Voidform burst. Touch supplies faster damage and Psychic Link synergy, while Pain supplies longer-lasting Insanity setup. Played cards return to help maintain and spread them.
 
 The owner's intended feel is the coordinated raid burst: line up a damage amplifier, cooldowns, and consumables, then unload. This is the design inspiration, not a commitment to implement Bloodlust or any particular cooldown or potion as a card.
 
 The class should have tools to survive while assembling that window. Draw order creates uncertainty in when DoTs and direct attacks become available; Insanity generation itself currently has no random roll. Retaining the activation card lets the player respond to that uncertainty and decide when their hand is ready.
 
-## Future card design directions
+## Reward-card design
 
-Suggested roles for later cards, not accepted card effects:
+The [first implemented reward-card batch](card-batch-01.md) now supplies 12 cards across these roles:
 
 - Defense that helps maintain the setup while leaving some opportunity to apply DoTs and attack.
 - Hand preparation through selective draw, retention, or similar effects to assemble a useful burst hand.

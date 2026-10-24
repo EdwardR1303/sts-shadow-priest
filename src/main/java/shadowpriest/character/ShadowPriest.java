@@ -253,8 +253,12 @@ public class ShadowPriest extends CustomPlayer {
 
     @Override
     public ArrayList<AbstractCard> getCardPool(ArrayList<AbstractCard> pool) {
-        // Temporary prototype rewards; the starting deck remains entirely custom.
-        CardLibrary.addRedCards(pool);
+        super.getCardPool(pool);
+        pool.removeIf(c -> c.rarity == AbstractCard.CardRarity.SPECIAL);
+        // No Shadow Priest rares are designed yet. Keep boss rewards playable.
+        ArrayList<AbstractCard> temporary = new ArrayList<>();
+        CardLibrary.addRedCards(temporary);
+        for (AbstractCard c : temporary) if (c.rarity == AbstractCard.CardRarity.RARE) pool.add(c);
         return pool;
     }
 

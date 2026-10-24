@@ -29,7 +29,9 @@ public class ShadowPriestMod implements EditCharactersSubscriber, EditCardsSubsc
     @Override public void receiveEditCharacters() { ShadowPriest.Meta.registerCharacter(); }
     @Override public void receiveEditCards() {
         BaseMod.addDynamicVariable(new DotTurnsVariable());
-        for (AbstractCard c : new AbstractCard[]{new MindSpike(), new PowerWordShield(), new VampiricTouch(), new ShadowWordPain(), new EnterVoidform()}) {
+        for (AbstractCard c : new AbstractCard[]{new MindSpike(), new PowerWordShield(), new VampiricTouch(), new ShadowWordPain(),
+            new Bulwark(), new ShadowMend(), new Fade(), new MindFlay(), new ShadowWordDeath(), new MindBlast(),
+            new Dispersion(), new DesperatePrayer(), new Foresight(), new MindFlayInsanity(), new MindSear(), new PsychicLink(), new EnterVoidform()}) {
             BaseMod.addCard(c); UnlockTracker.unlockCard(c.cardID);
         }
     }

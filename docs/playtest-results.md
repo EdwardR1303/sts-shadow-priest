@@ -30,8 +30,27 @@ Starter-art and DoT-upgrade follow-up: all 44 in-game checks passed, with 5 unit
 
 Voidform relic follow-up: inspected the generated cutout and its alpha channel, installed padded normal/enlarged relic textures, and repeated all 44 in-game checks successfully with the new relic loaded. The final in-game relic appearance remains for human review. The design-only JSON catalog and template also validate against their local schema; starter counts and DoT upgrade values match the prototype.
 
+## First reward-card batch
+
+On October 23, 2026, Maven `clean verify` passed all 5 unit tests. The reward-card suite passed 73 actual-game checks, followed by the full combined suite passing all 115 checks at 1920 x 1080 windowed. The final result was `ALL CHECKS PASSED`.
+
+This batch supersedes the earlier DoT values: Touch is now 5 damage for 3 turns (7 upgraded), and Pain is 3 damage for 5 turns (5 upgraded). Upgrades leave duration unchanged. Updated regression checks verify independent expiry, refresh, and fixed damage. New coverage includes:
+
+- Six custom commons and six custom uncommons in rewards; registration and upgraded copies for all 12 cards.
+- Played DoTs returning after end-turn discard, with unplayed, exhausted, and full-hand cases.
+- Bulwark retaining Block for exactly one turn; Shadow Mend paying its current cost before increasing it, including repeated plays and copies.
+- Fade reducing damage after Block and combining with Intangible; multi-hit Insanity generation and Mind Blast's DoT bonus under Voidform.
+- Death's per-hit threshold and backlash, fully blocked hits, and Fade interaction.
+- Both X-cost cards, duration extension, zero-energy upgrades, free plays, and Chemical X.
+- Dispersion ending the turn and exhausting; its upgrade retaining the two-energy cost.
+- Prayer's damage-then-heal order, consumption, expiry, mitigation, zero-cost upgrade, and failure to prevent lethal damage or resurrect the player.
+- Foresight's Power-only chooser, base retrieval, upgraded free play, reuse without Exhaust, and empty-pile behavior.
+- Psychic Link triggering once per Attack card across Touch targets, preserving durations, ignoring attack modifiers, generating no extra Insanity, and stacking without recursion.
+
+See [the implementation rules](card-batch-01.md) for the exact card values and edge-case decisions. New reward-card portraits and power icons are temporary. This validation establishes controlled combat behavior; full-run balance and human review of the new cards remain pending.
+
 ## Limits
 
 These are correctness checks in a controlled encounter, not a full-run balance study. Only BaseMod and StSLib were loaded alongside this mod. Interactions with other mods, every relic or card, save/reload during combat, and long-run progression have not been exhaustively tested. The X-cost check verifies exclusion from the discount, not every X-cost card's effects.
 
-Some art remains placeholder and rewards use the Ironclad pool. Human playtests should evaluate setup damage taken, time to earn Voidform, hand quality at activation, and whether waiting or immediate activation is more enjoyable.
+Some art remains placeholder and rare rewards still use the Ironclad pool; common and uncommon rewards use the new Shadow Priest cards. Human playtests should evaluate setup damage taken, time to earn Voidform, hand quality at activation, and whether waiting or immediate activation is more enjoyable.

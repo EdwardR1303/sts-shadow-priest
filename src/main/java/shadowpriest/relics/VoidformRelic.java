@@ -71,8 +71,8 @@ public class VoidformRelic extends CustomRelic implements AlternateCardCostModif
     }
     @Override public String getUpdatedDescription() { return DESCRIPTIONS[0]; }
     @Override public AbstractRelic makeCopy() { return new VoidformRelic(); }
-    @Override public void atPreBattle() { reset(); }
-    @Override public void onVictory() { reset(); }
+    @Override public void atPreBattle() { reset(); shadowpriest.mechanics.ReturningDots.clear(); }
+    @Override public void onVictory() { reset(); shadowpriest.mechanics.ReturningDots.clear(); }
     @Override public void onUnequip() { reset(); }
     @Override public void onAttack(DamageInfo info, int damageAmount, AbstractCreature target) {
         if (info.owner != AbstractDungeon.player || info.type != DamageInfo.DamageType.NORMAL || target == null || target.isPlayer) return;

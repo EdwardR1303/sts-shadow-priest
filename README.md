@@ -8,7 +8,7 @@ The [Voidform activation card](docs/voidform-activation.md) costs 0 energy, has 
 
 ## Project status
 
-Version 0.1.0 is a starting-deck prototype for VS Code: a selectable character, four starter cards, separate refreshing DoTs, an Insanity bar beneath the energy orb, and on-demand Voidform. The combat priest wears Transcendence-inspired regalia and glows purple during Voidform. Starter cards use framed retail WoW ability icons, Touch/Pain use matching debuff icons, and the Voidform relic uses a transparent cutout adapted from its WoW icon. Other artwork uses BasicMod placeholders. Rewards temporarily use the Ironclad pool; a complete Shadow Priest reward pool and balance pass are future work.
+Version 0.1.0 is a playable prototype for VS Code: a selectable character, four starters, 12 reward cards, separate refreshing DoTs, an Insanity bar beneath the energy orb, and on-demand Voidform. The combat priest wears Transcendence-inspired regalia and glows purple during Voidform. Starter cards use framed retail WoW ability icons, Touch/Pain use matching debuff icons, and the Voidform relic uses a transparent cutout adapted from its WoW icon. Other artwork uses BasicMod placeholders. Common and uncommon rewards use Shadow Priest cards; rares temporarily use the Ironclad pool. A complete reward pool and balance pass remain future work.
 
 ## Build and play on Windows
 
@@ -27,6 +27,7 @@ For a smaller window, add `-Width 1920 -Height 1080 -Windowed`. VS Code also has
 ## Design documents
 
 - [Card design guide](docs/card-design-guide.md): start designing cards in [the JSON catalog](design/cards.json), with [a reusable template](design/card-template.json), complete upgrades, and VS Code validation.
+- [First reward-card batch](docs/card-batch-01.md): implemented designs, upgrades, and interaction rules.
 - [Character design](docs/character-design.md): starting cards, DoTs, Insanity, and the starting relic.
 - [Decision log](docs/decisions.md): accepted choices and the earlier concepts they replace.
 - [Open questions](docs/open-questions.md): rules that still need decisions, with suggestions clearly marked.

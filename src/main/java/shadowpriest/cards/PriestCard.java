@@ -19,4 +19,14 @@ public abstract class PriestCard extends CustomCard {
         Texture[] art = StarterCardArt.get(cardID);
         return art == null ? super.getPortraitImage() : art[1];
     }
+    protected void upgradeText() {
+        rawDescription = CardCrawlGame.languagePack.getCardStrings(cardID).UPGRADE_DESCRIPTION;
+        initializeDescription();
+    }
+    protected int spendX(com.megacrit.cardcrawl.characters.AbstractPlayer p) {
+        int x = Math.max(0, energyOnUse < 0 ? com.megacrit.cardcrawl.ui.panels.EnergyPanel.totalCount : energyOnUse);
+        if (p.hasRelic("Chemical X")) { x += 2; p.getRelic("Chemical X").flash(); }
+        if (!freeToPlayOnce) p.energy.use(com.megacrit.cardcrawl.ui.panels.EnergyPanel.totalCount);
+        return x;
+    }
 }

@@ -1,10 +1,11 @@
 param(
-    [switch]$SkipBuild, [switch]$Debug, [switch]$SmokeTest,
+    [switch]$SkipBuild, [switch]$Debug, [switch]$SmokeTest, [switch]$CardBatchOnly,
     [ValidateRange(640, 7680)][int]$Width = 3840,
     [ValidateRange(480, 4320)][int]$Height = 2160,
     [switch]$Windowed
 )
 $ErrorActionPreference = 'Stop'
+if ($CardBatchOnly) { $SmokeTest = $true }
 $repo = Split-Path $PSScriptRoot -Parent
 if (-not $SkipBuild) { & "$PSScriptRoot/build.ps1" }
 $config = Get-Content "$repo/.local/config.json" -Raw | ConvertFrom-Json
@@ -22,6 +23,7 @@ $borderless = (-not $Windowed).ToString().ToLowerInvariant()
 $arguments = @('-Xmx1G', '-Dshadowpriest.playtest=true')
 if ($Debug) { $arguments += '-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005' }
 if ($SmokeTest) { $arguments += '-Dshadowpriest.smoketest=true' }
+if ($CardBatchOnly) { $arguments += '-Dshadowpriest.cardbatchonly=true' }
 if ($SmokeTest) { [IO.File]::WriteAllText("$run/smoke-results.txt", "RUNNING`n") }
 $mts = "$($config.steamApps)/workshop/content/646570/1605060445/ModTheSpire.jar"
 $arguments += @('-jar', ('"' + $mts + '"'), '--mods', 'basemod,stslib,shadowpriest', '--skip-intro')

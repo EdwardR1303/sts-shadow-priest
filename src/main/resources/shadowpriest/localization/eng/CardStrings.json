@@ -1,7 +1,75 @@
 {
-  "shadowpriest:MindSpike": {"NAME":"Mind Spike","DESCRIPTION":"Deal !D! damage."},
-  "shadowpriest:PowerWordShield": {"NAME":"Power Word: Shield","DESCRIPTION":"Gain !B! Block."},
-  "shadowpriest:VampiricTouch": {"NAME":"Vampiric Touch","DESCRIPTION":"Apply shadowpriest:Touch: !M! damage for !shadowpriest:Turns! turns. NL Ticks before the enemy acts. NL Reapplying refreshes."},
-  "shadowpriest:ShadowWordPain": {"NAME":"Shadow Word: Pain","DESCRIPTION":"Apply shadowpriest:Pain: !M! damage for !shadowpriest:Turns! turns. NL Ticks before the enemy acts. NL Reapplying refreshes."},
-  "shadowpriest:EnterVoidform": {"NAME":"Enter Voidform","DESCRIPTION":"Retain. NL Enter shadowpriest:Voidform. NL Exhaust."}
+  "shadowpriest:MindSpike": {
+    "NAME": "Mind Spike",
+    "DESCRIPTION": "Deal !D! damage."
+  },
+  "shadowpriest:PowerWordShield": {
+    "NAME": "Power Word: Shield",
+    "DESCRIPTION": "Gain !B! Block."
+  },
+  "shadowpriest:VampiricTouch": {
+    "NAME": "Vampiric Touch",
+    "DESCRIPTION": "Apply shadowpriest:Touch: !M! damage for !shadowpriest:Turns! turns. NL If played, return to your hand at turn end."
+  },
+  "shadowpriest:ShadowWordPain": {
+    "NAME": "Shadow Word: Pain",
+    "DESCRIPTION": "Apply shadowpriest:Pain: !M! damage for !shadowpriest:Turns! turns. NL If played, return to your hand at turn end."
+  },
+  "shadowpriest:EnterVoidform": {
+    "NAME": "Enter Voidform",
+    "DESCRIPTION": "Retain. NL Enter shadowpriest:Voidform. NL Exhaust."
+  },
+  "shadowpriest:Bulwark": {
+    "NAME": "Bulwark",
+    "DESCRIPTION": "Gain !B! Block. NL Block is not removed at the start of your next turn."
+  },
+  "shadowpriest:ShadowMend": {
+    "NAME": "Shadow Mend",
+    "DESCRIPTION": "Heal !M! HP. NL Increase this card's cost by 1 this combat."
+  },
+  "shadowpriest:Fade": {
+    "NAME": "Fade",
+    "DESCRIPTION": "Until your next turn, whenever you would lose HP, lose !M! less."
+  },
+  "shadowpriest:MindFlay": {
+    "NAME": "Mind Flay",
+    "DESCRIPTION": "Deal !D! damage !M! times."
+  },
+  "shadowpriest:ShadowWordDeath": {
+    "NAME": "Shadow Word: Death",
+    "DESCRIPTION": "Deal !D! damage. NL If the enemy is above !M!% HP before the hit, lose 3 HP if it loses HP.",
+    "UPGRADE_DESCRIPTION": "Deal !D! damage twice. NL Each hit: if the enemy is above !M!% HP before the hit, lose 3 HP if it loses HP."
+  },
+  "shadowpriest:MindBlast": {
+    "NAME": "Mind Blast",
+    "DESCRIPTION": "Deal !D! damage. NL Damage increases by !M! per unique DoT on the target."
+  },
+  "shadowpriest:Dispersion": {
+    "NAME": "Dispersion",
+    "DESCRIPTION": "Gain 1 Intangible. NL End your turn. NL Exhaust.",
+    "UPGRADE_DESCRIPTION": "Retain. NL Gain 1 Intangible. NL End your turn. NL Exhaust."
+  },
+  "shadowpriest:DesperatePrayer": {
+    "NAME": "Desperate Prayer",
+    "DESCRIPTION": "Before your next turn, heal HP lost to the next enemy Attack after taking damage. NL Does not prevent lethal damage."
+  },
+  "shadowpriest:Foresight": {
+    "NAME": "Foresight",
+    "DESCRIPTION": "Choose a Power from your draw pile and put it into your hand.",
+    "UPGRADE_DESCRIPTION": "Choose a Power from your draw pile and play it for free."
+  },
+  "shadowpriest:MindFlayInsanity": {
+    "NAME": "Mind Flay: Insanity",
+    "DESCRIPTION": "Extend all DoTs on the target by X turns. NL Deal !D! damage X times.",
+    "UPGRADE_DESCRIPTION": "Extend all DoTs on the target by X+1 turns. NL Deal !D! damage X+1 times."
+  },
+  "shadowpriest:MindSear": {
+    "NAME": "Mind Sear",
+    "DESCRIPTION": "Deal !D! damage to ALL enemies X times.",
+    "UPGRADE_DESCRIPTION": "Deal !D! damage to ALL enemies X+1 times."
+  },
+  "shadowpriest:PsychicLink": {
+    "NAME": "Psychic Link",
+    "DESCRIPTION": "Whenever you play an Attack, trigger shadowpriest:Touch damage on ALL afflicted enemies without reducing its duration."
+  }
 }

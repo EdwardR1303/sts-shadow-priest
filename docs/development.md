@@ -23,7 +23,7 @@ Build runs Maven `clean verify`, including unit tests for persistent accumulatio
 
 This starts only BaseMod, StSLib, and Shadow Priest in `.playtest/`, with a local game-JAR copy and separate saves/preferences. It does not change the regular ModTheSpire mod selection. Close the test game before rebuilding and relaunching.
 
-The display defaults to 3840 x 2160 borderless, 60 FPS, VSync. Override with `-Width 1920 -Height 1080 -Windowed` if desired. Select The Shadow Priest in a Standard run. The class has its custom ten-card deck and Voidform relic; rewards are temporarily Ironclad cards.
+The display defaults to 3840 x 2160 borderless, 60 FPS, VSync. Override with `-Width 1920 -Height 1080 -Windowed` if desired. Select The Shadow Priest in a Standard run. The class has its custom ten-card deck and Voidform relic; common/uncommon rewards use the 12 new Shadow Priest cards, while rares temporarily use Ironclad cards.
 
 Logs are `.playtest/console.log` and `.playtest/error.log`. The isolated game may report unavailable Steam integration; local combat can still run without achievements or cloud saves. BaseMod's console can be enabled through its in-game settings for manual card and encounter setup.
 
@@ -36,6 +36,14 @@ Logs are `.playtest/console.log` and `.playtest/error.log`. The isolated game ma
 This uses a separate `.smoketest/` session, starts a seeded run and controlled encounter, and exercises actual game actions. Leave the test window alone while it runs. The driver changes HP, hands, and powers in this disposable session, writes `.smoketest/smoke-results.txt`, and closes the game. `RUNNING` is not a successful result. See that directory's console/error logs if a check fails or the game crashes.
 
 These checks need the installed game and a working graphics session, so they are separate from ordinary Maven tests. The driver only runs with the `shadowpriest.smoketest` JVM property. Normal play never automatically starts a run or manipulates combat.
+
+The full suite currently covers 115 checks, including the starter mechanics and first reward-card batch. To run only the 73-check reward-card suite (including startup checks):
+
+```powershell
+./scripts/playtest.ps1 -SkipBuild -CardBatchOnly -Width 1920 -Height 1080 -Windowed
+```
+
+`-CardBatchOnly` implies `-SmokeTest` and uses the same disposable session and result file. Both suites exercise base/upgraded cards, real turn boundaries, card selection, multi-hit and area damage, and lethal damage handling.
 
 ## Debug and deploy
 

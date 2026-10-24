@@ -73,11 +73,15 @@ public class ShadowDotPower extends AbstractPower {
     }
     @Override public void atStartOfTurn() {
         if (amount <= 0 || owner.isDeadOrEscaped()) return;
+        bonusTick();
+        addToBot(new ReducePowerAction(owner, AbstractDungeon.player, this, 1));
+    }
+    public void bonusTick() {
+        if (amount <= 0 || owner.isDeadOrEscaped()) return;
         flashWithoutSound();
         // HP_LOSS skips attack calculations, so explicitly honor the monster's Intangible.
         int damage = owner.hasPower("Intangible") || owner.hasPower("IntangiblePlayer") ? 1 : damagePerTurn;
         addToBot(new DamageAction(owner, new DamageInfo(AbstractDungeon.player, damage, DamageInfo.DamageType.HP_LOSS), AbstractGameAction.AttackEffect.POISON));
-        addToBot(new ReducePowerAction(owner, AbstractDungeon.player, this, 1));
     }
     public static int count(AbstractCreature target) {
         if (target == null) return 0;

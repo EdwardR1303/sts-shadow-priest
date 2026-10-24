@@ -35,6 +35,15 @@ Accepted choices establish the current design baseline. Proposed defaults and un
 | D027 | Use WoW's Voidform icon for the starting relic, with a relic-shaped silhouette (October 23, 2026). | Adapt the icon into a transparent organic cutout, with padding for normal and enlarged relic displays. |
 | D028 | Provide a card-design template including rarity and upgrades (October 23, 2026). | Maintain a design-only JSON catalog, reusable template, local schema, and guide; complete base and upgraded states make proposed changes explicit. |
 
+## First reward-card batch on October 23 2026
+
+| ID | Choice | Consequence |
+| --- | --- | --- |
+| D029 | Implement and test the owner's reviewed 16-card Markdown draft while they continue designing. | Snapshot the current four basics and 12 reward cards; leave the working draft untouched. New rewards are six Common and six Uncommon cards; retain the temporary Ironclad rare pool until rares are designed. See [batch rules](card-batch-01.md). |
+| D030 | Differentiate basic DoTs and return them only after being played. | Touch is 5/7 damage for 3 turns; Pain is 3/5 for 5 turns. Neither upgrade increases duration. Played instances return after end-turn discard, subject to hand space and Exhaust. Supersedes D026. |
+| D031 | Keep Foresight reusable because its dead draws after Powers are gone are intentional. | Base tutors one Power for 0 energy; upgraded plays that Power for free. Neither version Exhausts or grants Retain. |
+| D032 | Use the revised defense, multihit, self-damage, and Psychic Link designs at their proposed rarities and values for the first test. | Preserve Shadow Mend's rising cost, Death's per-hit backlash, Dispersion's Retain upgrade, and Link's per-Attack bonus Touch tick. Implementation edge rules are documented for review rather than silently changing balance. |
+
 ## Activation proposal outcome on October 23 2026
 
 **P001: On-demand Voidform** became D017 following the owner's agreement that Exhaust is mandatory and that the class should prepare for a chosen burst turn. D019 subsequently authorized the first-playable defaults, including Skill as the card type, meter capping, one charge, and stopping generation during Voidform. [Prototype rules](prototype-rules.md) specify the implemented lifecycle.

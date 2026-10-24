@@ -50,9 +50,10 @@ public final class CombatSmokeTest {
     public static void update() {
         if (finished) return;
         try {
-            if (System.currentTimeMillis() - began > 180000) throw new AssertionError("Timed out waiting for engine; remaining steps: " + steps.size());
+            CardBatchSmokeTest.handleSelection();
+            if (System.currentTimeMillis() - began > 360000) throw new AssertionError("Timed out waiting for engine; remaining steps: " + steps.size());
             if (!started && CardCrawlGame.mainMenuScreen != null && CardCrawlGame.mode == CardCrawlGame.GameMode.CHAR_SELECT) {
-                started = true;
+                started = true; Settings.FAST_MODE = true;
                 Settings.seed = 123456789L; Settings.seedSet = true; Settings.isDailyRun = false; Settings.isTrial = false;
                 AbstractDungeon.isAscensionMode = false; AbstractDungeon.ascensionLevel = 0;
                 CardCrawlGame.chosenCharacter = ShadowPriest.Meta.SHADOW_PRIEST;
@@ -77,12 +78,12 @@ public final class CombatSmokeTest {
             if (AbstractDungeon.getCurrRoom().phase != AbstractRoom.RoomPhase.COMBAT) return;
             if (AbstractDungeon.actionManager.currentAction != null || !AbstractDungeon.actionManager.actions.isEmpty()
                 || !AbstractDungeon.actionManager.cardQueue.isEmpty() || !AbstractDungeon.actionManager.monsterQueue.isEmpty()
-                || AbstractDungeon.actionManager.turnHasEnded || AbstractDungeon.player.isEndingTurn
+                || AbstractDungeon.actionManager.turnHasEnded || AbstractDungeon.player.isEndingTurn || AbstractDungeon.player.endTurnQueued
                 || VoidformRelic.pendingCardDelivery()) return;
             delay += Gdx.graphics.getDeltaTime();
             if (delay < 0.15f) return;
             delay = 0;
-            if (!initialized) { initialize(); initialized = true; }
+            if (!initialized) { initialize(); initialized = true; return; }
             if (steps.isEmpty()) { finish(null); return; }
             steps.remove().run();
         } catch (Throwable failure) { finish(failure); }
@@ -95,6 +96,11 @@ public final class CombatSmokeTest {
         check(AbstractDungeon.commonCardPool.size() > 0 && AbstractDungeon.uncommonCardPool.size() > 0 && AbstractDungeon.rareCardPool.size() > 0, "Prototype reward pools are populated");
         p.hand.clear(); p.drawPile.clear(); p.discardPile.clear(); p.exhaustPile.clear(); p.limbo.clear();
         m.powers.clear(); m.maxHealth = m.currentHealth = 1000; p.maxHealth = p.currentHealth = 500; relic.reset();
+        if (Boolean.getBoolean("shadowpriest.cardbatchonly")) {
+            add(new SpawnMonsterAction(new Cultist(300f, 0f), false));
+            CardBatchSmokeTest.append(steps);
+            return;
+        }
         steps.add(() -> play(new VampiricTouch(), m));
         steps.add(() -> play(new ShadowWordPain(), m));
         steps.add(() -> {
@@ -106,22 +112,27 @@ public final class CombatSmokeTest {
             hp = m.currentHealth; tickDots();
         });
         steps.add(() -> {
-            check(m.currentHealth == hp - 10 && m.currentBlock == 40, "DoTs bypass Block and ignore Strength, Weak, and Vulnerable");
+            check(m.currentHealth == hp - 8 && m.currentBlock == 40, "DoTs bypass Block and ignore Strength, Weak, and Vulnerable");
             check(m.getPower(ShadowDotPower.TOUCH).amount == 2 && relic.state.amount() == 0, "DoTs reduce duration and generate no Insanity");
             p.powers.clear(); m.powers.removeIf(power -> !(power instanceof ShadowDotPower));
             hp = m.currentHealth; play(new VampiricTouch(), m);
         });
         steps.add(() -> {
-            check(m.getPower(ShadowDotPower.TOUCH).amount == 3 && m.getPower(ShadowDotPower.PAIN).amount == 2 && m.currentHealth == hp, "Reapplication refreshes only its own duration without ticking");
+            check(m.getPower(ShadowDotPower.TOUCH).amount == 3 && m.getPower(ShadowDotPower.PAIN).amount == 4 && m.currentHealth == hp, "Reapplication refreshes only its own duration without ticking");
             m.currentBlock = 0;
-            // Restore both durations so exactly three tick cycles can be checked.
+            // Restore both durations and verify their different expiry times.
             play(new ShadowWordPain(), m);
         });
         steps.add(() -> { hp = m.currentHealth; tickDots(); });
         steps.add(CombatSmokeTest::tickDots);
         steps.add(CombatSmokeTest::tickDots);
         steps.add(() -> {
-            check(m.currentHealth == hp - 30 && ShadowDotPower.count(m) == 0, "Both DoTs expire after exactly three 5-damage ticks");
+            check(m.currentHealth == hp - 24 && !m.hasPower(ShadowDotPower.TOUCH) && m.getPower(ShadowDotPower.PAIN).amount == 2, "Touch expires after three ticks while Pain has two turns left");
+            tickDots();
+        });
+        steps.add(CombatSmokeTest::tickDots);
+        steps.add(() -> {
+            check(m.currentHealth == hp - 30 && ShadowDotPower.count(m) == 0, "Base DoTs each deal 15 total damage over their own durations");
             add(new ApplyPowerAction(m, p, new ArtifactPower(m, 1), 1));
         });
         steps.add(() -> play(new VampiricTouch(), m));
@@ -135,6 +146,10 @@ public final class CombatSmokeTest {
         steps.add(() -> play(new MindSpike(), m));
         steps.add(() -> {
             check(relic.state.amount() == 6, "Three fully blocked Mind Spikes into two DoTs generate 6 Insanity");
+            // Earlier fixture applications created several different DoT card instances.
+            // Their return behavior is tested separately; keep this charge-delivery hand controlled.
+            shadowpriest.mechanics.ReturningDots.clear();
+            p.hand.clear();
             turn = com.megacrit.cardcrawl.actions.GameActionManager.turn;
             AbstractDungeon.overlayMenu.endTurnButton.disable(true); p.endTurnQueued = true;
         });
@@ -234,14 +249,14 @@ public final class CombatSmokeTest {
             }
             VampiricTouch touch = new VampiricTouch(); touch.upgrade();
             ShadowDotCard copy = (ShadowDotCard) touch.makeStatEquivalentCopy();
-            check(copy.magicNumber == 6 && copy.turns() == 4 && copy.cost == 1, "Upgraded DoT copies preserve 6 damage, 4 turns, and 1 energy");
+            check(copy.magicNumber == 7 && copy.turns() == 3 && copy.cost == 1, "Upgraded DoT copies preserve 7 damage, 3 turns, and 1 energy");
             play(touch, m);
         });
         steps.add(() -> { ShadowWordPain pain = new ShadowWordPain(); pain.upgrade(); play(pain, m); });
         steps.add(() -> {
-            check(dot(ShadowDotPower.TOUCH).damagePerTurn == 6 && dot(ShadowDotPower.TOUCH).amount == 4
-                && dot(ShadowDotPower.PAIN).damagePerTurn == 6 && dot(ShadowDotPower.PAIN).amount == 4,
-                "Both upgraded DoTs apply 6 damage for 4 turns");
+            check(dot(ShadowDotPower.TOUCH).damagePerTurn == 7 && dot(ShadowDotPower.TOUCH).amount == 3
+                && dot(ShadowDotPower.PAIN).damagePerTurn == 5 && dot(ShadowDotPower.PAIN).amount == 5,
+                "Upgraded Touch is 7 x 3 and upgraded Pain is 5 x 5");
             p.powers.add(new StrengthPower(p, 10)); p.powers.add(new WeakPower(p, 2, false));
             m.powers.add(new VulnerablePower(m, 2, false)); m.currentBlock = 40;
             hp = m.currentHealth; tickDots();
@@ -249,15 +264,16 @@ public final class CombatSmokeTest {
         steps.add(CombatSmokeTest::tickDots);
         steps.add(CombatSmokeTest::tickDots);
         steps.add(CombatSmokeTest::tickDots);
+        steps.add(CombatSmokeTest::tickDots);
         steps.add(() -> {
-            check(m.currentHealth == hp - 48 && m.currentBlock == 40 && ShadowDotPower.count(m) == 0 && relic.state.amount() == 0,
-                "Upgraded DoTs deal four fixed 6-damage ticks each, then expire");
+            check(m.currentHealth == hp - 46 && m.currentBlock == 40 && ShadowDotPower.count(m) == 0 && relic.state.amount() == 0,
+                "Upgraded DoTs deal 21 plus 25 fixed damage, then expire");
             p.powers.clear(); m.powers.clear(); m.currentBlock = 0;
             play(new VampiricTouch(), m);
         });
         steps.add(() -> { VampiricTouch touch = new VampiricTouch(); touch.upgrade(); play(touch, m); });
         steps.add(() -> {
-            check(dot(ShadowDotPower.TOUCH).damagePerTurn == 6 && dot(ShadowDotPower.TOUCH).amount == 4,
+            check(dot(ShadowDotPower.TOUCH).damagePerTurn == 7 && dot(ShadowDotPower.TOUCH).amount == 3,
                 "Upgraded reapplication replaces base tick damage and duration");
             play(new VampiricTouch(), m);
         });
@@ -273,8 +289,9 @@ public final class CombatSmokeTest {
             ShadowWordPain pain = new ShadowWordPain(); pain.upgrade(); play(pain, m);
         });
         steps.add(() -> { hp = m.currentHealth; tickDots(); });
-        steps.add(() -> check(m.currentHealth == hp - 11 && dot(ShadowDotPower.TOUCH).damagePerTurn == 5 && dot(ShadowDotPower.PAIN).damagePerTurn == 6,
+        steps.add(() -> check(m.currentHealth == hp - 10 && dot(ShadowDotPower.TOUCH).damagePerTurn == 5 && dot(ShadowDotPower.PAIN).damagePerTurn == 5,
             "Mixed base and upgraded DoTs retain independent tick damage"));
+        CardBatchSmokeTest.append(steps);
     }
 
     private static ShadowDotPower dot(String id) { return (ShadowDotPower) m.getPower(id); }
@@ -293,11 +310,11 @@ public final class CombatSmokeTest {
         return null;
     }
     private static void add(AbstractGameAction a) { AbstractDungeon.actionManager.addToBottom(a); }
-    private static void check(boolean condition, String label) {
+    static void check(boolean condition, String label) {
         if (!condition) throw new AssertionError(label);
         results.add("PASS: " + label); System.out.println("SHADOWTEST PASS: " + label);
     }
-    private static void finish(Throwable failure) {
+    static void finish(Throwable failure) {
         finished = true;
         if (failure != null) { results.add("FAIL: " + failure); failure.printStackTrace(); }
         results.add(failure == null ? "ALL CHECKS PASSED" : "FAILED");

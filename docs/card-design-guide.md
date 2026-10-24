@@ -1,6 +1,6 @@
 # Designing cards
 
-Start in [design/cards.json](../design/cards.json). It contains the four implemented starters and the generated Enter Voidform card as worked examples. Copy the object inside `cards` from [card-template.json](../design/card-template.json), paste it at the end of the catalog's `cards` array, and change its ID and name. The template's Block values are examples, not an approved new card.
+Start in [design/cards.json](../design/cards.json). It contains the four implemented starters, 12 reward cards, and the generated Enter Voidform card as worked examples. The owner can also write ideas in plain English in their working cards.md file; reviewed batches are translated into this catalog before implementation. Copy the object inside `cards` from [card-template.json](../design/card-template.json), paste it at the end of the catalog's `cards` array, and change its ID and name. The template's Block values are examples, not an approved new card.
 
 These files are design documents. They do not automatically add cards to the game; approved designs still need Java implementation, localization, art, and testing. The implemented examples describe the current prototype, while new entries start as `DRAFT`.
 

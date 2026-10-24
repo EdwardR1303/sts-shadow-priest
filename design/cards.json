@@ -116,29 +116,29 @@
       "base": {
         "cost": 1,
         "target": "ENEMY",
-        "text": "Apply Touch: 5 damage for 3 turns. Ticks before the enemy acts. Reapplying refreshes.",
+        "text": "Apply Touch: 5 damage for 3 turns. If played, return this card to your hand at turn end.",
         "stats": {
           "tickDamage": 5,
           "duration": 3
         },
         "keywords": [],
         "effects": [
-          "Apply Touch: 5 damage for 3 turns. Ticks before the enemy acts. Reapplying refreshes."
+          "Apply Touch: 5 damage for 3 turns. If played, return this card to your hand at turn end."
         ]
       },
       "upgrade": {
-        "summary": "+1 damage per tick and +1 turn (15 total becomes 24).",
+        "summary": "+2 damage per tick; duration is unchanged.",
         "card": {
           "cost": 1,
           "target": "ENEMY",
-          "text": "Apply Touch: 6 damage for 4 turns. Ticks before the enemy acts. Reapplying refreshes.",
+          "text": "Apply Touch: 7 damage for 3 turns. If played, return this card to your hand at turn end.",
           "stats": {
-            "tickDamage": 6,
-            "duration": 4
+            "tickDamage": 7,
+            "duration": 3
           },
           "keywords": [],
           "effects": [
-            "Apply Touch: 6 damage for 4 turns. Ticks before the enemy acts. Reapplying refreshes."
+            "Apply Touch: 7 damage for 3 turns. If played, return this card to your hand at turn end."
           ]
         }
       },
@@ -147,9 +147,11 @@
         "Reapplication replaces damage AND duration with the played card's values; values do not stack.",
         "HP-loss ticks bypass Block and ignore Strength, Weak, Vulnerable and Voidform. Enemy damage hooks such as Intangible still apply.",
         "Artifact blocks application and refresh.",
-        "Each of Touch and Pain counts as one unique DoT for Insanity. Ticks do not generate Insanity."
+        "Each of Touch and Pain counts as one unique DoT for Insanity. Ticks do not generate Insanity.",
+        "Only played copies return, after end-turn discard. Unplayed cards discard normally; exhausted cards stay exhausted. Full hands leave the returning copy in discard.",
+        "Implementation edge cases: docs/card-batch-01.md."
       ],
-      "balanceNotes": "Prototype values; balance is subject to playtesting.",
+      "balanceNotes": "Touch deals 15/21 total over 3 turns; Pain deals 15/25 total over 5 turns. Returns enable repeated application and multi-target setup.",
       "art": {
         "wowAbility": "Vampiric Touch",
         "icon": "spell_holy_stoicism",
@@ -171,29 +173,29 @@
       "base": {
         "cost": 1,
         "target": "ENEMY",
-        "text": "Apply Pain: 5 damage for 3 turns. Ticks before the enemy acts. Reapplying refreshes.",
+        "text": "Apply Pain: 3 damage for 5 turns. If played, return this card to your hand at turn end.",
         "stats": {
-          "tickDamage": 5,
-          "duration": 3
+          "tickDamage": 3,
+          "duration": 5
         },
         "keywords": [],
         "effects": [
-          "Apply Pain: 5 damage for 3 turns. Ticks before the enemy acts. Reapplying refreshes."
+          "Apply Pain: 3 damage for 5 turns. If played, return this card to your hand at turn end."
         ]
       },
       "upgrade": {
-        "summary": "+1 damage per tick and +1 turn (15 total becomes 24).",
+        "summary": "+2 damage per tick; duration is unchanged.",
         "card": {
           "cost": 1,
           "target": "ENEMY",
-          "text": "Apply Pain: 6 damage for 4 turns. Ticks before the enemy acts. Reapplying refreshes.",
+          "text": "Apply Pain: 5 damage for 5 turns. If played, return this card to your hand at turn end.",
           "stats": {
-            "tickDamage": 6,
-            "duration": 4
+            "tickDamage": 5,
+            "duration": 5
           },
           "keywords": [],
           "effects": [
-            "Apply Pain: 6 damage for 4 turns. Ticks before the enemy acts. Reapplying refreshes."
+            "Apply Pain: 5 damage for 5 turns. If played, return this card to your hand at turn end."
           ]
         }
       },
@@ -202,9 +204,11 @@
         "Reapplication replaces damage AND duration with the played card's values; values do not stack.",
         "HP-loss ticks bypass Block and ignore Strength, Weak, Vulnerable and Voidform. Enemy damage hooks such as Intangible still apply.",
         "Artifact blocks application and refresh.",
-        "Each of Touch and Pain counts as one unique DoT for Insanity. Ticks do not generate Insanity."
+        "Each of Touch and Pain counts as one unique DoT for Insanity. Ticks do not generate Insanity.",
+        "Only played copies return, after end-turn discard. Unplayed cards discard normally; exhausted cards stay exhausted. Full hands leave the returning copy in discard.",
+        "Implementation edge cases: docs/card-batch-01.md."
       ],
-      "balanceNotes": "Prototype values; balance is subject to playtesting.",
+      "balanceNotes": "Touch deals 15/21 total over 3 turns; Pain deals 15/25 total over 5 turns. Returns enable repeated application and multi-target setup.",
       "art": {
         "wowAbility": "Shadow Word: Pain",
         "icon": "spell_shadow_shadowwordpain",
@@ -248,6 +252,613 @@
         "wowAbility": "Voidform",
         "icon": "",
         "direction": "Generated card still uses placeholder art."
+      }
+    },
+    {
+      "id": "shadowpriest:Bulwark",
+      "name": "Bulwark",
+      "status": "IMPLEMENTED",
+      "type": "SKILL",
+      "rarity": "COMMON",
+      "sources": [
+        "REWARD_POOL"
+      ],
+      "startingCopies": 0,
+      "tags": [],
+      "designIntent": "Bank defense before a burst turn.",
+      "base": {
+        "cost": 2,
+        "target": "SELF",
+        "text": "Gain 10 Block and 1 Blur.",
+        "stats": {
+          "block": 10,
+          "blur": 1
+        },
+        "keywords": [],
+        "effects": [
+          "Gain 10 Block and 1 Blur."
+        ]
+      },
+      "upgrade": {
+        "summary": "+5 Block.",
+        "card": {
+          "cost": 2,
+          "target": "SELF",
+          "text": "Gain 15 Block and 1 Blur.",
+          "stats": {
+            "block": 15,
+            "blur": 1
+          },
+          "keywords": [],
+          "effects": [
+            "Gain 15 Block and 1 Blur."
+          ]
+        }
+      },
+      "rulesNotes": [
+        "Implementation edge cases: docs/card-batch-01.md."
+      ],
+      "balanceNotes": "First reward-card batch; numbers require human full-run balance testing.",
+      "art": {
+        "wowAbility": "Bulwark",
+        "icon": "",
+        "direction": "Temporary prototype portrait; ability artwork remains future work."
+      }
+    },
+    {
+      "id": "shadowpriest:ShadowMend",
+      "name": "Shadow Mend",
+      "status": "IMPLEMENTED",
+      "type": "SKILL",
+      "rarity": "COMMON",
+      "sources": [
+        "REWARD_POOL"
+      ],
+      "startingCopies": 0,
+      "tags": [],
+      "designIntent": "Recover health at an increasing energy cost.",
+      "base": {
+        "cost": 1,
+        "target": "SELF",
+        "text": "Heal 6 HP. Increase this card's cost by 1 this combat.",
+        "stats": {
+          "heal": 6,
+          "costIncrease": 1
+        },
+        "keywords": [],
+        "effects": [
+          "Heal 6 HP. Increase this card's cost by 1 this combat."
+        ]
+      },
+      "upgrade": {
+        "summary": "+3 healing.",
+        "card": {
+          "cost": 1,
+          "target": "SELF",
+          "text": "Heal 9 HP. Increase this card's cost by 1 this combat.",
+          "stats": {
+            "heal": 9,
+            "costIncrease": 1
+          },
+          "keywords": [],
+          "effects": [
+            "Heal 9 HP. Increase this card's cost by 1 this combat."
+          ]
+        }
+      },
+      "rulesNotes": [
+        "Implementation edge cases: docs/card-batch-01.md."
+      ],
+      "balanceNotes": "First reward-card batch; numbers require human full-run balance testing.",
+      "art": {
+        "wowAbility": "Shadow Mend",
+        "icon": "",
+        "direction": "Temporary prototype portrait; ability artwork remains future work."
+      }
+    },
+    {
+      "id": "shadowpriest:Fade",
+      "name": "Fade",
+      "status": "IMPLEMENTED",
+      "type": "SKILL",
+      "rarity": "COMMON",
+      "sources": [
+        "REWARD_POOL"
+      ],
+      "startingCopies": 0,
+      "tags": [],
+      "designIntent": "Mitigate repeated small hits and self-damage.",
+      "base": {
+        "cost": 1,
+        "target": "SELF",
+        "text": "Until your next turn, whenever you would lose HP, lose 1 less.",
+        "stats": {
+          "reduction": 1
+        },
+        "keywords": [],
+        "effects": [
+          "Until your next turn, whenever you would lose HP, lose 1 less."
+        ]
+      },
+      "upgrade": {
+        "summary": "+1 HP-loss reduction.",
+        "card": {
+          "cost": 1,
+          "target": "SELF",
+          "text": "Until your next turn, whenever you would lose HP, lose 2 less.",
+          "stats": {
+            "reduction": 2
+          },
+          "keywords": [],
+          "effects": [
+            "Until your next turn, whenever you would lose HP, lose 2 less."
+          ]
+        }
+      },
+      "rulesNotes": [
+        "Implementation edge cases: docs/card-batch-01.md."
+      ],
+      "balanceNotes": "First reward-card batch; numbers require human full-run balance testing.",
+      "art": {
+        "wowAbility": "Fade",
+        "icon": "",
+        "direction": "Temporary prototype portrait; ability artwork remains future work."
+      }
+    },
+    {
+      "id": "shadowpriest:MindFlay",
+      "name": "Mind Flay",
+      "status": "IMPLEMENTED",
+      "type": "ATTACK",
+      "rarity": "COMMON",
+      "sources": [
+        "REWARD_POOL"
+      ],
+      "startingCopies": 0,
+      "tags": [],
+      "designIntent": "Generate Insanity through multiple hits.",
+      "base": {
+        "cost": 1,
+        "target": "ENEMY",
+        "text": "Deal 2 damage 3 times.",
+        "stats": {
+          "damage": 2,
+          "hits": 3
+        },
+        "keywords": [],
+        "effects": [
+          "Deal 2 damage 3 times."
+        ]
+      },
+      "upgrade": {
+        "summary": "+1 hit.",
+        "card": {
+          "cost": 1,
+          "target": "ENEMY",
+          "text": "Deal 2 damage 4 times.",
+          "stats": {
+            "damage": 2,
+            "hits": 4
+          },
+          "keywords": [],
+          "effects": [
+            "Deal 2 damage 4 times."
+          ]
+        }
+      },
+      "rulesNotes": [
+        "Implementation edge cases: docs/card-batch-01.md."
+      ],
+      "balanceNotes": "First reward-card batch; numbers require human full-run balance testing.",
+      "art": {
+        "wowAbility": "Mind Flay",
+        "icon": "",
+        "direction": "Temporary prototype portrait; ability artwork remains future work."
+      }
+    },
+    {
+      "id": "shadowpriest:ShadowWordDeath",
+      "name": "Shadow Word: Death",
+      "status": "IMPLEMENTED",
+      "type": "ATTACK",
+      "rarity": "COMMON",
+      "sources": [
+        "REWARD_POOL"
+      ],
+      "startingCopies": 0,
+      "tags": [],
+      "designIntent": "Trade health for immediate damage; execute wounded enemies safely.",
+      "base": {
+        "cost": 0,
+        "target": "ENEMY",
+        "text": "Deal 10 damage. If the enemy was above 20% HP before the hit, lose 3 HP if the hit removes enemy HP.",
+        "stats": {
+          "damage": 10,
+          "hits": 1,
+          "healthThresholdPercent": 20,
+          "backlash": 3
+        },
+        "keywords": [],
+        "effects": [
+          "Deal 10 damage. If the enemy was above 20% HP before the hit, lose 3 HP if the hit removes enemy HP."
+        ]
+      },
+      "upgrade": {
+        "summary": "A second hit; threshold rises to 30%.",
+        "card": {
+          "cost": 0,
+          "target": "ENEMY",
+          "text": "Deal 10 damage twice. Each hit: if the enemy was above 30% HP before the hit, lose 3 HP if it removes enemy HP.",
+          "stats": {
+            "damage": 10,
+            "hits": 2,
+            "healthThresholdPercent": 30,
+            "backlash": 3
+          },
+          "keywords": [],
+          "effects": [
+            "Deal 10 damage twice. Each hit: if the enemy was above 30% HP before the hit, lose 3 HP if it removes enemy HP."
+          ]
+        }
+      },
+      "rulesNotes": [
+        "Implementation edge cases: docs/card-batch-01.md."
+      ],
+      "balanceNotes": "First reward-card batch; numbers require human full-run balance testing.",
+      "art": {
+        "wowAbility": "Shadow Word: Death",
+        "icon": "",
+        "direction": "Temporary prototype portrait; ability artwork remains future work."
+      }
+    },
+    {
+      "id": "shadowpriest:MindBlast",
+      "name": "Mind Blast",
+      "status": "IMPLEMENTED",
+      "type": "ATTACK",
+      "rarity": "COMMON",
+      "sources": [
+        "REWARD_POOL"
+      ],
+      "startingCopies": 0,
+      "tags": [],
+      "designIntent": "Convert distinct DoT setup into direct burst damage.",
+      "base": {
+        "cost": 1,
+        "target": "ENEMY",
+        "text": "Deal 8 damage plus 2 for each unique DoT on the target.",
+        "stats": {
+          "damage": 8,
+          "bonusPerDot": 2
+        },
+        "keywords": [],
+        "effects": [
+          "Deal 8 damage plus 2 for each unique DoT on the target."
+        ]
+      },
+      "upgrade": {
+        "summary": "+2 base damage and +1 damage per DoT.",
+        "card": {
+          "cost": 1,
+          "target": "ENEMY",
+          "text": "Deal 10 damage plus 3 for each unique DoT on the target.",
+          "stats": {
+            "damage": 10,
+            "bonusPerDot": 3
+          },
+          "keywords": [],
+          "effects": [
+            "Deal 10 damage plus 3 for each unique DoT on the target."
+          ]
+        }
+      },
+      "rulesNotes": [
+        "Implementation edge cases: docs/card-batch-01.md."
+      ],
+      "balanceNotes": "First reward-card batch; numbers require human full-run balance testing.",
+      "art": {
+        "wowAbility": "Mind Blast",
+        "icon": "",
+        "direction": "Temporary prototype portrait; ability artwork remains future work."
+      }
+    },
+    {
+      "id": "shadowpriest:Dispersion",
+      "name": "Dispersion",
+      "status": "IMPLEMENTED",
+      "type": "SKILL",
+      "rarity": "UNCOMMON",
+      "sources": [
+        "REWARD_POOL"
+      ],
+      "startingCopies": 0,
+      "tags": [],
+      "designIntent": "Hold an emergency defensive cooldown.",
+      "base": {
+        "cost": 2,
+        "target": "SELF",
+        "text": "Gain 1 Intangible. End your turn. Exhaust.",
+        "stats": {
+          "intangible": 1
+        },
+        "keywords": [
+          "EXHAUST"
+        ],
+        "effects": [
+          "Gain 1 Intangible. End your turn. Exhaust."
+        ]
+      },
+      "upgrade": {
+        "summary": "Gain Retain.",
+        "card": {
+          "cost": 2,
+          "target": "SELF",
+          "text": "Retain. Gain 1 Intangible. End your turn. Exhaust.",
+          "stats": {
+            "intangible": 1
+          },
+          "keywords": [
+            "RETAIN",
+            "EXHAUST"
+          ],
+          "effects": [
+            "Retain. Gain 1 Intangible. End your turn. Exhaust."
+          ]
+        }
+      },
+      "rulesNotes": [
+        "Implementation edge cases: docs/card-batch-01.md."
+      ],
+      "balanceNotes": "First reward-card batch; numbers require human full-run balance testing.",
+      "art": {
+        "wowAbility": "Dispersion",
+        "icon": "",
+        "direction": "Temporary prototype portrait; ability artwork remains future work."
+      }
+    },
+    {
+      "id": "shadowpriest:DesperatePrayer",
+      "name": "Desperate Prayer",
+      "status": "IMPLEMENTED",
+      "type": "SKILL",
+      "rarity": "UNCOMMON",
+      "sources": [
+        "REWARD_POOL"
+      ],
+      "startingCopies": 0,
+      "tags": [],
+      "designIntent": "Recover from one anticipated nonlethal hit.",
+      "base": {
+        "cost": 1,
+        "target": "SELF",
+        "text": "Before your next turn, heal HP lost to the next enemy Attack after taking damage. Does not prevent lethal damage.",
+        "stats": {},
+        "keywords": [],
+        "effects": [
+          "Before your next turn, heal HP lost to the next enemy Attack after taking damage. Does not prevent lethal damage."
+        ]
+      },
+      "upgrade": {
+        "summary": "Cost reduced to 0.",
+        "card": {
+          "cost": 0,
+          "target": "SELF",
+          "text": "Before your next turn, heal HP lost to the next enemy Attack after taking damage. Does not prevent lethal damage.",
+          "stats": {},
+          "keywords": [],
+          "effects": [
+            "Before your next turn, heal HP lost to the next enemy Attack after taking damage. Does not prevent lethal damage."
+          ]
+        }
+      },
+      "rulesNotes": [
+        "Implementation edge cases: docs/card-batch-01.md."
+      ],
+      "balanceNotes": "First reward-card batch; numbers require human full-run balance testing.",
+      "art": {
+        "wowAbility": "Desperate Prayer",
+        "icon": "",
+        "direction": "Temporary prototype portrait; ability artwork remains future work."
+      }
+    },
+    {
+      "id": "shadowpriest:Foresight",
+      "name": "Foresight",
+      "status": "IMPLEMENTED",
+      "type": "SKILL",
+      "rarity": "UNCOMMON",
+      "sources": [
+        "REWARD_POOL"
+      ],
+      "startingCopies": 0,
+      "tags": [],
+      "designIntent": "Find a setup Power; becomes a dead draw after eligible Powers are gone.",
+      "base": {
+        "cost": 0,
+        "target": "NONE",
+        "text": "Choose a Power from your draw pile and put it into your hand.",
+        "stats": {
+          "selectedCards": 1
+        },
+        "keywords": [],
+        "effects": [
+          "Choose a Power from your draw pile and put it into your hand."
+        ]
+      },
+      "upgrade": {
+        "summary": "Play the chosen Power for free instead.",
+        "card": {
+          "cost": 0,
+          "target": "NONE",
+          "text": "Choose a Power from your draw pile and play it for free.",
+          "stats": {
+            "selectedCards": 1
+          },
+          "keywords": [],
+          "effects": [
+            "Choose a Power from your draw pile and play it for free."
+          ]
+        }
+      },
+      "rulesNotes": [
+        "Implementation edge cases: docs/card-batch-01.md."
+      ],
+      "balanceNotes": "First reward-card batch; numbers require human full-run balance testing.",
+      "art": {
+        "wowAbility": "Foresight",
+        "icon": "",
+        "direction": "Temporary prototype portrait; ability artwork remains future work."
+      }
+    },
+    {
+      "id": "shadowpriest:MindFlayInsanity",
+      "name": "Mind Flay: Insanity",
+      "status": "IMPLEMENTED",
+      "type": "ATTACK",
+      "rarity": "UNCOMMON",
+      "sources": [
+        "REWARD_POOL"
+      ],
+      "startingCopies": 0,
+      "tags": [],
+      "designIntent": "Spend remaining energy to maintain DoTs and generate Insanity.",
+      "base": {
+        "cost": "X",
+        "target": "ENEMY",
+        "text": "Extend all DoTs on the target by X turns. Deal 4 damage X times.",
+        "stats": {
+          "damage": 4,
+          "xBonus": 0
+        },
+        "keywords": [],
+        "effects": [
+          "Extend all DoTs on the target by X turns. Deal 4 damage X times."
+        ]
+      },
+      "upgrade": {
+        "summary": "+1 duration extension and hit.",
+        "card": {
+          "cost": "X",
+          "target": "ENEMY",
+          "text": "Extend all DoTs on the target by X+1 turns. Deal 4 damage X+1 times.",
+          "stats": {
+            "damage": 4,
+            "xBonus": 1
+          },
+          "keywords": [],
+          "effects": [
+            "Extend all DoTs on the target by X+1 turns. Deal 4 damage X+1 times."
+          ]
+        }
+      },
+      "rulesNotes": [
+        "Implementation edge cases: docs/card-batch-01.md."
+      ],
+      "balanceNotes": "First reward-card batch; numbers require human full-run balance testing.",
+      "art": {
+        "wowAbility": "Mind Flay: Insanity",
+        "icon": "",
+        "direction": "Temporary prototype portrait; ability artwork remains future work."
+      }
+    },
+    {
+      "id": "shadowpriest:MindSear",
+      "name": "Mind Sear",
+      "status": "IMPLEMENTED",
+      "type": "ATTACK",
+      "rarity": "UNCOMMON",
+      "sources": [
+        "REWARD_POOL"
+      ],
+      "startingCopies": 0,
+      "tags": [],
+      "designIntent": "Area damage and Insanity generation from multiple afflicted enemies.",
+      "base": {
+        "cost": "X",
+        "target": "ALL_ENEMY",
+        "text": "Deal 3 damage to all enemies X times.",
+        "stats": {
+          "damage": 3,
+          "xBonus": 0
+        },
+        "keywords": [],
+        "effects": [
+          "Deal 3 damage to all enemies X times."
+        ]
+      },
+      "upgrade": {
+        "summary": "+1 hit on every enemy.",
+        "card": {
+          "cost": "X",
+          "target": "ALL_ENEMY",
+          "text": "Deal 3 damage to all enemies X+1 times.",
+          "stats": {
+            "damage": 3,
+            "xBonus": 1
+          },
+          "keywords": [],
+          "effects": [
+            "Deal 3 damage to all enemies X+1 times."
+          ]
+        }
+      },
+      "rulesNotes": [
+        "Implementation edge cases: docs/card-batch-01.md."
+      ],
+      "balanceNotes": "First reward-card batch; numbers require human full-run balance testing.",
+      "art": {
+        "wowAbility": "Mind Sear",
+        "icon": "",
+        "direction": "Temporary prototype portrait; ability artwork remains future work."
+      }
+    },
+    {
+      "id": "shadowpriest:PsychicLink",
+      "name": "Psychic Link",
+      "status": "IMPLEMENTED",
+      "type": "POWER",
+      "rarity": "UNCOMMON",
+      "sources": [
+        "REWARD_POOL"
+      ],
+      "startingCopies": 0,
+      "tags": [],
+      "designIntent": "Reward spreading Touch and playing several Attack cards.",
+      "base": {
+        "cost": 2,
+        "target": "SELF",
+        "text": "Whenever you play an Attack, trigger Vampiric Touch damage on all afflicted enemies without reducing its duration.",
+        "stats": {
+          "triggersPerAttack": 1
+        },
+        "keywords": [],
+        "effects": [
+          "Whenever you play an Attack, trigger Vampiric Touch damage on all afflicted enemies without reducing its duration."
+        ]
+      },
+      "upgrade": {
+        "summary": "Cost reduced to 1.",
+        "card": {
+          "cost": 1,
+          "target": "SELF",
+          "text": "Whenever you play an Attack, trigger Vampiric Touch damage on all afflicted enemies without reducing its duration.",
+          "stats": {
+            "triggersPerAttack": 1
+          },
+          "keywords": [],
+          "effects": [
+            "Whenever you play an Attack, trigger Vampiric Touch damage on all afflicted enemies without reducing its duration."
+          ]
+        }
+      },
+      "rulesNotes": [
+        "Implementation edge cases: docs/card-batch-01.md."
+      ],
+      "balanceNotes": "First reward-card batch; numbers require human full-run balance testing.",
+      "art": {
+        "wowAbility": "Psychic Link",
+        "icon": "",
+        "direction": "Temporary prototype portrait; ability artwork remains future work."
       }
     }
   ]

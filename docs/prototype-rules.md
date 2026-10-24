@@ -10,17 +10,17 @@ Template defaults: 70 HP, 3 energy, 5 cards drawn each turn, 99 gold, no orb slo
 | --- | --- | --- | --- | --- | --- |
 | Mind Spike | 4 | Attack | 1 | Deal 6 damage. | 9 damage |
 | Power Word: Shield | 4 | Skill | 1 | Gain 5 Block. | 8 Block |
-| Vampiric Touch | 1 | Skill | 1 | Touch: 5 damage per tick for 3 turns. | 6 damage per tick for 4 turns |
-| Shadow Word: Pain | 1 | Skill | 1 | Pain: 5 damage per tick for 3 turns. | 6 damage per tick for 4 turns |
+| Vampiric Touch | 1 | Skill | 1 | Touch: 5 damage per tick for 3 turns. | 7 damage per tick for 3 turns |
+| Shadow Word: Pain | 1 | Skill | 1 | Pain: 3 damage per tick for 5 turns. | 5 damage per tick for 5 turns |
 | Enter Voidform | Generated | Skill | 0 | Retain. Enter Voidform. Exhaust. | Cannot upgrade |
 
-Simple upgrades keep campfires and events usable during testing. Neither DoT heals. Shop and reward cards temporarily use the Ironclad pool so the prototype can continue beyond the first fight. These are not the final class rewards.
+Neither DoT heals. Played DoT cards return to hand after end-turn discard; unplayed cards discard normally. Common and uncommon rewards now contain six Shadow Priest cards each. Rares temporarily use the Ironclad pool until class rares are designed. See [the first reward-card batch](card-batch-01.md) for all 12 new cards and their edge cases.
 
 ## Damage over time
 
 - Touch and Pain coexist with independent duration counters.
-- Each deals 5 HP-loss damage (6 when upgraded) before the enemy acts, then loses one remaining turn. The first tick occurs on the next enemy turn after application, not immediately on play. Base total: 15 over 3 ticks; upgraded total: 24 over 4 ticks.
-- Reapplication replaces damage and duration with the played card's values. It does not add damage or duration or trigger a tick. A base application replaces an upgraded effect with 5 damage for 3 turns; an upgraded application replaces a base effect with 6 damage for 4 turns.
+- Touch deals 5/7 HP-loss damage for 3 turns; Pain deals 3/5 for 5 turns. Each ticks before the enemy acts, then loses one remaining turn. The first tick is on the next enemy turn, not immediately on play. Each base DoT totals 15; upgraded Touch totals 21 and upgraded Pain totals 25. Upgrades do not extend duration.
+- Reapplication replaces damage and duration with the played card's values. It does not add values or trigger a tick. Base cards can replace stronger upgraded effects, and reapplication can shorten a duration extended by Mind Flay: Insanity.
 - Damage bypasses Block and ignores Strength, Weak, Vulnerable, and Voidform. Enemy damage hooks, including Intangible, still apply.
 - Artifact blocks application or refresh.
 - Only Touch and Pain count toward the unique-DoT total. Poison and other mods' debuffs do not count.
