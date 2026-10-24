@@ -118,9 +118,10 @@ public final class CombatSmokeTest {
             hp = m.currentHealth; play(new VampiricTouch(), m);
         });
         steps.add(() -> {
-            check(m.getPower(ShadowDotPower.TOUCH).amount == 3 && m.getPower(ShadowDotPower.PAIN).amount == 4 && m.currentHealth == hp, "Reapplication refreshes only its own duration without ticking");
+            check(m.getPower(ShadowDotPower.TOUCH).amount == 5 && m.getPower(ShadowDotPower.PAIN).amount == 4 && m.currentHealth == hp, "Reapplication adds only its own duration up to five without ticking");
             m.currentBlock = 0;
-            // Restore both durations and verify their different expiry times.
+            // Restore the base-duration fixture after testing capped reapplication.
+            m.getPower(ShadowDotPower.TOUCH).amount = 3;
             play(new ShadowWordPain(), m);
         });
         steps.add(() -> { hp = m.currentHealth; tickDots(); });
@@ -250,14 +251,14 @@ public final class CombatSmokeTest {
             }
             VampiricTouch touch = new VampiricTouch(); touch.upgrade();
             ShadowDotCard copy = (ShadowDotCard) touch.makeStatEquivalentCopy();
-            check(copy.magicNumber == 7 && copy.turns() == 3 && copy.cost == 1, "Upgraded DoT copies preserve 7 damage, 3 turns, and 1 energy");
+            check(copy.magicNumber == 5 && copy.turns() == 4 && copy.cost == 1, "Upgraded DoT copies preserve 5 damage, 4 turns, and 1 energy");
             play(touch, m);
         });
         steps.add(() -> { ShadowWordPain pain = new ShadowWordPain(); pain.upgrade(); play(pain, m); });
         steps.add(() -> {
-            check(dot(ShadowDotPower.TOUCH).damagePerTurn == 7 && dot(ShadowDotPower.TOUCH).amount == 3
-                && dot(ShadowDotPower.PAIN).damagePerTurn == 5 && dot(ShadowDotPower.PAIN).amount == 5,
-                "Upgraded Touch is 7 x 3 and upgraded Pain is 5 x 5");
+            check(dot(ShadowDotPower.TOUCH).damagePerTurn == 5 && dot(ShadowDotPower.TOUCH).amount == 4
+                && dot(ShadowDotPower.PAIN).damagePerTurn == 3 && dot(ShadowDotPower.PAIN).amount == 5,
+                "Upgraded Touch is 5 x 4 and upgraded Pain is 3 x 5");
             p.powers.add(new StrengthPower(p, 10)); p.powers.add(new WeakPower(p, 2, false));
             m.powers.add(new VulnerablePower(m, 2, false)); m.currentBlock = 40;
             hp = m.currentHealth; tickDots();
@@ -267,30 +268,31 @@ public final class CombatSmokeTest {
         steps.add(CombatSmokeTest::tickDots);
         steps.add(CombatSmokeTest::tickDots);
         steps.add(() -> {
-            check(m.currentHealth == hp - 46 && m.currentBlock == 40 && ShadowDotPower.count(m) == 0 && relic.state.amount() == 0,
-                "Upgraded DoTs deal 21 plus 25 fixed damage, then expire");
+            check(m.currentHealth == hp - 35 && m.currentBlock == 40 && ShadowDotPower.count(m) == 0 && relic.state.amount() == 0,
+                "Upgraded DoTs deal 20 plus 15 fixed damage, then expire");
             p.powers.clear(); m.powers.clear(); m.currentBlock = 0;
             play(new VampiricTouch(), m);
         });
         steps.add(() -> { VampiricTouch touch = new VampiricTouch(); touch.upgrade(); play(touch, m); });
         steps.add(() -> {
-            check(dot(ShadowDotPower.TOUCH).damagePerTurn == 7 && dot(ShadowDotPower.TOUCH).amount == 3,
-                "Upgraded reapplication replaces base tick damage and duration");
+            check(dot(ShadowDotPower.TOUCH).damagePerTurn == 5 && dot(ShadowDotPower.TOUCH).amount == 5,
+                "Upgraded reapplication adds duration to five with fixed damage");
             play(new VampiricTouch(), m);
         });
         steps.add(() -> {
-            check(dot(ShadowDotPower.TOUCH).damagePerTurn == 5 && dot(ShadowDotPower.TOUCH).amount == 3,
-                "Base reapplication replaces upgraded damage and duration without stacking");
+            check(dot(ShadowDotPower.TOUCH).damagePerTurn == 5 && dot(ShadowDotPower.TOUCH).amount == 5,
+                "Base reapplication cannot exceed five or reduce existing duration");
+            dot(ShadowDotPower.TOUCH).amount = 2;
             add(new ApplyPowerAction(m, p, new ArtifactPower(m, 1), 1));
         });
         steps.add(() -> { VampiricTouch touch = new VampiricTouch(); touch.upgrade(); play(touch, m); });
         steps.add(() -> {
-            check(dot(ShadowDotPower.TOUCH).damagePerTurn == 5 && dot(ShadowDotPower.TOUCH).amount == 3 && !m.hasPower(ArtifactPower.POWER_ID),
-                "Artifact blocks both damage and duration changes on an upgraded refresh");
+            check(dot(ShadowDotPower.TOUCH).damagePerTurn == 5 && dot(ShadowDotPower.TOUCH).amount == 2 && !m.hasPower(ArtifactPower.POWER_ID),
+                "Artifact blocks added duration without changing fixed damage");
             ShadowWordPain pain = new ShadowWordPain(); pain.upgrade(); play(pain, m);
         });
         steps.add(() -> { hp = m.currentHealth; tickDots(); });
-        steps.add(() -> check(m.currentHealth == hp - 10 && dot(ShadowDotPower.TOUCH).damagePerTurn == 5 && dot(ShadowDotPower.PAIN).damagePerTurn == 5,
+        steps.add(() -> check(m.currentHealth == hp - 8 && dot(ShadowDotPower.TOUCH).damagePerTurn == 5 && dot(ShadowDotPower.PAIN).damagePerTurn == 3,
             "Mixed base and upgraded DoTs retain independent tick damage"));
         CardBatchSmokeTest.append(steps);
     }

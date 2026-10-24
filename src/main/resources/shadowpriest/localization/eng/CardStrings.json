@@ -9,11 +9,11 @@
   },
   "shadowpriest:VampiricTouch": {
     "NAME": "Vampiric Touch",
-    "DESCRIPTION": "Apply shadowpriest:Touch: !M! damage for !shadowpriest:Turns! turns. NL If played, return to your hand at turn end."
+    "DESCRIPTION": "Apply !shadowpriest:Turns! shadowpriest:Touch. NL If played, return to your hand at turn end."
   },
   "shadowpriest:ShadowWordPain": {
     "NAME": "Shadow Word: Pain",
-    "DESCRIPTION": "Apply shadowpriest:Pain: !M! damage for !shadowpriest:Turns! turns. NL If played, return to your hand at turn end."
+    "DESCRIPTION": "Apply !shadowpriest:Turns! shadowpriest:Pain. NL If played, return to your hand at turn end."
   },
   "shadowpriest:EnterVoidform": {
     "NAME": "Enter Voidform",
@@ -60,8 +60,8 @@
   },
   "shadowpriest:MindFlayInsanity": {
     "NAME": "Mind Flay: Insanity",
-    "DESCRIPTION": "Extend all DoTs on the target by X turns. NL Deal !D! damage X times.",
-    "UPGRADE_DESCRIPTION": "Extend all DoTs on the target by X+1 turns. NL Deal !D! damage X+1 times."
+    "DESCRIPTION": "Extend all DoTs on the target by X turns (max 5). NL Deal !D! damage X times.",
+    "UPGRADE_DESCRIPTION": "Extend all DoTs on the target by X+1 turns (max 5). NL Deal !D! damage X+1 times."
   },
   "shadowpriest:MindSear": {
     "NAME": "Mind Sear",
@@ -88,5 +88,21 @@
   "shadowpriest:Halo": {
     "NAME": "Halo",
     "DESCRIPTION": "At the end of your turn, deal !M! damage to ALL enemies for 3 turns. NL Each cast creates a separate aura."
+  },
+  "shadowpriest:TentacleSlam": {
+    "NAME": "Tentacle Slam",
+    "DESCRIPTION": "Deal !D! damage. NL Apply !M! shadowpriest:Touch to the target and enemies between you and it."
+  },
+  "shadowpriest:VoidBlast": {
+    "NAME": "Void Blast",
+    "DESCRIPTION": "Deal !D! damage. NL Add the target's DoT stacks to ALL other enemies. NL Touch and Pain cap at 5."
+  },
+  "shadowpriest:MassDispel": {
+    "NAME": "Mass Dispel",
+    "DESCRIPTION": "Remove ALL enemies' Block, Artifact, and positive Strength."
+  },
+  "shadowpriest:VampiricEmbrace": {
+    "NAME": "Vampiric Embrace",
+    "DESCRIPTION": "Whenever shadowpriest:Touch removes enemy HP, heal !M! HP."
   }
 }

@@ -56,3 +56,23 @@ Reference: https://www.wowhead.com/spell=120517
 
 Reaping Madness is original generated artwork, not a Blizzard source icon.
 Its prompt and resource are documented in docs/card-batch-02-art.md.
+
+Tentacle Slam (inv12_ability_priest_tentacleslam)
+Resource: shadowpriest/images/cards/icons/tentacle_slam.jpg
+Source: https://wow.zamimg.com/images/wow/icons/large/inv12_ability_priest_tentacleslam.jpg
+Reference: https://www.wowhead.com/spell=1227621
+
+Void Blast (inv_cosmicvoid_missile)
+Resource: shadowpriest/images/cards/icons/void_blast.jpg
+Source: https://wow.zamimg.com/images/wow/icons/large/inv_cosmicvoid_missile.jpg
+Reference: https://www.wowhead.com/spell=450405
+
+Mass Dispel (spell_arcane_massdispel)
+Resource: shadowpriest/images/cards/icons/mass_dispel.jpg
+Source: https://wow.zamimg.com/images/wow/icons/large/spell_arcane_massdispel.jpg
+Reference: https://www.wowhead.com/spell=32375
+
+Vampiric Embrace (spell_shadow_unsummonbuilding)
+Resource: shadowpriest/images/cards/icons/vampiric_embrace.jpg
+Source: https://wow.zamimg.com/images/wow/icons/large/spell_shadow_unsummonbuilding.jpg
+Reference: https://www.wowhead.com/spell=15286

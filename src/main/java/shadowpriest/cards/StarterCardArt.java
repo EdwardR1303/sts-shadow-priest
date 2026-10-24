@@ -20,6 +20,10 @@ final class StarterCardArt {
             case ReapingMadness.ID: icon = "cards/icons/reaping_madness.png"; break;
             case ShadowWordMadness.ID: icon = "cards/icons/shadow_word_madness.jpg"; break;
             case Halo.ID: icon = "cards/icons/halo.jpg"; break;
+            case TentacleSlam.ID: icon = "cards/icons/tentacle_slam.jpg"; break;
+            case VoidBlast.ID: icon = "cards/icons/void_blast.jpg"; break;
+            case MassDispel.ID: icon = "cards/icons/mass_dispel.jpg"; break;
+            case VampiricEmbrace.ID: icon = "cards/icons/vampiric_embrace.jpg"; break;
             default: return null;
         }
         if (CACHE.containsKey(id)) return CACHE.get(id);

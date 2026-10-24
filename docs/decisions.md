@@ -55,6 +55,18 @@ These decisions are implemented in [the second reward-card batch](card-batch-02.
 | D035 | Madness does not tick or decay. Shadow Word: Madness is an Uncommon, 1-energy Attack applying 5 stacks before one hit equal to the selected target's total Madness. | Positive stacks count as one unique DoT; reapplication adds stacks. No duration extension applies. The upgrade applies 5 to all enemies but still damages only the selected target. This replaces the proposed 8-stack upgrade and earlier ticking concept. |
 | D036 | Halo is an Uncommon, 1-energy Skill creating a separate player aura per cast. | Each aura deals 3/5 damage to all current enemies at the end of the casting turn and the next two turns. Pulses respect Block, ignore Strength and Voidform's damage bonus, and generate no Insanity. Halo is not a DoT or Attack and does not trigger Psychic Link. |
 
+## Third batch decisions on October 23 2026
+
+| ID | Choice | Consequence |
+| --- | --- | --- |
+| D037 | Touch and Pain have fixed tick damage of 5 and 3, respectively; all remaining-tick applications and extensions cap at 5. | Reapplication adds remaining ticks up to the cap. Touch+ applies 4 instead of 3; Pain+ costs 0. Supersedes variable damage and replacement refresh in D030. |
+| D038 | Native Shadow Priest cards never apply Vulnerable. | Access through events, relics, colorless cards, or other outside sources remains allowed. |
+| D039 | Implement Tentacle Slam at 8 damage/2 energy, upgraded 10/1, with 3 Touch applied after the hit to the target and intervening enemies. | Damage is single-target; position is relative to the player in either direction. Touch obeys the universal cap. |
+| D040 | Void Blast adds the source's DoT stacks to other enemies rather than copying/replacing them. | Snapshot before the hit, preserve the source, cap Touch/Pain at 5, and add Madness normally. Artifact checks each debuff. Killing blows still spread. Damage is 10/15 for 1 energy. |
+| D041 | Mass Dispel removes all enemy Block, Artifact, and positive Strength for 2/1 energy without Exhaust. | Preserve negative Strength and future buff generators; removal bypasses Artifact. |
+| D042 | Vampiric Embrace costs 3 and heals 1/2 per damaging Touch event, with stacking copies and no per-turn cap. | Include natural and Psychic Link ticks per enemy. Actual HP loss is required; normal healing restrictions apply. Sustain rewards setup; validate Heart mechanics and full-run balance. |
+| D043 | Add three native rares while retaining temporary Ironclad supplements until at least four native rares exist. | Engine review found that Question Card requests four distinct boss rares and the duplicate-rejection loop cannot terminate with only three. Common/uncommon rewards remain native. This compatibility fallback is covered by an actual reward-generation check. |
+
 ## Activation proposal outcome on October 23 2026
 
 **P001: On-demand Voidform** became D017 following the owner's agreement that Exhaust is mandatory and that the class should prepare for a chosen burst turn. D019 subsequently authorized the first-playable defaults, including Skill as the card type, meter capping, one charge, and stopping generation during Voidform. [Prototype rules](prototype-rules.md) specify the implemented lifecycle.

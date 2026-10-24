@@ -10,17 +10,17 @@ Template defaults: 70 HP, 3 energy, 5 cards drawn each turn, 99 gold, no orb slo
 | --- | --- | --- | --- | --- | --- |
 | Mind Spike | 4 | Attack | 1 | Deal 6 damage. | 9 damage |
 | Power Word: Shield | 4 | Skill | 1 | Gain 5 Block. | 8 Block |
-| Vampiric Touch | 1 | Skill | 1 | Touch: 5 damage per tick for 3 turns. | 7 damage per tick for 3 turns |
-| Shadow Word: Pain | 1 | Skill | 1 | Pain: 3 damage per tick for 5 turns. | 5 damage per tick for 5 turns |
+| Vampiric Touch | 1 | Skill | 1 | Touch: 5 damage per tick; apply 3 stacks. | Apply 4 stacks; fixed 5 damage |
+| Shadow Word: Pain | 1 | Skill | 1 | Pain: 3 damage per tick; apply 5 stacks. | Cost 0; fixed 3 damage |
 | Enter Voidform | Generated | Skill | 0 | Retain. Enter Voidform. Exhaust. | Cannot upgrade |
 
-Neither DoT heals. Played DoT cards return to hand after end-turn discard; unplayed cards discard normally. Common and uncommon rewards now contain eight Shadow Priest cards each. Rares temporarily use the Ironclad pool until class rares are designed. See [the first reward-card batch](card-batch-01.md) for the first 12 rewards, and [the second batch](card-batch-02.md) for the four additions and recovery rules.
+Neither DoT heals. Played DoT cards return to hand after end-turn discard; unplayed cards discard normally. The class supplies nine Commons, eight Uncommons, and three Rares. Rare rewards retain Ironclad supplements until at least four native rares exist, so effects requesting four distinct rare choices cannot exhaust the pool. See [the first reward-card batch](card-batch-01.md) for the first 12 rewards, and [the second batch](card-batch-02.md) for the four additions and recovery rules. [The third batch](card-batch-03.md) adds four more cards and supersedes the old DoT refresh and upgrade values.
 
 ## Damage over time
 
 - Touch and Pain coexist with independent duration counters.
-- Touch deals 5/7 HP-loss damage for 3 turns; Pain deals 3/5 for 5 turns. Each ticks before the enemy acts, then loses one remaining turn. The first tick is on the next enemy turn, not immediately on play. Each base DoT totals 15; upgraded Touch totals 21 and upgraded Pain totals 25. Upgrades do not extend duration.
-- Reapplication replaces damage and duration with the played card's values. It does not add values or trigger a tick. Base cards can replace stronger upgraded effects, and reapplication can shorten a duration extended by Mind Flay: Insanity.
+- Touch always deals 5 HP-loss damage and applies 3/4 stacks; Pain always deals 3 and applies 5 stacks, with its upgrade costing 0. Each ticks before the enemy acts, then loses one remaining turn. The first tick is on the next enemy turn, not immediately on play. Each uninterrupted base application totals 15 damage; Touch+ totals 20 and Pain+ totals 15 for zero energy.
+- Applications add remaining ticks, capped at 5, without an immediate tick. Damage is fixed by debuff type. All duration extensions, including Mind Flay: Insanity, obey the same cap.
 - Damage bypasses Block and ignores Strength, Weak, Vulnerable, and Voidform. Enemy damage hooks, including Intangible, still apply.
 - Artifact blocks application or refresh.
 - Touch, Pain, and positive Madness stacks count toward the unique-DoT total. Madness counts once, never ticks or decays, and has no duration to extend. Halo is a player aura, not a DoT. Poison and other mods' debuffs do not count.
@@ -40,6 +40,8 @@ Playing the card enters Voidform and exhausts it. The form lasts until the playe
 - Attacks drawn or generated during the form receive its benefits too.
 
 The attack that earns the card does not itself activate Voidform. Turn-end expiry and combat completion reset Insanity to zero. The entire turn after entering Voidform blocks all Insanity gain, including end-of-turn effects. Generation resumes at the following player turn start. Combat reset clears recovery. The generated activation is not part of the permanent deck or reward pool.
+
+Native class cards do not apply Vulnerable; external access is allowed. Vampiric Embrace copies stack uncapped healing from Touch events that actually remove enemy HP, including Psychic Link ticks. See the third batch for exact spread, targeting, and healing rules.
 
 ## Presentation
 

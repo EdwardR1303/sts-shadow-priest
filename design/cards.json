@@ -116,40 +116,38 @@
       "base": {
         "cost": 1,
         "target": "ENEMY",
-        "text": "Apply Touch: 5 damage for 3 turns. If played, return this card to your hand at turn end.",
+        "text": "Apply 3 Touch. If played, return to your hand at turn end.",
         "stats": {
           "tickDamage": 5,
           "duration": 3
         },
         "keywords": [],
         "effects": [
-          "Apply Touch: 5 damage for 3 turns. If played, return this card to your hand at turn end."
+          "Add 3 remaining Touch ticks, capped at 5. Each tick deals 5 damage.",
+          "Return this played card to hand at turn end, subject to hand space and Exhaust."
         ]
       },
       "upgrade": {
-        "summary": "+2 damage per tick; duration is unchanged.",
+        "summary": "Apply 4 ticks instead of 3; damage remains 5.",
         "card": {
           "cost": 1,
           "target": "ENEMY",
-          "text": "Apply Touch: 7 damage for 3 turns. If played, return this card to your hand at turn end.",
+          "text": "Apply 4 Touch. If played, return to your hand at turn end.",
           "stats": {
-            "tickDamage": 7,
-            "duration": 3
+            "tickDamage": 5,
+            "duration": 4
           },
           "keywords": [],
           "effects": [
-            "Apply Touch: 7 damage for 3 turns. If played, return this card to your hand at turn end."
+            "Add 4 remaining Touch ticks, capped at 5. Each tick deals 5 damage.",
+            "Return this played card to hand at turn end, subject to hand space and Exhaust."
           ]
         }
       },
       "rulesNotes": [
-        "Ticks before the enemy acts, then loses one turn; no immediate tick on application.",
-        "Reapplication replaces damage AND duration with the played card's values; values do not stack.",
-        "HP-loss ticks bypass Block and ignore Strength, Weak, Vulnerable and Voidform. Enemy damage hooks such as Intangible still apply.",
-        "Artifact blocks application and refresh.",
-        "Each of Touch and Pain counts as one unique DoT for Insanity. Ticks do not generate Insanity.",
-        "Only played copies return, after end-turn discard. Unplayed cards discard normally; exhausted cards stay exhausted. Full hands leave the returning copy in discard.",
-        "Implementation edge cases: docs/card-batch-01.md."
+        "Fixed 5 damage per tick, independent of stacks and application source.",
+        "Applications and duration extension add remaining ticks up to 5; natural ticks consume one.",
+        "Psychic Link ticks consume no duration. Artifact blocks applications."
       ],
       "balanceNotes": "Touch deals 15/21 total over 3 turns; Pain deals 15/25 total over 5 turns. Returns enable repeated application and multi-target setup.",
       "art": {
@@ -173,40 +171,38 @@
       "base": {
         "cost": 1,
         "target": "ENEMY",
-        "text": "Apply Pain: 3 damage for 5 turns. If played, return this card to your hand at turn end.",
+        "text": "Apply 5 Pain. If played, return to your hand at turn end.",
         "stats": {
           "tickDamage": 3,
           "duration": 5
         },
         "keywords": [],
         "effects": [
-          "Apply Pain: 3 damage for 5 turns. If played, return this card to your hand at turn end."
+          "Add 5 remaining Pain ticks, capped at 5. Each tick deals 3 damage.",
+          "Return this played card to hand at turn end, subject to hand space and Exhaust."
         ]
       },
       "upgrade": {
-        "summary": "+2 damage per tick; duration is unchanged.",
+        "summary": "Cost becomes 0; damage remains 3 and application remains 5 ticks.",
         "card": {
-          "cost": 1,
+          "cost": 0,
           "target": "ENEMY",
-          "text": "Apply Pain: 5 damage for 5 turns. If played, return this card to your hand at turn end.",
+          "text": "Apply 5 Pain. If played, return to your hand at turn end.",
           "stats": {
-            "tickDamage": 5,
+            "tickDamage": 3,
             "duration": 5
           },
           "keywords": [],
           "effects": [
-            "Apply Pain: 5 damage for 5 turns. If played, return this card to your hand at turn end."
+            "Add 5 remaining Pain ticks, capped at 5. Each tick deals 3 damage.",
+            "Return this played card to hand at turn end, subject to hand space and Exhaust."
           ]
         }
       },
       "rulesNotes": [
-        "Ticks before the enemy acts, then loses one turn; no immediate tick on application.",
-        "Reapplication replaces damage AND duration with the played card's values; values do not stack.",
-        "HP-loss ticks bypass Block and ignore Strength, Weak, Vulnerable and Voidform. Enemy damage hooks such as Intangible still apply.",
-        "Artifact blocks application and refresh.",
-        "Each of Touch and Pain counts as one unique DoT for Insanity. Ticks do not generate Insanity.",
-        "Only played copies return, after end-turn discard. Unplayed cards discard normally; exhausted cards stay exhausted. Full hands leave the returning copy in discard.",
-        "Implementation edge cases: docs/card-batch-01.md."
+        "Fixed 3 damage per tick, independent of stacks and application source.",
+        "Applications and duration extension add remaining ticks up to 5; natural ticks consume one.",
+        "Artifact blocks applications."
       ],
       "balanceNotes": "Touch deals 15/21 total over 3 turns; Pain deals 15/25 total over 5 turns. Returns enable repeated application and multi-target setup.",
       "art": {
@@ -752,7 +748,8 @@
         }
       },
       "rulesNotes": [
-        "Implementation edge cases: docs/card-batch-01.md."
+        "Implementation edge cases: docs/card-batch-01.md.",
+        "All duration extension caps Touch and Pain at 5 remaining ticks. Madness has no duration and is unaffected."
       ],
       "balanceNotes": "First reward-card batch; numbers require human full-run balance testing.",
       "art": {
@@ -852,7 +849,8 @@
         }
       },
       "rulesNotes": [
-        "Implementation edge cases: docs/card-batch-01.md."
+        "Implementation edge cases: docs/card-batch-01.md.",
+        "Touch always deals 5 damage per event. A damaging bonus tick triggers Vampiric Embrace, without consuming duration."
       ],
       "balanceNotes": "First reward-card batch; numbers require human full-run balance testing.",
       "art": {
@@ -1077,6 +1075,224 @@
       "art": {
         "wowAbility": "Halo",
         "icon": "ability_priest_halo",
+        "direction": "Actual WoW ability icon inside the shared violet-and-gold card frame."
+      }
+    },
+    {
+      "id": "shadowpriest:TentacleSlam",
+      "name": "Tentacle Slam",
+      "status": "IMPLEMENTED",
+      "type": "ATTACK",
+      "rarity": "COMMON",
+      "sources": [
+        "REWARD_POOL"
+      ],
+      "startingCopies": 0,
+      "tags": [],
+      "designIntent": "Spread Touch through positional targeting while dealing one direct hit.",
+      "base": {
+        "cost": 2,
+        "target": "ENEMY",
+        "text": "Deal 8 damage. Apply 3 Touch to the target and enemies between you and it.",
+        "stats": {
+          "damage": 8,
+          "duration": 3
+        },
+        "keywords": [],
+        "effects": [
+          "Deal one normal Attack hit to the selected enemy.",
+          "Add 3 Touch stacks to the target and intervening enemies, capped at 5."
+        ]
+      },
+      "upgrade": {
+        "summary": "+2 damage and cost reduced to 1.",
+        "card": {
+          "cost": 1,
+          "target": "ENEMY",
+          "text": "Deal 10 damage. Apply 3 Touch to the target and enemies between you and it.",
+          "stats": {
+            "damage": 10,
+            "duration": 3
+          },
+          "keywords": [],
+          "effects": [
+            "Deal one normal Attack hit to the selected enemy.",
+            "Add 3 Touch stacks to the target and intervening enemies, capped at 5."
+          ]
+        }
+      },
+      "rulesNotes": [
+        "Measure position between player and target in either direction.",
+        "The hit precedes application; newly applied Touch does not generate Insanity for that hit.",
+        "Psychic Link can trigger newly applied Touch afterward.",
+        "Artifact blocks each enemy application normally."
+      ],
+      "balanceNotes": "Initial reviewed values; evaluate in full runs and A20 Heart encounters.",
+      "art": {
+        "wowAbility": "Tentacle Slam",
+        "icon": "inv12_ability_priest_tentacleslam",
+        "direction": "Actual WoW ability icon inside the shared violet-and-gold card frame."
+      }
+    },
+    {
+      "id": "shadowpriest:VoidBlast",
+      "name": "Void Blast",
+      "status": "IMPLEMENTED",
+      "type": "ATTACK",
+      "rarity": "RARE",
+      "sources": [
+        "REWARD_POOL"
+      ],
+      "startingCopies": 0,
+      "tags": [],
+      "designIntent": "Distribute invested DoT stacks across the encounter, including accumulating Madness.",
+      "base": {
+        "cost": 1,
+        "target": "ENEMY",
+        "text": "Deal 10 damage. Add the target's DoT stacks to all other enemies.",
+        "stats": {
+          "damage": 10
+        },
+        "keywords": [],
+        "effects": [
+          "Snapshot Touch, Pain, and Madness before the hit.",
+          "Deal one normal Attack hit.",
+          "Add the captured stacks to other living enemies; Touch and Pain cap at 5."
+        ]
+      },
+      "upgrade": {
+        "summary": "+5 damage.",
+        "card": {
+          "cost": 1,
+          "target": "ENEMY",
+          "text": "Deal 15 damage. Add the target's DoT stacks to all other enemies.",
+          "stats": {
+            "damage": 15
+          },
+          "keywords": [],
+          "effects": [
+            "Snapshot Touch, Pain, and Madness before the hit.",
+            "Deal one normal Attack hit.",
+            "Add the captured stacks to other living enemies; Touch and Pain cap at 5."
+          ]
+        }
+      },
+      "rulesNotes": [
+        "Source stacks remain unchanged.",
+        "Recipients add stacks rather than copying or replacing them; Madness is additive without the five-tick cap.",
+        "A killing hit still spreads the captured effects.",
+        "Artifact checks each application in Touch, Pain, Madness order.",
+        "Halo and unrelated debuffs do not spread."
+      ],
+      "balanceNotes": "Initial reviewed values; evaluate in full runs and A20 Heart encounters.",
+      "art": {
+        "wowAbility": "Void Blast",
+        "icon": "inv_cosmicvoid_missile",
+        "direction": "Actual WoW ability icon inside the shared violet-and-gold card frame."
+      }
+    },
+    {
+      "id": "shadowpriest:MassDispel",
+      "name": "Mass Dispel",
+      "status": "IMPLEMENTED",
+      "type": "SKILL",
+      "rarity": "RARE",
+      "sources": [
+        "REWARD_POOL"
+      ],
+      "startingCopies": 0,
+      "tags": [],
+      "designIntent": "Remove accumulated enemy defenses and positive Strength without weakening friendly debuffs.",
+      "base": {
+        "cost": 2,
+        "target": "ALL_ENEMY",
+        "text": "Remove all enemies' Block, Artifact, and positive Strength.",
+        "stats": {},
+        "keywords": [],
+        "effects": [
+          "Remove all Block.",
+          "Remove Artifact.",
+          "Remove Strength only when its amount is positive."
+        ]
+      },
+      "upgrade": {
+        "summary": "Cost reduced to 1.",
+        "card": {
+          "cost": 1,
+          "target": "ALL_ENEMY",
+          "text": "Remove all enemies' Block, Artifact, and positive Strength.",
+          "stats": {},
+          "keywords": [],
+          "effects": [
+            "Remove all Block.",
+            "Remove Artifact.",
+            "Remove Strength only when its amount is positive."
+          ]
+        }
+      },
+      "rulesNotes": [
+        "Preserve negative Strength and powers that grant future Strength or Block.",
+        "Removal bypasses Artifact and uses normal power-removal hooks.",
+        "Reusable; no Exhaust."
+      ],
+      "balanceNotes": "Initial reviewed values; evaluate in full runs and A20 Heart encounters.",
+      "art": {
+        "wowAbility": "Mass Dispel",
+        "icon": "spell_arcane_massdispel",
+        "direction": "Actual WoW ability icon inside the shared violet-and-gold card frame."
+      }
+    },
+    {
+      "id": "shadowpriest:VampiricEmbrace",
+      "name": "Vampiric Embrace",
+      "status": "IMPLEMENTED",
+      "type": "POWER",
+      "rarity": "RARE",
+      "sources": [
+        "REWARD_POOL"
+      ],
+      "startingCopies": 0,
+      "tags": [],
+      "designIntent": "Reward investment in the Touch and Psychic Link engine with uncapped sustain.",
+      "base": {
+        "cost": 3,
+        "target": "SELF",
+        "text": "Whenever Touch removes enemy HP, heal 1 HP.",
+        "stats": {
+          "healing": 1
+        },
+        "keywords": [],
+        "effects": [
+          "Grant 1 healing per damaging Touch event, including natural and Psychic Link ticks."
+        ]
+      },
+      "upgrade": {
+        "summary": "Heal 2 per event instead of 1.",
+        "card": {
+          "cost": 3,
+          "target": "SELF",
+          "text": "Whenever Touch removes enemy HP, heal 2 HP.",
+          "stats": {
+            "healing": 2
+          },
+          "keywords": [],
+          "effects": [
+            "Grant 2 healing per damaging Touch event, including natural and Psychic Link ticks."
+          ]
+        }
+      },
+      "rulesNotes": [
+        "Multiple copies add healing; no per-turn cap.",
+        "Each enemy and each damaging tick triggers separately.",
+        "No healing when damage is fully prevented, including by Invincible.",
+        "Heal the fixed amount even when Intangible reduces damage or the tick kills.",
+        "Pain, Madness, Halo, and direct attacks do not trigger healing.",
+        "Normal healing restrictions apply; healing cannot resurrect a dead player."
+      ],
+      "balanceNotes": "Initial reviewed values; evaluate in full runs and A20 Heart encounters.",
+      "art": {
+        "wowAbility": "Vampiric Embrace",
+        "icon": "spell_shadow_unsummonbuilding",
         "direction": "Actual WoW ability icon inside the shared violet-and-gold card frame."
       }
     }

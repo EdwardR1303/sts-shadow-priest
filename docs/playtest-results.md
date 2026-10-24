@@ -65,8 +65,27 @@ The 47 added checks cover:
 
 The source icons and generated Reaping Madness artwork were inspected; all four images and source attribution were verified inside the built JAR. The reused card framing path was exercised in-game. Human review of final presentation and full-run balance remains pending. See [second-batch rules](card-batch-02.md) and [artwork provenance and prompt](card-batch-02-art.md).
 
+## Third reward-card batch and capped DoT duration
+
+On October 23, 2026, the final Maven `clean verify` passed all 7 unit tests and the full combined suite passed all 201 actual-game checks at 1920 x 1080 windowed, ending with `ALL CHECKS PASSED`. An earlier reward-only run passed 158 checks; the final build added the four-choice boss-reward regression, bringing reward-only mode to 159 checks.
+
+This batch supersedes previous Touch/Pain upgrade and refresh behavior. Touch always deals 5 damage and applies 3 stacks, or 4 upgraded. Pain always deals 3 damage and applies 5 stacks; its upgrade costs zero. Applications add duration to a hard cap of five, including Mind Flay: Insanity extension and Void Blast spread. Natural ticks consume one stack; Psychic Link consumes none.
+
+The 39 added checks cover:
+
+- Three native rares plus temporary supplements; actual Question Card generation of four distinct boss rares without exhausting the pool.
+- Registration, upgraded copies, and both portrait sizes for Tentacle Slam, Void Blast, Mass Dispel, and Vampiric Embrace.
+- Fixed damage, additive duration, five-stack constructor/application caps, and a twenty-energy duration extension remaining capped.
+- Tentacle Slam's selected-target damage, energy costs, application after the hit, and intervening-target selection in either direction.
+- Void Blast's additive Touch/Pain/Madness spread, unchanged source, capped duration, repeated Madness growth, separate Artifact checks, and snapshots surviving a killing blow.
+- Mass Dispel removing Block, Artifact, and positive Strength while preserving negative Strength and future buff sources; reusable base and upgraded costs.
+- Embrace's cost, base/upgraded stacking, natural and Psychic Link healing across multiple enemies, no healing from Pain or prevented ticks, full fixed healing from a reduced but damaging tick, and killing-tick healing.
+- The Heart's Invincible power at a 200-damage budget: Touch respects the remaining budget, heals when one HP is removed, and grants no healing once the budget is exhausted.
+
+All four source WoW icons were inspected, loaded by the game, and packaged with attribution. See [third-batch rules and artwork sources](card-batch-03.md). The Invincible checks exercise that power in a controlled encounter; they do not establish an A20 Heart victory or balanced full-run sustain.
+
 ## Limits
 
 These are correctness checks in a controlled encounter, not a full-run balance study. Only BaseMod and StSLib were loaded alongside this mod. Interactions with other mods, every relic or card, save/reload during combat, and long-run progression have not been exhaustively tested. The X-cost check verifies exclusion from the discount, not every X-cost card's effects.
 
-Some art remains placeholder and rare rewards still use the Ironclad pool; common and uncommon rewards use the new Shadow Priest cards. Human playtests should evaluate setup damage taken, time to earn Voidform, hand quality at activation, and whether waiting or immediate activation is more enjoyable.
+Some art remains placeholder. Rewards now contain nine Shadow Priest Commons, eight Uncommons, and three Rares. Ironclad rares temporarily supplement the rare pool until at least four native rares exist, allowing Question Card to generate four distinct boss choices safely. Human playtests should evaluate setup damage taken, time to earn Voidform, hand quality at activation, sustain, Madness spreading, and whether waiting or immediate activation is more enjoyable.

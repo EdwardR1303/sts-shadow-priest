@@ -31,7 +31,7 @@ public class ShadowPriestMod implements EditCharactersSubscriber, EditCardsSubsc
         BaseMod.addDynamicVariable(new DotTurnsVariable());
         for (AbstractCard c : new AbstractCard[]{new MindSpike(), new PowerWordShield(), new VampiricTouch(), new ShadowWordPain(),
             new Bulwark(), new ShadowMend(), new Fade(), new MindFlay(), new ShadowWordDeath(), new MindBlast(),
-            new Dispersion(), new DesperatePrayer(), new Foresight(), new MindFlayInsanity(), new MindSear(), new PsychicLink(), new PowerWordFortitude(), new ReapingMadness(), new ShadowWordMadness(), new Halo(), new EnterVoidform()}) {
+            new Dispersion(), new DesperatePrayer(), new Foresight(), new MindFlayInsanity(), new MindSear(), new PsychicLink(), new PowerWordFortitude(), new ReapingMadness(), new ShadowWordMadness(), new Halo(), new TentacleSlam(), new VoidBlast(), new MassDispel(), new VampiricEmbrace(), new EnterVoidform()}) {
             BaseMod.addCard(c); UnlockTracker.unlockCard(c.cardID);
         }
     }
@@ -43,8 +43,8 @@ public class ShadowPriestMod implements EditCharactersSubscriber, EditCardsSubsc
         BaseMod.loadCustomStringsFile(RelicStrings.class, path + "RelicStrings.json");
     }
     @Override public void receiveEditKeywords() {
-        BaseMod.addKeyword("shadowpriest", "Vampiric Touch", new String[]{"touch"}, "A unique DoT. Deals the applied damage before the enemy acts. Ignores Block and Strength. Reapplying replaces damage and duration.");
-        BaseMod.addKeyword("shadowpriest", "Shadow Word: Pain", new String[]{"pain"}, "A unique DoT. Deals the applied damage before the enemy acts. Ignores Block and Strength. Reapplying replaces damage and duration.");
+        BaseMod.addKeyword("shadowpriest", "Vampiric Touch", new String[]{"touch"}, "Before the enemy acts, deal #b5 damage and remove one stack. Ignores Block and Strength. Applications add remaining ticks, capped at #b5.");
+        BaseMod.addKeyword("shadowpriest", "Shadow Word: Pain", new String[]{"pain"}, "Before the enemy acts, deal #b3 damage and remove one stack. Ignores Block and Strength. Applications add remaining ticks, capped at #b5.");
         BaseMod.addKeyword("shadowpriest", "Madness", new String[]{"madness"}, "Stacks permanently and counts as one unique DoT. Never ticks or decays. Shadow Word: Madness deals Attack damage based on these stacks.");
         BaseMod.addKeyword("shadowpriest", "Voidform", new String[]{"voidform"}, "Attacks cost #b1 less and deal #b50% more damage until turn end. X costs are unchanged.");
     }

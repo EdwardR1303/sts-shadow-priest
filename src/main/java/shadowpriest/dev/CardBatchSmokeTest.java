@@ -42,8 +42,8 @@ public final class CardBatchSmokeTest {
             p = AbstractDungeon.player; m = AbstractDungeon.getMonsters().monsters.get(0);
             other = AbstractDungeon.getMonsters().monsters.get(1); relic = VoidformRelic.current();
             reset();
-            check(AbstractDungeon.commonCardPool.size() == 8 && AbstractDungeon.uncommonCardPool.size() == 8,
-                "Reward pools contain eight custom commons and eight custom uncommons");
+            check(AbstractDungeon.commonCardPool.size() == 9 && AbstractDungeon.uncommonCardPool.size() == 8,
+                "Reward pools contain nine custom commons and eight custom uncommons");
             check(AbstractDungeon.commonCardPool.group.stream().allMatch(c -> c.cardID.startsWith("shadowpriest:"))
                 && AbstractDungeon.uncommonCardPool.group.stream().allMatch(c -> c.cardID.startsWith("shadowpriest:")),
                 "Normal reward pools use the new Shadow Priest cards");
@@ -173,8 +173,8 @@ public final class CardBatchSmokeTest {
         q.add(() -> {
             check(m.currentHealth == enemyHp - 12 && relic.state.amount() == 6 && EnergyPanel.totalCount == 0,
                 "Mind Flay: Insanity spends three energy for three normal hits");
-            check(m.getPower(ShadowDotPower.TOUCH).amount == 6 && m.getPower(ShadowDotPower.PAIN).amount == 8,
-                "Mind Flay: Insanity extends each existing DoT without changing its damage");
+            check(m.getPower(ShadowDotPower.TOUCH).amount == 5 && m.getPower(ShadowDotPower.PAIN).amount == 5,
+                "Mind Flay: Insanity extends each existing DoT up to five without changing its damage");
             reset(); dots(m); enemyHp = m.currentHealth; play(upgraded(new MindFlayInsanity()), m, 0);
         });
         q.add(() -> {
@@ -259,12 +259,12 @@ public final class CardBatchSmokeTest {
         });
         q.add(() -> {
             check(EnergyPanel.totalCount == 1 && p.hasPower(PsychicLinkPower.POWER_ID), "Psychic Link costs two and installs its Power");
-            dots(m); other.powers.add(new ShadowDotPower(other, ShadowDotPower.TOUCH, 3, 7));
+            dots(m); other.powers.add(new ShadowDotPower(other, ShadowDotPower.TOUCH, 3));
             enemyHp = m.currentHealth; otherHp = other.currentHealth;
             play(upgraded(new MindFlay()), m, 3);
         });
         q.add(() -> {
-            check(m.currentHealth == enemyHp - 13 && other.currentHealth == otherHp - 7,
+            check(m.currentHealth == enemyHp - 13 && other.currentHealth == otherHp - 5,
                 "Psychic Link triggers once per Attack card, not once per hit, on all Touch targets");
             check(m.getPower(ShadowDotPower.TOUCH).amount == 3 && other.getPower(ShadowDotPower.TOUCH).amount == 3
                 && relic.state.amount() == 8, "Link bonus ticks preserve duration and generate no extra Insanity");
@@ -273,7 +273,7 @@ public final class CardBatchSmokeTest {
             play(new MindSpike(), m, 3);
         });
         q.add(() -> {
-            check(m.currentHealth == enemyHp - 5 && other.currentHealth == otherHp - 7,
+            check(m.currentHealth == enemyHp - 5 && other.currentHealth == otherHp - 5,
                 "Link damage ignores attack modifiers and bypasses enemy Block");
             enemyHp = m.currentHealth; otherHp = other.currentHealth; play(new PowerWordShield(), null, 3);
         });
@@ -290,6 +290,7 @@ public final class CardBatchSmokeTest {
             check(m.currentHealth == enemyHp - 16, "Two Psychic Links provide two bonus ticks without recursion");
         });
         SecondBatchSmokeTest.append(q);
+        ThirdBatchSmokeTest.append(q);
         q.add(() -> {
             reset(); p.currentHealth = 5; play(new DesperatePrayer(), null, 3);
         });
@@ -318,8 +319,8 @@ public final class CardBatchSmokeTest {
         relic.reset(); PowerWordFortitude.resetBenefit(); ReturningDots.clear(); selection = null;
     }
     static void dots(AbstractMonster target) {
-        target.powers.add(new ShadowDotPower(target, ShadowDotPower.TOUCH, 3, 5));
-        target.powers.add(new ShadowDotPower(target, ShadowDotPower.PAIN, 5, 3));
+        target.powers.add(new ShadowDotPower(target, ShadowDotPower.TOUCH, 3));
+        target.powers.add(new ShadowDotPower(target, ShadowDotPower.PAIN, 5));
     }
     static <T extends AbstractCard> T upgraded(T c) { c.upgrade(); return c; }
     static void play(AbstractCard c, AbstractMonster target, int energy) {

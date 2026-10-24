@@ -139,7 +139,7 @@ final class SecondBatchSmokeTest {
         });
         q.add(() -> {
             check(m.currentHealth == hp && relic.state.amount() == 1, "Blocked Madness hit respects Block and still generates one Insanity");
-            reset(); p.powers.add(new PsychicLinkPower(p, 1)); m.powers.add(new ShadowDotPower(m, ShadowDotPower.TOUCH, 3, 5));
+            reset(); p.powers.add(new PsychicLinkPower(p, 1)); m.powers.add(new ShadowDotPower(m, ShadowDotPower.TOUCH, 3));
             hp = m.currentHealth; play(new ShadowWordMadness(), m, 3);
         });
         q.add(() -> {

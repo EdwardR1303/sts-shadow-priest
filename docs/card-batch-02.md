@@ -1,5 +1,7 @@
 # Second reward-card batch
 
+This records the second batch. See [the third batch](card-batch-03.md) for the current reward pool and revised Touch/Pain stacking rules.
+
 Four reviewed designs add two Common Powers, one Uncommon Attack, and one Uncommon Skill. Common and uncommon reward pools now each contain eight Shadow Priest cards. Rares remain temporarily Ironclad.
 
 | Card | Cost | Base | Upgrade |

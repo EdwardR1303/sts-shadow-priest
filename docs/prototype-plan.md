@@ -19,7 +19,7 @@ See [development and testing](development.md) for commands, [prototype rules](pr
 
 Play ordinary single-enemy and multi-enemy encounters. Record turns to apply both DoTs and earn Voidform, damage taken during setup, turns spent holding the ready card, and burst-turn damage. Note whether the hand has enough attacks to exploit the discount.
 
-Evaluate the survival-then-burst feel before tuning one variable at a time. Controlled engine checks establish correctness; they do not establish balance or enjoyment. Placeholder visuals and the temporary Ironclad rare pool still limit how closely a full run reflects the intended class.
+Evaluate the survival-then-burst feel before tuning one variable at a time. Controlled engine checks establish correctness; they do not establish balance or enjoyment. Placeholder visuals and the small native rare pool and temporary rare supplements still limit how closely a full run reflects the intended class.
 
 ## Playtest note format
 

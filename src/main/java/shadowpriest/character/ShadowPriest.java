@@ -255,10 +255,12 @@ public class ShadowPriest extends CustomPlayer {
     public ArrayList<AbstractCard> getCardPool(ArrayList<AbstractCard> pool) {
         super.getCardPool(pool);
         pool.removeIf(c -> c.rarity == AbstractCard.CardRarity.SPECIAL);
-        // No Shadow Priest rares are designed yet. Keep boss rewards playable.
-        ArrayList<AbstractCard> temporary = new ArrayList<>();
-        CardLibrary.addRedCards(temporary);
-        for (AbstractCard c : temporary) if (c.rarity == AbstractCard.CardRarity.RARE) pool.add(c);
+        // Question Card can request four distinct boss rares. Avoid exhausting a small prototype pool.
+        if (pool.stream().filter(c -> c.rarity == AbstractCard.CardRarity.RARE).count() < 4) {
+            ArrayList<AbstractCard> temporary = new ArrayList<>();
+            CardLibrary.addRedCards(temporary);
+            for (AbstractCard c : temporary) if (c.rarity == AbstractCard.CardRarity.RARE) pool.add(c);
+        }
         return pool;
     }
 

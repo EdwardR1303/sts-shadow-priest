@@ -21,7 +21,7 @@ public class MindFlayInsanity extends PriestCard {
             @Override public void update() {
                 if (m != null && !m.isDeadOrEscaped()) {
                     for (AbstractPower power : m.powers) if (power instanceof ShadowDotPower) {
-                        power.amount += repeats; power.updateDescription();
+                        power.stackPower(repeats); power.updateDescription();
                     }
                 }
                 isDone = true;
