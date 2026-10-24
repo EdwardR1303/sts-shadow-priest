@@ -8,7 +8,7 @@ The [Voidform activation card](docs/voidform-activation.md) costs 0 energy, has 
 
 ## Project status
 
-Version 0.1.0 is a playable prototype for VS Code: a selectable character, four starters, 32 reward cards, Mastery-scaled DoTs with a five-tick cap, an Insanity bar beneath the energy orb, and on-demand Voidform. The combat priest wears Transcendence-inspired regalia and glows purple during Voidform. Starter cards use framed retail WoW ability icons, Touch/Pain use matching debuff icons, and the Voidform relic uses a transparent cutout adapted from its WoW icon. Fortitude, Madness, and Halo also use their WoW icons; Reaping Madness has original thematic artwork. Earlier reward-card portraits and other unfinished artwork still use placeholders. Ordinary Voidform enforces a full recovery turn with no Insanity gain. Surrender to Madness is a rare Skill that grants combat-long Voidform with a separate, preventable or cleanseable double-Attack-damage penalty. All reward pools are native: fourteen Commons, eleven Uncommons, and seven Rares. The fifth batch adds defensive Attacks, cleanse/dispel utility, dodge, stun, per-hit damage scaling, and persistent stats earned during Voidform. Full-run balance remains future work.
+Version 0.1.0 is a playable prototype for VS Code: a selectable character, four starters, 42 ordinary reward cards, three Legendary equipment cards, Mastery-scaled DoTs with a five-tick cap, an Insanity bar beneath the energy orb, and on-demand Voidform. The combat priest wears Transcendence-inspired regalia and glows purple during Voidform. Starter cards use framed retail WoW ability icons, Touch/Pain use matching debuff icons, and the Voidform relic uses a transparent cutout adapted from its WoW icon. Fortitude, Madness, and Halo also use their WoW icons; Reaping Madness has original thematic artwork. Earlier reward-card portraits and other unfinished artwork still use placeholders. Ordinary Voidform enforces a full recovery turn with no Insanity gain. Surrender to Madness is a rare Skill that grants combat-long Voidform with a separate, preventable or cleanseable double-Attack-damage penalty. All reward pools are native: twenty Commons, fourteen Uncommons, and eight Rares. The fifth batch adds defensive Attacks, cleanse/dispel utility, dodge, stun, per-hit damage scaling, and persistent stats earned during Voidform. The sixth batch adds healing debt, typed draw, hand retention, and three automatically equipped Legendaries with boss-only acquisition and permanent uniqueness. Full-run balance remains future work.
 
 ## Build and play on Windows
 
@@ -26,6 +26,9 @@ For a smaller window, add `-Width 1920 -Height 1080 -Windowed`. VS Code also has
 
 ## Design documents
 
+- [Next design priorities](docs/next-design-priorities.md): focused gaps and a full-run playtest checklist.
+- [Sixth card batch](docs/card-batch-06.md): healing/draw reworks, automatic Legendary equipment, and artwork.
+- [Legendary rules](docs/legendary-cards.md): boss rewards, uniqueness, and combat activation.
 - [Relic designs](relics.md): plain-English class relic ideas, grouped by rarity, with a quick template and `?` review markers.
 - [Card design guide](docs/card-design-guide.md): start designing cards in [the JSON catalog](design/cards.json), with [a reusable template](design/card-template.json), complete upgrades, and VS Code validation.
 - [Surrender to Madness](docs/surrender-to-madness.md): permanent combat Voidform, a removable exposure debuff, and Artifact/Orange Pellets interactions.

@@ -25,7 +25,7 @@
   },
   "shadowpriest:ShadowMend": {
     "NAME": "Shadow Mend",
-    "DESCRIPTION": "Heal !M! HP. NL Increase this card's cost by 1 this combat."
+    "DESCRIPTION": "Heal 10 HP. NL Gain !M! shadowpriest:Debt."
   },
   "shadowpriest:Fade": {
     "NAME": "Fade",
@@ -154,5 +154,69 @@
   "shadowpriest:ShadowCommittal": {
     "NAME": "Shadow Committal",
     "DESCRIPTION": "In shadowpriest:Voidform, playing an Attack grants 1 Strength, a Skill grants 1 Dexterity, and a Power grants 1 shadowpriest:Mastery."
+  },
+  "shadowpriest:FlashHeal": {
+    "NAME": "Flash Heal",
+    "DESCRIPTION": "Heal !M! HP. NL Increase this card's cost by 1 this combat."
+  },
+  "shadowpriest:BloodMagic": {
+    "NAME": "Blood Magic",
+    "DESCRIPTION": "Deal !D! damage. NL Lose 3 HP."
+  },
+  "shadowpriest:VoidShield": {
+    "NAME": "Void Shield",
+    "DESCRIPTION": "Gain 2 Block per Insanity. NL shadowpriest:Voidform counts as 10 Insanity.",
+    "UPGRADE_DESCRIPTION": "Gain 2 Insanity. NL Gain 2 Block per Insanity. NL shadowpriest:Voidform counts as 10 Insanity."
+  },
+  "shadowpriest:Insight": {
+    "NAME": "Insight",
+    "DESCRIPTION": "Draw !M! cards. NL Next turn, draw 1 fewer card."
+  },
+  "shadowpriest:PowerWordBarrier": {
+    "NAME": "Power Word: Barrier",
+    "DESCRIPTION": "Retain your hand this turn. NL Gain !B! Block per card in your hand. NL Dexterity applies per card."
+  },
+  "shadowpriest:Piety": {
+    "NAME": "Piety",
+    "DESCRIPTION": "If your hand has no Attacks, draw 2 Attacks. If it has no Skills other than Piety, draw 2 Skills. NL Exhaust.",
+    "UPGRADE_DESCRIPTION": "If your hand has no Attacks, draw 2 Attacks. If it has no Skills other than Piety, draw 2 Skills."
+  },
+  "shadowpriest:Serendipity": {
+    "NAME": "Serendipity",
+    "DESCRIPTION": "Choose: Discard all Skills to draw that many Attacks, or discard all Attacks to draw that many Skills. NL Exhaust.",
+    "UPGRADE_DESCRIPTION": "Choose: Discard all Skills to draw that many Attacks, or discard all Attacks to draw that many Skills."
+  },
+  "shadowpriest:SerendipityAttack": {
+    "NAME": "Seek Attacks",
+    "DESCRIPTION": "Discard all Skills. NL Draw that many Attacks from your draw pile."
+  },
+  "shadowpriest:SerendipitySkill": {
+    "NAME": "Seek Skills",
+    "DESCRIPTION": "Discard all Attacks. NL Draw that many Skills from your draw pile."
+  },
+  "shadowpriest:TitheEvasion": {
+    "NAME": "Tithe Evasion",
+    "DESCRIPTION": "Lose !M! less HP from Blood Magic, Shadow Word: Death, and Shadow Mend. NL Does not stack."
+  },
+  "shadowpriest:Dragonwrath": {
+    "NAME": "Dragonwrath",
+    "DESCRIPTION": "Legendary. NL Equips at combat start. NL Attacks have a !M!% chance to repeat for free. NL Repeats cannot trigger this again."
+  },
+  "shadowpriest:Xalatath": {
+    "NAME": "Xal'atath",
+    "DESCRIPTION": "Legendary. NL At combat start, randomly gain 2 Strength, shadowpriest:Mastery, or Dexterity !M! times."
+  },
+  "shadowpriest:Valanyr": {
+    "NAME": "Val'anyr",
+    "DESCRIPTION": "Legendary. NL Start with !M! Block. Retain Block until it is depleted. NL Once per combat, lethal damage leaves you at 1 HP."
+  },
+  "shadowpriest:MentalFortitude": {
+    "NAME": "Mental Fortitude",
+    "DESCRIPTION": "Gain !M! Dexterity and !M! shadowpriest:Mastery. NL Lose 2 Strength."
+  },
+  "shadowpriest:MindSoothe": {
+    "NAME": "Mind Soothe",
+    "DESCRIPTION": "This turn, the enemy deals 1 less Attack damage per unique DoT on it.",
+    "UPGRADE_DESCRIPTION": "This turn, the enemy deals 1 less Attack damage per unique DoT on it, plus 1 more."
   }
 }

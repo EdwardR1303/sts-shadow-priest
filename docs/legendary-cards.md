@@ -1,6 +1,6 @@
 # Legendary cards
 
-Status: acquisition and permanent-deck uniqueness rules agreed; not implemented. Individual Legendary cards remain to be designed.
+Status: implemented for Dragonwrath, Xal'atath, and Val'anyr. See [card designs](../cards.md) and [sixth-batch rules](card-batch-06.md).
 
 ## Acquisition
 
@@ -23,11 +23,17 @@ Status: acquisition and permanent-deck uniqueness rules agreed; not implemented.
 
 ## Combat-copy boundary
 
-Not yet decided: whether effects that create temporary combat copies, or replay a card without adding a permanent copy, should work on Legendaries. The agreed permanent-deck restriction does not settle this. Resolve before implementing those interactions; ordinary combat deck initialization and card previews must remain functional.
+The owned Legendary equips automatically once per combat before the opening hand. Its effects do not count as playing a Power, spend no energy, and leave no drawable copy in the combat deck. It remains visible in the permanent deck and can be upgraded. Temporary copies are unplayable; forced plays cannot equip another weapon.
+
+Dragonwrath rolls once per ordinary Attack played, repeats its full effects for free with the original X, and cannot recursively trigger from purge-on-use repeats. Repeat plays still trigger ordinary card-play hooks. If the original target has died, the repeat selects another living enemy if possible.
+
+Val'anyr's Block retention breaks permanently for the combat at exact depletion. Its independent rescue leaves one HP after a lethal damage event, including HP loss, and supplies no protection from the next hit. Other sources of Block retention are preserved.
 
 ## Presentation and validation
 
 - Use a distinctive orange Legendary presentation and a clear explanation: only one Legendary in your deck, and permanent duplication is prohibited.
 - Verify the boss reward probability, one-roll rule, empty eligible pool, all-Legendary exclusion while one is owned, acquisition-time enforcement, removal reopening the slot without clearing identity history, upgraded identity, save/load persistence, and permanent duplication restrictions.
 - Design intent: make the chosen Legendary a defining run reward and support stronger individual effects through mutual exclusivity. Rarity and exclusivity allow power headroom but do not establish balance by themselves; validate actual cards during playtesting.
-- This is a design specification, not a claim that the runtime already supports Legendary rarity.
+- Runtime uses a custom rarity, orange banner/frame, item portraits, and transparent renders of the actual WoW weapon models floating beside the character. These are animated sprites, not live 3D models.
+- Frozen Egg upgrades a Legendary reward under the ordinary Power reward rule. The displayed short names fit the card frame; full weapon names remain in the design catalog.
+- Save data persists acquired identities through BaseMod CustomSavable. Game checks exercise its JSON roundtrip; complete quit/resume progression remains a manual playtest item.

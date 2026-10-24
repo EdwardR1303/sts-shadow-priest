@@ -1,12 +1,12 @@
 # Designing cards
 
-Start in [design/cards.json](../design/cards.json). It contains 39 entries: four implemented starters, 32 implemented reward cards, the generated Enter Voidform card, and two drafts. The owner can also write ideas in plain English in their working cards.md file; reviewed batches are translated into this catalog before implementation. Copy the object inside `cards` from [card-template.json](../design/card-template.json), paste it at the end of the catalog's `cards` array, and change its ID and name. The template's Block values are examples, not an approved new card.
+Start in [design/cards.json](../design/cards.json). It contains 50 implemented entries: four starters, 42 ordinary rewards, three Legendary equipment cards, and the generated Enter Voidform card. The owner can also write ideas in plain English in their working cards.md file; reviewed batches are translated into this catalog before implementation. Copy the object inside `cards` from [card-template.json](../design/card-template.json), paste it at the end of the catalog's `cards` array, and change its ID and name. The template's Block values are examples, not an approved new card.
 
 These files are design documents. They do not automatically add cards to the game; approved designs still need Java implementation, localization, art, and testing. The implemented examples describe the current prototype, while new entries start as `DRAFT`.
 
 In the working `cards.md`, a trailing `?` marks an unreviewed card. Remove it after agreement and record the design as `APPROVED` in the catalog. Fortitude, Reaping Madness, Shadow Word: Madness, and Halo have completed review and implementation. Existing WoW abilities should use their actual ability artwork; invented abilities should receive matching original thematic artwork.
 
-The newest implemented cards are Penance, Atonement, Purify Disease, Dispel Magic, Body and Soul, Insidious Ire, Petrifying Scream, and Shadow Committal. Mind Soothe's replacement and Mental Fortitude's retained stat gains remain `DRAFT`; their complete candidate values are recorded for review, not authorized as final gameplay. Blank icon fields mean artwork still needs verification or creation. Catalog status does not add a card to live rewards.
+The [sixth batch](card-batch-06.md) implements the new healing/draw cards, both former drafts, and three Legendaries. Blank icon fields on future drafts mean artwork still needs verification or creation. Catalog status does not add a card to live rewards.
 
 ## Fields
 
@@ -16,7 +16,7 @@ The newest implemented cards are Penance, Atonement, Purify Disease, Dispel Magi
 | `name` | Display name without the upgrade's `+`. |
 | `status` | `DRAFT`, `READY_FOR_REVIEW`, `APPROVED`, `IMPLEMENTED`, or `CUT`. |
 | `type` | `ATTACK`, `SKILL`, `POWER`, `STATUS`, or `CURSE`. |
-| `rarity` | `BASIC`, `COMMON`, `UNCOMMON`, `RARE`, `SPECIAL`, or `CURSE`. Starting cards are Basic; generated cards are usually Special. |
+| `rarity` | `BASIC`, `COMMON`, `UNCOMMON`, `RARE`, `LEGENDARY`, `SPECIAL`, or `CURSE`. Starting cards are Basic; generated cards are usually Special. |
 | `sources` | Where it comes from: `STARTER_DECK`, `REWARD_POOL`, `GENERATED`, `EVENT`, or `SHOP_ONLY`. Multiple sources are allowed. Reward-pool cards can also appear in ordinary shops; use Shop Only for an exclusive design. |
 | `startingCopies` | Number in the starting deck, otherwise `0`. |
 | `tags` | Optional design/implementation labels, e.g. `DOT`, `BURST`, `DEFENSE`, `STRIKE`. Free text; labels do not grant effects. |
@@ -58,3 +58,5 @@ python scripts/update-card-tallies.py --check
 ```
 
 VS Code also has **Shadow Priest: refresh card tallies**. The script derives counts from the current Markdown roster rather than the implemented JSON catalog, so new ideas count immediately when refreshed. Keep the generated markers intact. During design reviews and implementation updates, refresh these tallies after editing `cards.md`.
+
+Legendary equipment uses rarity `LEGENDARY`, source `BOSS_REWARD`, and cost `UNPLAYABLE`. Its base/upgrade effects describe automatic combat-start activation; it is not played from hand. See [Legendary rules](legendary-cards.md).

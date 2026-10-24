@@ -138,8 +138,31 @@ An initial consecutive-stun assertion included damage from the uncontrolled seco
 
 The seven original WoW icons were verified through named spell metadata and visually inspected. Shadow Committal uses original generated art. The final build repeated all 69 focused checks after the title-layout adjustment. All eight upgraded cards were rendered by the game for visual review; Shadow Committal uses a smaller title font to clear the energy orb. The rendered Mastery icon was inspected and retains the Strength silhouette in purple. See [batch rules and artwork prompt](card-batch-05.md). These tests establish controlled behavior; full-run balance, A20 Heart performance, and combinations with unimplemented relics remain open.
 
+## Sixth card batch and Legendary equipment
+
+On October 24, 2026, Maven `clean verify` passed all **10 unit tests**. The full combined suite passed **435 actual-game checks**, and the focused sixth-batch suite passed **107 checks**, at 1920 x 1080 windowed. Both ended with `ALL CHECKS PASSED`. The final presentation-only Barrier title adjustment was followed by a fresh build and focused run.
+
+The 104 added game checks cover:
+
+- Registration and upgraded-copy behavior for all fourteen new or reworked cards, with 20/14/8 ordinary reward pools.
+- Blood Magic's damage and HP cost, fixed Shadow Mend healing, additive debt, actual next-turn debt, Artifact prevention, and Tithe's exact source whitelist and replacement behavior.
+- Void Shield's sequencing, Dexterity calculation, recovery restriction, and permanent Voidform support.
+- Real stacked Insight opening-draw penalties, including excess debt producing zero draws and restoring normal draw afterward.
+- Piety's simultaneous conditions, duplicate exclusion, no reshuffle, No Draw, and hand capacity; both actual Serendipity chooser paths, discard counts, and upgrades.
+- Barrier's base/upgraded Dexterity scaling, per-unit Frail rounding, actual hand retention, and lack of Block retention.
+- Mental Fortitude's repeated stat gains/losses, and Soothe's snapshots, stacking, damage reduction, expiration, and Artifact handling.
+- Dragonwrath's successful/failed seeded rolls, whole multihit repeats, Psychic Link and Insanity hooks, original X preservation, and repeated Blood Magic HP cost.
+- Xal'atath's base/upgraded stat totals and paired gains; Val'anyr's flat starting Block, real turn retention, exact depletion, independent rescue, HP-loss rescue, Fade ordering, and preservation of other retention effects.
+- Permanent Legendary acquisition guards, removal and identity history, a JSON save-data roundtrip, actual Mirror and Duplicator selection filtering, normal combat-deck construction, and inactive temporary copies.
+- Boss reward chance, one-Legendary maximum per screen, exclusion while owning equipment, Act 3 exclusion, exhausted identity history, and four distinct Question Card boss choices.
+- Actual preBattlePrep activation before opening draw, no Power-play bookkeeping, and a full opening hand without drawing the equipment.
+
+The catalog validates against its schema with **50 unique implemented entries**: 49 collectible designs plus Enter Voidform. Base and upgraded card images and all three equipped-character previews were exported by the game. Visual review corrected tooltip-only color codes, added the Debt keyword, and adjusted long titles. The original WoW icons and transparent weapon model renders have source attribution; Blood Magic uses original generated art with its prompt recorded in [sixth-batch rules](card-batch-06.md).
+
+Earlier attempts exposed a missing power-icon region, which was replaced with the actual ability icon, and stale pool/draft assertions, which were updated to the approved roster. These were rerun successfully. The save test checks the CustomSavable JSON roundtrip, not an end-to-end quit/resume run. No A20 Heart win-rate or full-run balance claim is made.
+
 ## Limits
 
 These are correctness checks in a controlled encounter, not a full-run balance study. Only BaseMod and StSLib were loaded alongside this mod. Interactions with other mods, every relic or card, save/reload during combat, and long-run progression have not been exhaustively tested. The X-cost check verifies exclusion from the discount, not every X-cost card's effects.
 
-Some art remains placeholder. Rewards now contain fourteen Shadow Priest Commons, eleven Uncommons, and seven Rares, with no Ironclad supplements. Question Card can generate four distinct native boss choices. Human playtests should evaluate setup damage taken, time to earn Voidform, hand quality at activation, sustain, Madness spreading, and whether waiting or immediate activation is more enjoyable.
+Some earlier art remains placeholder. Ordinary rewards now contain twenty Shadow Priest Commons, fourteen Uncommons, and eight Rares, with no Ironclad supplements; three Legendaries are separate boss-only equipment. Question Card can generate four distinct native boss choices with at most one Legendary. Human playtests should evaluate setup damage taken, time to earn Voidform, hand quality at activation, sustain, Madness spreading, and whether waiting or immediate activation is more enjoyable. Designed non-starter relics remain unimplemented.

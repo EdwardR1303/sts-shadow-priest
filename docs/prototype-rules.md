@@ -14,7 +14,7 @@ Template defaults: 70 HP, 3 energy, 5 cards drawn each turn, 99 gold, no orb slo
 | Shadow Word: Pain | 1 | Skill | 1 | Pain: 3 damage per tick; apply 5 stacks. | Cost 0; base 3 damage |
 | Enter Voidform | Generated | Skill | 0 | Retain. Enter Voidform. Exhaust. | Cannot upgrade |
 
-Neither DoT inherently heals; Vampiric Embrace rewards damaging Touch ticks with healing. Played DoT cards return to hand after end-turn discard; unplayed cards discard normally. The class supplies fourteen Commons, eleven Uncommons, and seven Rares. All reward pools are native; the fourth rare allows four distinct boss choices without Ironclad supplements. See [the first reward-card batch](card-batch-01.md) for the first 12 rewards, and [the second batch](card-batch-02.md) for the four additions and recovery rules. [The third batch](card-batch-03.md) adds four more cards and supersedes the old DoT refresh and upgrade values. [The fourth batch](card-batch-04.md) adds Void Bolt, Void Volley, and Void Torrent.
+Neither DoT inherently heals; Vampiric Embrace rewards damaging Touch ticks with healing. Played DoT cards return to hand after end-turn discard; unplayed cards discard normally. The class supplies twenty Commons, fourteen Uncommons, and eight Rares. All reward pools are native; the fourth rare allows four distinct boss choices without Ironclad supplements. See [the first reward-card batch](card-batch-01.md) for the first 12 rewards, and [the second batch](card-batch-02.md) for the four additions and recovery rules. [The third batch](card-batch-03.md) adds four more cards and supersedes the old DoT refresh and upgrade values. [The fourth batch](card-batch-04.md) adds Void Bolt, Void Volley, and Void Torrent.
 
 ## Damage over time
 
@@ -50,6 +50,10 @@ This rare 3/2-energy Skill exhausts and makes Voidform last for the rest of comb
 ## Mastery and fifth-batch cards
 
 Mastery changes Touch/Pain natural and bonus tick damage by one per point and can be negative. Zero-damage natural ticks still consume duration; they cannot heal Embrace. Madness and Halo are unaffected. Mastery uses a purple Strength icon. Penance converts actual HP removed to Block, Atonement grants Block for unique DoTs, Purify/Dispel remove specified effects, Body and Soul rolls a nonstacking per-hit dodge, Ire adds a nonnegative per-hit bonus, Scream stuns without stopping DoT ticks, and Committal grants lasting stats after cards played in Voidform. See [fifth-batch rules](card-batch-05.md) for precise timing and upgrades.
+
+## Sixth batch and equipment
+
+The [sixth batch](card-batch-06.md) implements the Flash Heal / Shadow Mend split, Blood Magic, Void Shield, Insight, Piety, Barrier, Tithe Evasion, Serendipity, Mental Fortitude, and Mind Soothe. Three [Legendary equipment cards](legendary-cards.md) can appear in Act 1/2 boss rewards. Only one may occupy the permanent deck; it equips automatically before the opening hand without being drawn or played.
 
 ## Presentation
 

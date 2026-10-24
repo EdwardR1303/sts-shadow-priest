@@ -174,7 +174,8 @@
             "UNCOMMON",
             "RARE",
             "SPECIAL",
-            "CURSE"
+            "CURSE",
+            "LEGENDARY"
           ]
         },
         "sources": {
@@ -186,7 +187,8 @@
               "REWARD_POOL",
               "GENERATED",
               "EVENT",
-              "SHOP_ONLY"
+              "SHOP_ONLY",
+              "BOSS_REWARD"
             ]
           }
         },

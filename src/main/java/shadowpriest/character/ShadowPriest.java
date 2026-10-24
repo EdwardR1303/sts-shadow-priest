@@ -254,7 +254,7 @@ public class ShadowPriest extends CustomPlayer {
     @Override
     public ArrayList<AbstractCard> getCardPool(ArrayList<AbstractCard> pool) {
         super.getCardPool(pool);
-        pool.removeIf(c -> c.rarity == AbstractCard.CardRarity.SPECIAL);
+        pool.removeIf(c -> c.rarity == AbstractCard.CardRarity.SPECIAL || c instanceof shadowpriest.cards.LegendaryCard);
         // Question Card can request four distinct boss rares. Avoid exhausting a small prototype pool.
         if (pool.stream().filter(c -> c.rarity == AbstractCard.CardRarity.RARE).count() < 4) {
             ArrayList<AbstractCard> temporary = new ArrayList<>();

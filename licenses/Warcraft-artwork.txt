@@ -149,3 +149,80 @@ Verified name and icon: https://nether.wowhead.com/tooltip/spell/55676
 Original icon: spell_shadow_psychichorrors
 Source: https://wow.zamimg.com/images/wow/icons/large/spell_shadow_psychichorrors.jpg
 Local file: shadowpriest/images/cards/icons/petrifying_scream.jpg
+
+flash_heal card icon
+Verified name: Flash Heal
+Metadata: https://nether.wowhead.com/tooltip/spell/2061
+Source: https://wow.zamimg.com/images/wow/icons/large/spell_holy_flashheal.jpg
+
+shadow_mend card icon
+Verified name: Shadow Mend
+Metadata: https://nether.wowhead.com/tooltip/spell/186263
+Source: https://wow.zamimg.com/images/wow/icons/large/spell_shadow_shadowmend.jpg
+
+power_word_barrier card icon
+Verified name: Power Word: Barrier
+Metadata: https://nether.wowhead.com/tooltip/spell/62618
+Source: https://wow.zamimg.com/images/wow/icons/large/spell_holy_powerwordbarrier.jpg
+
+tithe_evasion card icon
+Verified name: Tithe Evasion
+Metadata: https://nether.wowhead.com/tooltip/spell/373223
+Source: https://wow.zamimg.com/images/wow/icons/large/spell_nzinsanity_bloodthirst.jpg
+
+void_shield card icon
+Verified name: Void Shield
+Metadata: https://nether.wowhead.com/tooltip/spell/1253593
+Source: https://wow.zamimg.com/images/wow/icons/large/inv12_apextalent_priest_voidshield.jpg
+
+mind_soothe card icon
+Verified name: Mind Soothe
+Metadata: https://nether.wowhead.com/tooltip/spell/453
+Source: https://wow.zamimg.com/images/wow/icons/large/spell_holy_mindsooth.jpg
+
+mental_fortitude card icon
+Verified name: Mental Fortitude
+Metadata: https://nether.wowhead.com/tooltip/spell/377065
+Source: https://wow.zamimg.com/images/wow/icons/large/ability_priest_clarityofpower.jpg
+
+piety card icon
+Verified name: Premonition of Piety
+Metadata: https://nether.wowhead.com/tooltip/spell/438733
+Source: https://wow.zamimg.com/images/wow/icons/large/inv_ability_oraclepriest_premonitionpiety.jpg
+
+insight card icon
+Verified name: Premonition of Insight
+Metadata: https://nether.wowhead.com/tooltip/spell/438734
+Source: https://wow.zamimg.com/images/wow/icons/large/inv_ability_oraclepriest_premonitioninsight.jpg
+
+serendipity card icon
+Verified name: Serendipity
+Metadata: https://nether.wowhead.com/tooltip/spell/63733
+Source: https://wow.zamimg.com/images/wow/icons/large/spell_holy_serendipity.jpg
+
+dragonwrath card icon
+Verified name: Dragonwrath, Tarecgosa's Rest
+Metadata: https://nether.wowhead.com/tooltip/item/71086
+Source: https://wow.zamimg.com/images/wow/icons/large/stave_2h_tarecgosa_e_01stagefinal.jpg
+
+xalatath card icon
+Verified name: Xal'atath, Blade of the Black Empire
+Metadata: https://nether.wowhead.com/tooltip/item/128827
+Source: https://wow.zamimg.com/images/wow/icons/large/inv_knife_1h_artifactcthun_d_01.jpg
+
+valanyr card icon
+Verified name: Val'anyr, Hammer of Ancient Kings
+Metadata: https://nether.wowhead.com/tooltip/item/46017
+Source: https://wow.zamimg.com/images/wow/icons/large/inv_mace_99.jpg
+
+dragonwrath floating weapon: actual WoW model render
+Source: https://wow.zamimg.com/modelviewer/live/webthumbs/item/167/675751.png
+Display ID: 675751
+
+xalatath floating weapon: actual WoW model render
+Source: https://wow.zamimg.com/modelviewer/live/webthumbs/item/25/152601.png
+Display ID: 152601
+
+valanyr floating weapon: actual WoW model render
+Source: https://wow.zamimg.com/modelviewer/live/webthumbs/item/215/61655.png
+Display ID: 61655

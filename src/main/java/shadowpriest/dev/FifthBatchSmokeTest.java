@@ -30,8 +30,8 @@ final class FifthBatchSmokeTest {
         q.add(() -> {
             p = AbstractDungeon.player; m = AbstractDungeon.getMonsters().monsters.get(0);
             other = AbstractDungeon.getMonsters().monsters.get(1); relic = VoidformRelic.current(); reset();
-            check(AbstractDungeon.commonCardPool.size()==14 && AbstractDungeon.uncommonCardPool.size()==11 && AbstractDungeon.rareCardPool.size()==7,
-                "Fifth batch supplies 14 commons, 11 uncommons, and 7 rares");
+            check(AbstractDungeon.commonCardPool.size()==20 && AbstractDungeon.uncommonCardPool.size()==14 && AbstractDungeon.rareCardPool.size()==8,
+                "Current roster supplies 20 commons, 14 uncommons, and 8 rares");
             for (String id : new String[]{"Penance","Atonement","PurifyDisease","DispelMagic","BodyAndSoul","InsidiousIre","PetrifyingScream","ShadowCommittal"}) {
                 AbstractCard c = CardLibrary.getCard("shadowpriest:"+id).makeCopy(); c.upgrade();
                 AbstractCard copy = c.makeStatEquivalentCopy(); Texture art = CustomCard.getPortraitImage((CustomCard)c);
@@ -40,8 +40,8 @@ final class FifthBatchSmokeTest {
                 check(c.portrait.getRegionWidth()==250 && art.getWidth()==500 && art.getHeight()==380, id+" loads its final artwork in both sizes");
                 if(Boolean.getBoolean("shadowpriest.latestbatchonly")) CardArtReview.card(c,id);
             }
-            check(CardLibrary.getCard("shadowpriest:MindSoothe")==null && CardLibrary.getCard("shadowpriest:MentalFortitude")==null,
-                "Unresolved draft cards stay out of the game");
+            check(CardLibrary.getCard("shadowpriest:MindSoothe")!=null && CardLibrary.getCard("shadowpriest:MentalFortitude")!=null,
+                "Both former drafts now register after approval");
             m.addBlock(4); p.powers.add(new DexterityPower(p, 10)); p.powers.add(new FrailPower(p, 2, false)); play(new Penance(),m,3);
         });
         q.add(() -> {

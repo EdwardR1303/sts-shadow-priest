@@ -21,7 +21,7 @@ public class DeathHitAction extends AbstractGameAction {
             int before = monster.currentHealth;
             monster.damage(info);
             if (backlash && monster.currentHealth < before) {
-                player.damage(new DamageInfo(player, 3, DamageInfo.DamageType.HP_LOSS));
+                PriestHpLossAction.damage(player, 3);
             }
         }
         isDone = true;

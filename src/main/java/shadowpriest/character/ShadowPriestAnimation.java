@@ -79,6 +79,7 @@ public final class ShadowPriestAnimation extends AbstractAnimation {
             batch.setBlendFunction(oldSrc, oldDst);
             batch.setColor(oldColor);
         }
+        shadowpriest.legendary.WeaponRenderer.render(batch,x,y);
     }
 
     private void draw(SpriteBatch batch, float x, float y, float width, float height) {

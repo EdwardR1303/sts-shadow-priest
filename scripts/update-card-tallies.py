@@ -3,7 +3,7 @@ import argparse
 import re
 from pathlib import Path
 
-RARITIES = ("Basic", "Common", "Uncommon", "Rare", "Special", "Curse")
+RARITIES = ("Basic", "Common", "Uncommon", "Rare", "Legendary", "Special", "Curse")
 TYPES = ("Attacks", "Skills", "Powers")
 START = "<!-- card-tallies:start -->"
 END = "<!-- card-tallies:end -->"

@@ -306,7 +306,7 @@
     {
       "id": "shadowpriest:FlashHeal",
       "name": "Flash Heal",
-      "status": "APPROVED",
+      "status": "IMPLEMENTED",
       "type": "SKILL",
       "rarity": "COMMON",
       "sources": [
@@ -345,15 +345,14 @@
         }
       },
       "rulesNotes": [
-        "The cost increase affects only the played copy and resets after combat.",
-        "Approved rename of the previous Shadow Mend; runtime rename pending.",
-        "Runtime currently exposes this behavior under shadowpriest:ShadowMend. Rename and save compatibility need implementation; the new debt design is separate."
+        "Only the played copy increases its energy cost. Reset after combat.",
+        "This is the former Shadow Mend behavior under its own new identity. Old saved Shadow Mend cards now use the reworked debt design; start a fresh balance run."
       ],
-      "balanceNotes": "Approved for implementation; numbers and repeatable draw/healing interactions require playtesting.",
+      "balanceNotes": "Implemented; validate full-run balance, including repeated use and A20 Heart performance.",
       "art": {
         "wowAbility": "Flash Heal",
-        "icon": "",
-        "direction": "Use matching existing WoW ability art where available; otherwise create thematic Shadow Priest artwork. Asset selection pending."
+        "icon": "spell_holy_flashheal",
+        "direction": "Actual WoW icon with the shared violet-and-gold frame; source attribution in licenses/Warcraft-artwork.txt."
       }
     },
     {
@@ -1758,7 +1757,7 @@
     {
       "id": "shadowpriest:MindSoothe",
       "name": "Mind Soothe",
-      "status": "DRAFT",
+      "status": "IMPLEMENTED",
       "type": "SKILL",
       "rarity": "COMMON",
       "sources": [
@@ -1802,17 +1801,16 @@
         }
       },
       "rulesNotes": [
-        "UNAPPROVED PROPOSAL: this replacement was suggested for discussion and has not been accepted.",
-        "The previous Weak/Frail draft is superseded as a direction: ordinary enemy Block gains do not respond to standard Frail, and a Weak-only replacement overlaps a colorless card.",
-        "Proposed unique DoTs are Touch, Pain, and Madness, counted once each.",
-        "The proposed effect changes Attack damage before Block, not all HP loss like Fade.",
-        "Artifact behavior, duplicate-cast stacking, modifier ordering, and zero-DoT behavior need review before implementation."
+        "Snapshot Touch, Pain, and Madness, counted once each.",
+        "Each application is an Artifact-blockable debuff; copies add reduction for this turn.",
+        "Reduce outgoing normal Attack damage before Block, floored at zero; expire after the enemy turn.",
+        "With no DoTs, base does nothing; upgrade applies one reduction."
       ],
-      "balanceNotes": "Provisional 0-cost design. Test multihit mitigation and setup dependence if approved; do not implement this draft as an accepted design.",
+      "balanceNotes": "Implemented; validate full-run balance, including repeated use and A20 Heart performance.",
       "art": {
         "wowAbility": "Mind Soothe",
-        "icon": "",
-        "direction": "Verify and use the actual WoW ability icon inside the shared card frame before implementation."
+        "icon": "spell_holy_mindsooth",
+        "direction": "Actual WoW icon with the shared violet-and-gold frame; source attribution in licenses/Warcraft-artwork.txt."
       }
     },
     {
@@ -1875,7 +1873,7 @@
     {
       "id": "shadowpriest:MentalFortitude",
       "name": "Mental Fortitude",
-      "status": "DRAFT",
+      "status": "IMPLEMENTED",
       "type": "SKILL",
       "rarity": "UNCOMMON",
       "sources": [
@@ -1905,7 +1903,7 @@
         ]
       },
       "upgrade": {
-        "summary": "Provisional: gain 3 Dexterity and 3 Mastery; retain the 2 Strength loss.",
+        "summary": "Gain 3 Dexterity and 3 Mastery; retain the 2 Strength loss.",
         "card": {
           "cost": 2,
           "target": "SELF",
@@ -1924,18 +1922,15 @@
         }
       },
       "rulesNotes": [
-        "PARTIALLY UNRESOLVED: losing 2 Strength rather than losing Mastery is confirmed; no Exhaust is intended.",
-        "This draft retains the original Dexterity AND Mastery gains. Confirmation is still pending whether only Dexterity should remain.",
-        "The original 2-energy cost and 2/3 stat gains are retained provisionally, not newly approved.",
-        "Stats last for combat.",
-        "Mastery can be negative; damaging DoT ticks floor at zero without removing their stacks or changing Madness into a ticking effect.",
-        "Resolve Artifact/cleansing behavior for the Strength penalty under normal stat-debuff rules before implementation."
+        "Repeatable, without Exhaust; stats last for combat.",
+        "Lose Strength through normal stat-debuff rules, including Artifact.",
+        "Mastery may be negative; damaging DoT ticks floor at zero."
       ],
-      "balanceNotes": "Do not implement until the retained benefits and final cost are confirmed. Test repeated use, reduced Attack damage, and Penance conversion.",
+      "balanceNotes": "Implemented; validate full-run balance, including repeated use and A20 Heart performance.",
       "art": {
         "wowAbility": "Mental Fortitude",
-        "icon": "",
-        "direction": "Verify and use the actual WoW ability icon inside the shared card frame before implementation."
+        "icon": "ability_priest_clarityofpower",
+        "direction": "Actual WoW icon with the shared violet-and-gold frame; source attribution in licenses/Warcraft-artwork.txt."
       }
     },
     {
@@ -2127,7 +2122,7 @@
     {
       "id": "shadowpriest:BloodMagic",
       "name": "Blood Magic",
-      "status": "APPROVED",
+      "status": "IMPLEMENTED",
       "type": "ATTACK",
       "rarity": "COMMON",
       "sources": [
@@ -2165,20 +2160,18 @@
           ]
         }
       },
-      "rulesNotes": [
-        "Approved; not implemented."
-      ],
-      "balanceNotes": "Approved for implementation; numbers and repeatable draw/healing interactions require playtesting.",
+      "rulesNotes": [],
+      "balanceNotes": "Implemented; validate full-run balance, including repeated use and A20 Heart performance.",
       "art": {
-        "wowAbility": "Blood Magic",
-        "icon": "",
-        "direction": "Use matching existing WoW ability art where available; otherwise create thematic Shadow Priest artwork. Asset selection pending."
+        "wowAbility": "Original Blood Magic concept",
+        "icon": "blood_magic.png",
+        "direction": "Original generated crimson/violet ability icon; prompt in docs/card-batch-06.md."
       }
     },
     {
       "id": "shadowpriest:ShadowMend",
       "name": "Shadow Mend",
-      "status": "APPROVED",
+      "status": "IMPLEMENTED",
       "type": "SKILL",
       "rarity": "COMMON",
       "sources": [
@@ -2217,20 +2210,19 @@
         }
       },
       "rulesNotes": [
-        "Each cast adds its debt to one debuff lasting this combat. Starting next turn, resolve the combined debt as one HP-loss event each turn; it does not decay. Artifact can prevent a debt application and debuff cleansing can remove accumulated debt, without undoing healing. Tithe Evasion reduces the combined event once, not once per cast. Purify Disease does not remove this debt.",
-        "Approved rework; not implemented."
+        "Each cast adds its debt to one debuff lasting this combat. Starting next turn, resolve the combined debt as one HP-loss event each turn; it does not decay. Artifact can prevent a debt application and debuff cleansing can remove accumulated debt, without undoing healing. Tithe Evasion reduces the combined event once, not once per cast. Purify Disease does not remove this debt."
       ],
-      "balanceNotes": "Approved for implementation; numbers and repeatable draw/healing interactions require playtesting.",
+      "balanceNotes": "Implemented; validate full-run balance, including repeated use and A20 Heart performance.",
       "art": {
         "wowAbility": "Shadow Mend",
-        "icon": "",
-        "direction": "Use matching existing WoW ability art where available; otherwise create thematic Shadow Priest artwork. Asset selection pending."
+        "icon": "spell_shadow_shadowmend",
+        "direction": "Actual WoW icon with the shared violet-and-gold frame; source attribution in licenses/Warcraft-artwork.txt."
       }
     },
     {
       "id": "shadowpriest:VoidShield",
       "name": "Void Shield",
-      "status": "APPROVED",
+      "status": "IMPLEMENTED",
       "type": "SKILL",
       "rarity": "COMMON",
       "sources": [
@@ -2269,20 +2261,19 @@
         }
       },
       "rulesNotes": [
-        "Resolve Insanity gain before calculating Block. All Insanity gain obeys the normal cap, ready/active restrictions, and recovery turn. Both ordinary and permanent Voidform count as 10. Grant Block once; Dexterity and ordinary Block modifiers apply once to the total.",
-        "Approved; not implemented."
+        "Resolve Insanity gain before calculating Block. All Insanity gain obeys the normal cap, ready/active restrictions, and recovery turn. Both ordinary and permanent Voidform count as 10. Grant Block once; Dexterity and ordinary Block modifiers apply once to the total."
       ],
-      "balanceNotes": "Approved for implementation; numbers and repeatable draw/healing interactions require playtesting.",
+      "balanceNotes": "Implemented; validate full-run balance, including repeated use and A20 Heart performance.",
       "art": {
         "wowAbility": "Void Shield",
-        "icon": "",
-        "direction": "Use matching existing WoW ability art where available; otherwise create thematic Shadow Priest artwork. Asset selection pending."
+        "icon": "inv12_apextalent_priest_voidshield",
+        "direction": "Actual WoW icon with the shared violet-and-gold frame; source attribution in licenses/Warcraft-artwork.txt."
       }
     },
     {
       "id": "shadowpriest:Insight",
       "name": "Insight",
-      "status": "APPROVED",
+      "status": "IMPLEMENTED",
       "type": "SKILL",
       "rarity": "COMMON",
       "sources": [
@@ -2321,20 +2312,19 @@
         }
       },
       "rulesNotes": [
-        "Multiple plays add their next-turn draw penalties. The penalty affects the next turn's normal draw, not every draw effect, and then expires. The upgrade retains the same penalty.",
-        "Approved; not implemented."
+        "Multiple plays add their next-turn draw penalties. The penalty affects the next turn's normal draw, not every draw effect, and then expires. The upgrade retains the same penalty."
       ],
-      "balanceNotes": "Approved for implementation; numbers and repeatable draw/healing interactions require playtesting.",
+      "balanceNotes": "Implemented; validate full-run balance, including repeated use and A20 Heart performance.",
       "art": {
         "wowAbility": "Insight",
-        "icon": "",
-        "direction": "Use matching existing WoW ability art where available; otherwise create thematic Shadow Priest artwork. Asset selection pending."
+        "icon": "inv_ability_oraclepriest_premonitioninsight",
+        "direction": "Actual WoW icon with the shared violet-and-gold frame; source attribution in licenses/Warcraft-artwork.txt."
       }
     },
     {
       "id": "shadowpriest:TitheEvasion",
       "name": "Tithe Evasion",
-      "status": "APPROVED",
+      "status": "IMPLEMENTED",
       "type": "POWER",
       "rarity": "COMMON",
       "sources": [
@@ -2371,20 +2361,19 @@
         }
       },
       "rulesNotes": [
-        "Only the three named sources qualify, including Shadow Mend's combined debt tick. Exclude all other sources, including enemy Attacks, Beat of Death, Curses, Statuses, relics, and other classes' cards. Floor each qualifying HP loss at zero. Track the highest benefit granted this combat: equal or weaker copies are unplayable; an upgraded copy replaces the base benefit. Reset tracking after combat.",
-        "Approved; not implemented."
+        "Only the three named sources qualify, including Shadow Mend's combined debt tick. Exclude all other sources, including enemy Attacks, Beat of Death, Curses, Statuses, relics, and other classes' cards. Floor each qualifying HP loss at zero. Track the highest benefit granted this combat: equal or weaker copies are unplayable; an upgraded copy replaces the base benefit. Reset tracking after combat."
       ],
-      "balanceNotes": "Approved for implementation; numbers and repeatable draw/healing interactions require playtesting.",
+      "balanceNotes": "Implemented; validate full-run balance, including repeated use and A20 Heart performance.",
       "art": {
         "wowAbility": "Tithe Evasion",
-        "icon": "",
-        "direction": "Use matching existing WoW ability art where available; otherwise create thematic Shadow Priest artwork. Asset selection pending."
+        "icon": "spell_nzinsanity_bloodthirst",
+        "direction": "Actual WoW icon with the shared violet-and-gold frame; source attribution in licenses/Warcraft-artwork.txt."
       }
     },
     {
       "id": "shadowpriest:Piety",
       "name": "Piety",
-      "status": "APPROVED",
+      "status": "IMPLEMENTED",
       "type": "SKILL",
       "rarity": "UNCOMMON",
       "sources": [
@@ -2425,20 +2414,19 @@
         }
       },
       "rulesNotes": [
-        "After the played card leaves the hand, snapshot both conditions before drawing. Ignore all copies of Piety, upgraded or not, when checking for Skills. Both effects can trigger; resolve Attack draws first. Draw random matching cards from the draw pile only, without reshuffling, subject to hand capacity and available matches. Piety remains a Skill eligible to be drawn; its exclusion applies only to the hand check.",
-        "Approved; not implemented."
+        "After the played card leaves the hand, snapshot both conditions before drawing. Ignore all copies of Piety, upgraded or not, when checking for Skills. Both effects can trigger; resolve Attack draws first. Draw random matching cards from the draw pile only, without reshuffling, subject to hand capacity and available matches. Piety remains a Skill eligible to be drawn; its exclusion applies only to the hand check."
       ],
-      "balanceNotes": "Approved for implementation; numbers and repeatable draw/healing interactions require playtesting.",
+      "balanceNotes": "Implemented; validate full-run balance, including repeated use and A20 Heart performance.",
       "art": {
         "wowAbility": "Piety",
-        "icon": "",
-        "direction": "Use matching existing WoW ability art where available; otherwise create thematic Shadow Priest artwork. Asset selection pending."
+        "icon": "inv_ability_oraclepriest_premonitionpiety",
+        "direction": "Actual WoW icon with the shared violet-and-gold frame; source attribution in licenses/Warcraft-artwork.txt."
       }
     },
     {
       "id": "shadowpriest:PowerWordBarrier",
       "name": "Power Word: Barrier",
-      "status": "APPROVED",
+      "status": "IMPLEMENTED",
       "type": "SKILL",
       "rarity": "UNCOMMON",
       "sources": [
@@ -2475,20 +2463,19 @@
         }
       },
       "rulesNotes": [
-        "Count cards remaining in hand when the Block effect resolves, excluding the played card. Calculate Block per card with Dexterity and ordinary Block modifiers, including normal rounding and a minimum of zero, then multiply by that hand size. Grant the total once without applying modifiers again. With four cards and 4 Dexterity, gain 36 Block, or 44 upgraded, before other modifiers. Retain the hand for this turn's end only; this does not retain Block or prevent ordinary Ethereal exhaustion.",
-        "Approved; not implemented."
+        "Count cards remaining in hand when the Block effect resolves, excluding the played card. Calculate Block per card with Dexterity and ordinary Block modifiers, including normal rounding and a minimum of zero, then multiply by that hand size. Grant the total once without applying modifiers again. With four cards and 4 Dexterity, gain 36 Block, or 44 upgraded, before other modifiers. Retain the hand for this turn's end only; this does not retain Block or prevent ordinary Ethereal exhaustion."
       ],
-      "balanceNotes": "Approved for implementation. The 3-energy cost intentionally supports very large Block totals from hand size and Dexterity; validate during playtesting.",
+      "balanceNotes": "Implemented; validate full-run balance, including repeated use and A20 Heart performance.",
       "art": {
         "wowAbility": "Power Word: Barrier",
-        "icon": "",
-        "direction": "Use the existing WoW Power Word: Barrier ability icon with the shared card-art treatment. Asset selection pending."
+        "icon": "spell_holy_powerwordbarrier",
+        "direction": "Actual WoW icon with the shared violet-and-gold frame; source attribution in licenses/Warcraft-artwork.txt."
       }
     },
     {
       "id": "shadowpriest:Serendipity",
       "name": "Serendipity",
-      "status": "APPROVED",
+      "status": "IMPLEMENTED",
       "type": "SKILL",
       "rarity": "RARE",
       "sources": [
@@ -2523,14 +2510,194 @@
         }
       },
       "rulesNotes": [
-        "Exclude the played Serendipity from the hand and discard count. Count cards actually discarded. Draw random matching cards from the draw pile only, without reshuffling, subject to hand capacity and available matches. Other Serendipity copies are ordinary Skills for this effect.",
-        "Approved; not implemented."
+        "Exclude the played Serendipity from the hand and discard count. Count cards actually discarded. Draw random matching cards from the draw pile only, without reshuffling, subject to hand capacity and available matches. Other Serendipity copies are ordinary Skills for this effect."
       ],
-      "balanceNotes": "Approved for implementation; numbers and repeatable draw/healing interactions require playtesting.",
+      "balanceNotes": "Implemented; validate full-run balance, including repeated use and A20 Heart performance.",
       "art": {
         "wowAbility": "Serendipity",
-        "icon": "",
-        "direction": "Use matching existing WoW ability art where available; otherwise create thematic Shadow Priest artwork. Asset selection pending."
+        "icon": "spell_holy_serendipity",
+        "direction": "Actual WoW icon with the shared violet-and-gold frame; source attribution in licenses/Warcraft-artwork.txt."
+      }
+    },
+    {
+      "id": "shadowpriest:Dragonwrath",
+      "name": "Dragonwrath: Tarecgosa's Rest",
+      "status": "IMPLEMENTED",
+      "type": "POWER",
+      "rarity": "LEGENDARY",
+      "sources": [
+        "BOSS_REWARD"
+      ],
+      "startingCopies": 0,
+      "tags": [
+        "LEGENDARY",
+        "EQUIPMENT"
+      ],
+      "designIntent": "Repeat whole Attack plays for memorable burst turns.",
+      "base": {
+        "cost": "UNPLAYABLE",
+        "target": "SELF",
+        "text": "Legendary. Equips at combat start. Attacks have a 20% chance to repeat for free. Repeats cannot trigger this again.",
+        "stats": {
+          "chance": 20
+        },
+        "keywords": [],
+        "effects": [
+          "Automatically activate before the opening hand without playing a card.",
+          "Attacks have a 20% chance to repeat for free. Repeats cannot trigger this again."
+        ]
+      },
+      "upgrade": {
+        "summary": "Chance increases to 25%.",
+        "card": {
+          "cost": "UNPLAYABLE",
+          "target": "SELF",
+          "text": "Legendary. Equips at combat start. Attacks have a 25% chance to repeat for free. Repeats cannot trigger this again.",
+          "stats": {
+            "chance": 25
+          },
+          "keywords": [],
+          "effects": [
+            "Automatically activate before the opening hand without playing a card.",
+            "Attacks have a 25% chance to repeat for free. Repeats cannot trigger this again."
+          ]
+        }
+      },
+      "rulesNotes": [
+        "Only one Legendary in the permanent deck. Each identity can be acquired only once per run, even if later removed.",
+        "Eligible only in Act 1/2 boss rewards, replacing one Rare with probability max(5, Ascension)% per screen.",
+        "Equips once before opening hand; does not count as playing a Power and is absent from the combat deck.",
+        "Temporary copies and forced plays cannot activate equipment. Permanent duplication is prohibited.",
+        "One roll per ordinary Attack card, not per hit. Repeat card effects, including HP costs, with the same X and normal play hooks.",
+        "Purge-on-use repeats cannot proc Dragonwrath. Retarget a dead original target to a living enemy if available."
+      ],
+      "balanceNotes": "Implemented; rare acquisition is not evidence of balanced power. Validate complete runs.",
+      "art": {
+        "wowAbility": "Dragonwrath: Tarecgosa's Rest",
+        "icon": "stave_2h_tarecgosa_e_01stagefinal",
+        "direction": "Actual WoW item icon and floating transparent weapon model render, with an orange Legendary card frame."
+      }
+    },
+    {
+      "id": "shadowpriest:Xalatath",
+      "name": "Xal'atath's Blade",
+      "status": "IMPLEMENTED",
+      "type": "POWER",
+      "rarity": "LEGENDARY",
+      "sources": [
+        "BOSS_REWARD"
+      ],
+      "startingCopies": 0,
+      "tags": [
+        "LEGENDARY",
+        "EQUIPMENT"
+      ],
+      "designIntent": "Combat-to-combat variation in a large immediate stat boost.",
+      "base": {
+        "cost": "UNPLAYABLE",
+        "target": "SELF",
+        "text": "Legendary. Equips at combat start. Randomly gain 2 Strength, Mastery, or Dexterity 4 times.",
+        "stats": {
+          "rolls": 4,
+          "statPerRoll": 2
+        },
+        "keywords": [],
+        "effects": [
+          "Automatically activate before the opening hand without playing a card.",
+          "Randomly gain 2 Strength, Mastery, or Dexterity 4 times."
+        ]
+      },
+      "upgrade": {
+        "summary": "Roll five times.",
+        "card": {
+          "cost": "UNPLAYABLE",
+          "target": "SELF",
+          "text": "Legendary. Equips at combat start. Randomly gain 2 Strength, Mastery, or Dexterity 5 times.",
+          "stats": {
+            "rolls": 5,
+            "statPerRoll": 2
+          },
+          "keywords": [],
+          "effects": [
+            "Automatically activate before the opening hand without playing a card.",
+            "Randomly gain 2 Strength, Mastery, or Dexterity 5 times."
+          ]
+        }
+      },
+      "rulesNotes": [
+        "Only one Legendary in the permanent deck. Each identity can be acquired only once per run, even if later removed.",
+        "Eligible only in Act 1/2 boss rewards, replacing one Rare with probability max(5, Ascension)% per screen.",
+        "Equips once before opening hand; does not count as playing a Power and is absent from the combat deck.",
+        "Temporary copies and forced plays cannot activate equipment. Permanent duplication is prohibited.",
+        "Independent, uniform rolls; repeated results are allowed. Stats last for combat."
+      ],
+      "balanceNotes": "Implemented; rare acquisition is not evidence of balanced power. Validate complete runs.",
+      "art": {
+        "wowAbility": "Xal'atath's Blade",
+        "icon": "inv_knife_1h_artifactcthun_d_01",
+        "direction": "Actual WoW item icon and floating transparent weapon model render, with an orange Legendary card frame."
+      }
+    },
+    {
+      "id": "shadowpriest:Valanyr",
+      "name": "Val'anyr, Hammer of the Ancient Kings",
+      "status": "IMPLEMENTED",
+      "type": "POWER",
+      "rarity": "LEGENDARY",
+      "sources": [
+        "BOSS_REWARD"
+      ],
+      "startingCopies": 0,
+      "tags": [
+        "LEGENDARY",
+        "EQUIPMENT"
+      ],
+      "designIntent": "Preserve a defensive buffer with a separate last-chance rescue.",
+      "base": {
+        "cost": "UNPLAYABLE",
+        "target": "SELF",
+        "text": "Legendary. Equips at combat start. Gain 5 Block. Retain Block until it is depleted. Once per combat, lethal damage leaves you at 1 HP.",
+        "stats": {
+          "block": 5,
+          "rescues": 1
+        },
+        "keywords": [],
+        "effects": [
+          "Automatically activate before the opening hand without playing a card.",
+          "Gain 5 Block. Retain Block until it is depleted. Once per combat, lethal damage leaves you at 1 HP."
+        ]
+      },
+      "upgrade": {
+        "summary": "Start with ten Block.",
+        "card": {
+          "cost": "UNPLAYABLE",
+          "target": "SELF",
+          "text": "Legendary. Equips at combat start. Gain 10 Block. Retain Block until it is depleted. Once per combat, lethal damage leaves you at 1 HP.",
+          "stats": {
+            "block": 10,
+            "rescues": 1
+          },
+          "keywords": [],
+          "effects": [
+            "Automatically activate before the opening hand without playing a card.",
+            "Gain 10 Block. Retain Block until it is depleted. Once per combat, lethal damage leaves you at 1 HP."
+          ]
+        }
+      },
+      "rulesNotes": [
+        "Only one Legendary in the permanent deck. Each identity can be acquired only once per run, even if later removed.",
+        "Eligible only in Act 1/2 boss rewards, replacing one Rare with probability max(5, Ascension)% per screen.",
+        "Equips once before opening hand; does not count as playing a Power and is absent from the combat deck.",
+        "Temporary copies and forced plays cannot activate equipment. Permanent duplication is prohibited.",
+        "Starting Block is flat, unaffected by Dexterity.",
+        "Exact depletion permanently breaks retention for this combat. Other Barricade/Blur effects remain.",
+        "Rescue is independent, works on lethal HP loss, and grants no immunity against following hits."
+      ],
+      "balanceNotes": "Implemented; rare acquisition is not evidence of balanced power. Validate complete runs.",
+      "art": {
+        "wowAbility": "Val'anyr, Hammer of the Ancient Kings",
+        "icon": "inv_mace_99",
+        "direction": "Actual WoW item icon and floating transparent weapon model render, with an orange Legendary card frame."
       }
     }
   ]

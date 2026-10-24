@@ -23,7 +23,7 @@ Build runs Maven `clean verify`, including unit tests for persistent accumulatio
 
 This starts only BaseMod, StSLib, and Shadow Priest in `.playtest/`, with a local game-JAR copy and separate saves/preferences. It does not change the regular ModTheSpire mod selection. Close the test game before rebuilding and relaunching.
 
-The display defaults to 3840 x 2160 borderless, 60 FPS, VSync. Override with `-Width 1920 -Height 1080 -Windowed` if desired. Select The Shadow Priest in a Standard run. The class has its custom ten-card deck and Voidform relic; the class supplies 32 reward cards: fourteen Commons, eleven Uncommons, and seven Rares. All reward pools are native, including four-choice boss rewards.
+The display defaults to 3840 x 2160 borderless, 60 FPS, VSync. Override with `-Width 1920 -Height 1080 -Windowed` if desired. Select The Shadow Priest in a Standard run. The class has its custom ten-card deck and Voidform relic; the class supplies 42 ordinary reward cards: twenty Commons, fourteen Uncommons, and eight Rares, plus three boss-only Legendaries. All reward pools are native, including four-choice boss rewards.
 
 Logs are `.playtest/console.log` and `.playtest/error.log`. The isolated game may report unavailable Steam integration; local combat can still run without achievements or cloud saves. BaseMod's console can be enabled through its in-game settings for manual card and encounter setup.
 
@@ -37,7 +37,7 @@ This uses a separate `.smoketest/` session, starts a seeded run and controlled e
 
 These checks need the installed game and a working graphics session, so they are separate from ordinary Maven tests. The driver only runs with the `shadowpriest.smoketest` JVM property. Normal play never automatically starts a run or manipulates combat.
 
-The full suite currently covers 331 checks, including the starter mechanics, all five reward-card batches, Mastery, and Surrender to Madness. The reward-only mode contains 289 checks (including startup checks):
+The full suite covers the starter mechanics, all six reward-card batches, Mastery, Surrender to Madness, and Legendary equipment. See [test results](playtest-results.md) for the latest verified counts. To run the reward-only mode:
 
 ```powershell
 ./scripts/playtest.ps1 -SkipBuild -CardBatchOnly -Width 1920 -Height 1080 -Windowed
@@ -45,7 +45,7 @@ The full suite currently covers 331 checks, including the starter mechanics, all
 
 `-CardBatchOnly` implies `-SmokeTest` and uses the same disposable session and result file. Both suites exercise base/upgraded cards, real turn boundaries, card selection, multi-hit and area damage, and lethal damage handling.
 
-For focused fifth-batch development, use `-LatestBatchOnly` instead. It implies the isolated smoke-test modes and runs the new defensive cards, Mastery, and their interactions without repeating all older card checks (69 checks including startup). It also exports game-rendered card review images and the Mastery icon into the ignored `.smoketest/` directory. Use the full suite before shipping shared combat changes.
+For focused sixth-batch development, use `-LatestBatchOnly` instead. It implies the isolated smoke-test modes and runs 107 checks including startup, healing/draw cards, and Legendary mechanics. It exports base/upgraded card images and weapon previews into `.smoketest/card-review/`. Use the full suite before shipping shared combat changes.
 
 ## Debug and deploy
 

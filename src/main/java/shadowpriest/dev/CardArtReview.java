@@ -11,6 +11,27 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 
 /** Opt-in game-rendered review images; never called by normal gameplay. */
 final class CardArtReview {
+    static void weapon(String id) {
+        FrameBuffer frame = new FrameBuffer(Pixmap.Format.RGBA8888, 600, 600, false);
+        SpriteBatch batch = new SpriteBatch();
+        com.megacrit.cardcrawl.characters.AbstractPlayer player = com.megacrit.cardcrawl.dungeons.AbstractDungeon.player;
+        String previous = shadowpriest.legendary.LegendaryEquipment.State.equipped.get(player);
+        frame.begin();
+        try {
+            shadowpriest.legendary.LegendaryEquipment.State.equipped.set(player, id);
+            Gdx.gl.glClearColor(0.05f,0.03f,0.08f,1f); Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+            batch.setProjectionMatrix(new Matrix4().setToOrtho2D(0,0,600,600));
+            batch.begin(); new shadowpriest.character.ShadowPriestAnimation().renderSprite(batch,250,120); batch.end();
+            Pixmap pixels=ScreenUtils.getFrameBufferPixmap(0,0,600,600);
+            Pixmap flipped=new Pixmap(600,600,Pixmap.Format.RGBA8888);
+            for(int x=0;x<600;x++) for(int y=0;y<600;y++) flipped.drawPixel(x,599-y,pixels.getPixel(x,y));
+            PixmapIO.writePNG(Gdx.files.local("card-review/weapon-"+id.split(":")[1]+".png"),flipped);
+            pixels.dispose(); flipped.dispose();
+        } finally {
+            shadowpriest.legendary.LegendaryEquipment.State.equipped.set(player,previous);
+            frame.end(); batch.dispose(); frame.dispose();
+        }
+    }
     static void card(AbstractCard card, String name) {
         FrameBuffer frame = new FrameBuffer(Pixmap.Format.RGBA8888, 600, 800, false);
         SpriteBatch batch = new SpriteBatch();

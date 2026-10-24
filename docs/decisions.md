@@ -102,3 +102,13 @@ Mind Blast as a starter and vampiric conversion into Block were brainstorming id
 ## Future decision entries
 
 For each new choice, record its date, the rule accepted, and any earlier choice it replaces. Keep the character design synchronized so readers do not need to reconstruct the current rules from this log.
+
+## Sixth batch decisions on October 24 2026
+
+- **D059:** Implement Flash Heal as the former per-copy escalating-cost heal. Rework Shadow Mend to fixed ten healing with additive 2/1 combat-long debt, ticking once per turn at player turn start. Tithe Evasion reduces only Blood Magic, Shadow Word: Death, and the combined debt event.
+- **D060:** Implement Piety and Serendipity as random matching draw-pile-only draws, respecting draw hooks and hand limits. Insight penalties stack for the next opening draw. Barrier retains the hand and applies Dexterity per remaining card.
+- **D061:** Resolve the two drafts: Mental Fortitude costs two and grants +2/+2 Dexterity/Mastery, upgraded +3/+3, with -2 Strength and no Exhaust. Mind Soothe snapshots DoTs, stacks per-hit reduction for this turn, and can be blocked by Artifact. This supersedes D054's draft status.
+- **D062:** Legendary equipment activates automatically once before opening draw, without a Power play or combat-deck copy. Temporary copies cannot activate. Dragonwrath repeats ordinary Attack cards with the same X, including normal play hooks, without recursive procs.
+- **D063:** Implement Dragonwrath at 20/25%, Xal'atath at four/five independent +2-stat rolls, and Val'anyr at 5/10 starting Block with retention until exact depletion plus an independent once-per-combat lethal rescue. Use orange cards and floating sprites rendered from the actual WoW models.
+
+The earlier agreed boss-only chance, one-Legendary permanent-deck limit, identity acquisition history, and permanent-copy restrictions are implemented as specified in [Legendary rules](legendary-cards.md).

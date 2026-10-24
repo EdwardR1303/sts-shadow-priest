@@ -30,9 +30,9 @@ final class ThirdBatchSmokeTest {
         q.add(() -> {
             p = AbstractDungeon.player; m = AbstractDungeon.getMonsters().monsters.get(0);
             other = AbstractDungeon.getMonsters().monsters.get(1); relic = VoidformRelic.current(); reset();
-            check(AbstractDungeon.rareCardPool.size() == 7 && AbstractDungeon.rareCardPool.group.stream()
-                .filter(c -> c.cardID.startsWith("shadowpriest:")).count() == 7,
-                "Seven native rares form the entire rare reward pool");
+            check(AbstractDungeon.rareCardPool.size() == 8 && AbstractDungeon.rareCardPool.group.stream()
+                .filter(c -> c.cardID.startsWith("shadowpriest:")).count() == 8,
+                "Eight native rares form the entire rare reward pool");
             com.megacrit.cardcrawl.rooms.AbstractRoom room = AbstractDungeon.currMapNode.room;
             com.megacrit.cardcrawl.relics.QuestionCard question = new com.megacrit.cardcrawl.relics.QuestionCard();
             p.relics.add(question);
@@ -40,8 +40,9 @@ final class ThirdBatchSmokeTest {
                 AbstractDungeon.currMapNode.room = new com.megacrit.cardcrawl.rooms.MonsterRoomBoss();
                 java.util.ArrayList<AbstractCard> rewards = AbstractDungeon.getRewardCards();
                 check(rewards.size() == 4 && rewards.stream().map(c -> c.cardID).distinct().count() == 4
-                    && rewards.stream().allMatch(c -> c.rarity == AbstractCard.CardRarity.RARE),
-                    "Question Card generates four distinct boss rares without exhausting the pool");
+                    && rewards.stream().allMatch(c -> c.rarity == AbstractCard.CardRarity.RARE || c instanceof LegendaryCard)
+                    && rewards.stream().filter(c -> c instanceof LegendaryCard).count() <= 1,
+                    "Question Card generates four distinct boss choices with at most one Legendary");
             } finally { AbstractDungeon.currMapNode.room = room; p.relics.remove(question); }
             for (String id : new String[]{"TentacleSlam", "VoidBlast", "MassDispel", "VampiricEmbrace"}) {
                 AbstractCard c = CardLibrary.getCard("shadowpriest:" + id).makeCopy(); c.upgrade();

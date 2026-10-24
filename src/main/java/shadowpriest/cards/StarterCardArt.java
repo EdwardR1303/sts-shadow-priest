@@ -36,6 +36,22 @@ final class StarterCardArt {
             case InsidiousIre.ID: icon = "cards/icons/insidious_ire.jpg"; break;
             case PetrifyingScream.ID: icon = "cards/icons/petrifying_scream.jpg"; break;
             case ShadowCommittal.ID: icon = "cards/icons/shadow_committal.png"; break;
+            case FlashHeal.ID: icon = "cards/icons/flash_heal.jpg"; break;
+            case ShadowMend.ID: icon = "cards/icons/shadow_mend.jpg"; break;
+            case PowerWordBarrier.ID: icon = "cards/icons/power_word_barrier.jpg"; break;
+            case TitheEvasion.ID: icon = "cards/icons/tithe_evasion.jpg"; break;
+            case VoidShield.ID: icon = "cards/icons/void_shield.jpg"; break;
+            case MindSoothe.ID: icon = "cards/icons/mind_soothe.jpg"; break;
+            case MentalFortitude.ID: icon = "cards/icons/mental_fortitude.jpg"; break;
+            case Piety.ID: icon = "cards/icons/piety.jpg"; break;
+            case Insight.ID: icon = "cards/icons/insight.jpg"; break;
+            case "shadowpriest:SerendipityAttack":
+            case "shadowpriest:SerendipitySkill":
+            case Serendipity.ID: icon = "cards/icons/serendipity.jpg"; break;
+            case Dragonwrath.ID: icon = "cards/icons/dragonwrath.jpg"; break;
+            case Xalatath.ID: icon = "cards/icons/xalatath.jpg"; break;
+            case Valanyr.ID: icon = "cards/icons/valanyr.jpg"; break;
+            case BloodMagic.ID: icon = "cards/icons/blood_magic.png"; break;
             default: return null;
         }
         if (CACHE.containsKey(id)) return CACHE.get(id);

@@ -4,7 +4,7 @@ Cards are grouped by rarity, then type. Upgrades change only the listed values o
 
 A trailing `?` on a card name marks an unreviewed design. Removing it means the design is agreed, not necessarily implemented.
 
-The structured [card catalog](design/cards.json) includes complete base and upgraded versions. The fifth batch implements eight new cards and Mastery. The next batch of nine designs, including the Flash Heal / Shadow Mend split, is approved and awaits implementation. Mind Soothe and Mental Fortitude remain drafts.
+The structured [card catalog](design/cards.json) includes complete base and upgraded versions. All 49 collectible designs are implemented: 4 Basics, 20 Commons, 14 Uncommons, 8 Rares, and 3 Legendaries. Enter Voidform is an additional generated card. See [sixth-batch rules](docs/card-batch-06.md) and [next design priorities](docs/next-design-priorities.md). Full-run balance testing remains.
 
 <!-- card-tallies:start -->
 X/Y/Z = **Attacks/Skills/Powers**. Counts beside each rarity heading include drafts and unreviewed designs in this file; upgrades and repeated starting copies do not count separately.
@@ -57,7 +57,7 @@ X/Y/Z = **Attacks/Skills/Powers**. Counts beside each rarity heading include dra
 - **Cost:** 2 energy
 - **Effect:** Deal 18 damage. Lose 3 HP.
 - **Upgrade:** Deal 24 damage; HP loss remains 3.
-- **Status:** Approved; not implemented.
+- **Status:** Implemented; full-run balance testing remains.
 
 #### Shadow Word: Death
 
@@ -115,7 +115,7 @@ X/Y/Z = **Attacks/Skills/Powers**. Counts beside each rarity heading include dra
 - **Effect:** Heal 6 HP. Increase this card's cost by 1 this combat.
 - **Upgrade:** Heal for 9 HP.
 - **Rules:** The cost increase affects only the played copy and resets after combat.
-- **Status:** Approved rename of the previous Shadow Mend; runtime rename pending.
+- **Status:** Implemented; full-run balance testing remains.
 
 #### Shadow Mend
 
@@ -123,7 +123,7 @@ X/Y/Z = **Attacks/Skills/Powers**. Counts beside each rarity heading include dra
 - **Effect:** Heal 10 HP. Add 2 to your Shadow Mend debt. At the start of each turn, lose HP equal to your debt.
 - **Upgrade:** Add 1 debt instead of 2; healing remains 10 HP.
 - **Rules:** Each cast adds its debt to one debuff lasting this combat. Starting next turn, resolve the combined debt as one HP-loss event each turn; it does not decay. Artifact can prevent a debt application and debuff cleansing can remove accumulated debt, without undoing healing. Tithe Evasion reduces the combined event once, not once per cast. Purify Disease does not remove this debt.
-- **Status:** Approved rework; not implemented.
+- **Status:** Implemented; full-run balance testing remains.
 
 #### Fade
 
@@ -152,7 +152,7 @@ X/Y/Z = **Attacks/Skills/Powers**. Counts beside each rarity heading include dra
 - **Effect:** Gain 2 Block for each Insanity. Voidform counts as having 10 Insanity.
 - **Upgrade:** Gain 2 Insanity first.
 - **Rules:** Resolve Insanity gain before calculating Block. All Insanity gain obeys the normal cap, ready/active restrictions, and recovery turn. Both ordinary and permanent Voidform count as 10. Grant Block once; Dexterity and ordinary Block modifiers apply once to the total.
-- **Status:** Approved; not implemented.
+- **Status:** Implemented; full-run balance testing remains.
 
 #### Insight
 
@@ -160,15 +160,15 @@ X/Y/Z = **Attacks/Skills/Powers**. Counts beside each rarity heading include dra
 - **Effect:** Draw 2 cards. Next turn, draw 1 fewer card.
 - **Upgrade:** Draw 3 cards.
 - **Rules:** Multiple plays add their next-turn draw penalties. The penalty affects the next turn's normal draw, not every draw effect, and then expires. The upgrade retains the same penalty.
-- **Status:** Approved; not implemented.
+- **Status:** Implemented; full-run balance testing remains.
 
-#### Mind Soothe ?
+#### Mind Soothe
 
 - **Cost:** 0 energy
-- **Effect (proposal):** Until your next turn, the target deals 1 less Attack damage per unique DoT on it.
-- **Upgrade (proposal):** Reduce its Attack damage by 1 additional point.
-- **Rules (proposal):** Snapshot the unique DoT count when played. Reduce each Attack hit from that target before Block. Artifact behavior and duplicate-cast stacking remain open.
-- **Status:** Draft; replacement not yet approved. Standard Frail does not reduce ordinary enemy Block gains, and the Weak-only replacement overlaps an existing colorless card. The catalog records this proposed replacement without treating it as accepted.
+- **Effect:** Until your next turn, the target deals 1 less Attack damage per unique DoT on it.
+- **Upgrade:** Reduce its Attack damage by 1 additional point.
+- **Rules:** Snapshot the unique DoT count when played. Reduce each Attack hit from that target before Block, with a minimum of zero. Copies add their reduction for this turn. Artifact can block each application. Expires after the enemy turn. With no DoTs, the base card does nothing and the upgrade reduces damage by 1.
+- **Status:** Implemented; full-run balance testing remains.
 
 
 ### Powers
@@ -193,7 +193,7 @@ X/Y/Z = **Attacks/Skills/Powers**. Counts beside each rarity heading include dra
 - **Effect:** Whenever Blood Magic, Shadow Word: Death, or Shadow Mend causes you to lose HP, lose 1 less. This benefit does not stack.
 - **Upgrade:** Lose 2 less instead.
 - **Rules:** Only the three named sources qualify, including Shadow Mend's combined debt tick. Exclude all other sources, including enemy Attacks, Beat of Death, Curses, Statuses, relics, and other classes' cards. Floor each qualifying HP loss at zero. Track the highest benefit granted this combat: equal or weaker copies are unplayable; an upgraded copy replaces the base benefit. Reset tracking after combat.
-- **Status:** Approved; not implemented.
+- **Status:** Implemented; full-run balance testing remains.
 
 ## Uncommon (4/7/3)
 
@@ -234,7 +234,7 @@ X/Y/Z = **Attacks/Skills/Powers**. Counts beside each rarity heading include dra
 - **Effect:** If your hand has no Attacks, draw 2 Attacks. If your hand has no Skills other than Piety, draw 2 Skills. Exhaust.
 - **Upgrade:** Remove Exhaust.
 - **Rules:** After the played card leaves the hand, snapshot both conditions before drawing. Ignore all copies of Piety, upgraded or not, when checking for Skills. Both effects can trigger; resolve Attack draws first. Draw random matching cards from the draw pile only, without reshuffling, subject to hand capacity and available matches. Piety remains a Skill eligible to be drawn; its exclusion applies only to the hand check.
-- **Status:** Approved; not implemented.
+- **Status:** Implemented; full-run balance testing remains.
 
 #### Power Word: Barrier
 
@@ -242,7 +242,7 @@ X/Y/Z = **Attacks/Skills/Powers**. Counts beside each rarity heading include dra
 - **Effect:** Retain your hand this turn. Gain 5 Block for each card in your hand. Dexterity applies per card.
 - **Upgrade:** Gain 7 Block per card instead.
 - **Rules:** Count cards remaining in hand when the Block effect resolves, excluding the played card. Calculate Block per card with Dexterity and ordinary Block modifiers, including normal rounding and a minimum of zero, then multiply by that hand size. Grant the total once without applying modifiers again. With four cards and 4 Dexterity, gain 36 Block, or 44 upgraded, before other modifiers. Retain the hand for this turn's end only; this does not retain Block or prevent ordinary Ethereal exhaustion.
-- **Status:** Approved; not implemented.
+- **Status:** Implemented; full-run balance testing remains.
 
 #### Halo
 
@@ -269,12 +269,13 @@ X/Y/Z = **Attacks/Skills/Powers**. Counts beside each rarity heading include dra
 - **Effect:** Select and draw 1 Power from your draw pile.
 - **Upgrade:** Play the selected Power.
 
-#### Mental Fortitude ?
+#### Mental Fortitude
 
 - **Cost:** 2 energy
-- **Effect (provisional):** Gain 2 Dexterity and 2 Mastery. Lose 2 Strength.
-- **Upgrade (provisional):** Gain 3 Dexterity and 3 Mastery instead; still lose 2 Strength.
-- **Status:** Draft. Losing 2 Strength and keeping the card repeatable without Exhaust are confirmed. The catalog provisionally retains both original stat gains and the original cost; confirmation is pending whether both gains or only Dexterity should remain.
+- **Effect:** Gain 2 Dexterity and 2 Mastery. Lose 2 Strength.
+- **Upgrade:** Gain 3 Dexterity and 3 Mastery instead; still lose 2 Strength.
+- **Rules:** Repeatable; does not Exhaust. Stats last for combat. The Strength loss follows normal stat-debuff rules, including Artifact.
+- **Status:** Implemented; full-run balance testing remains.
 
 ### Powers
 
@@ -350,7 +351,7 @@ X/Y/Z = **Attacks/Skills/Powers**. Counts beside each rarity heading include dra
 - **Effect:** Choose one: Discard all Skills and draw that many Attacks; or discard all Attacks and draw that many Skills. Exhaust.
 - **Upgrade:** Remove Exhaust.
 - **Rules:** Exclude the played Serendipity from the hand and discard count. Count cards actually discarded. Draw random matching cards from the draw pile only, without reshuffling, subject to hand capacity and available matches. Other Serendipity copies are ordinary Skills for this effect.
-- **Status:** Approved; not implemented.
+- **Status:** Implemented; full-run balance testing remains.
 
 ### Powers
 
@@ -369,6 +370,36 @@ X/Y/Z = **Attacks/Skills/Powers**. Counts beside each rarity heading include dra
 - **Upgrade:** Heal 2 HP instead.
 - **Rules:** Includes natural and Psychic Link ticks, separately for each enemy. Multiple Embrace copies add their healing. No per-turn cap. A fully prevented tick grants no healing; a damaging tick grants the fixed heal regardless of damage amount. Pain, Madness, Halo, and direct attacks do not trigger it. Normal healing restrictions still apply.
 
+## Legendary (0/0/3)
+
+### Powers
+
+#### Dragonwrath: Tarecgosa's Rest
+
+- **Cost:** Unplayable; equips automatically before the opening hand.
+- **Effect:** Each Attack card played has a 20% chance to repeat for free.
+- **Upgrade:** Increase the chance to 25%.
+- **Rules:** One roll per ordinary Attack play, not per hit or target. Repeat the whole card, including its additional effects and HP costs, with the same X. Repeated/autoplay copies marked for removal cannot trigger Dragonwrath. If the original target dies, choose another living target when possible. Equipment activation is not a Power play.
+- **Art:** The actual WoW staff model render floats beside the priest; the card has an orange Legendary frame.
+- **Status:** Implemented; full-run balance testing remains.
+
+#### Xal'atath's Blade
+
+- **Cost:** Unplayable; equips automatically before the opening hand.
+- **Effect:** Randomly gain 2 Strength, 2 Mastery, or 2 Dexterity, 4 times.
+- **Upgrade:** Roll 5 times instead.
+- **Rules:** Each roll is independent and equally likely to choose each stat. Rolls occur again each combat, and can all select the same stat. Stats last for combat. Equipment activation is not a Power play.
+- **Art:** The actual WoW dagger model render floats beside the priest; the card has an orange Legendary frame.
+- **Status:** Implemented; full-run balance testing remains.
+
+#### Val'anyr, Hammer of the Ancient Kings
+
+- **Cost:** Unplayable; equips automatically before the opening hand.
+- **Effect:** Gain 5 Block. Retain Block until it is depleted. Once per combat, lethal damage leaves you at 1 HP.
+- **Upgrade:** Start with 10 Block instead.
+- **Rules:** Starting Block is flat. Reaching exactly zero Block permanently breaks this weapon's retention for the combat, even if you later regain Block; other Blur or Barricade effects remain. The lethal rescue is independent of the retention and can prevent lethal HP loss. It does not protect against a following hit. Equipment activation is not a Power play.
+- **Art:** The actual WoW mace model render floats beside the priest; the card has an orange Legendary frame.
+- **Status:** Implemented; full-run balance testing remains.
 
 ## Agreed relic update: Voidform
 
@@ -379,7 +410,7 @@ X/Y/Z = **Attacks/Skills/Powers**. Counts beside each rarity heading include dra
 
 ## Class design rules
 
-- Legendary cards use the agreed [boss-reward and uniqueness rules](docs/legendary-cards.md): only one Legendary may be in the permanent deck at a time. Owning one excludes all Legendaries from rewards and further acquisition. Each named Legendary can be acquired only once per run and cannot be duplicated into the permanent deck. Legendary support is not implemented; temporary combat copies and repeated plays remain an open decision.
+- Legendary cards use the agreed [boss-reward and uniqueness rules](docs/legendary-cards.md): only one Legendary may be in the permanent deck at a time. Owning one excludes all Legendaries from rewards and further acquisition. Each named Legendary can be acquired only once per run and cannot be duplicated into the permanent deck. Equipment activates once per combat before the opening hand, without a Power play or drawable copy. Temporary copies and forced plays cannot activate another Legendary. Legendary support is implemented.
 - Mastery adds 1 damage per point to damaging DoT ticks and can be negative, reducing their damage to a minimum of zero. Negative Mastery does not remove DoT stacks or make Madness tick. Mastery is implemented, with a purple version of the Strength icon.
 - Touch and Pain have fixed base damage, modified by current Mastery, and cap at 5 remaining ticks from every source, including duration extension and spreading. Stack count and application source do not change their base damage. Madness is the separate accumulating mechanic.
 - Shadow Priest class cards do not apply Vulnerable. Access through events, relics, colorless cards, or other outside sources is allowed.

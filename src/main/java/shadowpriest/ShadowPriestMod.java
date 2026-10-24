@@ -25,13 +25,13 @@ public class ShadowPriestMod implements EditCharactersSubscriber, EditCardsSubsc
         PostUpdateSubscriber, PostRenderSubscriber {
     public static String makeID(String id) { return "shadowpriest:" + id; }
     public static String characterPath(String file) { return "shadowpriest/images/character/" + file; }
-    public static void initialize() { BaseMod.subscribe(new ShadowPriestMod()); ShadowPriest.Meta.registerColor(); }
+    public static void initialize() { BaseMod.subscribe(new ShadowPriestMod()); ShadowPriest.Meta.registerColor(); BaseMod.addSaveField("shadowpriest:legendaryHistory", new shadowpriest.legendary.LegendaryEquipment()); }
     @Override public void receiveEditCharacters() { ShadowPriest.Meta.registerCharacter(); }
     @Override public void receiveEditCards() {
         BaseMod.addDynamicVariable(new DotTurnsVariable());
         for (AbstractCard c : new AbstractCard[]{new MindSpike(), new PowerWordShield(), new VampiricTouch(), new ShadowWordPain(),
-            new Bulwark(), new ShadowMend(), new Fade(), new MindFlay(), new ShadowWordDeath(), new MindBlast(),
-            new Dispersion(), new DesperatePrayer(), new Foresight(), new MindFlayInsanity(), new MindSear(), new PsychicLink(), new PowerWordFortitude(), new ReapingMadness(), new ShadowWordMadness(), new Halo(), new TentacleSlam(), new VoidBlast(), new MassDispel(), new VampiricEmbrace(), new VoidBolt(), new VoidVolley(), new VoidTorrent(), new SurrenderToMadness(), new Penance(), new Atonement(), new PurifyDisease(), new DispelMagic(), new BodyAndSoul(), new InsidiousIre(), new PetrifyingScream(), new ShadowCommittal(), new EnterVoidform()}) {
+            new Bulwark(), new FlashHeal(), new BloodMagic(), new MindSoothe(), new MentalFortitude(), new VoidShield(), new Insight(), new PowerWordBarrier(), new Piety(), new Serendipity(), new TitheEvasion(), new ShadowMend(), new Fade(), new MindFlay(), new ShadowWordDeath(), new MindBlast(),
+            new Dispersion(), new DesperatePrayer(), new Foresight(), new MindFlayInsanity(), new MindSear(), new PsychicLink(), new PowerWordFortitude(), new ReapingMadness(), new ShadowWordMadness(), new Halo(), new TentacleSlam(), new VoidBlast(), new MassDispel(), new VampiricEmbrace(), new VoidBolt(), new VoidVolley(), new VoidTorrent(), new SurrenderToMadness(), new Penance(), new Atonement(), new PurifyDisease(), new DispelMagic(), new BodyAndSoul(), new InsidiousIre(), new PetrifyingScream(), new ShadowCommittal(), new Dragonwrath(), new Xalatath(), new Valanyr(), new EnterVoidform()}) {
             BaseMod.addCard(c); UnlockTracker.unlockCard(c.cardID);
         }
     }
@@ -43,6 +43,8 @@ public class ShadowPriestMod implements EditCharactersSubscriber, EditCardsSubsc
         BaseMod.loadCustomStringsFile(RelicStrings.class, path + "RelicStrings.json");
     }
     @Override public void receiveEditKeywords() {
+        BaseMod.addKeyword("Legendary", new String[]{"legendary"}, "Only one Legendary may be in your deck. Equips once at combat start without drawing or playing a card. Cannot be duplicated into your deck.");
+        BaseMod.addKeyword("shadowpriest", "Shadow Mend Debt", new String[]{"debt"}, "At the start of each turn, lose HP equal to your combined debt. Lasts for combat.");
         BaseMod.addKeyword("shadowpriest", "Vampiric Touch", new String[]{"touch"}, "Before the enemy acts, deal #b5 plus Mastery damage and remove one stack. Ignores Block and Strength. Applications add remaining ticks, capped at #b5.");
         BaseMod.addKeyword("shadowpriest", "Shadow Word: Pain", new String[]{"pain"}, "Before the enemy acts, deal #b3 plus Mastery damage and remove one stack. Ignores Block and Strength. Applications add remaining ticks, capped at #b5.");
         BaseMod.addKeyword("shadowpriest", "Madness", new String[]{"madness"}, "Stacks permanently and counts as one unique DoT. Never ticks or decays. Shadow Word: Madness deals Attack damage based on these stacks.");

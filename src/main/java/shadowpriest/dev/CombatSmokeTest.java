@@ -50,8 +50,8 @@ public final class CombatSmokeTest {
     public static void update() {
         if (finished) return;
         try {
-            CardBatchSmokeTest.handleSelection();
-            if (System.currentTimeMillis() - began > 360000) throw new AssertionError("Timed out waiting for engine; remaining steps: " + steps.size());
+            CardBatchSmokeTest.handleSelection(); SixthBatchSmokeTest.handleSelection();
+            if (System.currentTimeMillis() - began > 540000) throw new AssertionError("Timed out waiting for engine; remaining steps: " + steps.size());
             if (!started && CardCrawlGame.mainMenuScreen != null && CardCrawlGame.mode == CardCrawlGame.GameMode.CHAR_SELECT) {
                 started = true; Settings.FAST_MODE = true;
                 Settings.seed = 123456789L; Settings.seedSet = true; Settings.isDailyRun = false; Settings.isTrial = false;
