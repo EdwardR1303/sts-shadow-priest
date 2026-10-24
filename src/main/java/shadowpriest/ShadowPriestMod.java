@@ -72,5 +72,6 @@ public class ShadowPriestMod implements EditCharactersSubscriber, EditCardsSubsc
         String text = relic.state.surrendered() ? "SURRENDERED" : relic.state.recovering() ? "RECOVERING" : relic.state.active() ? "VOIDFORM" : relic.state.ready() ? "VOIDFORM READY" : "Insanity " + relic.state.amount() + " / " + shadowpriest.mechanics.InsanityState.THRESHOLD;
         FontHelper.renderFontCentered(sb, FontHelper.tipBodyFont, text, orb.current_x, y + 30 * s, Color.WHITE, 0.8f);
         sb.setColor(oldColor);
+        if (Boolean.getBoolean("shadowpriest.smoketest")) CombatSmokeTest.renderReview(sb);
     }
 }

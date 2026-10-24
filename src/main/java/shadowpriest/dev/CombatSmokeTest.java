@@ -317,6 +317,11 @@ public final class CombatSmokeTest {
         if (!condition) throw new AssertionError(label);
         results.add("PASS: " + label); System.out.println("SHADOWTEST PASS: " + label);
     }
+    public static void renderReview(com.badlogic.gdx.graphics.g2d.SpriteBatch batch) {
+        if (finished) return;
+        try { CardArtReview.captureCombat(batch); }
+        catch (Throwable failure) { finish(failure); }
+    }
     static void finish(Throwable failure) {
         finished = true;
         if (failure != null) { results.add("FAIL: " + failure); failure.printStackTrace(); }

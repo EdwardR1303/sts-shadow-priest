@@ -120,17 +120,30 @@ public class SixthBatchSmokeTest {
  });
  q.add(()->{
   deck.clear();deck.addAll(p.masterDeck.group);history=new LegendaryEquipment().onSave();
-  p.masterDeck.clear();LegendaryEquipment.State.acquired.get(p).clear();p.masterDeck.addToTop(upgraded(new Valanyr()));
+ });
+ for(String weaponId:LegendaryEquipment.IDS) {
+ q.add(()->{
+  p.masterDeck.clear();LegendaryEquipment.State.acquired.get(p).clear();
+  p.masterDeck.addToTop(upgraded(CardLibrary.getCard(weaponId).makeCopy()));
   for(int i=0;i<5;i++)p.masterDeck.addToTop(new MindSpike());
   p.preBattlePrep();
  });
  q.add(()->{
-  check(p.currentBlock==10 && p.hasPower(ValanyrPower.POWER_ID) && p.hand.isEmpty(),"Real preBattlePrep equips Legendary before opening draw");
+  boolean effect=weaponId.equals(Dragonwrath.ID)?stat(DragonwrathPower.POWER_ID)==25:
+   weaponId.equals(Xalatath.ID)?stat("Strength")+stat("Dexterity")+stat(MasteryPower.POWER_ID)==10:
+   p.currentBlock==10 && p.hasPower(ValanyrPower.POWER_ID);
+  check(effect && weaponId.equals(LegendaryEquipment.State.equipped.get(p)) && p.hand.isEmpty(),weaponId+" equips effect and weapon before opening draw");
   check(AbstractDungeon.actionManager.cardsPlayedThisCombat.isEmpty(),"Automatic equipment does not count as a played Power");
   AbstractDungeon.actionManager.addToBottom(new DrawCardAction(p,5));
  });
  q.add(()->{
   check(p.hand.size()==5 && p.hand.group.stream().noneMatch(LegendaryEquipment::isLegendary),"Opening hand stays full without drawing equipment");
+  CardArtReview.requestCombat(weaponId.split(":")[1]);
+  AbstractDungeon.actionManager.addToBottom(new com.megacrit.cardcrawl.actions.utility.WaitAction(5f));
+ });
+ q.add(()->check(CardArtReview.capturedCombat(weaponId.split(":")[1]),weaponId+" actual combat frame captured after normal rendering"));
+ }
+ q.add(()->{
   p.masterDeck.clear();p.masterDeck.group.addAll(deck);new LegendaryEquipment().onLoad(history);LegendaryEquipment.State.equipped.set(p,null);reset();
   for(int i=0;i<10;i++)p.drawPile.addToTop(new MindSpike());
   AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p,p,new InsightDebtPower(p,7),7));

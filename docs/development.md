@@ -45,7 +45,7 @@ The full suite covers the starter mechanics, all six reward-card batches, Master
 
 `-CardBatchOnly` implies `-SmokeTest` and uses the same disposable session and result file. Both suites exercise base/upgraded cards, real turn boundaries, card selection, multi-hit and area damage, and lethal damage handling.
 
-For focused sixth-batch development, use `-LatestBatchOnly` instead. It implies the isolated smoke-test modes and runs 107 checks including startup, healing/draw cards, and Legendary mechanics. It exports base/upgraded card images and weapon previews into `.smoketest/card-review/`. Use the full suite before shipping shared combat changes.
+For focused sixth-batch development, use `-LatestBatchOnly` instead. It implies the isolated smoke-test modes and runs 116 checks including startup, healing/draw cards, and Legendary mechanics. It exports base/upgraded card images, separate weapon previews, and actual combat screenshots into `.smoketest/card-review/`. The final sequence visibly equips each of the three weapons through real combat startup and pauses briefly on each. Use the full suite before shipping shared combat changes.
 
 ## Debug and deploy
 

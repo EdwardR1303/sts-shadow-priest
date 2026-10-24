@@ -169,6 +169,12 @@ Direct hits now grant 10 Insanity per unique DoT, Reaping Madness grants 10/20, 
 
 The added unit cases verify that gains accept actual resource points, 99 is not ready but 100 is, nonpositive gains do nothing, and oversized gains cap without integer overflow. Earlier reports retain their historical numbers; D064 and the current card/relic documents define the new units. The catalog still validates with 50 entries. Restart the game to load the new build; this rescale does not change the intended pace or rewards of generating Insanity.
 
+## Legendary visibility follow-up
+
+On October 24, 2026, the focused suite was expanded from 107 to **116 checks** and passed, along with all **12 unit tests**. Most earlier Legendary checks isolated effects without setting the equipped-weapon identity, so the test window did not demonstrate the weapon sprites. Their separate offscreen art previews did not establish actual combat-screen visibility.
+
+The updated sequence runs real preBattlePrep for Dragonwrath, Xal'atath, and Val'anyr separately, verifies their effects and equipped identities before drawing, verifies a full opening hand with no drawable equipment, and pauses while capturing the actual combat framebuffer. All three captured images were visually inspected: each correct weapon is visible beside the character, clear of the hand, health bar, and enemy area. See [screenshots](legendary-cards.md#actual-combat-screenshots). No gameplay renderer change was needed; the new capture hook runs only in explicitly enabled smoke tests. The last full combat regression remains the 435-check Insanity run; this follow-up reran the affected focused suite.
+
 ## Limits
 
 These are correctness checks in a controlled encounter, not a full-run balance study. Only BaseMod and StSLib were loaded alongside this mod. Interactions with other mods, every relic or card, save/reload during combat, and long-run progression have not been exhaustively tested. The X-cost check verifies exclusion from the discount, not every X-cost card's effects.

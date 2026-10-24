@@ -37,3 +37,13 @@ Val'anyr's Block retention breaks permanently for the combat at exact depletion.
 - Runtime uses a custom rarity, orange banner/frame, item portraits, and transparent renders of the actual WoW weapon models floating beside the character. These are animated sprites, not live 3D models.
 - Frozen Egg upgrades a Legendary reward under the ordinary Power reward rule. The displayed short names fit the card frame; full weapon names remain in the design catalog.
 - Save data persists acquired identities through BaseMod CustomSavable. Game checks exercise its JSON roundtrip; complete quit/resume progression remains a manual playtest item.
+
+## Actual combat screenshots
+
+The focused test now starts combat with each upgraded Legendary in the permanent deck, verifies both its effect and equipped identity, draws the opening hand, and pauses for a visible preview. Screenshots are captured after normal combat rendering, rather than the separate portrait-preview framebuffer. The unusual health and deck values are controlled test fixtures.
+
+- [Dragonwrath in combat](images/legendary/Dragonwrath.png)
+- [Xal'atath in combat](images/legendary/Xalatath.png)
+- [Val'anyr in combat](images/legendary/Valanyr.png)
+
+Earlier mechanic-isolation tests deliberately installed Powers or called the individual effect directly, bypassing the equipped-weapon field. They were insufficient to demonstrate live sprite visibility; the normal combat-start checks now cover all three weapons.

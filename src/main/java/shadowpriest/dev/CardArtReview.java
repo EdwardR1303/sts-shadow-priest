@@ -11,6 +11,34 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 
 /** Opt-in game-rendered review images; never called by normal gameplay. */
 final class CardArtReview {
+    private static String pendingCombat, capturedCombat;
+    private static int captureFrames;
+
+    static void requestCombat(String name) {
+        pendingCombat = name;
+        capturedCombat = null;
+        captureFrames = 10;
+    }
+
+    static boolean capturedCombat(String name) { return name.equals(capturedCombat); }
+
+    /** Capture the real combat framebuffer after the normal character and HUD draw. */
+    static void captureCombat(SpriteBatch batch) {
+        if (pendingCombat == null || --captureFrames > 0) return;
+        batch.flush();
+        int width = Gdx.graphics.getWidth(), height = Gdx.graphics.getHeight();
+        Pixmap pixels = ScreenUtils.getFrameBufferPixmap(0, 0, width, height);
+        Pixmap flipped = new Pixmap(width, height, Pixmap.Format.RGBA8888);
+        try {
+            for (int x=0; x<width; x++) for (int y=0; y<height; y++)
+                flipped.drawPixel(x, height-1-y, pixels.getPixel(x,y));
+            Gdx.files.local("card-review").mkdirs();
+            PixmapIO.writePNG(Gdx.files.local("card-review/combat-"+pendingCombat+".png"), flipped);
+            capturedCombat = pendingCombat;
+            pendingCombat = null;
+        } finally { pixels.dispose(); flipped.dispose(); }
+    }
+
     static void weapon(String id) {
         FrameBuffer frame = new FrameBuffer(Pixmap.Format.RGBA8888, 600, 600, false);
         SpriteBatch batch = new SpriteBatch();
