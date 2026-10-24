@@ -9,14 +9,16 @@ Status: acquisition and permanent-deck uniqueness rules agreed; not implemented.
 - On success, replace one Rare option with a randomly selected eligible Legendary. Keep the reward's normal number of options and normal choice limit. Extra card options do not produce extra Legendary rolls.
 - If no eligible Legendary remains, leave the ordinary reward unchanged.
 - Legendary cards do not enter ordinary combat rewards, shops, or random transformation pools.
+- While the permanent deck contains any Legendary, no Legendary is eligible for a reward. Keep ordinary Rare options instead.
 
 ## Unique acquisition
 
-- Each named Legendary can be acquired only once per run. Different Legendary cards may coexist in the same deck.
+- The permanent deck may contain only one Legendary card total, regardless of identity. Owning one blocks acquisition of every other Legendary, as well as additional copies of itself.
+- Each named Legendary can still be acquired only once per run. Removing or transforming the owned Legendary frees the deck's single Legendary slot, but previously acquired identities remain excluded for that run. This is a one-at-a-time deck limit, not a one-acquisition-total run limit.
 - Once added to the permanent deck, that Legendary is excluded from all later rewards for the run. Track acquisition history, so removing or transforming it does not restore eligibility.
 - Upgraded and unupgraded versions share the same identity for uniqueness.
 - Dolly's Mirror and other permanent-deck duplication effects, including the Duplicator event, cannot select Legendary cards. Do not let the player select one and then silently waste the effect.
-- Enforce the restriction at permanent acquisition as well as in selection screens, so another permanent-copy source cannot bypass it.
+- Enforce both the one-Legendary deck limit and identity history at permanent acquisition as well as in selection screens, so another acquisition or permanent-copy source cannot bypass them. Recheck eligibility when obtaining a previously generated reward.
 - Persist acquisition history across save/load. Merely seeing or skipping a Legendary does not mark it acquired.
 
 ## Combat-copy boundary
@@ -25,6 +27,7 @@ Not yet decided: whether effects that create temporary combat copies, or replay 
 
 ## Presentation and validation
 
-- Use a distinctive orange Legendary presentation and a clear explanation of the uniqueness restriction.
-- Verify the boss reward probability, one-roll rule, empty eligible pool, acquired-card exclusions, upgraded identity, save/load persistence, and permanent duplication restrictions.
+- Use a distinctive orange Legendary presentation and a clear explanation: only one Legendary in your deck, and permanent duplication is prohibited.
+- Verify the boss reward probability, one-roll rule, empty eligible pool, all-Legendary exclusion while one is owned, acquisition-time enforcement, removal reopening the slot without clearing identity history, upgraded identity, save/load persistence, and permanent duplication restrictions.
+- Design intent: make the chosen Legendary a defining run reward and support stronger individual effects through mutual exclusivity. Rarity and exclusivity allow power headroom but do not establish balance by themselves; validate actual cards during playtesting.
 - This is a design specification, not a claim that the runtime already supports Legendary rarity.
