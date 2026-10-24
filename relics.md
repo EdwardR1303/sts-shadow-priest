@@ -55,6 +55,12 @@ _No designs yet._
 ### Idol of N'Zoth
 - **Effect:** Gain 1 Mastery after playing a power
 
+### Inescapable Torment ?
+
+- **Effect:** At the start of each combat, gain 1 Mastery for each Curse in your deck.
+- **Rules:** Count each Curse card in the permanent deck at combat start, including duplicate copies. Status cards and unplayable non-Curse cards do not count. Exhausting or otherwise removing a Curse during combat does not remove the granted Mastery; Curses added during combat do not increase this starting bonus. The granted Mastery lasts for that combat.
+- **Status:** Name chosen; Rare placement and 1 Mastery per Curse are proposed starting values. Not implemented.
+
 ## Boss
 
 ### Idol of Yogg-Saron
