@@ -236,12 +236,12 @@ X/Y/Z = **Attacks/Skills/Powers**. Counts beside each rarity heading include dra
 - **Rules:** After the played card leaves the hand, snapshot both conditions before drawing. Ignore all copies of Piety, upgraded or not, when checking for Skills. Both effects can trigger; resolve Attack draws first. Draw random matching cards from the draw pile only, without reshuffling, subject to hand capacity and available matches. Piety remains a Skill eligible to be drawn; its exclusion applies only to the hand check.
 - **Status:** Approved; not implemented.
 
-#### Voidphasing
+#### Power Word: Barrier
 
 - **Cost:** 3 energy
-- **Effect:** Retain your hand this turn. Gain 5 Block for each card in your hand.
+- **Effect:** Retain your hand this turn. Gain 5 Block for each card in your hand. Dexterity applies per card.
 - **Upgrade:** Gain 7 Block per card instead.
-- **Rules:** Count cards remaining in hand when the Block effect resolves, excluding the played card. Grant Block once; Dexterity and ordinary Block modifiers apply once to the total, not per card. Retain the hand for this turn's end only; this does not retain Block or prevent ordinary Ethereal exhaustion.
+- **Rules:** Count cards remaining in hand when the Block effect resolves, excluding the played card. Calculate Block per card with Dexterity and ordinary Block modifiers, including normal rounding and a minimum of zero, then multiply by that hand size. Grant the total once without applying modifiers again. With four cards and 4 Dexterity, gain 36 Block, or 44 upgraded, before other modifiers. Retain the hand for this turn's end only; this does not retain Block or prevent ordinary Ethereal exhaustion.
 - **Status:** Approved; not implemented.
 
 #### Halo

@@ -2436,8 +2436,8 @@
       }
     },
     {
-      "id": "shadowpriest:Voidphasing",
-      "name": "Voidphasing",
+      "id": "shadowpriest:PowerWordBarrier",
+      "name": "Power Word: Barrier",
       "status": "APPROVED",
       "type": "SKILL",
       "rarity": "UNCOMMON",
@@ -2450,13 +2450,13 @@
       "base": {
         "cost": 3,
         "target": "SELF",
-        "text": "Retain your hand this turn. Gain 5 Block for each card in your hand.",
+        "text": "Retain your hand this turn. Gain 5 Block for each card in your hand. Dexterity applies per card.",
         "stats": {
           "blockPerCard": 5
         },
         "keywords": [],
         "effects": [
-          "Retain your hand this turn. Gain 5 Block for each card in your hand."
+          "Retain your hand this turn. Gain 5 Block for each card in your hand. Dexterity applies per card."
         ]
       },
       "upgrade": {
@@ -2464,25 +2464,25 @@
         "card": {
           "cost": 3,
           "target": "SELF",
-          "text": "Retain your hand this turn. Gain 7 Block for each card in your hand.",
+          "text": "Retain your hand this turn. Gain 7 Block for each card in your hand. Dexterity applies per card.",
           "stats": {
             "blockPerCard": 7
           },
           "keywords": [],
           "effects": [
-            "Retain your hand this turn. Gain 7 Block for each card in your hand."
+            "Retain your hand this turn. Gain 7 Block for each card in your hand. Dexterity applies per card."
           ]
         }
       },
       "rulesNotes": [
-        "Count cards remaining in hand when the Block effect resolves, excluding the played card. Grant Block once; Dexterity and ordinary Block modifiers apply once to the total, not per card. Retain the hand for this turn's end only; this does not retain Block or prevent ordinary Ethereal exhaustion.",
+        "Count cards remaining in hand when the Block effect resolves, excluding the played card. Calculate Block per card with Dexterity and ordinary Block modifiers, including normal rounding and a minimum of zero, then multiply by that hand size. Grant the total once without applying modifiers again. With four cards and 4 Dexterity, gain 36 Block, or 44 upgraded, before other modifiers. Retain the hand for this turn's end only; this does not retain Block or prevent ordinary Ethereal exhaustion.",
         "Approved; not implemented."
       ],
-      "balanceNotes": "Approved for implementation; numbers and repeatable draw/healing interactions require playtesting.",
+      "balanceNotes": "Approved for implementation. The 3-energy cost intentionally supports very large Block totals from hand size and Dexterity; validate during playtesting.",
       "art": {
-        "wowAbility": "Voidphasing",
+        "wowAbility": "Power Word: Barrier",
         "icon": "",
-        "direction": "Use matching existing WoW ability art where available; otherwise create thematic Shadow Priest artwork. Asset selection pending."
+        "direction": "Use the existing WoW Power Word: Barrier ability icon with the shared card-art treatment. Asset selection pending."
       }
     },
     {
