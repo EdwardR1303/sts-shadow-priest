@@ -2,7 +2,7 @@
   "modid": "shadowpriest",
   "name": "Shadow Priest",
   "author_list": ["EdwardR1303"],
-  "description": "Survive the setup. Afflict enemies, build Insanity, and unleash Voidform. Starting-deck prototype with placeholder artwork and Ironclad reward cards.",
+  "description": "A custom Shadow Priest with a dedicated card pool, Mastery-scaled afflictions, on-demand Voidform, and Legendary weapons. Survive the setup and unleash your power.",
   "version": "0.1.0",
   "sts_version": "12-18-2022",
   "mts_version": "3.30.0",

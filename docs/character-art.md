@@ -9,7 +9,7 @@ Added October 23, 2026 at the owner's request. The combat character is a shadowy
 - The combat renderer applies a dark violet tint and a gentle idle bob. This is a single painted sprite, not a skeletal animation.
 - Playing Enter Voidform brings up a pulsing purple silhouette glow and brighter violet coloring. The glow fades over approximately a quarter second when the form ends. A ready activation card alone does not enable it.
 - The Insanity meter follows the energy orb's position directly underneath it, and hides with modal screens and the orb panel.
-- Subsequent passes replace card and relic artwork; the selection button, animated rest-site rear view, and Heart-victory ending are documented in [the second presentation pass](art-pass-02.md). The large character-selection portrait and death sprite remain placeholders.
+- Subsequent passes replace card and relic artwork; the selection button, animated rest-site rear view, and Heart-victory ending are documented in [the second presentation pass](art-pass-02.md). The large character-selection portrait is now a matching priest illustration; the death sprite remains a placeholder.
 
 ## Generation prompt
 
