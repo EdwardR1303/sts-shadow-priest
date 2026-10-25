@@ -700,7 +700,8 @@
         }
       },
       "rulesNotes": [
-        "Implementation edge cases: docs/card-batch-01.md."
+        "Implementation edge cases: docs/card-batch-01.md.",
+        "Always show the Power chooser for a nonempty draw-pile pool, including one card. Foresight+ visibly previews the selected Power before playing it for free; see docs/foresight-feedback-fix.md."
       ],
       "balanceNotes": "First reward-card batch; numbers require human full-run balance testing.",
       "art": {

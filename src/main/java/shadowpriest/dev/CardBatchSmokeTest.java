@@ -25,9 +25,22 @@ public final class CardBatchSmokeTest {
     private static AbstractMonster m, other;
     private static VoidformRelic relic;
     private static AbstractCard card, secondCard, selection;
+    private static AbstractCard previewCard;
+    private static float previewSeconds;
+    private static boolean previewObserved;
     private static int hp, enemyHp, otherHp, turn;
 
     public static void handleSelection() {
+        if (previewCard != null && p != null && p.limbo.contains(previewCard)) {
+            previewSeconds += com.badlogic.gdx.Gdx.graphics.getDeltaTime();
+            if (!previewObserved) {
+                check(previewCard.current_y > 0f && previewCard.drawScale >= 0.5f
+                    && previewCard.current_x == previewCard.target_x
+                    && !p.hasPower(PsychicLinkPower.POWER_ID),
+                    "Foresight+ displays the chosen Power on screen before applying it");
+                previewObserved = true;
+            }
+        }
         if (selection != null && AbstractDungeon.screen == AbstractDungeon.CurrentScreen.GRID) {
             check(AbstractDungeon.gridSelectScreen.targetGroup.group.stream()
                 .allMatch(c -> c.type == AbstractCard.CardType.POWER), "Foresight chooser contains only Powers");
@@ -244,13 +257,16 @@ public final class CardBatchSmokeTest {
         q.add(() -> {
             check(!p.hasPower(DesperatePrayerPower.POWER_ID), "Unused Prayer expires at the next player turn");
             reset(); card = new PsychicLink(); p.drawPile.addToTop(card); p.drawPile.addToTop(new MindSpike());
+            selection = card;
             play(new Foresight(), null, 3);
         });
         q.add(() -> {
             check(p.hand.contains(card) && !p.drawPile.contains(card) && EnergyPanel.totalCount == 3
-                && !p.hasPower(PsychicLinkPower.POWER_ID), "Base Foresight fetches a Power without playing it or spending energy");
+                && !p.hasPower(PsychicLinkPower.POWER_ID) && selection == null,
+                "Base Foresight confirms its only Power, fetching it without playing or spending energy");
             reset(); card = new PsychicLink(); secondCard = new PsychicLink();
             p.drawPile.addToTop(card); p.drawPile.addToTop(secondCard); p.drawPile.addToTop(new MindSpike()); selection = secondCard;
+            previewCard = secondCard;
             play(upgraded(new Foresight()), null, 0);
         });
         q.add(() -> {
@@ -259,6 +275,18 @@ public final class CardBatchSmokeTest {
                 "Foresight+ selects and plays the chosen Power for free");
             check(p.discardPile.group.stream().anyMatch(c -> c instanceof Foresight)
                 && !p.discardPile.contains(secondCard), "Foresight remains reusable while the played Power leaves the card cycle");
+            check(previewObserved && previewSeconds >= 0.2f && !p.limbo.contains(secondCard),
+                "Foresight+ gives a readable preview even in Fast Mode and cleans up limbo");
+            reset(); card = new PsychicLink(); p.drawPile.addToTop(card); selection = card; previewCard = card;
+            for (int i = 0; i < basemod.BaseMod.MAX_HAND_SIZE; i++) p.hand.addToTop(new MindSpike());
+            play(upgraded(new Foresight()), null, 0);
+        });
+        q.add(() -> {
+            check(selection == null && previewObserved && previewSeconds >= 0.2f
+                && p.hasPower(PsychicLinkPower.POWER_ID) && !p.drawPile.contains(card)
+                && !p.limbo.contains(card) && p.hand.size() == basemod.BaseMod.MAX_HAND_SIZE
+                && EnergyPanel.totalCount == 0,
+                "Foresight+ confirms and visibly plays its only Power for free with a full hand");
             reset(); p.drawPile.addToTop(new MindSpike()); card = new Foresight(); play(card, null, 0);
         });
         q.add(() -> {
@@ -331,6 +359,7 @@ public final class CardBatchSmokeTest {
             monster.currentBlock = 0; monster.currentHealth = monster.maxHealth = 1000;
         }
         relic.reset(); BodyAndSoul.resetBenefit(); PowerWordFortitude.resetBenefit(); ReturningDots.clear(); selection = null;
+        previewCard = null; previewSeconds = 0f; previewObserved = false;
     }
     static void dots(AbstractMonster target) {
         target.powers.add(new ShadowDotPower(target, ShadowDotPower.TOUCH, 3));

@@ -268,6 +268,7 @@ X/Y/Z = **Attacks/Skills/Powers**. Counts beside each rarity heading include dra
 - **Cost:** 0 energy
 - **Effect:** Select and draw 1 Power from your draw pile.
 - **Upgrade:** Play the selected Power.
+- **Rules:** Choose from the current draw pile, even if only one Power is available. The upgrade visibly presents the chosen card before playing it for free through normal card-play hooks. No eligible Power means no effect; this does not search the discard pile or shuffle.
 
 #### Mental Fortitude
 
