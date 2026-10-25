@@ -5,7 +5,7 @@
     {
       "id": "shadowpriest:MindSpike",
       "name": "Mind Spike",
-      "status": "IMPLEMENTED",
+      "status": "APPROVED",
       "type": "ATTACK",
       "rarity": "BASIC",
       "sources": [
@@ -16,36 +16,41 @@
         "STRIKE",
         "STARTER_STRIKE"
       ],
-      "designIntent": "Basic attack; build Insanity by hitting a target with distinct DoTs.",
+      "designIntent": "Provide reliable starter Insanity while still rewarding DoT setup.",
       "base": {
         "cost": 1,
         "target": "ENEMY",
-        "text": "Deal 6 damage.",
+        "text": "Deal 6 damage. Gain 10 Insanity.",
         "stats": {
-          "damage": 6
+          "damage": 6,
+          "insanity": 10
         },
         "keywords": [],
         "effects": [
-          "Deal 6 damage."
+          "Deal 6 damage. Gain 10 Insanity."
         ]
       },
       "upgrade": {
-        "summary": "+3 damage.",
+        "summary": "Deal 9 damage; the explicit Insanity gain remains 10.",
         "card": {
           "cost": 1,
           "target": "ENEMY",
-          "text": "Deal 9 damage.",
+          "text": "Deal 9 damage. Gain 10 Insanity.",
           "stats": {
-            "damage": 9
+            "damage": 9,
+            "insanity": 10
           },
           "keywords": [],
           "effects": [
-            "Deal 9 damage."
+            "Deal 9 damage. Gain 10 Insanity."
           ]
         }
       },
-      "rulesNotes": [],
-      "balanceNotes": "Prototype values; balance is subject to playtesting.",
+      "rulesNotes": [
+        "Resolve the explicit 10 Insanity after the hit, in addition to normal per-DoT hit generation. It does not require a DoT or enemy HP loss. All Insanity gains obey the shared cap and ready, Voidform, and Recharge restrictions.",
+        "Shared keyword definitions in keywords.md apply. This design awaits implementation."
+      ],
+      "balanceNotes": "Prototype values; full-run balance testing remains after implementation.",
       "art": {
         "wowAbility": "Mind Spike",
         "icon": "spell_priest_mindspike",
@@ -104,7 +109,7 @@
     {
       "id": "shadowpriest:VampiricTouch",
       "name": "Vampiric Touch",
-      "status": "IMPLEMENTED",
+      "status": "APPROVED",
       "type": "SKILL",
       "rarity": "BASIC",
       "sources": [
@@ -112,45 +117,39 @@
       ],
       "startingCopies": 1,
       "tags": [],
-      "designIntent": "Maintain a distinct DoT to deal delayed damage and support Insanity generation.",
+      "designIntent": "Recurring single-target Touch setup with an efficient upgrade.",
       "base": {
         "cost": 1,
         "target": "ENEMY",
         "text": "Apply 3 Touch. If played, return to your hand at turn end.",
         "stats": {
-          "tickDamage": 5,
-          "duration": 3
+          "stacks": 3
         },
         "keywords": [],
         "effects": [
-          "Add 3 remaining Touch ticks, capped at 5. Each tick deals 5 damage.",
-          "Return this played card to hand at turn end, subject to hand space and Exhaust."
+          "Apply 3 Touch. If played, return to your hand at turn end."
         ]
       },
       "upgrade": {
-        "summary": "Apply 4 ticks instead of 3; damage remains 5.",
+        "summary": "Cost becomes 0 energy; application remains 3 Touch.",
         "card": {
-          "cost": 1,
+          "cost": 0,
           "target": "ENEMY",
-          "text": "Apply 4 Touch. If played, return to your hand at turn end.",
+          "text": "Apply 3 Touch. If played, return to your hand at turn end.",
           "stats": {
-            "tickDamage": 5,
-            "duration": 4
+            "stacks": 3
           },
           "keywords": [],
           "effects": [
-            "Add 4 remaining Touch ticks, capped at 5. Each tick deals 5 damage.",
-            "Return this played card to hand at turn end, subject to hand space and Exhaust."
+            "Apply 3 Touch. If played, return to your hand at turn end."
           ]
         }
       },
       "rulesNotes": [
-        "Fixed 5 damage per tick, independent of stacks and application source.",
-        "Applications and duration extension add remaining ticks up to 5; natural ticks consume one.",
-        "Psychic Link ticks consume no duration. Artifact blocks applications.",
-        "Current Mastery modifies all natural and bonus tick damage, floored at zero. Zero-damage natural ticks still spend duration; Intangible cannot increase a zero tick."
+        "Return after the normal end-of-turn discard. An unplayed copy discards normally. The upgrade changes cost, not damage or stack count.",
+        "Shared keyword definitions in keywords.md apply. This design awaits implementation."
       ],
-      "balanceNotes": "Touch deals 15/21 total over 3 turns; Pain deals 15/25 total over 5 turns. Returns enable repeated application and multi-target setup.",
+      "balanceNotes": "Prototype values; full-run balance testing remains after implementation.",
       "art": {
         "wowAbility": "Vampiric Touch",
         "icon": "spell_holy_stoicism",
@@ -407,7 +406,7 @@
     {
       "id": "shadowpriest:MindFlay",
       "name": "Mind Flay",
-      "status": "IMPLEMENTED",
+      "status": "APPROVED",
       "type": "ATTACK",
       "rarity": "COMMON",
       "sources": [
@@ -415,40 +414,43 @@
       ],
       "startingCopies": 0,
       "tags": [],
-      "designIntent": "Generate Insanity through multiple hits.",
+      "designIntent": "One reliable channel maintains existing single-target DoTs and generates Insanity.",
       "base": {
         "cost": 1,
         "target": "ENEMY",
-        "text": "Deal 2 damage 3 times.",
+        "text": "Deal 2 damage 3 times. After each hit, extend the target's Touch and Pain by 1.",
         "stats": {
           "damage": 2,
-          "hits": 3
+          "hits": 3,
+          "extensionPerHit": 1
         },
         "keywords": [],
         "effects": [
-          "Deal 2 damage 3 times."
+          "Deal 2 damage 3 times. After each hit, extend the target's Touch and Pain by 1."
         ]
       },
       "upgrade": {
-        "summary": "+1 hit.",
+        "summary": "Deal damage 4 times; each hit still extends by 1.",
         "card": {
           "cost": 1,
           "target": "ENEMY",
-          "text": "Deal 2 damage 4 times.",
+          "text": "Deal 2 damage 4 times. After each hit, extend the target's Touch and Pain by 1.",
           "stats": {
             "damage": 2,
-            "hits": 4
+            "hits": 4,
+            "extensionPerHit": 1
           },
           "keywords": [],
           "effects": [
-            "Deal 2 damage 4 times."
+            "Deal 2 damage 4 times. After each hit, extend the target's Touch and Pain by 1."
           ]
         }
       },
       "rulesNotes": [
-        "Implementation edge cases: docs/card-batch-01.md."
+        "Resolve each hit followed by its extension before the next hit. Extend only existing Touch and Pain, up to 5 each; do not affect Madness or trigger Misery. Extension does not require HP loss. Stop if the target dies. Each direct hit generates Insanity normally; Psychic Link triggers once per card play.",
+        "Shared keyword definitions in keywords.md apply. This design awaits implementation."
       ],
-      "balanceNotes": "First reward-card batch; numbers require human full-run balance testing.",
+      "balanceNotes": "Prototype values; full-run balance testing remains after implementation.",
       "art": {
         "wowAbility": "Mind Flay",
         "icon": "",
@@ -513,7 +515,7 @@
     {
       "id": "shadowpriest:MindBlast",
       "name": "Mind Blast",
-      "status": "IMPLEMENTED",
+      "status": "APPROVED",
       "type": "ATTACK",
       "rarity": "COMMON",
       "sources": [
@@ -521,40 +523,41 @@
       ],
       "startingCopies": 0,
       "tags": [],
-      "designIntent": "Convert distinct DoT setup into direct burst damage.",
+      "designIntent": "Reward full DoT setup with direct damage.",
       "base": {
         "cost": 1,
         "target": "ENEMY",
-        "text": "Deal 8 damage plus 2 for each unique DoT on the target.",
+        "text": "Deal 10 damage, plus 2 for each unique DoT on the target.",
         "stats": {
-          "damage": 8,
+          "damage": 10,
           "bonusPerDot": 2
         },
         "keywords": [],
         "effects": [
-          "Deal 8 damage plus 2 for each unique DoT on the target."
+          "Deal 10 damage, plus 2 for each unique DoT on the target."
         ]
       },
       "upgrade": {
-        "summary": "+2 base damage and +1 damage per DoT.",
+        "summary": "Deal 12 base damage and gain 4 damage per unique DoT.",
         "card": {
           "cost": 1,
           "target": "ENEMY",
-          "text": "Deal 10 damage plus 3 for each unique DoT on the target.",
+          "text": "Deal 12 damage, plus 4 for each unique DoT on the target.",
           "stats": {
-            "damage": 10,
-            "bonusPerDot": 3
+            "damage": 12,
+            "bonusPerDot": 4
           },
           "keywords": [],
           "effects": [
-            "Deal 10 damage plus 3 for each unique DoT on the target."
+            "Deal 12 damage, plus 4 for each unique DoT on the target."
           ]
         }
       },
       "rulesNotes": [
-        "Implementation edge cases: docs/card-batch-01.md."
+        "Count each of Touch, Pain, and Madness once before the hit, regardless of stacks. Apply normal Attack damage modifiers to the total.",
+        "Shared keyword definitions in keywords.md apply. This design awaits implementation."
       ],
-      "balanceNotes": "First reward-card batch; numbers require human full-run balance testing.",
+      "balanceNotes": "Prototype values; full-run balance testing remains after implementation.",
       "art": {
         "wowAbility": "Mind Blast",
         "icon": "",
@@ -713,7 +716,7 @@
     {
       "id": "shadowpriest:MindFlayInsanity",
       "name": "Mind Flay: Insanity",
-      "status": "IMPLEMENTED",
+      "status": "APPROVED",
       "type": "ATTACK",
       "rarity": "UNCOMMON",
       "sources": [
@@ -725,14 +728,15 @@
       "base": {
         "cost": "X",
         "target": "ENEMY",
-        "text": "Extend all DoTs on the target by X turns. Deal 4 damage X times.",
+        "text": "Extend the target's Touch and Pain by X. Deal 4 damage X times.",
         "stats": {
           "damage": 4,
           "xBonus": 0
         },
         "keywords": [],
         "effects": [
-          "Extend all DoTs on the target by X turns. Deal 4 damage X times."
+          "Extend existing Touch and Pain by effective X, capped at 5 each.",
+          "Deal 4 damage effective X times."
         ]
       },
       "upgrade": {
@@ -740,20 +744,21 @@
         "card": {
           "cost": "X",
           "target": "ENEMY",
-          "text": "Extend all DoTs on the target by X+1 turns. Deal 4 damage X+1 times.",
+          "text": "Extend the target's Touch and Pain by X+1. Deal 4 damage X+1 times.",
           "stats": {
             "damage": 4,
             "xBonus": 1
           },
           "keywords": [],
           "effects": [
-            "Extend all DoTs on the target by X+1 turns. Deal 4 damage X+1 times."
+            "Extend existing Touch and Pain by effective X+1, capped at 5 each.",
+            "Deal 4 damage effective X+1 times."
           ]
         }
       },
       "rulesNotes": [
-        "Implementation edge cases: docs/card-batch-01.md.",
-        "All duration extension caps Touch and Pain at 5 remaining ticks. Madness has no duration and is unaffected."
+        "Extend only existing Touch and Pain before the hits; do not add Madness stacks or trigger Misery.",
+        "Use effective X from keywords.md, adding the upgrade's extra repetition afterward. Haste support awaits implementation."
       ],
       "balanceNotes": "First reward-card batch; numbers require human full-run balance testing.",
       "art": {
@@ -765,7 +770,7 @@
     {
       "id": "shadowpriest:MindSear",
       "name": "Mind Sear",
-      "status": "IMPLEMENTED",
+      "status": "APPROVED",
       "type": "ATTACK",
       "rarity": "UNCOMMON",
       "sources": [
@@ -804,7 +809,8 @@
         }
       },
       "rulesNotes": [
-        "Implementation edge cases: docs/card-batch-01.md."
+        "Implementation edge cases: docs/card-batch-01.md.",
+        "Uses effective X from keywords.md, including Haste and Chemical X at zero energy. Haste support awaits implementation."
       ],
       "balanceNotes": "First reward-card batch; numbers require human full-run balance testing.",
       "art": {
@@ -972,52 +978,49 @@
     {
       "id": "shadowpriest:ShadowWordMadness",
       "name": "Shadow Word: Madness",
-      "status": "IMPLEMENTED",
+      "status": "APPROVED",
       "type": "ATTACK",
-      "rarity": "UNCOMMON",
+      "rarity": "COMMON",
       "sources": [
         "REWARD_POOL"
       ],
       "startingCopies": 0,
-      "tags": [],
-      "designIntent": "Establish a permanent unique DoT for synergies and build slow damage scaling through repeated casts.",
+      "tags": [
+        "DOT_APPLICATION"
+      ],
+      "designIntent": "Provide common Madness access through useful direct damage.",
       "base": {
         "cost": 1,
         "target": "ENEMY",
-        "text": "Apply 5 Madness to an enemy. Deal damage equal to its Madness.",
+        "text": "Deal 6 damage. Apply Madness equal to HP removed.",
         "stats": {
-          "madnessStacks": 5
+          "damage": 6
         },
         "keywords": [],
         "effects": [
-          "Add 5 Madness to the selected enemy.",
-          "Deal one normal Attack hit using its resulting total Madness as base damage."
+          "Deal 6 damage. Apply Madness equal to HP removed."
         ]
       },
       "upgrade": {
-        "summary": "Spread the 5-stack application to all enemies; damage remains single-target.",
+        "summary": "Deal 10 damage.",
         "card": {
           "cost": 1,
           "target": "ENEMY",
-          "text": "Apply 5 Madness to ALL enemies. Deal damage to the selected enemy equal to its Madness.",
+          "text": "Deal 10 damage. Apply Madness equal to HP removed.",
           "stats": {
-            "madnessStacks": 5
+            "damage": 10
           },
           "keywords": [],
           "effects": [
-            "Add 5 Madness to all current enemies.",
-            "Deal one normal Attack hit to the selected enemy using its resulting total Madness as base damage."
+            "Deal 10 damage. Apply Madness equal to HP removed."
           ]
         }
       },
       "rulesNotes": [
-        "Madness stacks add together, persist on the enemy, and never tick or decay.",
-        "Any positive number of Madness stacks counts as one unique DoT for synergies.",
-        "Madness has no duration; duration extension has no effect on it.",
-        "Apply stacks before calculating the hit. Normal Attack modifiers and Insanity generation apply.",
-        "The upgraded card still requires one enemy target for its damage."
+        "Use only actual enemy HP removed by this direct hit, capped at HP before the hit. Exclude Block absorption, overkill, DoTs, and Psychic Link. Apply Madness afterward if the target survives; Artifact can block it. Do not trigger an immediate Madness tick. The initial hit counts only DoTs already present when it hits.",
+        "Shared keyword definitions in keywords.md apply. This design awaits implementation."
       ],
-      "balanceNotes": "The upgrade improves immediate setup across enemies rather than raising stack growth. Watch permanent DoT synergy value.",
+      "balanceNotes": "Prototype values; full-run balance testing remains after implementation.",
       "art": {
         "wowAbility": "Shadow Word: Madness",
         "icon": "inv12_ability_priest_powerwordmadness_eye",
@@ -1356,7 +1359,7 @@
     {
       "id": "shadowpriest:VoidVolley",
       "name": "Void Volley",
-      "status": "IMPLEMENTED",
+      "status": "APPROVED",
       "type": "ATTACK",
       "rarity": "UNCOMMON",
       "sources": [
@@ -1399,7 +1402,8 @@
         "Choose a living target separately after each bolt and maintenance; dead and half-dead enemies are ineligible.",
         "Each hit uses normal target-specific damage modifiers and generates Insanity normally.",
         "Never create missing DoTs. Touch/Pain cap at 5; existing Madness applications check Artifact.",
-        "Zero energy gives no bolts without an external X bonus; Chemical X adds two. Free play preserves energy. Voidform does not discount X."
+        "Zero energy gives no bolts without an external X bonus; Chemical X adds two. Free play preserves energy. Voidform does not discount X.",
+        "Uses effective X from keywords.md, including Haste and Chemical X at zero energy. Haste support awaits implementation."
       ],
       "balanceNotes": "Reviewed initial values; evaluate burst scaling, upkeep, and energy investment in full runs.",
       "art": {
@@ -1411,7 +1415,7 @@
     {
       "id": "shadowpriest:VoidTorrent",
       "name": "Void Torrent",
-      "status": "IMPLEMENTED",
+      "status": "APPROVED",
       "type": "ATTACK",
       "rarity": "RARE",
       "sources": [
@@ -1453,7 +1457,8 @@
         "Base sequences are 4,8,12,... and upgraded 5,10,15,...; reset on every play.",
         "Each hit independently calculates normal modifiers and rounding from its own base, never from previous modified damage.",
         "Selected target remains fixed; remaining hits stop when it dies. One Psychic Link trigger per card, Insanity per hit.",
-        "Zero energy gives no hits without an external X bonus; Chemical X adds two. Free play preserves energy. Voidform does not discount X."
+        "Zero energy gives no hits without an external X bonus; Chemical X adds two. Free play preserves energy. Voidform does not discount X.",
+        "Uses effective X from keywords.md, including Haste and Chemical X at zero energy. Haste support awaits implementation."
       ],
       "balanceNotes": "Reviewed initial values; evaluate burst scaling, upkeep, and energy investment in full runs.",
       "art": {
@@ -1529,57 +1534,59 @@
     {
       "id": "shadowpriest:Penance",
       "name": "Penance",
-      "status": "IMPLEMENTED",
+      "status": "APPROVED",
       "type": "ATTACK",
-      "rarity": "COMMON",
+      "rarity": "UNCOMMON",
       "sources": [
         "REWARD_POOL"
       ],
       "startingCopies": 0,
       "tags": [
-        "DEFENSE",
-        "DAMAGE_CONVERSION"
+        "MULTI_HIT",
+        "HEALING",
+        "CHOICE"
       ],
-      "designIntent": "Convert direct offense into immediate defense.",
+      "designIntent": "Offer a limited choice between an offensive channel and healing.",
       "base": {
         "cost": 1,
-        "target": "SELF_AND_ENEMY",
-        "text": "Deal 6 damage. Gain Block equal to the enemy HP removed by this hit.",
+        "target": "SELF_OR_ENEMY",
+        "text": "Choose an enemy: deal 3 damage 3 times. Or choose yourself: heal 3 HP 3 times. Exhaust.",
         "stats": {
-          "damage": 6
+          "damage": 3,
+          "healPerTick": 3,
+          "hits": 3
         },
-        "keywords": [],
+        "keywords": [
+          "EXHAUST"
+        ],
         "effects": [
-          "Record the target HP before the hit.",
-          "Deal 6 normal Attack damage.",
-          "Gain Block equal to the actual HP removed by this direct hit, capped at the recorded HP."
+          "Choose an enemy: deal 3 damage 3 times. Or choose yourself: heal 3 HP 3 times. Exhaust."
         ]
       },
       "upgrade": {
-        "summary": "+2 damage.",
+        "summary": "Repeat the chosen damage or healing effect 4 times instead of 3.",
         "card": {
           "cost": 1,
-          "target": "SELF_AND_ENEMY",
-          "text": "Deal 8 damage. Gain Block equal to the enemy HP removed by this hit.",
+          "target": "SELF_OR_ENEMY",
+          "text": "Choose an enemy: deal 3 damage 4 times. Or choose yourself: heal 3 HP 4 times. Exhaust.",
           "stats": {
-            "damage": 8
+            "damage": 3,
+            "healPerTick": 3,
+            "hits": 4
           },
-          "keywords": [],
+          "keywords": [
+            "EXHAUST"
+          ],
           "effects": [
-            "Record the target HP before the hit.",
-            "Deal 8 normal Attack damage.",
-            "Gain Block equal to the actual HP removed by this direct hit, capped at the recorded HP."
+            "Choose an enemy: deal 3 damage 4 times. Or choose yourself: heal 3 HP 4 times. Exhaust."
           ]
         }
       },
       "rulesNotes": [
-        "Only this direct hit counts: exclude absorbed damage, overkill, DoT damage, and Psychic Link damage.",
-        "Dexterity does not modify the converted Block. Strength and normal Attack damage modifiers affect the hit and therefore the amount converted.",
-        "A killing blow still grants Block for the actual HP removed.",
-        "Use the ordinary single-hit Insanity and once-per-card Psychic Link rules.",
-        "Exact HP conversion also bypasses Frail recalculation; normal external Block-gain hooks still apply."
+        "Choose one mode for the whole play; never both. Remains an Attack in either mode and Exhausts in either mode. Attack cost discounts and Attack-play hooks still apply, including Psychic Link once per play. Strength and Voidform modify only enemy damage, not healing. Healing obeys normal healing restrictions and generates no hit-based Insanity. Stop enemy hits when the target dies. A Dragonwrath repeat preserves the chosen mode; healing repeats still target yourself.",
+        "Shared keyword definitions in keywords.md apply. This design awaits implementation."
       ],
-      "balanceNotes": "Test conversion with Voidform, enemy Block, low-health targets, and attack-scaling effects. Values agreed; do not silently double count damage sources.",
+      "balanceNotes": "Prototype values; full-run balance testing remains after implementation.",
       "art": {
         "wowAbility": "Penance",
         "icon": "spell_holy_penance",
@@ -1706,7 +1713,7 @@
     {
       "id": "shadowpriest:DispelMagic",
       "name": "Dispel Magic",
-      "status": "IMPLEMENTED",
+      "status": "APPROVED",
       "type": "SKILL",
       "rarity": "COMMON",
       "sources": [
@@ -1717,38 +1724,35 @@
         "UTILITY",
         "ARTIFACT_REMOVAL"
       ],
-      "designIntent": "Clear enemy defenses so direct attacks and DoT applications can land.",
+      "designIntent": "Reward useful dispelling with modest combat scaling.",
       "base": {
         "cost": 0,
         "target": "ENEMY",
-        "text": "Remove all Block from the target.",
+        "text": "Remove ALL Block from the target. If any was removed, gain 1 Dexterity.",
         "stats": {},
         "keywords": [],
         "effects": [
-          "Remove all current Block from the target."
+          "Remove ALL Block from the target. If any was removed, gain 1 Dexterity."
         ]
       },
       "upgrade": {
-        "summary": "Also remove all Artifact.",
+        "summary": "Also remove ALL Artifact; gain 1 Mastery if any Artifact was removed.",
         "card": {
           "cost": 0,
           "target": "ENEMY",
-          "text": "Remove all Block and Artifact from the target.",
+          "text": "Remove ALL Block and Artifact from the target. If any Block was removed, gain 1 Dexterity. If any Artifact was removed, gain 1 Mastery.",
           "stats": {},
           "keywords": [],
           "effects": [
-            "Remove all current Block from the target.",
-            "Remove all Artifact from the target."
+            "Remove ALL Block and Artifact from the target. If any Block was removed, gain 1 Dexterity. If any Artifact was removed, gain 1 Mastery."
           ]
         }
       },
       "rulesNotes": [
-        "Remove current Block, not powers that generate future Block.",
-        "The upgraded removal clears all Artifact charges; it is removal rather than a debuff application.",
-        "Does not remove Strength or other enemy buffs.",
-        "Does not Exhaust."
+        "Check Block and Artifact separately. Each condition grants its stat at most once per cast, regardless of the amount removed. Stats last for combat. Removing Block or Artifact is not a debuff application and is not prevented by Artifact.",
+        "Shared keyword definitions in keywords.md apply. This design awaits implementation."
       ],
-      "balanceNotes": "Situational zero-cost utility. Mass Dispel retains its all-enemy reach and positive Strength removal.",
+      "balanceNotes": "Prototype values; full-run balance testing remains after implementation.",
       "art": {
         "wowAbility": "Dispel Magic",
         "icon": "spell_nature_nullifydisease",
@@ -1937,7 +1941,7 @@
     {
       "id": "shadowpriest:InsidiousIre",
       "name": "Insidious Ire",
-      "status": "IMPLEMENTED",
+      "status": "APPROVED",
       "type": "POWER",
       "rarity": "UNCOMMON",
       "sources": [
@@ -1949,49 +1953,35 @@
         "MASTERY",
         "MULTIHIT"
       ],
-      "designIntent": "Reward full DoT setup with Mastery-scaling multihit Attack damage.",
+      "designIntent": "Make direct Attacks stronger against fully afflicted enemies with a simple delayed check.",
       "base": {
         "cost": 2,
         "target": "SELF",
-        "text": "Each Attack hit against an enemy with Touch, Pain, and Madness deals 1 additional damage plus your Mastery, to a minimum bonus of 0.",
-        "stats": {
-          "bonusDamage": 1,
-          "masteryCoefficient": 1,
-          "minimumBonus": 0
-        },
+        "text": "At the start of your turn, apply 1 Vulnerable to each enemy with Touch, Pain, and Madness.",
+        "stats": {},
         "keywords": [],
         "effects": [
-          "For each direct Attack hit, check whether its target currently has Touch, Pain, and Madness.",
-          "If qualified, add max(0, 1 + current Mastery) damage to that hit."
+          "At the start of your turn, apply 1 Vulnerable to each enemy with Touch, Pain, and Madness."
         ]
       },
       "upgrade": {
-        "summary": "Increase the per-hit base bonus from 1 to 2; Mastery scaling stays at 1 per point.",
+        "summary": "Cost becomes 1 energy.",
         "card": {
-          "cost": 2,
+          "cost": 1,
           "target": "SELF",
-          "text": "Each Attack hit against an enemy with Touch, Pain, and Madness deals 2 additional damage plus your Mastery, to a minimum bonus of 0.",
-          "stats": {
-            "bonusDamage": 2,
-            "masteryCoefficient": 1,
-            "minimumBonus": 0
-          },
+          "text": "At the start of your turn, apply 1 Vulnerable to each enemy with Touch, Pain, and Madness.",
+          "stats": {},
           "keywords": [],
           "effects": [
-            "For each direct Attack hit, check whether its target currently has Touch, Pain, and Madness.",
-            "If qualified, add max(0, 2 + current Mastery) damage to that hit."
+            "At the start of your turn, apply 1 Vulnerable to each enemy with Touch, Pain, and Madness."
           ]
         }
       },
       "rulesNotes": [
-        "Bonus is per hit, including every hit of X-cost cards, not once per card.",
-        "Use current Mastery and current qualifying DoTs separately for each hit.",
-        "The bonus is strictly additive and never negative. Negative Mastery may eliminate it but must never cause this Power to lower Attack damage.",
-        "The upgrade does not grant Mastery.",
-        "DoT ticks and Halo are not direct Attack hits and receive no bonus.",
-        "Copies stack their contributions; apply the nonnegative bonus in normal Attack calculations before power modifiers and Voidform amplification."
+        "Check each living enemy at the start of the player turn. All three debuffs must have positive stacks then. Artifact can block each application. This is the agreed exception to the class's usual restriction on applying Vulnerable.",
+        "Shared keyword definitions in keywords.md apply. This design awaits implementation."
       ],
-      "balanceNotes": "Approved initial formula; 2 energy remains the provisional testing cost. Watch high-Mastery X-cost bursts and Voidform amplification.",
+      "balanceNotes": "Prototype values; full-run balance testing remains after implementation.",
       "art": {
         "wowAbility": "Insidious Ire",
         "icon": "spell_fire_twilightcano",
@@ -2123,7 +2113,7 @@
     {
       "id": "shadowpriest:BloodMagic",
       "name": "Blood Magic",
-      "status": "IMPLEMENTED",
+      "status": "READY_FOR_REVIEW",
       "type": "ATTACK",
       "rarity": "COMMON",
       "sources": [
@@ -2131,38 +2121,42 @@
       ],
       "startingCopies": 0,
       "tags": [],
-      "designIntent": "Immediate damage at a health cost.",
+      "designIntent": "Combine immediate damage and DoT setup.",
       "base": {
         "cost": 2,
         "target": "ENEMY",
-        "text": "Deal 18 damage. Lose 3 HP.",
+        "text": "Deal 18 damage. Apply 3 Touch.",
         "stats": {
           "damage": 18,
-          "hpLoss": 3
+          "touch": 3
         },
         "keywords": [],
         "effects": [
-          "Deal 18 damage. Lose 3 HP."
+          "Deal 18 damage. Apply 3 Touch."
         ]
       },
       "upgrade": {
-        "summary": "Deal 24 damage; HP loss remains 3.",
+        "summary": "Deal 24 damage and also apply 5 Pain.",
         "card": {
           "cost": 2,
           "target": "ENEMY",
-          "text": "Deal 24 damage. Lose 3 HP.",
+          "text": "Deal 24 damage. Apply 3 Touch and 5 Pain.",
           "stats": {
             "damage": 24,
-            "hpLoss": 3
+            "touch": 3,
+            "pain": 5
           },
           "keywords": [],
           "effects": [
-            "Deal 24 damage. Lose 3 HP."
+            "Deal 24 damage. Apply 3 Touch and 5 Pain."
           ]
         }
       },
-      "rulesNotes": [],
-      "balanceNotes": "Implemented; validate full-run balance, including repeated use and A20 Heart performance.",
+      "rulesNotes": [
+        "Resolve damage, then Touch, then upgraded Pain on the surviving target. Applications do not require HP loss. This revision has no self-damage. The draft retains the author's 24-damage upgrade; the proposed lower value has not been adopted.",
+        "Shared keyword definitions in keywords.md apply. This design awaits implementation."
+      ],
+      "balanceNotes": "Prototype values; full-run balance testing remains after implementation.",
       "art": {
         "wowAbility": "Original Blood Magic concept",
         "icon": "blood_magic.png",
@@ -2273,59 +2267,60 @@
     },
     {
       "id": "shadowpriest:Insight",
-      "name": "Insight",
-      "status": "IMPLEMENTED",
+      "name": "Shadowy Insight",
+      "status": "APPROVED",
       "type": "SKILL",
       "rarity": "COMMON",
       "sources": [
         "REWARD_POOL"
       ],
       "startingCopies": 0,
-      "tags": [],
-      "designIntent": "Bring card access forward to the current turn.",
+      "tags": [
+        "DRAW",
+        "DOT_SYNERGY"
+      ],
+      "designIntent": "Reward DoT setup with draw without allowing repeated same-turn cycling.",
       "base": {
         "cost": 0,
-        "target": "SELF",
-        "text": "Draw 2 cards. Next turn, draw 1 fewer card.",
-        "stats": {
-          "draw": 2,
-          "nextTurnDrawReduction": 1
-        },
-        "keywords": [],
+        "target": "ENEMY",
+        "text": "Draw 1 card per unique DoT on the target. Only one Shadowy Insight can be played each turn. Exhaust.",
+        "stats": {},
+        "keywords": [
+          "EXHAUST"
+        ],
         "effects": [
-          "Draw 2 cards. Next turn, draw 1 fewer card."
+          "Draw 1 card per unique DoT on the target. Only one Shadowy Insight can be played each turn. Exhaust."
         ]
       },
       "upgrade": {
-        "summary": "Draw 3 cards.",
+        "summary": "Remove Exhaust; the shared once-per-turn limit remains.",
         "card": {
           "cost": 0,
-          "target": "SELF",
-          "text": "Draw 3 cards. Next turn, draw 1 fewer card.",
-          "stats": {
-            "draw": 3,
-            "nextTurnDrawReduction": 1
-          },
+          "target": "ENEMY",
+          "text": "Draw 1 card per unique DoT on the target. Only one Shadowy Insight can be played each turn.",
+          "stats": {},
           "keywords": [],
           "effects": [
-            "Draw 3 cards. Next turn, draw 1 fewer card."
+            "Draw 1 card per unique DoT on the target. Only one Shadowy Insight can be played each turn."
           ]
         }
       },
       "rulesNotes": [
-        "Multiple plays add their next-turn draw penalties. The penalty affects the next turn's normal draw, not every draw effect, and then expires. The upgrade retains the same penalty."
+        "Snapshot the target's unique DoTs when played, then draw normally. A successful play locks all copies, upgraded or not, for the rest of the turn, even if it draws zero cards. Reset at the start of your next turn and on combat reset. The limit is shared, not per copy.",
+        "Shared keyword definitions in keywords.md apply. This design awaits implementation.",
+        "Renamed from Insight; retain the existing card ID for save compatibility."
       ],
-      "balanceNotes": "Implemented; validate full-run balance, including repeated use and A20 Heart performance.",
+      "balanceNotes": "Prototype values; full-run balance testing remains after implementation.",
       "art": {
-        "wowAbility": "Insight",
+        "wowAbility": "Shadowy Insight",
         "icon": "inv_ability_oraclepriest_premonitioninsight",
-        "direction": "Actual WoW icon with the shared violet-and-gold frame; source attribution in licenses/Warcraft-artwork.txt."
+        "direction": "Use the matching WoW Shadowy Insight icon; the current Insight asset needs review during implementation."
       }
     },
     {
       "id": "shadowpriest:TitheEvasion",
       "name": "Tithe Evasion",
-      "status": "IMPLEMENTED",
+      "status": "APPROVED",
       "type": "POWER",
       "rarity": "COMMON",
       "sources": [
@@ -2333,38 +2328,39 @@
       ],
       "startingCopies": 0,
       "tags": [],
-      "designIntent": "Support the three named self-damage effects.",
+      "designIntent": "Mitigate the class's deliberate self-damage.",
       "base": {
         "cost": 1,
         "target": "SELF",
-        "text": "Whenever Blood Magic, Shadow Word: Death, or Shadow Mend causes you to lose HP, lose 1 less. This benefit does not stack.",
+        "text": "Whenever Shadow Word: Death or Shadow Mend causes you to lose HP, lose 1 less. This benefit does not stack.",
         "stats": {
-          "hpLossReduction": 1
+          "reduction": 1
         },
         "keywords": [],
         "effects": [
-          "Whenever Blood Magic, Shadow Word: Death, or Shadow Mend causes you to lose HP, lose 1 less. This benefit does not stack."
+          "Whenever Shadow Word: Death or Shadow Mend causes you to lose HP, lose 1 less. This benefit does not stack."
         ]
       },
       "upgrade": {
-        "summary": "Lose 2 less instead.",
+        "summary": "Lose 2 less HP instead.",
         "card": {
           "cost": 1,
           "target": "SELF",
-          "text": "Whenever Blood Magic, Shadow Word: Death, or Shadow Mend causes you to lose HP, lose 2 less. This benefit does not stack.",
+          "text": "Whenever Shadow Word: Death or Shadow Mend causes you to lose HP, lose 2 less. This benefit does not stack.",
           "stats": {
-            "hpLossReduction": 2
+            "reduction": 2
           },
           "keywords": [],
           "effects": [
-            "Whenever Blood Magic, Shadow Word: Death, or Shadow Mend causes you to lose HP, lose 2 less. This benefit does not stack."
+            "Whenever Shadow Word: Death or Shadow Mend causes you to lose HP, lose 2 less. This benefit does not stack."
           ]
         }
       },
       "rulesNotes": [
-        "Only the three named sources qualify, including Shadow Mend's combined debt tick. Exclude all other sources, including enemy Attacks, Beat of Death, Curses, Statuses, relics, and other classes' cards. Floor each qualifying HP loss at zero. Track the highest benefit granted this combat: equal or weaker copies are unplayable; an upgraded copy replaces the base benefit. Reset tracking after combat."
+        "Only the two named sources qualify, including Shadow Mend's combined debt tick. Exclude enemy Attacks, Beat of Death, Curses, Statuses, relics, and other sources. Floor each qualifying loss at zero. Track the highest benefit granted this combat: equal or weaker copies are unplayable, and an upgraded copy replaces the base benefit. Reset tracking after combat. Blood Magic's current draft no longer causes HP loss.",
+        "Shared keyword definitions in keywords.md apply. This design awaits implementation."
       ],
-      "balanceNotes": "Implemented; validate full-run balance, including repeated use and A20 Heart performance.",
+      "balanceNotes": "Prototype values; full-run balance testing remains after implementation.",
       "art": {
         "wowAbility": "Tithe Evasion",
         "icon": "spell_nzinsanity_bloodthirst",
@@ -2699,6 +2695,466 @@
         "wowAbility": "Val'anyr, Hammer of the Ancient Kings",
         "icon": "inv_mace_99",
         "direction": "Actual WoW item icon and floating transparent weapon model render, with an orange Legendary card frame."
+      }
+    },
+    {
+      "id": "shadowpriest:UnfurlingDarkness",
+      "name": "Unfurling Darkness",
+      "status": "APPROVED",
+      "type": "ATTACK",
+      "rarity": "COMMON",
+      "sources": [
+        "REWARD_POOL"
+      ],
+      "startingCopies": 0,
+      "tags": [],
+      "designIntent": "Provide a common Attack that establishes Touch.",
+      "base": {
+        "cost": 1,
+        "target": "ENEMY",
+        "text": "Deal 5 damage. Apply 3 Touch.",
+        "stats": {
+          "damage": 5,
+          "stacks": 3
+        },
+        "keywords": [],
+        "effects": [
+          "Deal 5 damage. Apply 3 Touch."
+        ]
+      },
+      "upgrade": {
+        "summary": "Cost becomes 0 energy.",
+        "card": {
+          "cost": 0,
+          "target": "ENEMY",
+          "text": "Deal 5 damage. Apply 3 Touch.",
+          "stats": {
+            "damage": 5,
+            "stacks": 3
+          },
+          "keywords": [],
+          "effects": [
+            "Deal 5 damage. Apply 3 Touch."
+          ]
+        }
+      },
+      "rulesNotes": [
+        "Deal damage before applying Touch to the surviving target. Touch application does not require HP loss; Artifact can prevent it.",
+        "Shared keyword definitions in keywords.md apply. This design awaits implementation."
+      ],
+      "balanceNotes": "Prototype values; full-run balance testing remains after implementation.",
+      "art": {
+        "wowAbility": "Unfurling Darkness",
+        "icon": "",
+        "direction": "Use matching WoW ability artwork with the established card treatment; asset selection pending."
+      }
+    },
+    {
+      "id": "shadowpriest:DarkVoid",
+      "name": "Dark Void",
+      "status": "APPROVED",
+      "type": "ATTACK",
+      "rarity": "UNCOMMON",
+      "sources": [
+        "REWARD_POOL"
+      ],
+      "startingCopies": 0,
+      "tags": [],
+      "designIntent": "Provide area damage and fresh Pain application.",
+      "base": {
+        "cost": 1,
+        "target": "ALL_ENEMY",
+        "text": "Deal 3 damage to ALL enemies. Apply 3 Pain to each enemy that loses HP.",
+        "stats": {
+          "damage": 3,
+          "stacks": 3
+        },
+        "keywords": [],
+        "effects": [
+          "Deal 3 damage to ALL enemies. Apply 3 Pain to each enemy that loses HP."
+        ]
+      },
+      "upgrade": {
+        "summary": "Deal 5 damage and apply 5 Pain instead.",
+        "card": {
+          "cost": 1,
+          "target": "ALL_ENEMY",
+          "text": "Deal 5 damage to ALL enemies. Apply 5 Pain to each enemy that loses HP.",
+          "stats": {
+            "damage": 5,
+            "stacks": 5
+          },
+          "keywords": [],
+          "effects": [
+            "Deal 5 damage to ALL enemies. Apply 5 Pain to each enemy that loses HP."
+          ]
+        }
+      },
+      "rulesNotes": [
+        "Check actual HP removed by this card's direct hit separately for each enemy. Do not apply Pain if Block or damage reduction prevents all HP loss. Apply to surviving qualifying targets; Artifact can block the application. Psychic Link and other incidental damage do not satisfy the condition.",
+        "Shared keyword definitions in keywords.md apply. This design awaits implementation."
+      ],
+      "balanceNotes": "Prototype values; full-run balance testing remains after implementation.",
+      "art": {
+        "wowAbility": "Dark Void",
+        "icon": "",
+        "direction": "Use matching WoW ability artwork with the established card treatment; asset selection pending."
+      }
+    },
+    {
+      "id": "shadowpriest:PowerInfusion",
+      "name": "Power Infusion",
+      "status": "APPROVED",
+      "type": "SKILL",
+      "rarity": "UNCOMMON",
+      "sources": [
+        "REWARD_POOL"
+      ],
+      "startingCopies": 0,
+      "tags": [],
+      "designIntent": "Provide a scarce, powerful channeling burst turn.",
+      "base": {
+        "cost": 1,
+        "target": "SELF",
+        "text": "Gain 2 Haste this turn. Exhaust.",
+        "stats": {
+          "haste": 2
+        },
+        "keywords": [
+          "EXHAUST"
+        ],
+        "effects": [
+          "Gain 2 Haste this turn. Exhaust."
+        ]
+      },
+      "upgrade": {
+        "summary": "Cost becomes 0 energy.",
+        "card": {
+          "cost": 0,
+          "target": "SELF",
+          "text": "Gain 2 Haste this turn. Exhaust.",
+          "stats": {
+            "haste": 2
+          },
+          "keywords": [
+            "EXHAUST"
+          ],
+          "effects": [
+            "Gain 2 Haste this turn. Exhaust."
+          ]
+        }
+      },
+      "rulesNotes": [
+        "Copies add their Haste. Remove only the Haste granted for this turn at turn end. Haste is not consumed by X-card plays and works at zero energy.",
+        "Shared keyword definitions in keywords.md apply. This design awaits implementation."
+      ],
+      "balanceNotes": "Prototype values; full-run balance testing remains after implementation.",
+      "art": {
+        "wowAbility": "Power Infusion",
+        "icon": "",
+        "direction": "Use matching WoW ability artwork with the established card treatment; asset selection pending."
+      }
+    },
+    {
+      "id": "shadowpriest:ShadowCrash",
+      "name": "Shadow Crash",
+      "status": "APPROVED",
+      "type": "SKILL",
+      "rarity": "UNCOMMON",
+      "sources": [
+        "REWARD_POOL"
+      ],
+      "startingCopies": 0,
+      "tags": [],
+      "designIntent": "Trade immediate setup for free group application.",
+      "base": {
+        "cost": 0,
+        "target": "ALL_ENEMY",
+        "text": "At the start of your next turn, apply 5 Touch to ALL enemies.",
+        "stats": {
+          "stacks": 5
+        },
+        "keywords": [],
+        "effects": [
+          "At the start of your next turn, apply 5 Touch to ALL enemies."
+        ]
+      },
+      "upgrade": {
+        "summary": "Apply Touch immediately instead of at the start of your next turn.",
+        "card": {
+          "cost": 0,
+          "target": "ALL_ENEMY",
+          "text": "Apply 5 Touch to ALL enemies.",
+          "stats": {
+            "stacks": 5
+          },
+          "keywords": [],
+          "effects": [
+            "Apply 5 Touch to ALL enemies."
+          ]
+        }
+      },
+      "rulesNotes": [
+        "The base version schedules one application to each living enemy present when it resolves; it does not snapshot the original group. Each application follows Artifact and Misery rules. Neither version triggers an immediate Touch tick. Pending applications end with combat.",
+        "Shared keyword definitions in keywords.md apply. This design awaits implementation."
+      ],
+      "balanceNotes": "Prototype values; full-run balance testing remains after implementation.",
+      "art": {
+        "wowAbility": "Shadow Crash",
+        "icon": "",
+        "direction": "Use matching WoW ability artwork with the established card treatment; asset selection pending."
+      }
+    },
+    {
+      "id": "shadowpriest:CrystallineReflection",
+      "name": "Crystalline Reflection",
+      "status": "APPROVED",
+      "type": "SKILL",
+      "rarity": "UNCOMMON",
+      "sources": [
+        "REWARD_POOL"
+      ],
+      "startingCopies": 0,
+      "tags": [],
+      "designIntent": "Provide a defensive X channel with temporary retaliation.",
+      "base": {
+        "cost": "X",
+        "target": "SELF",
+        "text": "Gain 5 Block X times. Gain X Thorns until your next turn.",
+        "stats": {
+          "block": 5
+        },
+        "keywords": [],
+        "effects": [
+          "Gain 5 Block X times. Gain X Thorns until your next turn."
+        ]
+      },
+      "upgrade": {
+        "summary": "Gain 7 Block per instance instead.",
+        "card": {
+          "cost": "X",
+          "target": "SELF",
+          "text": "Gain 7 Block X times. Gain X Thorns until your next turn.",
+          "stats": {
+            "block": 7
+          },
+          "keywords": [],
+          "effects": [
+            "Gain 7 Block X times. Gain X Thorns until your next turn."
+          ]
+        }
+      },
+      "rulesNotes": [
+        "Use effective X for both Block instances and temporary Thorns. Apply Dexterity and ordinary Block modifiers separately to each Block instance. Thorns retaliates against enemy Attack hits, including hits fully absorbed by Block; it does not trigger on enemy card plays, DoT ticks, or HP loss. At the start of your next turn, remove only these temporary Thorns, preserving permanent sources. Expiry is a buff-side duration rule, not an Artifact-blockable debuff.",
+        "Shared keyword definitions in keywords.md apply. This design awaits implementation."
+      ],
+      "balanceNotes": "Prototype values; full-run balance testing remains after implementation.",
+      "art": {
+        "wowAbility": "Crystalline Reflection",
+        "icon": "",
+        "direction": "Use matching WoW ability artwork with the established card treatment; asset selection pending."
+      }
+    },
+    {
+      "id": "shadowpriest:ProtectedChannel",
+      "name": "Protected Channel",
+      "status": "APPROVED",
+      "type": "POWER",
+      "rarity": "UNCOMMON",
+      "sources": [
+        "REWARD_POOL"
+      ],
+      "startingCopies": 0,
+      "tags": [],
+      "designIntent": "Allow the X-cost package to attack while maintaining defense.",
+      "base": {
+        "cost": 2,
+        "target": "SELF",
+        "text": "Whenever you play an X-cost card, gain 3 Block X times.",
+        "stats": {
+          "block": 3
+        },
+        "keywords": [],
+        "effects": [
+          "Whenever you play an X-cost card, gain 3 Block X times."
+        ]
+      },
+      "upgrade": {
+        "summary": "Gain 5 Block per instance instead.",
+        "card": {
+          "cost": 2,
+          "target": "SELF",
+          "text": "Whenever you play an X-cost card, gain 5 Block X times.",
+          "stats": {
+            "block": 5
+          },
+          "keywords": [],
+          "effects": [
+            "Whenever you play an X-cost card, gain 5 Block X times."
+          ]
+        }
+      },
+      "rulesNotes": [
+        "Use that card's effective X, including Haste and Chemical X even at zero energy. A printed X+1 upgrade adds no extra Protected Channel instance. Apply Dexterity and ordinary Block modifiers separately to each instance. Trigger once per qualifying card play and resolve after its effects. Free repeats use their preserved effective X without charging energy or adding bonuses twice.",
+        "Shared keyword definitions in keywords.md apply. This design awaits implementation."
+      ],
+      "balanceNotes": "Prototype values; full-run balance testing remains after implementation.",
+      "art": {
+        "wowAbility": "",
+        "icon": "",
+        "direction": "Original thematic art of a shadow priest channeling behind a protective violet barrier."
+      }
+    },
+    {
+      "id": "shadowpriest:Catharsis",
+      "name": "Catharsis",
+      "status": "APPROVED",
+      "type": "ATTACK",
+      "rarity": "RARE",
+      "sources": [
+        "REWARD_POOL"
+      ],
+      "startingCopies": 0,
+      "tags": [],
+      "designIntent": "Reward surviving damage with a powerful finisher.",
+      "base": {
+        "cost": 2,
+        "target": "ENEMY",
+        "text": "Deal damage equal to your missing HP. Exhaust.",
+        "stats": {},
+        "keywords": [
+          "EXHAUST"
+        ],
+        "effects": [
+          "Deal damage equal to your missing HP. Exhaust."
+        ]
+      },
+      "upgrade": {
+        "summary": "Gain Retain.",
+        "card": {
+          "cost": 2,
+          "target": "ENEMY",
+          "text": "Retain. Deal damage equal to your missing HP. Exhaust.",
+          "stats": {},
+          "keywords": [
+            "RETAIN",
+            "EXHAUST"
+          ],
+          "effects": [
+            "Retain. Deal damage equal to your missing HP. Exhaust."
+          ]
+        }
+      },
+      "rulesNotes": [
+        "Use maximum HP minus current HP when the hit resolves as base damage, then apply normal Attack damage modifiers. Retain does not lock in a previous missing-HP value.",
+        "Shared keyword definitions in keywords.md apply. This design awaits implementation."
+      ],
+      "balanceNotes": "Prototype values; full-run balance testing remains after implementation.",
+      "art": {
+        "wowAbility": "Catharsis",
+        "icon": "",
+        "direction": "Use matching WoW ability artwork with the established card treatment; asset selection pending."
+      }
+    },
+    {
+      "id": "shadowpriest:SearingNightmare",
+      "name": "Searing Nightmare",
+      "status": "APPROVED",
+      "type": "ATTACK",
+      "rarity": "RARE",
+      "sources": [
+        "REWARD_POOL"
+      ],
+      "startingCopies": 0,
+      "tags": [],
+      "designIntent": "Provide an area Attack and accumulating Madness application that scale with channeling.",
+      "base": {
+        "cost": "X",
+        "target": "ALL_ENEMY",
+        "text": "X times: deal 5 damage to ALL enemies, then apply 5 Madness to ALL enemies.",
+        "stats": {
+          "damage": 5,
+          "stacks": 5
+        },
+        "keywords": [],
+        "effects": [
+          "X times: deal 5 damage to ALL enemies, then apply 5 Madness to ALL enemies."
+        ]
+      },
+      "upgrade": {
+        "summary": "Repeat X+1 times instead of X.",
+        "card": {
+          "cost": "X",
+          "target": "ALL_ENEMY",
+          "text": "X+1 times: deal 5 damage to ALL enemies, then apply 5 Madness to ALL enemies.",
+          "stats": {
+            "damage": 5,
+            "stacks": 5,
+            "extraRepeats": 1
+          },
+          "keywords": [],
+          "effects": [
+            "X+1 times: deal 5 damage to ALL enemies, then apply 5 Madness to ALL enemies."
+          ]
+        }
+      },
+      "rulesNotes": [
+        "For each repetition, finish the area Attack hits, then apply Madness to surviving enemies before starting the next repetition. Applications do not require HP loss, but Artifact can block each separately. Madness does not tick immediately. Later hits can generate Insanity from Madness applied by earlier repetitions. Use effective X, including Haste and Chemical X; add the upgrade's extra repetition afterward. Psychic Link triggers once per card play.",
+        "Shared keyword definitions in keywords.md apply. This design awaits implementation."
+      ],
+      "balanceNotes": "Prototype values; full-run balance testing remains after implementation.",
+      "art": {
+        "wowAbility": "Searing Nightmare",
+        "icon": "",
+        "direction": "Use matching WoW ability artwork with the established card treatment; asset selection pending."
+      }
+    },
+    {
+      "id": "shadowpriest:DarkEvangelism",
+      "name": "Dark Evangelism",
+      "status": "APPROVED",
+      "type": "POWER",
+      "rarity": "RARE",
+      "sources": [
+        "REWARD_POOL"
+      ],
+      "startingCopies": 0,
+      "tags": [],
+      "designIntent": "Turn a channeling investment into combat-long DoT scaling.",
+      "base": {
+        "cost": "X",
+        "target": "SELF",
+        "text": "Gain X Mastery.",
+        "stats": {},
+        "keywords": [],
+        "effects": [
+          "Gain X Mastery."
+        ]
+      },
+      "upgrade": {
+        "summary": "Gain 1 additional Mastery.",
+        "card": {
+          "cost": "X",
+          "target": "SELF",
+          "text": "Gain X+1 Mastery.",
+          "stats": {
+            "extraMastery": 1
+          },
+          "keywords": [],
+          "effects": [
+            "Gain X+1 Mastery."
+          ]
+        }
+      },
+      "rulesNotes": [
+        "Use effective X, including Haste and Chemical X even at zero energy. Add the upgrade's extra Mastery afterward. The granted Mastery lasts for combat; this is a Power and resolves as a normal Power play.",
+        "Shared keyword definitions in keywords.md apply. This design awaits implementation."
+      ],
+      "balanceNotes": "Prototype values; full-run balance testing remains after implementation.",
+      "art": {
+        "wowAbility": "Dark Evangelism",
+        "icon": "",
+        "direction": "Use matching WoW ability artwork with the established card treatment; asset selection pending."
       }
     }
   ]

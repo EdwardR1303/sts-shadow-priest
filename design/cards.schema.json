@@ -57,8 +57,10 @@
             "SELF",
             "NONE",
             "SELF_AND_ENEMY",
-            "ALL"
-          ]
+            "ALL",
+            "SELF_OR_ENEMY"
+          ],
+          "description": "SELF_OR_ENEMY is a mutually exclusive choice of self or enemy, unlike SELF_AND_ENEMY."
         },
         "text": {
           "type": "string",
