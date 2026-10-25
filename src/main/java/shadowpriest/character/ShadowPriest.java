@@ -4,6 +4,9 @@ import basemod.BaseMod;
 import basemod.abstracts.CustomEnergyOrb;
 import basemod.abstracts.CustomPlayer;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.math.MathUtils;
 import com.evacipated.cardcrawl.modthespire.lib.SpireEnum;
@@ -18,11 +21,15 @@ import com.megacrit.cardcrawl.core.EnergyManager;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.helpers.FontHelper;
+import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.helpers.ScreenShake;
+import com.megacrit.cardcrawl.cutscenes.CutscenePanel;
+import com.megacrit.cardcrawl.rooms.CampfireUI;
 
 import com.megacrit.cardcrawl.screens.CharSelectInfo;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import static shadowpriest.ShadowPriestMod.characterPath;
 import static shadowpriest.ShadowPriestMod.makeID;
@@ -84,9 +91,10 @@ public class ShadowPriest extends CustomPlayer {
 
 
     //In-game images
-    private static final String SHOULDER_1 = characterPath("shoulder.png"); //Shoulder 1 and 2 are used at rest sites.
-    private static final String SHOULDER_2 = characterPath("shoulder2.png");
+    private static final String SHOULDER_1 = characterPath("rest_priest.png");
+    private static final String SHOULDER_2 = characterPath("rest_priest.png");
     private static final String CORPSE = characterPath("corpse.png"); //Corpse is when you die.
+    private float restAnimationTime;
 
     //Textures used for the energy orb
     private static final String[] orbTextures = {
@@ -127,10 +135,42 @@ public class ShadowPriest extends CustomPlayer {
                 getLoadout(),
                 0.0F, -10.0F, 220.0F, 310.0F, //Match the tall regalia silhouette.
                 new EnergyManager(ENERGY_PER_TURN));
+        shoulderImg.setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
+        shoulder2Img.setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
 
         //Location for text bubbles. You can adjust it as necessary later. For most characters, these values are fine.
         dialogX = (drawX + 0.0F * Settings.scale);
         dialogY = (drawY + 220.0F * Settings.scale);
+    }
+
+    @Override
+    public void renderShoulderImg(SpriteBatch sb) {
+        restAnimationTime += Math.min(Gdx.graphics.getDeltaTime(), 0.1f);
+        float s = Settings.scale;
+        float breath = MathUtils.sin(restAnimationTime * 1.5f);
+        float flicker = MathUtils.sin(restAnimationTime * 3.7f) * 0.015f;
+        float oldColor = sb.getPackedColor();
+        Texture sprite = CampfireUI.hidden ? shoulder2Img : shoulderImg;
+        try {
+            sb.setColor(0.82f + flicker, 0.78f + flicker, 0.94f, 1f);
+            // Keep the foreground bust left of the campfire choices, with its robe below the screen.
+            sb.draw(sprite, -100f * s + (CampfireUI.hidden ? 0f : animX), -185f * s,
+                450f * s, 120f * s, 900f * s, 900f * s,
+                1f, 1f + breath * 0.004f, breath * 0.15f,
+                0, 0, sprite.getWidth(), sprite.getHeight(), false, false);
+        } finally { sb.setColor(oldColor); }
+    }
+
+    @Override
+    public Texture getCutsceneBg() {
+        return ImageMaster.loadImage("images/scenes/purpleBg.jpg");
+    }
+
+    @Override
+    public List<CutscenePanel> getCutscenePanels() {
+        ArrayList<CutscenePanel> panels = new ArrayList<>();
+        panels.add(new CutscenePanel(characterPath("ending/heart_victory.png"), "ATTACK_MAGIC_BEAM_SHORT"));
+        return panels;
     }
 
     @Override

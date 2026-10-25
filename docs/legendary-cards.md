@@ -47,3 +47,8 @@ The focused test now starts combat with each upgraded Legendary in the permanent
 - [Val'anyr in combat](images/legendary/Valanyr.png)
 
 Earlier mechanic-isolation tests deliberately installed Powers or called the individual effect directly, bypassing the equipped-weapon field. They were insufficient to demonstrate live sprite visibility; the normal combat-start checks now cover all three weapons.
+
+
+## Painted card portraits
+
+The inventory-icon card portraits were replaced with full weapon illustrations in the [second presentation pass](art-pass-02.md). The actual model-render sprites beside the character remain separate from these painted card scenes.

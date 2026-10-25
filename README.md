@@ -44,6 +44,7 @@ For a desktop launcher, run `./scripts/install-desktop-shortcut.ps1` once, then 
 - [Open questions](docs/open-questions.md): rules that still need decisions, with suggestions clearly marked.
 - [Prototype plan](docs/prototype-plan.md): completed milestone and remaining playtest questions.
 - [Prototype rules](docs/prototype-rules.md): exact mechanics and provisional defaults implemented in 0.1.0.
+- [Legendary and character art pass](docs/art-pass-02.md): weapon paintings, skull selection button, rear-view campfire animation, and Heart-victory scene.
 - [Character artwork](docs/character-art.md): generated combat sprite, Voidform presentation, and source prompt.
 - [Card artwork completion](docs/card-art-completion.md): remaining portraits, sources, and first-run log findings.
 - [Starter card artwork](docs/starter-card-art.md): original ability icons, shared frame, and generation prompt.

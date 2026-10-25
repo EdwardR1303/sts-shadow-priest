@@ -6,7 +6,7 @@ import com.badlogic.gdx.graphics.Texture;
 import java.util.HashMap;
 import java.util.Map;
 
-/** Keeps the actual ability icons intact, surrounded by the shared painted frame. */
+/** Framed ability icons, with full-portrait illustrations for Legendary equipment. */
 final class StarterCardArt {
     private static final Map<String, Texture[]> CACHE = new HashMap<>();
     static Texture[] get(String id) {
@@ -48,9 +48,9 @@ final class StarterCardArt {
             case "shadowpriest:SerendipityAttack":
             case "shadowpriest:SerendipitySkill":
             case Serendipity.ID: icon = "cards/icons/serendipity.jpg"; break;
-            case Dragonwrath.ID: icon = "cards/icons/dragonwrath.jpg"; break;
-            case Xalatath.ID: icon = "cards/icons/xalatath.jpg"; break;
-            case Valanyr.ID: icon = "cards/icons/valanyr.jpg"; break;
+            case Dragonwrath.ID: icon = "cards/legendary/dragonwrath.png"; break;
+            case Xalatath.ID: icon = "cards/legendary/xalatath.png"; break;
+            case Valanyr.ID: icon = "cards/legendary/valanyr.png"; break;
             case BloodMagic.ID: icon = "cards/icons/blood_magic.png"; break;
             case MindFlay.ID: icon = "cards/icons/mind_flay.jpg"; break;
             case MindFlayInsanity.ID: icon = "cards/icons/mind_flay_insanity.jpg"; break;
@@ -73,6 +73,14 @@ final class StarterCardArt {
         Pixmap small = new Pixmap(250, 190, Pixmap.Format.RGBA8888);
         try {
             Pixmap.setFilter(Pixmap.Filter.BiLinear);
+            if (icon.startsWith("cards/legendary/")) {
+                // Fill the portrait without stretching the weapon or adding an icon inset.
+                int cropWidth = source.getWidth(), cropHeight = source.getHeight();
+                if (cropWidth * 380L > cropHeight * 500L) cropWidth = cropHeight * 500 / 380;
+                else cropHeight = cropWidth * 380 / 500;
+                large.drawPixmap(source, (source.getWidth() - cropWidth) / 2,
+                    (source.getHeight() - cropHeight) / 2, cropWidth, cropHeight, 0, 0, 500, 380);
+            } else {
             large.drawPixmap(frame, 0, 0, frame.getWidth(), frame.getHeight(), 0, 0, 500, 380);
             int size = 276, x = (500 - size) / 2, y = (380 - size) / 2;
             for (int i = 10; i >= 1; i--) {
@@ -82,6 +90,7 @@ final class StarterCardArt {
             large.drawPixmap(source, 0, 0, source.getWidth(), source.getHeight(), x, y, size, size);
             large.setColor(0.64f, 0.48f, 0.73f, 0.9f);
             large.drawRectangle(x - 1, y - 1, size + 2, size + 2);
+            }
             small.drawPixmap(large, 0, 0, 500, 380, 0, 0, 250, 190);
             Texture[] textures = {new Texture(small), new Texture(large)};
             for (Texture texture : textures) texture.setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);

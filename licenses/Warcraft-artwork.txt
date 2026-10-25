@@ -290,3 +290,11 @@ Source: https://wow.zamimg.com/images/wow/icons/large/spell_shadow_mindshear.jpg
 Resource: shadowpriest/images/cards/icons/mind_sear.jpg
 
 Bulwark uses the related Priest ability Angelic Bulwark's icon. Enter Voidform reuses the existing unmodified Voidform source icon. Foresight is original generated artwork; see docs/card-art-completion.md.
+
+Generated adaptations, October 24, 2026:
+The full Legendary card illustrations in shadowpriest/images/cards/legendary/
+were generated from the credited Blizzard weapon model renders as identity references.
+They are generated derivative illustrations, not official Blizzard artwork.
+The character-selection skull adapts Shadow Word: Pain on the BasicMod button frame,
+using base-game Slay the Spire buttons as style references.
+See docs/art-pass-02.md and docs/art-pass-02-prompts.json for assets and prompts.
