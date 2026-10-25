@@ -82,8 +82,8 @@
   },
   "shadowpriest:ShadowWordMadness": {
     "NAME": "Shadow Word: Madness",
-    "DESCRIPTION": "Apply !M! shadowpriest:madness. NL Deal damage equal to its total (!D!).",
-    "UPGRADE_DESCRIPTION": "Apply !M! shadowpriest:madness to ALL enemies. NL Deal damage to the selected enemy equal to its total (!D!)."
+    "DESCRIPTION": "Apply !M! shadowpriest:Madness. NL Deal damage equal to its total (!D!).",
+    "UPGRADE_DESCRIPTION": "Apply !M! shadowpriest:Madness to ALL enemies. NL Deal damage to the selected enemy equal to its total (!D!)."
   },
   "shadowpriest:Halo": {
     "NAME": "Halo",
