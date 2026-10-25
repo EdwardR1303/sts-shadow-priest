@@ -226,3 +226,67 @@ Display ID: 152601
 valanyr floating weapon: actual WoW model render
 Source: https://wow.zamimg.com/modelviewer/live/webthumbs/item/215/61655.png
 Display ID: 61655
+
+Card art completion pass, October 24, 2026:
+
+mind_flay card icon
+Verified ability: Mind Flay
+Metadata: https://nether.wowhead.com/tooltip/spell/15407
+Source: https://wow.zamimg.com/images/wow/icons/large/spell_shadow_siphonmana.jpg
+Resource: src/main/resources/shadowpriest/images/cards/icons/mind_flay.jpg
+
+mind_flay_insanity card icon
+Verified ability: Mind Flay: Insanity
+Metadata: https://nether.wowhead.com/tooltip/spell/391403
+Source: https://wow.zamimg.com/images/wow/icons/large/spell_fire_twilightflamebreath.jpg
+Resource: src/main/resources/shadowpriest/images/cards/icons/mind_flay_insanity.jpg
+
+shadow_word_death card icon
+Verified ability: Shadow Word: Death
+Metadata: https://nether.wowhead.com/tooltip/spell/32379
+Source: https://wow.zamimg.com/images/wow/icons/large/spell_shadow_demonicfortitude.jpg
+Resource: src/main/resources/shadowpriest/images/cards/icons/shadow_word_death.jpg
+
+mind_blast card icon
+Verified ability: Mind Blast
+Metadata: https://nether.wowhead.com/tooltip/spell/8092
+Source: https://wow.zamimg.com/images/wow/icons/large/spell_shadow_unholyfrenzy.jpg
+Resource: src/main/resources/shadowpriest/images/cards/icons/mind_blast.jpg
+
+fade card icon
+Verified ability: Fade
+Metadata: https://nether.wowhead.com/tooltip/spell/586
+Source: https://wow.zamimg.com/images/wow/icons/large/spell_magic_lesserinvisibilty.jpg
+Resource: src/main/resources/shadowpriest/images/cards/icons/fade.jpg
+
+dispersion card icon
+Verified ability: Dispersion
+Metadata: https://nether.wowhead.com/tooltip/spell/47585
+Source: https://wow.zamimg.com/images/wow/icons/large/spell_shadow_dispersion.jpg
+Resource: src/main/resources/shadowpriest/images/cards/icons/dispersion.jpg
+
+desperate_prayer card icon
+Verified ability: Desperate Prayer
+Metadata: https://nether.wowhead.com/tooltip/spell/19236
+Source: https://wow.zamimg.com/images/wow/icons/large/spell_holy_testoffaith.jpg
+Resource: src/main/resources/shadowpriest/images/cards/icons/desperate_prayer.jpg
+
+bulwark card icon
+Verified ability: Angelic Bulwark
+Metadata: https://nether.wowhead.com/tooltip/spell/108945
+Source: https://wow.zamimg.com/images/wow/icons/large/ability_priest_angelicbulwark.jpg
+Resource: src/main/resources/shadowpriest/images/cards/icons/bulwark.jpg
+
+psychic_link card icon
+Verified ability: Psychic Link
+Metadata: https://nether.wowhead.com/tooltip/spell/199484
+Source: https://wow.zamimg.com/images/wow/icons/large/ability_priest_psychiclink.jpg
+Resource: src/main/resources/shadowpriest/images/cards/icons/psychic_link.jpg
+
+Mind Sear card icon (archived ability)
+Verified ability: Mind Sear
+Metadata: https://nether.wowhead.com/cata/tooltip/spell/48045
+Source: https://wow.zamimg.com/images/wow/icons/large/spell_shadow_mindshear.jpg
+Resource: shadowpriest/images/cards/icons/mind_sear.jpg
+
+Bulwark uses the related Priest ability Angelic Bulwark's icon. Enter Voidform reuses the existing unmodified Voidform source icon. Foresight is original generated artwork; see docs/card-art-completion.md.

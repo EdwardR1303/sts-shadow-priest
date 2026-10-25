@@ -52,6 +52,18 @@ final class StarterCardArt {
             case Xalatath.ID: icon = "cards/icons/xalatath.jpg"; break;
             case Valanyr.ID: icon = "cards/icons/valanyr.jpg"; break;
             case BloodMagic.ID: icon = "cards/icons/blood_magic.png"; break;
+            case MindFlay.ID: icon = "cards/icons/mind_flay.jpg"; break;
+            case MindFlayInsanity.ID: icon = "cards/icons/mind_flay_insanity.jpg"; break;
+            case MindBlast.ID: icon = "cards/icons/mind_blast.jpg"; break;
+            case MindSear.ID: icon = "cards/icons/mind_sear.jpg"; break;
+            case ShadowWordDeath.ID: icon = "cards/icons/shadow_word_death.jpg"; break;
+            case Bulwark.ID: icon = "cards/icons/bulwark.jpg"; break;
+            case Fade.ID: icon = "cards/icons/fade.jpg"; break;
+            case Dispersion.ID: icon = "cards/icons/dispersion.jpg"; break;
+            case DesperatePrayer.ID: icon = "cards/icons/desperate_prayer.jpg"; break;
+            case PsychicLink.ID: icon = "cards/icons/psychic_link.jpg"; break;
+            case Foresight.ID: icon = "cards/icons/foresight.png"; break;
+            case EnterVoidform.ID: icon = "relics/voidform_source.jpg"; break;
             default: return null;
         }
         if (CACHE.containsKey(id)) return CACHE.get(id);

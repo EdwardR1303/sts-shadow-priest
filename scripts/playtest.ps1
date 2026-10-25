@@ -8,10 +8,31 @@ $ErrorActionPreference = 'Stop'
 if ($LatestBatchOnly) { $CardBatchOnly = $true }
 if ($CardBatchOnly) { $SmokeTest = $true }
 $repo = Split-Path $PSScriptRoot -Parent
+# Prevent a second normal instance from sharing saves or replacing live logs.
+if (-not $SmokeTest -and (Test-Path "$repo/.local/playtest.pid")) {
+    $existingId = 0
+    if ([int]::TryParse((Get-Content "$repo/.local/playtest.pid" -Raw).Trim(), [ref]$existingId)) {
+        $existing = Get-CimInstance Win32_Process -Filter "ProcessId = $existingId" -ErrorAction SilentlyContinue
+        if ($existing -and $existing.Name -eq 'java.exe' -and
+            $existing.CommandLine -like '*-Dshadowpriest.playtest=true*' -and
+            $existing.CommandLine -notlike '*-Dshadowpriest.smoketest=true*') {
+            Write-Output "Shadow Priest playtest is already running (PID $existingId)."
+            return
+        }
+    }
+}
 if (-not $SkipBuild) { & "$PSScriptRoot/build.ps1" }
 $config = Get-Content "$repo/.local/config.json" -Raw | ConvertFrom-Json
 $run = if ($SmokeTest) { "$repo/.smoketest" } else { "$repo/.playtest" }
 New-Item -ItemType Directory -Force -Path $run, "$run/mods" | Out-Null
+if (-not $SmokeTest) {
+    $oldLogs = @('console.log', 'error.log') | ForEach-Object { "$run/$_" } | Where-Object { Test-Path -LiteralPath $_ }
+    if ($oldLogs) {
+        $archive = "$run/logs/$(Get-Date -Format 'yyyyMMdd-HHmmss-fffffff')"
+        New-Item -ItemType Directory -Force -Path $archive | Out-Null
+        Copy-Item -LiteralPath $oldLogs -Destination $archive
+    }
+}
 $game = "$($config.steamApps)/common/SlayTheSpire"
 if (-not (Test-Path "$run/desktop-1.0.jar")) { Copy-Item -LiteralPath "$game/desktop-1.0.jar" -Destination "$run/desktop-1.0.jar" }
 foreach ($pair in @(@('1605833019','BaseMod.jar'), @('1609158507','StSLib.jar'))) {

@@ -320,6 +320,7 @@ public final class CardBatchSmokeTest {
     }
 
     static void reset() {
+        shadowpriest.legendary.LegendaryEquipment.State.equipped.set(p,null);
         p.powers.clear(); p.gameHandSize=p.masterHandSize; TitheEvasion.Benefit.granted.set(p,0);
         com.evacipated.cardcrawl.mod.stslib.blockmods.BlockModifierManager.removeAllBlockInstances(p);
         p.currentBlock = 0; p.currentHealth = 200; p.maxHealth = 500;

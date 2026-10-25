@@ -15,6 +15,7 @@ public class MindFlayInsanity extends PriestCard {
         super(ID, -1, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.ENEMY);
         baseDamage = 4;
     }
+    @Override public float getTitleFontSize() { return 16f; }
     @Override public void use(AbstractPlayer p, AbstractMonster m) {
         final int repeats = spendX(p) + (upgraded ? 1 : 0);
         addToBot(new AbstractGameAction() {

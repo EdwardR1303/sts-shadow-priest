@@ -32,6 +32,8 @@ public class SixthBatchSmokeTest {
    }
   }
  }
+ // Effect-only fixtures also identify the visible weapon; real preBattlePrep is checked below.
+ private static void equipForReview(LegendaryCard card){LegendaryEquipment.State.equipped.set(p,card.cardID);card.equip(p);}
  private static int stat(String id){AbstractPower power=p.getPower(id);return power==null?0:power.amount;}
  private static void seedProc(boolean yes,int chance){long seed=0;while((new Random(seed).random(99)<chance)!=yes)seed++;AbstractDungeon.miscRng=new Random(seed);}
  public static void append(Queue<Runnable> q){
@@ -42,6 +44,11 @@ public class SixthBatchSmokeTest {
  check(copy.upgraded && card.cardID.equals(copy.cardID) && card.baseMagicNumber==copy.baseMagicNumber && card.baseBlock==copy.baseBlock && card.exhaust==copy.exhaust,id+" upgraded copy preserves mechanics");
  }
  for(String id:LegendaryEquipment.IDS)CardArtReview.weapon(id);
+ // Review the earlier cards whose generic portraits were replaced after the first full run.
+ for(String id:new String[]{"MindFlay","MindFlayInsanity","MindBlast","MindSear","ShadowWordDeath","Bulwark","Fade","Dispersion","DesperatePrayer","PsychicLink","Foresight","EnterVoidform"}){
+  AbstractCard artCard=CardLibrary.getCard("shadowpriest:"+id).makeCopy();
+  CardArtReview.card(artCard,id);artCard.upgrade();CardArtReview.card(artCard,id+"Plus");
+ }
  play(new BloodMagic(),m,3);});
  q.add(()->{check(m.currentHealth==982 && p.currentHealth==197 && EnergyPanel.totalCount==1,"Blood Magic deals 18, loses 3 HP, costs 2");reset();play(upgraded(new BloodMagic()),m,3);});
  q.add(()->{check(m.currentHealth==976 && p.currentHealth==197,"Blood Magic+ deals 24 with unchanged HP loss");reset();play(new ShadowMend(),null,3);});
@@ -78,18 +85,18 @@ public class SixthBatchSmokeTest {
  q.add(()->{check(m.getPower(MindSoothePower.POWER_ID).amount==2,"Soothe snapshots two DoTs");play(upgraded(new MindSoothe()),m,0);});
  q.add(()->{check(m.getPower(MindSoothePower.POWER_ID).amount==5,"Soothe+ adds flat one and stacks per-hit reduction");DamageInfo hit=new DamageInfo(m,10,DamageInfo.DamageType.NORMAL);hit.applyPowers(m,p);check(hit.output==5,"Soothe reduces normal outgoing damage before Block");p.addBlock(3);p.damage(hit);check(p.currentHealth==198,"Soothe and Block combine without double reduction");endTurn(true);});
  q.add(()->{check(!m.hasPower(MindSoothePower.POWER_ID),"Soothe expires after enemy turn");reset();m.powers.add(new ArtifactPower(m,1));dots(m);play(new MindSoothe(),m,0);});
- q.add(()->{check(!m.hasPower(MindSoothePower.POWER_ID) && !m.hasPower("Artifact"),"Artifact blocks Soothe");reset();p.powers.add(new DragonwrathPower(p,20));rng=AbstractDungeon.miscRng;seedProc(true,20);play(new MindFlay(),m,3);});
- q.add(()->{check(m.currentHealth==988 && EnergyPanel.totalCount==2,"Dragonwrath repeats whole multihit Attack for free exactly once");reset();dots(m);p.powers.add(new PsychicLinkPower(p,1));p.powers.add(new DragonwrathPower(p,20));seedProc(true,20);play(new MindSpike(),m,3);});
- q.add(()->{check(m.currentHealth==978 && VoidformRelic.current().state.amount()==40,"Dragonwrath repeats Psychic Link triggers and generates Insanity for both Attack hits");reset();p.powers.add(new DragonwrathPower(p,20));seedProc(false,20);play(new MindFlay(),m,3);});
- q.add(()->{check(m.currentHealth==994,"Failed Dragonwrath roll does not repeat");reset();p.powers.add(new DragonwrathPower(p,20));seedProc(true,20);play(new VoidTorrent(),m,3);});
- q.add(()->{check(m.currentHealth==952 && EnergyPanel.totalCount==0,"Dragonwrath repeats original X=3 torrent sequence without spending more energy");reset();p.powers.add(new DragonwrathPower(p,20));seedProc(true,20);play(new BloodMagic(),m,3);});
- q.add(()->{check(m.currentHealth==964 && p.currentHealth==194,"Dragonwrath repeats Blood Magic backlash along with damage");AbstractDungeon.miscRng=rng;reset();new Xalatath().equip(p);});
- q.add(()->{check(stat("Strength")+stat("Dexterity")+stat(MasteryPower.POWER_ID)==8,"Xalatath base awards exactly eight stat points");check(stat("Strength")%2==0 && stat("Dexterity")%2==0,"Xalatath grants stats in pairs");reset();upgraded(new Xalatath()).equip(p);});
- q.add(()->{check(stat("Strength")+stat("Dexterity")+stat(MasteryPower.POWER_ID)==10,"Xalatath+ awards ten stat points");reset();new Valanyr().equip(p);});
+ q.add(()->{check(!m.hasPower(MindSoothePower.POWER_ID) && !m.hasPower("Artifact"),"Artifact blocks Soothe");reset();LegendaryEquipment.State.equipped.set(p,Dragonwrath.ID);p.powers.add(new DragonwrathPower(p,20));rng=AbstractDungeon.miscRng;seedProc(true,20);play(new MindFlay(),m,3);});
+ q.add(()->{check(m.currentHealth==988 && EnergyPanel.totalCount==2,"Dragonwrath repeats whole multihit Attack for free exactly once");reset();dots(m);p.powers.add(new PsychicLinkPower(p,1));LegendaryEquipment.State.equipped.set(p,Dragonwrath.ID);p.powers.add(new DragonwrathPower(p,20));seedProc(true,20);play(new MindSpike(),m,3);});
+ q.add(()->{check(m.currentHealth==978 && VoidformRelic.current().state.amount()==40,"Dragonwrath repeats Psychic Link triggers and generates Insanity for both Attack hits");reset();LegendaryEquipment.State.equipped.set(p,Dragonwrath.ID);p.powers.add(new DragonwrathPower(p,20));seedProc(false,20);play(new MindFlay(),m,3);});
+ q.add(()->{check(m.currentHealth==994,"Failed Dragonwrath roll does not repeat");reset();LegendaryEquipment.State.equipped.set(p,Dragonwrath.ID);p.powers.add(new DragonwrathPower(p,20));seedProc(true,20);play(new VoidTorrent(),m,3);});
+ q.add(()->{check(m.currentHealth==952 && EnergyPanel.totalCount==0,"Dragonwrath repeats original X=3 torrent sequence without spending more energy");reset();LegendaryEquipment.State.equipped.set(p,Dragonwrath.ID);p.powers.add(new DragonwrathPower(p,20));seedProc(true,20);play(new BloodMagic(),m,3);});
+ q.add(()->{check(m.currentHealth==964 && p.currentHealth==194,"Dragonwrath repeats Blood Magic backlash along with damage");AbstractDungeon.miscRng=rng;reset();equipForReview(new Xalatath());});
+ q.add(()->{check(stat("Strength")+stat("Dexterity")+stat(MasteryPower.POWER_ID)==8,"Xalatath base awards exactly eight stat points");check(stat("Strength")%2==0 && stat("Dexterity")%2==0,"Xalatath grants stats in pairs");reset();equipForReview(upgraded(new Xalatath()));});
+ q.add(()->{check(stat("Strength")+stat("Dexterity")+stat(MasteryPower.POWER_ID)==10,"Xalatath+ awards ten stat points");reset();equipForReview(new Valanyr());});
  q.add(()->{ward=(ValanyrPower)p.getPower(ValanyrPower.POWER_ID);check(p.currentBlock==5 && p.hasPower("Barricade") && ward.rescue,"Valanyr equips five Block, retention, and independent rescue");endTurn(true);});
  q.add(()->{check(p.currentBlock==5 && ward.ward,"Valanyr retains Block through a real turn");p.damage(new DamageInfo(m,5,DamageInfo.DamageType.NORMAL));check(p.currentBlock==0 && !ward.ward && ward.rescue && !p.hasPower("Barricade"),"Exact Block depletion shatters only retention");p.addBlock(12);endTurn(true);});
- q.add(()->{check(p.currentBlock==0,"Valanyr retention does not return after gaining Block");p.damage(new DamageInfo(m,999,DamageInfo.DamageType.NORMAL));check(p.currentHealth==1 && !p.isDead && !ward.rescue,"Valanyr consumes rescue and leaves one HP on lethal damage");p.currentHealth=10;p.damage(new DamageInfo(m,4,DamageInfo.DamageType.NORMAL));check(p.currentHealth==6,"Valanyr rescue supplies no lasting damage immunity");reset();upgraded(new Valanyr()).equip(p);});
- q.add(()->{check(p.currentBlock==10,"Valanyr+ starts with ten Block");p.powers.add(new BarricadePower(p));p.powers.add(new BlurPower(p,1));p.loseBlock();check(p.hasPower("Barricade") && p.hasPower("Blur"),"Shattering Valanyr preserves independent Barricade and Blur");reset();new Valanyr().equip(p);});
+ q.add(()->{check(p.currentBlock==0,"Valanyr retention does not return after gaining Block");p.damage(new DamageInfo(m,999,DamageInfo.DamageType.NORMAL));check(p.currentHealth==1 && !p.isDead && !ward.rescue,"Valanyr consumes rescue and leaves one HP on lethal damage");p.currentHealth=10;p.damage(new DamageInfo(m,4,DamageInfo.DamageType.NORMAL));check(p.currentHealth==6,"Valanyr rescue supplies no lasting damage immunity");reset();equipForReview(upgraded(new Valanyr()));});
+ q.add(()->{check(p.currentBlock==10,"Valanyr+ starts with ten Block");p.powers.add(new BarricadePower(p));p.powers.add(new BlurPower(p,1));p.loseBlock();check(p.hasPower("Barricade") && p.hasPower("Blur"),"Shattering Valanyr preserves independent Barricade and Blur");reset();equipForReview(new Valanyr());});
  q.add(()->{p.currentHealth=3;p.powers.add(new FadePower(p,2));java.util.Collections.sort(p.powers);p.damage(new DamageInfo(p,3,DamageInfo.DamageType.HP_LOSS));ward=(ValanyrPower)p.getPower(ValanyrPower.POWER_ID);check(p.currentHealth==2 && ward.rescue,"Fade prevents lethality before Valanyr spends rescue");p.damage(new DamageInfo(p,10,DamageInfo.DamageType.HP_LOSS));check(p.currentHealth==1 && !ward.rescue,"Valanyr also prevents lethal HP loss");reset();
  deck.clear();deck.addAll(p.masterDeck.group);history=new LegendaryEquipment().onSave();p.masterDeck.clear();LegendaryEquipment.State.acquired.get(p).clear();
  p.masterDeck.addToTop(new Dragonwrath());check(p.masterDeck.size()==1 && LegendaryEquipment.ownsAny(),"First Legendary can be acquired");p.masterDeck.addToTop(new Xalatath());p.masterDeck.addToBottom(new Dragonwrath());check(p.masterDeck.size()==1,"All further Legendary identities and permanent copies are rejected");
