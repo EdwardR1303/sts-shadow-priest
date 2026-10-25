@@ -16,7 +16,7 @@ import java.util.Queue;
 import static shadowpriest.dev.CombatSmokeTest.check;
 import static shadowpriest.dev.CardBatchSmokeTest.*;
 
-/** Actual engine checks for nonstacking buffs, recovery, permanent Madness, and independent auras. */
+/** Actual engine checks for nonstacking buffs, recovery, decaying Madness, and independent auras. */
 final class SecondBatchSmokeTest {
     private static AbstractPlayer p;
     private static AbstractMonster m, other;
@@ -90,60 +90,7 @@ final class SecondBatchSmokeTest {
         });
         q.add(() -> {
             check(relic.state.amount() == 100 && relic.state.charge() == charge, "Reaping cannot overflow or create a second ready charge");
-            reset(); hp = m.currentHealth; play(new ShadowWordMadness(), m, 3);
-        });
-        q.add(() -> {
-            check(MadnessPower.stacks(m) == 5 && m.currentHealth == hp - 5 && relic.state.amount() == 10,
-                "Madness applies five before its single hit and immediately counts for Insanity");
-            play(new ShadowWordMadness(), m, 3);
-        });
-        q.add(() -> {
-            check(MadnessPower.stacks(m) == 10 && m.currentHealth == hp - 15 && ShadowDotPower.count(m) == 1,
-                "Repeated Madness adds stacks and hits for the new total, but counts as one DoT");
-            hp = m.currentHealth; endTurn(true);
-        });
-        q.add(() -> {
-            check(m.currentHealth == hp && MadnessPower.stacks(m) == 10, "Madness never ticks, decays, or expires at a turn boundary");
-            play(new MindFlayInsanity(), m, 2);
-        });
-        q.add(() -> {
-            check(MadnessPower.stacks(m) == 10 && m.currentHealth == hp - 8, "Duration extension does not change Madness stacks");
-            hp = m.currentHealth; otherHp = other.currentHealth; play(upgraded(new ShadowWordMadness()), m, 3);
-        });
-        q.add(() -> {
-            check(MadnessPower.stacks(m) == 15 && MadnessPower.stacks(other) == 5
-                && m.currentHealth == hp - 15 && other.currentHealth == otherHp,
-                "Madness+ applies five to all enemies and damages only the selected target");
-            dots(m); check(ShadowDotPower.count(m) == 3, "Madness, Touch, and Pain supply three distinct DoTs");
-            MindBlast blast = new MindBlast(); blast.calculateCardDamage(m);
-            check(blast.damage == 14, "Mind Blast includes Madness in its unique-DoT bonus");
-            relic.reset(); play(new MindSear(), null, 1);
-        });
-        q.add(() -> {
-            check(relic.state.amount() == 40, "Area attacks count Madness independently on every affected enemy");
-            reset(); m.powers.add(new ArtifactPower(m, 1)); hp = m.currentHealth; play(new ShadowWordMadness(), m, 3);
-        });
-        q.add(() -> {
-            check(!m.hasPower(MadnessPower.POWER_ID) && m.currentHealth == hp && relic.state.amount() == 0,
-                "Artifact blocks initial Madness and its resulting zero-stack hit");
-            m.powers.add(new MadnessPower(m, 10)); m.powers.add(new ArtifactPower(m, 1)); play(new ShadowWordMadness(), m, 3);
-        });
-        q.add(() -> {
-            check(MadnessPower.stacks(m) == 10 && m.currentHealth == hp - 10, "Blocked Madness application still hits for existing stacks");
-            reset(); p.powers.add(new StrengthPower(p, 2)); relic.gainInsanity(100); relic.activate(relic.state.charge());
-        });
-        q.add(() -> { hp = m.currentHealth; play(new ShadowWordMadness(), m, 0); });
-        q.add(() -> {
-            check(m.currentHealth == hp - 10 && EnergyPanel.totalCount == 0, "Madness receives Strength, Voidform damage, and the Attack discount once");
-            reset(); m.powers.add(new MadnessPower(m, 5)); m.addBlock(30); hp = m.currentHealth; play(new ShadowWordMadness(), m, 3);
-        });
-        q.add(() -> {
-            check(m.currentHealth == hp && relic.state.amount() == 10, "Blocked Madness hit respects Block and still generates 10 Insanity");
-            reset(); p.powers.add(new PsychicLinkPower(p, 1)); m.powers.add(new ShadowDotPower(m, ShadowDotPower.TOUCH, 3));
-            hp = m.currentHealth; play(new ShadowWordMadness(), m, 3);
-        });
-        q.add(() -> {
-            check(m.currentHealth == hp - 10 && relic.state.amount() == 20, "Madness triggers Psychic Link once and counts Touch plus Madness");
+            reset(); p.powers.add(new PsychicLinkPower(p, 1)); dots(m);
             hp = m.currentHealth; play(new Halo(), null, 3);
         });
         q.add(() -> {
@@ -154,8 +101,8 @@ final class SecondBatchSmokeTest {
         });
         q.add(() -> { first = halo(); endTurn(true); });
         q.add(() -> {
-            check(m.currentHealth == hp - 1 && other.currentHealth == otherHp - 3 && first.amount == 2,
-                "Halo pulses at casting-turn end, respects Block, and ignores offensive modifiers");
+            check(m.currentHealth == hp - 4 && other.currentHealth == otherHp - 6 && first.amount == 2,
+                "Halo pulses respect Block and offensive modifiers; Madness ticks independently");
             check(relic.state.amount() == 0 && ShadowDotPower.count(m) == 1, "Halo adds no unique DoT and its pulses generate no Insanity");
             play(upgraded(new Halo()), null, 3);
         });
@@ -166,8 +113,8 @@ final class SecondBatchSmokeTest {
             hp = m.currentHealth; otherHp = other.currentHealth; endTurn(true);
         });
         q.add(() -> {
-            check(m.currentHealth == hp - 8 && other.currentHealth == otherHp - 8 && first.amount == 1 && second.amount == 2,
-                "Overlapping base and upgraded Halos deal eight in separate pulses");
+            check(m.currentHealth == hp - 10 && other.currentHealth == otherHp - 10 && first.amount == 1 && second.amount == 2,
+                "Overlapping Halos deal eight plus two from Madness");
             endTurn(true);
         });
         q.add(() -> {
@@ -175,7 +122,7 @@ final class SecondBatchSmokeTest {
             hp = m.currentHealth; endTurn(true);
         });
         q.add(() -> {
-            check(!p.hasPower(second.ID) && m.currentHealth == hp - 5, "The later Halo keeps its own final pulse and then expires");
+            check(!p.hasPower(second.ID) && m.currentHealth == hp - 6, "The later Halo keeps its own final pulse and then expires");
             reset(); relic.gainInsanity(100); relic.activate(relic.state.charge());
         });
         q.add(() -> {

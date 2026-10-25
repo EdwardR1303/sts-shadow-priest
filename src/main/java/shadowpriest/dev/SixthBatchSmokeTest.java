@@ -38,7 +38,7 @@ public class SixthBatchSmokeTest {
  private static void seedProc(boolean yes,int chance){long seed=0;while((new Random(seed).random(99)<chance)!=yes)seed++;AbstractDungeon.miscRng=new Random(seed);}
  public static void append(Queue<Runnable> q){
  q.add(()->{p=AbstractDungeon.player;m=AbstractDungeon.getMonsters().monsters.get(0);reset();
- check(AbstractDungeon.commonCardPool.size()==20 && AbstractDungeon.uncommonCardPool.size()==14 && AbstractDungeon.rareCardPool.size()==8,"Sixth batch has complete 20/14/8 ordinary reward pools");
+ check(AbstractDungeon.commonCardPool.size()==21 && AbstractDungeon.uncommonCardPool.size()==19 && AbstractDungeon.rareCardPool.size()==11,"Sixth batch has complete 20/14/8 ordinary reward pools");
  for(String id:new String[]{"FlashHeal","BloodMagic","ShadowMend","VoidShield","Insight","Piety","Serendipity","PowerWordBarrier","TitheEvasion","MindSoothe","MentalFortitude","Dragonwrath","Xalatath","Valanyr"}){
  AbstractCard card=CardLibrary.getCard("shadowpriest:"+id);check(card!=null,id+" registers");card=card.makeCopy();CardArtReview.card(card,id);card.upgrade();CardArtReview.card(card,id+"Plus");AbstractCard copy=card.makeStatEquivalentCopy();
  check(copy.upgraded && card.cardID.equals(copy.cardID) && card.baseMagicNumber==copy.baseMagicNumber && card.baseBlock==copy.baseBlock && card.exhaust==copy.exhaust,id+" upgraded copy preserves mechanics");
@@ -58,7 +58,7 @@ public class SixthBatchSmokeTest {
  q.add(()->{check(stat(TitheEvasionPower.POWER_ID)==1 && !new TitheEvasion().canUse(p,null),"Tithe base installs one reduction and blocks equal copies");play(upgraded(new TitheEvasion()),null,3);});
  q.add(()->{check(stat(TitheEvasionPower.POWER_ID)==2 && !upgraded(new TitheEvasion()).canUse(p,null),"Tithe+ replaces base protection with two");hp=p.currentHealth;endTurn(true);});
  q.add(()->{check(p.currentHealth==hp-1,"Tithe reduces combined debt once, not per application");hp=p.currentHealth;play(new BloodMagic(),m,3);});
- q.add(()->{check(p.currentHealth==hp-1,"Tithe reduces Blood Magic backlash");hp=p.currentHealth;play(upgraded(new ShadowWordDeath()),m,0);});
+ q.add(()->{check(p.currentHealth==hp-3,"Tithe excludes Blood Magic HP loss");hp=p.currentHealth;play(upgraded(new ShadowWordDeath()),m,0);});
  q.add(()->{check(p.currentHealth==hp-2,"Tithe reduces both Death+ backlash events");hp=p.currentHealth;p.damage(new DamageInfo(p,3,DamageInfo.DamageType.HP_LOSS));check(p.currentHealth==hp-3,"Tithe does not reduce unrelated self HP loss");
  hp=p.currentHealth;p.damage(new DamageInfo(m,3,DamageInfo.DamageType.NORMAL));check(p.currentHealth==hp-3,"Tithe does not reduce enemy attacks");
  reset();p.powers.add(new ArtifactPower(p,1));play(new ShadowMend(),null,3);});
@@ -66,10 +66,7 @@ public class SixthBatchSmokeTest {
  q.add(()->{check(p.currentBlock==19,"Void Shield at 80 Insanity adds Dexterity once");reset();VoidformRelic.current().gainInsanity(80);play(upgraded(new VoidShield()),null,3);});
  q.add(()->{check(p.currentBlock==20 && VoidformRelic.current().state.ready(),"Void Shield+ reaches threshold before calculating Block");reset();p.powers.add(new VoidformPower(p,true));play(new VoidShield(),null,3);});
  q.add(()->{check(p.currentBlock==20,"Void Shield counts permanent Voidform as 100");reset();VoidformRelic.current().state.gain(100);VoidformRelic.current().state.activate(VoidformRelic.current().state.charge());VoidformRelic.current().state.endTurn();play(upgraded(new VoidShield()),null,3);});
- q.add(()->{check(p.currentBlock==0 && VoidformRelic.current().state.amount()==0,"Void Shield+ cannot gain Insanity during recovery");reset();for(int i=0;i<15;i++)p.drawPile.addToTop(new MindSpike());play(new Insight(),null,0);});
- q.add(()->{check(p.hand.size()==2 && p.gameHandSize==4 && stat(InsightDebtPower.POWER_ID)==1,"Insight draws two now for zero energy with one next-turn penalty");play(upgraded(new Insight()),null,0);});
- q.add(()->{check(p.hand.size()==5 && p.gameHandSize==3 && stat(InsightDebtPower.POWER_ID)==2,"Insight+ draws three; next-turn penalties stack");endTurn(true);});
- q.add(()->{check(p.hand.size()==3 && p.gameHandSize==5 && !p.hasPower(InsightDebtPower.POWER_ID),"Real next turn draws three and clears both Insight penalties");reset();p.hand.addToTop(new Piety());p.drawPile.addToTop(new MindSpike());p.drawPile.addToTop(new MindFlay());p.drawPile.addToTop(new PowerWordShield());p.drawPile.addToTop(new Fade());c=new Piety();play(c,null,0);});
+ q.add(()->{check(p.currentBlock==0 && VoidformRelic.current().state.amount()==0,"Void Shield+ cannot gain Insanity during recovery");reset();p.hand.addToTop(new Piety());p.drawPile.addToTop(new MindSpike());p.drawPile.addToTop(new MindFlay());p.drawPile.addToTop(new PowerWordShield());p.drawPile.addToTop(new Fade());c=new Piety();play(c,null,0);});
  q.add(()->{check(p.hand.size()==5 && p.hand.group.stream().filter(a->a.type==AbstractCard.CardType.ATTACK).count()==2,"Piety ignores other Piety copies and snapshots both draw conditions");check(p.exhaustPile.contains(c),"Base Piety exhausts");reset();p.hand.addToTop(new PowerWordShield());p.discardPile.addToTop(new MindSpike());c=upgraded(new Piety());play(c,null,0);});
  q.add(()->{check(p.hand.size()==1 && p.discardPile.contains(c) && p.drawPile.isEmpty(),"Piety+ does not reshuffle or exhaust when no matching draw exists");reset();p.powers.add(new NoDrawPower(p));p.drawPile.addToTop(new MindSpike());play(new Piety(),null,0);});
  q.add(()->{check(p.hand.isEmpty() && p.drawPile.size()==1,"Piety respects No Draw");reset();for(int i=0;i<9;i++)p.hand.addToTop(new PowerWordShield());for(int i=0;i<3;i++)p.drawPile.addToTop(new MindSpike());play(new Piety(),null,0);});

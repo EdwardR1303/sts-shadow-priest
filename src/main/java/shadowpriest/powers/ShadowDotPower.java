@@ -9,7 +9,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 
-/** Touch/Pain amount is remaining turns. Madness has separate, permanent stack semantics. */
+/** Touch/Pain amount is remaining natural ticks. */
 public class ShadowDotPower extends AbstractPower {
     public static final String TOUCH = "shadowpriest:Touch";
     public static final String PAIN = "shadowpriest:Pain";
@@ -51,9 +51,9 @@ public class ShadowDotPower extends AbstractPower {
         updateDescription();
     }
     @Override public void updateDescription() {
-        description = "Before acting, lose #b" + tickDamage() + " HP, then remove one stack. #b" + amount + " tick(s) remaining. Applications add stacks, up to #b5. Ignores Block and Strength.";
+        description = "At the end of the player turn, lose #b" + tickDamage() + " HP, then remove one stack. #b" + amount + " tick(s) remaining. Applications add stacks, up to #b5. Ignores Block and Strength.";
     }
-    @Override public void atStartOfTurn() {
+    public void naturalTick() {
         if (amount <= 0 || owner.isDeadOrEscaped()) return;
         bonusTick();
         addToBot(new ReducePowerAction(owner, AbstractDungeon.player, this, 1));
@@ -69,7 +69,7 @@ public class ShadowDotPower extends AbstractPower {
     }
     public static int count(AbstractCreature target) {
         if (target == null) return 0;
-        return (target.hasPower(TOUCH) ? 1 : 0) + (target.hasPower(PAIN) ? 1 : 0)
+        return (target.hasPower(TOUCH) && target.getPower(TOUCH).amount > 0 ? 1 : 0) + (target.hasPower(PAIN) && target.getPower(PAIN).amount > 0 ? 1 : 0)
             + (target.hasPower(MadnessPower.POWER_ID) && target.getPower(MadnessPower.POWER_ID).amount > 0 ? 1 : 0);
     }
 }

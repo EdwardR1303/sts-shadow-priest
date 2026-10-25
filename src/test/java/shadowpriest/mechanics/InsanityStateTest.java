@@ -15,10 +15,10 @@ public class InsanityStateTest {
         s.gain(30); s.gain(0); s.gain(-10); assertEquals(30, s.amount());
         s.gain(Integer.MAX_VALUE); assertEquals(100, s.amount()); assertTrue(s.ready());
     }
-    @Test public void twoDotsAndThreeHitsProduceSixtyAndPersist() {
+    @Test public void twoDotsAndThreeHitsProduceThirtyAndPersist() {
         InsanityState s = new InsanityState();
-        s.gain(20); s.gain(20); s.gain(20); s.endTurn();
-        assertEquals(60, s.amount()); assertFalse(s.ready());
+        for (int i=0; i<3; i++) s.gain(2 * InsanityState.PER_DOT); s.endTurn();
+        assertEquals(30, s.amount()); assertFalse(s.ready());
     }
     @Test public void thresholdCapsOneChargeUntilChosen() {
         InsanityState s = new InsanityState(); s.gain(90); s.gain(20);

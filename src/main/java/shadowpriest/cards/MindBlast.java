@@ -13,7 +13,7 @@ public class MindBlast extends PriestCard {
     public static final String ID = "shadowpriest:MindBlast";
     public MindBlast() {
         super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
-        baseDamage = 8; baseMagicNumber = magicNumber = 2;
+        baseDamage = 10; baseMagicNumber = magicNumber = 2;
     }
     @Override public void calculateCardDamage(AbstractMonster m) {
         int original = baseDamage;
@@ -26,6 +26,6 @@ public class MindBlast extends PriestCard {
         addToBot(new DamageAction(m, new DamageInfo(p, damage, damageTypeForTurn), AbstractGameAction.AttackEffect.FIRE));
     }
     @Override public void upgrade() {
-        if (!upgraded) { upgradeName(); upgradeDamage(2); upgradeMagicNumber(1); }
+        if (!upgraded) { upgradeName(); upgradeDamage(2); upgradeMagicNumber(2); }
     }
 }

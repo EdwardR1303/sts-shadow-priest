@@ -13,7 +13,7 @@ public abstract class ShadowDotCard extends PriestCard {
         this.powerId = powerId;
         baseMagicNumber = magicNumber = ShadowDotPower.TOUCH.equals(powerId) ? 5 : 3;
     }
-    public int turns() { return ShadowDotPower.TOUCH.equals(powerId) ? (upgraded ? 4 : 3) : 5; }
+    public int turns() { return ShadowDotPower.TOUCH.equals(powerId) ? 3 : 5; }
     @Override public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot(ShadowDotPower.apply(m, p, powerId, turns()));
         ReturningDots.mark(this);
@@ -21,7 +21,7 @@ public abstract class ShadowDotCard extends PriestCard {
     @Override public void upgrade() {
         if (!upgraded) {
             upgradeName();
-            if (ShadowDotPower.PAIN.equals(powerId)) upgradeBaseCost(0);
+            upgradeBaseCost(0);
             initializeDescription();
         }
     }

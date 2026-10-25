@@ -96,6 +96,11 @@ public final class CombatSmokeTest {
         check(AbstractDungeon.commonCardPool.size() > 0 && AbstractDungeon.uncommonCardPool.size() > 0 && AbstractDungeon.rareCardPool.size() > 0, "Prototype reward pools are populated");
         p.hand.clear(); p.drawPile.clear(); p.discardPile.clear(); p.exhaustPile.clear(); p.limbo.clear();
         m.powers.clear(); m.maxHealth = m.currentHealth = 1000; p.maxHealth = p.currentHealth = 500; relic.reset();
+        if (Boolean.getBoolean("shadowpriest.reworkonly")) {
+            add(new SpawnMonsterAction(new Cultist(300f, 0f), false));
+            ReworkSmokeTest.append(steps);
+            return;
+        }
         if (Boolean.getBoolean("shadowpriest.cardbatchonly")) {
             add(new SpawnMonsterAction(new Cultist(300f, 0f), false));
             CardBatchSmokeTest.append(steps);
@@ -230,7 +235,7 @@ public final class CombatSmokeTest {
             play(new TwinStrike(), m);
         });
         steps.add(() -> {
-            check(relic.state.amount() == 40, "A two-hit Attack into two DoTs generates 40 Insanity");
+            check(relic.state.amount() == 20, "A two-hit Attack into two DoTs generates 20 Insanity");
             relic.reset();
             second = new Cultist(300f, 0f); second.maxHealth = second.currentHealth = 1000;
             add(new SpawnMonsterAction(second, false));
@@ -240,7 +245,7 @@ public final class CombatSmokeTest {
             play(new Cleave(), null);
         });
         steps.add(() -> {
-            check(relic.state.amount() == 30, "An area Attack counts each target's distinct DoTs (2 plus 1)");
+            check(relic.state.amount() == 15, "An area Attack counts each target's distinct DoTs (2 plus 1)");
         });
         steps.add(() -> {
             p.hand.clear(); relic.reset(); m.powers.clear(); m.currentBlock = 0;
@@ -251,14 +256,14 @@ public final class CombatSmokeTest {
             }
             VampiricTouch touch = new VampiricTouch(); touch.upgrade();
             ShadowDotCard copy = (ShadowDotCard) touch.makeStatEquivalentCopy();
-            check(copy.magicNumber == 5 && copy.turns() == 4 && copy.cost == 1, "Upgraded DoT copies preserve 5 damage, 4 turns, and 1 energy");
+            check(copy.magicNumber == 5 && copy.turns() == 3 && copy.cost == 0, "Upgraded DoT copies preserve 5 damage, 3 turns, and 0 energy");
             play(touch, m);
         });
         steps.add(() -> { ShadowWordPain pain = new ShadowWordPain(); pain.upgrade(); play(pain, m); });
         steps.add(() -> {
-            check(dot(ShadowDotPower.TOUCH).damagePerTurn == 5 && dot(ShadowDotPower.TOUCH).amount == 4
+            check(dot(ShadowDotPower.TOUCH).damagePerTurn == 5 && dot(ShadowDotPower.TOUCH).amount == 3
                 && dot(ShadowDotPower.PAIN).damagePerTurn == 3 && dot(ShadowDotPower.PAIN).amount == 5,
-                "Upgraded Touch is 5 x 4 and upgraded Pain is 3 x 5");
+                "Upgraded Touch is 5 x 3 and upgraded Pain is 3 x 5");
             p.powers.add(new StrengthPower(p, 10)); p.powers.add(new WeakPower(p, 2, false));
             m.powers.add(new VulnerablePower(m, 2, false)); m.currentBlock = 40;
             hp = m.currentHealth; tickDots();
@@ -268,8 +273,8 @@ public final class CombatSmokeTest {
         steps.add(CombatSmokeTest::tickDots);
         steps.add(CombatSmokeTest::tickDots);
         steps.add(() -> {
-            check(m.currentHealth == hp - 35 && m.currentBlock == 40 && ShadowDotPower.count(m) == 0 && relic.state.amount() == 0,
-                "Upgraded DoTs deal 20 plus 15 fixed damage, then expire");
+            check(m.currentHealth == hp - 30 && m.currentBlock == 40 && ShadowDotPower.count(m) == 0 && relic.state.amount() == 0,
+                "Upgraded DoTs deal 15 plus 15 fixed damage, then expire");
             p.powers.clear(); m.powers.clear(); m.currentBlock = 0;
             play(new VampiricTouch(), m);
         });
@@ -300,7 +305,7 @@ public final class CombatSmokeTest {
     private static ShadowDotPower dot(String id) { return (ShadowDotPower) m.getPower(id); }
 
     private static void tickDots() {
-        for (AbstractPower power : new ArrayList<>(m.powers)) if (power instanceof ShadowDotPower) power.atStartOfTurn();
+        for (AbstractPower power : new ArrayList<>(m.powers)) if (power instanceof ShadowDotPower) ((ShadowDotPower)power).naturalTick();
     }
     private static void play(AbstractCard card, AbstractMonster target) {
         EnergyPanel.totalCount = 3;

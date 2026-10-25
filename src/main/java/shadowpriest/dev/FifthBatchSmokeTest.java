@@ -30,8 +30,8 @@ final class FifthBatchSmokeTest {
         q.add(() -> {
             p = AbstractDungeon.player; m = AbstractDungeon.getMonsters().monsters.get(0);
             other = AbstractDungeon.getMonsters().monsters.get(1); relic = VoidformRelic.current(); reset();
-            check(AbstractDungeon.commonCardPool.size()==20 && AbstractDungeon.uncommonCardPool.size()==14 && AbstractDungeon.rareCardPool.size()==8,
-                "Current roster supplies 20 commons, 14 uncommons, and 8 rares");
+            check(AbstractDungeon.commonCardPool.size()==21 && AbstractDungeon.uncommonCardPool.size()==19 && AbstractDungeon.rareCardPool.size()==11,
+                "Current roster supplies 21 commons, 19 uncommons, and 11 rares");
             for (String id : new String[]{"Penance","Atonement","PurifyDisease","DispelMagic","BodyAndSoul","InsidiousIre","PetrifyingScream","ShadowCommittal"}) {
                 AbstractCard c = CardLibrary.getCard("shadowpriest:"+id).makeCopy(); c.upgrade();
                 AbstractCard copy = c.makeStatEquivalentCopy(); Texture art = CustomCard.getPortraitImage((CustomCard)c);
@@ -45,15 +45,15 @@ final class FifthBatchSmokeTest {
             m.addBlock(4); p.powers.add(new DexterityPower(p, 10)); p.powers.add(new FrailPower(p, 2, false)); play(new Penance(),m,3);
         });
         q.add(() -> {
-            check(m.currentHealth==998 && p.currentBlock==2 && EnergyPanel.totalCount==2,"Penance converts only two unblocked HP with no Dexterity or Frail recalculation");
+            check(m.currentHealth==995 && p.currentBlock==0 && EnergyPanel.totalCount==2,"Penance deals three three-damage hits through four Block without generating Block");
             reset(); p.powers.add(new StrengthPower(p,2)); play(upgraded(new Penance()),m,3);
         });
         q.add(() -> {
-            check(m.currentHealth==990 && p.currentBlock==10,"Penance+ Strength improves the hit and its exact Block conversion");
+            check(m.currentHealth==980 && p.currentBlock==0,"Penance+ Strength improves each of four hits");
             reset(); dots(m); p.powers.add(new PsychicLinkPower(p,1)); play(new Penance(),m,3);
         });
         q.add(() -> {
-            check(m.currentHealth==989 && p.currentBlock==6,"Penance excludes Psychic Link damage from Block");
+            check(m.currentHealth==986 && p.currentBlock==0,"Penance triggers Psychic Link once after its three hits");
             reset(); m.addBlock(20); play(new Penance(),m,3);
         });
         q.add(() -> {
@@ -63,7 +63,7 @@ final class FifthBatchSmokeTest {
         });
         q.add(() -> play(upgraded(new Penance()),victim,3));
         q.add(() -> {
-            check(victim.isDeadOrEscaped() && p.currentBlock==3,"Penance killing hit caps conversion at actual remaining HP");
+            check(victim.isDeadOrEscaped() && p.currentBlock==0,"Penance stops damaging a killed target and grants no Block");
             AbstractDungeon.getMonsters().monsters.remove(victim); reset(); dots(m); p.powers.add(new DexterityPower(p,2)); play(new Atonement(),m,3);
         });
         q.add(() -> {
@@ -139,7 +139,7 @@ final class FifthBatchSmokeTest {
         q.add(() -> {
             check(m.currentHealth==999 && p.currentHealth==201,"Negative Mastery produces one/zero ticks; Intangible never raises zero and only damaging Touch heals");
             reset(); allDots(m); p.powers.add(new MasteryPower(p,-8)); p.powers.add(new VampiricEmbracePower(p,2));
-            dot(ShadowDotPower.TOUCH).atStartOfTurn(); dot(ShadowDotPower.PAIN).atStartOfTurn();
+            dot(ShadowDotPower.TOUCH).naturalTick(); dot(ShadowDotPower.PAIN).naturalTick();
         });
         q.add(() -> {
             check(m.currentHealth==1000 && p.currentHealth==200 && dot(ShadowDotPower.TOUCH).amount==2 && dot(ShadowDotPower.PAIN).amount==4,
@@ -153,43 +153,6 @@ final class FifthBatchSmokeTest {
         q.add(() -> add(new ApplyPowerAction(p,p,new MasteryPower(p,-5),-5)));
         q.add(() -> {
             check(MasteryPower.current()==-3 && p.getPower(MasteryPower.POWER_ID).type==AbstractPower.PowerType.DEBUFF,"Mastery stacks through zero and changes to a negative debuff");
-            reset(); allDots(m); p.powers.add(new MasteryPower(p,2)); play(new InsidiousIre(),null,3);
-        });
-        q.add(() -> play(new MindFlay(),m,3));
-        q.add(() -> {
-            check(m.currentHealth==985,"Ire adds one plus Mastery to each of three hits");
-            reset(); allDots(m); p.powers.add(new MasteryPower(p,2)); play(upgraded(new InsidiousIre()),null,3);
-        });
-        q.add(() -> play(new MindFlay(),m,3));
-        q.add(() -> {
-            check(m.currentHealth==982 && MasteryPower.current()==2,"Ire+ raises base bonus to two without granting Mastery");
-            reset(); allDots(m); p.powers.add(new MasteryPower(p,-5)); p.powers.add(new InsidiousIrePower(p,2)); play(new MindSpike(),m,3);
-        });
-        q.add(() -> {
-            check(m.currentHealth==994,"Negative Mastery cannot make Ire reduce Attack damage");
-            reset(); dots(m); p.powers.add(new MasteryPower(p,10)); p.powers.add(new InsidiousIrePower(p,2)); play(new MindSpike(),m,3);
-        });
-        q.add(() -> {
-            check(m.currentHealth==994,"Ire requires all three unique DoTs");
-            reset(); allDots(m); dots(other); p.powers.add(new MasteryPower(p,2)); p.powers.add(new InsidiousIrePower(p,1)); play(new MindSear(),null,2);
-        });
-        q.add(() -> {
-            check(m.currentHealth==988 && other.currentHealth==994,"Ire applies per hit and per qualifying target on an X-cost area Attack");
-            reset(); allDots(m); p.powers.add(new MasteryPower(p,2)); p.powers.add(new InsidiousIrePower(p,1)); p.powers.add(new PsychicLinkPower(p,1)); play(new MindFlay(),m,3);
-        });
-        q.add(() -> {
-            check(m.currentHealth==978,"Ire adds no damage to the separate Mastery-enhanced Link tick");
-            reset(); allDots(m); p.powers.add(new MasteryPower(p,2)); p.powers.add(new InsidiousIrePower(p,1)); relic.gainInsanity(100); relic.activate(relic.state.charge());
-        });
-        q.add(() -> play(new VoidTorrent(),m,3));
-        q.add(() -> {
-            check(m.currentHealth==952 && EnergyPanel.totalCount==0,"Ire enhances each escalating Torrent hit before Voidform, without discounting X");
-            reset(); play(new InsidiousIre(),null,3);
-        });
-        q.add(() -> play(upgraded(new InsidiousIre()),null,3));
-        q.add(() -> { allDots(m); p.powers.add(new MasteryPower(p,-1)); play(new MindFlay(),m,3); });
-        q.add(() -> {
-            check(m.currentHealth==991,"Mixed Ire copies stack their separately nonnegative per-hit benefits");
             reset(); play(new PetrifyingScream(),m,3);
         });
         q.add(() -> {
@@ -205,13 +168,13 @@ final class FifthBatchSmokeTest {
         });
         q.add(() -> { fillDraw(); endTurn(false); });
         q.add(() -> {
-            check(p.currentHealth==201 && m.currentHealth==988 && dot(ShadowDotPower.TOUCH).amount==2 && dot(ShadowDotPower.PAIN).amount==4,
+            check(p.currentHealth==201 && m.currentHealth==983 && dot(ShadowDotPower.TOUCH).amount==2 && dot(ShadowDotPower.PAIN).amount==4,
                 "An actually stunned enemy skips its Attack but still takes Mastery DoT ticks and heals Embrace");
             play(upgraded(new PetrifyingScream()),m,3);
         });
         q.add(() -> { fillDraw(); endTurn(false); });
         q.add(() -> {
-            check(p.currentHealth==202 && m.currentHealth==976,"A second Scream permits consecutive DoT turns without enemy Attack damage (player="+p.currentHealth+", enemy="+m.currentHealth+")");
+            check(p.currentHealth==202 && m.currentHealth==967,"A second Scream permits consecutive DoT turns without enemy Attack damage (player="+p.currentHealth+", enemy="+m.currentHealth+")");
             reset(); play(new ShadowCommittal(),null,3);
         });
         q.add(() -> play(new MindSpike(),m,3));

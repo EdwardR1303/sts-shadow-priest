@@ -298,3 +298,59 @@ They are generated derivative illustrations, not official Blizzard artwork.
 The character-selection skull adapts Shadow Word: Pain on the BasicMod button frame,
 using base-game Slay the Spire buttons as style references.
 See docs/art-pass-02.md and docs/art-pass-02-prompts.json for assets and prompts.
+
+unfurling_darkness card icon
+Verified ability: UnfurlingDarkness
+Metadata: https://nether.wowhead.com/tooltip/spell/341273
+Source: https://wow.zamimg.com/images/wow/icons/large/spell_priest_shadow-mend.jpg
+Resource: src/main/resources/shadowpriest/images/cards/icons/unfurling_darkness.jpg
+
+dark_void card icon
+Verified ability: DarkVoid
+Metadata: https://nether.wowhead.com/tooltip/spell/263346
+Source: https://wow.zamimg.com/images/wow/icons/large/inv_elemental_primal_shadow.jpg
+Resource: src/main/resources/shadowpriest/images/cards/icons/dark_void.jpg
+
+power_infusion card icon
+Verified ability: PowerInfusion
+Metadata: https://nether.wowhead.com/tooltip/spell/10060
+Source: https://wow.zamimg.com/images/wow/icons/large/spell_holy_powerinfusion.jpg
+Resource: src/main/resources/shadowpriest/images/cards/icons/power_infusion.jpg
+
+crystalline_reflection card icon
+Verified ability: CrystallineReflection
+Metadata: https://nether.wowhead.com/tooltip/spell/336507
+Source: https://wow.zamimg.com/images/wow/icons/large/ability_priest_reflectiveshield.jpg
+Resource: src/main/resources/shadowpriest/images/cards/icons/crystalline_reflection.jpg
+
+catharsis card icon
+Verified ability: Catharsis
+Metadata: https://nether.wowhead.com/tooltip/spell/391297
+Source: https://wow.zamimg.com/images/wow/icons/large/spell_priest_shadow-mend.jpg
+Resource: src/main/resources/shadowpriest/images/cards/icons/catharsis.jpg
+
+dark_evangelism card icon
+Verified ability: DarkEvangelism
+Metadata: https://nether.wowhead.com/tooltip/spell/391099
+Source: https://wow.zamimg.com/images/wow/icons/large/spell_mage_presenceofmind.jpg
+Resource: src/main/resources/shadowpriest/images/cards/icons/dark_evangelism.jpg
+
+shadow_crash card icon
+Verified ability: ShadowCrash
+Metadata: https://eu.forums.blizzard.com/en/wow/t/blizzard-address-shadow-priest-in-the-near-future/237612?page=36
+Source: https://wow.zamimg.com/images/wow/icons/large/spell_shadow_shadowfury.jpg
+Resource: src/main/resources/shadowpriest/images/cards/icons/shadow_crash.jpg
+
+searing_nightmare card icon
+Verified ability: SearingNightmare
+Metadata: https://www.icy-veins.com/wow/priest-class-changes-for-shadowlands-patch-9-0-2
+Source: https://wow.zamimg.com/images/wow/icons/large/ability_priest_voidentropy.jpg
+Resource: src/main/resources/shadowpriest/images/cards/icons/searing_nightmare.jpg
+
+shadowy_insight card icon
+Verified ability: Insight
+Metadata: https://murlok.io/priest/shadow/talents
+Source: https://render.worldofwarcraft.com/us/icons/56/136183.jpg
+Resource: src/main/resources/shadowpriest/images/cards/icons/shadowy_insight.jpg
+
+Protected Channel reuses original generated Shadow Committal artwork.

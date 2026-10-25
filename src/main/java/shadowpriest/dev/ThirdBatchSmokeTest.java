@@ -30,9 +30,9 @@ final class ThirdBatchSmokeTest {
         q.add(() -> {
             p = AbstractDungeon.player; m = AbstractDungeon.getMonsters().monsters.get(0);
             other = AbstractDungeon.getMonsters().monsters.get(1); relic = VoidformRelic.current(); reset();
-            check(AbstractDungeon.rareCardPool.size() == 8 && AbstractDungeon.rareCardPool.group.stream()
-                .filter(c -> c.cardID.startsWith("shadowpriest:")).count() == 8,
-                "Eight native rares form the entire rare reward pool");
+            check(AbstractDungeon.rareCardPool.size() == 11 && AbstractDungeon.rareCardPool.group.stream()
+                .filter(c -> c.cardID.startsWith("shadowpriest:")).count() == 11,
+                "Eleven native rares form the entire rare reward pool");
             com.megacrit.cardcrawl.rooms.AbstractRoom room = AbstractDungeon.currMapNode.room;
             com.megacrit.cardcrawl.relics.QuestionCard question = new com.megacrit.cardcrawl.relics.QuestionCard();
             p.relics.add(question);
@@ -67,7 +67,7 @@ final class ThirdBatchSmokeTest {
         });
         q.add(() -> {
             check(dot(m, ShadowDotPower.TOUCH).amount == 5 && dot(m, ShadowDotPower.TOUCH).damagePerTurn == 5,
-                "Upgraded Touch adds four without raising damage or exceeding five");
+                "Upgraded Touch adds three without raising damage or exceeding five");
             play(new MindFlayInsanity(), m, 20);
         });
         q.add(() -> {
@@ -146,7 +146,7 @@ final class ThirdBatchSmokeTest {
         });
         q.add(() -> {
             check(EnergyPanel.totalCount == 0 && p.getPower(VampiricEmbracePower.POWER_ID).amount == 1, "Vampiric Embrace costs three and grants one healing per Touch event");
-            dots(m); playerHp = p.currentHealth; dot(m, ShadowDotPower.TOUCH).atStartOfTurn(); dot(m, ShadowDotPower.PAIN).atStartOfTurn();
+            dots(m); playerHp = p.currentHealth; dot(m, ShadowDotPower.TOUCH).naturalTick(); dot(m, ShadowDotPower.PAIN).naturalTick();
         });
         q.add(() -> {
             check(p.currentHealth == playerHp + 1 && m.currentHealth == 992, "Natural Touch heals once; Pain damage does not heal");

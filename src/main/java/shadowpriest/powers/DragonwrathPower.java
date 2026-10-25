@@ -13,7 +13,9 @@ public class DragonwrathPower extends AbstractPower {
  if(card.type!=AbstractCard.CardType.ATTACK || card.purgeOnUse || AbstractDungeon.miscRng.random(99)>=amount) return;
  flash();shadowpriest.legendary.LegendaryEquipment.pulse=1f;
  final AbstractCard copy=card.makeStatEquivalentCopy(); final int x=card.energyOnUse;
- final AbstractMonster originalTarget=action.target instanceof AbstractMonster?(AbstractMonster)action.target:null;
+ final com.megacrit.cardcrawl.core.AbstractCreature selected=card instanceof shadowpriest.cards.Penance?com.evacipated.cardcrawl.mod.stslib.cards.targeting.SelfOrEnemyTargeting.getTarget(card):action.target;
+ final AbstractMonster originalTarget=selected instanceof AbstractMonster?(AbstractMonster)selected:null;
+ shadowpriest.mechanics.Channeling.preserve(card,copy);
  copy.purgeOnUse=true;copy.freeToPlayOnce=true;copy.energyOnUse=x;
  addToBot(new AbstractGameAction(){ public void update(){
  AbstractMonster chosen=originalTarget;
@@ -21,6 +23,11 @@ public class DragonwrathPower extends AbstractPower {
  if(AbstractDungeon.getMonsters().areMonstersBasicallyDead()){isDone=true;return;}
  AbstractDungeon.player.limbo.addToBottom(copy);
  copy.current_x=card.current_x;copy.current_y=card.current_y;
+ if (copy instanceof shadowpriest.cards.Penance) {
+  boolean healing=com.evacipated.cardcrawl.mod.stslib.cards.targeting.SelfOrEnemyTargeting.getTarget(card)==AbstractDungeon.player;
+  if (!healing && chosen==null) chosen=AbstractDungeon.getRandomMonster();
+  com.evacipated.cardcrawl.mod.stslib.patches.CustomTargeting.setCardTarget(copy,healing?AbstractDungeon.player:chosen);
+ }
  if(chosen!=null) copy.calculateCardDamage(chosen);else copy.applyPowers();
  AbstractDungeon.actionManager.addCardQueueItem(new CardQueueItem(copy,chosen,x,true,true),true);isDone=true;
  }});

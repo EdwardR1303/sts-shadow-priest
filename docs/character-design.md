@@ -2,40 +2,40 @@
 
 The character focuses on surviving a setup phase and then committing to a massive burst turn. Distinct damage-over-time effects provide sustained damage and make subsequent direct damage sources generate more Insanity. At 100 Insanity, the starting relic generates a retained activation card so the player chooses the Voidform turn.
 
-The rules below capture the owner's design and prototype defaults on October 23, 2026. [Prototype rules](prototype-rules.md) specify the implementation edge cases and provisional upgrades; [Open questions](open-questions.md) tracks future design work. The [on-demand activation card](voidform-activation.md) replaces automatic Voidform activation.
+The rules below include the approved keyword and card rework. [Keywords](../keywords.md) and [cards](../cards.md) are the current detailed references. [Prototype rules](prototype-rules.md) specify the implementation edge cases and provisional upgrades; [Open questions](open-questions.md) tracks future design work. The [on-demand activation card](voidform-activation.md) replaces automatic Voidform activation.
 
 ## Starting deck
 
 | Card | Role | Energy cost | Base effect | Copies |
 | --- | --- | --- | --- | --- |
-| Mind Spike | Basic Attack replacing Strike | 1 | Deal 6 damage. | 4 |
+| Mind Spike | Basic Attack replacing Strike | 1 | Deal 6 damage. Gain 10 Insanity. | 4 |
 | Power Word: Shield | Basic Skill replacing Defend | 1 | Gain 5 Block. | 4 |
 | Vampiric Touch | Skill applying a distinct DoT | 1 | Apply Vampiric Touch: 5 damage each turn for 3 turns. | 1 |
 | Shadow Word: Pain | Skill applying a distinct DoT | 1 | Apply Shadow Word: Pain: 3 damage each turn for 5 turns. | 1 |
 
-Four Mind Spikes, four Power Word: Shields, one Vampiric Touch, and one Shadow Word: Pain form the ten-card prototype deck. Mind Spike upgrades to 9 damage; Shield upgrades to 8 Block. Touch upgrades to applying 4 remaining ticks of base 5 damage; Pain upgrades to costing 0 while applying 5 ticks of base 3 damage. Only played DoT cards return to hand after end-turn discard.
+Four Mind Spikes, four Power Word: Shields, one Vampiric Touch, and one Shadow Word: Pain form the ten-card prototype deck. Mind Spike upgrades to 9 damage; Shield upgrades to 8 Block. Both starter DoTs upgrade to costing 0 without changing their damage or applied stacks. Only played DoT cards return to hand after end-turn discard.
 
 Vampiric Touch has no agreed healing or Block effect. Its current effect is solely the DoT specified above.
 
 ## Damage over time
 
 - Vampiric Touch and Shadow Word: Pain are separate debuffs that can coexist on one enemy.
-- Touch always deals 5 damage and applies 3/4 ticks; Pain always deals 3 and applies 5 ticks for 1/0 energy.
+- Touch has base 5 damage and applies 3 stacks; Pain has base 3 damage and applies 5 stacks. Both cost 1/0 energy.
 - Strength does not modify this DoT damage.
 - Reapplication adds remaining ticks up to a universal cap of 5. Duration extension obeys the same cap. Base damage is fixed by DoT type; current Mastery modifies each tick, floored at zero.
-- Future cards will synergize with the number of unique DoTs on a target.
+- Cards synergize with the number of unique DoTs on a target.
 
-Each uninterrupted base application totals 15 damage. Upgraded Touch totals 20 over 4 ticks; upgraded Pain totals 15 over 5 ticks at zero energy. While both are active, they always supply 8 damage per tick cycle. Ticks occur before the enemy acts, starting on its next turn after application. They bypass Block and ignore offensive modifiers; enemy damage hooks such as Intangible still apply. Artifact blocks applications and their duration additions.
+Each uninterrupted base application totals 15 damage. Both upgraded applications retain 15 total base damage for zero energy. While both are active, they always supply 8 damage per tick cycle. Ticks occur at player turn end, before enemies act. They bypass Block and ignore offensive modifiers; enemy damage hooks such as Intangible still apply. Artifact blocks applications; extending existing Touch/Pain does not consume Artifact.
 
 ## Starting relic and Insanity
 
 The starting relic is named **Voidform**. It provides a custom Insanity bar and the transformation mechanic.
 
-Each direct damage source generates 10 Insanity per unique DoT on its target. For the owner's example, an enemy with two DoTs grants 20 Insanity for each Mind Spike. Three Mind Spikes against that enemy generate 60 Insanity in total.
+Each direct Attack hit generates 5 Insanity per unique DoT on its target. Mind Spike also grants 10 explicitly, so an enemy with two DoTs grants 20 Insanity for each Mind Spike. Three Mind Spikes against that enemy generate 60 Insanity in total.
 
 Insanity persists between turns. It resets to zero after combat and when Voidform ends.
 
-The prototype counts each player-owned normal attack damage event, including blocked hits and killing blows. Multihit and multi-target attacks count each target hit separately. Touch, Pain, and positive Madness stacks each contribute one to the count. Madness never ticks or decays, while Halo is a player aura that does not count as a DoT. The meter caps at 100 and stops gaining while ready, active, or recovering; there is no overflow or banked second charge.
+The prototype counts each player-owned normal attack damage event, including blocked hits and killing blows. Multihit and multi-target attacks count each target hit separately. Touch, Pain, and positive Madness stacks each contribute one to the count. Madness ticks for half its stacks rounded up plus Mastery and removes one stack, while Halo is a player aura that does not count as a DoT. The meter caps at 100 and stops gaining while ready, active, or recovering; there is no overflow or banked second charge.
 
 ## Voidform
 

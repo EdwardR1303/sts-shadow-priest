@@ -77,7 +77,8 @@ final class CardArtReview {
             pixels.dispose(); flipped.dispose();
         } finally { frame.end(); batch.dispose(); frame.dispose(); }
     }
-    static void mastery(AbstractPower power) {
+    static void mastery(AbstractPower power) { powerIcon(power, "mastery-icon"); }
+    static void powerIcon(AbstractPower power, String name) {
         FrameBuffer frame=new FrameBuffer(Pixmap.Format.RGBA8888,96,96,false);
         SpriteBatch batch=new SpriteBatch();
         frame.begin();
@@ -88,7 +89,7 @@ final class CardArtReview {
             Pixmap pixels=ScreenUtils.getFrameBufferPixmap(0,0,96,96);
             Pixmap flipped=new Pixmap(96,96,Pixmap.Format.RGBA8888);
             for(int x=0;x<96;x++) for(int y=0;y<96;y++) flipped.drawPixel(x,95-y,pixels.getPixel(x,y));
-            PixmapIO.writePNG(Gdx.files.local("mastery-icon.png"),flipped);
+            PixmapIO.writePNG(Gdx.files.local(name+".png"),flipped);
             pixels.dispose(); flipped.dispose();
         } finally { frame.end(); batch.dispose(); frame.dispose(); }
     }

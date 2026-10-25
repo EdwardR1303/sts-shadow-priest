@@ -44,7 +44,7 @@ final class StarterCardArt {
             case MindSoothe.ID: icon = "cards/icons/mind_soothe.jpg"; break;
             case MentalFortitude.ID: icon = "cards/icons/mental_fortitude.jpg"; break;
             case Piety.ID: icon = "cards/icons/piety.jpg"; break;
-            case Insight.ID: icon = "cards/icons/insight.jpg"; break;
+            case Insight.ID: icon = "cards/icons/shadowy_insight.jpg"; break;
             case "shadowpriest:SerendipityAttack":
             case "shadowpriest:SerendipitySkill":
             case Serendipity.ID: icon = "cards/icons/serendipity.jpg"; break;
@@ -64,6 +64,15 @@ final class StarterCardArt {
             case PsychicLink.ID: icon = "cards/icons/psychic_link.jpg"; break;
             case Foresight.ID: icon = "cards/icons/foresight.png"; break;
             case EnterVoidform.ID: icon = "relics/voidform_source.jpg"; break;
+            case UnfurlingDarkness.ID: icon = "cards/icons/unfurling_darkness.jpg"; break;
+            case DarkVoid.ID: icon = "cards/icons/dark_void.jpg"; break;
+            case PowerInfusion.ID: icon = "cards/icons/power_infusion.jpg"; break;
+            case CrystallineReflection.ID: icon = "cards/icons/crystalline_reflection.jpg"; break;
+            case Catharsis.ID: icon = "cards/icons/catharsis.jpg"; break;
+            case DarkEvangelism.ID: icon = "cards/icons/dark_evangelism.jpg"; break;
+            case ShadowCrash.ID: icon = "cards/icons/shadow_crash.jpg"; break;
+            case SearingNightmare.ID: icon = "cards/icons/searing_nightmare.jpg"; break;
+            case ProtectedChannel.ID: icon = "cards/icons/shadow_committal.png"; break;
             default: return null;
         }
         if (CACHE.containsKey(id)) return CACHE.get(id);

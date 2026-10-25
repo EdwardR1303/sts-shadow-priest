@@ -10,5 +10,5 @@ public class InsidiousIre extends PriestCard {
     public static final String ID = "shadowpriest:InsidiousIre";
     public InsidiousIre() { super(ID, 2, CardType.POWER, CardRarity.UNCOMMON, CardTarget.SELF); baseMagicNumber = magicNumber = 1; }
     @Override public void use(AbstractPlayer p, AbstractMonster m) { addToBot(new ApplyPowerAction(p, p, new InsidiousIrePower(p, magicNumber), magicNumber)); }
-    @Override public void upgrade() { if (!upgraded) { upgradeName(); upgradeMagicNumber(1); } }
+    @Override public void upgrade() { if (!upgraded) { upgradeName(); upgradeBaseCost(1); } }
 }

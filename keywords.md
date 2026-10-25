@@ -1,6 +1,6 @@
 # Keywords
 
-Shared design definitions for Shadow Priest cards and relics. Card text uses these terms without repeating their rules. These definitions include agreed changes awaiting implementation; they do not describe every behavior in the current playable build.
+Shared design definitions for Shadow Priest cards and relics. Card text uses these terms without repeating their rules. These definitions describe the current playable build. References to draft relics describe their intended future interactions; those relics are not yet implemented.
 
 ### DoT
 
@@ -51,6 +51,8 @@ At the end of your turn, deal damage equal to half the enemy's current Madness s
 Mastery is added after halving and rounding. Without Mastery or additional applications, 6 Madness deals 3, 3, 2, 2, 1, and 1 damage across six turns. With 2 Mastery, those ticks deal 5, 5, 4, 4, 3, and 3 damage; decay is unchanged.
 
 ### Haste
+
+Uses a yellow version of the base-game Dexterity icon.
 
 Each stack adds 1 to the effective X of every X-cost card, including cards played with 0 energy. It modifies X in the same way as Chemical X, which adds 2. Bonuses stack additively and are not consumed when a card is played.
 

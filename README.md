@@ -8,7 +8,9 @@ The [Voidform activation card](docs/voidform-activation.md) costs 0 energy, has 
 
 ## Project status
 
-Version 0.1.0 is a playable prototype for VS Code: a selectable character, four starters, 42 ordinary reward cards, three Legendary equipment cards, Mastery-scaled DoTs with a five-tick cap, an Insanity bar beneath the energy orb, and on-demand Voidform. The combat priest wears Transcendence-inspired regalia and glows purple during Voidform. All 49 collectible cards and generated Enter Voidform have dedicated portraits: existing abilities use framed WoW icons, while invented abilities use original thematic artwork. Touch/Pain use matching debuff icons, and the Voidform relic uses a transparent cutout adapted from its WoW icon. Other unfinished presentation still uses placeholder assets. Ordinary Voidform enforces a full recovery turn with no Insanity gain. Surrender to Madness is a rare Skill that grants combat-long Voidform with a separate, preventable or cleanseable double-Attack-damage penalty. All reward pools are native: twenty Commons, fourteen Uncommons, and eight Rares. The fifth batch adds defensive Attacks, cleanse/dispel utility, dodge, stun, per-hit damage scaling, and persistent stats earned during Voidform. The sixth batch adds healing debt, typed draw, hand retention, and three automatically equipped Legendaries with boss-only acquisition and permanent uniqueness. Full-run balance remains future work.
+Version 0.1.0 is a playable prototype with 58 collectible cards: four starters, 51 ordinary reward cards (21 Common, 19 Uncommon, 11 Rare), and three automatically equipped Legendaries. The latest rework adds nine cards, more ways to apply DoTs, Haste-enhanced X cards, targeted Penance healing, and shared keyword rules. Touch and Pain cap at five stacks; Madness has no cap and ticks for half its stacks rounded up. All three tick at player turn end and scale with Mastery. Direct Attack hits generate 5 Insanity per unique DoT; Mind Spike also grants 10 explicitly.
+
+The priest wears Transcendence-inspired regalia, glows purple in Voidform, and displays Insanity beneath the energy orb. Card portraits use matching WoW icons or thematic original art; Protected Channel currently reuses the original Shadow Committal illustration. Ordinary Voidform ends with a full Recharge turn. Surrender to Madness can sustain it for combat at the cost of a preventable or cleanseable damage penalty. Blood Magic's latest revision and additional class relics remain drafts. Full-run balance testing remains necessary. See the [keyword and card rework](docs/card-batch-07.md) for implementation and validation details.
 
 ## Build and play on Windows
 
@@ -28,6 +30,7 @@ For a desktop launcher, run `./scripts/install-desktop-shortcut.ps1` once, then 
 
 ## Design documents
 
+- [Keyword and card rework](docs/card-batch-07.md): nine new cards, Haste, decaying Madness, revised Insanity, and regression coverage.
 - [Next design priorities](docs/next-design-priorities.md): focused gaps and a full-run playtest checklist.
 - [Sixth card batch](docs/card-batch-06.md): healing/draw reworks, automatic Legendary equipment, and artwork.
 - [Legendary rules](docs/legendary-cards.md): boss rewards, uniqueness, and combat activation.

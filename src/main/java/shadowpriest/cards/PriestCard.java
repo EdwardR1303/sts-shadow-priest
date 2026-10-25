@@ -24,8 +24,8 @@ public abstract class PriestCard extends CustomCard {
         initializeDescription();
     }
     protected int spendX(com.megacrit.cardcrawl.characters.AbstractPlayer p) {
-        int x = Math.max(0, energyOnUse < 0 ? com.megacrit.cardcrawl.ui.panels.EnergyPanel.totalCount : energyOnUse);
-        if (p.hasRelic("Chemical X")) { x += 2; p.getRelic("Chemical X").flash(); }
+        int x = shadowpriest.mechanics.Channeling.effective(this);
+        if (p.hasRelic("Chemical X")) p.getRelic("Chemical X").flash();
         if (!freeToPlayOnce) p.energy.use(com.megacrit.cardcrawl.ui.panels.EnergyPanel.totalCount);
         return x;
     }

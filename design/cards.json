@@ -5,7 +5,7 @@
     {
       "id": "shadowpriest:MindSpike",
       "name": "Mind Spike",
-      "status": "APPROVED",
+      "status": "IMPLEMENTED",
       "type": "ATTACK",
       "rarity": "BASIC",
       "sources": [
@@ -48,7 +48,7 @@
       },
       "rulesNotes": [
         "Resolve the explicit 10 Insanity after the hit, in addition to normal per-DoT hit generation. It does not require a DoT or enemy HP loss. All Insanity gains obey the shared cap and ready, Voidform, and Recharge restrictions.",
-        "Shared keyword definitions in keywords.md apply. This design awaits implementation."
+        "Shared keyword definitions in keywords.md apply. Implemented in the keyword and card rework."
       ],
       "balanceNotes": "Prototype values; full-run balance testing remains after implementation.",
       "art": {
@@ -109,7 +109,7 @@
     {
       "id": "shadowpriest:VampiricTouch",
       "name": "Vampiric Touch",
-      "status": "APPROVED",
+      "status": "IMPLEMENTED",
       "type": "SKILL",
       "rarity": "BASIC",
       "sources": [
@@ -147,7 +147,7 @@
       },
       "rulesNotes": [
         "Return after the normal end-of-turn discard. An unplayed copy discards normally. The upgrade changes cost, not damage or stack count.",
-        "Shared keyword definitions in keywords.md apply. This design awaits implementation."
+        "Shared keyword definitions in keywords.md apply. Implemented in the keyword and card rework."
       ],
       "balanceNotes": "Prototype values; full-run balance testing remains after implementation.",
       "art": {
@@ -406,7 +406,7 @@
     {
       "id": "shadowpriest:MindFlay",
       "name": "Mind Flay",
-      "status": "APPROVED",
+      "status": "IMPLEMENTED",
       "type": "ATTACK",
       "rarity": "COMMON",
       "sources": [
@@ -448,7 +448,7 @@
       },
       "rulesNotes": [
         "Resolve each hit followed by its extension before the next hit. Extend only existing Touch and Pain, up to 5 each; do not affect Madness or trigger Misery. Extension does not require HP loss. Stop if the target dies. Each direct hit generates Insanity normally; Psychic Link triggers once per card play.",
-        "Shared keyword definitions in keywords.md apply. This design awaits implementation."
+        "Shared keyword definitions in keywords.md apply. Implemented in the keyword and card rework."
       ],
       "balanceNotes": "Prototype values; full-run balance testing remains after implementation.",
       "art": {
@@ -515,7 +515,7 @@
     {
       "id": "shadowpriest:MindBlast",
       "name": "Mind Blast",
-      "status": "APPROVED",
+      "status": "IMPLEMENTED",
       "type": "ATTACK",
       "rarity": "COMMON",
       "sources": [
@@ -555,7 +555,7 @@
       },
       "rulesNotes": [
         "Count each of Touch, Pain, and Madness once before the hit, regardless of stacks. Apply normal Attack damage modifiers to the total.",
-        "Shared keyword definitions in keywords.md apply. This design awaits implementation."
+        "Shared keyword definitions in keywords.md apply. Implemented in the keyword and card rework."
       ],
       "balanceNotes": "Prototype values; full-run balance testing remains after implementation.",
       "art": {
@@ -716,7 +716,7 @@
     {
       "id": "shadowpriest:MindFlayInsanity",
       "name": "Mind Flay: Insanity",
-      "status": "APPROVED",
+      "status": "IMPLEMENTED",
       "type": "ATTACK",
       "rarity": "UNCOMMON",
       "sources": [
@@ -758,7 +758,7 @@
       },
       "rulesNotes": [
         "Extend only existing Touch and Pain before the hits; do not add Madness stacks or trigger Misery.",
-        "Use effective X from keywords.md, adding the upgrade's extra repetition afterward. Haste support awaits implementation."
+        "Use effective X from keywords.md, adding the upgrade's extra repetition afterward. Haste support is implemented."
       ],
       "balanceNotes": "First reward-card batch; numbers require human full-run balance testing.",
       "art": {
@@ -770,7 +770,7 @@
     {
       "id": "shadowpriest:MindSear",
       "name": "Mind Sear",
-      "status": "APPROVED",
+      "status": "IMPLEMENTED",
       "type": "ATTACK",
       "rarity": "UNCOMMON",
       "sources": [
@@ -810,7 +810,7 @@
       },
       "rulesNotes": [
         "Implementation edge cases: docs/card-batch-01.md.",
-        "Uses effective X from keywords.md, including Haste and Chemical X at zero energy. Haste support awaits implementation."
+        "Uses effective X from keywords.md, including Haste and Chemical X at zero energy. Haste support is implemented."
       ],
       "balanceNotes": "First reward-card batch; numbers require human full-run balance testing.",
       "art": {
@@ -978,7 +978,7 @@
     {
       "id": "shadowpriest:ShadowWordMadness",
       "name": "Shadow Word: Madness",
-      "status": "APPROVED",
+      "status": "IMPLEMENTED",
       "type": "ATTACK",
       "rarity": "COMMON",
       "sources": [
@@ -1018,7 +1018,7 @@
       },
       "rulesNotes": [
         "Use only actual enemy HP removed by this direct hit, capped at HP before the hit. Exclude Block absorption, overkill, DoTs, and Psychic Link. Apply Madness afterward if the target survives; Artifact can block it. Do not trigger an immediate Madness tick. The initial hit counts only DoTs already present when it hits.",
-        "Shared keyword definitions in keywords.md apply. This design awaits implementation."
+        "Shared keyword definitions in keywords.md apply. Implemented in the keyword and card rework."
       ],
       "balanceNotes": "Prototype values; full-run balance testing remains after implementation.",
       "art": {
@@ -1359,7 +1359,7 @@
     {
       "id": "shadowpriest:VoidVolley",
       "name": "Void Volley",
-      "status": "APPROVED",
+      "status": "IMPLEMENTED",
       "type": "ATTACK",
       "rarity": "UNCOMMON",
       "sources": [
@@ -1403,7 +1403,7 @@
         "Each hit uses normal target-specific damage modifiers and generates Insanity normally.",
         "Never create missing DoTs. Touch/Pain cap at 5; existing Madness applications check Artifact.",
         "Zero energy gives no bolts without an external X bonus; Chemical X adds two. Free play preserves energy. Voidform does not discount X.",
-        "Uses effective X from keywords.md, including Haste and Chemical X at zero energy. Haste support awaits implementation."
+        "Uses effective X from keywords.md, including Haste and Chemical X at zero energy. Haste support is implemented."
       ],
       "balanceNotes": "Reviewed initial values; evaluate burst scaling, upkeep, and energy investment in full runs.",
       "art": {
@@ -1415,7 +1415,7 @@
     {
       "id": "shadowpriest:VoidTorrent",
       "name": "Void Torrent",
-      "status": "APPROVED",
+      "status": "IMPLEMENTED",
       "type": "ATTACK",
       "rarity": "RARE",
       "sources": [
@@ -1458,7 +1458,7 @@
         "Each hit independently calculates normal modifiers and rounding from its own base, never from previous modified damage.",
         "Selected target remains fixed; remaining hits stop when it dies. One Psychic Link trigger per card, Insanity per hit.",
         "Zero energy gives no hits without an external X bonus; Chemical X adds two. Free play preserves energy. Voidform does not discount X.",
-        "Uses effective X from keywords.md, including Haste and Chemical X at zero energy. Haste support awaits implementation."
+        "Uses effective X from keywords.md, including Haste and Chemical X at zero energy. Haste support is implemented."
       ],
       "balanceNotes": "Reviewed initial values; evaluate burst scaling, upkeep, and energy investment in full runs.",
       "art": {
@@ -1534,7 +1534,7 @@
     {
       "id": "shadowpriest:Penance",
       "name": "Penance",
-      "status": "APPROVED",
+      "status": "IMPLEMENTED",
       "type": "ATTACK",
       "rarity": "UNCOMMON",
       "sources": [
@@ -1584,7 +1584,7 @@
       },
       "rulesNotes": [
         "Choose one mode for the whole play; never both. Remains an Attack in either mode and Exhausts in either mode. Attack cost discounts and Attack-play hooks still apply, including Psychic Link once per play. Strength and Voidform modify only enemy damage, not healing. Healing obeys normal healing restrictions and generates no hit-based Insanity. Stop enemy hits when the target dies. A Dragonwrath repeat preserves the chosen mode; healing repeats still target yourself.",
-        "Shared keyword definitions in keywords.md apply. This design awaits implementation."
+        "Shared keyword definitions in keywords.md apply. Implemented in the keyword and card rework."
       ],
       "balanceNotes": "Prototype values; full-run balance testing remains after implementation.",
       "art": {
@@ -1713,7 +1713,7 @@
     {
       "id": "shadowpriest:DispelMagic",
       "name": "Dispel Magic",
-      "status": "APPROVED",
+      "status": "IMPLEMENTED",
       "type": "SKILL",
       "rarity": "COMMON",
       "sources": [
@@ -1750,7 +1750,7 @@
       },
       "rulesNotes": [
         "Check Block and Artifact separately. Each condition grants its stat at most once per cast, regardless of the amount removed. Stats last for combat. Removing Block or Artifact is not a debuff application and is not prevented by Artifact.",
-        "Shared keyword definitions in keywords.md apply. This design awaits implementation."
+        "Shared keyword definitions in keywords.md apply. Implemented in the keyword and card rework."
       ],
       "balanceNotes": "Prototype values; full-run balance testing remains after implementation.",
       "art": {
@@ -1941,7 +1941,7 @@
     {
       "id": "shadowpriest:InsidiousIre",
       "name": "Insidious Ire",
-      "status": "APPROVED",
+      "status": "IMPLEMENTED",
       "type": "POWER",
       "rarity": "UNCOMMON",
       "sources": [
@@ -1979,7 +1979,7 @@
       },
       "rulesNotes": [
         "Check each living enemy at the start of the player turn. All three debuffs must have positive stacks then. Artifact can block each application. This is the agreed exception to the class's usual restriction on applying Vulnerable.",
-        "Shared keyword definitions in keywords.md apply. This design awaits implementation."
+        "Shared keyword definitions in keywords.md apply. Implemented in the keyword and card rework."
       ],
       "balanceNotes": "Prototype values; full-run balance testing remains after implementation.",
       "art": {
@@ -2154,7 +2154,8 @@
       },
       "rulesNotes": [
         "Resolve damage, then Touch, then upgraded Pain on the surviving target. Applications do not require HP loss. This revision has no self-damage. The draft retains the author's 24-damage upgrade; the proposed lower value has not been adopted.",
-        "Shared keyword definitions in keywords.md apply. This design awaits implementation."
+        "Shared keyword definitions in keywords.md apply. This design awaits implementation.",
+        "Current build keeps the prior 2-energy 18/24-damage Attack with 3 HP loss until this draft is approved. Tithe Evasion no longer reduces its HP loss."
       ],
       "balanceNotes": "Prototype values; full-run balance testing remains after implementation.",
       "art": {
@@ -2268,7 +2269,7 @@
     {
       "id": "shadowpriest:Insight",
       "name": "Shadowy Insight",
-      "status": "APPROVED",
+      "status": "IMPLEMENTED",
       "type": "SKILL",
       "rarity": "COMMON",
       "sources": [
@@ -2307,20 +2308,20 @@
       },
       "rulesNotes": [
         "Snapshot the target's unique DoTs when played, then draw normally. A successful play locks all copies, upgraded or not, for the rest of the turn, even if it draws zero cards. Reset at the start of your next turn and on combat reset. The limit is shared, not per copy.",
-        "Shared keyword definitions in keywords.md apply. This design awaits implementation.",
+        "Shared keyword definitions in keywords.md apply. Implemented in the keyword and card rework.",
         "Renamed from Insight; retain the existing card ID for save compatibility."
       ],
       "balanceNotes": "Prototype values; full-run balance testing remains after implementation.",
       "art": {
         "wowAbility": "Shadowy Insight",
-        "icon": "inv_ability_oraclepriest_premonitioninsight",
-        "direction": "Use the matching WoW Shadowy Insight icon; the current Insight asset needs review during implementation."
+        "icon": "136183",
+        "direction": "Verified WoW ability icon with the shared violet-and-gold frame. See licenses/Warcraft-artwork.txt."
       }
     },
     {
       "id": "shadowpriest:TitheEvasion",
       "name": "Tithe Evasion",
-      "status": "APPROVED",
+      "status": "IMPLEMENTED",
       "type": "POWER",
       "rarity": "COMMON",
       "sources": [
@@ -2358,7 +2359,7 @@
       },
       "rulesNotes": [
         "Only the two named sources qualify, including Shadow Mend's combined debt tick. Exclude enemy Attacks, Beat of Death, Curses, Statuses, relics, and other sources. Floor each qualifying loss at zero. Track the highest benefit granted this combat: equal or weaker copies are unplayable, and an upgraded copy replaces the base benefit. Reset tracking after combat. Blood Magic's current draft no longer causes HP loss.",
-        "Shared keyword definitions in keywords.md apply. This design awaits implementation."
+        "Shared keyword definitions in keywords.md apply. Implemented in the keyword and card rework."
       ],
       "balanceNotes": "Prototype values; full-run balance testing remains after implementation.",
       "art": {
@@ -2700,7 +2701,7 @@
     {
       "id": "shadowpriest:UnfurlingDarkness",
       "name": "Unfurling Darkness",
-      "status": "APPROVED",
+      "status": "IMPLEMENTED",
       "type": "ATTACK",
       "rarity": "COMMON",
       "sources": [
@@ -2740,19 +2741,19 @@
       },
       "rulesNotes": [
         "Deal damage before applying Touch to the surviving target. Touch application does not require HP loss; Artifact can prevent it.",
-        "Shared keyword definitions in keywords.md apply. This design awaits implementation."
+        "Shared keyword definitions in keywords.md apply. Implemented in the keyword and card rework."
       ],
       "balanceNotes": "Prototype values; full-run balance testing remains after implementation.",
       "art": {
         "wowAbility": "Unfurling Darkness",
-        "icon": "",
-        "direction": "Use matching WoW ability artwork with the established card treatment; asset selection pending."
+        "icon": "spell_priest_shadow-mend",
+        "direction": "Verified WoW ability icon with the shared violet-and-gold frame. See licenses/Warcraft-artwork.txt."
       }
     },
     {
       "id": "shadowpriest:DarkVoid",
       "name": "Dark Void",
-      "status": "APPROVED",
+      "status": "IMPLEMENTED",
       "type": "ATTACK",
       "rarity": "UNCOMMON",
       "sources": [
@@ -2792,19 +2793,19 @@
       },
       "rulesNotes": [
         "Check actual HP removed by this card's direct hit separately for each enemy. Do not apply Pain if Block or damage reduction prevents all HP loss. Apply to surviving qualifying targets; Artifact can block the application. Psychic Link and other incidental damage do not satisfy the condition.",
-        "Shared keyword definitions in keywords.md apply. This design awaits implementation."
+        "Shared keyword definitions in keywords.md apply. Implemented in the keyword and card rework."
       ],
       "balanceNotes": "Prototype values; full-run balance testing remains after implementation.",
       "art": {
         "wowAbility": "Dark Void",
-        "icon": "",
-        "direction": "Use matching WoW ability artwork with the established card treatment; asset selection pending."
+        "icon": "inv_elemental_primal_shadow",
+        "direction": "Verified WoW ability icon with the shared violet-and-gold frame. See licenses/Warcraft-artwork.txt."
       }
     },
     {
       "id": "shadowpriest:PowerInfusion",
       "name": "Power Infusion",
-      "status": "APPROVED",
+      "status": "IMPLEMENTED",
       "type": "SKILL",
       "rarity": "UNCOMMON",
       "sources": [
@@ -2846,19 +2847,19 @@
       },
       "rulesNotes": [
         "Copies add their Haste. Remove only the Haste granted for this turn at turn end. Haste is not consumed by X-card plays and works at zero energy.",
-        "Shared keyword definitions in keywords.md apply. This design awaits implementation."
+        "Shared keyword definitions in keywords.md apply. Implemented in the keyword and card rework."
       ],
       "balanceNotes": "Prototype values; full-run balance testing remains after implementation.",
       "art": {
         "wowAbility": "Power Infusion",
-        "icon": "",
-        "direction": "Use matching WoW ability artwork with the established card treatment; asset selection pending."
+        "icon": "spell_holy_powerinfusion",
+        "direction": "Verified WoW ability icon with the shared violet-and-gold frame. See licenses/Warcraft-artwork.txt."
       }
     },
     {
       "id": "shadowpriest:ShadowCrash",
       "name": "Shadow Crash",
-      "status": "APPROVED",
+      "status": "IMPLEMENTED",
       "type": "SKILL",
       "rarity": "UNCOMMON",
       "sources": [
@@ -2896,19 +2897,19 @@
       },
       "rulesNotes": [
         "The base version schedules one application to each living enemy present when it resolves; it does not snapshot the original group. Each application follows Artifact and Misery rules. Neither version triggers an immediate Touch tick. Pending applications end with combat.",
-        "Shared keyword definitions in keywords.md apply. This design awaits implementation."
+        "Shared keyword definitions in keywords.md apply. Implemented in the keyword and card rework."
       ],
       "balanceNotes": "Prototype values; full-run balance testing remains after implementation.",
       "art": {
         "wowAbility": "Shadow Crash",
-        "icon": "",
-        "direction": "Use matching WoW ability artwork with the established card treatment; asset selection pending."
+        "icon": "spell_shadow_shadowfury",
+        "direction": "Verified WoW ability icon with the shared violet-and-gold frame. See licenses/Warcraft-artwork.txt."
       }
     },
     {
       "id": "shadowpriest:CrystallineReflection",
       "name": "Crystalline Reflection",
-      "status": "APPROVED",
+      "status": "IMPLEMENTED",
       "type": "SKILL",
       "rarity": "UNCOMMON",
       "sources": [
@@ -2946,19 +2947,19 @@
       },
       "rulesNotes": [
         "Use effective X for both Block instances and temporary Thorns. Apply Dexterity and ordinary Block modifiers separately to each Block instance. Thorns retaliates against enemy Attack hits, including hits fully absorbed by Block; it does not trigger on enemy card plays, DoT ticks, or HP loss. At the start of your next turn, remove only these temporary Thorns, preserving permanent sources. Expiry is a buff-side duration rule, not an Artifact-blockable debuff.",
-        "Shared keyword definitions in keywords.md apply. This design awaits implementation."
+        "Shared keyword definitions in keywords.md apply. Implemented in the keyword and card rework."
       ],
       "balanceNotes": "Prototype values; full-run balance testing remains after implementation.",
       "art": {
         "wowAbility": "Crystalline Reflection",
-        "icon": "",
-        "direction": "Use matching WoW ability artwork with the established card treatment; asset selection pending."
+        "icon": "ability_priest_reflectiveshield",
+        "direction": "Verified WoW ability icon with the shared violet-and-gold frame. See licenses/Warcraft-artwork.txt."
       }
     },
     {
       "id": "shadowpriest:ProtectedChannel",
       "name": "Protected Channel",
-      "status": "APPROVED",
+      "status": "IMPLEMENTED",
       "type": "POWER",
       "rarity": "UNCOMMON",
       "sources": [
@@ -2996,19 +2997,19 @@
       },
       "rulesNotes": [
         "Use that card's effective X, including Haste and Chemical X even at zero energy. A printed X+1 upgrade adds no extra Protected Channel instance. Apply Dexterity and ordinary Block modifiers separately to each instance. Trigger once per qualifying card play and resolve after its effects. Free repeats use their preserved effective X without charging energy or adding bonuses twice.",
-        "Shared keyword definitions in keywords.md apply. This design awaits implementation."
+        "Shared keyword definitions in keywords.md apply. Implemented in the keyword and card rework."
       ],
       "balanceNotes": "Prototype values; full-run balance testing remains after implementation.",
       "art": {
         "wowAbility": "",
         "icon": "",
-        "direction": "Original thematic art of a shadow priest channeling behind a protective violet barrier."
+        "direction": "Reuses the original generated Shadow Committal channeling illustration for this build."
       }
     },
     {
       "id": "shadowpriest:Catharsis",
       "name": "Catharsis",
-      "status": "APPROVED",
+      "status": "IMPLEMENTED",
       "type": "ATTACK",
       "rarity": "RARE",
       "sources": [
@@ -3047,19 +3048,19 @@
       },
       "rulesNotes": [
         "Use maximum HP minus current HP when the hit resolves as base damage, then apply normal Attack damage modifiers. Retain does not lock in a previous missing-HP value.",
-        "Shared keyword definitions in keywords.md apply. This design awaits implementation."
+        "Shared keyword definitions in keywords.md apply. Implemented in the keyword and card rework."
       ],
       "balanceNotes": "Prototype values; full-run balance testing remains after implementation.",
       "art": {
         "wowAbility": "Catharsis",
-        "icon": "",
-        "direction": "Use matching WoW ability artwork with the established card treatment; asset selection pending."
+        "icon": "spell_priest_shadow-mend",
+        "direction": "Verified WoW ability icon with the shared violet-and-gold frame. See licenses/Warcraft-artwork.txt."
       }
     },
     {
       "id": "shadowpriest:SearingNightmare",
       "name": "Searing Nightmare",
-      "status": "APPROVED",
+      "status": "IMPLEMENTED",
       "type": "ATTACK",
       "rarity": "RARE",
       "sources": [
@@ -3100,19 +3101,19 @@
       },
       "rulesNotes": [
         "For each repetition, finish the area Attack hits, then apply Madness to surviving enemies before starting the next repetition. Applications do not require HP loss, but Artifact can block each separately. Madness does not tick immediately. Later hits can generate Insanity from Madness applied by earlier repetitions. Use effective X, including Haste and Chemical X; add the upgrade's extra repetition afterward. Psychic Link triggers once per card play.",
-        "Shared keyword definitions in keywords.md apply. This design awaits implementation."
+        "Shared keyword definitions in keywords.md apply. Implemented in the keyword and card rework."
       ],
       "balanceNotes": "Prototype values; full-run balance testing remains after implementation.",
       "art": {
         "wowAbility": "Searing Nightmare",
-        "icon": "",
-        "direction": "Use matching WoW ability artwork with the established card treatment; asset selection pending."
+        "icon": "ability_priest_voidentropy",
+        "direction": "Verified WoW ability icon with the shared violet-and-gold frame. See licenses/Warcraft-artwork.txt."
       }
     },
     {
       "id": "shadowpriest:DarkEvangelism",
       "name": "Dark Evangelism",
-      "status": "APPROVED",
+      "status": "IMPLEMENTED",
       "type": "POWER",
       "rarity": "RARE",
       "sources": [
@@ -3148,13 +3149,13 @@
       },
       "rulesNotes": [
         "Use effective X, including Haste and Chemical X even at zero energy. Add the upgrade's extra Mastery afterward. The granted Mastery lasts for combat; this is a Power and resolves as a normal Power play.",
-        "Shared keyword definitions in keywords.md apply. This design awaits implementation."
+        "Shared keyword definitions in keywords.md apply. Implemented in the keyword and card rework."
       ],
       "balanceNotes": "Prototype values; full-run balance testing remains after implementation.",
       "art": {
         "wowAbility": "Dark Evangelism",
-        "icon": "",
-        "direction": "Use matching WoW ability artwork with the established card treatment; asset selection pending."
+        "icon": "spell_mage_presenceofmind",
+        "direction": "Verified WoW ability icon with the shared violet-and-gold frame. See licenses/Warcraft-artwork.txt."
       }
     }
   ]

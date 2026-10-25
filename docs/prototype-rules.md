@@ -1,6 +1,6 @@
 # Shadow Priest prototype rules
 
-Version 0.1.0 uses these playtest defaults. The owner authorized the first-playable milestone and suggested defaults on October 23, 2026. Edge-case choices and upgrade numbers remain adjustable after testing.
+Version 0.1.0 uses these playtest defaults, updated by the [keyword and card rework](card-batch-07.md). The owner authorized the first-playable milestone and suggested defaults on October 23, 2026. Edge-case choices and upgrade numbers remain adjustable after testing.
 
 ## Character and deck
 
@@ -8,26 +8,26 @@ Template defaults: 70 HP, 3 energy, 5 cards drawn each turn, 99 gold, no orb slo
 
 | Card | Copies | Type | Cost | Effect | Provisional upgrade |
 | --- | --- | --- | --- | --- | --- |
-| Mind Spike | 4 | Attack | 1 | Deal 6 damage. | 9 damage |
+| Mind Spike | 4 | Attack | 1 | Deal 6 damage. Gain 10 Insanity. | 9 damage; same Insanity |
 | Power Word: Shield | 4 | Skill | 1 | Gain 5 Block. | 8 Block |
-| Vampiric Touch | 1 | Skill | 1 | Touch: 5 damage per tick; apply 3 stacks. | Apply 4 stacks; base 5 damage |
+| Vampiric Touch | 1 | Skill | 1 | Touch: 5 damage per tick; apply 3 stacks. | Cost 0; same 3 stacks and base 5 damage |
 | Shadow Word: Pain | 1 | Skill | 1 | Pain: 3 damage per tick; apply 5 stacks. | Cost 0; base 3 damage |
 | Enter Voidform | Generated | Skill | 0 | Retain. Enter Voidform. Exhaust. | Cannot upgrade |
 
-Neither DoT inherently heals; Vampiric Embrace rewards damaging Touch ticks with healing. Played DoT cards return to hand after end-turn discard; unplayed cards discard normally. The class supplies twenty Commons, fourteen Uncommons, and eight Rares. All reward pools are native; the fourth rare allows four distinct boss choices without Ironclad supplements. See [the first reward-card batch](card-batch-01.md) for the first 12 rewards, and [the second batch](card-batch-02.md) for the four additions and recovery rules. [The third batch](card-batch-03.md) adds four more cards and supersedes the old DoT refresh and upgrade values. [The fourth batch](card-batch-04.md) adds Void Bolt, Void Volley, and Void Torrent.
+Neither DoT inherently heals; Vampiric Embrace rewards damaging Touch ticks with healing. Played DoT cards return to hand after end-turn discard; unplayed cards discard normally. The class supplies 21 Commons, 19 Uncommons, and 11 Rares. All reward pools are native; the fourth rare allows four distinct boss choices without Ironclad supplements. See [the first reward-card batch](card-batch-01.md) for the first 12 rewards, and [the second batch](card-batch-02.md) for the four additions and recovery rules. [The third batch](card-batch-03.md) adds four more cards and supersedes the old DoT refresh and upgrade values. [The fourth batch](card-batch-04.md) adds Void Bolt, Void Volley, and Void Torrent.
 
 ## Damage over time
 
 - Touch and Pain coexist with independent duration counters.
-- Touch always deals 5 HP-loss damage and applies 3/4 stacks; Pain always deals 3 and applies 5 stacks, with its upgrade costing 0. Each ticks before the enemy acts, then loses one remaining turn. The first tick is on the next enemy turn, not immediately on play. Each uninterrupted base application totals 15 damage; Touch+ totals 20 and Pain+ totals 15 for zero energy.
+- Touch deals base 5 damage and applies 3 stacks; Pain deals base 3 damage and applies 5 stacks. Both upgrade to cost 0. Natural ticks occur at player turn end before enemies act, then remove one stack. Applications do not tick immediately. Each uninterrupted starter application totals 15 damage before Mastery.
 - Applications add remaining ticks, capped at 5, without an immediate tick. Base damage is fixed by debuff type; current Mastery modifies each tick, floored at zero. All duration extensions, including Mind Flay: Insanity, obey the same cap.
 - Damage bypasses Block and ignores Strength, Weak, Vulnerable, and Voidform. Enemy damage hooks, including Intangible, still apply.
 - Artifact blocks application or refresh.
-- Touch, Pain, and positive Madness stacks count toward the unique-DoT total. Madness counts once, never ticks or decays, and has no duration to extend. Halo is a player aura, not a DoT. Poison and other mods' debuffs do not count.
+- Touch, Pain, and positive Madness stacks count toward the unique-DoT total. Madness counts once, ticks for half its stacks rounded up plus Mastery, and removes one stack. It has no cap; effects must explicitly apply Madness to add stacks. Halo is a player aura, not a DoT. Poison and other mods' debuffs do not count.
 
 ## Insanity and activation
 
-Each player-owned normal attack damage event gains 10 Insanity per unique DoT on its target. Each hit of a multihit attack counts independently, and multi-target attacks use each enemy's own DoTs. Fully blocked and zero-damage normal hits count. Killing blows count before debuff cleanup. HP-loss and retaliation damage do not count.
+Each player-owned normal attack damage event gains 5 Insanity per unique DoT on its target. Each hit of a multihit attack counts independently, and multi-target attacks use each enemy's own DoTs. Fully blocked and zero-damage normal hits count. Killing blows count before debuff cleanup. HP-loss and retaliation damage do not count. Mind Spike grants an additional 10 explicit Insanity after its hit, subject to all shared gain restrictions.
 
 Insanity persists between turns and caps at 100. There is no random generation roll; draw order affects setup. At 100, one activation becomes ready and generates Enter Voidform. A full hand defers delivery until a slot opens. No further Insanity is gained while ready, active, or recovering. Reaping Madness provides 10/20 Insanity per copy at player turn end under these same restrictions.
 
@@ -41,7 +41,7 @@ Playing the card enters Voidform and exhausts it. The form lasts until the playe
 
 The attack that earns the card does not itself activate Voidform. Turn-end expiry and combat completion reset Insanity to zero. The entire turn after entering Voidform blocks all Insanity gain, including end-of-turn effects. Generation resumes at the following player turn start. Combat reset clears recovery. The generated activation is not part of the permanent deck or reward pool.
 
-Native class cards do not apply Vulnerable; external access is allowed. Vampiric Embrace copies stack uncapped healing from Touch events that actually remove enemy HP, including Psychic Link ticks. See the third batch for exact spread, targeting, and healing rules.
+Insidious Ire applies Vulnerable at player turn start to enemies with all three DoTs. External access to Vulnerable is also allowed. Vampiric Embrace copies stack uncapped healing from Touch events that actually remove enemy HP, including Psychic Link ticks. See the third batch for exact spread, targeting, and healing rules.
 
 ## Surrender to Madness
 
@@ -49,7 +49,9 @@ This rare 3/2-energy Skill exhausts and makes Voidform last for the rest of comb
 
 ## Mastery and fifth-batch cards
 
-Mastery changes Touch/Pain natural and bonus tick damage by one per point and can be negative. Zero-damage natural ticks still consume duration; they cannot heal Embrace. Madness and Halo are unaffected. Mastery uses a purple Strength icon. Penance converts actual HP removed to Block, Atonement grants Block for unique DoTs, Purify/Dispel remove specified effects, Body and Soul rolls a nonstacking per-hit dodge, Ire adds a nonnegative per-hit bonus, Scream stuns without stopping DoT ticks, and Committal grants lasting stats after cards played in Voidform. See [fifth-batch rules](card-batch-05.md) for precise timing and upgrades.
+Mastery changes every DoT tick by one per point and can be negative. Zero-damage natural ticks still consume a stack; they cannot heal Embrace. Halo is unaffected. Mastery uses a purple Strength icon. Penance targets the priest for healing or an enemy for damage and Exhausts. Atonement grants Block for unique DoTs, Purify/Dispel remove specified effects, Body and Soul rolls a nonstacking per-hit dodge, Ire applies conditional Vulnerable, Scream stuns without stopping DoT ticks, and Committal grants lasting stats after cards played in Voidform. Historical [fifth-batch notes](card-batch-05.md) describe earlier Penance and Ire versions; [cards.md](../cards.md) gives current rules.
+
+Haste adds effective X to all X-cost cards, including at zero energy and with Chemical X. Protected Channel uses effective X for its Block instances. [The seventh batch](card-batch-07.md) describes the new applications, defensive cards, and updated draw mechanics.
 
 ## Sixth batch and equipment
 

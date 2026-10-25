@@ -3,7 +3,7 @@ package shadowpriest.mechanics;
 /** Combat-only state. Charge serials invalidate copied/recovered activation cards. */
 public final class InsanityState {
     public static final int THRESHOLD = 100;
-    public static final int PER_DOT = 10;
+    public static final int PER_DOT = 5;
     private int insanity;
     private boolean active;
     private boolean surrendered;

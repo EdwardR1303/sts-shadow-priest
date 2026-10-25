@@ -15,6 +15,10 @@ public class MindSpike extends PriestCard {
     }
     @Override public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot(new DamageAction(m, new DamageInfo(p, damage, damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
+        addToBot(new com.megacrit.cardcrawl.actions.AbstractGameAction() {
+            public void update() { shadowpriest.relics.VoidformRelic r = shadowpriest.relics.VoidformRelic.current();
+                if (r != null) r.gainInsanity(10); isDone = true; }
+        });
     }
     @Override public void upgrade() { if (!upgraded) { upgradeName(); upgradeDamage(3); } }
 }

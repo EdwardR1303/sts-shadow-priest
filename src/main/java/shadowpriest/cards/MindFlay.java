@@ -16,7 +16,15 @@ public class MindFlay extends PriestCard {
         baseDamage = 2; baseMagicNumber = magicNumber = 3;
     }
     @Override public void use(AbstractPlayer p, AbstractMonster m) {
-        for (int i = 0; i < magicNumber; i++) addToBot(new DamageAction(m, new DamageInfo(p, damage, damageTypeForTurn), AbstractGameAction.AttackEffect.FIRE));
+        for (int i = 0; i < magicNumber; i++) {
+            addToBot(new DamageAction(m, new DamageInfo(p, damage, damageTypeForTurn), AbstractGameAction.AttackEffect.FIRE));
+            addToBot(new AbstractGameAction() { public void update() {
+                if (VoidBolt.alive(m)) for (AbstractPower power : m.powers) if (power instanceof ShadowDotPower) {
+                    power.stackPower(1); power.updateDescription();
+                }
+                isDone = true;
+            }});
+        }
     }
     @Override public void upgrade() {
         if (!upgraded) { upgradeName(); upgradeMagicNumber(1); }

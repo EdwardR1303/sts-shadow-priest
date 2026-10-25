@@ -43,7 +43,7 @@ final class FourthBatchSmokeTest {
             play(new VoidBolt(), m, 3);
         });
         q.add(() -> {
-            check(m.currentHealth == 992 && EnergyPanel.totalCount == 2 && relic.state.amount() == 30,
+            check(m.currentHealth == 992 && EnergyPanel.totalCount == 2 && relic.state.amount() == 15,
                 "Void Bolt deals eight for one energy and generates Insanity from existing DoTs");
             check(stacks(ShadowDotPower.TOUCH) == 2 && stacks(ShadowDotPower.PAIN) == 5 && MadnessPower.stacks(m) == 6,
                 "Void Bolt adds one to existing Touch, Pain, and Madness");
@@ -74,7 +74,7 @@ final class FourthBatchSmokeTest {
         q.add(() -> {
             check(m.currentHealth == 971 && other.currentHealth == 1000 && p.currentHealth == 202,
                 "Three Volley bolts deal 24, with just one Link tick and one Embrace heal");
-            check(relic.state.amount() == 90 && EnergyPanel.totalCount == 0 && MadnessPower.stacks(m) == 8
+            check(relic.state.amount() == 45 && EnergyPanel.totalCount == 0 && MadnessPower.stacks(m) == 8
                 && stacks(ShadowDotPower.TOUCH) == 5 && stacks(ShadowDotPower.PAIN) == 5,
                 "Volley generates Insanity per hit and adds stacks per bolt within duration caps");
             clean(); other.halfDead = true; dots(m); m.powers.add(new MadnessPower(m, 5));
@@ -124,7 +124,7 @@ final class FourthBatchSmokeTest {
             dots(m); p.powers.add(new PsychicLinkPower(p, 1)); play(new VoidTorrent(), m, 3);
         });
         q.add(() -> {
-            check(m.currentHealth == 971 && other.currentHealth == 1000 && relic.state.amount() == 60 && EnergyPanel.totalCount == 0,
+            check(m.currentHealth == 971 && other.currentHealth == 1000 && relic.state.amount() == 30 && EnergyPanel.totalCount == 0,
                 "Torrent hits for 4, 8, 12 on one target, generates Insanity per hit, and triggers Link once");
             clean(); card = upgraded(new VoidTorrent()); play(card, m, 3);
         });
@@ -168,14 +168,14 @@ final class FourthBatchSmokeTest {
             clean(); m.addBlock(999); dots(m); play(new VoidTorrent(), m, 3);
         });
         q.add(() -> {
-            check(m.currentHealth == 1000 && m.currentBlock == 975 && relic.state.amount() == 60,
+            check(m.currentHealth == 1000 && m.currentBlock == 975 && relic.state.amount() == 30,
                 "Fully blocked Torrent still generates Insanity separately for each direct hit");
             clean(); victim = new Cultist(500f, 0f); victim.currentHealth = 1; dots(victim);
             AbstractDungeon.actionManager.addToBottom(new SpawnMonsterAction(victim, false));
         });
         q.add(() -> play(new VoidTorrent(), victim, 3));
         q.add(() -> {
-            check(victim.isDeadOrEscaped() && m.currentHealth == 1000 && other.currentHealth == 1000 && relic.state.amount() == 20,
+            check(victim.isDeadOrEscaped() && m.currentHealth == 1000 && other.currentHealth == 1000 && relic.state.amount() == 10,
                 "Torrent stops damaging after its chosen target dies and never redirects remaining hits");
             AbstractDungeon.getMonsters().monsters.remove(victim); clean();
         });
