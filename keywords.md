@@ -56,6 +56,6 @@ Uses a yellow version of the base-game Dexterity icon.
 
 Each stack adds 1 to the effective X of every X-cost card, including cards played with 0 energy. It modifies X in the same way as Chemical X, which adds 2. Bonuses stack additively and are not consumed when a card is played.
 
-Effective X = the card's energy value + Haste + Chemical X's bonus. Evaluate this once per play and use it for all of that card's X-based effects. An upgraded card's printed X+1 is added afterward and does not increase effective X for other effects. Haste lasts for the duration specified by its source; Power Infusion grants it only for the current turn.
+Effective X = the card's energy value + Haste + Chemical X's bonus. Evaluate this once per play and use it for all of that card's X-based effects. An upgraded card's printed X+1 is added afterward and does not increase effective X for other effects. Haste lasts for the duration specified by its source; Power Infusion grants it only for the current turn; Xal'atath grants it for the entire combat. Both sources share one Haste total and icon, but only temporary stacks expire at turn end.
 
 Protected Channel explicitly uses effective X, including Haste and Chemical X. Bonuses do not represent actual energy consumed for other effects such as Idol of Y'Shaarj. Free plays preserve energy; an explicit repeat that preserves X reuses the original effective X without adding its bonuses twice.

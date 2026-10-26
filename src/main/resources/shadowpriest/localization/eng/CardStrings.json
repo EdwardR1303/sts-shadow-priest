@@ -204,7 +204,7 @@
   },
   "shadowpriest:Xalatath": {
     "NAME": "Xal'atath",
-    "DESCRIPTION": "Legendary. NL At combat start, randomly gain 2 Strength, shadowpriest:Mastery, or Dexterity !M! times."
+    "DESCRIPTION": "Legendary. NL At combat start, randomly gain 2 Strength, Dexterity, shadowpriest:Mastery, or shadowpriest:Haste !M! times."
   },
   "shadowpriest:Valanyr": {
     "NAME": "Val'anyr",

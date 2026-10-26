@@ -36,9 +36,16 @@ public class SixthBatchSmokeTest {
  private static void equipForReview(LegendaryCard card){LegendaryEquipment.State.equipped.set(p,card.cardID);card.equip(p);}
  private static int stat(String id){AbstractPower power=p.getPower(id);return power==null?0:power.amount;}
  private static void seedProc(boolean yes,int chance){long seed=0;while((new Random(seed).random(99)<chance)!=yes)seed++;AbstractDungeon.miscRng=new Random(seed);}
+ private static void seedAllHaste(int rolls){
+  for(long seed=0;seed<100000;seed++){Random candidate=new Random(seed);boolean match=true;
+   for(int i=0;i<rolls;i++)if(candidate.random(3)!=3){match=false;break;}
+   if(match){AbstractDungeon.miscRng=new Random(seed);return;}
+  }
+  throw new AssertionError("No all-Haste fixture seed found");
+ }
  public static void append(Queue<Runnable> q){
  q.add(()->{p=AbstractDungeon.player;m=AbstractDungeon.getMonsters().monsters.get(0);reset();
- check(AbstractDungeon.commonCardPool.size()==21 && AbstractDungeon.uncommonCardPool.size()==19 && AbstractDungeon.rareCardPool.size()==11,"Sixth batch has complete 20/14/8 ordinary reward pools");
+ check(AbstractDungeon.commonCardPool.size()==21 && AbstractDungeon.uncommonCardPool.size()==19 && AbstractDungeon.rareCardPool.size()==11,"Current roster has complete 21/19/11 ordinary reward pools");
  for(String id:new String[]{"FlashHeal","BloodMagic","ShadowMend","VoidShield","Insight","Piety","Serendipity","PowerWordBarrier","TitheEvasion","MindSoothe","MentalFortitude","Dragonwrath","Xalatath","Valanyr"}){
  AbstractCard card=CardLibrary.getCard("shadowpriest:"+id);check(card!=null,id+" registers");card=card.makeCopy();CardArtReview.card(card,id);card.upgrade();CardArtReview.card(card,id+"Plus");AbstractCard copy=card.makeStatEquivalentCopy();
  check(copy.upgraded && card.cardID.equals(copy.cardID) && card.baseMagicNumber==copy.baseMagicNumber && card.baseBlock==copy.baseBlock && card.exhaust==copy.exhaust,id+" upgraded copy preserves mechanics");
@@ -88,8 +95,16 @@ public class SixthBatchSmokeTest {
  q.add(()->{check(m.currentHealth==994,"Failed Dragonwrath roll does not repeat");reset();LegendaryEquipment.State.equipped.set(p,Dragonwrath.ID);p.powers.add(new DragonwrathPower(p,20));seedProc(true,20);play(new VoidTorrent(),m,3);});
  q.add(()->{check(m.currentHealth==952 && EnergyPanel.totalCount==0,"Dragonwrath repeats original X=3 torrent sequence without spending more energy");reset();LegendaryEquipment.State.equipped.set(p,Dragonwrath.ID);p.powers.add(new DragonwrathPower(p,20));seedProc(true,20);play(new BloodMagic(),m,3);});
  q.add(()->{check(m.currentHealth==964 && p.currentHealth==194,"Dragonwrath repeats Blood Magic backlash along with damage");AbstractDungeon.miscRng=rng;reset();equipForReview(new Xalatath());});
- q.add(()->{check(stat("Strength")+stat("Dexterity")+stat(MasteryPower.POWER_ID)==8,"Xalatath base awards exactly eight stat points");check(stat("Strength")%2==0 && stat("Dexterity")%2==0,"Xalatath grants stats in pairs");reset();equipForReview(upgraded(new Xalatath()));});
- q.add(()->{check(stat("Strength")+stat("Dexterity")+stat(MasteryPower.POWER_ID)==10,"Xalatath+ awards ten stat points");reset();equipForReview(new Valanyr());});
+ q.add(()->{check(stat("Strength")+stat("Dexterity")+stat(MasteryPower.POWER_ID)+stat(HastePower.POWER_ID)==8,"Xalatath base awards exactly eight stat points");check(stat("Strength")%2==0 && stat("Dexterity")%2==0,"Xalatath grants stats in pairs");reset();equipForReview(upgraded(new Xalatath()));});
+ q.add(()->{check(stat("Strength")+stat("Dexterity")+stat(MasteryPower.POWER_ID)+stat(HastePower.POWER_ID)==10,"Xalatath+ awards ten stat points");reset();rng=AbstractDungeon.miscRng;seedAllHaste(4);equipForReview(new Xalatath());});
+ q.add(()->{check(stat(HastePower.POWER_ID)==8 && stat("Strength")==0 && stat("Dexterity")==0 && stat(MasteryPower.POWER_ID)==0,"Xalatath can roll eight combat-long Haste");play(upgraded(new PowerInfusion()),null,0);});
+ q.add(()->{check(stat(HastePower.POWER_ID)==10,"Temporary Power Infusion adds to combat Haste in one power");endTurn(true);});
+ q.add(()->{check(stat(HastePower.POWER_ID)==8,"Turn end removes only Power Infusion Haste, preserving Xalatath's eight");play(new MindSear(),null,0);});
+ q.add(()->{check(m.currentHealth==976 && EnergyPanel.totalCount==0,"Xalatath's retained Haste supplies eight X repetitions at zero energy");endTurn(true);});
+ q.add(()->{check(stat(HastePower.POWER_ID)==8,"Combat Haste survives a second turn boundary");reset();play(upgraded(new PowerInfusion()),null,0);});
+ q.add(()->{seedAllHaste(5);equipForReview(upgraded(new Xalatath()));});
+ q.add(()->{check(stat(HastePower.POWER_ID)==12,"Upgraded Xalatath adds ten combat Haste to preexisting temporary Haste");endTurn(true);});
+ q.add(()->{check(stat(HastePower.POWER_ID)==10,"Temporary-first application order still preserves only combat Haste");AbstractDungeon.miscRng=rng;reset();check(!p.hasPower(HastePower.POWER_ID),"Combat cleanup removes Xalatath Haste");equipForReview(new Valanyr());});
  q.add(()->{ward=(ValanyrPower)p.getPower(ValanyrPower.POWER_ID);check(p.currentBlock==5 && p.hasPower("Barricade") && ward.rescue,"Valanyr equips five Block, retention, and independent rescue");endTurn(true);});
  q.add(()->{check(p.currentBlock==5 && ward.ward,"Valanyr retains Block through a real turn");p.damage(new DamageInfo(m,5,DamageInfo.DamageType.NORMAL));check(p.currentBlock==0 && !ward.ward && ward.rescue && !p.hasPower("Barricade"),"Exact Block depletion shatters only retention");p.addBlock(12);endTurn(true);});
  q.add(()->{check(p.currentBlock==0,"Valanyr retention does not return after gaining Block");p.damage(new DamageInfo(m,999,DamageInfo.DamageType.NORMAL));check(p.currentHealth==1 && !p.isDead && !ward.rescue,"Valanyr consumes rescue and leaves one HP on lethal damage");p.currentHealth=10;p.damage(new DamageInfo(m,4,DamageInfo.DamageType.NORMAL));check(p.currentHealth==6,"Valanyr rescue supplies no lasting damage immunity");reset();equipForReview(upgraded(new Valanyr()));});
@@ -134,7 +149,7 @@ public class SixthBatchSmokeTest {
  });
  q.add(()->{
   boolean effect=weaponId.equals(Dragonwrath.ID)?stat(DragonwrathPower.POWER_ID)==25:
-   weaponId.equals(Xalatath.ID)?stat("Strength")+stat("Dexterity")+stat(MasteryPower.POWER_ID)==10:
+   weaponId.equals(Xalatath.ID)?stat("Strength")+stat("Dexterity")+stat(MasteryPower.POWER_ID)+stat(HastePower.POWER_ID)==10:
    p.currentBlock==10 && p.hasPower(ValanyrPower.POWER_ID);
   check(effect && weaponId.equals(LegendaryEquipment.State.equipped.get(p)) && p.hand.isEmpty(),weaponId+" equips effect and weapon before opening draw");
   check(AbstractDungeon.actionManager.cardsPlayedThisCombat.isEmpty(),"Automatic equipment does not count as a played Power");

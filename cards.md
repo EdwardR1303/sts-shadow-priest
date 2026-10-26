@@ -472,9 +472,9 @@ X/Y/Z = **Attacks/Skills/Powers**. Counts beside each rarity heading include dra
 #### Xal'atath's Blade
 
 - **Cost:** Unplayable; equips automatically before the opening hand.
-- **Effect:** Randomly gain 2 Strength, 2 Mastery, or 2 Dexterity, 4 times.
+- **Effect:** Randomly gain 2 Strength, 2 Dexterity, 2 Mastery, or 2 Haste, 4 times.
 - **Upgrade:** Roll 5 times instead.
-- **Rules:** Each roll is independent and equally likely to choose each stat. Rolls occur again each combat, and can all select the same stat. Stats last for combat. Equipment activation is not a Power play.
+- **Rules:** Each roll independently has a 25% chance for each of the four stats. Rolls occur again each combat and can all select the same stat. All gains last for combat, including Haste. Temporary Haste from Power Infusion stacks with this bonus and expires separately. Equipment activation is not a Power play.
 - **Art:** The actual WoW dagger model render floats beside the priest; the card has an orange Legendary frame.
 - **Status:** Implemented; full-run balance testing remains.
 

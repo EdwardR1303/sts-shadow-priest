@@ -2594,7 +2594,7 @@
       "base": {
         "cost": "UNPLAYABLE",
         "target": "SELF",
-        "text": "Legendary. Equips at combat start. Randomly gain 2 Strength, Mastery, or Dexterity 4 times.",
+        "text": "Legendary. Equips at combat start. Randomly gain 2 Strength, Dexterity, Mastery, or Haste 4 times.",
         "stats": {
           "rolls": 4,
           "statPerRoll": 2
@@ -2602,7 +2602,7 @@
         "keywords": [],
         "effects": [
           "Automatically activate before the opening hand without playing a card.",
-          "Randomly gain 2 Strength, Mastery, or Dexterity 4 times."
+          "Randomly gain 2 Strength, Dexterity, Mastery, or Haste 4 times."
         ]
       },
       "upgrade": {
@@ -2610,7 +2610,7 @@
         "card": {
           "cost": "UNPLAYABLE",
           "target": "SELF",
-          "text": "Legendary. Equips at combat start. Randomly gain 2 Strength, Mastery, or Dexterity 5 times.",
+          "text": "Legendary. Equips at combat start. Randomly gain 2 Strength, Dexterity, Mastery, or Haste 5 times.",
           "stats": {
             "rolls": 5,
             "statPerRoll": 2
@@ -2618,7 +2618,7 @@
           "keywords": [],
           "effects": [
             "Automatically activate before the opening hand without playing a card.",
-            "Randomly gain 2 Strength, Mastery, or Dexterity 5 times."
+            "Randomly gain 2 Strength, Dexterity, Mastery, or Haste 5 times."
           ]
         }
       },
@@ -2627,7 +2627,8 @@
         "Eligible only in Act 1/2 boss rewards, replacing one Rare with probability max(5, Ascension)% per screen.",
         "Equips once before opening hand; does not count as playing a Power and is absent from the combat deck.",
         "Temporary copies and forced plays cannot activate equipment. Permanent duplication is prohibited.",
-        "Independent, uniform rolls; repeated results are allowed. Stats last for combat."
+        "Independent, uniform rolls; repeated results are allowed. Stats last for combat.",
+        "Each independent roll has a 25% chance for Strength, Dexterity, Mastery, or Haste. Haste lasts for combat; temporary Power Infusion Haste stacks and expires separately."
       ],
       "balanceNotes": "Implemented; rare acquisition is not evidence of balanced power. Validate complete runs.",
       "art": {

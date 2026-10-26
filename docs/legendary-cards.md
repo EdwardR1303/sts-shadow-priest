@@ -52,3 +52,9 @@ Earlier mechanic-isolation tests deliberately installed Powers or called the ind
 ## Painted card portraits
 
 The inventory-icon card portraits were replaced with full weapon illustrations in the [second presentation pass](art-pass-02.md). The actual model-render sprites beside the character remain separate from these painted card scenes.
+
+## Xal'atath stat rolls
+
+Each of the four rolls (five upgraded) independently grants 2 Strength, Dexterity, Mastery, or Haste with equal 25% probabilities. All gains last for combat. An all-Haste result grants 8 Haste, or 10 upgraded. Power Infusion adds temporary Haste to the same visible total; turn end removes only the temporary portion.
+
+The Haste addition passed 238 in-game checks across the equipment and keyword suites, including all-Haste rolls, both temporary/permanent application orders, turn-end expiry, and zero-energy X casts. The build also passes 12 unit tests.
