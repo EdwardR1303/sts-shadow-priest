@@ -22,7 +22,7 @@ Each point increases the damage of every DoT tick by 1. Mastery can be negative;
 
 ### Atonement
 
-An enemy debuff that grants fixed Block equal to its amount whenever your direct Attack hits that enemy, including fully blocked hits. It lasts for combat and is not a DoT. Applications do not stack: keep the higher value, so an upgraded application replaces 2 with 3 but never adds them or reduces an existing 3. Artifact can block application. Atonement's damage happens before its application, so subsequent casts trigger the existing benefit. Dexterity does not modify this Block. DoT ticks, Halo, and retaliation do not trigger it; Barrier's Block lock still applies.
+An enemy debuff that grants fixed Block equal to its amount whenever your direct Attack hits that enemy, including fully blocked hits. It lasts for combat and is not a DoT. Applications do not stack: keep the higher value, so an upgraded application replaces 2 with 3 but never adds them or reduces an existing 3. Artifact can block application. Atonement's damage happens before its application, so subsequent casts trigger the existing benefit. Dexterity does not modify this Block. DoT ticks, Halo, and retaliation do not trigger it; Block gained does not increase any remaining Barrier reserve.
 
 ### Insanity
 
@@ -67,3 +67,7 @@ Each stack adds 1 to the effective X of every X-cost card, including cards playe
 Effective X = the card's energy value + Haste + Chemical X's bonus. Evaluate this once per play and use it for all of that card's X-based effects. An upgraded card's printed X+1 is added afterward and does not increase effective X for other effects. At the end of each player turn, lose half your Haste, rounding the loss up (equivalently, halve the remaining amount and round down). Examples: 5 -> 2 -> 1 -> 0; 2 -> 1 -> 0. All Haste sources combine into one total with this decay. Power Infusion grants 2 Haste; Xal'atath does not grant Haste. There is no permanent Haste portion; Chemical X is a separate relic bonus and does not decay.
 
 Protected Channel explicitly uses effective X, including Haste and Chemical X. Bonuses do not represent actual energy consumed for other effects such as Idol of Y'Shaarj. Free plays preserve energy; an explicit repeat that preserves X reuses the original effective X without adding its bonuses twice.
+
+### Barrier
+
+A tracked portion of your total Block that persists between turns and absorbs damage before ordinary Block. Its buff counter shows the remaining reserve. Additional Block does not increase this reserve and expires normally. Recasting refreshes to the modified card value without stacking or reducing a stronger reserve. Retention does not count as gaining Block. At zero reserve, remove the buff. Independent Blur, Barricade, and Val'anyr can still retain ordinary Block; Calipers removes only ordinary Block.

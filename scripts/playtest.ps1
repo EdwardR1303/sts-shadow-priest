@@ -1,12 +1,12 @@
 param(
-    [switch]$SkipBuild, [switch]$Debug, [switch]$SmokeTest, [switch]$CardBatchOnly, [switch]$LatestBatchOnly, [switch]$ReworkOnly, [switch]$DefensiveReworkOnly, [switch]$SupportOnly, [switch]$RelicOnly, [switch]$RelicArtOnly, [switch]$SetupOnly, [switch]$DetailsOnly,
+    [switch]$SkipBuild, [switch]$Debug, [switch]$SmokeTest, [switch]$CardBatchOnly, [switch]$LatestBatchOnly, [switch]$ReworkOnly, [switch]$DefensiveReworkOnly, [switch]$SupportOnly, [switch]$RelicOnly, [switch]$RelicArtOnly, [switch]$SetupOnly, [switch]$DetailsOnly, [switch]$BarrierOnly,
     [ValidateRange(640, 7680)][int]$Width = 3840,
     [ValidateRange(480, 4320)][int]$Height = 2160,
     [switch]$Windowed
 )
 $ErrorActionPreference = 'Stop'
 if ($RelicArtOnly) { $RelicOnly = $true }
-if ($SetupOnly -or $DetailsOnly) { $SmokeTest = $true }
+if ($SetupOnly -or $DetailsOnly -or $BarrierOnly) { $SmokeTest = $true }
 if ($ReworkOnly -or $DefensiveReworkOnly -or $SupportOnly -or $RelicOnly) { $SmokeTest = $true }
 if ($LatestBatchOnly) { $CardBatchOnly = $true }
 if ($CardBatchOnly) { $SmokeTest = $true }
@@ -55,6 +55,7 @@ if ($DefensiveReworkOnly) { $arguments += '-Dshadowpriest.defensivereworkonly=tr
 if ($SupportOnly) { $arguments += '-Dshadowpriest.supportonly=true' }
 if ($RelicOnly) { $arguments += '-Dshadowpriest.reliconly=true' }
 if ($RelicArtOnly) { $arguments += '-Dshadowpriest.relicartonly=true' }
+if ($BarrierOnly) { $arguments += '-Dshadowpriest.barrieronly=true' }
 if ($DetailsOnly) { $arguments += '-Dshadowpriest.detailsonly=true' }
 if ($SetupOnly) { $arguments += '-Dshadowpriest.setuponly=true' }
 if ($SmokeTest) { [IO.File]::WriteAllText("$run/smoke-results.txt", "RUNNING`n") }

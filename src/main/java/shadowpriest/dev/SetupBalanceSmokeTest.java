@@ -110,7 +110,7 @@ public final class SetupBalanceSmokeTest {
         q.add(()->{dots(m,2);p.powers.add(new DexterityPower(p,4));DotTiming.tick();});
         q.add(()->{check(p.currentBlock==19,"Stacked Weaving combines coefficients into one grant");reset();play(new PowerWordBarrier(),null,3);});
         q.add(()->{p.powers.add(new ShadowWeavingPower(p,3));dots(m,2);DotTiming.tick();play(new VoidTendrils(),null,1);});
-        q.add(()->{check(p.currentBlock==30,"Barrier blocks both Weaving and Tendrils Block gains");reset();play(new SearingNightmare(),null,2);});
+        q.add(()->{check(p.currentBlock==47&&BarrierPower.remaining(p)==30,"Barrier allows ordinary Weaving and Tendrils gains without refilling its reserve");reset();play(new SearingNightmare(),null,2);});
         q.add(()->{check(p.hasPower(SearingNightmarePower.POWER_ID)&&p.hand.isEmpty(),"Searing Nightmare is a played persistent Power");m.currentBlock=100;play(new MindSear(),null,3);});
         q.add(()->{check(MadnessPower.stacks(m)==3&&MadnessPower.stacks(n)==3,"Nightmare applies Madness per hit to every enemy including blocked hits");
             before=r.state.amount();DotTiming.tick();});

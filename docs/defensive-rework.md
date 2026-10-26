@@ -1,5 +1,7 @@
 # Defensive rework — October 25, 2026
 
+**Barrier rules below are historical.** The October 26 [Barrier reserve overhaul](barrier-reserve.md) replaces the Block-gain lock with a tracked, first-spent reserve.
+
 ## Power Word: Barrier
 
 Uncommon Skill, 3 energy. Gain 30 Block (40 upgraded), with Dexterity and normal Block modifiers applied once. Keep existing Block. Retain the resulting reserve until it is depleted. No additional Block can be gained while the barrier is active, including from cards, relics, powers, or forced copies of Barrier. Other Barriers are unplayable until it breaks. No hand retention or Exhaust.

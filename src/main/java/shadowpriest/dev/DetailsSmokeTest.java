@@ -101,10 +101,10 @@ public final class DetailsSmokeTest {
         });
         q.add(()->{
             check(source(Metric.BLOCK,"Power Word: Shield")==17,"Block cap records only two Block actually added");
-            p.currentBlock=30;p.powers.add(new BarrierPower(p));before=total(Metric.BLOCK);play(new PowerWordShield());
+            p.currentBlock=30;p.powers.add(new BarrierPower(p,30));before=total(Metric.BLOCK);play(new PowerWordShield());
         });
         q.add(()->{
-            check(total(Metric.BLOCK)==before && p.currentBlock==30,"Barrier prevents both Block gain and inflated statistics");
+            check(total(Metric.BLOCK)==before+5 && p.currentBlock==35 && BarrierPower.remaining(p)==30,"Barrier permits ordinary Block and Details counts only the new gain");
             p.powers.clear();p.currentBlock=0;m.powers.clear();m.powers.add(new AtonementPower(m,2));play(new MindSpike());
         });
         q.add(()->{

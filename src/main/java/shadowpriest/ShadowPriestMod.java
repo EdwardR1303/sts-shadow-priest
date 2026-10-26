@@ -48,6 +48,7 @@ public class ShadowPriestMod implements EditCharactersSubscriber, EditCardsSubsc
         BaseMod.loadCustomStringsFile(RelicStrings.class, path + "RelicStrings.json");
     }
     @Override public void receiveEditKeywords() {
+        BaseMod.addKeyword("shadowpriest", "Barrier", new String[]{"barrier"}, "Persistent Block that absorbs damage before other Block. Other Block gains do not increase it. Recasting refills the reserve to the card value after modifiers, without stacking or reducing a stronger reserve.");
         BaseMod.addKeyword("shadowpriest", "Atonement", new String[]{"atonement"}, "A debuff: your direct Attack hits on this enemy grant Block equal to its amount. No Dexterity scaling. Does not stack; stronger applications replace weaker ones. Not a DoT.");
         BaseMod.addKeyword("shadowpriest", "Insanity", new String[]{"insanity"}, "Gain #b10 per direct Attack hit and #b1 per DoT tick, including triggered ticks. HP-damaging events grant #b5. At #b100, receive Enter Voidform. No gain while ready, active, or in Recharge.");
         BaseMod.addKeyword("Legendary", new String[]{"legendary"}, "Only one Legendary may be in your deck. Equips once at combat start without drawing or playing a card. Cannot be duplicated into your deck.");

@@ -47,36 +47,8 @@ public final class DefensiveReworkSmokeTest {
     private static int stacks(String id) { return m.hasPower(id)?m.getPower(id).amount:0; }
     private static void waitFrame() { AbstractDungeon.actionManager.addToBottom(new WaitAction(0.8f)); }
     public static void append(Queue<Runnable> q) {
-        q.add(()->{p=AbstractDungeon.player;m=AbstractDungeon.getMonsters().monsters.get(0);reset();
-            p.addBlock(10);p.powers.add(new DexterityPower(p,4));play(new PowerWordBarrier(),null,3);});
-        q.add(()->{check(p.currentBlock==44&&EnergyPanel.totalCount==0,"Barrier keeps existing Block, applies Dexterity once, spends three energy");
-            check(BarrierPower.active(p)&&p.hasPower("Barricade"),"Barrier enables Block retention");
-            EnergyPanel.totalCount=3;check(!new PowerWordBarrier().canUse(p,null),"Second Barrier is unplayable");
-            p.addBlock(100);check(p.currentBlock==44,"Direct Block gain is blocked");
-            play(new PowerWordShield(),null,3);});
-        q.add(()->{check(p.currentBlock==44,"Block card cannot refill Barrier");
-            PowerWordBarrier forced=new PowerWordBarrier();forced.applyPowers();forced.use(p,null);});
-        q.add(()->{check(p.currentBlock==44,"Forced Barrier cannot refill the reserve");nextTurn();});
-        q.add(()->{check(p.currentBlock==44&&BarrierPower.active(p),"Barrier retains Block across a real turn");
-            p.damage(new DamageInfo(m,10,DamageInfo.DamageType.NORMAL));
-            check(p.currentBlock==34&&BarrierPower.active(p),"Partial damage preserves Barrier");
-            p.damage(new DamageInfo(m,34,DamageInfo.DamageType.NORMAL));
-            check(p.currentBlock==0&&!BarrierPower.active(p)&&!p.hasPower("Barricade"),"Exact depletion immediately releases retention and gain lock");
-            p.addBlock(7);check(p.currentBlock==7,"Block gain works immediately after depletion");});
-        q.add(()->{check(!p.hasPower(BarrierPower.POWER_ID),"Broken Barrier removes its own power");reset();
-            p.powers.add(new DexterityPower(p,4));play(up(new PowerWordBarrier()),null,3);});
-        q.add(()->{check(p.currentBlock==44,"Barrier+ grants forty Block plus Dexterity once");reset();
-            p.powers.add(new DexterityPower(p,4));p.powers.add(new FrailPower(p,2,false));play(new PowerWordBarrier(),null,3);});
-        q.add(()->{check(p.currentBlock==25,"Barrier applies Frail and rounding once");reset();
-            p.powers.add(new BarricadePower(p));p.powers.add(new BlurPower(p,2));
-            valanyr=new ValanyrPower(p);p.powers.add(valanyr);p.powers.add(new GuardianAngelPower(p));play(new PowerWordBarrier(),null,3);});
-        q.add(()->{p.loseBlock();});
-        q.add(()->{check(!p.hasPower(BarrierPower.POWER_ID)&&p.getPower("Barricade")!=null&&p.getPower("Blur").amount==2,"Barrier break preserves independent Barricade and Blur");
-            check(!p.hasPower(ValanyrPower.POWER_ID)&&!valanyr.ward&&p.hasPower(GuardianAngelPower.POWER_ID),"Val'anyr retains its independent lethal protection");
-            p.addBlock(9);check(p.currentBlock==9&&p.hasPower("Barricade"),"Independent retention still works after Barrier breaks");reset();
-            p.powers.add(new DexterityPower(p,-30));play(new PowerWordBarrier(),null,3);});
-        q.add(()->{check(p.currentBlock==0&&!BarrierPower.active(p),"Zero Block does not leave a permanent gain lock");
-            p.addBlock(4);check(p.currentBlock==4,"Block can be gained after a zero-value Barrier");reset();dots();play(new MindFlayInsanity(),m,2);});
+        BarrierReserveSmokeTest.append(q);
+        q.add(()->{p=AbstractDungeon.player;m=AbstractDungeon.getMonsters().monsters.get(0);reset();dots();play(new MindFlayInsanity(),m,2);});
         q.add(()->{check(stacks(ShadowDotPower.TOUCH)==3&&stacks(ShadowDotPower.PAIN)==5&&MadnessPower.stacks(m)==7,"Mind Flay Insanity increases all existing DoTs and honors Touch/Pain caps");
             check(m.currentHealth==988&&VoidformRelic.current().state.amount()==30,"Two hits deal six each and count all three DoTs");reset();dots();m.powers.add(new ArtifactPower(m,1));play(new MindFlayInsanity(),m,2);});
         q.add(()->{check(stacks(ShadowDotPower.TOUCH)==3&&stacks(ShadowDotPower.PAIN)==5&&MadnessPower.stacks(m)==5&&!m.hasPower("Artifact"),"Artifact blocks extra Madness but not Touch/Pain upkeep");reset();play(up(new MindFlayInsanity()),m,0);});

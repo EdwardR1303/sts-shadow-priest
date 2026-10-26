@@ -37,6 +37,7 @@ For a desktop launcher, run `./scripts/install-desktop-shortcut.ps1` once, then 
 - [Legendary rules](docs/legendary-cards.md): boss rewards, uniqueness, and combat activation.
 - [Relic designs](relics.md): plain-English class relic ideas, grouped by rarity, with a quick template and `?` review markers.
 - [Card design guide](docs/card-design-guide.md): start designing cards in [the JSON catalog](design/cards.json), with [a reusable template](design/card-template.json), complete upgrades, and VS Code validation.
+- [Barrier reserve](docs/barrier-reserve.md): persistent Block that absorbs damage first and allows ordinary Block gains.
 - [Combat Details](docs/details.md): top-bar damage/Block meter, per-turn source breakdowns, Voidform timing, and persistent JSON reports.
 - [Surrender to Madness](docs/surrender-to-madness.md): permanent combat Voidform, a removable exposure debuff, and Artifact/Orange Pellets interactions.
 - [Fifth reward-card batch](docs/card-batch-05.md): eight cards, positive/negative Mastery, dodge, stun, and artwork sources.

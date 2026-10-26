@@ -116,3 +116,8 @@ The earlier agreed boss-only chance, one-Legendary permanent-deck limit, identit
 ## Insanity scale on October 24 2026
 
 - **D064:** Multiply all Insanity resource values by ten without changing combat pacing. The cap/activation threshold is 100; each direct hit generates 10 per unique DoT; Reaping Madness grants 10/20 per turn; Void Shield+ grants 20 first. Void Shield gives 2 Block per 10 Insanity, and active Voidform counts as 100, preserving its 20 base Block at full charge. Shadowy Preparation's design becomes 10 starting Insanity per enemy. This supersedes the numeric units in earlier decisions and test reports; DoT/Madness stacks, costs, damage bonuses, recovery timing, and charge counts are unchanged.
+
+
+## Barrier reserve on October 26, 2026
+
+- **D065:** Power Word: Barrier remains an Uncommon Skill costing 3, with a 30/40 reserve before modifiers. Barrier is part of total Block, absorbs damage before ordinary Block, and alone persists at turn start. Never restrict ordinary Block gains. The buff counter tracks the remaining reserve; remove it at zero. Dexterity/Frail apply once on casting, never on retention. Recasts refill to the modified card value without stacking or lowering a stronger reserve. Ordinary Block remains independent, including Blur/Barricade/Val'anyr/Calipers retention. The actual Block cap limits the new reserve. This supersedes the Barrier portion of D060 and the October 25 gain-lock design. See [exact rules and validation](barrier-reserve.md).

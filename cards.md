@@ -253,7 +253,7 @@ X/Y/Z = **Attacks/Skills/Powers**. Counts beside each rarity heading include dra
 - **Cost:** 1 energy
 - **Effect:** At the end of your turn, gain 2 Block per active DoT across ALL enemies.
 - **Upgrade:** Gain 3 Block per active DoT instead.
-- **Rules:** Count Touch, Pain, and Madness once each per living enemy before natural ticks, including final one-stack ticks. Combine the total into one Block grant with Dexterity once. No DoTs means no Block, including no Dexterity-only grant. Copies add coefficients before the one grant. Barrier prevents the gain.
+- **Rules:** Count Touch, Pain, and Madness once each per living enemy before natural ticks, including final one-stack ticks. Combine the total into one Block grant with Dexterity once. No DoTs means no Block, including no Dexterity-only grant. Copies add coefficients before the one grant. Barrier allows this ordinary Block gain without increasing its reserve.
 - **Status:** Implemented; full-run balance testing remains.
 
 ## Uncommon (6/11/4)
@@ -322,9 +322,9 @@ X/Y/Z = **Attacks/Skills/Powers**. Counts beside each rarity heading include dra
 #### Power Word: Barrier
 
 - **Cost:** 3 energy
-- **Effect:** Gain 30 Block. Retain Block until depleted. You cannot gain additional Block while this barrier lasts.
-- **Upgrade:** Gain 40 Block instead.
-- **Rules:** Keep existing Block and gain the printed amount with Dexterity and ordinary Block modifiers applied once. Retain all Block until depleted. While active, prevent all additional Block gains and make other Barriers unplayable. At zero Block, remove only this barrier; independent Barricade, Blur, and Val'anyr effects retain their own rules. Do not activate if no Block remains after the initial gain. No hand retention.
+- **Effect:** Refresh your Barrier to 30.
+- **Upgrade:** Refresh your Barrier to 40 instead.
+- **Rules:** Barrier is a tracked portion of total Block, spent before ordinary Block. Damage reduces its counter first. At turn start only ordinary Block expires; do not re-grant retained Block or reapply Dexterity. Dexterity and ordinary Block modifiers apply once on cast. Recasts refill only the missing reserve to the modified card value, never stack or reduce a stronger reserve, and preserve ordinary Block. The 999 Block cap limits the reserve to Block actually added. Other Block gains do not change the reserve. Remove the buff at zero. Explicit Block removal consumes Barrier first; HP loss bypasses it. Independent Barricade, Blur, and Val'anyr can retain ordinary Block; Calipers removes up to 15 ordinary Block. No hand retention.
 - **Status:** Implemented; full-run balance testing remains.
 
 #### Power Infusion
@@ -422,7 +422,7 @@ X/Y/Z = **Attacks/Skills/Powers**. Counts beside each rarity heading include dra
 - **Cost:** 2 energy
 - **Effect:** Gain 6 Block. Whenever you play an X-cost card, gain 3 Block X times.
 - **Upgrade:** Ongoing Block becomes 5 per instance; upfront stays 6.
-- **Rules:** Dexterity applies once to the upfront grant and separately to each later instance. Use effective X including Haste and Chemical X, but not printed X+1 upgrades. Trigger once per X-card play after its effects. Free repeats preserve X. Barrier blocks all gains.
+- **Rules:** Dexterity applies once to the upfront grant and separately to each later instance. Use effective X including Haste and Chemical X, but not printed X+1 upgrades. Trigger once per X-card play after its effects. Free repeats preserve X. Barrier allows these ordinary Block gains without increasing its reserve.
 - **Status:** Implemented; full-run balance testing remains.
 
 ## Rare (3/4/4)

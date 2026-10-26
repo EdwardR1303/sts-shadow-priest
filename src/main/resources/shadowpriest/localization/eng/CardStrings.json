@@ -173,7 +173,7 @@
   },
   "shadowpriest:PowerWordBarrier": {
     "NAME": "Power Word: Barrier",
-    "DESCRIPTION": "Gain !B! Block. NL Retain Block until depleted. NL You cannot gain additional Block while this barrier lasts."
+    "DESCRIPTION": "Refresh your shadowpriest:Barrier to !B!."
   },
   "shadowpriest:Piety": {
     "NAME": "Piety",

@@ -39,7 +39,7 @@ This uses a separate `.smoketest/` session, starts a seeded run and controlled e
 
 These checks need the installed game and a working graphics session, so they are separate from ordinary Maven tests. The driver only runs with the `shadowpriest.smoketest` JVM property. Normal play never automatically starts a run or manipulates combat.
 
-Prefer focused checks for the code being changed; do not run long simulation suites for routine edits. Current focused modes include `-SetupOnly` for the accepted setup/defense/Insanity redesign and `-DetailsOnly` for the combat meter. See [test results](playtest-results.md) and [Combat Details](details.md).
+Prefer focused checks for the code being changed; do not run long simulation suites for routine edits. Current focused modes include `-SetupOnly` for the accepted setup/defense/Insanity redesign `-DetailsOnly` for the combat meter, and `-BarrierOnly` for the persistent Barrier reserve. See [test results](playtest-results.md) and [Combat Details](details.md).
 
 Older broad suites contain historical numerical assertions and require migration before being used as current balance acceptance checks. The legacy reward-only mode is:
 

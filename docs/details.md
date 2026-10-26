@@ -10,7 +10,7 @@ The footer also shows Voidform entry count, first readiness turn, and first entr
 
 - Damage dealt counts HP actually removed from enemies by player-owned damage. It excludes enemy Block, prevention, and overkill. Attacks, natural DoT ticks, Psychic Link's triggered Touch ticks, and Halo have distinct source rows.
 - Damage taken counts HP actually removed from the player, after Block and damage prevention. Self-damage appears under its card or debuff. Guardian Angel's prevented damage is excluded. Healing does not subtract from damage taken; this is not net HP change.
-- Block generated counts Block actually added after modifiers, the 999 cap, and Barrier's gain prevention. Retaining existing Block does not generate more Block.
+- Block generated counts Block actually added after modifiers and the 999 cap. Refreshing Barrier counts only the new Block added. Retaining existing Block does not generate more Block.
 - A turn includes the player turn, its end-of-turn effects, and the following enemy actions. Start-of-turn effects belong to the new player turn. Zero-event turns count toward the average. Combat-start effects belong to turn 1.
 - Card sources combine copies of the same card, but separate upgraded cards. Repeated attacks, including Dragonwrath repeats, are credited to the repeated card. The ledger retains individual events, target names, and triggered-tick attribution.
 - Enemy attacks are grouped by enemy type/name; power and relic effects have separate rows when their queued actions expose the source. Effects without an identifiable source are explicitly labeled **Unattributed effect** or **Unattributed player effect**. External mods that bypass the engine's damage/Block methods are outside this observer's coverage.
