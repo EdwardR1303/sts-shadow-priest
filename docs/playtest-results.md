@@ -183,8 +183,17 @@ Maven verification passed all **12 unit tests**, and the focused suite passed **
 
 The desktop launcher rebuilds before launching the ordinary isolated 4K playtest, prevents concurrent normal instances, and archives previous runtime logs. Human run saves are preserved. PowerShell scripts were parsed successfully and the installed shortcut's target, arguments, working directory, and game icon were checked. Launching the actual desktop shortcut rebuilt successfully, started the normal game at 3840 x 2160 borderless, and archived both previous logs. A subsequent launch request correctly detected the running game and started no second instance. The installed Steam mod JAR matches the build by SHA-256.
 
-## Remaining limits
+## Historical remaining limits (October 24, 2026)
 
 These are correctness checks in a controlled encounter, not a full-run balance study. Only BaseMod and StSLib were loaded alongside this mod. Interactions with other mods, every relic or card, save/reload during combat, and long-run progression have not been exhaustively tested. The X-cost check verifies exclusion from the discount, not every X-cost card's effects.
 
 All current card portraits now have explicit artwork; other presentation remains unfinished. Ordinary rewards now contain twenty Shadow Priest Commons, fourteen Uncommons, and eight Rares, with no Ironclad supplements; three Legendaries are separate boss-only equipment. Question Card can generate four distinct native boss choices with at most one Legendary. Human playtests should evaluate setup damage taken, time to earn Voidform, hand quality at activation, sustain, Madness spreading, and whether waiting or immediate activation is more enjoyable. Designed non-starter relics remain unimplemented.
+
+
+## Combat Details (October 26, 2026)
+
+The new top-bar combat report passed **22 unit tests** (6 report tests plus 16 Insanity tests) and **43 focused real-game checks** using `-DetailsOnly`. The focused run ended in `ALL CHECKS PASSED`. It covered direct/multi-hit/X-cost area damage, blocked hits, three distinct DoTs, Psychic Link attribution, nested Halo actions, card/debuff self-damage, incoming enemy damage, Intangible, Guardian Angel, Lizard Tail revival, Dexterity/Frail, the Block cap, Barrier prevention, and Atonement attribution.
+
+A real end-turn transition verified turn assignment and zero-event turns. Further checks verified overkill exclusion, Voidform readiness/entry timing, JSON persistence, restoration through the custom save field, modal screen opening/closing, Escape behavior, return to the map, unchanged statistics while viewing, and the final killing blow before the victory report closes. Game-rendered damage and Block report screenshots were visually reviewed at 1920 x 1080 and the 4K windowed setting. Earlier harness attempts were corrected to account for an already-earned Voidform charge, deferred victory callbacks, and the input flag reset between frames.
+
+The save check restores the custom save field and on-disk report; it is not an end-to-end process quit/resume test. Smoke Bomb is classified using the engine's room `smoked` flag; a full potion escape sequence was not separately exercised. Final packaging rebuilt successfully after that outcome label and the screenshot-hook ordering adjustment. No broad run simulations or win-rate studies were run. See [Combat Details](details.md) for definitions, storage, and known coverage limits.

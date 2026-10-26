@@ -65,7 +65,7 @@ public class ShadowDotPower extends AbstractPower {
         // HP_LOSS skips attack calculations, so explicitly honor the monster's Intangible.
         int damage = tickDamage();
         if (owner.hasPower("Intangible") || owner.hasPower("IntangiblePlayer")) damage = Math.min(1, damage);
-        addToBot(new shadowpriest.actions.DotTickAction(owner, damage, TOUCH.equals(ID)));
+        addToBot(shadowpriest.details.DetailsTracker.dot(new shadowpriest.actions.DotTickAction(owner, damage, TOUCH.equals(ID)), this));
     }
     public static int count(AbstractCreature target) {
         if (target == null) return 0;

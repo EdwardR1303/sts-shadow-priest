@@ -15,6 +15,7 @@ libs/
 .local/
 .playtest/
 .smoketest/
+/details/
 .mvn/maven.config
 .DS_Store
 Thumbs.db

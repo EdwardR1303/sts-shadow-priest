@@ -101,7 +101,7 @@ public class VoidformRelic extends CustomRelic implements AlternateCardCostModif
     }
     private void updateInsanityDisplay(boolean wasReady) {
         counter = state.amount();
-        if (!wasReady && state.ready()) { flash(); beginLongPulse(); }
+        if (!wasReady && state.ready()) { flash(); beginLongPulse(); shadowpriest.details.DetailsTracker.ready(); }
     }
     public void deliverReadyCard() {
         if (!state.ready() || AbstractDungeon.currMapNode == null || AbstractDungeon.getCurrRoom() == null || AbstractDungeon.getCurrRoom().phase != AbstractRoom.RoomPhase.COMBAT) return;
@@ -133,6 +133,7 @@ public class VoidformRelic extends CustomRelic implements AlternateCardCostModif
     }
     public void activate(int charge) {
         if (!state.activate(charge)) return;
+        shadowpriest.details.DetailsTracker.activated();
         stopPulse(); flash(); updateImprovedCounter();
         IdolOfYoggSaron.enteredVoidform();
         addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new VoidformPower(AbstractDungeon.player)));
@@ -141,7 +142,7 @@ public class VoidformRelic extends CustomRelic implements AlternateCardCostModif
         boolean entering = !state.active();
         if (!state.surrender()) return;
         counter = state.amount(); stopPulse(); flash(); updateImprovedCounter();
-        if (entering) IdolOfYoggSaron.enteredVoidform();
+        if (entering) { IdolOfYoggSaron.enteredVoidform(); shadowpriest.details.DetailsTracker.activated(); }
     }
     @Override public void onPlayerEndTurn() {
         if (!state.active()) return;

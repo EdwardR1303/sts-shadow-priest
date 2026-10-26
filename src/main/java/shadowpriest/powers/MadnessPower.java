@@ -10,7 +10,7 @@ public class MadnessPower extends AbstractPower {
  public int tickDamage(){return Math.max(0,amount/2+amount%2+MasteryPower.current());}
  public void naturalTick(){if(amount<=0||owner.isDeadOrEscaped())return;int hit=tickDamage();
   if(owner.hasPower("Intangible")||owner.hasPower("IntangiblePlayer"))hit=Math.min(1,hit);
-  addToBot(new shadowpriest.actions.DotTickAction(owner,hit,false));
+  addToBot(shadowpriest.details.DetailsTracker.dot(new shadowpriest.actions.DotTickAction(owner,hit,false), this));
   addToBot(new ReducePowerAction(owner,AbstractDungeon.player,this,1));
  }
  @Override public void updateDescription(){description="At the end of your turn, deal #b"+tickDamage()+" damage ignoring Block, then lose #b1 stack. Damage is half the stacks rounded up, plus Mastery.";}

@@ -23,7 +23,9 @@ Build runs Maven `clean verify`, including unit tests for persistent accumulatio
 
 This starts only BaseMod, StSLib, and Shadow Priest in `.playtest/`, with a local game-JAR copy and separate saves/preferences. It does not change the regular ModTheSpire mod selection. Close the test game before rebuilding and relaunching.
 
-The display defaults to 3840 x 2160 borderless, 60 FPS, VSync. Override with `-Width 1920 -Height 1080 -Windowed` if desired. Select The Shadow Priest in a Standard run. The class has its custom ten-card deck and Voidform relic; the class supplies 42 ordinary reward cards: twenty Commons, fourteen Uncommons, and eight Rares, plus three boss-only Legendaries. All reward pools are native, including four-choice boss rewards.
+The display defaults to 3840 x 2160 borderless, 60 FPS, VSync. Override with `-Width 1920 -Height 1080 -Windowed` if desired. Select The Shadow Priest in a Standard run. The class has its custom ten-card deck and Voidform relic; the class supplies 58 ordinary reward cards: 26 Commons, 21 Uncommons, and 11 Rares, plus three boss-only Legendaries. All reward pools are native, including four-choice boss rewards.
+
+Combat Details is available from the purple bar-chart button in the top bar. It records damage dealt/taken, actual Block gains, and Voidform timing, with per-turn source breakdowns. Reports persist in `.playtest/details/`; see [Combat Details](details.md).
 
 Logs are `.playtest/console.log` and `.playtest/error.log`. The isolated game may report unavailable Steam integration; local combat can still run without achievements or cloud saves. BaseMod's console can be enabled through its in-game settings for manual card and encounter setup.
 
@@ -37,7 +39,9 @@ This uses a separate `.smoketest/` session, starts a seeded run and controlled e
 
 These checks need the installed game and a working graphics session, so they are separate from ordinary Maven tests. The driver only runs with the `shadowpriest.smoketest` JVM property. Normal play never automatically starts a run or manipulates combat.
 
-The full suite covers the starter mechanics, all six reward-card batches, Mastery, Surrender to Madness, and Legendary equipment. See [test results](playtest-results.md) for the latest verified counts. To run the reward-only mode:
+Prefer focused checks for the code being changed; do not run long simulation suites for routine edits. Current focused modes include `-SetupOnly` for the accepted setup/defense/Insanity redesign and `-DetailsOnly` for the combat meter. See [test results](playtest-results.md) and [Combat Details](details.md).
+
+Older broad suites contain historical numerical assertions and require migration before being used as current balance acceptance checks. The legacy reward-only mode is:
 
 ```powershell
 ./scripts/playtest.ps1 -SkipBuild -CardBatchOnly -Width 1920 -Height 1080 -Windowed
@@ -45,7 +49,7 @@ The full suite covers the starter mechanics, all six reward-card batches, Master
 
 `-CardBatchOnly` implies `-SmokeTest` and uses the same disposable session and result file. Both suites exercise base/upgraded cards, real turn boundaries, card selection, multi-hit and area damage, and lethal damage handling.
 
-For focused sixth-batch development, use `-LatestBatchOnly` instead. It implies the isolated smoke-test modes and runs checks including startup, healing/draw cards, and Legendary mechanics. It exports base/upgraded card images, separate weapon previews, and actual combat screenshots into `.smoketest/card-review/`. The final sequence visibly equips each of the three weapons through real combat startup and pauses briefly on each. Use the full suite before shipping shared combat changes.
+For focused sixth-batch development, use `-LatestBatchOnly` instead. It implies the isolated smoke-test modes and runs checks including startup, healing/draw cards, and Legendary mechanics. It exports base/upgraded card images, separate weapon previews, and actual combat screenshots into `.smoketest/card-review/`. The final sequence visibly equips each of the three weapons through real combat startup and pauses briefly on each. For shared combat changes, run focused checks that exercise the affected interactions; the older full suite needs its historical expectations updated first.
 
 For focused keyword/card rework checks, use `-ReworkOnly`. It tests the new mechanics through actual game actions and exports upgraded card renders. The full suite also includes these scenarios. See [the rework notes](card-batch-07.md).
 

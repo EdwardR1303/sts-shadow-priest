@@ -22,10 +22,10 @@ import shadowpriest.dev.CombatSmokeTest;
 @SpireInitializer
 public class ShadowPriestMod implements EditCharactersSubscriber, EditCardsSubscriber,
         EditRelicsSubscriber, EditStringsSubscriber, EditKeywordsSubscriber,
-        PostUpdateSubscriber, PostRenderSubscriber {
+        PostUpdateSubscriber, PostRenderSubscriber, PostInitializeSubscriber, PreStartGameSubscriber {
     public static String makeID(String id) { return "shadowpriest:" + id; }
     public static String characterPath(String file) { return "shadowpriest/images/character/" + file; }
-    public static void initialize() { BaseMod.subscribe(new ShadowPriestMod()); ShadowPriest.Meta.registerColor(); BaseMod.addSaveField("shadowpriest:legendaryHistory", new shadowpriest.legendary.LegendaryEquipment()); }
+    public static void initialize() { BaseMod.subscribe(new ShadowPriestMod()); ShadowPriest.Meta.registerColor(); BaseMod.addSaveField("shadowpriest:details", shadowpriest.details.DetailsTracker.saveField()); BaseMod.addSaveField("shadowpriest:legendaryHistory", new shadowpriest.legendary.LegendaryEquipment()); }
     @Override public void receiveEditCharacters() { ShadowPriest.Meta.registerCharacter(); }
     @Override public void receiveEditCards() {
         BaseMod.addDynamicVariable(new DotTurnsVariable());
@@ -62,12 +62,22 @@ public class ShadowPriestMod implements EditCharactersSubscriber, EditCardsSubsc
         BaseMod.addKeyword("shadowpriest", "Mastery", new String[]{"mastery"}, "Each point adds #b1 damage to damaging DoT ticks. Can be negative; tick damage cannot fall below zero.");
         BaseMod.addKeyword("shadowpriest", "Voidform", new String[]{"voidform"}, "Attacks cost #b1 less and deal #b50% more damage. X costs are unchanged. Normally ends at turn end; Surrender to Madness extends it for the rest of combat.");
     }
+    @Override public void receivePostInitialize() {
+        BaseMod.addCustomScreen(shadowpriest.details.DetailsScreen.INSTANCE);
+        BaseMod.addTopPanelItem(new shadowpriest.details.DetailsScreen.Button());
+    }
+    @Override public void receivePreStartGame() { shadowpriest.details.DetailsTracker.resetRun(); }
     @Override public void receivePostUpdate() {
+        shadowpriest.details.DetailsTracker.update();
         VoidformRelic relic = VoidformRelic.current();
         if (relic != null) relic.deliverReadyCard();
         if (Boolean.getBoolean("shadowpriest.smoketest")) CombatSmokeTest.update();
     }
     @Override public void receivePostRender(SpriteBatch sb) {
+        renderInsanityBar(sb);
+        if (Boolean.getBoolean("shadowpriest.smoketest")) CombatSmokeTest.renderReview(sb);
+    }
+    private void renderInsanityBar(SpriteBatch sb) {
         VoidformRelic relic = VoidformRelic.current();
         if (relic == null || AbstractDungeon.currMapNode == null || AbstractDungeon.getCurrRoom() == null || AbstractDungeon.getCurrRoom().phase != AbstractRoom.RoomPhase.COMBAT) return;
         EnergyPanel orb = AbstractDungeon.overlayMenu.energyPanel;
@@ -83,6 +93,5 @@ public class ShadowPriestMod implements EditCharactersSubscriber, EditCardsSubsc
         String text = relic.state.surrendered() ? "SURRENDERED" : relic.state.recovering() ? "RECHARGE" : relic.state.active() ? "VOIDFORM" : relic.state.ready() ? "VOIDFORM READY" : "Insanity " + relic.state.amount() + " / " + shadowpriest.mechanics.InsanityState.THRESHOLD;
         FontHelper.renderFontCentered(sb, FontHelper.tipBodyFont, text, orb.current_x, y + 30 * s, Color.WHITE, 0.8f);
         sb.setColor(oldColor);
-        if (Boolean.getBoolean("shadowpriest.smoketest")) CombatSmokeTest.renderReview(sb);
     }
 }
