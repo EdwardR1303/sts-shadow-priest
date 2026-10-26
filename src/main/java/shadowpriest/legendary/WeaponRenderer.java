@@ -18,7 +18,9 @@ public class WeaponRenderer {
   Texture texture=new Texture(pix);pix.dispose();texture.setFilter(Texture.TextureFilter.Linear,Texture.TextureFilter.Linear);
   TextureRegion result=new TextureRegion(texture,left,top,right-left+1,bottom-top+1);CACHE.put(id,result);return result;
  }
- public static void render(SpriteBatch batch,float x,float y){
+ public static void render(SpriteBatch batch,float x,float y){render(batch,x,y,1f);}
+ public static void render(SpriteBatch batch,float x,float y,float opacity){
+  if(opacity<=0f)return;
   if(AbstractDungeon.player==null)return;
   String id=LegendaryEquipment.State.equipped.get(AbstractDungeon.player);if(id==null)return;
   float dt=Math.min(Gdx.graphics.getDeltaTime(),0.1f);time+=dt;LegendaryEquipment.pulse=Math.max(0,LegendaryEquipment.pulse-dt);
@@ -27,9 +29,9 @@ public class WeaponRenderer {
   float cx=x+145f*scale,cy=y+175f*scale+MathUtils.sin(time*1.8f)*7f*scale,angle=80f+MathUtils.sin(time)*4f;
   float old=batch.getPackedColor();int src=batch.getBlendSrcFunc(),dst=batch.getBlendDstFunc();
   try{
-   if(LegendaryEquipment.pulse>0){batch.setBlendFunction(GL20.GL_SRC_ALPHA,GL20.GL_ONE);batch.setColor(0.9f,0.5f,1f,LegendaryEquipment.pulse*0.4f);
+   if(LegendaryEquipment.pulse>0){batch.setBlendFunction(GL20.GL_SRC_ALPHA,GL20.GL_ONE);batch.setColor(0.9f,0.5f,1f,LegendaryEquipment.pulse*0.4f*opacity);
     for(int i=0;i<8;i++){float a=i*MathUtils.PI2/8f,ox=MathUtils.cos(a)*5f*scale,oy=MathUtils.sin(a)*5f*scale;batch.draw(region,cx-w/2+ox,cy-h/2+oy,w/2,h/2,w,h,1,1,angle);}}
-   batch.setBlendFunction(GL20.GL_SRC_ALPHA,GL20.GL_ONE_MINUS_SRC_ALPHA);batch.setColor(Color.WHITE);batch.draw(region,cx-w/2,cy-h/2,w/2,h/2,w,h,1,1,angle);
+   batch.setBlendFunction(GL20.GL_SRC_ALPHA,GL20.GL_ONE_MINUS_SRC_ALPHA);batch.setColor(1f,1f,1f,opacity);batch.draw(region,cx-w/2,cy-h/2,w/2,h/2,w,h,1,1,angle);
   }finally{batch.setBlendFunction(src,dst);batch.setColor(old);}
  }
 }

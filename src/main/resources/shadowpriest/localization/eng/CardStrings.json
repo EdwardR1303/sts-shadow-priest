@@ -60,8 +60,8 @@
   },
   "shadowpriest:MindFlayInsanity": {
     "NAME": "Mind Flay: Insanity",
-    "DESCRIPTION": "shadowpriest:Extend shadowpriest:Touch and shadowpriest:Pain by X. NL Deal !D! damage X times.",
-    "UPGRADE_DESCRIPTION": "shadowpriest:Extend shadowpriest:Touch and shadowpriest:Pain by X+1. NL Deal !D! damage X+1 times."
+    "DESCRIPTION": "Add X stacks to each existing shadowpriest:DoT. NL Deal !D! damage X times.",
+    "UPGRADE_DESCRIPTION": "Add X+1 stacks to each existing shadowpriest:DoT. NL Deal !D! damage X+1 times."
   },
   "shadowpriest:MindSear": {
     "NAME": "Mind Sear",
@@ -174,7 +174,7 @@
   },
   "shadowpriest:PowerWordBarrier": {
     "NAME": "Power Word: Barrier",
-    "DESCRIPTION": "Retain your hand this turn. NL Gain !B! Block per card in your hand. NL Dexterity applies per card."
+    "DESCRIPTION": "Gain !B! Block. NL Retain Block until depleted. NL You cannot gain additional Block while this barrier lasts."
   },
   "shadowpriest:Piety": {
     "NAME": "Piety",

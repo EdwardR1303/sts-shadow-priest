@@ -93,7 +93,7 @@ public class ShadowPriest extends CustomPlayer {
     //In-game images
     private static final String SHOULDER_1 = characterPath("rest_priest.png");
     private static final String SHOULDER_2 = characterPath("rest_priest.png");
-    private static final String CORPSE = characterPath("corpse.png"); //Corpse is when you die.
+    private static final String CORPSE = characterPath("fallen_priest.png"); //Corpse is when you die.
     private float restAnimationTime;
 
     //Textures used for the energy orb
@@ -135,6 +135,16 @@ public class ShadowPriest extends CustomPlayer {
                 getLoadout(),
                 0.0F, -10.0F, 220.0F, 310.0F, //Match the tall regalia silhouette.
                 new EnergyManager(ENERGY_PER_TURN));
+        // AbstractPlayer renders corpses at their native size. Fit the full-resolution
+        // source to game units once at load time, preserving the generated original.
+        com.badlogic.gdx.graphics.Pixmap fallen = new com.badlogic.gdx.graphics.Pixmap(Gdx.files.internal(CORPSE));
+        com.badlogic.gdx.graphics.Pixmap fitted = new com.badlogic.gdx.graphics.Pixmap(400,
+                Math.round(400f * fallen.getHeight() / fallen.getWidth()), com.badlogic.gdx.graphics.Pixmap.Format.RGBA8888);
+        fitted.setFilter(com.badlogic.gdx.graphics.Pixmap.Filter.BiLinear);
+        fitted.drawPixmap(fallen, 0, 0, fallen.getWidth(), fallen.getHeight(), 0, 0, fitted.getWidth(), fitted.getHeight());
+        corpseImg.dispose(); corpseImg = new Texture(fitted);
+        corpseImg.setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
+        fallen.dispose(); fitted.dispose();
         shoulderImg.setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
         shoulder2Img.setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
 

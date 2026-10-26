@@ -728,36 +728,36 @@
       "base": {
         "cost": "X",
         "target": "ENEMY",
-        "text": "Extend the target's Touch and Pain by X. Deal 6 damage X times.",
+        "text": "Add X stacks to each existing DoT. Deal 6 damage X times.",
         "stats": {
           "damage": 6,
           "xBonus": 0
         },
         "keywords": [],
         "effects": [
-          "Extend existing Touch and Pain by effective X, capped at 5 each.",
+          "Add effective X stacks to each existing DoT.",
           "Deal 6 damage effective X times."
         ]
       },
       "upgrade": {
-        "summary": "+1 duration extension and hit.",
+        "summary": "+1 stack and hit.",
         "card": {
           "cost": "X",
           "target": "ENEMY",
-          "text": "Extend the target's Touch and Pain by X+1. Deal 6 damage X+1 times.",
+          "text": "Add X+1 stacks to each existing DoT. Deal 6 damage X+1 times.",
           "stats": {
             "damage": 6,
             "xBonus": 1
           },
           "keywords": [],
           "effects": [
-            "Extend existing Touch and Pain by effective X+1, capped at 5 each.",
+            "Add effective X+1 stacks to each existing DoT.",
             "Deal 6 damage effective X+1 times."
           ]
         }
       },
       "rulesNotes": [
-        "Extend only existing Touch and Pain before the hits; do not add Madness stacks or trigger Misery.",
+        "Add stacks only to existing Touch, Pain, and Madness before the hits. Touch/Pain cap at 5; their extension bypasses Artifact and does not trigger Misery. Additional Madness follows normal application rules, including Artifact. Never create a missing DoT.",
         "Use effective X from keywords.md, adding the upgrade's extra repetition afterward. Haste support is implemented."
       ],
       "balanceNotes": "First reward-card batch; numbers require human full-run balance testing. Approved post-run buff: damage per hit increased from 4 to 6, retaining X+1 upgrades and existing effects. Further full-run balance testing remains.",
@@ -2432,36 +2432,36 @@
       ],
       "startingCopies": 0,
       "tags": [],
-      "designIntent": "Defend while retaining cards for a future burst turn.",
+      "designIntent": "A finite emergency Block reserve that cannot be refilled until broken.",
       "base": {
         "cost": 3,
         "target": "SELF",
-        "text": "Retain your hand this turn. Gain 5 Block for each card in your hand. Dexterity applies per card.",
+        "text": "Gain 30 Block. Retain Block until depleted. You cannot gain additional Block while this barrier lasts.",
         "stats": {
-          "blockPerCard": 5
+          "block": 30
         },
         "keywords": [],
         "effects": [
-          "Retain your hand this turn. Gain 5 Block for each card in your hand. Dexterity applies per card."
+          "Gain 30 Block. Retain Block until depleted. You cannot gain additional Block while this barrier lasts."
         ]
       },
       "upgrade": {
-        "summary": "Gain 7 Block per card instead.",
+        "summary": "Gain 40 Block instead.",
         "card": {
           "cost": 3,
           "target": "SELF",
-          "text": "Retain your hand this turn. Gain 7 Block for each card in your hand. Dexterity applies per card.",
+          "text": "Gain 40 Block. Retain Block until depleted. You cannot gain additional Block while this barrier lasts.",
           "stats": {
-            "blockPerCard": 7
+            "block": 40
           },
           "keywords": [],
           "effects": [
-            "Retain your hand this turn. Gain 7 Block for each card in your hand. Dexterity applies per card."
+            "Gain 40 Block. Retain Block until depleted. You cannot gain additional Block while this barrier lasts."
           ]
         }
       },
       "rulesNotes": [
-        "Count cards remaining in hand when the Block effect resolves, excluding the played card. Calculate Block per card with Dexterity and ordinary Block modifiers, including normal rounding and a minimum of zero, then multiply by that hand size. Grant the total once without applying modifiers again. With four cards and 4 Dexterity, gain 36 Block, or 44 upgraded, before other modifiers. Retain the hand for this turn's end only; this does not retain Block or prevent ordinary Ethereal exhaustion."
+        "Keep existing Block and gain the printed amount with Dexterity and ordinary Block modifiers applied once. Retain all Block until depleted. While active, prevent all additional Block gains and make other Barriers unplayable. At zero Block, remove only this barrier; independent Barricade, Blur, and Val'anyr effects retain their own rules. Do not activate if no Block remains after the initial gain. No hand retention."
       ],
       "balanceNotes": "Implemented; validate full-run balance, including repeated use and A20 Heart performance.",
       "art": {

@@ -219,9 +219,9 @@ X/Y/Z = **Attacks/Skills/Powers**. Counts beside each rarity heading include dra
 #### Mind Flay: Insanity
 
 - **Cost:** X energy
-- **Effect:** Extend the target's Touch and Pain by X. Deal 6 damage X times.
-- **Upgrade:** Extend Touch and Pain by X+1 and deal damage X+1 times.
-- **Rules:** Extend only existing Touch and Pain before the hits; do not add Madness stacks or trigger Misery. Use effective X from the Haste definition, adding the upgraded extra repetition afterward.
+- **Effect:** Add X stacks to each existing DoT. Deal 6 damage X times.
+- **Upgrade:** Add X+1 stacks to each existing DoT and deal damage X+1 times.
+- **Rules:** Add stacks only to existing Touch, Pain, and Madness before the hits. Touch/Pain cap at 5; their extension bypasses Artifact and does not trigger Misery. Additional Madness follows normal application rules, including Artifact. Never create a missing DoT. Use effective X from the Haste definition, adding the upgraded extra repetition afterward.
 - **Status:** Implemented with shared Haste support.
 - **Playtest feedback:** Raised damage per hit from 4 to 6 after the completed run; evaluate this baseline in further runs.
 
@@ -270,9 +270,9 @@ X/Y/Z = **Attacks/Skills/Powers**. Counts beside each rarity heading include dra
 #### Power Word: Barrier
 
 - **Cost:** 3 energy
-- **Effect:** Retain your hand this turn. Gain 5 Block for each card in your hand. Dexterity applies per card.
-- **Upgrade:** Gain 7 Block per card instead.
-- **Rules:** Count cards remaining in hand when the Block effect resolves, excluding the played card. Calculate Block per card with Dexterity and ordinary Block modifiers, including normal rounding and a minimum of zero, then multiply by that hand size. Grant the total once without applying modifiers again. With four cards and 4 Dexterity, gain 36 Block, or 44 upgraded, before other modifiers. Retain the hand for this turn's end only; this does not retain Block or prevent ordinary Ethereal exhaustion.
+- **Effect:** Gain 30 Block. Retain Block until depleted. You cannot gain additional Block while this barrier lasts.
+- **Upgrade:** Gain 40 Block instead.
+- **Rules:** Keep existing Block and gain the printed amount with Dexterity and ordinary Block modifiers applied once. Retain all Block until depleted. While active, prevent all additional Block gains and make other Barriers unplayable. At zero Block, remove only this barrier; independent Barricade, Blur, and Val'anyr effects retain their own rules. Do not activate if no Block remains after the initial gain. No hand retention.
 - **Status:** Implemented; full-run balance testing remains.
 
 #### Power Infusion

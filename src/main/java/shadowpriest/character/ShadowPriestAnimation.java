@@ -14,20 +14,21 @@ import shadowpriest.relics.VoidformRelic;
 /** A transparent painted sprite with subtle motion and a state-driven Voidform aura. */
 public final class ShadowPriestAnimation extends AbstractAnimation {
     private boolean flipX, flipY;
-    private float time, form;
+    private float time, form, mist;
 
     private static final class Assets {
         private static final Texture SPRITE = loadSprite();
-        private static final ShaderProgram SHADER = loadShader();
+        private static final ShaderProgram SHADER = loadShader("priest.frag");
+        private static final ShaderProgram MIST = loadShader("mist.frag");
         private static Texture loadSprite() {
             Texture texture = ImageMaster.loadImage("shadowpriest/images/character/shadow_priest.png");
             texture.setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
             return texture;
         }
-        private static ShaderProgram loadShader() {
+        private static ShaderProgram loadShader(String fragment) {
             ShaderProgram shader = new ShaderProgram(
                 Gdx.files.internal("shadowpriest/shaders/priest.vert"),
-                Gdx.files.internal("shadowpriest/shaders/priest.frag"));
+                Gdx.files.internal("shadowpriest/shaders/" + fragment));
             if (!shader.isCompiled()) throw new IllegalStateException("Shadow Priest shader: " + shader.getLog());
             return shader;
         }
@@ -41,6 +42,9 @@ public final class ShadowPriestAnimation extends AbstractAnimation {
         time += dt;
         float target = VoidformRelic.isActive() ? 1f : 0f;
         form = MathUtils.clamp(form + Math.signum(target - form) * dt * 4f, 0f, 1f);
+        boolean intangible = com.megacrit.cardcrawl.dungeons.AbstractDungeon.player != null
+            && com.megacrit.cardcrawl.dungeons.AbstractDungeon.player.hasPower(com.megacrit.cardcrawl.powers.IntangiblePlayerPower.POWER_ID);
+        mist = MathUtils.clamp(mist + Math.signum((intangible ? 1f : 0f) - mist) * dt * 2f, 0f, 1f);
         float s = Settings.scale;
         float height = 350f * s;
         float width = height * Assets.SPRITE.getWidth() / Assets.SPRITE.getHeight();
@@ -61,7 +65,7 @@ public final class ShadowPriestAnimation extends AbstractAnimation {
                 // Overlapping translucent silhouettes form a soft outline without a second sprite.
                 for (int ring = 3; ring >= 1; ring--) {
                     float radius = ring * 4f * s;
-                    batch.setColor(0.64f, 0.15f, 1f, form * pulse * (0.12f / ring));
+                    batch.setColor(0.64f, 0.15f, 1f, form * pulse * (0.12f / ring) * (1f - mist));
                     for (int i = 0; i < 12; i++) {
                         float angle = i * MathUtils.PI2 / 12f;
                         draw(batch, left + MathUtils.cos(angle) * radius, bottom + MathUtils.sin(angle) * radius, width, height);
@@ -71,15 +75,23 @@ public final class ShadowPriestAnimation extends AbstractAnimation {
             }
             batch.setBlendFunction(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
             shader.setUniformf("u_silhouette", 0f);
-            batch.setColor(1f, 1f, 1f, 1f);
+            batch.setColor(1f, 1f, 1f, 1f - mist);
             draw(batch, left, bottom, width, height);
             batch.flush();
+            if (mist > 0f) {
+                batch.setShader(Assets.MIST);
+                Assets.MIST.setUniformf("u_time", time);
+                Assets.MIST.setUniformf("u_form", form);
+                batch.setColor(1f, 1f, 1f, mist);
+                batch.draw(ImageMaster.WHITE_SQUARE_IMG, x - 180f*s, y + 10f*s, 360f*s, 310f*s);
+                batch.flush();
+            }
         } finally {
             batch.setShader(oldShader);
             batch.setBlendFunction(oldSrc, oldDst);
             batch.setColor(oldColor);
         }
-        shadowpriest.legendary.WeaponRenderer.render(batch,x,y);
+        shadowpriest.legendary.WeaponRenderer.render(batch,x,y,1f-mist);
     }
 
     private void draw(SpriteBatch batch, float x, float y, float width, float height) {
