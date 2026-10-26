@@ -1,0 +1,9 @@
+{
+  "tool": "Built-in image_gen",
+  "assets": [
+    {
+      "path": "src/main/resources/shadowpriest/images/cards/icons/shadow_word_torment.png",
+      "prompt": "Create one square fantasy spell icon for an original Shadow Priest card named Shadow Word: Torment. Painterly high-contrast MMORPG ability icon style, readable at 64 pixels: a pale anguished skull with a violet rune seared into its forehead, dark amethyst tendrils tightening around it, electric purple highlights and deep black background. Tight centered iconic composition, no lettering, no border, no UI, no watermark. This is a game asset to be integrated into an existing violet card frame."
+    }
+  ]
+}

@@ -12,6 +12,7 @@ public class ReapingMadness extends PriestCard {
         baseMagicNumber = magicNumber = 10;
     }
     @Override public void use(AbstractPlayer p, AbstractMonster m) {
+        addToBot(new shadowpriest.actions.GainInsanityAction(20));
         addToBot(new ApplyPowerAction(p, p, new ReapingMadnessPower(p, magicNumber), magicNumber));
     }
     @Override public void upgrade() {

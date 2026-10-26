@@ -383,3 +383,39 @@ Improved Voidform reuses the credited original Voidform icon.
 Void Vengeance reuses the credited Void Bolt artwork.
 These original source images are unchanged. PriestRelic renders a transparent
 medallion frame around them in the game; see docs/relic-implementation.md.
+
+Setup and defense card batch, October 26, 2026:
+
+Mind Trauma
+Metadata: https://nether.wowhead.com/tooltip/spell/199445
+Source: https://wow.zamimg.com/images/wow/icons/large/spell_shadow_mindflay.jpg
+Resource: shadowpriest/images/cards/icons/mind_trauma.jpg
+
+Void Tendrils
+Metadata: https://nether.wowhead.com/tooltip/spell/114404
+Source: https://wow.zamimg.com/images/wow/icons/large/spell_priest_voidtendrils.jpg
+Resource: shadowpriest/images/cards/icons/void_tendrils.jpg
+
+Focused Will
+Metadata: https://nether.wowhead.com/tooltip/spell/45243
+Source: https://wow.zamimg.com/images/wow/icons/large/ability_priest_focusedwill.jpg
+Resource: shadowpriest/images/cards/icons/focused_will.jpg
+
+Encroaching Shadows (Priest talent)
+Metadata: https://nether.wowhead.com/tooltip/spell/472568
+Source: https://wow.zamimg.com/images/wow/icons/large/spell_shadow_painspike.jpg
+Resource: shadowpriest/images/cards/icons/encroaching_shadows.jpg
+
+Dark Revelation (Shadow of Zul spell)
+Metadata: https://nether.wowhead.com/tooltip/spell/273365
+Source: https://wow.zamimg.com/images/wow/icons/large/ability_priest_clarityofpower.jpg
+Resource: shadowpriest/images/cards/icons/dark_revelation.jpg
+
+Shadow Weaving (archived Priest talent)
+Metadata: https://nether.wowhead.com/classic/tooltip/spell/15257
+Source: https://wow.zamimg.com/images/wow/icons/large/spell_shadow_blackplague.jpg
+Resource: shadowpriest/images/cards/icons/shadow_weaving.jpg
+
+Shadow Word: Torment is original generated artwork, not an official spell icon.
+Resource: shadowpriest/images/cards/icons/shadow_word_torment.png
+Prompt: docs/card-batch-08-art-prompts.json

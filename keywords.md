@@ -6,7 +6,7 @@ Shared design definitions for Shadow Priest cards and relics. Card text uses the
 
 An enemy debuff that deals damage at the end of your turn, before enemies act. Touch, Pain, and Madness are the three DoTs; each counts as one unique DoT while it has positive stacks.
 
-DoT damage ignores Block and is not Attack damage. Strength, Weak, Vulnerable, and Voidform do not modify it, and it does not generate Insanity. Mastery modifies each tick. Other explicit damage prevention still applies. Halo is not a DoT.
+DoT damage ignores Block and is not Attack damage. Strength, Weak, Vulnerable, and Voidform do not modify it. Every natural or triggered DoT tick generates 1 Insanity, including Psychic Link's extra Touch ticks; a zero-damage tick still counts. Mastery modifies each tick. Other explicit damage prevention still applies. Halo is not a DoT.
 
 ### Apply
 
@@ -20,9 +20,15 @@ Add the stated number of stacks to existing Touch and/or Pain, up to their caps.
 
 Each point increases the damage of every DoT tick by 1. Mastery can be negative; final tick damage cannot fall below zero. Use current Mastery when each tick resolves. Mastery never changes the number of stacks removed, including when damage is prevented or reduced to zero.
 
+### Atonement
+
+An enemy debuff that grants fixed Block equal to its amount whenever your direct Attack hits that enemy, including fully blocked hits. It lasts for combat and is not a DoT. Applications do not stack: keep the higher value, so an upgraded application replaces 2 with 3 but never adds them or reduces an existing 3. Artifact can block application. Atonement's damage happens before its application, so subsequent casts trigger the existing benefit. Dexterity does not modify this Block. DoT ticks, Halo, and retaliation do not trigger it; Barrier's Block lock still applies.
+
 ### Insanity
 
-The Shadow Priest resource, capped at 100. Each direct Attack hit generates 5 Insanity per unique DoT on its target, including fully blocked or zero-damage hits. Multi-hit Attacks count each hit; area Attacks count each enemy hit. A killing hit uses the DoTs present for that hit. Your outgoing DoT ticks, Halo, healing, and retaliation do not generate attack-based Insanity.
+The Shadow Priest resource, capped at 100. Each direct Attack hit generates 10 Insanity, independent of DoTs, energy spent, or damage amount. Fully blocked and zero-damage hits count. Multi-hit Attacks count each actual hit; area Attacks count each enemy hit. A killing hit counts, but later hits skipped because the target is dead do not. Free attacks and Haste/Chemical X repetitions count normally. Halo, healing, and retaliation do not generate attack-based Insanity.
+
+Each natural or triggered DoT tick grants 1 Insanity, including Psychic Link. Count the tick once, even when its damage is zero; skipped ticks against dead enemies grant nothing. This is separate from the ten-per-Attack-hit rule and does not itself trigger Attack-hit effects. Explicit gains such as Mind Spike's additional 10 remain additive.
 
 Whenever the priest loses HP from a damage event during combat, gain 5 Insanity. Count each event once, regardless of damage amount or source: enemy hits, self-damage, and damaging Curses/Statuses qualify. Fully blocked, dodged, or otherwise prevented damage grants nothing. Apply this after damage prevention and HP-loss modifiers. Each damaging hit of a multihit attack counts separately; Shadow Mend's combined debt tick counts once. This does not require a DoT on an enemy and does not trigger from out-of-combat HP loss or changes to maximum HP.
 

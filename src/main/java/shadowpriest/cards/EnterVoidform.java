@@ -24,7 +24,10 @@ public class EnterVoidform extends PriestCard {
     }
     @Override public void use(AbstractPlayer p, AbstractMonster m) {
         VoidformRelic relic = VoidformRelic.current();
-        if (relic != null) relic.activate(charge);
+        if (relic != null && relic.state.ready() && relic.state.charge()==charge) {
+            relic.activate(charge);
+            addToBot(new com.megacrit.cardcrawl.actions.common.DrawCardAction(p,1));
+        }
     }
     @Override public AbstractCard makeCopy() { return new EnterVoidform(charge); }
     @Override public void upgrade() { }

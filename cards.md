@@ -4,7 +4,7 @@ Cards are grouped by rarity, then type. Upgrades change only the listed values o
 
 A trailing `?` on a card name marks an unreviewed design. Removing it means the design is agreed, not necessarily implemented.
 
-The structured [card catalog](design/cards.json) contains 58 collectible designs plus the generated Enter Voidform card. Shared mechanics are defined in [keywords.md](keywords.md). The agreed cards and shared keywords are implemented in the current Java build. Blood Magic retains its prior 2-energy, 18/24-damage, 3-HP-loss version while its new design remains under review. Tithe Evasion now excludes Blood Magic as agreed. Historical batch notes describe previous builds. Full-run balance testing remains.
+The structured [card catalog](design/cards.json) contains 65 collectible designs plus the generated Enter Voidform card. Shared mechanics are defined in [keywords.md](keywords.md). The agreed cards are implemented, including the [setup and defense pass](docs/card-batch-08.md). Full-run balance testing remains.
 
 <!-- card-tallies:start -->
 X/Y/Z = **Attacks/Skills/Powers**. Counts beside each rarity heading include drafts and unreviewed designs in this file; upgrades and repeated starting copies do not count separately.
@@ -45,7 +45,7 @@ X/Y/Z = **Attacks/Skills/Powers**. Counts beside each rarity heading include dra
 - **Upgrade:** Cost becomes 0 energy; damage remains 3 per tick.
 - **Rules:** Apply 5 stacks, restoring remaining ticks to the cap of 5. Each natural tick removes one stack. Base damage is 3, modified by current Mastery but independent of stack count or application source.
 
-## Common (9/9/3)
+## Common (10/12/4)
 
 ### Attacks
 
@@ -57,13 +57,13 @@ X/Y/Z = **Attacks/Skills/Powers**. Counts beside each rarity heading include dra
 - **Rules:** Resolve each hit followed by its extension before the next hit. Extend only existing Touch and Pain, up to 5 each; do not affect Madness or trigger Misery. Extension does not require HP loss. Stop if the target dies. Each direct hit generates Insanity normally; Psychic Link triggers once per card play.
 - **Status:** Implemented.
 
-#### Blood Magic ?
+#### Blood Magic
 
 - **Cost:** 2 energy
-- **Effect:** Deal 18 damage. Apply 3 Touch.
-- **Upgrade:** Deal 24 damage and also apply 5 Pain.
-- **Rules:** Resolve damage, then Touch, then upgraded Pain on the surviving target. Applications do not require HP loss. This revision has no self-damage. The draft retains the author's 24-damage upgrade; the proposed lower value has not been adopted.
-- **Status:** Revised draft; review pending. The previous implementation does not match this draft.
+- **Effect:** Deal 14 damage. Apply 2 Touch and 2 Pain.
+- **Upgrade:** Deal 18 damage; apply 3 Touch and 3 Pain.
+- **Rules:** Damage first, then independent Touch and Pain applications on a surviving target. Each can consume Artifact. No self-damage. Replaces both the old implementation and the earlier 18/24-damage draft.
+- **Status:** Implemented; full-run balance testing remains.
 
 #### Shadow Word: Death
 
@@ -74,17 +74,9 @@ X/Y/Z = **Attacks/Skills/Powers**. Counts beside each rarity heading include dra
 #### Mind Blast
 
 - **Cost:** 1 energy
-- **Effect:** Deal 10 damage, plus 2 for each unique DoT on the target.
-- **Upgrade:** Deal 12 base damage and gain 4 damage per unique DoT.
-- **Rules:** Count each of Touch, Pain, and Madness once before the hit, regardless of stacks. Apply normal Attack damage modifiers to the total.
-- **Status:** Implemented.
-
-#### Atonement
-
-- **Cost:** 1 energy
-- **Effect:** Deal 5 damage. Gain 3 Block for each unique DoT on the target.
-- **Upgrade:** Deal 7 damage and gain 4 Block per unique DoT.
-- **Rules:** Count Touch, Pain, and Madness once each, regardless of stacks. Snapshot the count before damage so a killing blow still grants Block. Grant Block once; Dexterity and other ordinary Block modifiers apply once to the total.
+- **Effect:** Deal 10 damage, plus 2 per unique DoT on the target. Gain 10 Insanity.
+- **Upgrade:** Base damage becomes 12; per-DoT damage becomes 4.
+- **Rules:** Snapshot unique DoTs before the hit. Explicit Insanity follows damage even if the target dies, in addition to the universal ten per hit.
 - **Status:** Implemented; full-run balance testing remains.
 
 #### Tentacle Slam
@@ -104,10 +96,10 @@ X/Y/Z = **Attacks/Skills/Powers**. Counts beside each rarity heading include dra
 #### Unfurling Darkness
 
 - **Cost:** 1 energy
-- **Effect:** Deal 5 damage. Apply 3 Touch.
+- **Effect:** Deal 5 damage. Apply 3 Touch. Gain 10 Insanity.
 - **Upgrade:** Cost becomes 0 energy.
-- **Rules:** Deal damage before applying Touch to the surviving target. Touch application does not require HP loss; Artifact can prevent it.
-- **Status:** Implemented.
+- **Rules:** Damage, then apply Touch to the surviving target, then explicit Insanity. Explicit gain does not require HP loss or a successful application.
+- **Status:** Implemented; full-run balance testing remains.
 
 #### Shadow Word: Madness
 
@@ -117,13 +109,31 @@ X/Y/Z = **Attacks/Skills/Powers**. Counts beside each rarity heading include dra
 - **Rules:** Use only actual enemy HP removed by this direct hit, capped at HP before the hit. Exclude Block absorption, overkill, DoTs, and Psychic Link. Apply Madness afterward if the target survives; Artifact can block it. Do not trigger an immediate Madness tick. The initial hit counts only DoTs already present when it hits.
 - **Status:** Implemented.
 
+#### Shadow Word: Torment
+
+- **Cost:** 1 energy
+- **Effect:** Deal 6 damage. Apply 3 Pain.
+- **Upgrade:** Deal 9 damage and apply 5 Pain.
+- **Rules:** Damage first, then Pain on the surviving target. Application requires no HP loss and respects Artifact.
+- **Status:** Implemented; full-run balance testing remains.
+
+#### Mind Trauma
+
+- **Cost:** 1 energy
+- **Effect:** Deal 4 damage. Apply 4 Madness. Gain 10 Insanity.
+- **Upgrade:** Deal 7 damage and apply 6 Madness.
+- **Rules:** Damage, then Madness on the surviving target, then explicit Insanity. Madness does not require HP loss; Artifact can block it. Explicit Insanity still resolves.
+- **Status:** Implemented; full-run balance testing remains.
+
 ### Skills
 
 #### Bulwark
 
 - **Cost:** 2 energy
-- **Effect:** Gain 10 Block and 1 Blur.
-- **Upgrade:** Gain 15 Block.
+- **Effect:** Gain 12 Block and 1 Blur.
+- **Upgrade:** Gain 16 Block instead.
+- **Rules:** Dexterity applies once. Blur retains Block, not cards.
+- **Status:** Implemented; full-run balance testing remains.
 
 #### Flash Heal
 
@@ -143,9 +153,11 @@ X/Y/Z = **Attacks/Skills/Powers**. Counts beside each rarity heading include dra
 
 #### Fade
 
-- **Cost:** 1 energy
-- **Effect:** Until your next turn, whenever you would lose HP, lose 1 less, like Tungsten Rod.
-- **Upgrade:** Lose 2 less HP instead.
+- **Cost:** 0 energy
+- **Effect:** Until your next turn, lose 1 less HP whenever you would lose HP.
+- **Upgrade:** Reduce each HP-loss event by 2 instead.
+- **Rules:** Preserves existing stacking and HP-loss coverage, including self-damage. No upfront Block. Fully prevented damage generates no damage-taken Insanity.
+- **Status:** Implemented; full-run balance testing remains.
 
 #### Purify Disease
 
@@ -166,9 +178,9 @@ X/Y/Z = **Attacks/Skills/Powers**. Counts beside each rarity heading include dra
 #### Void Shield
 
 - **Cost:** 1 energy
-- **Effect:** Gain 1 Block for each 5 Insanity. Voidform counts as having 100 Insanity.
-- **Upgrade:** Gain 20 Insanity first.
-- **Rules:** Resolve Insanity gain before calculating Block. All Insanity gain obeys the normal cap, ready/active restrictions, and recovery turn. Both ordinary and permanent Voidform count as 100. Grant Block once; Dexterity and ordinary Block modifiers apply once to the total.
+- **Effect:** Gain 5 Block, plus 1 Block per 10 Insanity. Voidform counts as 100 Insanity.
+- **Upgrade:** Base Block becomes 8; gain 1 additional Block per 5 Insanity instead.
+- **Rules:** Round the Insanity quotient down. Add Dexterity once through the base component, with no second Dexterity application to the resource bonus. Grant combined Block once with normal Block modifiers. No Insanity gain. Ready or active Voidform uses 100; Recharge keeps the base Block. At 0/50/100 Insanity, base values are 5/10/15 or upgraded 8/18/28.
 - **Status:** Implemented; full-run balance testing remains.
 
 #### Shadowy Insight
@@ -182,11 +194,34 @@ X/Y/Z = **Attacks/Skills/Powers**. Counts beside each rarity heading include dra
 #### Mind Soothe
 
 - **Cost:** 0 energy
-- **Effect:** Until your next turn, the target deals 1 less Attack damage per unique DoT on it.
-- **Upgrade:** Reduce its Attack damage by 1 additional point.
-- **Rules:** Snapshot the unique DoT count when played. Reduce each Attack hit from that target before Block, with a minimum of zero. Copies add their reduction for this turn. Artifact can block each application. Expires after the enemy turn. With no DoTs, the base card does nothing and the upgrade reduces damage by 1.
+- **Effect:** Until your next turn, the target deals 1 less Attack damage, plus 1 less per unique DoT on it.
+- **Upgrade:** Base reduction becomes 2.
+- **Rules:** Snapshot unique DoTs when played. Reduction applies per Attack hit, floors damage at zero, stacks for this turn, and is blocked by Artifact.
 - **Status:** Implemented; full-run balance testing remains.
 
+#### Void Tendrils
+
+- **Cost:** 1 energy
+- **Effect:** Gain 4 Block for each enemy. Apply 2 Pain to ALL attacking enemies.
+- **Upgrade:** Gain 5 Block per enemy and apply 3 Pain.
+- **Rules:** Count living enemies. Grant Block separately per enemy, applying Dexterity and other Block modifiers to every grant. Check attack intents when played, including attack/buff, attack/debuff, and attack/defend. Only those enemies receive Pain. Artifact blocks application, not Block.
+- **Status:** Implemented; full-run balance testing remains.
+
+#### Encroaching Shadows
+
+- **Cost:** 1 energy
+- **Effect:** Gain 5 Block. Apply 3 Madness.
+- **Upgrade:** Gain 8 Block and apply 5 Madness.
+- **Rules:** Block resolves first with Dexterity once. Artifact can prevent Madness but not Block. No immediate DoT tick.
+- **Status:** Implemented; full-run balance testing remains.
+
+#### Focused Will
+
+- **Cost:** 1 energy
+- **Effect:** Gain 7 Block. Gain 10 Insanity.
+- **Upgrade:** Gain 10 Block and 15 Insanity.
+- **Rules:** Block with Dexterity once, then immediate explicit Insanity. No enemy Attack prerequisite or pending trigger.
+- **Status:** Implemented; full-run balance testing remains.
 
 ### Powers
 
@@ -200,9 +235,10 @@ X/Y/Z = **Attacks/Skills/Powers**. Counts beside each rarity heading include dra
 #### Reaping Madness
 
 - **Cost:** 1 energy
-- **Effect:** At the end of your turn, gain 10 Insanity.
-- **Upgrade:** Gain 20 Insanity instead.
-- **Rules:** Multiple copies stack. All Insanity gain follows the Voidform relic's restrictions, including its recovery turn.
+- **Effect:** Gain 20 Insanity. At the end of your turn, gain 10 Insanity.
+- **Upgrade:** Ongoing gain becomes 20; immediate gain stays 20.
+- **Rules:** Immediate gain occurs on play, not each turn. Copies stack ongoing gain. Threshold crossings deliver the retained activation at the next legal opportunity.
+- **Status:** Implemented; full-run balance testing remains.
 
 #### Tithe Evasion
 
@@ -212,9 +248,25 @@ X/Y/Z = **Attacks/Skills/Powers**. Counts beside each rarity heading include dra
 - **Rules:** Only the two named sources qualify, including Shadow Mend's combined debt tick. Exclude enemy Attacks, Beat of Death, Curses, Statuses, relics, and other sources. Floor each qualifying loss at zero. Track the highest benefit granted this combat: equal or weaker copies are unplayable, and an upgraded copy replaces the base benefit. Reset tracking after combat. Blood Magic's current draft no longer causes HP loss.
 - **Status:** Implemented.
 
-## Uncommon (5/10/4)
+#### Shadow Weaving
+
+- **Cost:** 1 energy
+- **Effect:** At the end of your turn, gain 2 Block per active DoT across ALL enemies.
+- **Upgrade:** Gain 3 Block per active DoT instead.
+- **Rules:** Count Touch, Pain, and Madness once each per living enemy before natural ticks, including final one-stack ticks. Combine the total into one Block grant with Dexterity once. No DoTs means no Block, including no Dexterity-only grant. Copies add coefficients before the one grant. Barrier prevents the gain.
+- **Status:** Implemented; full-run balance testing remains.
+
+## Uncommon (6/11/4)
 
 ### Attacks
+
+#### Atonement
+
+- **Cost:** 1 energy
+- **Effect:** Deal 5 damage. Apply 2 Atonement.
+- **Upgrade:** Deal 7 damage and apply 3 Atonement.
+- **Rules:** Atonement is a combat-long, Artifact-blockable debuff, not a DoT. Each direct Attack hit grants its fixed Block value, including fully blocked hits, without Dexterity scaling. Damage happens before application: replaying Atonement triggers the existing benefit. Applications do not stack; use the higher value (2 becomes 3, never 5 or a downgrade). No Exhaust. Equal or weaker reapplications do not consume Artifact. DoTs, Halo, and retaliation do not trigger it.
+- **Status:** Implemented; full-run balance testing remains.
 
 #### Mind Flay: Insanity
 
@@ -228,10 +280,10 @@ X/Y/Z = **Attacks/Skills/Powers**. Counts beside each rarity heading include dra
 #### Mind Sear
 
 - **Cost:** X energy
-- **Effect:** Deal 5 damage to all enemies X times.
-- **Upgrade:** Deal damage X + 1 times.
-- **Status:** Implemented with shared Haste support.
-- **Playtest feedback:** Raised damage per hit from 3 to 5 after the completed run; evaluate this baseline in further runs.
+- **Effect:** Deal 6 damage to ALL enemies X times.
+- **Upgrade:** Repeat the damage X+1 times.
+- **Rules:** Uses effective X with Haste and Chemical X. No built-in Madness application. Each actual enemy hit grants ten Insanity; dead targets generate no additional hits.
+- **Status:** Implemented; full-run balance testing remains.
 
 #### Void Volley
 
@@ -333,6 +385,14 @@ X/Y/Z = **Attacks/Skills/Powers**. Counts beside each rarity heading include dra
 - **Rules:** Repeatable; does not Exhaust. Stats last for combat. The Strength loss follows normal stat-debuff rules, including Artifact.
 - **Status:** Implemented; full-run balance testing remains.
 
+#### Dark Revelation
+
+- **Cost:** 1 energy
+- **Effect:** Choose a DoT application card from your draw pile. Put it into your hand. It costs 0 this turn. Exhaust.
+- **Upgrade:** Cost becomes 0 energy.
+- **Rules:** Choose visibly even with one option. Direct applications include conditional Shadow Word: Madness, Dark Void, and Void Blast; the chosen card retains its normal application conditions. Existing-only extension and enabling Powers such as Searing Nightmare are excluded. Search only the draw pile; no shuffle or on-draw triggers. A full hand sends the chosen card to discard. Cost resets normally after this turn. The accepted roster currently has no eligible X-cost application cards.
+- **Status:** Implemented; full-run balance testing remains.
+
 ### Powers
 
 #### Body and Soul
@@ -360,12 +420,12 @@ X/Y/Z = **Attacks/Skills/Powers**. Counts beside each rarity heading include dra
 #### Protected Channel
 
 - **Cost:** 2 energy
-- **Effect:** Whenever you play an X-cost card, gain 3 Block X times.
-- **Upgrade:** Gain 5 Block per instance instead.
-- **Rules:** Use that card's effective X, including Haste and Chemical X even at zero energy. A printed X+1 upgrade adds no extra Protected Channel instance. Apply Dexterity and ordinary Block modifiers separately to each instance. Trigger once per qualifying card play and resolve after its effects. Free repeats use their preserved effective X without charging energy or adding bonuses twice.
-- **Status:** Implemented.
+- **Effect:** Gain 6 Block. Whenever you play an X-cost card, gain 3 Block X times.
+- **Upgrade:** Ongoing Block becomes 5 per instance; upfront stays 6.
+- **Rules:** Dexterity applies once to the upfront grant and separately to each later instance. Use effective X including Haste and Chemical X, but not printed X+1 upgrades. Trigger once per X-card play after its effects. Free repeats preserve X. Barrier blocks all gains.
+- **Status:** Implemented; full-run balance testing remains.
 
-## Rare (4/4/3)
+## Rare (3/4/4)
 
 ### Attacks
 
@@ -390,14 +450,6 @@ X/Y/Z = **Attacks/Skills/Powers**. Counts beside each rarity heading include dra
 - **Effect:** Deal damage equal to your missing HP. Exhaust.
 - **Upgrade:** Gain Retain.
 - **Rules:** Use maximum HP minus current HP when the hit resolves as base damage, then apply normal Attack damage modifiers. Retain does not lock in a previous missing-HP value.
-- **Status:** Implemented.
-
-#### Searing Nightmare
-
-- **Cost:** X energy
-- **Effect:** X times: deal 5 damage to ALL enemies, then apply 5 Madness to ALL enemies.
-- **Upgrade:** Repeat X+1 times instead of X.
-- **Rules:** For each repetition, finish the area Attack hits, then apply Madness to surviving enemies before starting the next repetition. Applications do not require HP loss, but Artifact can block each separately. Madness does not tick immediately. Later hits can generate Insanity from Madness applied by earlier repetitions. Use effective X, including Haste and Chemical X; add the upgrade's extra repetition afterward. Psychic Link triggers once per card play.
 - **Status:** Implemented.
 
 ### Skills
@@ -434,6 +486,14 @@ X/Y/Z = **Attacks/Skills/Powers**. Counts beside each rarity heading include dra
 - **Status:** Implemented; full-run balance testing remains.
 
 ### Powers
+
+#### Searing Nightmare
+
+- **Cost:** 2 energy
+- **Effect:** Your direct Attack hits apply 1 Madness to the enemy hit.
+- **Upgrade:** Cost becomes 1 energy.
+- **Rules:** Replaces the X-cost Attack. Each direct hit applies one Madness to the surviving target, including fully blocked hits. AoE checks each enemy and multihits trigger per hit. Artifact can block each application. Copies stack their coefficient. DoT ticks, Psychic Link, Halo, and retaliation do not trigger applications. The Power itself deals no damage and applies no immediate DoT.
+- **Status:** Implemented; full-run balance testing remains.
 
 #### Shadow Committal
 
@@ -492,8 +552,8 @@ X/Y/Z = **Attacks/Skills/Powers**. Counts beside each rarity heading include dra
 
 ## Agreed relic update: Voidform
 
-- **Additional rule:** Direct Attack hits generate 5 Insanity per unique DoT. When Voidform ends, reset Insanity and enter Recharge as defined in [keywords.md](keywords.md).
-- **Timing:** Enter Voidform and burst on turn 1; all Insanity gain is blocked throughout turn 2, including end-of-turn effects; generation resumes on turn 3.
+- **Additional rule:** Direct Attack hits generate 10 Insanity. Each natural or triggered DoT tick generates 1 Insanity, including Psychic Link. When Voidform ends, reset Insanity and enter Recharge as defined in [keywords.md](keywords.md).
+- **Timing:** If ordinary Voidform ends on turn 1, all Insanity gain is blocked throughout turn 2, including end-of-turn effects; generation resumes on turn 3.
 - **Existing rules:** Insanity still resets when Voidform ends or combat ends. No gain while Voidform is ready or active. The recovery restriction applies to every source, including attacks, damage taken, and Reaping Madness.
 - **Status:** Implemented with revised generation and shared keyword timing.
 

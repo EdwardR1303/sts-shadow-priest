@@ -12,7 +12,7 @@ import shadowpriest.powers.*;
 public class Fade extends PriestCard {
     public static final String ID = "shadowpriest:Fade";
     public Fade() {
-        super(ID, 1, CardType.SKILL, CardRarity.COMMON, CardTarget.SELF);
+        super(ID, 0, CardType.SKILL, CardRarity.COMMON, CardTarget.SELF);
         baseMagicNumber = magicNumber = 1;
     }
     @Override public void use(AbstractPlayer p, AbstractMonster m) {

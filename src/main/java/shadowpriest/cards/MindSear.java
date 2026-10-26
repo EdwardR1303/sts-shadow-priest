@@ -13,7 +13,7 @@ public class MindSear extends PriestCard {
     public static final String ID = "shadowpriest:MindSear";
     public MindSear() {
         super(ID, -1, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.ALL_ENEMY);
-        baseDamage = 5; isMultiDamage = true;
+        baseDamage = 6; isMultiDamage = true;
     }
     @Override public void use(AbstractPlayer p, AbstractMonster m) {
         int repeats = spendX(p) + (upgraded ? 1 : 0);

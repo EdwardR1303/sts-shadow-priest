@@ -24,6 +24,7 @@ public class MindBlast extends PriestCard {
     }
     @Override public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot(new DamageAction(m, new DamageInfo(p, damage, damageTypeForTurn), AbstractGameAction.AttackEffect.FIRE));
+        addToBot(new shadowpriest.actions.GainInsanityAction(10));
     }
     @Override public void upgrade() {
         if (!upgraded) { upgradeName(); upgradeDamage(2); upgradeMagicNumber(2); }

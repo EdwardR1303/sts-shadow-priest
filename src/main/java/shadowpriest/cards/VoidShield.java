@@ -1,28 +1,25 @@
 package shadowpriest.cards;
+import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.*;
 import com.megacrit.cardcrawl.cards.*;
-import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.*;
 import shadowpriest.powers.*;
-import shadowpriest.mechanics.InsanityState;
+import shadowpriest.actions.GainInsanityAction;
 
 public class VoidShield extends PriestCard {
- public static final String ID="shadowpriest:VoidShield";
- public VoidShield() { super(ID,1,CardType.SKILL,CardRarity.COMMON,CardTarget.SELF); baseBlock=0; }
- @Override public void use(AbstractPlayer p, AbstractMonster m) { addToBot(new AbstractGameAction(){ public void update(){
- shadowpriest.relics.VoidformRelic r=shadowpriest.relics.VoidformRelic.current();
- if(upgraded && r!=null) r.gainInsanity(20);
- VoidShield.this.applyPowers();
- addToTop(new GainBlockAction(p,p,block)); isDone=true;
- }}); }
- @Override public void upgrade() { if (!upgraded) { upgradeName(); upgradeText(); } }
- @Override public void applyPowers(){
- shadowpriest.relics.VoidformRelic r=shadowpriest.relics.VoidformRelic.current();
- int insanity=shadowpriest.relics.VoidformRelic.isActive()?InsanityState.THRESHOLD:r==null?0:r.state.amount();
- baseBlock=insanity/5; // One Block total; apply Dexterity once below.
- super.applyPowers();
- }
+    public static final String ID="shadowpriest:VoidShield";
+    public VoidShield() { super(ID,1,CardType.SKILL,CardRarity.COMMON,CardTarget.SELF);baseBlock=5;baseMagicNumber=magicNumber=10; }
+    @Override public void use(AbstractPlayer p,AbstractMonster m) { addToBot(new GainBlockAction(p,p,totalBlock())); }
+    @Override public void upgrade() { if(!upgraded) { upgradeName();upgradeBlock(3);upgradeMagicNumber(-5); } }
+
+    public int totalBlock() {
+        shadowpriest.relics.VoidformRelic r=shadowpriest.relics.VoidformRelic.current();
+        int insanity=shadowpriest.relics.VoidformRelic.isActive()?100:r==null?0:r.state.amount();
+        int saved=baseBlock;
+        try { baseBlock+=insanity/magicNumber;super.applyPowers();return block; }
+        finally { baseBlock=saved;super.applyPowers(); }
+    }
+
 }

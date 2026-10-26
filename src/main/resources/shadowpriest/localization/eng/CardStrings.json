@@ -17,7 +17,7 @@
   },
   "shadowpriest:EnterVoidform": {
     "NAME": "Enter Voidform",
-    "DESCRIPTION": "Retain. NL Enter shadowpriest:Voidform. NL Exhaust."
+    "DESCRIPTION": "Retain. NL Enter shadowpriest:Voidform. NL Draw 1 card. NL Exhaust."
   },
   "shadowpriest:Bulwark": {
     "NAME": "Bulwark",
@@ -42,7 +42,7 @@
   },
   "shadowpriest:MindBlast": {
     "NAME": "Mind Blast",
-    "DESCRIPTION": "Deal !D! damage. NL Damage increases by !M! per unique shadowpriest:DoT on the target."
+    "DESCRIPTION": "Deal !D! damage, plus !M! per unique shadowpriest:DoT on the target. NL Gain 10 Insanity."
   },
   "shadowpriest:Dispersion": {
     "NAME": "Dispersion",
@@ -78,7 +78,7 @@
   },
   "shadowpriest:ReapingMadness": {
     "NAME": "Reaping Madness",
-    "DESCRIPTION": "At the end of your turn, gain !M! Insanity."
+    "DESCRIPTION": "Gain 20 Insanity. NL At the end of your turn, gain !M! Insanity."
   },
   "shadowpriest:ShadowWordMadness": {
     "NAME": "Shadow Word: Madness",
@@ -126,7 +126,7 @@
   },
   "shadowpriest:Atonement": {
     "NAME": "Atonement",
-    "DESCRIPTION": "Deal !D! damage. NL Gain !M! Block per unique shadowpriest:DoT on the target."
+    "DESCRIPTION": "Deal !D! damage. NL Apply !M! shadowpriest:Atonement."
   },
   "shadowpriest:PurifyDisease": {
     "NAME": "Purify Disease",
@@ -160,12 +160,11 @@
   },
   "shadowpriest:BloodMagic": {
     "NAME": "Blood Magic",
-    "DESCRIPTION": "Deal !D! damage. NL Lose 3 HP."
+    "DESCRIPTION": "Deal !D! damage. NL Apply !M! shadowpriest:Touch and !M! shadowpriest:Pain."
   },
   "shadowpriest:VoidShield": {
     "NAME": "Void Shield",
-    "DESCRIPTION": "Gain 1 Block per 5 Insanity. NL shadowpriest:Voidform counts as 100 Insanity.",
-    "UPGRADE_DESCRIPTION": "Gain 20 Insanity. NL Gain 1 Block per 5 Insanity. NL shadowpriest:Voidform counts as 100 Insanity."
+    "DESCRIPTION": "Gain !B! Block, plus 1 Block per !M! Insanity. NL shadowpriest:Voidform counts as 100 Insanity."
   },
   "shadowpriest:Insight": {
     "NAME": "Shadowy Insight",
@@ -216,12 +215,12 @@
   },
   "shadowpriest:MindSoothe": {
     "NAME": "Mind Soothe",
-    "DESCRIPTION": "This turn, the enemy deals 1 less Attack damage per unique shadowpriest:DoT on it.",
-    "UPGRADE_DESCRIPTION": "This turn, the enemy deals 1 less Attack damage per unique shadowpriest:DoT on it, plus 1 more."
+    "DESCRIPTION": "Until your next turn, the target deals 1 less Attack damage, plus 1 less per unique shadowpriest:DoT.",
+    "UPGRADE_DESCRIPTION": "Until your next turn, the target deals 2 less Attack damage, plus 1 less per unique shadowpriest:DoT."
   },
   "shadowpriest:UnfurlingDarkness": {
     "NAME": "Unfurling Darkness",
-    "DESCRIPTION": "Deal !D! damage. NL Apply !M! shadowpriest:Touch."
+    "DESCRIPTION": "Deal !D! damage. NL Apply !M! shadowpriest:Touch. NL Gain 10 Insanity."
   },
   "shadowpriest:DarkVoid": {
     "NAME": "Dark Void",
@@ -242,7 +241,7 @@
   },
   "shadowpriest:ProtectedChannel": {
     "NAME": "Protected Channel",
-    "DESCRIPTION": "Whenever you play an X-cost card, gain !M! Block X times."
+    "DESCRIPTION": "Gain !B! Block. NL Whenever you play an X-cost card, gain !M! Block X times."
   },
   "shadowpriest:Catharsis": {
     "NAME": "Catharsis",
@@ -251,12 +250,39 @@
   },
   "shadowpriest:SearingNightmare": {
     "NAME": "Searing Nightmare",
-    "DESCRIPTION": "X times: deal !D! damage to ALL enemies, then apply !M! shadowpriest:Madness to ALL enemies.",
-    "UPGRADE_DESCRIPTION": "X+1 times: deal !D! damage to ALL enemies, then apply !M! shadowpriest:Madness to ALL enemies."
+    "DESCRIPTION": "Your direct Attack hits apply !M! shadowpriest:Madness to the enemy hit."
   },
   "shadowpriest:DarkEvangelism": {
     "NAME": "Dark Evangelism",
     "DESCRIPTION": "Gain X shadowpriest:Mastery.",
     "UPGRADE_DESCRIPTION": "Gain X+1 shadowpriest:Mastery."
+  },
+  "shadowpriest:ShadowWordTorment": {
+    "NAME": "Shadow Word: Torment",
+    "DESCRIPTION": "Deal !D! damage. NL Apply !M! shadowpriest:Pain."
+  },
+  "shadowpriest:MindTrauma": {
+    "NAME": "Mind Trauma",
+    "DESCRIPTION": "Deal !D! damage. NL Apply !M! shadowpriest:Madness. NL Gain 10 Insanity."
+  },
+  "shadowpriest:VoidTendrils": {
+    "NAME": "Void Tendrils",
+    "DESCRIPTION": "Gain !B! Block for each enemy. NL Apply !M! shadowpriest:Pain to ALL attacking enemies."
+  },
+  "shadowpriest:EncroachingShadows": {
+    "NAME": "Encroaching Shadows",
+    "DESCRIPTION": "Gain !B! Block. NL Apply !M! shadowpriest:Madness."
+  },
+  "shadowpriest:FocusedWill": {
+    "NAME": "Focused Will",
+    "DESCRIPTION": "Gain !B! Block. NL Gain !M! Insanity."
+  },
+  "shadowpriest:ShadowWeaving": {
+    "NAME": "Shadow Weaving",
+    "DESCRIPTION": "At the end of your turn, gain !M! Block per active shadowpriest:DoT across ALL enemies."
+  },
+  "shadowpriest:DarkRevelation": {
+    "NAME": "Dark Revelation",
+    "DESCRIPTION": "Choose a shadowpriest:DoT application card from your draw pile. Put it into your hand. It costs 0 this turn. NL Exhaust."
   }
 }

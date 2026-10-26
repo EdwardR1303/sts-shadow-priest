@@ -35,9 +35,9 @@ public class InsanityStateTest {
         s.gain(30); s.gain(0); s.gain(-10); assertEquals(30, s.amount());
         s.gain(Integer.MAX_VALUE); assertEquals(100, s.amount()); assertTrue(s.ready());
     }
-    @Test public void twoDotsAndThreeHitsProduceThirtyAndPersist() {
+    @Test public void threeHitsProduceThirtyIndependentOfDotsAndPersist() {
         InsanityState s = new InsanityState();
-        for (int i=0; i<3; i++) s.gain(2 * InsanityState.PER_DOT); s.endTurn();
+        for (int i=0; i<3; i++) s.gain(InsanityState.PER_HIT); s.endTurn();
         assertEquals(30, s.amount()); assertFalse(s.ready());
     }
     @Test public void thresholdCapsOneChargeUntilChosen() {

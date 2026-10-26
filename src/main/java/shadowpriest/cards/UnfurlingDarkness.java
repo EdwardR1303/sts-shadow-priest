@@ -10,6 +10,6 @@ public class UnfurlingDarkness extends PriestCard {
  public static final String ID="shadowpriest:UnfurlingDarkness";
  public UnfurlingDarkness(){super(ID,1,CardType.ATTACK,CardRarity.COMMON,CardTarget.ENEMY);baseDamage=5;baseMagicNumber=magicNumber=3;}
  @Override public float getTitleFontSize(){return 20f;}
- @Override public void use(AbstractPlayer p,AbstractMonster m){addToBot(new DamageAction(m,new DamageInfo(p,damage,damageTypeForTurn),AbstractGameAction.AttackEffect.FIRE));addToBot(ShadowDotPower.apply(m,p,ShadowDotPower.TOUCH,magicNumber));}
+ @Override public void use(AbstractPlayer p,AbstractMonster m){addToBot(new DamageAction(m,new DamageInfo(p,damage,damageTypeForTurn),AbstractGameAction.AttackEffect.FIRE));addToBot(ShadowDotPower.apply(m,p,ShadowDotPower.TOUCH,magicNumber));addToBot(new shadowpriest.actions.GainInsanityAction(10));}
  @Override public void upgrade(){if(!upgraded){upgradeName();upgradeBaseCost(0);}}
 }

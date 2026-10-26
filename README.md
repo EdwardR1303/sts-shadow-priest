@@ -2,15 +2,15 @@
 
 A custom Slay the Spire 1 character inspired by World of Warcraft's Shadow Priest archetype.
 
-Survive while applying distinct damage-over-time debuffs and attacking afflicted enemies to generate Insanity. At 100 Insanity, gain a retained activation card and choose when to unleash a temporary Voidform with cheaper, stronger Attack cards.
+Survive while applying distinct damage-over-time debuffs. Attack hits and DoT ticks generate Insanity. At 100 Insanity, gain a retained activation card and choose when to unleash a temporary Voidform with cheaper, stronger Attack cards.
 
 The [Voidform activation card](docs/voidform-activation.md) costs 0 energy, has Retain, and exhausts when played. The prototype holds one charge at a time.
 
 ## Project status
 
-Version 0.1.0 is a playable prototype with 58 collectible cards: four starters, 51 ordinary reward cards (21 Common, 19 Uncommon, 11 Rare), and three automatically equipped Legendaries. The latest rework adds nine cards, more ways to apply DoTs, Haste-enhanced X cards, targeted Penance healing, and shared keyword rules. Touch and Pain cap at five stacks; Madness has no cap and ticks for half its stacks rounded up. All three tick at player turn end and scale with Mastery. Direct Attack hits generate 5 Insanity per unique DoT; Mind Spike also grants 10 explicitly. Each damage event that removes the priest's HP in combat grants another 5 Insanity, including self-damage.
+Version 0.1.0 is a playable prototype with 65 collectible cards: four starters, 58 ordinary reward cards (26 Common, 21 Uncommon, 11 Rare), and three automatically equipped Legendaries. The latest pass adds seven cards, more common DoT applications, defensive engines, a setup tutor, and revised Insanity generation. Touch and Pain cap at five stacks; Madness has no cap and ticks for half its stacks rounded up. All three tick at player turn end and scale with Mastery. Direct Attack hits generate 10 Insanity independently of DoTs; each natural or triggered DoT tick grants 1. Mind Spike also grants 10 explicitly. Each damage event that removes the priest's HP in combat grants another 5 Insanity, including self-damage.
 
-The priest wears Transcendence-inspired regalia, glows purple in Voidform, and displays Insanity beneath the energy orb. Card portraits use matching WoW icons or thematic original art; Protected Channel currently reuses the original Shadow Committal illustration. Ordinary Voidform ends with a full Recharge turn. Surrender to Madness can sustain it for combat at the cost of a preventable or cleanseable damage penalty. Seven class reward relics are implemented, including Improved Voidform's carryover until three Attack plays. Blood Magic's latest revision and the three relics marked `?` remain drafts. Full-run balance testing remains necessary. See the [keyword and card rework](docs/card-batch-07.md) and [relic implementation](docs/relic-implementation.md) for implementation and validation details.
+The priest wears Transcendence-inspired regalia, glows purple in Voidform, and displays Insanity beneath the energy orb. Card portraits use matching WoW icons or thematic original art; Protected Channel currently reuses the original Shadow Committal illustration. Ordinary Voidform ends with a full Recharge turn. Surrender to Madness can sustain it for combat at the cost of a preventable or cleanseable damage penalty. Seven class reward relics are implemented, including Improved Voidform's carryover until three Attack plays. The three relics marked `?` remain drafts. Full-run balance testing remains necessary. See the [setup and defense revision](docs/card-batch-08.md) and [relic implementation](docs/relic-implementation.md) for implementation and validation details.
 
 ## Build and play on Windows
 
@@ -30,6 +30,7 @@ For a desktop launcher, run `./scripts/install-desktop-shortcut.ps1` once, then 
 
 ## Design documents
 
+- [Setup and defense revision](docs/card-batch-08.md): seven new cards, per-hit/tick Insanity, non-stacking Atonement, Searing Nightmare's Power redesign, and focused validation.
 - [Keyword and card rework](docs/card-batch-07.md): nine new cards, Haste, decaying Madness, revised Insanity, and regression coverage.
 - [Next design priorities](docs/next-design-priorities.md): focused gaps and a full-run playtest checklist.
 - [Sixth card batch](docs/card-batch-06.md): healing/draw reworks, automatic Legendary equipment, and artwork.

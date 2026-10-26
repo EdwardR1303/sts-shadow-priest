@@ -7,7 +7,10 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import shadowpriest.powers.*;
 /** One shared player-end-turn trigger; skipped enemy actions still take their DoT damage. */
 public final class DotTiming {
- public static void tick(){for(AbstractMonster m:AbstractDungeon.getMonsters().monsters)if(!m.isDeadOrEscaped())
+ public static void tick(){
+  AbstractPower weaving=AbstractDungeon.player.getPower(ShadowWeavingPower.POWER_ID);
+  if(weaving instanceof ShadowWeavingPower)((ShadowWeavingPower)weaving).beforeDots();
+  for(AbstractMonster m:AbstractDungeon.getMonsters().monsters)if(!m.isDeadOrEscaped())
   for(AbstractPower p:new java.util.ArrayList<>(m.powers)){
    if(p instanceof ShadowDotPower)((ShadowDotPower)p).naturalTick();
    else if(p instanceof MadnessPower)((MadnessPower)p).naturalTick();

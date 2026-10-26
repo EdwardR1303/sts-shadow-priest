@@ -73,6 +73,13 @@ final class StarterCardArt {
             case ShadowCrash.ID: icon = "cards/icons/shadow_crash.jpg"; break;
             case SearingNightmare.ID: icon = "cards/icons/searing_nightmare.jpg"; break;
             case ProtectedChannel.ID: icon = "cards/icons/shadow_committal.png"; break;
+            case ShadowWordTorment.ID: icon = "cards/icons/shadow_word_torment.png"; break;
+            case MindTrauma.ID: icon = "cards/icons/mind_trauma.jpg"; break;
+            case VoidTendrils.ID: icon = "cards/icons/void_tendrils.jpg"; break;
+            case EncroachingShadows.ID: icon = "cards/icons/encroaching_shadows.jpg"; break;
+            case FocusedWill.ID: icon = "cards/icons/focused_will.jpg"; break;
+            case ShadowWeaving.ID: icon = "cards/icons/shadow_weaving.jpg"; break;
+            case DarkRevelation.ID: icon = "cards/icons/dark_revelation.jpg"; break;
             default: return null;
         }
         if (CACHE.containsKey(id)) return CACHE.get(id);

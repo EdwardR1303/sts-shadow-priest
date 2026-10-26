@@ -8,7 +8,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import shadowpriest.powers.*;
 public class ProtectedChannel extends PriestCard {
  public static final String ID="shadowpriest:ProtectedChannel";
- public ProtectedChannel(){super(ID,2,CardType.POWER,CardRarity.UNCOMMON,CardTarget.SELF);baseMagicNumber=magicNumber=3;}
- @Override public void use(AbstractPlayer p,AbstractMonster m){addToBot(new ApplyPowerAction(p,p,new ProtectedChannelPower(p,magicNumber),magicNumber));}
+ public ProtectedChannel(){super(ID,2,CardType.POWER,CardRarity.UNCOMMON,CardTarget.SELF);baseMagicNumber=magicNumber=3;baseBlock=6;}
+ @Override public void use(AbstractPlayer p,AbstractMonster m){addToBot(new GainBlockAction(p,p,block));addToBot(new ApplyPowerAction(p,p,new ProtectedChannelPower(p,magicNumber),magicNumber));}
  @Override public void upgrade(){if(!upgraded){upgradeName();upgradeMagicNumber(2);}}
 }

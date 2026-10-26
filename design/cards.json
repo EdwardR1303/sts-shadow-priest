@@ -47,7 +47,7 @@
         }
       },
       "rulesNotes": [
-        "Resolve the explicit 10 Insanity after the hit, in addition to normal per-DoT hit generation. It does not require a DoT or enemy HP loss. All Insanity gains obey the shared cap and ready, Voidform, and Recharge restrictions.",
+        "Resolve the explicit 10 Insanity after the hit, in addition to normal ten-Insanity-per-hit generation. It does not require a DoT or enemy HP loss. All Insanity gains obey the shared cap and ready, Voidform, and Recharge restrictions.",
         "Shared keyword definitions in keywords.md apply. Implemented in the keyword and card rework."
       ],
       "balanceNotes": "Prototype values; full-run balance testing remains after implementation.",
@@ -223,28 +223,28 @@
       ],
       "startingCopies": 0,
       "tags": [],
-      "designIntent": "Hold the earned activation until a strong burst turn.",
+      "designIntent": "Reliable setup, defense, and usable Voidform timing; accepted October 26, 2026.",
       "base": {
         "cost": 0,
         "target": "SELF",
-        "text": "Retain. Enter Voidform. Exhaust.",
-        "stats": {},
+        "text": "Enter Voidform. Draw 1 card. Retain. Exhaust.",
+        "stats": {
+          "draw": 1
+        },
         "keywords": [
           "RETAIN",
           "EXHAUST"
         ],
         "effects": [
-          "Spend this card's ready charge and enter Voidform until the player's turn ends."
+          "Enter Voidform. Draw 1 card. Retain. Exhaust."
         ]
       },
       "upgrade": null,
       "rulesNotes": [
-        "Generated when the starter relic reaches 100 Insanity; not a permanent starter or reward.",
-        "One pending charge at a time. Full hands defer delivery. Copied or recovered cards cannot reuse a spent charge.",
-        "Voidform reduces Attack energy costs by 1 (minimum 0; excludes X-cost) and multiplies Attack damage by 1.5.",
-        "Insanity stops accumulating while ready or active; it resets when Voidform ends and after combat."
+        "Draw only after a valid activation succeeds. Preserve one-charge guards and full-hand delivery protection. Stale or copied invalid tokens cannot draw. Surrender does not receive this token-specific draw.",
+        "All Insanity sources obey the shared ready, active, and Recharge restrictions."
       ],
-      "balanceNotes": "Prototype values; balance is subject to playtesting.",
+      "balanceNotes": "Accepted starting values. Focused mechanics tests do not establish full-run balance.",
       "art": {
         "wowAbility": "Voidform",
         "icon": "",
@@ -262,40 +262,41 @@
       ],
       "startingCopies": 0,
       "tags": [],
-      "designIntent": "Bank defense before a burst turn.",
+      "designIntent": "Reliable setup, defense, and usable Voidform timing; accepted October 26, 2026.",
       "base": {
         "cost": 2,
         "target": "SELF",
-        "text": "Gain 10 Block and 1 Blur.",
+        "text": "Gain 12 Block and 1 Blur.",
         "stats": {
-          "block": 10,
+          "block": 12,
           "blur": 1
         },
         "keywords": [],
         "effects": [
-          "Gain 10 Block and 1 Blur."
+          "Gain 12 Block and 1 Blur."
         ]
       },
       "upgrade": {
-        "summary": "+5 Block.",
+        "summary": "Gain 16 Block instead.",
         "card": {
           "cost": 2,
           "target": "SELF",
-          "text": "Gain 15 Block and 1 Blur.",
+          "text": "Gain 16 Block and 1 Blur.",
           "stats": {
-            "block": 15,
+            "block": 16,
             "blur": 1
           },
           "keywords": [],
           "effects": [
-            "Gain 15 Block and 1 Blur."
+            "Gain 16 Block and 1 Blur."
           ]
         }
       },
       "rulesNotes": [
-        "Implementation edge cases: docs/card-batch-01.md."
+        "Dexterity applies once. Blur retains Block, not cards.",
+        "All Insanity sources obey the shared ready, active, and Recharge restrictions."
       ],
-      "balanceNotes": "First reward-card batch; numbers require human full-run balance testing.",
+      "balanceNotes": "Accepted starting values. Focused mechanics tests do not establish full-run balance.",
       "art": {
         "wowAbility": "Bulwark",
         "icon": "",
@@ -365,38 +366,39 @@
       ],
       "startingCopies": 0,
       "tags": [],
-      "designIntent": "Mitigate repeated small hits and self-damage.",
+      "designIntent": "Reliable setup, defense, and usable Voidform timing; accepted October 26, 2026.",
       "base": {
-        "cost": 1,
+        "cost": 0,
         "target": "SELF",
-        "text": "Until your next turn, whenever you would lose HP, lose 1 less.",
+        "text": "Until your next turn, lose 1 less HP whenever you would lose HP.",
         "stats": {
           "reduction": 1
         },
         "keywords": [],
         "effects": [
-          "Until your next turn, whenever you would lose HP, lose 1 less."
+          "Until your next turn, lose 1 less HP whenever you would lose HP."
         ]
       },
       "upgrade": {
-        "summary": "+1 HP-loss reduction.",
+        "summary": "Reduce each HP-loss event by 2 instead.",
         "card": {
-          "cost": 1,
+          "cost": 0,
           "target": "SELF",
-          "text": "Until your next turn, whenever you would lose HP, lose 2 less.",
+          "text": "Until your next turn, lose 2 less HP whenever you would lose HP.",
           "stats": {
             "reduction": 2
           },
           "keywords": [],
           "effects": [
-            "Until your next turn, whenever you would lose HP, lose 2 less."
+            "Until your next turn, lose 2 less HP whenever you would lose HP."
           ]
         }
       },
       "rulesNotes": [
-        "Implementation edge cases: docs/card-batch-01.md."
+        "Preserves existing stacking and HP-loss coverage, including self-damage. No upfront Block. Fully prevented damage generates no damage-taken Insanity.",
+        "All Insanity sources obey the shared ready, active, and Recharge restrictions."
       ],
-      "balanceNotes": "First reward-card batch; numbers require human full-run balance testing.",
+      "balanceNotes": "Accepted starting values. Focused mechanics tests do not establish full-run balance.",
       "art": {
         "wowAbility": "Fade",
         "icon": "",
@@ -523,41 +525,43 @@
       ],
       "startingCopies": 0,
       "tags": [],
-      "designIntent": "Reward full DoT setup with direct damage.",
+      "designIntent": "Reliable setup, defense, and usable Voidform timing; accepted October 26, 2026.",
       "base": {
         "cost": 1,
         "target": "ENEMY",
-        "text": "Deal 10 damage, plus 2 for each unique DoT on the target.",
+        "text": "Deal 10 damage, plus 2 per unique DoT on the target. Gain 10 Insanity.",
         "stats": {
           "damage": 10,
-          "bonusPerDot": 2
+          "bonusPerDot": 2,
+          "insanity": 10
         },
         "keywords": [],
         "effects": [
-          "Deal 10 damage, plus 2 for each unique DoT on the target."
+          "Deal 10 damage, plus 2 per unique DoT on the target. Gain 10 Insanity."
         ]
       },
       "upgrade": {
-        "summary": "Deal 12 base damage and gain 4 damage per unique DoT.",
+        "summary": "Base damage becomes 12; per-DoT damage becomes 4.",
         "card": {
           "cost": 1,
           "target": "ENEMY",
-          "text": "Deal 12 damage, plus 4 for each unique DoT on the target.",
+          "text": "Deal 12 damage, plus 4 per unique DoT on the target. Gain 10 Insanity.",
           "stats": {
             "damage": 12,
-            "bonusPerDot": 4
+            "bonusPerDot": 4,
+            "insanity": 10
           },
           "keywords": [],
           "effects": [
-            "Deal 12 damage, plus 4 for each unique DoT on the target."
+            "Deal 12 damage, plus 4 per unique DoT on the target. Gain 10 Insanity."
           ]
         }
       },
       "rulesNotes": [
-        "Count each of Touch, Pain, and Madness once before the hit, regardless of stacks. Apply normal Attack damage modifiers to the total.",
-        "Shared keyword definitions in keywords.md apply. Implemented in the keyword and card rework."
+        "Snapshot unique DoTs before the hit. Explicit Insanity follows damage even if the target dies, in addition to the universal ten per hit.",
+        "All Insanity sources obey the shared ready, active, and Recharge restrictions."
       ],
-      "balanceNotes": "Prototype values; full-run balance testing remains after implementation.",
+      "balanceNotes": "Accepted starting values. Focused mechanics tests do not establish full-run balance.",
       "art": {
         "wowAbility": "Mind Blast",
         "icon": "",
@@ -778,41 +782,40 @@
       ],
       "startingCopies": 0,
       "tags": [],
-      "designIntent": "Area damage and Insanity generation from multiple afflicted enemies.",
+      "designIntent": "Reliable setup, defense, and usable Voidform timing; accepted October 26, 2026.",
       "base": {
         "cost": "X",
         "target": "ALL_ENEMY",
-        "text": "Deal 5 damage to all enemies X times.",
+        "text": "Deal 6 damage to ALL enemies X times.",
         "stats": {
-          "damage": 5,
-          "xBonus": 0
+          "damage": 6
         },
         "keywords": [],
         "effects": [
-          "Deal 5 damage to all enemies X times."
+          "Deal 6 damage to ALL enemies X times."
         ]
       },
       "upgrade": {
-        "summary": "+1 hit on every enemy.",
+        "summary": "Repeat the damage X+1 times.",
         "card": {
           "cost": "X",
           "target": "ALL_ENEMY",
-          "text": "Deal 5 damage to all enemies X+1 times.",
+          "text": "Deal 6 damage to ALL enemies X+1 times.",
           "stats": {
-            "damage": 5,
-            "xBonus": 1
+            "damage": 6,
+            "extraHits": 1
           },
           "keywords": [],
           "effects": [
-            "Deal 5 damage to all enemies X+1 times."
+            "Deal 6 damage to ALL enemies X+1 times."
           ]
         }
       },
       "rulesNotes": [
-        "Implementation edge cases: docs/card-batch-01.md.",
-        "Uses effective X from keywords.md, including Haste and Chemical X at zero energy. Haste support is implemented."
+        "Uses effective X with Haste and Chemical X. No built-in Madness application. Each actual enemy hit grants ten Insanity; dead targets generate no additional hits.",
+        "All Insanity sources obey the shared ready, active, and Recharge restrictions."
       ],
-      "balanceNotes": "First reward-card batch; numbers require human full-run balance testing. Approved post-run buff: damage per hit increased from 3 to 5, retaining X+1 upgrades and existing effects. Further full-run balance testing remains.",
+      "balanceNotes": "Accepted starting values. Focused mechanics tests do not establish full-run balance.",
       "art": {
         "wowAbility": "Mind Sear",
         "icon": "",
@@ -934,41 +937,41 @@
       ],
       "startingCopies": 0,
       "tags": [],
-      "designIntent": "Make defensive setup turns advance the next burst.",
+      "designIntent": "Reliable setup, defense, and usable Voidform timing; accepted October 26, 2026.",
       "base": {
         "cost": 1,
         "target": "SELF",
-        "text": "At the end of your turn, gain 10 Insanity.",
+        "text": "Gain 20 Insanity. At the end of your turn, gain 10 Insanity.",
         "stats": {
-          "insanity": 10
+          "insanity": 20,
+          "insanityPerTurn": 10
         },
         "keywords": [],
         "effects": [
-          "Gain 10 Insanity at each player end of turn, subject to relic restrictions."
+          "Gain 20 Insanity. At the end of your turn, gain 10 Insanity."
         ]
       },
       "upgrade": {
-        "summary": "Gain 20 Insanity per turn instead of 10.",
+        "summary": "Ongoing gain becomes 20; immediate gain stays 20.",
         "card": {
           "cost": 1,
           "target": "SELF",
-          "text": "At the end of your turn, gain 20 Insanity.",
+          "text": "Gain 20 Insanity. At the end of your turn, gain 20 Insanity.",
           "stats": {
-            "insanity": 20
+            "insanity": 20,
+            "insanityPerTurn": 20
           },
           "keywords": [],
           "effects": [
-            "Gain 20 Insanity at each player end of turn, subject to relic restrictions."
+            "Gain 20 Insanity. At the end of your turn, gain 20 Insanity."
           ]
         }
       },
       "rulesNotes": [
-        "Multiple copies stack.",
-        "No gain while Voidform is ready or active.",
-        "Voidform recovery blocks all Insanity gain for the entire turn after entering Voidform, including this end-of-turn gain.",
-        "Reaching 10 at end of turn makes Enter Voidform available on the next player turn, subject to hand space."
+        "Immediate gain occurs on play, not each turn. Copies stack ongoing gain. Threshold crossings deliver the retained activation at the next legal opportunity.",
+        "All Insanity sources obey the shared ready, active, and Recharge restrictions."
       ],
-      "balanceNotes": "Watch whether stacking passive generation makes DoT setup unnecessary.",
+      "balanceNotes": "Accepted starting values. Focused mechanics tests do not establish full-run balance.",
       "art": {
         "wowAbility": "Reaping Madness",
         "icon": "reaping_madness.png",
@@ -1017,7 +1020,7 @@
         }
       },
       "rulesNotes": [
-        "Use only actual enemy HP removed by this direct hit, capped at HP before the hit. Exclude Block absorption, overkill, DoTs, and Psychic Link. Apply Madness afterward if the target survives; Artifact can block it. Do not trigger an immediate Madness tick. The initial hit counts only DoTs already present when it hits.",
+        "Use only actual enemy HP removed by this direct hit, capped at HP before the hit. Exclude Block absorption, overkill, DoTs, and Psychic Link. Apply Madness afterward if the target survives; Artifact can block it. Do not trigger an immediate Madness tick. The initial hit generates ten Insanity regardless of existing DoTs.",
         "Shared keyword definitions in keywords.md apply. Implemented in the keyword and card rework."
       ],
       "balanceNotes": "Prototype values; full-run balance testing remains after implementation.",
@@ -1130,7 +1133,7 @@
       },
       "rulesNotes": [
         "Measure position between player and target in either direction.",
-        "The hit precedes application; newly applied Touch does not generate Insanity for that hit.",
+        "The hit precedes application and generates ten Insanity regardless of Touch.",
         "Psychic Link can trigger newly applied Touch afterward.",
         "Artifact blocks each enemy application normally."
       ],
@@ -1598,56 +1601,47 @@
       "name": "Atonement",
       "status": "IMPLEMENTED",
       "type": "ATTACK",
-      "rarity": "COMMON",
+      "rarity": "UNCOMMON",
       "sources": [
         "REWARD_POOL"
       ],
       "startingCopies": 0,
-      "tags": [
-        "DEFENSE",
-        "DOT_SYNERGY"
-      ],
-      "designIntent": "Reward maintaining several unique DoTs with defense while attacking.",
+      "tags": [],
+      "designIntent": "Reliable setup, defense, and usable Voidform timing; accepted October 26, 2026.",
       "base": {
         "cost": 1,
-        "target": "SELF_AND_ENEMY",
-        "text": "Deal 5 damage. Gain 3 Block for each unique DoT on the target.",
+        "target": "ENEMY",
+        "text": "Deal 5 damage. Apply 2 Atonement.",
         "stats": {
           "damage": 5,
-          "blockPerDot": 3
+          "blockPerHit": 2
         },
         "keywords": [],
         "effects": [
-          "Snapshot the number of unique class DoTs on the target.",
-          "Deal 5 normal Attack damage.",
-          "Gain 3 Block per snapshotted DoT as one Block grant, with ordinary Block modifiers applied once."
+          "Deal 5 damage. Apply 2 Atonement."
         ]
       },
       "upgrade": {
-        "summary": "+2 damage and +1 Block per unique DoT.",
+        "summary": "Deal 7 damage and apply 3 Atonement.",
         "card": {
           "cost": 1,
-          "target": "SELF_AND_ENEMY",
-          "text": "Deal 7 damage. Gain 4 Block for each unique DoT on the target.",
+          "target": "ENEMY",
+          "text": "Deal 7 damage. Apply 3 Atonement.",
           "stats": {
             "damage": 7,
-            "blockPerDot": 4
+            "blockPerHit": 3
           },
           "keywords": [],
           "effects": [
-            "Snapshot the number of unique class DoTs on the target.",
-            "Deal 7 normal Attack damage.",
-            "Gain 4 Block per snapshotted DoT as one Block grant, with ordinary Block modifiers applied once."
+            "Deal 7 damage. Apply 3 Atonement."
           ]
         }
       },
       "rulesNotes": [
-        "Touch, Pain, and Madness each count once, regardless of stack count; Halo does not count.",
-        "Snapshot before the hit so killing the target does not erase the Block reward.",
-        "Dexterity applies once to the total, not once per DoT.",
-        "Use the ordinary single-hit Insanity and once-per-card Psychic Link rules."
+        "Atonement is a combat-long, Artifact-blockable debuff, not a DoT. Each direct Attack hit grants its fixed Block value, including fully blocked hits, without Dexterity scaling. Damage happens before application: replaying Atonement triggers the existing benefit. Applications do not stack; use the higher value (2 becomes 3, never 5 or a downgrade). No Exhaust. Equal or weaker reapplications do not consume Artifact. DoTs, Halo, and retaliation do not trigger it.",
+        "All Insanity sources obey the shared ready, active, and Recharge restrictions."
       ],
-      "balanceNotes": "At three DoTs the base Block is 9/12 before modifiers. Evaluate early fights without setup as well as free Voidform attacks.",
+      "balanceNotes": "Accepted starting values. Focused mechanics tests do not establish full-run balance.",
       "art": {
         "wowAbility": "Atonement",
         "icon": "ability_priest_atonement",
@@ -1769,49 +1763,42 @@
         "REWARD_POOL"
       ],
       "startingCopies": 0,
-      "tags": [
-        "DEFENSE",
-        "DOT_SYNERGY"
-      ],
-      "designIntent": "Give maintaining multiple DoTs a defensive payoff for one enemy turn.",
+      "tags": [],
+      "designIntent": "Reliable setup, defense, and usable Voidform timing; accepted October 26, 2026.",
       "base": {
         "cost": 0,
         "target": "ENEMY",
-        "text": "Until your next turn, the target deals 1 less Attack damage per unique DoT on it.",
+        "text": "Until your next turn, the target deals 1 less Attack damage, plus 1 less per unique DoT on it.",
         "stats": {
-          "reductionPerDot": 1,
-          "additionalReduction": 0
+          "baseReduction": 1,
+          "reductionPerDot": 1
         },
         "keywords": [],
         "effects": [
-          "Snapshot the number of unique class DoTs on the target.",
-          "Until the next player turn, reduce each incoming Attack hit from this target by that count before Block."
+          "Until your next turn, the target deals 1 less Attack damage, plus 1 less per unique DoT on it."
         ]
       },
       "upgrade": {
-        "summary": "Increase the total per-hit reduction by 1.",
+        "summary": "Base reduction becomes 2.",
         "card": {
           "cost": 0,
           "target": "ENEMY",
-          "text": "Until your next turn, the target deals 1 less Attack damage per unique DoT on it, plus 1 less.",
+          "text": "Until your next turn, the target deals 2 less Attack damage, plus 1 less per unique DoT on it.",
           "stats": {
-            "reductionPerDot": 1,
-            "additionalReduction": 1
+            "baseReduction": 2,
+            "reductionPerDot": 1
           },
           "keywords": [],
           "effects": [
-            "Snapshot the number of unique class DoTs on the target.",
-            "Until the next player turn, reduce each incoming Attack hit from this target by that count plus 1 before Block."
+            "Until your next turn, the target deals 2 less Attack damage, plus 1 less per unique DoT on it."
           ]
         }
       },
       "rulesNotes": [
-        "Snapshot Touch, Pain, and Madness, counted once each.",
-        "Each application is an Artifact-blockable debuff; copies add reduction for this turn.",
-        "Reduce outgoing normal Attack damage before Block, floored at zero; expire after the enemy turn.",
-        "With no DoTs, base does nothing; upgrade applies one reduction."
+        "Snapshot unique DoTs when played. Reduction applies per Attack hit, floors damage at zero, stacks for this turn, and is blocked by Artifact.",
+        "All Insanity sources obey the shared ready, active, and Recharge restrictions."
       ],
-      "balanceNotes": "Implemented; validate full-run balance, including repeated use and A20 Heart performance.",
+      "balanceNotes": "Accepted starting values. Focused mechanics tests do not establish full-run balance.",
       "art": {
         "wowAbility": "Mind Soothe",
         "icon": "spell_holy_mindsooth",
@@ -2113,7 +2100,7 @@
     {
       "id": "shadowpriest:BloodMagic",
       "name": "Blood Magic",
-      "status": "READY_FOR_REVIEW",
+      "status": "IMPLEMENTED",
       "type": "ATTACK",
       "rarity": "COMMON",
       "sources": [
@@ -2121,43 +2108,43 @@
       ],
       "startingCopies": 0,
       "tags": [],
-      "designIntent": "Combine immediate damage and DoT setup.",
+      "designIntent": "Reliable setup, defense, and usable Voidform timing; accepted October 26, 2026.",
       "base": {
         "cost": 2,
         "target": "ENEMY",
-        "text": "Deal 18 damage. Apply 3 Touch.",
+        "text": "Deal 14 damage. Apply 2 Touch and 2 Pain.",
         "stats": {
-          "damage": 18,
-          "touch": 3
+          "damage": 14,
+          "touch": 2,
+          "pain": 2
         },
         "keywords": [],
         "effects": [
-          "Deal 18 damage. Apply 3 Touch."
+          "Deal 14 damage. Apply 2 Touch and 2 Pain."
         ]
       },
       "upgrade": {
-        "summary": "Deal 24 damage and also apply 5 Pain.",
+        "summary": "Deal 18 damage; apply 3 Touch and 3 Pain.",
         "card": {
           "cost": 2,
           "target": "ENEMY",
-          "text": "Deal 24 damage. Apply 3 Touch and 5 Pain.",
+          "text": "Deal 18 damage. Apply 3 Touch and 3 Pain.",
           "stats": {
-            "damage": 24,
+            "damage": 18,
             "touch": 3,
-            "pain": 5
+            "pain": 3
           },
           "keywords": [],
           "effects": [
-            "Deal 24 damage. Apply 3 Touch and 5 Pain."
+            "Deal 18 damage. Apply 3 Touch and 3 Pain."
           ]
         }
       },
       "rulesNotes": [
-        "Resolve damage, then Touch, then upgraded Pain on the surviving target. Applications do not require HP loss. This revision has no self-damage. The draft retains the author's 24-damage upgrade; the proposed lower value has not been adopted.",
-        "Shared keyword definitions in keywords.md apply. This design awaits implementation.",
-        "Current build keeps the prior 2-energy 18/24-damage Attack with 3 HP loss until this draft is approved. Tithe Evasion no longer reduces its HP loss."
+        "Damage first, then independent Touch and Pain applications on a surviving target. Each can consume Artifact. No self-damage. Replaces both the old implementation and the earlier 18/24-damage draft.",
+        "All Insanity sources obey the shared ready, active, and Recharge restrictions."
       ],
-      "balanceNotes": "Prototype values; full-run balance testing remains after implementation.",
+      "balanceNotes": "Accepted starting values. Focused mechanics tests do not establish full-run balance.",
       "art": {
         "wowAbility": "Original Blood Magic concept",
         "icon": "blood_magic.png",
@@ -2226,40 +2213,41 @@
       ],
       "startingCopies": 0,
       "tags": [],
-      "designIntent": "Convert stored Insanity or active Voidform into defense.",
+      "designIntent": "Reliable setup, defense, and usable Voidform timing; accepted October 26, 2026.",
       "base": {
         "cost": 1,
         "target": "SELF",
-        "text": "Gain 1 Block for each 5 Insanity. Voidform counts as having 100 Insanity.",
+        "text": "Gain 5 Block, plus 1 Block per 10 Insanity. Voidform counts as 100 Insanity.",
         "stats": {
-          "insanity": 0,
-          "blockPerFiveInsanity": 1
+          "block": 5,
+          "insanityPerBlock": 10
         },
         "keywords": [],
         "effects": [
-          "Gain 1 Block for each 5 Insanity. Voidform counts as having 100 Insanity."
+          "Gain 5 Block, plus 1 Block per 10 Insanity. Voidform counts as 100 Insanity."
         ]
       },
       "upgrade": {
-        "summary": "Gain 20 Insanity first.",
+        "summary": "Base Block becomes 8; gain 1 additional Block per 5 Insanity instead.",
         "card": {
           "cost": 1,
           "target": "SELF",
-          "text": "Gain 20 Insanity. Gain 1 Block for each 5 Insanity. Voidform counts as having 100 Insanity.",
+          "text": "Gain 8 Block, plus 1 Block per 5 Insanity. Voidform counts as 100 Insanity.",
           "stats": {
-            "insanity": 20,
-            "blockPerFiveInsanity": 1
+            "block": 8,
+            "insanityPerBlock": 5
           },
           "keywords": [],
           "effects": [
-            "Gain 20 Insanity. Gain 1 Block for each 5 Insanity. Voidform counts as having 100 Insanity."
+            "Gain 8 Block, plus 1 Block per 5 Insanity. Voidform counts as 100 Insanity."
           ]
         }
       },
       "rulesNotes": [
-        "Resolve Insanity gain before calculating Block. All Insanity gain obeys the normal cap, ready/active restrictions, and recovery turn. Both ordinary and permanent Voidform count as 100. Grant Block once; Dexterity and ordinary Block modifiers apply once to the total."
+        "Round the Insanity quotient down. Add Dexterity once through the base component, with no second Dexterity application to the resource bonus. Grant combined Block once with normal Block modifiers. No Insanity gain. Ready or active Voidform uses 100; Recharge keeps the base Block. At 0/50/100 Insanity, base values are 5/10/15 or upgraded 8/18/28.",
+        "All Insanity sources obey the shared ready, active, and Recharge restrictions."
       ],
-      "balanceNotes": "Implemented; validate full-run balance, including repeated use and A20 Heart performance.",
+      "balanceNotes": "Accepted starting values. Focused mechanics tests do not establish full-run balance.",
       "art": {
         "wowAbility": "Void Shield",
         "icon": "inv12_apextalent_priest_voidshield",
@@ -2358,7 +2346,7 @@
         }
       },
       "rulesNotes": [
-        "Only the two named sources qualify, including Shadow Mend's combined debt tick. Exclude enemy Attacks, Beat of Death, Curses, Statuses, relics, and other sources. Floor each qualifying loss at zero. Track the highest benefit granted this combat: equal or weaker copies are unplayable, and an upgraded copy replaces the base benefit. Reset tracking after combat. Blood Magic's current draft no longer causes HP loss.",
+        "Only the two named sources qualify, including Shadow Mend's combined debt tick. Exclude enemy Attacks, Beat of Death, Curses, Statuses, relics, and other sources. Floor each qualifying loss at zero. Track the highest benefit granted this combat: equal or weaker copies are unplayable, and an upgraded copy replaces the base benefit. Reset tracking after combat. Blood Magic no longer causes HP loss.",
         "Shared keyword definitions in keywords.md apply. Implemented in the keyword and card rework."
       ],
       "balanceNotes": "Prototype values; full-run balance testing remains after implementation.",
@@ -2711,18 +2699,19 @@
       ],
       "startingCopies": 0,
       "tags": [],
-      "designIntent": "Provide a common Attack that establishes Touch.",
+      "designIntent": "Reliable setup, defense, and usable Voidform timing; accepted October 26, 2026.",
       "base": {
         "cost": 1,
         "target": "ENEMY",
-        "text": "Deal 5 damage. Apply 3 Touch.",
+        "text": "Deal 5 damage. Apply 3 Touch. Gain 10 Insanity.",
         "stats": {
           "damage": 5,
-          "stacks": 3
+          "touch": 3,
+          "insanity": 10
         },
         "keywords": [],
         "effects": [
-          "Deal 5 damage. Apply 3 Touch."
+          "Deal 5 damage. Apply 3 Touch. Gain 10 Insanity."
         ]
       },
       "upgrade": {
@@ -2730,22 +2719,23 @@
         "card": {
           "cost": 0,
           "target": "ENEMY",
-          "text": "Deal 5 damage. Apply 3 Touch.",
+          "text": "Deal 5 damage. Apply 3 Touch. Gain 10 Insanity.",
           "stats": {
             "damage": 5,
-            "stacks": 3
+            "touch": 3,
+            "insanity": 10
           },
           "keywords": [],
           "effects": [
-            "Deal 5 damage. Apply 3 Touch."
+            "Deal 5 damage. Apply 3 Touch. Gain 10 Insanity."
           ]
         }
       },
       "rulesNotes": [
-        "Deal damage before applying Touch to the surviving target. Touch application does not require HP loss; Artifact can prevent it.",
-        "Shared keyword definitions in keywords.md apply. Implemented in the keyword and card rework."
+        "Damage, then apply Touch to the surviving target, then explicit Insanity. Explicit gain does not require HP loss or a successful application.",
+        "All Insanity sources obey the shared ready, active, and Recharge restrictions."
       ],
-      "balanceNotes": "Prototype values; full-run balance testing remains after implementation.",
+      "balanceNotes": "Accepted starting values. Focused mechanics tests do not establish full-run balance.",
       "art": {
         "wowAbility": "Unfurling Darkness",
         "icon": "spell_priest_shadow-mend",
@@ -2969,39 +2959,41 @@
       ],
       "startingCopies": 0,
       "tags": [],
-      "designIntent": "Allow the X-cost package to attack while maintaining defense.",
+      "designIntent": "Reliable setup, defense, and usable Voidform timing; accepted October 26, 2026.",
       "base": {
         "cost": 2,
         "target": "SELF",
-        "text": "Whenever you play an X-cost card, gain 3 Block X times.",
+        "text": "Gain 6 Block. Whenever you play an X-cost card, gain 3 Block X times.",
         "stats": {
-          "block": 3
+          "block": 6,
+          "blockPerX": 3
         },
         "keywords": [],
         "effects": [
-          "Whenever you play an X-cost card, gain 3 Block X times."
+          "Gain 6 Block. Whenever you play an X-cost card, gain 3 Block X times."
         ]
       },
       "upgrade": {
-        "summary": "Gain 5 Block per instance instead.",
+        "summary": "Ongoing Block becomes 5 per instance; upfront stays 6.",
         "card": {
           "cost": 2,
           "target": "SELF",
-          "text": "Whenever you play an X-cost card, gain 5 Block X times.",
+          "text": "Gain 6 Block. Whenever you play an X-cost card, gain 5 Block X times.",
           "stats": {
-            "block": 5
+            "block": 6,
+            "blockPerX": 5
           },
           "keywords": [],
           "effects": [
-            "Whenever you play an X-cost card, gain 5 Block X times."
+            "Gain 6 Block. Whenever you play an X-cost card, gain 5 Block X times."
           ]
         }
       },
       "rulesNotes": [
-        "Use that card's effective X, including Haste and Chemical X even at zero energy. A printed X+1 upgrade adds no extra Protected Channel instance. Apply Dexterity and ordinary Block modifiers separately to each instance. Trigger once per qualifying card play and resolve after its effects. Free repeats use their preserved effective X without charging energy or adding bonuses twice.",
-        "Shared keyword definitions in keywords.md apply. Implemented in the keyword and card rework."
+        "Dexterity applies once to the upfront grant and separately to each later instance. Use effective X including Haste and Chemical X, but not printed X+1 upgrades. Trigger once per X-card play after its effects. Free repeats preserve X. Barrier blocks all gains.",
+        "All Insanity sources obey the shared ready, active, and Recharge restrictions."
       ],
-      "balanceNotes": "Prototype values; full-run balance testing remains after implementation.",
+      "balanceNotes": "Accepted starting values. Focused mechanics tests do not establish full-run balance.",
       "art": {
         "wowAbility": "",
         "icon": "",
@@ -3063,49 +3055,46 @@
       "id": "shadowpriest:SearingNightmare",
       "name": "Searing Nightmare",
       "status": "IMPLEMENTED",
-      "type": "ATTACK",
+      "type": "POWER",
       "rarity": "RARE",
       "sources": [
         "REWARD_POOL"
       ],
       "startingCopies": 0,
       "tags": [],
-      "designIntent": "Provide an area Attack and accumulating Madness application that scale with channeling.",
+      "designIntent": "Reliable setup, defense, and usable Voidform timing; accepted October 26, 2026.",
       "base": {
-        "cost": "X",
-        "target": "ALL_ENEMY",
-        "text": "X times: deal 5 damage to ALL enemies, then apply 5 Madness to ALL enemies.",
+        "cost": 2,
+        "target": "SELF",
+        "text": "Your direct Attack hits apply 1 Madness to the enemy hit.",
         "stats": {
-          "damage": 5,
-          "stacks": 5
+          "madnessPerHit": 1
         },
         "keywords": [],
         "effects": [
-          "X times: deal 5 damage to ALL enemies, then apply 5 Madness to ALL enemies."
+          "Your direct Attack hits apply 1 Madness to the enemy hit."
         ]
       },
       "upgrade": {
-        "summary": "Repeat X+1 times instead of X.",
+        "summary": "Cost becomes 1 energy.",
         "card": {
-          "cost": "X",
-          "target": "ALL_ENEMY",
-          "text": "X+1 times: deal 5 damage to ALL enemies, then apply 5 Madness to ALL enemies.",
+          "cost": 1,
+          "target": "SELF",
+          "text": "Your direct Attack hits apply 1 Madness to the enemy hit.",
           "stats": {
-            "damage": 5,
-            "stacks": 5,
-            "extraRepeats": 1
+            "madnessPerHit": 1
           },
           "keywords": [],
           "effects": [
-            "X+1 times: deal 5 damage to ALL enemies, then apply 5 Madness to ALL enemies."
+            "Your direct Attack hits apply 1 Madness to the enemy hit."
           ]
         }
       },
       "rulesNotes": [
-        "For each repetition, finish the area Attack hits, then apply Madness to surviving enemies before starting the next repetition. Applications do not require HP loss, but Artifact can block each separately. Madness does not tick immediately. Later hits can generate Insanity from Madness applied by earlier repetitions. Use effective X, including Haste and Chemical X; add the upgrade's extra repetition afterward. Psychic Link triggers once per card play.",
-        "Shared keyword definitions in keywords.md apply. Implemented in the keyword and card rework."
+        "Replaces the X-cost Attack. Each direct hit applies one Madness to the surviving target, including fully blocked hits. AoE checks each enemy and multihits trigger per hit. Artifact can block each application. Copies stack their coefficient. DoT ticks, Psychic Link, Halo, and retaliation do not trigger applications. The Power itself deals no damage and applies no immediate DoT.",
+        "All Insanity sources obey the shared ready, active, and Recharge restrictions."
       ],
-      "balanceNotes": "Prototype values; full-run balance testing remains after implementation.",
+      "balanceNotes": "Accepted starting values. Focused mechanics tests do not establish full-run balance.",
       "art": {
         "wowAbility": "Searing Nightmare",
         "icon": "ability_priest_voidentropy",
@@ -3158,6 +3147,368 @@
         "wowAbility": "Dark Evangelism",
         "icon": "spell_mage_presenceofmind",
         "direction": "Verified WoW ability icon with the shared violet-and-gold frame. See licenses/Warcraft-artwork.txt."
+      }
+    },
+    {
+      "id": "shadowpriest:ShadowWordTorment",
+      "name": "Shadow Word: Torment",
+      "status": "IMPLEMENTED",
+      "type": "ATTACK",
+      "rarity": "COMMON",
+      "sources": [
+        "REWARD_POOL"
+      ],
+      "startingCopies": 0,
+      "tags": [],
+      "designIntent": "Reliable setup, defense, and usable Voidform timing; accepted October 26, 2026.",
+      "base": {
+        "cost": 1,
+        "target": "ENEMY",
+        "text": "Deal 6 damage. Apply 3 Pain.",
+        "stats": {
+          "damage": 6,
+          "pain": 3
+        },
+        "keywords": [],
+        "effects": [
+          "Deal 6 damage. Apply 3 Pain."
+        ]
+      },
+      "upgrade": {
+        "summary": "Deal 9 damage and apply 5 Pain.",
+        "card": {
+          "cost": 1,
+          "target": "ENEMY",
+          "text": "Deal 9 damage. Apply 5 Pain.",
+          "stats": {
+            "damage": 9,
+            "pain": 5
+          },
+          "keywords": [],
+          "effects": [
+            "Deal 9 damage. Apply 5 Pain."
+          ]
+        }
+      },
+      "rulesNotes": [
+        "Damage first, then Pain on the surviving target. Application requires no HP loss and respects Artifact.",
+        "All Insanity sources obey the shared ready, active, and Recharge restrictions."
+      ],
+      "balanceNotes": "Accepted starting values. Focused mechanics tests do not establish full-run balance.",
+      "art": {
+        "wowAbility": "Original Shadow Priest spell",
+        "icon": "shadow_word_torment.png",
+        "direction": "Original generated tormented skull and violet tendrils; shared card frame."
+      }
+    },
+    {
+      "id": "shadowpriest:MindTrauma",
+      "name": "Mind Trauma",
+      "status": "IMPLEMENTED",
+      "type": "ATTACK",
+      "rarity": "COMMON",
+      "sources": [
+        "REWARD_POOL"
+      ],
+      "startingCopies": 0,
+      "tags": [],
+      "designIntent": "Reliable setup, defense, and usable Voidform timing; accepted October 26, 2026.",
+      "base": {
+        "cost": 1,
+        "target": "ENEMY",
+        "text": "Deal 4 damage. Apply 4 Madness. Gain 10 Insanity.",
+        "stats": {
+          "damage": 4,
+          "madness": 4,
+          "insanity": 10
+        },
+        "keywords": [],
+        "effects": [
+          "Deal 4 damage. Apply 4 Madness. Gain 10 Insanity."
+        ]
+      },
+      "upgrade": {
+        "summary": "Deal 7 damage and apply 6 Madness.",
+        "card": {
+          "cost": 1,
+          "target": "ENEMY",
+          "text": "Deal 7 damage. Apply 6 Madness. Gain 10 Insanity.",
+          "stats": {
+            "damage": 7,
+            "madness": 6,
+            "insanity": 10
+          },
+          "keywords": [],
+          "effects": [
+            "Deal 7 damage. Apply 6 Madness. Gain 10 Insanity."
+          ]
+        }
+      },
+      "rulesNotes": [
+        "Damage, then Madness on the surviving target, then explicit Insanity. Madness does not require HP loss; Artifact can block it. Explicit Insanity still resolves.",
+        "All Insanity sources obey the shared ready, active, and Recharge restrictions."
+      ],
+      "balanceNotes": "Accepted starting values. Focused mechanics tests do not establish full-run balance.",
+      "art": {
+        "wowAbility": "Mind Trauma",
+        "icon": "spell_shadow_mindflay",
+        "direction": "Matching WoW icon with shared card frame."
+      }
+    },
+    {
+      "id": "shadowpriest:VoidTendrils",
+      "name": "Void Tendrils",
+      "status": "IMPLEMENTED",
+      "type": "SKILL",
+      "rarity": "COMMON",
+      "sources": [
+        "REWARD_POOL"
+      ],
+      "startingCopies": 0,
+      "tags": [],
+      "designIntent": "Reliable setup, defense, and usable Voidform timing; accepted October 26, 2026.",
+      "base": {
+        "cost": 1,
+        "target": "ALL_ENEMY",
+        "text": "Gain 4 Block for each enemy. Apply 2 Pain to ALL attacking enemies.",
+        "stats": {
+          "block": 4,
+          "pain": 2
+        },
+        "keywords": [],
+        "effects": [
+          "Gain 4 Block for each enemy. Apply 2 Pain to ALL attacking enemies."
+        ]
+      },
+      "upgrade": {
+        "summary": "Gain 5 Block per enemy and apply 3 Pain.",
+        "card": {
+          "cost": 1,
+          "target": "ALL_ENEMY",
+          "text": "Gain 5 Block for each enemy. Apply 3 Pain to ALL attacking enemies.",
+          "stats": {
+            "block": 5,
+            "pain": 3
+          },
+          "keywords": [],
+          "effects": [
+            "Gain 5 Block for each enemy. Apply 3 Pain to ALL attacking enemies."
+          ]
+        }
+      },
+      "rulesNotes": [
+        "Count living enemies. Grant Block separately per enemy, applying Dexterity and other Block modifiers to every grant. Check attack intents when played, including attack/buff, attack/debuff, and attack/defend. Only those enemies receive Pain. Artifact blocks application, not Block.",
+        "All Insanity sources obey the shared ready, active, and Recharge restrictions."
+      ],
+      "balanceNotes": "Accepted starting values. Focused mechanics tests do not establish full-run balance.",
+      "art": {
+        "wowAbility": "Void Tendrils",
+        "icon": "spell_priest_voidtendrils",
+        "direction": "Matching WoW icon with shared card frame."
+      }
+    },
+    {
+      "id": "shadowpriest:EncroachingShadows",
+      "name": "Encroaching Shadows",
+      "status": "IMPLEMENTED",
+      "type": "SKILL",
+      "rarity": "COMMON",
+      "sources": [
+        "REWARD_POOL"
+      ],
+      "startingCopies": 0,
+      "tags": [],
+      "designIntent": "Reliable setup, defense, and usable Voidform timing; accepted October 26, 2026.",
+      "base": {
+        "cost": 1,
+        "target": "ENEMY",
+        "text": "Gain 5 Block. Apply 3 Madness.",
+        "stats": {
+          "block": 5,
+          "madness": 3
+        },
+        "keywords": [],
+        "effects": [
+          "Gain 5 Block. Apply 3 Madness."
+        ]
+      },
+      "upgrade": {
+        "summary": "Gain 8 Block and apply 5 Madness.",
+        "card": {
+          "cost": 1,
+          "target": "ENEMY",
+          "text": "Gain 8 Block. Apply 5 Madness.",
+          "stats": {
+            "block": 8,
+            "madness": 5
+          },
+          "keywords": [],
+          "effects": [
+            "Gain 8 Block. Apply 5 Madness."
+          ]
+        }
+      },
+      "rulesNotes": [
+        "Block resolves first with Dexterity once. Artifact can prevent Madness but not Block. No immediate DoT tick.",
+        "All Insanity sources obey the shared ready, active, and Recharge restrictions."
+      ],
+      "balanceNotes": "Accepted starting values. Focused mechanics tests do not establish full-run balance.",
+      "art": {
+        "wowAbility": "Encroaching Shadows",
+        "icon": "spell_shadow_painspike",
+        "direction": "Matching Priest talent icon with shared card frame."
+      }
+    },
+    {
+      "id": "shadowpriest:FocusedWill",
+      "name": "Focused Will",
+      "status": "IMPLEMENTED",
+      "type": "SKILL",
+      "rarity": "COMMON",
+      "sources": [
+        "REWARD_POOL"
+      ],
+      "startingCopies": 0,
+      "tags": [],
+      "designIntent": "Reliable setup, defense, and usable Voidform timing; accepted October 26, 2026.",
+      "base": {
+        "cost": 1,
+        "target": "SELF",
+        "text": "Gain 7 Block. Gain 10 Insanity.",
+        "stats": {
+          "block": 7,
+          "insanity": 10
+        },
+        "keywords": [],
+        "effects": [
+          "Gain 7 Block. Gain 10 Insanity."
+        ]
+      },
+      "upgrade": {
+        "summary": "Gain 10 Block and 15 Insanity.",
+        "card": {
+          "cost": 1,
+          "target": "SELF",
+          "text": "Gain 10 Block. Gain 15 Insanity.",
+          "stats": {
+            "block": 10,
+            "insanity": 15
+          },
+          "keywords": [],
+          "effects": [
+            "Gain 10 Block. Gain 15 Insanity."
+          ]
+        }
+      },
+      "rulesNotes": [
+        "Block with Dexterity once, then immediate explicit Insanity. No enemy Attack prerequisite or pending trigger.",
+        "All Insanity sources obey the shared ready, active, and Recharge restrictions."
+      ],
+      "balanceNotes": "Accepted starting values. Focused mechanics tests do not establish full-run balance.",
+      "art": {
+        "wowAbility": "Focused Will",
+        "icon": "ability_priest_focusedwill",
+        "direction": "Matching WoW icon with shared card frame."
+      }
+    },
+    {
+      "id": "shadowpriest:ShadowWeaving",
+      "name": "Shadow Weaving",
+      "status": "IMPLEMENTED",
+      "type": "POWER",
+      "rarity": "COMMON",
+      "sources": [
+        "REWARD_POOL"
+      ],
+      "startingCopies": 0,
+      "tags": [],
+      "designIntent": "Reliable setup, defense, and usable Voidform timing; accepted October 26, 2026.",
+      "base": {
+        "cost": 1,
+        "target": "SELF",
+        "text": "At the end of your turn, gain 2 Block per active DoT across ALL enemies.",
+        "stats": {
+          "blockPerDot": 2
+        },
+        "keywords": [],
+        "effects": [
+          "At the end of your turn, gain 2 Block per active DoT across ALL enemies."
+        ]
+      },
+      "upgrade": {
+        "summary": "Gain 3 Block per active DoT instead.",
+        "card": {
+          "cost": 1,
+          "target": "SELF",
+          "text": "At the end of your turn, gain 3 Block per active DoT across ALL enemies.",
+          "stats": {
+            "blockPerDot": 3
+          },
+          "keywords": [],
+          "effects": [
+            "At the end of your turn, gain 3 Block per active DoT across ALL enemies."
+          ]
+        }
+      },
+      "rulesNotes": [
+        "Count Touch, Pain, and Madness once each per living enemy before natural ticks, including final one-stack ticks. Combine the total into one Block grant with Dexterity once. No DoTs means no Block, including no Dexterity-only grant. Copies add coefficients before the one grant. Barrier prevents the gain.",
+        "All Insanity sources obey the shared ready, active, and Recharge restrictions."
+      ],
+      "balanceNotes": "Accepted starting values. Focused mechanics tests do not establish full-run balance.",
+      "art": {
+        "wowAbility": "Shadow Weaving (archived Priest talent)",
+        "icon": "spell_shadow_blackplague",
+        "direction": "Matching classic WoW talent icon with shared card frame."
+      }
+    },
+    {
+      "id": "shadowpriest:DarkRevelation",
+      "name": "Dark Revelation",
+      "status": "IMPLEMENTED",
+      "type": "SKILL",
+      "rarity": "UNCOMMON",
+      "sources": [
+        "REWARD_POOL"
+      ],
+      "startingCopies": 0,
+      "tags": [],
+      "designIntent": "Reliable setup, defense, and usable Voidform timing; accepted October 26, 2026.",
+      "base": {
+        "cost": 1,
+        "target": "NONE",
+        "text": "Choose a DoT application card from your draw pile. Put it into your hand. It costs 0 this turn. Exhaust.",
+        "stats": {},
+        "keywords": [
+          "EXHAUST"
+        ],
+        "effects": [
+          "Choose a DoT application card from your draw pile. Put it into your hand. It costs 0 this turn. Exhaust."
+        ]
+      },
+      "upgrade": {
+        "summary": "Cost becomes 0 energy.",
+        "card": {
+          "cost": 0,
+          "target": "NONE",
+          "text": "Choose a DoT application card from your draw pile. Put it into your hand. It costs 0 this turn. Exhaust.",
+          "stats": {},
+          "keywords": [
+            "EXHAUST"
+          ],
+          "effects": [
+            "Choose a DoT application card from your draw pile. Put it into your hand. It costs 0 this turn. Exhaust."
+          ]
+        }
+      },
+      "rulesNotes": [
+        "Choose visibly even with one option. Direct applications include conditional Shadow Word: Madness, Dark Void, and Void Blast; the chosen card retains its normal application conditions. Existing-only extension and enabling Powers such as Searing Nightmare are excluded. Search only the draw pile; no shuffle or on-draw triggers. A full hand sends the chosen card to discard. Cost resets normally after this turn. The accepted roster currently has no eligible X-cost application cards.",
+        "All Insanity sources obey the shared ready, active, and Recharge restrictions."
+      ],
+      "balanceNotes": "Accepted starting values. Focused mechanics tests do not establish full-run balance.",
+      "art": {
+        "wowAbility": "Dark Revelation (Shadow of Zul spell)",
+        "icon": "ability_priest_clarityofpower",
+        "direction": "Matching WoW spell icon with shared card frame."
       }
     }
   ]

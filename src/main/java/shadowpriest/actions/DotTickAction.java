@@ -12,11 +12,17 @@ public class DotTickAction extends DamageAction {
     private final AbstractCreature victim;
     private final boolean touch;
     private boolean healed;
+    private boolean countedTick;
     public DotTickAction(AbstractCreature target, int damage, boolean touch) {
         super(target, new DamageInfo(AbstractDungeon.player, damage, DamageInfo.DamageType.HP_LOSS), AttackEffect.POISON);
         victim = target; this.touch = touch;
     }
     @Override public void update() {
+        if(!countedTick) {
+            countedTick=true;
+            shadowpriest.relics.VoidformRelic relic=shadowpriest.relics.VoidformRelic.current();
+            if(relic!=null && !victim.isDeadOrEscaped()) relic.gainInsanity(shadowpriest.mechanics.InsanityState.PER_TICK);
+        }
         int before = victim.currentHealth;
         AbstractPlayer p = AbstractDungeon.player;
         int healing = touch && p.hasPower(VampiricEmbracePower.POWER_ID)

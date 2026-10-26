@@ -13,12 +13,12 @@ public class Bulwark extends PriestCard {
     public static final String ID = "shadowpriest:Bulwark";
     public Bulwark() {
         super(ID, 2, CardType.SKILL, CardRarity.COMMON, CardTarget.SELF);
-        baseBlock = 10;
+        baseBlock = 12;
     }
     @Override public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot(new GainBlockAction(p, p, block)); addToBot(new ApplyPowerAction(p, p, new BlurPower(p, 1), 1));
     }
     @Override public void upgrade() {
-        if (!upgraded) { upgradeName(); upgradeBlock(5); }
+        if (!upgraded) { upgradeName(); upgradeBlock(4); }
     }
 }
