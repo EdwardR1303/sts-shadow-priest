@@ -47,9 +47,9 @@ There is no standard card-style upgrade field. If a relic replaces or improves a
 
 ### Idol of C'Thun
 
-- **Effect:** At the start of combat, add a free Tentacle Slam to your hand.
-- **Rules:** Generate a combat-only copy, separate from the permanent deck. The free cost is agreed; whether it lasts for the opening turn or the entire combat is pending clarification. Proposed copy is unupgraded.
-- **Status:** Free generated card agreed; duration clarification pending. Not implemented.
+- **Effect:** At the start of combat, add an unupgraded Tentacle Slam to your hand. It costs 0 for the entire combat.
+- **Rules:** Generate one combat-only copy, separate from the permanent deck. Its cost is 0 for the entire combat, including after discard and redraw; the discount is not consumed by its first play. Other copies of Tentacle Slam are unaffected.
+- **Status:** Agreed; not implemented.
 
 
 ## Rare
@@ -77,12 +77,12 @@ There is no standard card-style upgrade field. If a relic replaces or improves a
 ### Idol of Yogg-Saron
 - **Effect:** Entering Voidform grants 3 energy
 
-### Improved Voidform ?
+### Improved Voidform
 
-- **Effect:** Voidform lasts until at least 3 Attacks have been played, then ends at the end of the turn.
-- **Rules:** Replaces the previous 10-Insanity-per-card draft. Proposed interpretation: count Attack card plays during the current activation across turns; fewer than 3 lets Voidform carry into the next turn, and reaching 3 allows it to end at that turn's end rather than immediately. Multi-hit cards count once. This interpretation and the Surrender interaction are awaiting clarification.
-- **Balance note:** Under that interpretation, playing fewer than 3 Attacks can preserve Voidform indefinitely while using Skills/DoTs, including maximum Void Shield and Shadow Committal benefits. Decide whether that is intentional or whether carryover needs a limit.
-- **Status:** New direction proposed; exact timing unreviewed. Not implemented.
+- **Effect:** Voidform persists across turns until you have played at least 3 Attack cards during that activation, then ends at the end of that turn.
+- **Rules:** Reset the Attack counter on each successful Voidform entry. Count Attack card plays cumulatively during that activation, not hits; a multi-hit card counts once. With fewer than 3, carry Voidform through the enemy turn and into the following player turn. Reaching 3 does not end it immediately: all further cards that turn still benefit, and ordinary Voidform ends at that player turn's end. Skills and Powers do not advance the counter. Surrender to Madness remains permanent. Insanity stays locked while active; reset it and begin the usual Recharge only when ordinary Voidform actually ends. Combat end clears the counter and stance. This replaces the old Insanity-drain draft.
+- **Balance note:** The accepted timing has no separate turn limit. Playing fewer than 3 Attacks can preserve Voidform while using Skills/DoTs, including maximum Void Shield and Shadow Committal benefits. Evaluate that Boss-relic interaction during playtesting; do not silently impose a carryover limit.
+- **Status:** Timing and Surrender interaction agreed; not implemented.
 
 ### Void Vengeance
 
