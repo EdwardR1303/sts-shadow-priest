@@ -48,6 +48,7 @@ public class ShadowPriestMod implements EditCharactersSubscriber, EditCardsSubsc
         BaseMod.addKeyword("shadowpriest", "Vampiric Touch", new String[]{"touch"}, "Before the enemy acts, deal #b5 plus Mastery damage and remove one stack. Ignores Block and Strength. Applications add remaining ticks, capped at #b5.");
         BaseMod.addKeyword("shadowpriest", "Shadow Word: Pain", new String[]{"pain"}, "Before the enemy acts, deal #b3 plus Mastery damage and remove one stack. Ignores Block and Strength. Applications add remaining ticks, capped at #b5.");
         BaseMod.addKeyword("shadowpriest", "Madness", new String[]{"madness"}, "At the end of your turn, deal half the stacks rounded up plus Mastery damage, ignoring Block. Remove #b1 stack. No stack cap.");
+        BaseMod.addKeyword("shadowpriest", "Extend", new String[]{"extend"}, "Add stacks to existing Touch and Pain. Never creates a missing DoT. Does not consume Artifact.");
         BaseMod.addKeyword("shadowpriest", "Haste", new String[]{"haste"}, "Each stack adds #b1 to effective X, including at zero energy. Stacks with Chemical X.");
         BaseMod.addKeyword("shadowpriest", "Recharge", new String[]{"recharge"}, "After Voidform ends, no Insanity can be gained until the end of the following player turn.");
         BaseMod.addKeyword("shadowpriest", "DoT", new String[]{"dot", "dots"}, "Touch, Pain, and Madness. Each counts once. Tick at the end of your turn, ignoring Block and Attack modifiers; Mastery increases their damage.");

@@ -52,7 +52,7 @@ public final class ReworkSmokeTest {
  public static void append(Queue<Runnable> q){
  q.add(()->{p=AbstractDungeon.player;m=AbstractDungeon.getMonsters().monsters.get(0);other=AbstractDungeon.getMonsters().monsters.get(1);relic=VoidformRelic.current();reset();
   check(AbstractDungeon.commonCardPool.size()==21&&AbstractDungeon.uncommonCardPool.size()==19&&AbstractDungeon.rareCardPool.size()==11,"Reworked reward pools contain 21 commons, 19 uncommons and 11 rares");
-  for(String id:new String[]{"MindSpike","VampiricTouch","MindFlay","MindBlast","Penance","Insight","ShadowWordMadness","DispelMagic","InsidiousIre","UnfurlingDarkness","DarkVoid","PowerInfusion","ShadowCrash","CrystallineReflection","ProtectedChannel","Catharsis","SearingNightmare","DarkEvangelism"}){
+  for(String id:new String[]{"MindFlayInsanity","MindSear","VoidShield","VoidBolt","VoidVolley","VoidBlast","MindSpike","VampiricTouch","MindFlay","MindBlast","Penance","Insight","ShadowWordMadness","DispelMagic","InsidiousIre","UnfurlingDarkness","DarkVoid","PowerInfusion","ShadowCrash","CrystallineReflection","ProtectedChannel","Catharsis","SearingNightmare","DarkEvangelism"}){
    AbstractCard c=CardLibrary.getCard("shadowpriest:"+id);check(c!=null,id+" registered");c=c.makeCopy();c.upgrade();AbstractCard copy=c.makeStatEquivalentCopy();
    com.badlogic.gdx.graphics.Texture art=CustomCard.getPortraitImage((CustomCard)c);
    check(c.portrait.getRegionWidth()==250&&art.getWidth()==500&&art.getHeight()==380,id+" has both artwork sizes");
@@ -115,7 +115,9 @@ public final class ReworkSmokeTest {
  q.add(()->{check(!m.hasPower("Vulnerable"),"Ire checks surviving DoTs after end-turn decay, not last-turn setup");reset();m.powers.add(new ShadowDotPower(m,ShadowDotPower.TOUCH,3));m.powers.add(new ShadowDotPower(m,ShadowDotPower.PAIN,3));m.powers.add(new MadnessPower(m,6));p.powers.add(new InsidiousIrePower(p,1));nextTurn();});
  q.add(()->{check(stacks(m,"Vulnerable")==1&&!other.hasPower("Vulnerable"),"Ire applies Vulnerable only to an enemy with all three DoTs at player turn start");reset();allDots(m);m.powers.add(new ArtifactPower(m,1));new InsidiousIrePower(p,1).atStartOfTurn();});
  q.add(()->{check(!m.hasPower("Artifact")&&!m.hasPower("Vulnerable"),"Artifact blocks Ire's debuff");reset();p.currentHealth=450;p.powers.add(new StrengthPower(p,2));card=up(new Catharsis());play(card,m,2);});
- q.add(()->{check(m.currentHealth==948&&card.selfRetain&&p.exhaustPile.contains(card),"Catharsis+ uses missing HP plus Attack modifiers and has Retain/Exhaust");reset();relic.gainInsanity(100);relic.activate(relic.state.charge());});
+ q.add(()->{check(m.currentHealth==948&&card.selfRetain&&p.exhaustPile.contains(card),"Catharsis+ uses missing HP plus Attack modifiers and has Retain/Exhaust");reset();relic.gainInsanity(15);p.powers.add(new DexterityPower(p,4));play(new VoidShield(),null,1);});
+ q.add(()->{check(p.currentBlock==7,"Void Shield at fifteen Insanity grants three Block plus Dexterity once");reset();relic.gainInsanity(15);p.powers.add(new DexterityPower(p,4));p.powers.add(new FrailPower(p,2,false));play(up(new VoidShield()),null,1);});
+ q.add(()->{check(relic.state.amount()==35&&p.currentBlock==8,"Void Shield+ gains Insanity first and applies Dexterity and Frail once to its total");reset();relic.gainInsanity(100);relic.activate(relic.state.charge());});
  q.add(()->play(new MindSpike(),m,0));
  q.add(()->{check(relic.state.amount()==100&&m.currentHealth==991,"Voidform discounts and amplifies Mind Spike while suppressing its explicit Insanity");nextTurn();});
  q.add(()->{check(!relic.state.active()&&relic.state.recovering()&&relic.state.amount()==0,"Actual turn transition exits Voidform, resets Insanity and enters Recharge");play(new MindSpike(),m,1);});

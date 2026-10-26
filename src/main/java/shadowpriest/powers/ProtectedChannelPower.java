@@ -15,5 +15,5 @@ public class ProtectedChannelPower extends AbstractPower {
    for(int i=0;i<x;i++)addToTop(new GainBlockAction(owner,owner,blockCard.block));isDone=true;
   }});
  }
- @Override public void updateDescription(){description="After playing an X-cost card, gain #b"+amount+" Block per effective X. Dexterity applies to each instance. Includes Haste and Chemical X.";}
+ @Override public void updateDescription(){description="Whenever you play an X-cost card, gain #b"+amount+" Block X times.";}
 }

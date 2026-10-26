@@ -760,7 +760,7 @@
         "Extend only existing Touch and Pain before the hits; do not add Madness stacks or trigger Misery.",
         "Use effective X from keywords.md, adding the upgrade's extra repetition afterward. Haste support is implemented."
       ],
-      "balanceNotes": "First reward-card batch; numbers require human full-run balance testing.",
+      "balanceNotes": "First reward-card batch; numbers require human full-run balance testing. Latest completed-run feedback: damage feels too weak; revised damage values remain under discussion.",
       "art": {
         "wowAbility": "Mind Flay: Insanity",
         "icon": "",
@@ -812,7 +812,7 @@
         "Implementation edge cases: docs/card-batch-01.md.",
         "Uses effective X from keywords.md, including Haste and Chemical X at zero energy. Haste support is implemented."
       ],
-      "balanceNotes": "First reward-card batch; numbers require human full-run balance testing.",
+      "balanceNotes": "First reward-card batch; numbers require human full-run balance testing. Latest completed-run feedback: damage feels too weak; revised damage values remain under discussion.",
       "art": {
         "wowAbility": "Mind Sear",
         "icon": "",
@@ -2230,14 +2230,14 @@
       "base": {
         "cost": 1,
         "target": "SELF",
-        "text": "Gain 2 Block for each 10 Insanity. Voidform counts as having 100 Insanity.",
+        "text": "Gain 1 Block for each 5 Insanity. Voidform counts as having 100 Insanity.",
         "stats": {
           "insanity": 0,
-          "blockPerTenInsanity": 2
+          "blockPerFiveInsanity": 1
         },
         "keywords": [],
         "effects": [
-          "Gain 2 Block for each 10 Insanity. Voidform counts as having 100 Insanity."
+          "Gain 1 Block for each 5 Insanity. Voidform counts as having 100 Insanity."
         ]
       },
       "upgrade": {
@@ -2245,14 +2245,14 @@
         "card": {
           "cost": 1,
           "target": "SELF",
-          "text": "Gain 20 Insanity. Gain 2 Block for each 10 Insanity. Voidform counts as having 100 Insanity.",
+          "text": "Gain 20 Insanity. Gain 1 Block for each 5 Insanity. Voidform counts as having 100 Insanity.",
           "stats": {
             "insanity": 20,
-            "blockPerTenInsanity": 2
+            "blockPerFiveInsanity": 1
           },
           "keywords": [],
           "effects": [
-            "Gain 20 Insanity. Gain 2 Block for each 10 Insanity. Voidform counts as having 100 Insanity."
+            "Gain 20 Insanity. Gain 1 Block for each 5 Insanity. Voidform counts as having 100 Insanity."
           ]
         }
       },

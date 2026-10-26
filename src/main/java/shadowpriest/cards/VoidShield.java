@@ -21,7 +21,8 @@ public class VoidShield extends PriestCard {
  @Override public void upgrade() { if (!upgraded) { upgradeName(); upgradeText(); } }
  @Override public void applyPowers(){
  shadowpriest.relics.VoidformRelic r=shadowpriest.relics.VoidformRelic.current();
- baseBlock=2*(shadowpriest.relics.VoidformRelic.isActive()?InsanityState.THRESHOLD:r==null?0:r.state.amount())/10;
+ int insanity=shadowpriest.relics.VoidformRelic.isActive()?InsanityState.THRESHOLD:r==null?0:r.state.amount();
+ baseBlock=insanity/5; // One Block total; apply Dexterity once below.
  super.applyPowers();
  }
 }

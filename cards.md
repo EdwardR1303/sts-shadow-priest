@@ -166,7 +166,7 @@ X/Y/Z = **Attacks/Skills/Powers**. Counts beside each rarity heading include dra
 #### Void Shield
 
 - **Cost:** 1 energy
-- **Effect:** Gain 2 Block for each 10 Insanity. Voidform counts as having 100 Insanity.
+- **Effect:** Gain 1 Block for each 5 Insanity. Voidform counts as having 100 Insanity.
 - **Upgrade:** Gain 20 Insanity first.
 - **Rules:** Resolve Insanity gain before calculating Block. All Insanity gain obeys the normal cap, ready/active restrictions, and recovery turn. Both ordinary and permanent Voidform count as 100. Grant Block once; Dexterity and ordinary Block modifiers apply once to the total.
 - **Status:** Implemented; full-run balance testing remains.
@@ -223,6 +223,7 @@ X/Y/Z = **Attacks/Skills/Powers**. Counts beside each rarity heading include dra
 - **Upgrade:** Extend Touch and Pain by X+1 and deal damage X+1 times.
 - **Rules:** Extend only existing Touch and Pain before the hits; do not add Madness stacks or trigger Misery. Use effective X from the Haste definition, adding the upgraded extra repetition afterward.
 - **Status:** Implemented with shared Haste support.
+- **Playtest feedback:** Feels too weak in the completed run; damage tuning is pending.
 
 #### Mind Sear
 
@@ -230,6 +231,7 @@ X/Y/Z = **Attacks/Skills/Powers**. Counts beside each rarity heading include dra
 - **Effect:** Deal 3 damage to all enemies X times.
 - **Upgrade:** Deal damage X + 1 times.
 - **Status:** Implemented with shared Haste support.
+- **Playtest feedback:** Feels underpowered compared with Whirlwind; damage tuning is pending.
 
 #### Void Volley
 
