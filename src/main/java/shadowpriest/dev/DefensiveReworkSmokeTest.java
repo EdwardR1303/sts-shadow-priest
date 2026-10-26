@@ -69,10 +69,10 @@ public final class DefensiveReworkSmokeTest {
             p.powers.add(new DexterityPower(p,4));p.powers.add(new FrailPower(p,2,false));play(new PowerWordBarrier(),null,3);});
         q.add(()->{check(p.currentBlock==25,"Barrier applies Frail and rounding once");reset();
             p.powers.add(new BarricadePower(p));p.powers.add(new BlurPower(p,2));
-            valanyr=new ValanyrPower(p);p.powers.add(valanyr);play(new PowerWordBarrier(),null,3);});
+            valanyr=new ValanyrPower(p);p.powers.add(valanyr);p.powers.add(new GuardianAngelPower(p));play(new PowerWordBarrier(),null,3);});
         q.add(()->{p.loseBlock();});
         q.add(()->{check(!p.hasPower(BarrierPower.POWER_ID)&&p.getPower("Barricade")!=null&&p.getPower("Blur").amount==2,"Barrier break preserves independent Barricade and Blur");
-            check(p.getPower(ValanyrPower.POWER_ID)==valanyr&&!valanyr.ward&&valanyr.rescue,"Val'anyr retains its independent lethal protection");
+            check(!p.hasPower(ValanyrPower.POWER_ID)&&!valanyr.ward&&p.hasPower(GuardianAngelPower.POWER_ID),"Val'anyr retains its independent lethal protection");
             p.addBlock(9);check(p.currentBlock==9&&p.hasPower("Barricade"),"Independent retention still works after Barrier breaks");reset();
             p.powers.add(new DexterityPower(p,-30));play(new PowerWordBarrier(),null,3);});
         q.add(()->{check(p.currentBlock==0&&!BarrierPower.active(p),"Zero Block does not leave a permanent gain lock");

@@ -55,6 +55,12 @@ The inventory-icon card portraits were replaced with full weapon illustrations i
 
 ## Xal'atath stat rolls
 
-Each of the four rolls (five upgraded) independently grants 2 Strength, Dexterity, Mastery, or Haste with equal 25% probabilities. All gains last for combat. An all-Haste result grants 8 Haste, or 10 upgraded. Power Infusion adds temporary Haste to the same visible total; turn end removes only the temporary portion.
+Each of the four rolls (five upgraded) independently grants 2 Strength, Dexterity, or Mastery with equal one-third probabilities. All gains last for combat. Haste was removed from the pool when its shared half-decay rule was introduced. Rolls occur only at combat start, not each turn. This supersedes the original four-stat pool and permanent-Haste behavior.
 
-The Haste addition passed 238 in-game checks across the equipment and keyword suites, including all-Haste rolls, both temporary/permanent application orders, turn-end expiry, and zero-energy X casts. The build also passes 12 unit tests.
+The earlier Haste addition passed 238 in-game checks across the equipment and keyword suites, including all-Haste rolls, both temporary/permanent application orders, turn-end expiry, and zero-energy X casts. That earlier build also passed 12 unit tests.
+
+## Separate Val'anyr buffs
+
+Val'anyr displays two independent buffs: Barricade (Val'anyr), using the base-game Barricade icon, and Guardian Angel, using WoW's Guardian Spirit icon. The first disappears when Block is depleted; Guardian Angel remains until its once-per-combat lethal rescue is spent. Neither effect refreshes the other. The Block grant (5/10) and rescue behavior are unchanged. The worn-out retention icon is removed rather than remaining as a combined weapon buff.
+
+Validation of the split powers and revised Haste is recorded in [the support balance pass](support-balance-pass.md).

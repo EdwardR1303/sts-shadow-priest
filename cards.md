@@ -278,9 +278,9 @@ X/Y/Z = **Attacks/Skills/Powers**. Counts beside each rarity heading include dra
 #### Power Infusion
 
 - **Cost:** 1 energy
-- **Effect:** Gain 2 Haste this turn. Exhaust.
+- **Effect:** Gain 2 Haste. Exhaust.
 - **Upgrade:** Cost becomes 0 energy.
-- **Rules:** Copies add their Haste. Remove only the Haste granted for this turn at turn end. Haste is not consumed by X-card plays and works at zero energy.
+- **Rules:** Copies add their Haste. At the end of each player turn, lose half the combined Haste, rounding the loss up. Haste is not consumed by X-card plays and works at zero energy.
 - **Status:** Implemented.
 
 #### Shadow Crash
@@ -474,9 +474,9 @@ X/Y/Z = **Attacks/Skills/Powers**. Counts beside each rarity heading include dra
 #### Xal'atath's Blade
 
 - **Cost:** Unplayable; equips automatically before the opening hand.
-- **Effect:** Randomly gain 2 Strength, 2 Dexterity, 2 Mastery, or 2 Haste, 4 times.
+- **Effect:** Randomly gain 2 Strength, 2 Dexterity, or 2 Mastery, 4 times.
 - **Upgrade:** Roll 5 times instead.
-- **Rules:** Each roll independently has a 25% chance for each of the four stats. Rolls occur again each combat and can all select the same stat. All gains last for combat, including Haste. Temporary Haste from Power Infusion stacks with this bonus and expires separately. Equipment activation is not a Power play.
+- **Rules:** Each roll independently has a one-third chance for Strength, Dexterity, or Mastery. Roll only at combat start; rolls can all select the same stat. All gains last for combat. Haste is excluded. Equipment activation is not a Power play.
 - **Art:** The actual WoW dagger model render floats beside the priest; the card has an orange Legendary frame.
 - **Status:** Implemented; full-run balance testing remains.
 
@@ -486,6 +486,7 @@ X/Y/Z = **Attacks/Skills/Powers**. Counts beside each rarity heading include dra
 - **Effect:** Gain 5 Block. Retain Block until it is depleted. Once per combat, lethal damage leaves you at 1 HP.
 - **Upgrade:** Start with 10 Block instead.
 - **Rules:** Starting Block is flat. Reaching exactly zero Block permanently breaks this weapon's retention for the combat, even if you later regain Block; other Blur or Barricade effects remain. The lethal rescue is independent of the retention and can prevent lethal HP loss. It does not protect against a following hit. Equipment activation is not a Power play.
+- **Buff display:** Val'anyr displays two independent buffs: Barricade (Val'anyr), using the base-game Barricade icon, and Guardian Angel, using WoW's Guardian Spirit icon. The first disappears when Block is depleted; Guardian Angel remains until its once-per-combat lethal rescue is spent. Neither effect refreshes the other.
 - **Art:** The actual WoW mace model render floats beside the priest; the card has an orange Legendary frame.
 - **Status:** Implemented; full-run balance testing remains.
 

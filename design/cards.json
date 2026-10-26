@@ -2594,7 +2594,7 @@
       "base": {
         "cost": "UNPLAYABLE",
         "target": "SELF",
-        "text": "Legendary. Equips at combat start. Randomly gain 2 Strength, Dexterity, Mastery, or Haste 4 times.",
+        "text": "Legendary. Equips at combat start. Randomly gain 2 Strength, Dexterity, or Mastery 4 times.",
         "stats": {
           "rolls": 4,
           "statPerRoll": 2
@@ -2602,7 +2602,7 @@
         "keywords": [],
         "effects": [
           "Automatically activate before the opening hand without playing a card.",
-          "Randomly gain 2 Strength, Dexterity, Mastery, or Haste 4 times."
+          "Randomly gain 2 Strength, Dexterity, or Mastery 4 times."
         ]
       },
       "upgrade": {
@@ -2610,7 +2610,7 @@
         "card": {
           "cost": "UNPLAYABLE",
           "target": "SELF",
-          "text": "Legendary. Equips at combat start. Randomly gain 2 Strength, Dexterity, Mastery, or Haste 5 times.",
+          "text": "Legendary. Equips at combat start. Randomly gain 2 Strength, Dexterity, or Mastery 5 times.",
           "stats": {
             "rolls": 5,
             "statPerRoll": 2
@@ -2618,7 +2618,7 @@
           "keywords": [],
           "effects": [
             "Automatically activate before the opening hand without playing a card.",
-            "Randomly gain 2 Strength, Dexterity, Mastery, or Haste 5 times."
+            "Randomly gain 2 Strength, Dexterity, or Mastery 5 times."
           ]
         }
       },
@@ -2628,7 +2628,7 @@
         "Equips once before opening hand; does not count as playing a Power and is absent from the combat deck.",
         "Temporary copies and forced plays cannot activate equipment. Permanent duplication is prohibited.",
         "Independent, uniform rolls; repeated results are allowed. Stats last for combat.",
-        "Each independent roll has a 25% chance for Strength, Dexterity, Mastery, or Haste. Haste lasts for combat; temporary Power Infusion Haste stacks and expires separately."
+        "Each independent roll has a one-third chance for Strength, Dexterity, or Mastery. All gains last for combat. Haste is excluded. Rolls occur only at combat start, not each turn."
       ],
       "balanceNotes": "Implemented; rare acquisition is not evidence of balanced power. Validate complete runs.",
       "art": {
@@ -2690,7 +2690,8 @@
         "Temporary copies and forced plays cannot activate equipment. Permanent duplication is prohibited.",
         "Starting Block is flat, unaffected by Dexterity.",
         "Exact depletion permanently breaks retention for this combat. Other Barricade/Blur effects remain.",
-        "Rescue is independent, works on lethal HP loss, and grants no immunity against following hits."
+        "Rescue is independent, works on lethal HP loss, and grants no immunity against following hits.",
+        "Val'anyr displays two independent buffs: Barricade (Val'anyr), using the base-game Barricade icon, and Guardian Angel, using WoW's Guardian Spirit icon. The first disappears when Block is depleted; Guardian Angel remains until its once-per-combat lethal rescue is spent. Neither effect refreshes the other."
       ],
       "balanceNotes": "Implemented; rare acquisition is not evidence of balanced power. Validate complete runs.",
       "art": {
@@ -2818,7 +2819,7 @@
       "base": {
         "cost": 1,
         "target": "SELF",
-        "text": "Gain 2 Haste this turn. Exhaust.",
+        "text": "Gain 2 Haste. Exhaust.",
         "stats": {
           "haste": 2
         },
@@ -2826,7 +2827,7 @@
           "EXHAUST"
         ],
         "effects": [
-          "Gain 2 Haste this turn. Exhaust."
+          "Gain 2 Haste. Exhaust."
         ]
       },
       "upgrade": {
@@ -2834,7 +2835,7 @@
         "card": {
           "cost": 0,
           "target": "SELF",
-          "text": "Gain 2 Haste this turn. Exhaust.",
+          "text": "Gain 2 Haste. Exhaust.",
           "stats": {
             "haste": 2
           },
@@ -2842,12 +2843,12 @@
             "EXHAUST"
           ],
           "effects": [
-            "Gain 2 Haste this turn. Exhaust."
+            "Gain 2 Haste. Exhaust."
           ]
         }
       },
       "rulesNotes": [
-        "Copies add their Haste. Remove only the Haste granted for this turn at turn end. Haste is not consumed by X-card plays and works at zero energy.",
+        "Copies add their Haste. At the end of each player turn, lose half the combined Haste, rounding the loss up. Haste is not consumed by X-card plays and works at zero energy.",
         "Shared keyword definitions in keywords.md apply. Implemented in the keyword and card rework."
       ],
       "balanceNotes": "Prototype values; full-run balance testing remains after implementation.",

@@ -2,15 +2,13 @@ package shadowpriest.powers;
 import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 public class ValanyrPower extends AbstractPower {
  public static final String POWER_ID="shadowpriest:Valanyr";
- public boolean ward=true,rescue=true;
- public ValanyrPower(AbstractCreature p){owner=p;amount=-1;ID=POWER_ID;name="Val'anyr";priority=10000;type=PowerType.BUFF;AbilityPowerArt.apply(this,"valanyr.jpg");updateDescription();}
- @Override public int onLoseHp(int loss){
- if(rescue && owner.currentHealth>0 && loss>=owner.currentHealth){rescue=false;flash();shadowpriest.legendary.LegendaryEquipment.pulse=1f;updateDescription();return owner.currentHealth-1;}return loss;
- }
- public void breakWard(){if(ward){ward=false;flash();updateDescription();}}
- @Override public void updateDescription(){description=(ward?"Retain Block until your Block is depleted.":"Barrier shattered for this combat.")+" NL "+(rescue?"The next lethal damage leaves you at #b1 HP.":"Lethal protection spent.");}
+ public boolean ward=true;
+ public ValanyrPower(AbstractCreature p){owner=p;amount=-1;ID=POWER_ID;name="Barricade (Val'anyr)";type=PowerType.BUFF;loadRegion("barricade");updateDescription();}
+ public void breakWard(){if(ward){ward=false;flash();addToTop(new RemoveSpecificPowerAction(owner,owner,this));}}
+ @Override public void updateDescription(){description="Retain Block until your Block is depleted. NL This retention ends for the combat when Block reaches #b0. Guardian Angel is independent.";}
  @SpirePatch(clz=AbstractCreature.class,method="hasPower")
  public static class Retention {
   @SpirePostfixPatch public static boolean after(boolean __result,AbstractCreature __instance,String targetID){

@@ -204,7 +204,7 @@
   },
   "shadowpriest:Xalatath": {
     "NAME": "Xal'atath",
-    "DESCRIPTION": "Legendary. NL At combat start, randomly gain 2 Strength, Dexterity, shadowpriest:Mastery, or shadowpriest:Haste !M! times."
+    "DESCRIPTION": "Legendary. NL At combat start, randomly gain 2 Strength, Dexterity, or shadowpriest:Mastery !M! times."
   },
   "shadowpriest:Valanyr": {
     "NAME": "Val'anyr",
@@ -229,7 +229,7 @@
   },
   "shadowpriest:PowerInfusion": {
     "NAME": "Power Infusion",
-    "DESCRIPTION": "Gain !M! shadowpriest:Haste this turn. NL Exhaust."
+    "DESCRIPTION": "Gain !M! shadowpriest:Haste. NL Exhaust."
   },
   "shadowpriest:ShadowCrash": {
     "NAME": "Shadow Crash",

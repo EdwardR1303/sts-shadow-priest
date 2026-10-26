@@ -1,11 +1,11 @@
 param(
-    [switch]$SkipBuild, [switch]$Debug, [switch]$SmokeTest, [switch]$CardBatchOnly, [switch]$LatestBatchOnly, [switch]$ReworkOnly, [switch]$DefensiveReworkOnly,
+    [switch]$SkipBuild, [switch]$Debug, [switch]$SmokeTest, [switch]$CardBatchOnly, [switch]$LatestBatchOnly, [switch]$ReworkOnly, [switch]$DefensiveReworkOnly, [switch]$SupportOnly,
     [ValidateRange(640, 7680)][int]$Width = 3840,
     [ValidateRange(480, 4320)][int]$Height = 2160,
     [switch]$Windowed
 )
 $ErrorActionPreference = 'Stop'
-if ($ReworkOnly -or $DefensiveReworkOnly) { $SmokeTest = $true }
+if ($ReworkOnly -or $DefensiveReworkOnly -or $SupportOnly) { $SmokeTest = $true }
 if ($LatestBatchOnly) { $CardBatchOnly = $true }
 if ($CardBatchOnly) { $SmokeTest = $true }
 $repo = Split-Path $PSScriptRoot -Parent
@@ -50,6 +50,7 @@ if ($CardBatchOnly) { $arguments += '-Dshadowpriest.cardbatchonly=true' }
 if ($LatestBatchOnly) { $arguments += '-Dshadowpriest.latestbatchonly=true' }
 if ($ReworkOnly) { $arguments += '-Dshadowpriest.reworkonly=true' }
 if ($DefensiveReworkOnly) { $arguments += '-Dshadowpriest.defensivereworkonly=true' }
+if ($SupportOnly) { $arguments += '-Dshadowpriest.supportonly=true' }
 if ($SmokeTest) { [IO.File]::WriteAllText("$run/smoke-results.txt", "RUNNING`n") }
 $mts = "$($config.steamApps)/workshop/content/646570/1605060445/ModTheSpire.jar"
 $arguments += @('-jar', ('"' + $mts + '"'), '--mods', 'basemod,stslib,shadowpriest', '--skip-intro')

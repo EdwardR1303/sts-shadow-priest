@@ -354,3 +354,8 @@ Source: https://render.worldofwarcraft.com/us/icons/56/136183.jpg
 Resource: src/main/resources/shadowpriest/images/cards/icons/shadowy_insight.jpg
 
 Protected Channel reuses original generated Shadow Committal artwork.
+
+Guardian Angel power icon (Guardian Spirit artwork)
+Metadata: https://www.wowhead.com/spell=47788/guardian-spirit
+Source: https://wow.zamimg.com/images/wow/icons/large/spell_holy_guardianspirit.jpg
+Resource: src/main/resources/shadowpriest/images/cards/icons/guardian_angel.jpg
