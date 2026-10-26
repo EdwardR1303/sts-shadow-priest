@@ -16,7 +16,7 @@ import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 import shadowpriest.cards.*;
 import shadowpriest.character.ShadowPriest;
-import shadowpriest.relics.VoidformRelic;
+import shadowpriest.relics.*;
 import shadowpriest.dev.CombatSmokeTest;
 
 @SpireInitializer
@@ -35,7 +35,12 @@ public class ShadowPriestMod implements EditCharactersSubscriber, EditCardsSubsc
             BaseMod.addCard(c); UnlockTracker.unlockCard(c.cardID);
         }
     }
-    @Override public void receiveEditRelics() { BaseMod.addRelicToCustomPool(new VoidformRelic(), ShadowPriest.Meta.CARD_COLOR); }
+    @Override public void receiveEditRelics() {
+        for(com.megacrit.cardcrawl.relics.AbstractRelic r:new com.megacrit.cardcrawl.relics.AbstractRelic[]{
+            new VoidformRelic(),new ShadowyPreparation(),new IdolOfCthun(),new IdolOfYshaarj(),new IdolOfNzoth(),
+            new IdolOfYoggSaron(),new ImprovedVoidform(),new VoidVengeance()})
+            BaseMod.addRelicToCustomPool(r,ShadowPriest.Meta.CARD_COLOR);
+    }
     @Override public void receiveEditStrings() {
         String path = "shadowpriest/localization/eng/";
         BaseMod.loadCustomStringsFile(CardStrings.class, path + "CardStrings.json");

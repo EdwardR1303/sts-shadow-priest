@@ -10,6 +10,9 @@ public final class InsanityState {
     private boolean surrendered;
     private int charge;
     private int recoveryStarts;
+    private int attacksPlayed;
+    public int attacksPlayed() { return attacksPlayed; }
+    public void attackPlayed() { if (active && !surrendered) attacksPlayed = Math.min(3, attacksPlayed + 1); }
 
     public int amount() { return insanity; }
     public int charge() { return charge; }
@@ -17,7 +20,7 @@ public final class InsanityState {
     public boolean surrendered() { return surrendered; }
     public boolean ready() { return insanity == THRESHOLD && !active; }
     public boolean recovering() { return !active && recoveryStarts > 0; }
-    public void startTurn() { if (recoveryStarts > 0) recoveryStarts--; }
+    public void startTurn() { if (!active && recoveryStarts > 0) recoveryStarts--; }
 
     /** Accept resource points; attack callers convert their unique-DoT count first. */
     public void gain(int points) {
@@ -34,7 +37,7 @@ public final class InsanityState {
     public boolean activate(int cardCharge) {
         if (!ready() || cardCharge != charge) return false;
         active = true;
-        recoveryStarts = 2;
+        attacksPlayed = 0;
         return true;
     }
 
@@ -44,11 +47,12 @@ public final class InsanityState {
         surrendered = true; active = true; insanity = 0; recoveryStarts = 0; charge++;
         return true;
     }
-    public void endTurn() {
-        if (surrendered) return;
-        if (active) { insanity = 0; active = false; charge++; }
+    public void endTurn() { endTurn(false); }
+    public void endTurn(boolean improved) {
+        if (surrendered || (improved && attacksPlayed < 3)) return;
+        if (active) { insanity = 0; active = false; recoveryStarts = 2; charge++; }
     }
-    public void reset() { insanity = 0; active = false; surrendered = false; recoveryStarts = 0; charge++; }
+    public void reset() { attacksPlayed = 0; insanity = 0; active = false; surrendered = false; recoveryStarts = 0; charge++; }
 
     public static int effectiveCost(int original, boolean attack, boolean active) {
         return active && attack && original > 0 ? original - 1 : original;

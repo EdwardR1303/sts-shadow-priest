@@ -2,6 +2,8 @@
 
 ## Finding
 
+**Resolved by the subsequent implementation:** seven settled non-starter relics now exist and are registered in the Shadow Priest's reward pools. Misery, Inescapable Torment, and the Shop Dark Void remain drafts. See [current implementation and verification](relic-implementation.md). The investigation below records the original finding before that work.
+
 Only **Voidform**, the starter relic, exists in the playable implementation. The ten non-starter entries in [relics.md](../relics.md) are designs, not active reward content. There is no non-starter registration or reward-pool wiring to repair yet. This investigation does not implement any relic or approve draft mechanics.
 
 ## Evidence

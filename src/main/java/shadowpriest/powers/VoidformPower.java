@@ -23,7 +23,7 @@ public class VoidformPower extends AbstractPower implements AlternateCardCostMod
     }
     @Override public void updateDescription() {
         description = "Attacks cost #b1 less and deal #b50% more damage "
-            + (permanent ? "for the rest of combat." : "this turn.") + " X costs are unchanged.";
+            + (permanent ? "for the rest of combat." : com.megacrit.cardcrawl.dungeons.AbstractDungeon.player.hasRelic(shadowpriest.relics.ImprovedVoidform.ID) ? "until the end of a turn after at least three Attack cards are played during this activation." : "this turn.") + " X costs are unchanged.";
     }
     // Surrender also works after a starter swap or when acquired by another character.
     // With the starter present, its cost provider remains the sole source of the discount.

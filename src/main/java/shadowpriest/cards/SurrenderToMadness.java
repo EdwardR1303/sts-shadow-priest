@@ -27,6 +27,7 @@ public class SurrenderToMadness extends PriestCard {
                 if (!VoidformRelic.isPermanent()) {
                     VoidformRelic relic = VoidformRelic.current();
                     if (relic != null) relic.surrender();
+                    else if (!VoidformRelic.isActive()) shadowpriest.relics.IdolOfYoggSaron.enteredVoidform();
                     addToTop(new ApplyPowerAction(p, p, new SurrenderExposurePower(p), -1));
                     if (p.getPower(VoidformPower.POWER_ID) instanceof VoidformPower)
                         ((VoidformPower)p.getPower(VoidformPower.POWER_ID)).makePermanent();

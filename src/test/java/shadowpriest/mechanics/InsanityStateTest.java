@@ -4,6 +4,26 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class InsanityStateTest {
+    @Test public void improvedFormCarriesPartialAttackCountAndOnlyThenStartsRecovery() {
+        InsanityState s=new InsanityState(); s.gain(100); s.activate(s.charge());
+        s.attackPlayed(); s.attackPlayed(); s.endTurn(true);
+        assertTrue(s.active()); assertEquals(2,s.attacksPlayed());
+        s.startTurn(); s.endTurn(true); s.startTurn();
+        assertTrue(s.active()); assertFalse(s.recovering());
+        s.attackPlayed(); assertTrue(s.active()); // The third Attack does not end the stance mid-turn.
+        s.attackPlayed(); s.endTurn(true); assertFalse(s.active()); assertEquals(0,s.amount());
+        s.startTurn(); s.gain(100); assertEquals(0,s.amount()); assertTrue(s.recovering());
+        s.endTurn(true); s.startTurn(); s.gain(100); assertTrue(s.ready());
+        s.activate(s.charge()); assertEquals(0,s.attacksPlayed());
+    }
+    @Test public void improvedFormAllowsNoAttackTurnsButCannotEndSurrender() {
+        InsanityState s=new InsanityState(); s.gain(100); s.activate(s.charge());
+        for(int i=0;i<6;i++){s.endTurn(true);s.startTurn();}
+        assertTrue(s.active()); assertEquals(0,s.attacksPlayed());
+        s.surrender(); for(int i=0;i<5;i++)s.attackPlayed(); s.endTurn(true);
+        assertTrue(s.surrendered()); assertTrue(s.active()); assertFalse(s.recovering());
+        s.reset(); assertEquals(0,s.attacksPlayed()); assertFalse(s.active());
+    }
     @Test public void gainsUsePointsAndOnlyOneHundredReadiesVoidform() {
         InsanityState s = new InsanityState();
         s.gain(10); assertEquals(10, s.amount()); assertFalse(s.ready());

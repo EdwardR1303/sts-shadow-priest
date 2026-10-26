@@ -37,7 +37,10 @@ public class LegendaryEquipment implements CustomSavable<ArrayList<String>> {
  public static void equip(AbstractPlayer p){
   State.equipped.set(p,null);pulse=0;
   for(AbstractCard c:p.masterDeck.group) if(c instanceof LegendaryCard){
-   State.equipped.set(p,c.cardID);State.acquired.get(p).add(c.cardID);((LegendaryCard)c).equip(p);break;
+   State.equipped.set(p,c.cardID);State.acquired.get(p).add(c.cardID);((LegendaryCard)c).equip(p);
+   if(p.getRelic(shadowpriest.relics.IdolOfNzoth.ID) instanceof shadowpriest.relics.IdolOfNzoth)
+    ((shadowpriest.relics.IdolOfNzoth)p.getRelic(shadowpriest.relics.IdolOfNzoth.ID)).legendaryEquipped();
+   break;
   }
  }
  public ArrayList<String> onSave(){return AbstractDungeon.player==null?new ArrayList<>():new ArrayList<>(State.acquired.get(AbstractDungeon.player));}

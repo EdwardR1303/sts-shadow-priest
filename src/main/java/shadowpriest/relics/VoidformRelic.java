@@ -123,17 +123,31 @@ public class VoidformRelic extends CustomRelic implements AlternateCardCostModif
     public static boolean pendingCardDelivery() {
         return AbstractDungeon.effectList.stream().anyMatch(e -> e instanceof com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndAddToHandEffect);
     }
+    @Override public void onUseCard(AbstractCard card, com.megacrit.cardcrawl.actions.utility.UseCardAction action) {
+        if (card.type == AbstractCard.CardType.ATTACK && state.active()) {
+            state.attackPlayed(); updateImprovedCounter();
+        }
+    }
+    private void updateImprovedCounter() {
+        AbstractRelic improved = AbstractDungeon.player.getRelic(ImprovedVoidform.ID);
+        if (improved != null) improved.counter = state.active() && !state.surrendered() ? state.attacksPlayed() : -1;
+    }
     public void activate(int charge) {
         if (!state.activate(charge)) return;
-        stopPulse(); flash();
+        stopPulse(); flash(); updateImprovedCounter();
+        IdolOfYoggSaron.enteredVoidform();
         addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new VoidformPower(AbstractDungeon.player)));
     }
     public void surrender() {
-        state.surrender(); counter = state.amount(); stopPulse(); flash();
+        boolean entering = !state.active();
+        if (!state.surrender()) return;
+        counter = state.amount(); stopPulse(); flash(); updateImprovedCounter();
+        if (entering) IdolOfYoggSaron.enteredVoidform();
     }
     @Override public void onPlayerEndTurn() {
         if (!state.active()) return;
-        state.endTurn(); counter = state.amount(); stopPulse();
+        state.endTurn(AbstractDungeon.player.hasRelic(ImprovedVoidform.ID));
+        counter = state.amount(); stopPulse(); updateImprovedCounter();
         if (state.active()) return;
         addToBot(new RemoveSpecificPowerAction(AbstractDungeon.player, AbstractDungeon.player, VoidformPower.POWER_ID));
         AbstractDungeon.player.hand.applyPowers();

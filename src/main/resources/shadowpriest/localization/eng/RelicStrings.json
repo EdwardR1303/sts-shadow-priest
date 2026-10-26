@@ -5,5 +5,54 @@
     "DESCRIPTIONS": [
       "Each direct attack hit gains 5 #yInsanity per unique Shadow Priest DoT on the target, even if blocked. NL Whenever you lose HP from damage in combat, gain #b5 #yInsanity. At #b100, gain a #b0-cost retained card to enter #yVoidform. NL In Voidform, Attacks cost #b1 less and deal #b50% more damage this turn. X costs are unchanged. NL Insanity persists between turns. One charge at a time; no gain while ready or active. Resets when Voidform ends or combat ends. NL Enter #yRecharge when Voidform ends: you cannot gain Insanity through the end of your next turn."
     ]
+  },
+  "shadowpriest:ShadowyPreparation": {
+    "NAME": "Shadowy Preparation",
+    "FLAVOR": "The battle begins before the first whisper.",
+    "DESCRIPTIONS": [
+      "At combat start, gain #b10 #yInsanity for each enemy."
+    ]
+  },
+  "shadowpriest:IdolOfCthun": {
+    "NAME": "Idol of C'Thun",
+    "FLAVOR": "The eye sees another way.",
+    "DESCRIPTIONS": [
+      "At combat start, add a #yTentacle #ySlam to your hand. It costs #b0 for the entire combat."
+    ]
+  },
+  "shadowpriest:IdolOfYshaarj": {
+    "NAME": "Idol of Y'Shaarj",
+    "FLAVOR": "Feed the moment.",
+    "DESCRIPTIONS": [
+      "During #yVoidform, whenever you play a card that spends Energy, draw #b1 card after its effects."
+    ]
+  },
+  "shadowpriest:IdolOfNzoth": {
+    "NAME": "Idol of N'Zoth",
+    "FLAVOR": "Every promise leaves a mark.",
+    "DESCRIPTIONS": [
+      "Whenever you play a Power or equip your Legendary at combat start, gain #b1 #yMastery."
+    ]
+  },
+  "shadowpriest:IdolOfYoggSaron": {
+    "NAME": "Idol of Yogg-Saron",
+    "FLAVOR": "Let the laughter in.",
+    "DESCRIPTIONS": [
+      "Whenever you enter #yVoidform, gain [E] [E] [E]."
+    ]
+  },
+  "shadowpriest:ImprovedVoidform": {
+    "NAME": "Improved Voidform",
+    "FLAVOR": "The void is not finished with you.",
+    "DESCRIPTIONS": [
+      "Voidform persists across turns until you have played #b3 Attack cards during that activation, then ends at the end of that turn. NL Surrender remains permanent."
+    ]
+  },
+  "shadowpriest:VoidVengeance": {
+    "NAME": "Void Vengeance",
+    "FLAVOR": "What burden? What curse?",
+    "DESCRIPTIONS": [
+      "At combat start, replace each Curse in your combat deck with a #yVoid #yBolt. Your permanent deck is unchanged."
+    ]
   }
 }

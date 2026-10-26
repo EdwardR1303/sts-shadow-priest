@@ -359,3 +359,27 @@ Guardian Angel power icon (Guardian Spirit artwork)
 Metadata: https://www.wowhead.com/spell=47788/guardian-spirit
 Source: https://wow.zamimg.com/images/wow/icons/large/spell_holy_guardianspirit.jpg
 Resource: src/main/resources/shadowpriest/images/cards/icons/guardian_angel.jpg
+
+Class relic batch, October 25, 2026:
+
+Idol of C'Thun (achievement_boss_cthun)
+Source: https://wow.zamimg.com/images/wow/icons/large/achievement_boss_cthun.jpg
+Resource: shadowpriest/images/relics/icons/cthun.jpg
+
+Idol of Y'Shaarj (achievement_raid_terraceofendlessspring04)
+Source: https://wow.zamimg.com/images/wow/icons/large/achievement_raid_terraceofendlessspring04.jpg
+Resource: shadowpriest/images/relics/icons/yshaarj.jpg
+
+Idol of N'Zoth (achievement_nzothraid_nzoth)
+Source: https://wow.zamimg.com/images/wow/icons/large/achievement_nzothraid_nzoth.jpg
+Resource: shadowpriest/images/relics/icons/nzoth.jpg
+
+Idol of Yogg-Saron (achievement_boss_yoggsaron_01)
+Source: https://wow.zamimg.com/images/wow/icons/large/achievement_boss_yoggsaron_01.jpg
+Resource: shadowpriest/images/relics/icons/yogg.jpg
+
+Shadowy Preparation reuses the credited Shadowy Insight artwork.
+Improved Voidform reuses the credited original Voidform icon.
+Void Vengeance reuses the credited Void Bolt artwork.
+These original source images are unchanged. PriestRelic renders a transparent
+medallion frame around them in the game; see docs/relic-implementation.md.
