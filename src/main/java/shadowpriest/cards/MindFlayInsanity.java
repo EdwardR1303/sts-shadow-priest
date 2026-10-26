@@ -13,7 +13,7 @@ public class MindFlayInsanity extends PriestCard {
     public static final String ID = "shadowpriest:MindFlayInsanity";
     public MindFlayInsanity() {
         super(ID, -1, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.ENEMY);
-        baseDamage = 4;
+        baseDamage = 6;
     }
     @Override public float getTitleFontSize() { return 16f; }
     @Override public void use(AbstractPlayer p, AbstractMonster m) {

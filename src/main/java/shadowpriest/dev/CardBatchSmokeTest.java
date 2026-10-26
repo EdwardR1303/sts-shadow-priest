@@ -194,31 +194,31 @@ public final class CardBatchSmokeTest {
             reset(); dots(m); enemyHp = m.currentHealth; play(new MindFlayInsanity(), m, 3);
         });
         q.add(() -> {
-            check(m.currentHealth == enemyHp - 12 && relic.state.amount() == 30 && EnergyPanel.totalCount == 0,
+            check(m.currentHealth == enemyHp - 18 && relic.state.amount() == 30 && EnergyPanel.totalCount == 0,
                 "Mind Flay: Insanity spends three energy for three normal hits");
             check(m.getPower(ShadowDotPower.TOUCH).amount == 5 && m.getPower(ShadowDotPower.PAIN).amount == 5,
                 "Mind Flay: Insanity extends each existing DoT up to five without changing its damage");
             reset(); dots(m); enemyHp = m.currentHealth; play(upgraded(new MindFlayInsanity()), m, 0);
         });
         q.add(() -> {
-            check(m.currentHealth == enemyHp - 4 && m.getPower(ShadowDotPower.TOUCH).amount == 4
+            check(m.currentHealth == enemyHp - 6 && m.getPower(ShadowDotPower.TOUCH).amount == 4
                 && relic.state.amount() == 10, "Upgraded X=0 Mind Flay adds one turn and one hit");
             reset(); dots(m); card = new MindFlayInsanity(); card.freeToPlayOnce = true; enemyHp = m.currentHealth;
             play(card, m, 2);
         });
         q.add(() -> {
-            check(m.currentHealth == enemyHp - 8 && EnergyPanel.totalCount == 2, "Free-to-play X card uses the energy amount without spending it");
+            check(m.currentHealth == enemyHp - 12 && EnergyPanel.totalCount == 2, "Free-to-play X card uses the energy amount without spending it");
             reset(); dots(m); dots(other); enemyHp = m.currentHealth; otherHp = other.currentHealth;
             play(new MindSear(), null, 2);
         });
         q.add(() -> {
-            check(m.currentHealth == enemyHp - 6 && other.currentHealth == otherHp - 6 && relic.state.amount() == 40
+            check(m.currentHealth == enemyHp - 10 && other.currentHealth == otherHp - 10 && relic.state.amount() == 40
                 && EnergyPanel.totalCount == 0, "Mind Sear deals repeated area damage and counts each target's DoTs");
             reset(); p.relics.add(new ChemicalX()); dots(m); enemyHp = m.currentHealth;
             play(upgraded(new MindSear()), null, 0);
         });
         q.add(() -> {
-            check(m.currentHealth == enemyHp - 9 && relic.state.amount() == 30, "Chemical X and upgraded X=0 add three Mind Sear hits");
+            check(m.currentHealth == enemyHp - 15 && relic.state.amount() == 30, "Chemical X and upgraded X=0 add three Mind Sear hits");
             p.relics.removeIf(r -> r instanceof ChemicalX);
             reset(); card = upgraded(new Dispersion()); turn = GameActionManager.turn;
             play(card, null, 3);

@@ -100,7 +100,7 @@ public class SixthBatchSmokeTest {
  q.add(()->{check(stat(HastePower.POWER_ID)==8 && stat("Strength")==0 && stat("Dexterity")==0 && stat(MasteryPower.POWER_ID)==0,"Xalatath can roll eight combat-long Haste");play(upgraded(new PowerInfusion()),null,0);});
  q.add(()->{check(stat(HastePower.POWER_ID)==10,"Temporary Power Infusion adds to combat Haste in one power");endTurn(true);});
  q.add(()->{check(stat(HastePower.POWER_ID)==8,"Turn end removes only Power Infusion Haste, preserving Xalatath's eight");play(new MindSear(),null,0);});
- q.add(()->{check(m.currentHealth==976 && EnergyPanel.totalCount==0,"Xalatath's retained Haste supplies eight X repetitions at zero energy");endTurn(true);});
+ q.add(()->{check(m.currentHealth==960 && EnergyPanel.totalCount==0,"Xalatath's retained Haste supplies eight X repetitions at zero energy");endTurn(true);});
  q.add(()->{check(stat(HastePower.POWER_ID)==8,"Combat Haste survives a second turn boundary");reset();play(upgraded(new PowerInfusion()),null,0);});
  q.add(()->{seedAllHaste(5);equipForReview(upgraded(new Xalatath()));});
  q.add(()->{check(stat(HastePower.POWER_ID)==12,"Upgraded Xalatath adds ten combat Haste to preexisting temporary Haste");endTurn(true);});

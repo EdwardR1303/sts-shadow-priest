@@ -728,15 +728,15 @@
       "base": {
         "cost": "X",
         "target": "ENEMY",
-        "text": "Extend the target's Touch and Pain by X. Deal 4 damage X times.",
+        "text": "Extend the target's Touch and Pain by X. Deal 6 damage X times.",
         "stats": {
-          "damage": 4,
+          "damage": 6,
           "xBonus": 0
         },
         "keywords": [],
         "effects": [
           "Extend existing Touch and Pain by effective X, capped at 5 each.",
-          "Deal 4 damage effective X times."
+          "Deal 6 damage effective X times."
         ]
       },
       "upgrade": {
@@ -744,15 +744,15 @@
         "card": {
           "cost": "X",
           "target": "ENEMY",
-          "text": "Extend the target's Touch and Pain by X+1. Deal 4 damage X+1 times.",
+          "text": "Extend the target's Touch and Pain by X+1. Deal 6 damage X+1 times.",
           "stats": {
-            "damage": 4,
+            "damage": 6,
             "xBonus": 1
           },
           "keywords": [],
           "effects": [
             "Extend existing Touch and Pain by effective X+1, capped at 5 each.",
-            "Deal 4 damage effective X+1 times."
+            "Deal 6 damage effective X+1 times."
           ]
         }
       },
@@ -760,7 +760,7 @@
         "Extend only existing Touch and Pain before the hits; do not add Madness stacks or trigger Misery.",
         "Use effective X from keywords.md, adding the upgrade's extra repetition afterward. Haste support is implemented."
       ],
-      "balanceNotes": "First reward-card batch; numbers require human full-run balance testing. Latest completed-run feedback: damage feels too weak; revised damage values remain under discussion.",
+      "balanceNotes": "First reward-card batch; numbers require human full-run balance testing. Approved post-run buff: damage per hit increased from 4 to 6, retaining X+1 upgrades and existing effects. Further full-run balance testing remains.",
       "art": {
         "wowAbility": "Mind Flay: Insanity",
         "icon": "",
@@ -782,14 +782,14 @@
       "base": {
         "cost": "X",
         "target": "ALL_ENEMY",
-        "text": "Deal 3 damage to all enemies X times.",
+        "text": "Deal 5 damage to all enemies X times.",
         "stats": {
-          "damage": 3,
+          "damage": 5,
           "xBonus": 0
         },
         "keywords": [],
         "effects": [
-          "Deal 3 damage to all enemies X times."
+          "Deal 5 damage to all enemies X times."
         ]
       },
       "upgrade": {
@@ -797,14 +797,14 @@
         "card": {
           "cost": "X",
           "target": "ALL_ENEMY",
-          "text": "Deal 3 damage to all enemies X+1 times.",
+          "text": "Deal 5 damage to all enemies X+1 times.",
           "stats": {
-            "damage": 3,
+            "damage": 5,
             "xBonus": 1
           },
           "keywords": [],
           "effects": [
-            "Deal 3 damage to all enemies X+1 times."
+            "Deal 5 damage to all enemies X+1 times."
           ]
         }
       },
@@ -812,7 +812,7 @@
         "Implementation edge cases: docs/card-batch-01.md.",
         "Uses effective X from keywords.md, including Haste and Chemical X at zero energy. Haste support is implemented."
       ],
-      "balanceNotes": "First reward-card batch; numbers require human full-run balance testing. Latest completed-run feedback: damage feels too weak; revised damage values remain under discussion.",
+      "balanceNotes": "First reward-card batch; numbers require human full-run balance testing. Approved post-run buff: damage per hit increased from 3 to 5, retaining X+1 upgrades and existing effects. Further full-run balance testing remains.",
       "art": {
         "wowAbility": "Mind Sear",
         "icon": "",

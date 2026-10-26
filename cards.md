@@ -219,19 +219,19 @@ X/Y/Z = **Attacks/Skills/Powers**. Counts beside each rarity heading include dra
 #### Mind Flay: Insanity
 
 - **Cost:** X energy
-- **Effect:** Extend the target's Touch and Pain by X. Deal 4 damage X times.
+- **Effect:** Extend the target's Touch and Pain by X. Deal 6 damage X times.
 - **Upgrade:** Extend Touch and Pain by X+1 and deal damage X+1 times.
 - **Rules:** Extend only existing Touch and Pain before the hits; do not add Madness stacks or trigger Misery. Use effective X from the Haste definition, adding the upgraded extra repetition afterward.
 - **Status:** Implemented with shared Haste support.
-- **Playtest feedback:** Feels too weak in the completed run; damage tuning is pending.
+- **Playtest feedback:** Raised damage per hit from 4 to 6 after the completed run; evaluate this baseline in further runs.
 
 #### Mind Sear
 
 - **Cost:** X energy
-- **Effect:** Deal 3 damage to all enemies X times.
+- **Effect:** Deal 5 damage to all enemies X times.
 - **Upgrade:** Deal damage X + 1 times.
 - **Status:** Implemented with shared Haste support.
-- **Playtest feedback:** Feels underpowered compared with Whirlwind; damage tuning is pending.
+- **Playtest feedback:** Raised damage per hit from 3 to 5 after the completed run; evaluate this baseline in further runs.
 
 #### Void Volley
 
