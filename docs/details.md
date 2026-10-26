@@ -4,6 +4,11 @@ Click the purple **bar-chart button in the top bar** to inspect the current or p
 
 Choose **Damage dealt**, **Damage taken**, or **Block generated**, then **All turns** or an individual turn. Sources appear in descending order with their amount and percentage of the selected total. The three tiles show combat totals and averages per player turn. Arrow buttons move between encounters. Scroll or use the paging buttons for long fights and long source lists.
 
+Click **Overall** at the top to aggregate every recorded combat in the current run, including the current fight. The metric tiles show run totals and averages calculated as total amount divided by total recorded player turns (including zero-event turns). Source bars combine matching sources across combats, with percentages of the selected run total. The left column lists combats and their totals for the selected metric; click one to inspect its turns, or use **Combat** to return to the selected encounter. Overall shows total Voidform entries, entries per recorded combat, and charges earned instead of combat-local first-entry timing.
+
+Overall is calculated from the existing reports, so saved combat history is included after resuming. Replayed attempts already replaced by the recording system are not counted twice. Combats from before Details recording began remain unavailable. The aggregate is a derived view, never another stored combat.
+
+
 The footer also shows Voidform entry count, first readiness turn, and first entry turn. Readiness means earning a charge; entering through Surrender to Madness can happen without a charge. Keeping an existing Voidform active does not count as another entry.
 
 ## What the numbers mean
@@ -41,3 +46,6 @@ Existing saves can use the feature from their next combat after relaunch. Histor
 ```
 
 `-DetailsOnly` runs focused observation and screen checks in the real patched game, using isolated test saves. It exports report screenshots to `.smoketest/card-review/` and results to `.smoketest/smoke-results.txt`. It does not simulate a full run. Unit tests cover aggregation, sorting, turn filters/averages, overkill, JSON round-tripping, and reload replacement.
+
+
+For a short Overall UI review without replaying combat scenarios, use `-DetailsOverallOnly`. It renders an isolated two-combat fixture, checks the Overall/Combat buttons and combat drill-down, and exports `combat-details-overall*.png`. Unit tests verify weighted averages, source totals/percentages, current-combat updates, zero-event turns, and restored/replayed history. This mode does not simulate a run.

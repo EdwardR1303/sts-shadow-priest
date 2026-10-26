@@ -202,3 +202,8 @@ The save check restores the custom save field and on-disk report; it is not an e
 ## Barrier reserve overhaul (October 26, 2026)
 
 Maven verification passed **22 unit tests**; `-BarrierOnly` passed **53 focused real-game checks**. The card catalog validated against its schema. In-game card and combat renders were reviewed. Coverage includes reserve-first damage, ordinary/passive gains with a nearly depleted Barrier, real turn retention without fresh Block gains, refreshes, stronger/weaker upgrades, modifiers/cap/zero grants, HP-loss bypass, explicit removal, and independent Blur/Barricade/Val'anyr/Calipers behavior. See [Barrier reserve rules](barrier-reserve.md). No full-run simulations were performed.
+
+
+## Details Overall view (October 26, 2026)
+
+Maven verification passed **25 unit tests**, including three new tests for aggregation across completed/current combats, weighted turn averages, source percentages, Voidform counts, empty data, restored history, and replacement of replayed attempts. A short `-DetailsOverallOnly` review passed **10 checks** (three startup checks and seven report/UI checks). Overall damage and Block screens were visually inspected at the 4K windowed setting. The UI review used an isolated two-combat fixture and exercised metric switching, combat drill-down, and Overall/Combat buttons; it did not simulate a run or repeat the combat regression suites. Existing JSON reports require no migration.

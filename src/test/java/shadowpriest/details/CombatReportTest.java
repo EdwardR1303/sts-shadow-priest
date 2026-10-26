@@ -8,6 +8,45 @@ import static shadowpriest.details.CombatReport.*;
 public class CombatReportTest {
     private final Source spike=new Source("spike","Mind Spike","card",true);
     private final Source touch=new Source("touch","Vampiric Touch","dot",true);
+    @Test public void overallCombinesCompletedAndCurrentCombatsWithWeightedAverages(){
+        Run run=new Run();CombatReport first=run.begin(1,1,"Cultist");
+        first.turns=2;first.outcome="Victory";
+        first.record(Metric.DAMAGE_DEALT,spike,30,"Cultist",null);
+        first.record(Metric.BLOCK,spike,8,"Player",null);
+        first.readyTurns.add(1);first.activationTurns.add(2);
+        CombatReport current=run.begin(2,1,"Slimes");current.turns=4;
+        current.record(Metric.DAMAGE_DEALT,spike,6,"Slime",null);
+        current.record(Metric.DAMAGE_DEALT,touch,24,"Slime",null);
+        current.record(Metric.DAMAGE_TAKEN,touch,9,"Player",null);
+        current.activationTurns.add(3);
+        CombatReport total=run.overall();
+        assertEquals(6,total.turns);assertEquals(60,total.total(Metric.DAMAGE_DEALT,0));
+        assertEquals(10,total.perTurn(Metric.DAMAGE_DEALT),0);
+        assertEquals(9,total.total(Metric.DAMAGE_TAKEN,0));assertEquals(8,total.total(Metric.BLOCK,0));
+        List<Row> rows=total.rows(Metric.DAMAGE_DEALT,0);
+        assertEquals("spike",rows.get(0).source.id);assertEquals(36,rows.get(0).amount);
+        assertEquals(60,rows.get(0).percent(60),0);assertEquals(2,total.activationTurns.size());
+        assertEquals(1,total.readyTurns.size());assertEquals(2,run.combats.size());
+        current.record(Metric.DAMAGE_DEALT,spike,6,"Slime",null);
+        assertEquals(66,run.overall().total(Metric.DAMAGE_DEALT,0));
+        assertEquals(30,first.total(Metric.DAMAGE_DEALT,0));
+    }
+    @Test public void overallUsesRestoredHistoryAndDoesNotCountReplayedAttemptTwice(){
+        Run run=new Run();CombatReport first=run.begin(1,1,"Cultist");
+        first.record(Metric.DAMAGE_DEALT,spike,10,"Cultist",null);
+        run.begin(2,1,"Slimes").record(Metric.DAMAGE_DEALT,spike,100,"Slime",null);
+        Run loaded=DetailsStore.JSON.fromJson(DetailsStore.JSON.toJson(run),Run.class);
+        loaded.begin(2,1,"Slimes").record(Metric.DAMAGE_DEALT,touch,5,"Slime",null);
+        assertEquals(15,loaded.overall().total(Metric.DAMAGE_DEALT,0));
+        assertEquals(2,loaded.overall().turns);assertEquals(2,loaded.combats.size());
+        assertEquals(2,loaded.combats.get(1).attempt);
+    }
+    @Test public void overallHandlesEmptyRunAndZeroEventCombats(){
+        Run run=new Run();assertEquals(0,run.overall().turns);
+        assertEquals(0,run.overall().perTurn(Metric.BLOCK),0);
+        run.begin(1,1,"Cultist").turns=3;
+        assertEquals(3,run.overall().turns);assertTrue(run.overall().rows(Metric.BLOCK,0).isEmpty());
+    }
     @Test public void aggregatesAndSortsSourcesWithoutMixingMetrics(){
         CombatReport c=new CombatReport(1,1,"Cultist");
         c.record(Metric.DAMAGE_DEALT,spike,6,"Cultist",null);

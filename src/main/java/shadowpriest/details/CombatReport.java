@@ -33,6 +33,18 @@ public final class CombatReport {
         public int schemaVersion=1, ascension;
         public String id=UUID.randomUUID().toString(), seed, character, startedAt=java.time.Instant.now().toString();
         public List<CombatReport> combats=new ArrayList<>();
+        /** Derived view only: never appended to the saved combat list or counted as another fight. */
+        public CombatReport overall() {
+            CombatReport total=new CombatReport(0,0,"Overall");
+            total.turns=0;
+            for(CombatReport combat:combats){
+                total.turns+=combat.turns;
+                total.events.addAll(combat.events);
+                total.readyTurns.addAll(combat.readyTurns);
+                total.activationTurns.addAll(combat.activationTurns);
+            }
+            return total;
+        }
         public CombatReport begin(int floor, int act, String encounter) {
             CombatReport next=new CombatReport(floor,act,encounter);
             // Reloading a saved floor replays it; replace its previous attempt, never add both to totals.

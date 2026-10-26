@@ -102,6 +102,10 @@ public final class CombatSmokeTest {
             BarrierReserveSmokeTest.append(steps);
             return;
         }
+        if(Boolean.getBoolean("shadowpriest.detailsoverallonly")) {
+            OverallDetailsReview.append(steps);
+            return;
+        }
         if(Boolean.getBoolean("shadowpriest.detailsonly")) {
             DetailsSmokeTest.append(steps);
             return;
