@@ -46,7 +46,10 @@ There is no standard card-style upgrade field. If a relic replaces or improves a
 - **Rules:** Use Apply versus Extend as defined in keywords.md. Qualifying effects must be capable of applying Touch when it is absent. Includes Vampiric Touch, Tentacle Slam, Unfurling Darkness, Shadow Crash, Blood Magic's current draft, and Void Blast's Touch applications. Excludes existing-only maintenance from Mind Flay, Mind Flay: Insanity, Void Bolt, and Void Volley. Use the incoming Touch application amount, not the target's total stacks or the amount actually gained at the cap. If Artifact prevents Touch, Misery does not trigger; resulting Pain follows normal application rules.
 
 ### Idol of C'Thun
-- **Effect:** At the start of combat, add a Tentacle Slam card to your hand
+
+- **Effect:** At the start of combat, add a free Tentacle Slam to your hand.
+- **Rules:** Generate a combat-only copy, separate from the permanent deck. The free cost is agreed; whether it lasts for the opening turn or the entire combat is pending clarification. Proposed copy is unupgraded.
+- **Status:** Free generated card agreed; duration clarification pending. Not implemented.
 
 
 ## Rare
@@ -58,7 +61,10 @@ There is no standard card-style upgrade field. If a relic replaces or improves a
 - **Status:** Agreed; not implemented.
 
 ### Idol of N'Zoth
-- **Effect:** Gain 1 Mastery after playing a power
+
+- **Effect:** Whenever you play a Power or equip your Legendary at combat start, gain 1 Mastery.
+- **Rules:** Each actual Power card play grants 1 Mastery after its effects. A successful automatic Legendary equipment activation also grants 1 Mastery, once per combat. Temporary copies and failed/duplicate equipment attempts do not qualify. This equipment interaction is specific to N'Zoth; it does not turn automatic equipment into a card play for other effects. Mastery lasts for combat.
+- **Status:** Legendary interaction agreed; not implemented.
 
 ### Inescapable Torment ?
 
@@ -72,7 +78,11 @@ There is no standard card-style upgrade field. If a relic replaces or improves a
 - **Effect:** Entering Voidform grants 3 energy
 
 ### Improved Voidform ?
-- **Effect:** Entering Voidform no longer expires at the end of turn. Instead, each card played reduces insanity by 10. When reaching 0, leave Voidform.
+
+- **Effect:** Voidform lasts until at least 3 Attacks have been played, then ends at the end of the turn.
+- **Rules:** Replaces the previous 10-Insanity-per-card draft. Proposed interpretation: count Attack card plays during the current activation across turns; fewer than 3 lets Voidform carry into the next turn, and reaching 3 allows it to end at that turn's end rather than immediately. Multi-hit cards count once. This interpretation and the Surrender interaction are awaiting clarification.
+- **Balance note:** Under that interpretation, playing fewer than 3 Attacks can preserve Voidform indefinitely while using Skills/DoTs, including maximum Void Shield and Shadow Committal benefits. Decide whether that is intentional or whether carryover needs a limit.
+- **Status:** New direction proposed; exact timing unreviewed. Not implemented.
 
 ### Void Vengeance
 
