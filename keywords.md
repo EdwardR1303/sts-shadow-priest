@@ -22,7 +22,9 @@ Each point increases the damage of every DoT tick by 1. Mastery can be negative;
 
 ### Insanity
 
-The Shadow Priest resource, capped at 100. Each direct Attack hit generates 5 Insanity per unique DoT on its target, including fully blocked or zero-damage hits. Multi-hit Attacks count each hit; area Attacks count each enemy hit. A killing hit uses the DoTs present for that hit. DoT ticks, Halo, healing, and retaliation do not generate Insanity.
+The Shadow Priest resource, capped at 100. Each direct Attack hit generates 5 Insanity per unique DoT on its target, including fully blocked or zero-damage hits. Multi-hit Attacks count each hit; area Attacks count each enemy hit. A killing hit uses the DoTs present for that hit. Your outgoing DoT ticks, Halo, healing, and retaliation do not generate attack-based Insanity.
+
+Whenever the priest loses HP from a damage event during combat, gain 5 Insanity. Count each event once, regardless of damage amount or source: enemy hits, self-damage, and damaging Curses/Statuses qualify. Fully blocked, dodged, or otherwise prevented damage grants nothing. Apply this after damage prevention and HP-loss modifiers. Each damaging hit of a multihit attack counts separately; Shadow Mend's combined debt tick counts once. This does not require a DoT on an enemy and does not trigger from out-of-combat HP loss or changes to maximum HP.
 
 Reaching 100 grants one 0-cost, Retain, Exhaust **Enter Voidform** card; entering Voidform is a choice. A full hand delays delivery until space is available. Insanity persists between turns but resets when Voidform ends or combat ends. No Insanity can be gained while an activation is ready, during Voidform, or during Recharge. These restrictions also apply to explicit card and relic gains.
 

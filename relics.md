@@ -25,10 +25,10 @@ There is no standard card-style upgrade field. If a relic replaces or improves a
 
 ### Voidform
 
-- **Effect:** Each direct Attack hit generates 5 Insanity per unique DoT on its target. At 100 Insanity, receive Enter Voidform.
-- **Rules:** Use the Insanity, Voidform, and Recharge definitions in keywords.md. Enter Voidform costs 0, has Retain and Exhaust, and is an on-demand activation. Ordinary Voidform discounts Attacks by 1 and increases their damage by 50% until turn end. Explicit Insanity gains, including Mind Spike's additional 10, follow the same cap and generation restrictions. X costs are unchanged; Haste modifies effective X separately.
+- **Effect:** Each direct Attack hit generates 5 Insanity per unique DoT on its target. Each damage event that removes your HP in combat grants 5 Insanity. At 100 Insanity, receive Enter Voidform.
+- **Rules:** Use the Insanity, Voidform, and Recharge definitions in keywords.md. Enter Voidform costs 0, has Retain and Exhaust, and is an on-demand activation. Ordinary Voidform discounts Attacks by 1 and increases their damage by 50% until turn end. Explicit Insanity gains, including Mind Spike's additional 10 and damage-taken gains, follow the same cap and generation restrictions. X costs are unchanged; Haste modifies effective X separately.
 - **Art:** WoW Voidform icon adapted into an organic relic silhouette with transparent padding.
-- **Status:** Existing starter implemented; the revised 5-Insanity hit generation and shared keyword changes are agreed but awaiting implementation.
+- **Status:** Implemented, including attack-hit and damage-taken generation.
 
 ## Common
 

@@ -4,6 +4,7 @@ package shadowpriest.mechanics;
 public final class InsanityState {
     public static final int THRESHOLD = 100;
     public static final int PER_DOT = 5;
+    public static final int PER_DAMAGE_TAKEN = 5;
     private int insanity;
     private boolean active;
     private boolean surrendered;
@@ -23,6 +24,11 @@ public final class InsanityState {
         if (active || ready() || recoveryStarts > 0 || points <= 0) return;
         insanity += Math.min(THRESHOLD - insanity, points);
         if (ready()) charge++;
+    }
+
+    /** One gain per HP-damaging event, independent of its damage amount or source. */
+    public void gainFromHpLoss(int damageAmount) {
+        if (damageAmount > 0) gain(PER_DAMAGE_TAKEN);
     }
 
     public boolean activate(int cardCharge) {

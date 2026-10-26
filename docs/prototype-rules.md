@@ -27,7 +27,9 @@ Neither DoT inherently heals; Vampiric Embrace rewards damaging Touch ticks with
 
 ## Insanity and activation
 
-Each player-owned normal attack damage event gains 5 Insanity per unique DoT on its target. Each hit of a multihit attack counts independently, and multi-target attacks use each enemy's own DoTs. Fully blocked and zero-damage normal hits count. Killing blows count before debuff cleanup. HP-loss and retaliation damage do not count. Mind Spike grants an additional 10 explicit Insanity after its hit, subject to all shared gain restrictions.
+Each player-owned normal attack damage event gains 5 Insanity per unique DoT on its target. Each hit of a multihit attack counts independently, and multi-target attacks use each enemy's own DoTs. Fully blocked and zero-damage normal hits count. Killing blows count before debuff cleanup. Outgoing HP-loss and retaliation damage do not count toward this attack-based generation. Mind Spike grants an additional 10 explicit Insanity after its hit, subject to all shared gain restrictions.
+
+Every incoming damage event that removes player HP in combat grants 5 Insanity after mitigation, including Blood Magic, each Shadow Word: Death backlash event, and Shadow Mend's combined debt tick. Fully blocked, dodged, or prevented damage grants nothing; damage amount does not change the gain. Out-of-combat HP loss does not count. The same ready, active, and Recharge restrictions apply.
 
 Insanity persists between turns and caps at 100. There is no random generation roll; draw order affects setup. At 100, one activation becomes ready and generates Enter Voidform. A full hand defers delivery until a slot opens. No further Insanity is gained while ready, active, or recovering. Reaping Madness provides 10/20 Insanity per copy at player turn end under these same restrictions.
 

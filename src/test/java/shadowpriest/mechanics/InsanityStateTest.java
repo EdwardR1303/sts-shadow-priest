@@ -79,4 +79,25 @@ public class InsanityStateTest {
         assertTrue(s.recovering()); assertTrue(s.surrender()); assertFalse(s.recovering());
         s.endTurn(); assertTrue(s.active());
     }
+    @Test public void hpDamageRewardsEventsNotDamageMagnitude() {
+        InsanityState s = new InsanityState();
+        s.gainFromHpLoss(1); s.gainFromHpLoss(30); s.gainFromHpLoss(3);
+        assertEquals(15, s.amount());
+        s.gainFromHpLoss(0); s.gainFromHpLoss(-1);
+        assertEquals(15, s.amount());
+        s.endTurn(); assertEquals(15, s.amount());
+    }
+    @Test public void hpDamageCanReadyOnlyOneChargeAndObeysAllLockouts() {
+        InsanityState s = new InsanityState(); s.gain(98);
+        s.gainFromHpLoss(3); assertEquals(100, s.amount()); assertTrue(s.ready());
+        int charge = s.charge(); s.gainFromHpLoss(10); assertEquals(charge, s.charge());
+        assertTrue(s.activate(charge)); s.gainFromHpLoss(3); assertEquals(100, s.amount());
+        s.endTurn(); s.gainFromHpLoss(3); assertEquals(0, s.amount());
+        s.startTurn(); s.gainFromHpLoss(3); s.endTurn(); s.gainFromHpLoss(3);
+        assertEquals(0, s.amount());
+        s.startTurn(); s.gainFromHpLoss(3); assertEquals(5, s.amount());
+        s.reset(); s.surrender(); s.gainFromHpLoss(3); assertEquals(0, s.amount());
+        s.reset(); s.gainFromHpLoss(3); assertEquals(5, s.amount());
+    }
+
 }

@@ -3,7 +3,7 @@
     "NAME": "Voidform",
     "FLAVOR": "Wait for the moment. Then let everything go.",
     "DESCRIPTIONS": [
-      "Each direct attack hit gains 5 #yInsanity per unique Shadow Priest DoT on the target, even if blocked. At #b100, gain a #b0-cost retained card to enter #yVoidform. NL In Voidform, Attacks cost #b1 less and deal #b50% more damage this turn. X costs are unchanged. NL Insanity persists between turns. One charge at a time; no gain while ready or active. Resets when Voidform ends or combat ends. NL Enter #yRecharge when Voidform ends: you cannot gain Insanity through the end of your next turn."
+      "Each direct attack hit gains 5 #yInsanity per unique Shadow Priest DoT on the target, even if blocked. NL Whenever you lose HP from damage in combat, gain #b5 #yInsanity. At #b100, gain a #b0-cost retained card to enter #yVoidform. NL In Voidform, Attacks cost #b1 less and deal #b50% more damage this turn. X costs are unchanged. NL Insanity persists between turns. One charge at a time; no gain while ready or active. Resets when Voidform ends or combat ends. NL Enter #yRecharge when Voidform ends: you cannot gain Insanity through the end of your next turn."
     ]
   }
 }

@@ -33,6 +33,8 @@ The starting relic is named **Voidform**. It provides a custom Insanity bar and 
 
 Each direct Attack hit generates 5 Insanity per unique DoT on its target. Mind Spike also grants 10 explicitly, so an enemy with two DoTs grants 20 Insanity for each Mind Spike. Three Mind Spikes against that enemy generate 60 Insanity in total.
 
+Taking HP damage in combat grants 5 Insanity per event, including self-damage. Fully prevented damage does not count. This follows the same ready, active, and Recharge restrictions as every other source.
+
 Insanity persists between turns. It resets to zero after combat and when Voidform ends.
 
 The prototype counts each player-owned normal attack damage event, including blocked hits and killing blows. Multihit and multi-target attacks count each target hit separately. Touch, Pain, and positive Madness stacks each contribute one to the count. Madness ticks for half its stacks rounded up plus Mastery and removes one stack, while Halo is a player aura that does not count as a DoT. The meter caps at 100 and stops gaining while ready, active, or recovering; there is no overflow or banked second charge.

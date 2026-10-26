@@ -493,7 +493,7 @@ X/Y/Z = **Attacks/Skills/Powers**. Counts beside each rarity heading include dra
 
 - **Additional rule:** Direct Attack hits generate 5 Insanity per unique DoT. When Voidform ends, reset Insanity and enter Recharge as defined in [keywords.md](keywords.md).
 - **Timing:** Enter Voidform and burst on turn 1; all Insanity gain is blocked throughout turn 2, including end-of-turn effects; generation resumes on turn 3.
-- **Existing rules:** Insanity still resets when Voidform ends or combat ends. No gain while Voidform is ready or active. The recovery restriction applies to every source, including attacks and Reaping Madness.
+- **Existing rules:** Insanity still resets when Voidform ends or combat ends. No gain while Voidform is ready or active. The recovery restriction applies to every source, including attacks, damage taken, and Reaping Madness.
 - **Status:** Implemented with revised generation and shared keyword timing.
 
 ## Class design rules

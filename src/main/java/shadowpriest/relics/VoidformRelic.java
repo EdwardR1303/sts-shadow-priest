@@ -87,9 +87,20 @@ public class VoidformRelic extends CustomRelic implements AlternateCardCostModif
         // Hook runs before death cleanup, so killing blows use the target's current debuffs too.
         gainInsanity(ShadowDotPower.count(target) * InsanityState.PER_DOT);
     }
+    @Override public void wasHPLost(int damageAmount) {
+        // The engine supplies damage after Block, prevention, and HP-loss modifiers here.
+        if (AbstractDungeon.currMapNode == null || AbstractDungeon.getCurrRoom() == null
+            || AbstractDungeon.getCurrRoom().phase != AbstractRoom.RoomPhase.COMBAT) return;
+        boolean wasReady = state.ready();
+        state.gainFromHpLoss(damageAmount);
+        updateInsanityDisplay(wasReady);
+    }
     public void gainInsanity(int amount) {
         boolean wasReady = state.ready();
         state.gain(amount);
+        updateInsanityDisplay(wasReady);
+    }
+    private void updateInsanityDisplay(boolean wasReady) {
         counter = state.amount();
         if (!wasReady && state.ready()) { flash(); beginLongPulse(); }
     }
