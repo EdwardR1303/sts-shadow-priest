@@ -73,7 +73,8 @@ public class ShadowPriestMod implements EditCharactersSubscriber, EditCardsSubsc
         shadowpriest.details.DetailsTracker.update();
         VoidformRelic relic = VoidformRelic.current();
         if (relic != null) relic.deliverReadyCard();
-        if (Boolean.getBoolean("shadowpriest.smoketest")) CombatSmokeTest.update();
+        if (Boolean.getBoolean("shadowpriest.historyonly")) shadowpriest.dev.DetailsHistoryReview.update();
+        else if (Boolean.getBoolean("shadowpriest.smoketest")) CombatSmokeTest.update();
     }
     @Override public void receivePostRender(SpriteBatch sb) {
         renderInsanityBar(sb);

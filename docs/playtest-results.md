@@ -257,3 +257,9 @@ Incremental Maven verification passed **28 unit tests**. `scripts/playtest.ps1 -
 Details now renders once after AbstractDungeon's normal UI layers, instead of BaseMod's earlier custom-screen slot. Victory, Defeat, and Spoils banners no longer cover the report; their state is preserved when Details closes. Native modal update/input behavior is unchanged.
 
 Incremental Maven verification passed 28 unit tests. The UI-only `-DetailsOverallOnly` review passed 14 checks, with actual DynamicBanner instances for Spoils, Victory, and Defeat. All three report captures and a post-close banner capture were visually reviewed. Overall/Combat navigation still worked, and the underlying banner remained visible after closing the report. No combat simulation was run for this UI fix.
+
+## Main-menu Details history (October 27, 2026)
+
+Added a read-only Combat Details browser to the main menu. Saved reports open in Overall with the same combat, turn, metric, and source breakdown controls. Listing and loading run in the background; unsupported or unreadable files are skipped. Both ISO timestamps and the older Date.toString timestamps sort correctly. Opening archives does not replace the active tracker or change dungeon screen state.
+
+Incremental Maven verification passed **31 unit tests**, including three archive tests for ordering, legacy dates, full report loading, read-only access, invalid/future reports, path validation, and empty history. The menu-only `-HistoryOnly` review passed **16 checks** covering the actual menu button, asynchronous discovery, row selection, Overall totals, combat/turn views, selecting a second run, and Back/Escape navigation. All four screenshots were visually reviewed at 1920 x 1080. The review created and removed two isolated fixture reports; no combat or full-run simulation was performed.

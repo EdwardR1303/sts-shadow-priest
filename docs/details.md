@@ -1,5 +1,9 @@
 # Combat Details
 
+From the main menu, click **Combat Details** in the upper-right to browse saved runs. Runs are listed newest first with local date/time, character, Ascension, seed, and the last recorded fight. Select a run to open its **Overall** report, then use the existing combat, turn, and metric controls. **Back** or Escape returns to the list; Close or Escape from the list returns to the menu. **Refresh** reloads the archive.
+
+History is read-only: it does not load a game save or replace the current run's tracker. A last-combat Victory means that fight was won, not necessarily the whole run. Empty runs are omitted; unreadable or unsupported reports are skipped with a count. Listing and report loading happen in the background.
+
 Click the purple **bar-chart button in the top bar** to inspect the current or previous combat. It is available during combat, on the map, at combat rewards, and on the death/victory screens. Finish card selections before opening it. Close the report with **Close**, **Escape**, or the same top-bar button.
 
 Details renders above the game's Victory, Defeat, and Spoils banners and other dungeon overlays. The underlying banner is preserved and becomes visible again when the report closes.
@@ -36,7 +40,7 @@ The file contains a schema version, run ID, seed, ascension, character, start ti
 
 Snapshots are written in the background, at most every two seconds during combat, and at turn/combat/save/exit boundaries. Writes replace files atomically where supported. An abrupt process termination can lose the most recent unsaved events; normal exit flushes the writer. A write error is displayed in the report footer and logged.
 
-The run ID is saved with the game. Resuming restores prior reports; replaying the same encounter on a saved floor replaces that encounter's previous report and increments its attempt number. This prevents save/reload attempts from inflating run totals. Old attempts are not kept as separate fights. Each new run gets a new file. Old files remain available for analysis, while the in-game panel shows the current run.
+The run ID is saved with the game. Resuming restores prior reports; replaying the same encounter on a saved floor replaces that encounter's previous report and increments its attempt number. This prevents save/reload attempts from inflating run totals. Old attempts are not kept as separate fights. Each new run gets a new file. Old files remain available through the main-menu browser, while the in-game top-bar panel shows the current run.
 
 Existing saves can use the feature from their next combat after relaunch. Historical combat totals cannot be reconstructed from the old console/run logs.
 
@@ -51,3 +55,5 @@ Existing saves can use the feature from their next combat after relaunch. Histor
 
 
 For a short Overall UI review without replaying combat scenarios, use `-DetailsOverallOnly`. It renders an isolated two-combat fixture, checks the Overall/Combat buttons and combat drill-down, and exports `combat-details-overall*.png`. Unit tests verify weighted averages, source totals/percentages, current-combat updates, zero-event turns, and restored/replayed history. This mode does not simulate a run.
+
+For a menu-only archive review, use `scripts/playtest.ps1 -SkipBuild -HistoryOnly -Windowed -Width 1920 -Height 1080`. It creates two temporary reports in the isolated smoke-test profile, reviews the menu/list/Overall/turn views, checks archive isolation and Back/Escape navigation, and removes its fixtures. It does not start a dungeon or simulate combat.

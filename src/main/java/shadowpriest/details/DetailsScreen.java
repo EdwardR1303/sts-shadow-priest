@@ -26,6 +26,8 @@ public final class DetailsScreen extends CustomScreen {
     private int combatIndex,turn,turnOffset,rowOffset;
     private Metric metric=Metric.DAMAGE_DEALT;
     private boolean overall;
+    private Run archivedRun;
+    private Runnable archiveBack;
     private float x,y,s;
     @Override public AbstractDungeon.CurrentScreen curScreen(){return DETAILS;}
     public boolean canOpen(){
@@ -37,6 +39,7 @@ public final class DetailsScreen extends CustomScreen {
     }
     public void show(){
         if(!canOpen())return;
+        archivedRun=null;archiveBack=null;
         returnScreen=AbstractDungeon.screen;
         Run run=DetailsTracker.run();combatIndex=run==null?0:Math.max(0,run.combats.size()-1);
         turn=turnOffset=rowOffset=0;reopen();
@@ -50,11 +53,21 @@ public final class DetailsScreen extends CustomScreen {
         AbstractDungeon.previousScreen=returnScreen==AbstractDungeon.CurrentScreen.NONE?null:returnScreen;
         genericScreenOverlayReset();
     }
-    public void dismiss(){InputHelper.pressedEscape=false;InputHelper.justClickedLeft=false;AbstractDungeon.closeCurrentScreen();}
+    public void showArchive(Run run,Runnable back){
+        archivedRun=run;archiveBack=back;combatIndex=Math.max(0,run.combats.size()-1);
+        metric=Metric.DAMAGE_DEALT;selectOverall(true);
+    }
+    public boolean viewingArchive(){return archivedRun!=null;}
+    public Run viewedRun(){return archivedRun!=null?archivedRun:DetailsTracker.run();}
+    public void dismiss(){
+        InputHelper.pressedEscape=false;InputHelper.justClickedLeft=false;
+        if(archivedRun!=null){Runnable back=archiveBack;archivedRun=null;archiveBack=null;if(back!=null)back.run();return;}
+        AbstractDungeon.closeCurrentScreen();
+    }
     @Override public void openingSettings(){AbstractDungeon.previousScreen=DETAILS;}
     private void layout(){s=Settings.scale;x=(Settings.WIDTH-1360*s)/2;y=(Settings.HEIGHT-820*s)/2;}
     private CombatReport report(){
-        Run run=DetailsTracker.run();
+        Run run=viewedRun();
         return run==null||run.combats.isEmpty()?null:overall?run.overall():run.combats.get(Math.max(0,Math.min(combatIndex,run.combats.size()-1)));
     }
     public void selectOverall(boolean selected){overall=selected;turn=turnOffset=rowOffset=0;}
@@ -65,7 +78,7 @@ public final class DetailsScreen extends CustomScreen {
         layout();
         if(InputHelper.pressedEscape || click(1220,752,112,42)){dismiss();return;}
         CombatReport c=report();if(c==null)return;
-        Run run=DetailsTracker.run();
+        Run run=viewedRun();
         if(click(920,752,136,42))selectOverall(true);
         if(click(1068,752,136,42))selectOverall(false);
         if(!overall){
@@ -103,17 +116,17 @@ public final class DetailsScreen extends CustomScreen {
         rect(sb,0,0,1360,820,BG);rect(sb,0,815,1360,5,COLORS[0]);
         text(sb,"DETAILS",28,778,GOLD,1.3f);text(sb,"Shadow Priest  /  "+(overall?"Run report":"Combat report"),218,778,MUTED,.85f);
         button(sb,"Overall",920,752,136,42,overall);button(sb,"Combat",1068,752,136,42,!overall);
-        button(sb,"Close",1220,752,112,42,false);
+        button(sb,viewingArchive()?"Back":"Close",1220,752,112,42,false);
         CombatReport c=report();
         if(c==null){
             text(sb,"No combat recorded yet.",60,550,Color.WHITE,1.1f);
             text(sb,"Tracking begins with your next combat. Earlier runs cannot be reconstructed.",60,500,MUTED,.85f);
             sb.setColor(color);return;
         }
-        Run run=DetailsTracker.run();
+        Run run=viewedRun();
         if(overall){
-            text(sb,"Overall  |  Run so far",28,716,Color.WHITE,1);
-            text(sb,run.combats.size()+" recorded combats  |  "+c.turns+" total turns  |  Includes the current combat",28,684,MUTED,.75f);
+            text(sb,viewingArchive()?"Overall  |  Saved run":"Overall  |  Run so far",28,716,Color.WHITE,1);
+            text(sb,run.combats.size()+" recorded combats  |  "+c.turns+" total turns  |  "+(viewingArchive()?"Ascension "+run.ascension+"  |  "+run.startedAt.substring(0,Math.min(10,run.startedAt.length())):"Includes the current combat"),28,684,MUTED,.75f);
         }else{
             button(sb,"<",28,690,44,40,false);button(sb,">",1288,690,44,40,false);
             text(sb,fit("Floor "+c.floor+"  |  "+c.encounter,82),90,716,Color.WHITE,1);
@@ -155,7 +168,7 @@ public final class DetailsScreen extends CustomScreen {
         text(sb,"HP damage excludes Block and overkill. Block counts actual gains.",300,111,MUTED,.72f);
         text(sb,(overall?"Averages use all recorded turns. Select a combat on the left for its turns.":"Enemy actions belong to the preceding player turn."),300,82,MUTED,.72f);
         button(sb,"Up",1118,65,96,35,false);button(sb,"Down",1228,65,104,35,false);
-        text(sb,DetailsStore.error==null?"Saved to details/"+run.id+".json":DetailsStore.error,28,28,DetailsStore.error==null?MUTED:COLORS[1],.64f);
+        text(sb,viewingArchive()?"Read-only saved report  |  Seed: "+run.seed:DetailsStore.error==null?"Saved to details/"+run.id+".json":DetailsStore.error,28,28,DetailsStore.error==null?MUTED:COLORS[1],.64f);
         sb.setColor(color);
     }
     private static String first(List<Integer> turns){return turns.isEmpty()?"--":"turn "+turns.get(0);}

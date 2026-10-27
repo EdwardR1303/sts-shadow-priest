@@ -16,6 +16,8 @@ The [first combat FX pass](docs/combat-fx.md) adds violet projectiles, channels,
 
 The [latest playtest followup](docs/playtest-followup-2026-10-27.md) reduces Embrace to 2 Energy, adds formula previews, and replaces Mental Decay's generated Curse with Mind Decay.
 
+Saved combat reports are available from **Combat Details** in the main menu. Browse previous runs and their Overall, combat, and turn breakdowns without loading a game save.
+
 ## Build and play on Windows
 
 Install the Steam game and subscribe to ModTheSpire, BaseMod, and StSLib, then run:
