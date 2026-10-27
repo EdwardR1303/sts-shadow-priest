@@ -245,3 +245,9 @@ Twelve attacks and Voidform entry received visual effects. Incremental Maven ver
 ## Embrace, previews, and Mind Decay ? October 27, 2026
 
 **28 unit tests and 51 focused game checks passed.** Vampiric Embrace now costs two; Void Entropy has simpler text; Singularity, Void Torrent, and Void Shield have parenthetical previews; Mental Decay generates the custom retained Mind Decay Curse. Nine rendered cards were reviewed. The retention check now prevents false positives from immediate reshuffle/redraw. See [changes, checks, and preview limits](playtest-followup-2026-10-27.md). No broad run simulation was performed.
+
+## Mind Decay start-of-turn timing ? October 27, 2026
+
+Moved Mind Decay's penalty to turn start, only for copies already in hand before normal drawing. The penalty remains blockable and does not count as a card play. Combat-end guards run both when scheduling and resolving the damage.
+
+Incremental Maven verification passed **28 unit tests**. `scripts/playtest.ps1 -SkipBuild -MindDecayOnly -Windowed -Width 1920 -Height 1080` passed **16 focused game checks**: no end-turn penalty, only in-hand copies trigger, retention without reshuffle, retained Block, two copies across actual turns, HP-loss Insanity, no immediate tick on draw, cancellation of a queued penalty when the last enemy is dying, no out-of-combat scheduling, and a real end-of-turn Pain kill with no subsequent Curse damage. No broad simulation was run.

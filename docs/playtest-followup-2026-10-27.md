@@ -6,13 +6,13 @@
 - Void Entropy reads "Enter Voidform. Draw 2/3 cards." Recharge prevents Insanity gain, not direct entry. Existing entry/recovery behavior is unchanged.
 - Singularity preserves its formula and shows a parenthetical bonus-damage value while targeting. The initial hit still has its own damage number. The preview includes current stacks, Mastery, relevant Attack modifiers, and Searing Nightmare stacks from the initial hit when not blocked by Artifact. It excludes Strength from the bonus as before. Changing/clearing targets and resetting the card clear stale values.
 - Void Torrent shows total damage and hit count in parentheses, with effective X from current Energy, Haste, and Chemical X. Each escalating hit is calculated and rounded separately. Preview and resolution share the same damage helper. Void Shield shows total Block while preserving the base Block term in its formula.
-- Mental Decay creates **Mind Decay**, a custom generated-only Curse: Unplayable, Retain, take 2 blockable damage at end of turn. It has its own ID, name, Curse frame, and original artwork, and appears in Mental Decay's card preview. It is not registered in random reward/event Curse pools and does not change the 75 collectible-card total.
+- Mental Decay creates **Mind Decay**, a custom generated-only Curse: Unplayable, Retain, take 2 blockable damage at start of turn. It has its own ID, name, Curse frame, and original artwork, and appears in Mental Decay's card preview. It is not registered in random reward/event Curse pools and does not change the 75 collectible-card total.
 
 ## Retention fix
 
 The old RetainedDecay subclass inherited vanilla Decay's special end-turn autoplay. Its cleanup could discard the card before normal retention. The earlier test used an effectively empty draw pile and could pass by immediately redrawing the discarded Curse. That test now has a populated draw pile.
 
-Mind Decay schedules a normal THORNS damage action directly from its end-turn hook. It does not play, discard, exhaust, or redraw itself. Block absorbs the damage; ordinary damage-taken hooks apply to actual HP loss. The action is attributed to Mind Decay in Details. Blue Candle/Void Vengeance can deliberately play and exhaust the Curse normally, and external exhaust effects still recognize it as a Curse. Copies and full-hand fallback preserve Retain.
+Mind Decay schedules a normal THORNS damage action directly from its start-of-turn hook, only for copies already in hand before the normal draw. It does not play, discard, exhaust, or redraw itself. Block absorbs the damage; ordinary damage-taken hooks apply to actual HP loss. The action is attributed to Mind Decay in Details. A subsequent QoL change moved the penalty to turn start and added combat-end guards at both scheduling and resolution; end-of-turn victories cannot trigger it. Blue Candle/Void Vengeance can deliberately play and exhaust the Curse normally, and external exhaust effects still recognize it as a Curse. Copies and full-hand fallback preserve Retain.
 
 ## Validation
 

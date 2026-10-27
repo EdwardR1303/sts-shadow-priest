@@ -127,7 +127,7 @@ public final class FinalBatchSmokeTest {
             check(curse!=null&&curse.selfRetain&&curse.makeStatEquivalentCopy().selfRetain,"Generated Mind Decay retains through copying");
             check(EnergyPanel.totalCount==2&&MasteryPower.current()==1,"Creating Curse does not trigger Reinforcement");
             hp=p.currentHealth;for(int i=0;i<12;i++)p.drawPile.addToTop(new MindSpike());nextTurn();});
-        q.add(()->{check(p.hand.contains(curse)&&p.currentHealth==hp-2,"Mind Decay remains in hand and deals its end-turn damage");
+        q.add(()->{check(p.hand.contains(curse)&&p.currentHealth==hp-2,"Mind Decay remains in hand and deals its start-of-turn damage");
             reset();m.powers.add(new ArtifactPower(m,1));play(up(new MentalDecay()),null);});
         q.add(()->{check(MadnessPower.stacks(m)==0&&MadnessPower.stacks(n)==15&&!m.hasPower(ArtifactPower.POWER_ID),"Upgraded AoE respects each enemy's Artifact independently");
             reset();master=new VoidRay();other=new VoidRay();p.masterDeck.addToTop(master);p.masterDeck.addToTop(other);ray=(VoidRay)master.makeSameInstanceOf();curse=new Necronomicurse();p.hand.addToTop(curse);p.relics.add(new VoidVengeance());selected=curse;play(ray,m);});

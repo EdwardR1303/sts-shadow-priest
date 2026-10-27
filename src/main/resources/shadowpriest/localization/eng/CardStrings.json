@@ -337,6 +337,6 @@
   },
   "shadowpriest:MindDecay": {
     "NAME": "Mind Decay",
-    "DESCRIPTION": "Unplayable. Retain. NL At the end of your turn, take 2 damage."
+    "DESCRIPTION": "Unplayable. Retain. NL At the start of your turn, take 2 damage."
   }
 }

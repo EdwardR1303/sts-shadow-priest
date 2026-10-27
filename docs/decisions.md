@@ -140,3 +140,5 @@ The earlier agreed boss-only chance, one-Legendary permanent-deck limit, identit
 ## Playtest followup on October 27, 2026
 
 - **D070:** Reduce Vampiric Embrace to 2 Energy, preserving 1/2 healing and Touch triggers. Remove redundant Recharge exception wording from Void Entropy. Preserve formulas while adding parenthetical combat previews for Singularity's bonus hit, Void Torrent's aggregate hits, and Void Shield's total Block. Replace Mental Decay's retained vanilla Decay with generated-only Mind Decay: an Unplayable Curse with Retain and 2 blockable end-turn damage; no upgrade, no autoplay penalty, normal Curse-exhaust interactions. This supersedes the retained Decay implementation in the final card batch.
+
+- **D071:** Move Mind Decay's two blockable damage to player turn start, for copies already in hand before normal drawing. It remains Unplayable and retained. Damage is cancelled if the encounter has ended, including when earlier queued effects kill the final enemy. This supersedes D070's end-turn timing and prevents a victory from being followed by the Curse penalty. Ordinary Block expires normally; retained Block still absorbs the damage.

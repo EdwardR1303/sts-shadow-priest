@@ -74,12 +74,12 @@ public final class BalanceFollowupSmokeTest {
             check(!curse.canUse(p,null),"Mind Decay is normally unplayable");
             check(p.masterDeck.group.stream().noneMatch(c->c instanceof MindDecay),"Generated Curse never enters permanent deck");
             CardArtReview.card(curse,"followup-mind-decay");
-            m.powers.clear(); p.addBlock(2); hp=p.currentHealth; plays=AbstractDungeon.actionManager.cardsPlayedThisCombat.size(); nextTurn();
+            m.powers.clear(); p.powers.add(new BlurPower(p,1)); p.addBlock(2); hp=p.currentHealth; plays=AbstractDungeon.actionManager.cardsPlayedThisCombat.size(); nextTurn();
         });
         q.add(() -> {
             check(p.hand.contains(curse) && !p.discardPile.contains(curse) && p.drawPile.size()>=20,"Curse remains retained with enough draw cards to prevent reshuffle");
-            check(p.currentHealth==hp,"Two Block absorbs Mind Decay's two damage");
-            check(AbstractDungeon.actionManager.cardsPlayedThisCombat.size()==plays,"Curse end-turn penalty is not a card play");
+            check(p.currentHealth==hp,"Retained Block absorbs Mind Decay's start-of-turn damage");
+            check(AbstractDungeon.actionManager.cardsPlayedThisCombat.size()==plays,"Curse start-of-turn penalty is not a card play");
             check(!curse.dontTriggerOnUseCard,"Retained Curse has no stale autoplay flag");
             p.getRelic(VoidformRelic.ID).atPreBattle(); nextTurn();
         });
