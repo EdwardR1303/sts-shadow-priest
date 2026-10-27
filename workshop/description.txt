@@ -37,7 +37,7 @@ Launch Slay the Spire through Steam, choose Play With Mods, enable Shadow Priest
 
 [h2]Beta feedback[/h2]
 This is an early playable release. Balance and polish are still being tested. Please report crashes, confusing text, cards you consistently skip, and builds that feel too weak or too strong. Include the mod version, Ascension, seed, and other enabled mods when useful.
-[url=https://github.com/EdwardR1303/sts-shadow-priest/issues]Bug reports and feedback[/url] | [url=https://github.com/EdwardR1303/sts-shadow-priest]Source and design documents[/url]
+Leave feedback and bug reports in this Workshop item's comments or discussions.
 Combat Details reports are saved locally in the game's working directory under details/. Nothing is uploaded automatically.
 
 [h2]Credits[/h2]
