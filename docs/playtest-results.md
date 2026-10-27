@@ -251,3 +251,9 @@ Twelve attacks and Voidform entry received visual effects. Incremental Maven ver
 Moved Mind Decay's penalty to turn start, only for copies already in hand before normal drawing. The penalty remains blockable and does not count as a card play. Combat-end guards run both when scheduling and resolving the damage.
 
 Incremental Maven verification passed **28 unit tests**. `scripts/playtest.ps1 -SkipBuild -MindDecayOnly -Windowed -Width 1920 -Height 1080` passed **16 focused game checks**: no end-turn penalty, only in-hand copies trigger, retention without reshuffle, retained Block, two copies across actual turns, HP-loss Insanity, no immediate tick on draw, cancellation of a queued penalty when the last enemy is dying, no out-of-combat scheduling, and a real end-of-turn Pain kill with no subsequent Curse damage. No broad simulation was run.
+
+## Details banner layering ? October 27, 2026
+
+Details now renders once after AbstractDungeon's normal UI layers, instead of BaseMod's earlier custom-screen slot. Victory, Defeat, and Spoils banners no longer cover the report; their state is preserved when Details closes. Native modal update/input behavior is unchanged.
+
+Incremental Maven verification passed 28 unit tests. The UI-only `-DetailsOverallOnly` review passed 14 checks, with actual DynamicBanner instances for Spoils, Victory, and Defeat. All three report captures and a post-close banner capture were visually reviewed. Overall/Combat navigation still worked, and the underlying banner remained visible after closing the report. No combat simulation was run for this UI fix.

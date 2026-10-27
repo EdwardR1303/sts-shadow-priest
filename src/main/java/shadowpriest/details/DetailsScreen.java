@@ -94,7 +94,10 @@ public final class DetailsScreen extends CustomScreen {
             if(InputHelper.scrolledDown)rowOffset=Math.min(max,rowOffset+1);
         }
     }
-    @Override public void render(SpriteBatch sb){
+    // BaseMod's CustomScreen slot is below DynamicBanner and top-level room effects.
+    // DetailsPatches renders this modal once, after those layers instead.
+    @Override public void render(SpriteBatch sb){ }
+    public void renderAboveGameUI(SpriteBatch sb){
         layout();float color=sb.getPackedColor();
         rect(sb,-x/s,-y/s,Settings.WIDTH/s,Settings.HEIGHT/s,new Color(0,0,0,.78f));
         rect(sb,0,0,1360,820,BG);rect(sb,0,815,1360,5,COLORS[0]);

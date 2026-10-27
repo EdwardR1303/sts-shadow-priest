@@ -1,6 +1,7 @@
 package shadowpriest.dev;
 
 import com.megacrit.cardcrawl.core.Settings;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import shadowpriest.details.*;
 import java.util.*;
@@ -33,6 +34,7 @@ public final class OverallDetailsReview {
             current.record(Metric.DAMAGE_TAKEN,new Source("slime","Slime","enemy",false),7,"Player",null);
             current.readyTurns.add(2);current.activationTurns.add(2);
             DetailsScreen.INSTANCE.show();click(970,773);
+            AbstractDungeon.dynamicBanner.appearInstantly(Settings.HEIGHT*.8f,"Spoils!");
             check(DetailsScreen.INSTANCE.isOverall(),"Overall button opens the run aggregate");
             check(run.overall().total(Metric.DAMAGE_DEALT,0)==102&&run.overall().turns==7,"UI fixture combines both combats and their turns");
             CardArtReview.requestCombat("details-overall");
@@ -40,16 +42,31 @@ public final class OverallDetailsReview {
         q.add(()->{});q.add(()->{});
         q.add(()->{
             check(CardArtReview.capturedCombat("details-overall"),"Overall damage report rendered");
+            check(AbstractDungeon.dynamicBanner.show,"Spoils banner remains active behind the modal");
+            AbstractDungeon.dynamicBanner.appearInstantly(Settings.HEIGHT*.8f,"Victory!");
             click(1100,610);CardArtReview.requestCombat("details-overall-block");
         });
         q.add(()->{});q.add(()->{});
         q.add(()->{
             check(CardArtReview.capturedCombat("details-overall-block"),"Overall Block metric rendered");
+            AbstractDungeon.dynamicBanner.appearInstantly(Settings.HEIGHT*.8f,"Defeat!");
+            CardArtReview.requestCombat("details-banner-defeat");
+        });
+        q.add(()->{});q.add(()->{});
+        q.add(()->{
+            check(CardArtReview.capturedCombat("details-banner-defeat"),"Details captured with active Defeat banner");
             click(120,449);check(!DetailsScreen.INSTANCE.isOverall(),"Selecting an overall combat opens its individual report");
             click(120,406);click(970,773);check(DetailsScreen.INSTANCE.isOverall(),"Overall can be reopened after selecting a combat turn");
             click(1110,773);check(!DetailsScreen.INSTANCE.isOverall(),"Combat button returns to individual report mode");
             DetailsScreen.INSTANCE.dismiss();
+            check(AbstractDungeon.dynamicBanner.show,"Closing Details preserves the underlying banner");
+            CardArtReview.requestCombat("details-banner-restored");
             Run run=DetailsTracker.run();run.combats.clear();run.combats.addAll(saved);
+        });
+        q.add(()->{});q.add(()->{});
+        q.add(()->{
+            check(CardArtReview.capturedCombat("details-banner-restored"),"Underlying banner captured after closing Details");
+            AbstractDungeon.dynamicBanner.hide();
         });
     }
 }

@@ -2,6 +2,8 @@
 
 Click the purple **bar-chart button in the top bar** to inspect the current or previous combat. It is available during combat, on the map, at combat rewards, and on the death/victory screens. Finish card selections before opening it. Close the report with **Close**, **Escape**, or the same top-bar button.
 
+Details renders above the game's Victory, Defeat, and Spoils banners and other dungeon overlays. The underlying banner is preserved and becomes visible again when the report closes.
+
 Choose **Damage dealt**, **Damage taken**, or **Block generated**, then **All turns** or an individual turn. Sources appear in descending order with their amount and percentage of the selected total. The three tiles show combat totals and averages per player turn. Arrow buttons move between encounters. Scroll or use the paging buttons for long fights and long source lists.
 
 Click **Overall** at the top to aggregate every recorded combat in the current run, including the current fight. The metric tiles show run totals and averages calculated as total amount divided by total recorded player turns (including zero-event turns). Source bars combine matching sources across combats, with percentages of the selected run total. The left column lists combats and their totals for the selected metric; click one to inspect its turns, or use **Combat** to return to the selected encounter. Overall shows total Voidform entries, entries per recorded combat, and charges earned instead of combat-local first-entry timing.

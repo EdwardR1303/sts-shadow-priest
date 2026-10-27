@@ -14,6 +14,14 @@ import javassist.CannotCompileException;
 import javassist.expr.*;
 
 public final class DetailsPatches {
+    @SpirePatch(clz=com.megacrit.cardcrawl.dungeons.AbstractDungeon.class,method="render")
+    public static class ModalLayer {
+        @SpirePostfixPatch public static void after(com.megacrit.cardcrawl.dungeons.AbstractDungeon __instance,
+                                                  com.badlogic.gdx.graphics.g2d.SpriteBatch sb) {
+            if(com.megacrit.cardcrawl.dungeons.AbstractDungeon.screen==DetailsScreen.DETAILS)
+                DetailsScreen.INSTANCE.renderAboveGameUI(sb);
+        }
+    }
     @SpirePatch(clz=com.megacrit.cardcrawl.core.CardCrawlGame.class,method="dispose")
     public static class Shutdown {
         @SpirePrefixPatch public static void before(){DetailsTracker.save();DetailsStore.flush();}
