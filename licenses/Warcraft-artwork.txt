@@ -419,3 +419,32 @@ Resource: shadowpriest/images/cards/icons/shadow_weaving.jpg
 Shadow Word: Torment is original generated artwork, not an official spell icon.
 Resource: shadowpriest/images/cards/icons/shadow_word_torment.png
 Prompt: docs/card-batch-08-art-prompts.json
+
+October 27, 2026: final ten collectible cards
+
+Void Surge
+Reference: https://www.wowhead.com/spell=438689
+Source: https://wow.zamimg.com/images/wow/icons/large/inv_cosmicvoid_groundsate.jpg
+
+Malady of the Mind
+Reference: https://www.wowhead.com/spell=63830
+Source: https://wow.zamimg.com/images/wow/icons/large/spell_shadow_deathcoil.jpg
+
+Mental Decay
+Reference: https://www.wowhead.com/spell=375994
+Source: https://wow.zamimg.com/images/wow/icons/large/ability_kaztik_dominatemind.jpg
+
+Singularity (The Singularity, Rygelon)
+Reference: https://www.wowhead.com/spell=365667
+Source: https://wow.zamimg.com/images/wow/icons/large/ability_argus_blightorb.jpg
+
+Void Ray (retail Devourer ability)
+Reference: https://www.wowhead.com/spell=473728
+Source: https://wow.zamimg.com/images/wow/icons/large/inv_12_dh_void_ability_voidray.jpg
+
+Void Entropy (archived Priest ability)
+Reference: https://www.wowhead.com/spell=155361
+Source: https://wow.zamimg.com/images/wow/icons/large/ability_priest_voidentropy.jpg
+
+Void Entropy is removed from current spell data; its named legacy icon remains available on the source CDN.
+Madness Overwhelming, Twin Suns, Dark Reinforcement, and Event Horizon use original generated artwork. Prompts: docs/final-card-art-prompts.json.

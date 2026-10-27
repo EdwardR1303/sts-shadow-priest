@@ -42,6 +42,13 @@ public final class InsanityState {
         return true;
     }
 
+    /** Void Entropy: directly enter, even during Recharge; never restart an active form. */
+    public boolean enterImmediately() {
+        if (active) return false;
+        active=true; insanity=THRESHOLD; recoveryStarts=0; attacksPlayed=0; charge++;
+        return true;
+    }
+
     /** Bypass charge/recovery once; an already active form is extended, not entered again. */
     public boolean surrender() {
         if (surrendered) return false;

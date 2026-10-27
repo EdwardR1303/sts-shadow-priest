@@ -56,7 +56,7 @@ public final class SetupBalanceSmokeTest {
         q.add(()->{p=AbstractDungeon.player;m=AbstractDungeon.getMonsters().monsters.get(0);r=VoidformRelic.current();
             add(new SpawnMonsterAction(new Cultist(300f,0),false));});
         q.add(()->{n=AbstractDungeon.getMonsters().monsters.get(1);reset();
-            int[][] expected={{10,12,4},{6,11,4},{3,4,4}};CardGroup[] pools={AbstractDungeon.commonCardPool,AbstractDungeon.uncommonCardPool,AbstractDungeon.rareCardPool};
+            int[][] expected={{11,13,4},{7,14,5},{4,5,5}};CardGroup[] pools={AbstractDungeon.commonCardPool,AbstractDungeon.uncommonCardPool,AbstractDungeon.rareCardPool};
             for(int i=0;i<pools.length;i++){int[] found=new int[3];for(AbstractCard c:pools[i].group)if(c.color==shadowpriest.character.ShadowPriest.Meta.CARD_COLOR){if(c.type==AbstractCard.CardType.ATTACK)found[0]++;else if(c.type==AbstractCard.CardType.SKILL)found[1]++;else if(c.type==AbstractCard.CardType.POWER)found[2]++;}
                 check(Arrays.equals(found,expected[i]),"Initialized reward pool distribution "+Arrays.toString(found));}
             String[] names={"ShadowWordTorment","MindTrauma","VoidTendrils","EncroachingShadows","FocusedWill","ShadowWeaving","DarkRevelation","Atonement","SearingNightmare","VoidShield"};

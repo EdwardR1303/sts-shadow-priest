@@ -138,6 +138,17 @@ public class VoidformRelic extends CustomRelic implements AlternateCardCostModif
         IdolOfYoggSaron.enteredVoidform();
         addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new VoidformPower(AbstractDungeon.player)));
     }
+    public void enterImmediately() {
+        if (!state.enterImmediately()) return;
+        counter=state.amount(); stopPulse(); flash(); updateImprovedCounter();
+        shadowpriest.details.DetailsTracker.activated();
+        // Remove the consumed ready token without counting it as played or exhausted.
+        for(CardGroup group:new CardGroup[]{AbstractDungeon.player.hand,AbstractDungeon.player.drawPile,
+                AbstractDungeon.player.discardPile,AbstractDungeon.player.exhaustPile})
+            group.group.removeIf(c -> c instanceof EnterVoidform);
+        IdolOfYoggSaron.enteredVoidform();
+        addToTop(new ApplyPowerAction(AbstractDungeon.player,AbstractDungeon.player,new VoidformPower(AbstractDungeon.player)));
+    }
     public void surrender() {
         boolean entering = !state.active();
         if (!state.surrender()) return;

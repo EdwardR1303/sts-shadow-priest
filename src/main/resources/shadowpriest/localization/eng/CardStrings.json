@@ -284,5 +284,55 @@
   "shadowpriest:DarkRevelation": {
     "NAME": "Dark Revelation",
     "DESCRIPTION": "Choose a shadowpriest:DoT application card from your draw pile. Put it into your hand. It costs 0 this turn. NL Exhaust."
+  },
+  "shadowpriest:VoidSurge": {
+    "NAME": "Void Surge",
+    "DESCRIPTION": "Deal !D! damage. NL Gain !M! shadowpriest:Insanity.",
+    "UPGRADE_DESCRIPTION": "Deal !D! damage. NL Gain !M! shadowpriest:Insanity."
+  },
+  "shadowpriest:MadnessOverwhelming": {
+    "NAME": "Madness Overwhelming",
+    "DESCRIPTION": "Apply !M! shadowpriest:Madness. NL Increases by 5 for each Power played this combat.",
+    "UPGRADE_DESCRIPTION": "Apply !M! shadowpriest:Madness. NL Increases by 8 for each Power played this combat."
+  },
+  "shadowpriest:Singularity": {
+    "NAME": "Singularity",
+    "DESCRIPTION": "Deal !D! damage. NL Consume all target DoTs. Deal !M! + shadowpriest:Mastery damage per stack consumed. NL Bonus ignores Strength.",
+    "UPGRADE_DESCRIPTION": "Deal !D! damage. NL Consume all target DoTs. Deal !M! + shadowpriest:Mastery damage per stack consumed. NL Bonus ignores Strength."
+  },
+  "shadowpriest:TwinSuns": {
+    "NAME": "Twin Suns",
+    "DESCRIPTION": "If the enemy has positive Strength, gain that much shadowpriest:Haste.",
+    "UPGRADE_DESCRIPTION": "If the enemy has positive Strength, gain that much shadowpriest:Haste plus !M!."
+  },
+  "shadowpriest:MaladyOfTheMind": {
+    "NAME": "Malady of the Mind",
+    "DESCRIPTION": "Double the enemy's shadowpriest:Madness. NL Exhaust.",
+    "UPGRADE_DESCRIPTION": "Triple the enemy's shadowpriest:Madness. NL Exhaust."
+  },
+  "shadowpriest:VoidEntropy": {
+    "NAME": "Void Entropy",
+    "DESCRIPTION": "Enter shadowpriest:Voidform immediately, even during shadowpriest:Recharge. NL Draw !M! cards.",
+    "UPGRADE_DESCRIPTION": "Enter shadowpriest:Voidform immediately, even during shadowpriest:Recharge. NL Draw !M! cards."
+  },
+  "shadowpriest:DarkReinforcement": {
+    "NAME": "Dark Reinforcement",
+    "DESCRIPTION": "Whenever you draw a Curse, gain 1 Energy and draw 1 card.",
+    "UPGRADE_DESCRIPTION": "Whenever you draw a Curse, gain 1 Energy, draw 1 card, and gain 1 shadowpriest:Mastery."
+  },
+  "shadowpriest:VoidRay": {
+    "NAME": "Void Ray",
+    "DESCRIPTION": "Deal !D! damage. NL Exhaust a Curse in your hand to permanently increase this card's damage by !M!. NL Exhaust.",
+    "UPGRADE_DESCRIPTION": "Deal !D! damage. NL Exhaust a Curse in your hand to permanently increase this card's damage by !M!. NL Exhaust."
+  },
+  "shadowpriest:MentalDecay": {
+    "NAME": "Mental Decay",
+    "DESCRIPTION": "Apply !M! shadowpriest:Madness to ALL enemies. NL Add a Decay with Retain to your hand.",
+    "UPGRADE_DESCRIPTION": "Apply !M! shadowpriest:Madness to ALL enemies. NL Add a Decay with Retain to your hand."
+  },
+  "shadowpriest:EventHorizon": {
+    "NAME": "Event Horizon",
+    "DESCRIPTION": "Whenever you play a Power, gain !M! shadowpriest:Haste.",
+    "UPGRADE_DESCRIPTION": "Whenever you play a Power, gain !M! shadowpriest:Haste."
   }
 }

@@ -50,6 +50,10 @@ public final class CombatSmokeTest {
     public static void update() {
         if (finished) return;
         try {
+            if(Boolean.getBoolean("shadowpriest.finalbatchonly")){
+                if(FinalBatchSmokeTest.handleCompletion())return;
+                FinalBatchSmokeTest.handleSelection();
+            }
             if(Boolean.getBoolean("shadowpriest.detailsonly") && DetailsSmokeTest.handleCompletion())return;
             CardBatchSmokeTest.handleSelection(); SixthBatchSmokeTest.handleSelection();
             if(Boolean.getBoolean("shadowpriest.setuponly")) SetupBalanceSmokeTest.handleSelection();
@@ -98,6 +102,10 @@ public final class CombatSmokeTest {
         check(AbstractDungeon.commonCardPool.size() > 0 && AbstractDungeon.uncommonCardPool.size() > 0 && AbstractDungeon.rareCardPool.size() > 0, "Prototype reward pools are populated");
         p.hand.clear(); p.drawPile.clear(); p.discardPile.clear(); p.exhaustPile.clear(); p.limbo.clear();
         m.powers.clear(); m.maxHealth = m.currentHealth = 1000; p.maxHealth = p.currentHealth = 500; relic.reset();
+        if(Boolean.getBoolean("shadowpriest.finalbatchonly")) {
+            FinalBatchSmokeTest.append(steps);
+            return;
+        }
         if(Boolean.getBoolean("shadowpriest.vengeanceonly")) {
             VoidVengeanceSmokeTest.append(steps);
             return;

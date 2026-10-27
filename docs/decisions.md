@@ -126,3 +126,9 @@ The earlier agreed boss-only chance, one-Legendary permanent-deck limit, identit
 ## Void Vengeance redesign on October 26, 2026
 
 - **D066:** Replace D050's combat Curse conversion with two independent Boss-relic effects: each turn, one Curse can be played for 0 Energy and Exhausts; every actual Curse exhaust grants 2 Haste. External exhausts do not spend the free-play allowance. Preserve ordinary play restrictions and Blue Candle's separate permission and HP cost. Necronomicurse returns as usual, and repeatedly exhausting it grants Haste each time; the Blue Candle combination is deliberately allowed without exclusions or caps. The relic adds no HP cost of its own. Haste retains its standard decay. Permanent decks are unchanged.
+
+
+## Final roster on October 27, 2026
+
+- **D067:** Accept and implement the final ten proposals, bringing the collectible roster to 75 including three Legendaries (23 Attacks / 35 Skills / 17 Powers). Void Surge costs 1 and deals 6/9 damage plus 40/50 explicit Insanity. Singularity cashes out each DoT stack in one Mastery-scaled bonus hit. Twin Suns is repeatable with no baseline gain against nonpositive Strength. Void Ray grows by 5/8 per successful Curse exhaust, local to its permanent identity. Mental Decay generates a combat-only retained Decay in hand. The complete accepted effects, upgrades, and timing are in [the final batch](final-card-batch.md).
+- **D068:** Void Entropy directly enters ordinary Voidform even during Recharge, bypassing the ready-token step. Ending that form starts normal Recharge again. Already-active casts only draw and cannot restart the activation or retrigger entry relics. Normal Insanity generation restrictions remain unchanged.

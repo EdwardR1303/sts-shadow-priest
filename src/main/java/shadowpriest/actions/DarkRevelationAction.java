@@ -16,7 +16,7 @@ public final class DarkRevelationAction extends AbstractGameAction {
     private static final Set<String> APPLICATIONS=new HashSet<>(Arrays.asList(
         VampiricTouch.ID,ShadowWordPain.ID,UnfurlingDarkness.ID,BloodMagic.ID,TentacleSlam.ID,
         ShadowWordMadness.ID,ShadowWordTorment.ID,MindTrauma.ID,VoidTendrils.ID,
-        EncroachingShadows.ID,DarkVoid.ID,ShadowCrash.ID,VoidBlast.ID));
+        EncroachingShadows.ID,DarkVoid.ID,ShadowCrash.ID,VoidBlast.ID,MadnessOverwhelming.ID,MentalDecay.ID));
     private boolean opened;
     public static boolean eligible(AbstractCard c) { return APPLICATIONS.contains(c.cardID); }
     public DarkRevelationAction() { actionType=ActionType.CARD_MANIPULATION; }

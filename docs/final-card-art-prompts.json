@@ -1,0 +1,11 @@
+{
+  "date": "2026-10-27",
+  "tool": "imagegen",
+  "sharedDirection": "Square fantasy RPG spell ability icon. Painterly Warcraft-like fantasy icon, strong readable silhouette, bold highlights, deep purple shadows, rich hand-painted texture, centered composition. No text, no UI, no frame. Opaque background.",
+  "assets": {
+    "madness_overwhelming": "A screaming spectral face overwhelmed by concentric violet psychic waves, luminous eyes, black indigo background",
+    "twin_suns": "Two eclipsed suns orbiting one another, one violet one golden amber, streams of stolen luminous energy joining them, black indigo space",
+    "dark_reinforcement": "An armored priest's spectral purple hand clutching a cursed scroll, dark runes dissolving into violet protective power, black indigo background",
+    "event_horizon": "A magnificent black hole with bright lavender accretion ring and curved golden starlight being pulled inward, cosmic black indigo background"
+  }
+}

@@ -45,7 +45,7 @@ X/Y/Z = **Attacks/Skills/Powers**. Counts beside each rarity heading include dra
 - **Upgrade:** Cost becomes 0 energy; damage remains 3 per tick.
 - **Rules:** Apply 5 stacks, restoring remaining ticks to the cap of 5. Each natural tick removes one stack. Base damage is 3, modified by current Mastery but independent of stack count or application source.
 
-## Common (10/12/4)
+## Common (11/13/4)
 
 ### Attacks
 
@@ -124,6 +124,15 @@ X/Y/Z = **Attacks/Skills/Powers**. Counts beside each rarity heading include dra
 - **Upgrade:** Deal 7 damage and apply 6 Madness.
 - **Rules:** Damage, then Madness on the surviving target, then explicit Insanity. Madness does not require HP loss; Artifact can block it. Explicit Insanity still resolves.
 - **Status:** Implemented; full-run balance testing remains.
+
+#### Void Surge
+
+- **Cost:** 1 energy
+- **Effect:** Deal 6 damage. Gain 40 Insanity.
+- **Upgrade:** Deal 9 damage. Gain 50 Insanity.
+- **Rules:** Explicit Insanity follows the hit and adds to the normal 10 per direct hit: 50/60 total. Normal ready, active, and Recharge restrictions apply.
+- **Status:** Implemented; full-run balance testing remains.
+
 
 ### Skills
 
@@ -223,6 +232,15 @@ X/Y/Z = **Attacks/Skills/Powers**. Counts beside each rarity heading include dra
 - **Rules:** Block with Dexterity once, then immediate explicit Insanity. No enemy Attack prerequisite or pending trigger.
 - **Status:** Implemented; full-run balance testing remains.
 
+#### Madness Overwhelming
+
+- **Cost:** 1 energy
+- **Effect:** Apply 5 Madness, plus 5 for each Power played this combat.
+- **Upgrade:** Apply 8 Madness, plus 8 for each Power played this combat.
+- **Rules:** Count actual Power plays, including free plays through Foresight+, excluding automatic Legendary equipment. Display the current calculated application. Artifact can block the combined application.
+- **Status:** Implemented; full-run balance testing remains.
+
+
 ### Powers
 
 #### Power Word: Fortitude
@@ -256,7 +274,7 @@ X/Y/Z = **Attacks/Skills/Powers**. Counts beside each rarity heading include dra
 - **Rules:** Count Touch, Pain, and Madness once each per living enemy before natural ticks, including final one-stack ticks. Combine the total into one Block grant with Dexterity once. No DoTs means no Block, including no Dexterity-only grant. Copies add coefficients before the one grant. Barrier allows this ordinary Block gain without increasing its reserve.
 - **Status:** Implemented; full-run balance testing remains.
 
-## Uncommon (6/11/4)
+## Uncommon (7/14/5)
 
 ### Attacks
 
@@ -308,6 +326,15 @@ X/Y/Z = **Attacks/Skills/Powers**. Counts beside each rarity heading include dra
 - **Upgrade:** Repeat the chosen damage or healing effect 4 times instead of 3.
 - **Rules:** Choose one mode for the whole play; never both. Remains an Attack in either mode and Exhausts in either mode. Attack cost discounts and Attack-play hooks still apply, including Psychic Link once per play. Strength and Voidform modify only enemy damage, not healing. Healing obeys normal healing restrictions and generates no hit-based Insanity. Stop enemy hits when the target dies. A Dragonwrath repeat preserves the chosen mode; healing repeats still target yourself.
 - **Status:** Implemented.
+
+#### Singularity
+
+- **Cost:** 2 energy
+- **Effect:** Deal 16 damage. Remove all DoTs from the target. Deal 3 damage per stack removed, increased by Mastery.
+- **Upgrade:** Deal 22 damage. Remove all DoTs from the target. Deal 5 damage per stack removed, increased by Mastery.
+- **Rules:** After the initial hit, consume all current Touch, Pain, and Madness stacks on the surviving target, including stacks already resolved from that hit. Resolve one bonus hit: stacks multiplied by max(0, coefficient + Mastery). Strength affects only the initial hit. Ordinary Attack modifiers, including Voidform, Weak, and Vulnerable, affect both hits. Block applies normally; two actual hits generate 20 Insanity. No stacks means no bonus hit. Other debuffs are unchanged. Subsequent attack-triggered effects may reapply Madness.
+- **Status:** Implemented; full-run balance testing remains.
+
 
 ### Skills
 
@@ -393,6 +420,31 @@ X/Y/Z = **Attacks/Skills/Powers**. Counts beside each rarity heading include dra
 - **Rules:** Choose visibly even with one option. Direct applications include conditional Shadow Word: Madness, Dark Void, and Void Blast; the chosen card retains its normal application conditions. Existing-only extension and enabling Powers such as Searing Nightmare are excluded. Search only the draw pile; no shuffle or on-draw triggers. A full hand sends the chosen card to discard. Cost resets normally after this turn. The accepted roster currently has no eligible X-cost application cards.
 - **Status:** Implemented; full-run balance testing remains.
 
+#### Twin Suns
+
+- **Cost:** 1 energy
+- **Effect:** If the target has positive Strength, gain that much Haste.
+- **Upgrade:** If the target has positive Strength, gain that much Haste plus 1.
+- **Rules:** Does not Exhaust or reduce enemy Strength. Zero or negative Strength grants nothing, including when upgraded. Use current positive Strength at play.
+- **Status:** Implemented; full-run balance testing remains.
+
+#### Malady of the Mind
+
+- **Cost:** 1 energy
+- **Effect:** Double the target's Madness. Exhaust.
+- **Upgrade:** Triple the target's Madness. Exhaust.
+- **Rules:** Add stacks equal to current Madness times (multiplier minus one) when the effect resolves. Artifact blocks the addition. Creates no missing Madness and does not immediately tick it.
+- **Status:** Implemented; full-run balance testing remains.
+
+#### Void Entropy
+
+- **Cost:** 2 energy
+- **Effect:** Enter Voidform immediately, even during Recharge. Draw 2 cards.
+- **Upgrade:** Enter Voidform immediately, even during Recharge. Draw 3 cards.
+- **Rules:** Directly enter at 100 Insanity without generating an activation token. Bypass and clear current Recharge; ending the new form causes normal Recharge again. Consume an existing ready charge and remove its tokens. Already-active Voidform only gets the draw, without restarting its Attack counter, triggering entry relics, or weakening permanent Surrender. Successful entry triggers normal relics and Details. Draw exactly the printed amount; no extra activation-card draw.
+- **Status:** Implemented; full-run balance testing remains.
+
+
 ### Powers
 
 #### Body and Soul
@@ -425,7 +477,16 @@ X/Y/Z = **Attacks/Skills/Powers**. Counts beside each rarity heading include dra
 - **Rules:** Dexterity applies once to the upfront grant and separately to each later instance. Use effective X including Haste and Chemical X, but not printed X+1 upgrades. Trigger once per X-card play after its effects. Free repeats preserve X. Barrier allows these ordinary Block gains without increasing its reserve.
 - **Status:** Implemented; full-run balance testing remains.
 
-## Rare (3/4/4)
+#### Dark Reinforcement
+
+- **Cost:** 1 energy
+- **Effect:** Whenever you draw a Curse, gain 1 Energy and draw 1 card.
+- **Upgrade:** Whenever you draw a Curse, gain 1 Energy, draw 1 card, and gain 1 Mastery.
+- **Rules:** Actual draws only. Creation, retention, tutors that put cards into hand, and Necronomicurse returning do not trigger. Copies stack energy/draw; only upgraded copies add Mastery. Additional draws use normal draw, shuffle, and hand-limit rules.
+- **Status:** Implemented; full-run balance testing remains.
+
+
+## Rare (4/5/5)
 
 ### Attacks
 
@@ -451,6 +512,15 @@ X/Y/Z = **Attacks/Skills/Powers**. Counts beside each rarity heading include dra
 - **Upgrade:** Gain Retain.
 - **Rules:** Use maximum HP minus current HP when the hit resolves as base damage, then apply normal Attack damage modifiers. Retain does not lock in a previous missing-HP value.
 - **Status:** Implemented.
+
+#### Void Ray
+
+- **Cost:** 1 energy
+- **Effect:** Deal 15 damage. Exhaust a Curse in your hand. If you do, permanently increase this card's damage by 5. Exhaust.
+- **Upgrade:** Deal 23 damage. Exhaust a Curse in your hand. If you do, permanently increase this card's damage by 8. Exhaust.
+- **Rules:** Choose a Curse visibly before resolving the hit; damage then exhaust and permanent growth finish together, including on a lethal hit. No Curse means damage without growth. Exhaust is combat-only, triggers normal Curse-exhaust effects, and is not intercepted by Strange Spoon. Growth applies after this hit and only to this card's permanent-deck identity and matching combat copies; temporary copies with new identities do not grow the original. Store earned growth in misc for normal saves and copies. Upgrading adds 8 base damage without losing earlier growth.
+- **Status:** Implemented; full-run balance testing remains.
+
 
 ### Skills
 
@@ -485,6 +555,15 @@ X/Y/Z = **Attacks/Skills/Powers**. Counts beside each rarity heading include dra
 - **Rules:** Exclude the played Serendipity from the hand and discard count. Count cards actually discarded. Draw random matching cards from the draw pile only, without reshuffling, subject to hand capacity and available matches. Other Serendipity copies are ordinary Skills for this effect.
 - **Status:** Implemented; full-run balance testing remains.
 
+#### Mental Decay
+
+- **Cost:** 1 energy
+- **Effect:** Apply 10 Madness to ALL enemies. Add a Decay with Retain to your hand.
+- **Upgrade:** Apply 15 Madness to ALL enemies. Add a Decay with Retain to your hand.
+- **Rules:** Generate one combat-only Decay, preserving its normal end-turn HP loss and giving it Retain. Creation is not a draw. Full hands send the Curse to discard; Retain survives redraw and copying. Artifact blocks each enemy's application separately.
+- **Status:** Implemented; full-run balance testing remains.
+
+
 ### Powers
 
 #### Searing Nightmare
@@ -517,6 +596,15 @@ X/Y/Z = **Attacks/Skills/Powers**. Counts beside each rarity heading include dra
 - **Upgrade:** Gain 1 additional Mastery.
 - **Rules:** Use effective X, including Haste and Chemical X even at zero energy. Add the upgrade's extra Mastery afterward. The granted Mastery lasts for combat; this is a Power and resolves as a normal Power play.
 - **Status:** Implemented.
+
+#### Event Horizon
+
+- **Cost:** 2 energy
+- **Effect:** Whenever you play a Power, gain 2 Haste.
+- **Upgrade:** Whenever you play a Power, gain 3 Haste.
+- **Rules:** Copies stack. A newly played copy does not trigger itself; existing copies trigger when another is played. Actual free Power plays qualify; automatically equipped Legendaries do not. Haste uses its usual shared decay.
+- **Status:** Implemented; full-run balance testing remains.
+
 
 ## Legendary (0/0/3)
 

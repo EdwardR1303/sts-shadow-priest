@@ -120,4 +120,22 @@ public class InsanityStateTest {
         s.reset(); s.gainFromHpLoss(3); assertEquals(5, s.amount());
     }
 
+
+    @Test public void immediateEntryOverridesRecoveryAndStartsFreshRecoveryAfterward() {
+        InsanityState s=new InsanityState();s.enterImmediately();s.endTurn();s.startTurn();
+        assertTrue(s.recovering());s.gain(100);assertEquals(0,s.amount());
+        assertTrue(s.enterImmediately());assertTrue(s.active());assertEquals(100,s.amount());assertFalse(s.ready());
+        s.endTurn();s.startTurn();assertTrue(s.recovering());s.startTurn();assertFalse(s.recovering());
+    }
+    @Test public void immediateEntryConsumesReadyChargeWithoutRestartingActiveForm() {
+        InsanityState s=new InsanityState();s.gain(100);int old=s.charge();
+        assertTrue(s.enterImmediately());assertFalse(s.activate(old));assertNotEquals(old,s.charge());
+        s.attackPlayed();assertFalse(s.enterImmediately());assertEquals(1,s.attacksPlayed());
+        s.endTurn(true);assertTrue(s.active());s.attackPlayed();s.attackPlayed();s.endTurn(true);assertTrue(s.recovering());
+    }
+    @Test public void immediateEntryNeverChangesPermanentSurrender() {
+        InsanityState s=new InsanityState();s.surrender();int charge=s.charge();
+        assertFalse(s.enterImmediately());assertEquals(charge,s.charge());assertTrue(s.surrendered());
+        s.endTurn();assertTrue(s.active());
+    }
 }

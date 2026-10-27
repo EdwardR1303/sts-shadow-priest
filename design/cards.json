@@ -3510,6 +3510,502 @@
         "icon": "ability_priest_clarityofpower",
         "direction": "Matching WoW spell icon with shared card frame."
       }
+    },
+    {
+      "id": "shadowpriest:VoidSurge",
+      "name": "Void Surge",
+      "status": "IMPLEMENTED",
+      "type": "ATTACK",
+      "rarity": "COMMON",
+      "sources": [
+        "REWARD_POOL"
+      ],
+      "startingCopies": 0,
+      "tags": [],
+      "designIntent": "Deal 6 damage. Gain 40 Insanity.",
+      "base": {
+        "cost": 1,
+        "target": "ENEMY",
+        "text": "Deal 6 damage. Gain 40 Insanity.",
+        "stats": {
+          "magic": 40,
+          "damage": 6
+        },
+        "keywords": [],
+        "effects": [
+          "Deal 6 damage. Gain 40 Insanity."
+        ]
+      },
+      "upgrade": {
+        "summary": "Deal 9 damage. Gain 50 Insanity.",
+        "card": {
+          "cost": 1,
+          "target": "ENEMY",
+          "text": "Deal 9 damage. Gain 50 Insanity.",
+          "stats": {
+            "magic": 50,
+            "damage": 9
+          },
+          "keywords": [],
+          "effects": [
+            "Deal 9 damage. Gain 50 Insanity."
+          ]
+        }
+      },
+      "rulesNotes": [
+        "Explicit Insanity follows the hit and adds to the normal 10 per direct hit: 50/60 total. Normal ready, active, and Recharge restrictions apply."
+      ],
+      "balanceNotes": "Accepted October 27, 2026; test in full runs before further tuning.",
+      "art": {
+        "wowAbility": "Void Surge",
+        "icon": "inv_cosmicvoid_groundsate",
+        "direction": "Verified WoW ability art or original generated Shadow Priest art; see licenses and final-card-batch documentation."
+      }
+    },
+    {
+      "id": "shadowpriest:MadnessOverwhelming",
+      "name": "Madness Overwhelming",
+      "status": "IMPLEMENTED",
+      "type": "SKILL",
+      "rarity": "COMMON",
+      "sources": [
+        "REWARD_POOL"
+      ],
+      "startingCopies": 0,
+      "tags": [],
+      "designIntent": "Apply 5 Madness, plus 5 for each Power played this combat.",
+      "base": {
+        "cost": 1,
+        "target": "ENEMY",
+        "text": "Apply 5 Madness, plus 5 for each Power played this combat.",
+        "stats": {
+          "magic": 5
+        },
+        "keywords": [],
+        "effects": [
+          "Apply 5 Madness, plus 5 for each Power played this combat."
+        ]
+      },
+      "upgrade": {
+        "summary": "Apply 8 Madness, plus 8 for each Power played this combat.",
+        "card": {
+          "cost": 1,
+          "target": "ENEMY",
+          "text": "Apply 8 Madness, plus 8 for each Power played this combat.",
+          "stats": {
+            "magic": 8
+          },
+          "keywords": [],
+          "effects": [
+            "Apply 8 Madness, plus 8 for each Power played this combat."
+          ]
+        }
+      },
+      "rulesNotes": [
+        "Count actual Power plays, including free plays through Foresight+, excluding automatic Legendary equipment. Display the current calculated application. Artifact can block the combined application."
+      ],
+      "balanceNotes": "Accepted October 27, 2026; test in full runs before further tuning.",
+      "art": {
+        "wowAbility": "Original Shadow Priest concept",
+        "icon": "madness_overwhelming.png",
+        "direction": "Original generated icon in the shared violet-and-gold frame. Prompt recorded in docs/final-card-art-prompts.json."
+      }
+    },
+    {
+      "id": "shadowpriest:Singularity",
+      "name": "Singularity",
+      "status": "IMPLEMENTED",
+      "type": "ATTACK",
+      "rarity": "UNCOMMON",
+      "sources": [
+        "REWARD_POOL"
+      ],
+      "startingCopies": 0,
+      "tags": [],
+      "designIntent": "Deal 16 damage. Remove all DoTs from the target. Deal 3 damage per stack removed, increased by Mastery.",
+      "base": {
+        "cost": 2,
+        "target": "ENEMY",
+        "text": "Deal 16 damage. Remove all DoTs from the target. Deal 3 damage per stack removed, increased by Mastery.",
+        "stats": {
+          "magic": 3,
+          "damage": 16
+        },
+        "keywords": [],
+        "effects": [
+          "Deal 16 damage. Remove all DoTs from the target. Deal 3 damage per stack removed, increased by Mastery."
+        ]
+      },
+      "upgrade": {
+        "summary": "Deal 22 damage. Remove all DoTs from the target. Deal 5 damage per stack removed, increased by Mastery.",
+        "card": {
+          "cost": 2,
+          "target": "ENEMY",
+          "text": "Deal 22 damage. Remove all DoTs from the target. Deal 5 damage per stack removed, increased by Mastery.",
+          "stats": {
+            "magic": 5,
+            "damage": 22
+          },
+          "keywords": [],
+          "effects": [
+            "Deal 22 damage. Remove all DoTs from the target. Deal 5 damage per stack removed, increased by Mastery."
+          ]
+        }
+      },
+      "rulesNotes": [
+        "After the initial hit, consume all current Touch, Pain, and Madness stacks on the surviving target, including stacks already resolved from that hit. Resolve one bonus hit: stacks multiplied by max(0, coefficient + Mastery). Strength affects only the initial hit. Ordinary Attack modifiers, including Voidform, Weak, and Vulnerable, affect both hits. Block applies normally; two actual hits generate 20 Insanity. No stacks means no bonus hit. Other debuffs are unchanged. Subsequent attack-triggered effects may reapply Madness."
+      ],
+      "balanceNotes": "Accepted October 27, 2026; test in full runs before further tuning.",
+      "art": {
+        "wowAbility": "Singularity",
+        "icon": "ability_argus_blightorb",
+        "direction": "Verified WoW ability art or original generated Shadow Priest art; see licenses and final-card-batch documentation."
+      }
+    },
+    {
+      "id": "shadowpriest:TwinSuns",
+      "name": "Twin Suns",
+      "status": "IMPLEMENTED",
+      "type": "SKILL",
+      "rarity": "UNCOMMON",
+      "sources": [
+        "REWARD_POOL"
+      ],
+      "startingCopies": 0,
+      "tags": [],
+      "designIntent": "If the target has positive Strength, gain that much Haste.",
+      "base": {
+        "cost": 1,
+        "target": "ENEMY",
+        "text": "If the target has positive Strength, gain that much Haste.",
+        "stats": {
+          "magic": 0
+        },
+        "keywords": [],
+        "effects": [
+          "If the target has positive Strength, gain that much Haste."
+        ]
+      },
+      "upgrade": {
+        "summary": "If the target has positive Strength, gain that much Haste plus 1.",
+        "card": {
+          "cost": 1,
+          "target": "ENEMY",
+          "text": "If the target has positive Strength, gain that much Haste plus 1.",
+          "stats": {
+            "magic": 1
+          },
+          "keywords": [],
+          "effects": [
+            "If the target has positive Strength, gain that much Haste plus 1."
+          ]
+        }
+      },
+      "rulesNotes": [
+        "Does not Exhaust or reduce enemy Strength. Zero or negative Strength grants nothing, including when upgraded. Use current positive Strength at play."
+      ],
+      "balanceNotes": "Accepted October 27, 2026; test in full runs before further tuning.",
+      "art": {
+        "wowAbility": "Original Shadow Priest concept",
+        "icon": "twin_suns.png",
+        "direction": "Original generated icon in the shared violet-and-gold frame. Prompt recorded in docs/final-card-art-prompts.json."
+      }
+    },
+    {
+      "id": "shadowpriest:MaladyOfTheMind",
+      "name": "Malady of the Mind",
+      "status": "IMPLEMENTED",
+      "type": "SKILL",
+      "rarity": "UNCOMMON",
+      "sources": [
+        "REWARD_POOL"
+      ],
+      "startingCopies": 0,
+      "tags": [],
+      "designIntent": "Double the target's Madness. Exhaust.",
+      "base": {
+        "cost": 1,
+        "target": "ENEMY",
+        "text": "Double the target's Madness. Exhaust.",
+        "stats": {
+          "magic": 2
+        },
+        "keywords": [],
+        "effects": [
+          "Double the target's Madness. Exhaust."
+        ]
+      },
+      "upgrade": {
+        "summary": "Triple the target's Madness. Exhaust.",
+        "card": {
+          "cost": 1,
+          "target": "ENEMY",
+          "text": "Triple the target's Madness. Exhaust.",
+          "stats": {
+            "magic": 3
+          },
+          "keywords": [],
+          "effects": [
+            "Triple the target's Madness. Exhaust."
+          ]
+        }
+      },
+      "rulesNotes": [
+        "Add stacks equal to current Madness times (multiplier minus one) when the effect resolves. Artifact blocks the addition. Creates no missing Madness and does not immediately tick it."
+      ],
+      "balanceNotes": "Accepted October 27, 2026; test in full runs before further tuning.",
+      "art": {
+        "wowAbility": "Malady of the Mind",
+        "icon": "spell_shadow_deathcoil",
+        "direction": "Verified WoW ability art or original generated Shadow Priest art; see licenses and final-card-batch documentation."
+      }
+    },
+    {
+      "id": "shadowpriest:VoidEntropy",
+      "name": "Void Entropy",
+      "status": "IMPLEMENTED",
+      "type": "SKILL",
+      "rarity": "UNCOMMON",
+      "sources": [
+        "REWARD_POOL"
+      ],
+      "startingCopies": 0,
+      "tags": [],
+      "designIntent": "Enter Voidform immediately, even during Recharge. Draw 2 cards.",
+      "base": {
+        "cost": 2,
+        "target": "SELF",
+        "text": "Enter Voidform immediately, even during Recharge. Draw 2 cards.",
+        "stats": {
+          "magic": 2
+        },
+        "keywords": [],
+        "effects": [
+          "Enter Voidform immediately, even during Recharge. Draw 2 cards."
+        ]
+      },
+      "upgrade": {
+        "summary": "Enter Voidform immediately, even during Recharge. Draw 3 cards.",
+        "card": {
+          "cost": 2,
+          "target": "SELF",
+          "text": "Enter Voidform immediately, even during Recharge. Draw 3 cards.",
+          "stats": {
+            "magic": 3
+          },
+          "keywords": [],
+          "effects": [
+            "Enter Voidform immediately, even during Recharge. Draw 3 cards."
+          ]
+        }
+      },
+      "rulesNotes": [
+        "Directly enter at 100 Insanity without generating an activation token. Bypass and clear current Recharge; ending the new form causes normal Recharge again. Consume an existing ready charge and remove its tokens. Already-active Voidform only gets the draw, without restarting its Attack counter, triggering entry relics, or weakening permanent Surrender. Successful entry triggers normal relics and Details. Draw exactly the printed amount; no extra activation-card draw."
+      ],
+      "balanceNotes": "Accepted October 27, 2026; test in full runs before further tuning.",
+      "art": {
+        "wowAbility": "Void Entropy",
+        "icon": "ability_priest_voidentropy",
+        "direction": "Verified WoW ability art or original generated Shadow Priest art; see licenses and final-card-batch documentation."
+      }
+    },
+    {
+      "id": "shadowpriest:DarkReinforcement",
+      "name": "Dark Reinforcement",
+      "status": "IMPLEMENTED",
+      "type": "POWER",
+      "rarity": "UNCOMMON",
+      "sources": [
+        "REWARD_POOL"
+      ],
+      "startingCopies": 0,
+      "tags": [],
+      "designIntent": "Whenever you draw a Curse, gain 1 Energy and draw 1 card.",
+      "base": {
+        "cost": 1,
+        "target": "SELF",
+        "text": "Whenever you draw a Curse, gain 1 Energy and draw 1 card.",
+        "stats": {
+          "magic": 1
+        },
+        "keywords": [],
+        "effects": [
+          "Whenever you draw a Curse, gain 1 Energy and draw 1 card."
+        ]
+      },
+      "upgrade": {
+        "summary": "Whenever you draw a Curse, gain 1 Energy, draw 1 card, and gain 1 Mastery.",
+        "card": {
+          "cost": 1,
+          "target": "SELF",
+          "text": "Whenever you draw a Curse, gain 1 Energy, draw 1 card, and gain 1 Mastery.",
+          "stats": {
+            "magic": 1
+          },
+          "keywords": [],
+          "effects": [
+            "Whenever you draw a Curse, gain 1 Energy, draw 1 card, and gain 1 Mastery."
+          ]
+        }
+      },
+      "rulesNotes": [
+        "Actual draws only. Creation, retention, tutors that put cards into hand, and Necronomicurse returning do not trigger. Copies stack energy/draw; only upgraded copies add Mastery. Additional draws use normal draw, shuffle, and hand-limit rules."
+      ],
+      "balanceNotes": "Accepted October 27, 2026; test in full runs before further tuning.",
+      "art": {
+        "wowAbility": "Original Shadow Priest concept",
+        "icon": "dark_reinforcement.png",
+        "direction": "Original generated icon in the shared violet-and-gold frame. Prompt recorded in docs/final-card-art-prompts.json."
+      }
+    },
+    {
+      "id": "shadowpriest:VoidRay",
+      "name": "Void Ray",
+      "status": "IMPLEMENTED",
+      "type": "ATTACK",
+      "rarity": "RARE",
+      "sources": [
+        "REWARD_POOL"
+      ],
+      "startingCopies": 0,
+      "tags": [],
+      "designIntent": "Deal 15 damage. Exhaust a Curse in your hand. If you do, permanently increase this card's damage by 5. Exhaust.",
+      "base": {
+        "cost": 1,
+        "target": "ENEMY",
+        "text": "Deal 15 damage. Exhaust a Curse in your hand. If you do, permanently increase this card's damage by 5. Exhaust.",
+        "stats": {
+          "magic": 5,
+          "damage": 15
+        },
+        "keywords": [],
+        "effects": [
+          "Deal 15 damage. Exhaust a Curse in your hand. If you do, permanently increase this card's damage by 5. Exhaust."
+        ]
+      },
+      "upgrade": {
+        "summary": "Deal 23 damage. Exhaust a Curse in your hand. If you do, permanently increase this card's damage by 8. Exhaust.",
+        "card": {
+          "cost": 1,
+          "target": "ENEMY",
+          "text": "Deal 23 damage. Exhaust a Curse in your hand. If you do, permanently increase this card's damage by 8. Exhaust.",
+          "stats": {
+            "magic": 8,
+            "damage": 23
+          },
+          "keywords": [],
+          "effects": [
+            "Deal 23 damage. Exhaust a Curse in your hand. If you do, permanently increase this card's damage by 8. Exhaust."
+          ]
+        }
+      },
+      "rulesNotes": [
+        "Choose a Curse visibly before resolving the hit; damage then exhaust and permanent growth finish together, including on a lethal hit. No Curse means damage without growth. Exhaust is combat-only, triggers normal Curse-exhaust effects, and is not intercepted by Strange Spoon. Growth applies after this hit and only to this card's permanent-deck identity and matching combat copies; temporary copies with new identities do not grow the original. Store earned growth in misc for normal saves and copies. Upgrading adds 8 base damage without losing earlier growth."
+      ],
+      "balanceNotes": "Accepted October 27, 2026; test in full runs before further tuning.",
+      "art": {
+        "wowAbility": "Void Ray",
+        "icon": "inv_12_dh_void_ability_voidray",
+        "direction": "Verified WoW ability art or original generated Shadow Priest art; see licenses and final-card-batch documentation."
+      }
+    },
+    {
+      "id": "shadowpriest:MentalDecay",
+      "name": "Mental Decay",
+      "status": "IMPLEMENTED",
+      "type": "SKILL",
+      "rarity": "RARE",
+      "sources": [
+        "REWARD_POOL"
+      ],
+      "startingCopies": 0,
+      "tags": [],
+      "designIntent": "Apply 10 Madness to ALL enemies. Add a Decay with Retain to your hand.",
+      "base": {
+        "cost": 1,
+        "target": "ALL_ENEMY",
+        "text": "Apply 10 Madness to ALL enemies. Add a Decay with Retain to your hand.",
+        "stats": {
+          "magic": 10
+        },
+        "keywords": [],
+        "effects": [
+          "Apply 10 Madness to ALL enemies. Add a Decay with Retain to your hand."
+        ]
+      },
+      "upgrade": {
+        "summary": "Apply 15 Madness to ALL enemies. Add a Decay with Retain to your hand.",
+        "card": {
+          "cost": 1,
+          "target": "ALL_ENEMY",
+          "text": "Apply 15 Madness to ALL enemies. Add a Decay with Retain to your hand.",
+          "stats": {
+            "magic": 15
+          },
+          "keywords": [],
+          "effects": [
+            "Apply 15 Madness to ALL enemies. Add a Decay with Retain to your hand."
+          ]
+        }
+      },
+      "rulesNotes": [
+        "Generate one combat-only Decay, preserving its normal end-turn HP loss and giving it Retain. Creation is not a draw. Full hands send the Curse to discard; Retain survives redraw and copying. Artifact blocks each enemy's application separately."
+      ],
+      "balanceNotes": "Accepted October 27, 2026; test in full runs before further tuning.",
+      "art": {
+        "wowAbility": "Mental Decay",
+        "icon": "ability_kaztik_dominatemind",
+        "direction": "Verified WoW ability art or original generated Shadow Priest art; see licenses and final-card-batch documentation."
+      }
+    },
+    {
+      "id": "shadowpriest:EventHorizon",
+      "name": "Event Horizon",
+      "status": "IMPLEMENTED",
+      "type": "POWER",
+      "rarity": "RARE",
+      "sources": [
+        "REWARD_POOL"
+      ],
+      "startingCopies": 0,
+      "tags": [],
+      "designIntent": "Whenever you play a Power, gain 2 Haste.",
+      "base": {
+        "cost": 2,
+        "target": "SELF",
+        "text": "Whenever you play a Power, gain 2 Haste.",
+        "stats": {
+          "magic": 2
+        },
+        "keywords": [],
+        "effects": [
+          "Whenever you play a Power, gain 2 Haste."
+        ]
+      },
+      "upgrade": {
+        "summary": "Whenever you play a Power, gain 3 Haste.",
+        "card": {
+          "cost": 2,
+          "target": "SELF",
+          "text": "Whenever you play a Power, gain 3 Haste.",
+          "stats": {
+            "magic": 3
+          },
+          "keywords": [],
+          "effects": [
+            "Whenever you play a Power, gain 3 Haste."
+          ]
+        }
+      },
+      "rulesNotes": [
+        "Copies stack. A newly played copy does not trigger itself; existing copies trigger when another is played. Actual free Power plays qualify; automatically equipped Legendaries do not. Haste uses its usual shared decay."
+      ],
+      "balanceNotes": "Accepted October 27, 2026; test in full runs before further tuning.",
+      "art": {
+        "wowAbility": "Original Shadow Priest concept",
+        "icon": "event_horizon.png",
+        "direction": "Original generated icon in the shared violet-and-gold frame. Prompt recorded in docs/final-card-art-prompts.json."
+      }
     }
   ]
 }
