@@ -1,0 +1,44 @@
+[h1]The Shadow Priest -- Beta[/h1]
+A new character for Slay the Spire 1, inspired by World of Warcraft's Shadow Priest. Set up your afflictions, survive the pressure, and choose the perfect moment to unleash Voidform.
+
+[h2]Embrace the Void[/h2]
+Spread Touch, Pain, and Madness across your enemies. Build Insanity through aggression, afflictions, and taking damage, then choose when to enter Voidform for cheaper, stronger Attacks. Mastery strengthens your DoTs; Haste amplifies your X-cost cards.
+
+[h2]Find your path[/h2]
+[list]
+[*]Affliction: spread and sustain your DoTs while their damage adds up.
+[*]Madness: build an uncapped debuff into a growing nightmare.
+[*]Voidform burst: survive the setup, then unload a devastating turn.
+[*]Haste and channeling: turn X-cost spells into repeated waves of damage and support.
+[*]Curses and sacrifice: find rewards in the cards and self-inflicted pain others avoid.
+[*]Sustain and protection: combine shields, healing, and defensive engines to outlast your enemies.
+[/list]
+These paths can overlap. Experiment, adapt, and make the darkness your own.
+
+[h2]What's included[/h2]
+[list]
+[*]75 collectible cards.
+[*]11 class relics, including the starter.
+[*]Custom character artwork, card portraits, and combat effects.
+[*]Combat Details: damage dealt, damage taken, Block, source percentages, turn breakdowns, and Overall reports. Browse recorded runs from the main menu.
+[/list]
+
+[h2]Some discoveries are Legendary...[/h2]
+The Spire may have a few legendary surprises waiting for those who dare to listen. Some runs will leave a story worth telling.
+
+[h2]How to play[/h2]
+Subscribe to this mod and all three dependencies:
+[list]
+[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=1605060445]ModTheSpire[/url]
+[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=1605833019]BaseMod[/url]
+[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=1609158507]StSLib[/url]
+[/list]
+Launch Slay the Spire through Steam, choose Play With Mods, enable Shadow Priest, BaseMod, and StSLib, then select The Shadow Priest in a new Standard run. Restart the game after an update.
+
+[h2]Beta feedback[/h2]
+This is an early playable release. Balance and polish are still being tested. Please report crashes, confusing text, cards you consistently skip, and builds that feel too weak or too strong. Include the mod version, Ascension, seed, and other enabled mods when useful.
+[url=https://github.com/EdwardR1303/sts-shadow-priest/issues]Bug reports and feedback[/url] | [url=https://github.com/EdwardR1303/sts-shadow-priest]Source and design documents[/url]
+Combat Details reports are saved locally in the game's working directory under details/. Nothing is uploaded automatically.
+
+[h2]Credits[/h2]
+Created by Nishiki. Character scaffolding adapted from BasicMod (MIT); bundled notices are included. World of Warcraft ability icons and related names belong to Blizzard Entertainment. Custom illustrations include AI-generated artwork. This is an unofficial fan project, not affiliated with Blizzard Entertainment or Mega Crit.
