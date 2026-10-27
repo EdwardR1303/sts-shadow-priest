@@ -241,3 +241,7 @@ No broad simulation or full-run balance test was run. Expected local Steam-conne
 ## First combat FX pass ? October 27, 2026
 
 Twelve attacks and Voidform entry received visual effects. Incremental Maven verification passed 28 unit tests. The offscreen OpenGL review rendered all nine styles at three animation phases, checked GL errors, restored drawing state, and verified expiry. The contact sheet was visually reviewed and the same checks passed at 4K logical scaling. No game window or simulation was launched during the user's active playtest. Encounter readability and audio remain subject to normal playtesting. See [coverage and rendering instructions](combat-fx.md).
+
+## Embrace, previews, and Mind Decay ? October 27, 2026
+
+**28 unit tests and 51 focused game checks passed.** Vampiric Embrace now costs two; Void Entropy has simpler text; Singularity, Void Torrent, and Void Shield have parenthetical previews; Mental Decay generates the custom retained Mind Decay Curse. Nine rendered cards were reviewed. The retention check now prevents false positives from immediate reshuffle/redraw. See [changes, checks, and preview limits](playtest-followup-2026-10-27.md). No broad run simulation was performed.

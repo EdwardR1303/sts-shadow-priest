@@ -13,6 +13,11 @@ public class VoidShield extends PriestCard {
     public VoidShield() { super(ID,1,CardType.SKILL,CardRarity.COMMON,CardTarget.SELF);baseBlock=5;baseMagicNumber=magicNumber=10; }
     @Override public void use(AbstractPlayer p,AbstractMonster m) { addToBot(new GainBlockAction(p,p,totalBlock())); }
     @Override public void upgrade() { if(!upgraded) { upgradeName();upgradeBlock(3);upgradeMagicNumber(-5); } }
+    @Override public void applyPowers() {
+        super.applyPowers();
+        FormulaPreview.set(this, FormulaPreview.inCombat() ? totalBlock() + " total Block" : null);
+    }
+    @Override public void resetAttributes() { super.resetAttributes(); FormulaPreview.set(this, null); }
 
     public int totalBlock() {
         shadowpriest.relics.VoidformRelic r=shadowpriest.relics.VoidformRelic.current();

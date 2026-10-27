@@ -29,6 +29,21 @@ public class Singularity extends PriestCard {
             isDone=true;
         }}); }
     @Override public void upgrade() { if(!upgraded) { upgradeName(); upgradeDamage(6);upgradeMagicNumber(2); } }
+    @Override public void applyPowers() { super.applyPowers(); FormulaPreview.set(this, null); }
+    @Override public void resetAttributes() { super.resetAttributes(); FormulaPreview.set(this, null); }
+    @Override public void calculateCardDamage(AbstractMonster target) {
+        super.calculateCardDamage(target);
+        FormulaPreview.set(this, target == null ? null : previewBonus(target) + " bonus damage");
+    }
+    public int previewBonus(AbstractMonster target) {
+        int stacks = 0;
+        for (String id : new String[]{ShadowDotPower.TOUCH, ShadowDotPower.PAIN, MadnessPower.POWER_ID})
+            if (target.hasPower(id)) stacks += Math.max(0, target.getPower(id).amount);
+        // The initial hit queues Searing Nightmare before the consumption action.
+        if (!target.hasPower("Artifact") && AbstractDungeon.player.hasPower(SearingNightmarePower.POWER_ID))
+            stacks += AbstractDungeon.player.getPower(SearingNightmarePower.POWER_ID).amount;
+        return stacks <= 0 ? 0 : bonusDamage(target, stacks);
+    }
     public int bonusDamage(AbstractMonster target,int stacks){
         AbstractPlayer p=AbstractDungeon.player;
         float value=Math.max(0,magicNumber+MasteryPower.current())*(float)stacks;

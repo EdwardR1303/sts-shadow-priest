@@ -89,6 +89,7 @@ final class StarterCardArt {
             case DarkReinforcement.ID: icon = "cards/icons/dark_reinforcement.png"; break;
             case VoidRay.ID: icon = "cards/icons/void_ray.jpg"; break;
             case MentalDecay.ID: icon = "cards/icons/mental_decay.jpg"; break;
+            case MindDecay.ID: icon = "cards/icons/mind_decay.png"; break;
             case EventHorizon.ID: icon = "cards/icons/event_horizon.png"; break;
             default: return null;
         }

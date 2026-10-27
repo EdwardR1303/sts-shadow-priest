@@ -8,7 +8,7 @@ import shadowpriest.powers.VampiricEmbracePower;
 public class VampiricEmbrace extends PriestCard {
     public static final String ID = "shadowpriest:VampiricEmbrace";
     public VampiricEmbrace() {
-        super(ID, 3, CardType.POWER, CardRarity.RARE, CardTarget.SELF); baseMagicNumber = magicNumber = 1;
+        super(ID, 2, CardType.POWER, CardRarity.RARE, CardTarget.SELF); baseMagicNumber = magicNumber = 1;
     }
     @Override public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot(new ApplyPowerAction(p, p, new VampiricEmbracePower(p, magicNumber), magicNumber));

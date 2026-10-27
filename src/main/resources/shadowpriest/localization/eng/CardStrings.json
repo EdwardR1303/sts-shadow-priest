@@ -312,8 +312,8 @@
   },
   "shadowpriest:VoidEntropy": {
     "NAME": "Void Entropy",
-    "DESCRIPTION": "Enter shadowpriest:Voidform immediately, even during shadowpriest:Recharge. NL Draw !M! cards.",
-    "UPGRADE_DESCRIPTION": "Enter shadowpriest:Voidform immediately, even during shadowpriest:Recharge. NL Draw !M! cards."
+    "DESCRIPTION": "Enter shadowpriest:Voidform. NL Draw !M! cards.",
+    "UPGRADE_DESCRIPTION": "Enter shadowpriest:Voidform. NL Draw !M! cards."
   },
   "shadowpriest:DarkReinforcement": {
     "NAME": "Dark Reinforcement",
@@ -327,12 +327,16 @@
   },
   "shadowpriest:MentalDecay": {
     "NAME": "Mental Decay",
-    "DESCRIPTION": "Apply !M! shadowpriest:Madness to ALL enemies. NL Add a Decay with Retain to your hand.",
-    "UPGRADE_DESCRIPTION": "Apply !M! shadowpriest:Madness to ALL enemies. NL Add a Decay with Retain to your hand."
+    "DESCRIPTION": "Apply !M! shadowpriest:Madness to ALL enemies. NL Add a *Mind *Decay to your hand.",
+    "UPGRADE_DESCRIPTION": "Apply !M! shadowpriest:Madness to ALL enemies. NL Add a *Mind *Decay to your hand."
   },
   "shadowpriest:EventHorizon": {
     "NAME": "Event Horizon",
     "DESCRIPTION": "Whenever you play a Power, gain !M! shadowpriest:Haste.",
     "UPGRADE_DESCRIPTION": "Whenever you play a Power, gain !M! shadowpriest:Haste."
+  },
+  "shadowpriest:MindDecay": {
+    "NAME": "Mind Decay",
+    "DESCRIPTION": "Unplayable. Retain. NL At the end of your turn, take 2 damage."
   }
 }

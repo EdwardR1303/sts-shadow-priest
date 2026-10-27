@@ -9,10 +9,10 @@ import shadowpriest.powers.*;
 
 public class MentalDecay extends PriestCard {
     public static final String ID="shadowpriest:MentalDecay";
-    public MentalDecay() { super(ID,1,CardType.SKILL,CardRarity.RARE,CardTarget.ALL_ENEMY); baseMagicNumber=magicNumber=10; }
+    public MentalDecay() { super(ID,1,CardType.SKILL,CardRarity.RARE,CardTarget.ALL_ENEMY); baseMagicNumber=magicNumber=10; cardsToPreview=new MindDecay(); }
     @Override public void use(AbstractPlayer p, AbstractMonster m) { for(AbstractMonster enemy:AbstractDungeon.getMonsters().monsters)
             if(VoidBolt.alive(enemy))addToBot(new ApplyPowerAction(enemy,p,new MadnessPower(enemy,magicNumber),magicNumber));
-        AbstractCard curse=new RetainedDecay();
+        AbstractCard curse=new MindDecay();
         addToBot(new MakeTempCardInHandAction(curse,1,false)); }
     @Override public void upgrade() { if(!upgraded) { upgradeName(); upgradeMagicNumber(5); } }
 

@@ -467,3 +467,7 @@ Source: https://wow.zamimg.com/images/wow/icons/large/achievement_dungeon_naxxra
 Resource: shadowpriest/images/relics/icons/shared_suffering.jpg
 
 Source icons are unchanged; PriestRelic renders the transparent medallion shape.
+
+Mind Decay uses original generated artwork, not an official WoW icon.
+Resource: shadowpriest/images/cards/icons/mind_decay.png
+Prompt and tool: docs/mind-decay-art-prompt.json

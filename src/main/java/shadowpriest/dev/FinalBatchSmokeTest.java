@@ -123,11 +123,11 @@ public final class FinalBatchSmokeTest {
         q.add(()->{check(p.hand.size()==3&&EnergyPanel.totalCount==2&&MasteryPower.current()==1,"Actual Curse draw grants stacked energy/draw and upgraded-only Mastery");
             p.hand.clear();EnergyPanel.totalCount=0;play(new MentalDecay(),null);});
         q.add(()->{check(MadnessPower.stacks(m)==10&&MadnessPower.stacks(n)==10,"Mental Decay applies Madness to every enemy");
-            curse=p.hand.group.stream().filter(c->c instanceof Decay).findFirst().orElse(null);
-            check(curse!=null&&curse.selfRetain&&curse.makeStatEquivalentCopy().selfRetain,"Generated Decay retains through copying");
+            curse=p.hand.group.stream().filter(c->c instanceof MindDecay).findFirst().orElse(null);
+            check(curse!=null&&curse.selfRetain&&curse.makeStatEquivalentCopy().selfRetain,"Generated Mind Decay retains through copying");
             check(EnergyPanel.totalCount==2&&MasteryPower.current()==1,"Creating Curse does not trigger Reinforcement");
-            hp=p.currentHealth;nextTurn();});
-        q.add(()->{check(p.hand.contains(curse)&&p.currentHealth==hp-2,"Decay remains in hand and retains its normal end-turn HP loss");
+            hp=p.currentHealth;for(int i=0;i<12;i++)p.drawPile.addToTop(new MindSpike());nextTurn();});
+        q.add(()->{check(p.hand.contains(curse)&&p.currentHealth==hp-2,"Mind Decay remains in hand and deals its end-turn damage");
             reset();m.powers.add(new ArtifactPower(m,1));play(up(new MentalDecay()),null);});
         q.add(()->{check(MadnessPower.stacks(m)==0&&MadnessPower.stacks(n)==15&&!m.hasPower(ArtifactPower.POWER_ID),"Upgraded AoE respects each enemy's Artifact independently");
             reset();master=new VoidRay();other=new VoidRay();p.masterDeck.addToTop(master);p.masterDeck.addToTop(other);ray=(VoidRay)master.makeSameInstanceOf();curse=new Necronomicurse();p.hand.addToTop(curse);p.relics.add(new VoidVengeance());selected=curse;play(ray,m);});

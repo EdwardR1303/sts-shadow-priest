@@ -40,7 +40,7 @@ A class stance. Attacks deal 50% more damage and cost 1 less energy, to a minimu
 
 ### Recharge
 
-A class stance that prevents all Insanity gain. Void Entropy explicitly bypasses Recharge to enter Voidform immediately; it generates no activation card. When that new form ends, normal Recharge begins again. This exception does not permit Insanity gain during Recharge.
+A class stance that prevents all Insanity gain. It does not prohibit entering Voidform directly. Direct-entry effects such as Void Entropy generate no activation card and clear current Recharge; when that form ends, normal Recharge begins again. Insanity generation remains blocked during Recharge.
 
 It covers the remainder of the turn in which Voidform ends, if any, and the entire following player turn, including its end-of-turn effects. It does not expire at the same end-of-turn boundary that created it.
 

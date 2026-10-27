@@ -136,3 +136,7 @@ The earlier agreed boss-only chance, one-Legendary permanent-deck limit, identit
 ## Final relic drafts on October 27, 2026
 
 - **D069:** Implement Misery as Uncommon, copying the incoming amount of a successful direct Touch application into Pain, including at the Touch cap. Existing-only extensions do not trigger it, and Artifact-blocked Touch does not trigger it. Implement Inescapable Torment as Rare at one starting Mastery per permanent-deck Curse, including duplicates and special Curses. Rename the Shop Dark Void relic to Shared Suffering and increase its starting Pain to five on all initial enemies. Later summons are excluded. All 11 documented relics are now implemented.
+
+## Playtest followup on October 27, 2026
+
+- **D070:** Reduce Vampiric Embrace to 2 Energy, preserving 1/2 healing and Touch triggers. Remove redundant Recharge exception wording from Void Entropy. Preserve formulas while adding parenthetical combat previews for Singularity's bonus hit, Void Torrent's aggregate hits, and Void Shield's total Block. Replace Mental Decay's retained vanilla Decay with generated-only Mind Decay: an Unplayable Curse with Retain and 2 blockable end-turn damage; no upgrade, no autoplay penalty, normal Curse-exhaust interactions. This supersedes the retained Decay implementation in the final card batch.

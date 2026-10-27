@@ -14,6 +14,8 @@ The priest wears Transcendence-inspired regalia, glows purple in Voidform, and d
 
 The [first combat FX pass](docs/combat-fx.md) adds violet projectiles, channels, bursts, Void Ray's Hyperbeam-style blast, and a Voidform entry aura.
 
+The [latest playtest followup](docs/playtest-followup-2026-10-27.md) reduces Embrace to 2 Energy, adds formula previews, and replaces Mental Decay's generated Curse with Mind Decay.
+
 ## Build and play on Windows
 
 Install the Steam game and subscribe to ModTheSpire, BaseMod, and StSLib, then run:
