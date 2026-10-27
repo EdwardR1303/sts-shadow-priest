@@ -24,7 +24,7 @@ Misery, Inescapable Torment, and the Shop Dark Void relic remain unimplemented d
 - **N'Zoth:** ordinary Power plays queue one Mastery after their effects. Successful automatic Legendary equipment calls a separate once-per-combat hook. It does not count as a card play for the Awakened One or other card-play effects.
 - **Yogg-Saron:** successful normal entry or Surrender from outside Voidform grants three energy. Surrender extending an active form and invalid activation attempts do not retrigger it.
 - **Improved Voidform:** count Attack card plays, not damage hits. The relic counter shows progress to three. Preserve the stance across turns below three, then end it at the end of the turn reaching three. Further attacks that turn still benefit. No additional turn limit. Recharge starts only when the form actually ends and covers the next full player turn. Surrender remains permanent; combat boundaries clear progress.
-- **Void Vengeance:** replace starting combat copies of Curses after combat-deck initialization. Each becomes an unupgraded Void Bolt; the permanent deck, Status cards, and Curses added later are untouched.
+- **Void Vengeance:** one free Curse play per turn, exhausted on use; independently, every actual Curse exhaust grants 2 Haste. The counter shows the remaining free play (1 or 0). Curses remain in the combat deck. Normality and other play restrictions still apply. Blue Candle retains its independent permission and HP cost, including after the allowance is spent. Repeated Necronomicurse exhausts intentionally keep granting Haste. Ethereal and external exhaust effects qualify without spending the play allowance; Status exhausts do not. Strange Spoon only grants Haste if the card actually exhausts.
 
 ## Art
 
@@ -43,6 +43,8 @@ All seven use actual WoW artwork inside transparent, circular relic medallions r
 Source images remain unchanged. Attribution and download URLs are in [Warcraft-artwork.txt](../licenses/Warcraft-artwork.txt).
 
 ## Verification
+
+October 26 Void Vengeance redesign: **25 unit tests** and **34 focused real-game checks** passed using `-VengeanceOnly`. See [results and coverage](playtest-results.md#void-vengeance-redesign-october-26-2026). The original Curse conversion has been removed; the historical initial-batch checks below predate that redesign.
 
 - `scripts/build.ps1`: 16 unit tests pass, including ordinary Recharge, carryover below three Attacks, ending after the threshold, and permanent Surrender.
 - `scripts/playtest.ps1 -SkipBuild -RelicOnly -Width 1920 -Height 1080 -Windowed`: 80 checks passed in the patched game. Covers initialized pools, real reward-factory selection of each relic, exclusion from Ironclad pools, both texture sizes, combat-start order, generated-card replay and upgrade, Curse conversion, Legendary activation, actual energy payment, multi-hit counting, real turn transitions, Recharge, and Surrender.

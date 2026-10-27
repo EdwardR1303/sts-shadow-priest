@@ -52,7 +52,7 @@
     "NAME": "Void Vengeance",
     "FLAVOR": "What burden? What curse?",
     "DESCRIPTIONS": [
-      "At combat start, replace each Curse in your combat deck with a #yVoid #yBolt. Your permanent deck is unchanged."
+      "Each turn, you may play one Curse for #b0 Energy. It #yExhausts. NL Whenever you #yExhaust a Curse, gain #b2 #yHaste."
     ]
   }
 }

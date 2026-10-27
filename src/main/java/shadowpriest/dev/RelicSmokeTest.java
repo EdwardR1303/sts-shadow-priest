@@ -93,10 +93,9 @@ public final class RelicSmokeTest {
             AbstractCard copy=slam.makeStatEquivalentCopy();check(slam.cost==0&&copy.cost==0&&copy.upgraded,"Combat upgrade and stat-equivalent copies preserve free cost");
             check(new TentacleSlam().cost==2,"Other Tentacle Slams retain normal cost");reset();own(new VoidVengeance());
             p.masterDeck.clear();p.masterDeck.addToTop(new Regret());p.masterDeck.addToTop(new AscendersBane());p.masterDeck.addToTop(new CurseOfTheBell());p.masterDeck.addToTop(new Dazed());p.masterDeck.addToTop(new MindSpike());p.preBattlePrep();});
-        q.add(()->{check(p.drawPile.group.stream().filter(c->c instanceof VoidBolt).count()==3&&p.drawPile.group.stream().noneMatch(c->c.type==AbstractCard.CardType.CURSE),"Vengeance replaces all three initial Curse copies with Void Bolts");
+        q.add(()->{check(p.drawPile.group.stream().filter(c->c.type==AbstractCard.CardType.CURSE).count()==3,"Vengeance preserves starting combat Curses");
             check(p.masterDeck.group.stream().filter(c->c.type==AbstractCard.CardType.CURSE).count()==3&&p.drawPile.group.stream().anyMatch(c->c instanceof Dazed),"Permanent Curses and combat Status are preserved");
-            check(p.drawPile.group.stream().filter(c->c instanceof VoidBolt).noneMatch(c->c.upgraded),"Replacement Bolts are unupgraded");
-            p.drawPile.addToTop(new Regret());check(p.drawPile.getTopCard() instanceof Regret,"Curses added later are not converted");reset();own(new IdolOfNzoth());
+            check(p.getRelic(VoidVengeance.ID).counter==1,"Vengeance starts with one free Curse play");reset();own(new IdolOfNzoth());
             p.masterDeck.addToTop(new Valanyr());p.preBattlePrep();});
         q.add(()->{check(stat(MasteryPower.POWER_ID)==1&&p.hasPower(GuardianAngelPower.POWER_ID),"NZoth grants one Mastery for actual Legendary equipment activation");
             check(AbstractDungeon.actionManager.cardsPlayedThisCombat.isEmpty(),"Equipment still does not count as a globally played Power");

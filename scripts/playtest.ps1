@@ -1,12 +1,12 @@
 param(
-    [switch]$SkipBuild, [switch]$Debug, [switch]$SmokeTest, [switch]$CardBatchOnly, [switch]$LatestBatchOnly, [switch]$ReworkOnly, [switch]$DefensiveReworkOnly, [switch]$SupportOnly, [switch]$RelicOnly, [switch]$RelicArtOnly, [switch]$SetupOnly, [switch]$DetailsOnly, [switch]$BarrierOnly, [switch]$DetailsOverallOnly,
+    [switch]$SkipBuild, [switch]$Debug, [switch]$SmokeTest, [switch]$CardBatchOnly, [switch]$LatestBatchOnly, [switch]$ReworkOnly, [switch]$DefensiveReworkOnly, [switch]$SupportOnly, [switch]$RelicOnly, [switch]$RelicArtOnly, [switch]$SetupOnly, [switch]$DetailsOnly, [switch]$BarrierOnly, [switch]$DetailsOverallOnly, [switch]$VengeanceOnly,
     [ValidateRange(640, 7680)][int]$Width = 3840,
     [ValidateRange(480, 4320)][int]$Height = 2160,
     [switch]$Windowed
 )
 $ErrorActionPreference = 'Stop'
 if ($RelicArtOnly) { $RelicOnly = $true }
-if ($SetupOnly -or $DetailsOnly -or $BarrierOnly -or $DetailsOverallOnly) { $SmokeTest = $true }
+if ($VengeanceOnly -or $SetupOnly -or $DetailsOnly -or $BarrierOnly -or $DetailsOverallOnly) { $SmokeTest = $true }
 if ($ReworkOnly -or $DefensiveReworkOnly -or $SupportOnly -or $RelicOnly) { $SmokeTest = $true }
 if ($LatestBatchOnly) { $CardBatchOnly = $true }
 if ($CardBatchOnly) { $SmokeTest = $true }
@@ -55,6 +55,7 @@ if ($DefensiveReworkOnly) { $arguments += '-Dshadowpriest.defensivereworkonly=tr
 if ($SupportOnly) { $arguments += '-Dshadowpriest.supportonly=true' }
 if ($RelicOnly) { $arguments += '-Dshadowpriest.reliconly=true' }
 if ($RelicArtOnly) { $arguments += '-Dshadowpriest.relicartonly=true' }
+if ($VengeanceOnly) { $arguments += '-Dshadowpriest.vengeanceonly=true' }
 if ($BarrierOnly) { $arguments += '-Dshadowpriest.barrieronly=true' }
 if ($DetailsOverallOnly) { $arguments += '-Dshadowpriest.detailsoverallonly=true' }
 if ($DetailsOnly) { $arguments += '-Dshadowpriest.detailsonly=true' }

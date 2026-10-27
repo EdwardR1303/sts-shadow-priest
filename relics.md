@@ -89,8 +89,8 @@ There is no standard card-style upgrade field. If a relic replaces or improves a
 
 ### Void Vengeance
 
-- **Effect:** At the start of each combat, replace all Curses in your combat deck with Void Bolts.
-- **Rules:** Replace each starting combat copy of a Curse with one unupgraded Void Bolt. Do not alter the permanent deck. The replacements last only for that combat; Curses added later in combat are not converted. Status cards and unplayable non-Curse cards do not qualify. Inescapable Torment still counts Curses in the permanent deck for its starting Mastery, regardless of relic acquisition or trigger order.
+- **Effect:** Each turn, you may play one Curse for 0 Energy. It Exhausts. Whenever you Exhaust a Curse, gain 2 Haste.
+- **Rules:** The free Curse play resets each turn and has no HP cost of its own. Its allowance is consumed on play, independently of the exhaust reward. Every Curse exhausted by any method grants 2 Haste, including Ethereal and other cards; Status cards do not qualify. Other sources of Curse play permission remain usable after the allowance is spent. Blue Candle retains its normal HP cost on every Curse played while owned. Necronomicurse returns normally; repeated exhausts grant Haste without a cap. This intentional combo is allowed. Ordinary play restrictions still apply. No combat-deck conversion or permanent-deck changes. Haste uses its normal end-turn decay.
 - **Replaces:** None; supplements the Voidform starter relic.
 - **Status:** Implemented as Void Vengeance; Boss class reward pool.
 
