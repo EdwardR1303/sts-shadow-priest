@@ -448,3 +448,22 @@ Source: https://wow.zamimg.com/images/wow/icons/large/ability_priest_voidentropy
 
 Void Entropy is removed from current spell data; its named legacy icon remains available on the source CDN.
 Madness Overwhelming, Twin Suns, Dark Reinforcement, and Event Horizon use original generated artwork. Prompts: docs/final-card-art-prompts.json.
+
+October 27, 2026: final three relics
+
+Misery
+Metadata: https://nether.wowhead.com/tooltip/spell/238558
+Source: https://wow.zamimg.com/images/wow/icons/large/ability_rogue_envelopingshadows.jpg
+Resource: shadowpriest/images/relics/icons/misery.jpg
+
+Inescapable Torment
+Metadata: https://nether.wowhead.com/tooltip/spell/373442
+Source: https://wow.zamimg.com/images/wow/icons/large/spell_shadow_chilltouch.jpg
+Resource: shadowpriest/images/relics/icons/inescapable_torment.jpg
+
+Shared Suffering
+Metadata: https://nether.wowhead.com/tooltip/spell/72368
+Source: https://wow.zamimg.com/images/wow/icons/large/achievement_dungeon_naxxramas.jpg
+Resource: shadowpriest/images/relics/icons/shared_suffering.jpg
+
+Source icons are unchanged; PriestRelic renders the transparent medallion shape.

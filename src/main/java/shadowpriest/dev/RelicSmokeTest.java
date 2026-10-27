@@ -25,7 +25,7 @@ import static shadowpriest.dev.CombatSmokeTest.check;
 public final class RelicSmokeTest {
     private static AbstractPlayer p;private static AbstractMonster m;private static VoidformRelic starter;
     private static AbstractCard slam;private static int hand;
-    private static final String[] IDS={ShadowyPreparation.ID,IdolOfCthun.ID,IdolOfYshaarj.ID,IdolOfNzoth.ID,IdolOfYoggSaron.ID,ImprovedVoidform.ID,VoidVengeance.ID};
+    private static final String[] IDS={ShadowyPreparation.ID,IdolOfCthun.ID,IdolOfYshaarj.ID,IdolOfNzoth.ID,IdolOfYoggSaron.ID,ImprovedVoidform.ID,VoidVengeance.ID,Misery.ID,InescapableTorment.ID,SharedSuffering.ID};
     private static int stat(String id){return p.hasPower(id)?p.getPower(id).amount:0;}
     private static void own(AbstractRelic r){r.instantObtain(p,p.relics.size(),false);}
     private static void reset(){
@@ -54,7 +54,8 @@ public final class RelicSmokeTest {
         try{java.lang.reflect.Method method=AbstractDungeon.class.getDeclaredMethod("initializeRelicList");method.setAccessible(true);method.invoke(CardCrawlGame.dungeon);}
         catch(Exception e){throw new RuntimeException(e);}
     }
-    private static void pools(){
+    static void pools(){
+        p=AbstractDungeon.player;
         for(String id:IDS){AbstractRelic r=RelicLibrary.getRelic(id);check(r.relicId.equals(id)&&pool(r.tier).contains(id),id+" registered in its initialized class pool");
             check(r.canSpawn(),id+" can spawn for priest");ArrayList<String> values=pool(r.tier);values.remove(id);values.add(0,id);
             AbstractRelic reward=AbstractDungeon.returnRandomRelic(r.tier);check(reward.relicId.equals(id)&&reward!=r,id+" selected through real reward factory");
@@ -65,14 +66,14 @@ public final class RelicSmokeTest {
             AbstractDungeon.player=CardCrawlGame.characterManager.getCharacter(AbstractPlayer.PlayerClass.IRONCLAD);CardCrawlGame.chosenCharacter=AbstractPlayer.PlayerClass.IRONCLAD;initPools();
             for(String id:IDS){AbstractRelic r=RelicLibrary.getRelic(id);check(!pool(r.tier).contains(id)&&!r.canSpawn(),id+" excluded from Ironclad pools and spawning");}
         }finally{AbstractDungeon.player=p;CardCrawlGame.chosenCharacter=selected;initPools();}
-        check(AbstractDungeon.shopRelicPool.stream().noneMatch(id->id.startsWith("shadowpriest:")),"Unreviewed Shop relic remains absent");
+        check(AbstractDungeon.shopRelicPool.contains(SharedSuffering.ID),"Shared Suffering is in the priest Shop pool");
     }
     public static void append(Queue<Runnable> q){
         if(Boolean.getBoolean("shadowpriest.relicartonly")){
             q.add(()->{p=AbstractDungeon.player;for(String id:IDS)own(RelicLibrary.getRelic(id).makeCopy());
                 AbstractDungeon.actionManager.addToBottom(new WaitAction(2f));});
             q.add(()->{CardArtReview.requestCombat("relics-equipped");AbstractDungeon.actionManager.addToBottom(new WaitAction(1f));});
-            q.add(()->check(CardArtReview.capturedCombat("relics-equipped"),"All seven relic icons captured in the actual top bar"));
+            q.add(()->check(CardArtReview.capturedCombat("relics-equipped"),"All ten reward relic icons captured in the actual top bar"));
             return;
         }
         q.add(()->{p=AbstractDungeon.player;m=AbstractDungeon.getMonsters().monsters.get(0);starter=VoidformRelic.current();pools();reset();
@@ -135,7 +136,7 @@ public final class RelicSmokeTest {
         q.add(()->{check(starter.state.active()&&!starter.state.recovering(),"Surrender remains permanent with Improved Voidform");reset();own(new IdolOfYoggSaron());play(new SurrenderToMadness(),null,3);});
         q.add(()->{check(EnergyPanel.totalCount==3&&VoidformRelic.isPermanent(),"Surrender from outside Voidform earns Yogg energy");reset();
             for(String id:IDS)own(RelicLibrary.getRelic(id).makeCopy());CardArtReview.requestCombat("relics-equipped");AbstractDungeon.actionManager.addToBottom(new WaitAction(1f));});
-        q.add(()->check(CardArtReview.capturedCombat("relics-equipped"),"All seven relic icons captured in the actual top bar"));
+        q.add(()->check(CardArtReview.capturedCombat("relics-equipped"),"All ten reward relic icons captured in the actual top bar"));
     }
 }
 

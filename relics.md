@@ -2,7 +2,7 @@
 
 Relics are grouped by rarity or acquisition category. All designs here are class-specific to the Shadow Priest unless stated otherwise.
 
-Shared terms use [keywords.md](keywords.md). The starter and seven settled relics are implemented; the three entries marked `?` remain drafts. See [implementation and verification](docs/relic-implementation.md).
+Shared terms use [keywords.md](keywords.md). All 11 relics are implemented: the starter and ten class reward relics. See [implementation and verification](docs/relic-implementation.md).
 
 A trailing `?` on a relic name marks an unreviewed design. Removing it means the design is agreed, not necessarily implemented. Plain English is enough; we can fill in timing and interaction details during review.
 
@@ -40,10 +40,11 @@ There is no standard card-style upgrade field. If a relic replaces or improves a
 
 ## Uncommon
 
-### Misery ?
+### Misery
 
 - **Effect:** Whenever you apply Touch to an enemy, also apply that many Pain stacks.
-- **Rules:** Use Apply versus Extend as defined in keywords.md. Qualifying effects must be capable of applying Touch when it is absent. Includes Vampiric Touch, Tentacle Slam, Unfurling Darkness, Shadow Crash, Blood Magic's current draft, and Void Blast's Touch applications. Excludes existing-only maintenance from Mind Flay, Mind Flay: Insanity, Void Bolt, and Void Volley. Use the incoming Touch application amount, not the target's total stacks or the amount actually gained at the cap. If Artifact prevents Touch, Misery does not trigger; resulting Pain follows normal application rules.
+- **Rules:** Use Apply versus Extend as defined in keywords.md. Qualifying effects must be capable of applying Touch when it is absent. Includes Vampiric Touch, Tentacle Slam, Unfurling Darkness, Shadow Crash, Blood Magic, and Void Blast's Touch applications. Excludes existing-only maintenance from Mind Flay, Mind Flay: Insanity, Void Bolt, and Void Volley. Use the incoming Touch application amount, not the target's total stacks or the amount actually gained at the cap. If Artifact prevents Touch, Misery does not trigger; resulting Pain follows normal application rules.
+- **Status:** Implemented; Uncommon class reward pool.
 
 ### Idol of C'Thun
 
@@ -66,11 +67,11 @@ There is no standard card-style upgrade field. If a relic replaces or improves a
 - **Rules:** Each actual Power card play grants 1 Mastery after its effects. A successful automatic Legendary equipment activation also grants 1 Mastery, once per combat. Temporary copies and failed/duplicate equipment attempts do not qualify. This equipment interaction is specific to N'Zoth; it does not turn automatic equipment into a card play for other effects. Mastery lasts for combat.
 - **Status:** Implemented, including Legendary equipment; Rare class reward pool.
 
-### Inescapable Torment ?
+### Inescapable Torment
 
 - **Effect:** At the start of each combat, gain 1 Mastery for each Curse in your deck.
-- **Rules:** Count each Curse card in the permanent deck at combat start, including duplicate copies. Status cards and unplayable non-Curse cards do not count. Exhausting or otherwise removing a Curse during combat does not remove the granted Mastery; Curses added during combat do not increase this starting bonus. The granted Mastery lasts for that combat.
-- **Status:** Name chosen; Rare placement and 1 Mastery per Curse are proposed starting values. Not implemented.
+- **Rules:** Count each Curse card in the permanent deck at combat start, including duplicate copies, Ascender's Bane, Curse of the Bell, and Necronomicurse. Status cards and unplayable non-Curse cards do not count. Exhausting or otherwise removing a Curse during combat does not remove the granted Mastery; Curses added during combat do not increase this starting bonus. The granted Mastery lasts for that combat.
+- **Status:** Implemented; Rare class reward pool.
 
 ## Boss
 
@@ -96,9 +97,11 @@ There is no standard card-style upgrade field. If a relic replaces or improves a
 
 ## Shop
 
-### Dark Void ?
+### Shared Suffering
 
-- **Effect:** At the start of each combat, apply 3 Pain to all enemies.
+- **Effect:** At the start of each combat, apply 5 Pain to all enemies.
+- **Rules:** Apply once to each living enemy present at combat start. Artifact blocks each application normally. Later summons do not receive it.
+- **Status:** Implemented; Shop class reward pool. Renamed from the Dark Void draft.
 
 
 ## Special / Event

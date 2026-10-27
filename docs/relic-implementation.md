@@ -1,6 +1,6 @@
 # Playable Shadow Priest relics
 
-Seven settled non-starter relics are now implemented and registered with BaseMod's Shadow Priest relic pool. They use normal reward selection; no appearance rates are forced. Start a new run to build fresh relic pools. Resuming a run preserves its saved pools, which may predate these additions.
+All ten non-starter relics are now implemented and registered with BaseMod's Shadow Priest relic pool. They use normal reward selection; no appearance rates are forced. Start a new run to build fresh relic pools. Resuming a run preserves its saved pools, which may predate these additions.
 
 ## Inventory
 
@@ -8,15 +8,19 @@ Seven settled non-starter relics are now implemented and registered with BaseMod
 |---|---:|---|
 | Starter | 1 | Voidform |
 | Common | 1 | Shadowy Preparation |
-| Uncommon | 1 | Idol of C'Thun |
-| Rare | 2 | Idol of Y'Shaarj, Idol of N'Zoth |
+| Uncommon | 2 | Idol of C'Thun, Misery |
+| Rare | 3 | Idol of Y'Shaarj, Idol of N'Zoth, Inescapable Torment |
 | Boss | 3 | Idol of Yogg-Saron, Improved Voidform, Void Vengeance |
-| Shop | 0 | None yet |
-| Total | 8 | Starter plus seven reward relics |
+| Shop | 1 | Shared Suffering |
+| Total | 11 | Starter plus ten reward relics |
 
-Misery, Inescapable Torment, and the Shop Dark Void relic remain unimplemented drafts. The proposed card file is unchanged by this implementation. See [relics.md](../relics.md) for accepted effects and [the original audit](relic-implementation-audit.md) for why earlier runs never offered class relics.
+The final three drafts are implemented. Shared Suffering replaces the Dark Void draft name and applies five starting Pain. See [relics.md](../relics.md) for accepted effects and [the original audit](relic-implementation-audit.md) for why earlier runs never offered class relics.
 
 ## Timing and interactions
+
+- **Misery:** direct Touch applications trigger matching Pain only when vanilla power application succeeds. The incoming amount counts even at the Touch cap. A scoped ApplyPowerAction subclass receives success from the power's initial/stack hooks; ordinary extension calls have no active scope. Artifact prevents the trigger, and bonus Pain uses ordinary application rules. Delayed Shadow Crash and Void Blast recipients qualify; Mind Flay, Mind Flay: Insanity, Void Bolt, and Void Volley do not.
+- **Inescapable Torment:** snapshot Curse cards in the permanent deck at battle start, after pre-battle resets. Count duplicates and all special Curses, excluding Status cards. Grant one additive Mastery per Curse. Later combat exhaustion, generated Curses, and deck changes do not alter the snapshot; the next combat recounts. Stacks with N'Zoth and Legendary equipment.
+- **Shared Suffering:** apply five Pain to each living starting enemy once. Artifact blocks recipients independently. No later-summon hook. Uses ordinary DoT damage and Mastery scaling regardless of relic order.
 
 - **Preparation:** grant 10 Insanity per living starting enemy after the starter resets. Later summons do not trigger it. Preparation and Improved Voidform require the starter relic to be present when selected as a reward.
 - **C'Thun:** add an extra unupgraded Tentacle Slam after the opening draw, using the normal full-hand discard fallback. Its base and current cost are zero; a card field preserves that discount through stat-equivalent copying and an in-combat upgrade. Other Slams keep their normal cost.
@@ -28,7 +32,7 @@ Misery, Inescapable Torment, and the Shop Dark Void relic remain unimplemented d
 
 ## Art
 
-All seven use actual WoW artwork inside transparent, circular relic medallions rendered at the game's 128/256 texture sizes. Padding keeps the visible icon within its top-bar slot. No square icon background extends beyond the medallion.
+All ten reward relics use actual WoW artwork inside transparent, circular relic medallions rendered at the game's 128/256 texture sizes. Padding keeps the visible icon within its top-bar slot. No square icon background extends beyond the medallion.
 
 | Relic | Source artwork |
 |---|---|
@@ -39,10 +43,15 @@ All seven use actual WoW artwork inside transparent, circular relic medallions r
 | Idol of Yogg-Saron | `achievement_boss_yoggsaron_01` |
 | Improved Voidform | Existing Voidform source icon |
 | Void Vengeance | Existing Void Bolt icon |
+| Misery | `ability_rogue_envelopingshadows` (WoW Misery) |
+| Inescapable Torment | `spell_shadow_chilltouch` (WoW Inescapable Torment) |
+| Shared Suffering | `achievement_dungeon_naxxramas` (WoW Shared Suffering) |
 
 Source images remain unchanged. Attribution and download URLs are in [Warcraft-artwork.txt](../licenses/Warcraft-artwork.txt).
 
 ## Verification
+
+October 27 final relic completion: **28 unit tests** and **86 focused real-game checks** passed using `-RelicCompletionOnly`. All ten reward relics were selected through the real reward factory in their respective pools and excluded from Ironclad pools. The new relics passed direct/extension distinctions, capped applications, Artifact, multi-target and delayed applications, Curse snapshots, combat reset, reversed relic order, and N'Zoth/Legendary stacking. The actual combat top-bar capture was visually reviewed. See [full results](playtest-results.md#final-relic-completion-october-27-2026).
 
 October 26 Void Vengeance redesign: **25 unit tests** and **34 focused real-game checks** passed using `-VengeanceOnly`. See [results and coverage](playtest-results.md#void-vengeance-redesign-october-26-2026). The original Curse conversion has been removed; the historical initial-batch checks below predate that redesign.
 

@@ -38,7 +38,8 @@ public class ShadowPriestMod implements EditCharactersSubscriber, EditCardsSubsc
     @Override public void receiveEditRelics() {
         for(com.megacrit.cardcrawl.relics.AbstractRelic r:new com.megacrit.cardcrawl.relics.AbstractRelic[]{
             new VoidformRelic(),new ShadowyPreparation(),new IdolOfCthun(),new IdolOfYshaarj(),new IdolOfNzoth(),
-            new IdolOfYoggSaron(),new ImprovedVoidform(),new VoidVengeance()})
+            new IdolOfYoggSaron(),new ImprovedVoidform(),new VoidVengeance(),
+            new Misery(),new InescapableTorment(),new SharedSuffering()})
             BaseMod.addRelicToCustomPool(r,ShadowPriest.Meta.CARD_COLOR);
     }
     @Override public void receiveEditStrings() {

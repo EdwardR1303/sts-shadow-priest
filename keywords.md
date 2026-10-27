@@ -1,6 +1,6 @@
 # Keywords
 
-Shared design definitions for Shadow Priest cards and relics. Card text uses these terms without repeating their rules. These definitions describe the current playable build. Misery, Inescapable Torment, and the Shop Dark Void relic remain unimplemented drafts; references to them describe intended future interactions.
+Shared design definitions for Shadow Priest cards and relics. Card text uses these terms without repeating their rules. These definitions describe the current playable build. All relics in relics.md are implemented.
 
 ### DoT
 

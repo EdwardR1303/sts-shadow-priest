@@ -44,11 +44,13 @@ public class ShadowDotPower extends AbstractPower {
     }
     public static ApplyPowerAction apply(AbstractCreature target, AbstractCreature source, String id, int turns) {
         int capped = Math.min(MAX_TURNS, turns);
-        return new ApplyPowerAction(target, source, new ShadowDotPower(target, id, capped), capped);
+        return new shadowpriest.actions.ApplyShadowDotAction(target, source, id, capped);
     }
+    @Override public void onInitialApplication() { shadowpriest.actions.ApplyShadowDotAction.applied(this); }
     @Override public void stackPower(int turns) {
         amount = Math.min(MAX_TURNS, amount + turns);
         updateDescription();
+        shadowpriest.actions.ApplyShadowDotAction.applied(this);
     }
     @Override public void updateDescription() {
         description = "At the end of the player turn, lose #b" + tickDamage() + " HP, then remove one stack. #b" + amount + " tick(s) remaining. Applications add stacks, up to #b5. Ignores Block and Strength.";

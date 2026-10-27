@@ -223,3 +223,17 @@ Coverage includes initialized reward pools (28/26/14), all ten card registration
 The first pass exposed title overlaps and a literal energy token in upgraded text; both were corrected and the revised card images inspected. The initial harness finished before confirming its final lethal-hit assertion; its completion wait was corrected before the passing 111-check run. Final packaging also marks Void Ray's upgraded damage for normal green upgrade highlighting; the numeric values are unchanged. All twenty base/upgraded card images were reviewed, with the affected long titles reviewed again after correction.
 
 Game save reconstruction was exercised via CardLibrary.getCopy, not a full quit/relaunch cycle. Full-hand generated-Curse fallback uses the existing engine action and was not separately simulated. Existing cross-mod damage modifiers are not exhaustively tested. See [final batch rules](final-card-batch.md).
+
+## Final relic completion ? October 27, 2026
+
+Implemented Misery (Uncommon), Inescapable Torment (Rare), and Shared Suffering (Shop, renamed from Dark Void and increased to five starting Pain).
+
+- Incremental Maven `verify` passed **28 unit tests**, without deleting the build directory.
+- `scripts/playtest.ps1 -SkipBuild -RelicCompletionOnly -Windowed -Width 1920 -Height 1080` passed **86 focused checks** in the actual patched game, using the isolated smoke-test profile.
+- All ten class reward relics appear in their intended initialized pools, can be selected through the real reward factory, load both icon sizes/descriptions, and stay out of Ironclad pools.
+- Misery: absent-relic control, initial Touch, partial/full cap, Pain cap, Artifact blocking initial and capped applications, no recursion from Pain, and no proc from Mind Flay, Mind Flay: Insanity, Void Bolt, or Void Volley. Direct Unfurling Darkness/Tentacle Slam, Blood Magic's combined Pain, Void Blast recipients, and delayed Shadow Crash all passed.
+- Shared Suffering: five Pain per starting enemy, per-recipient Artifact, no Touch reverse trigger, and no application to later summons.
+- Inescapable Torment: duplicate and special Curses count; Status/Attack cards do not. Combat exhaustion, generated Curses, and permanent removal leave the starting snapshot intact. The next combat recounts; a Curse-free deck receives no zero-stack power. Starting Pain respects Mastery with either relic order. N'Zoth's Legendary Mastery stacks correctly.
+- Reviewed `.smoketest/card-review/combat-relic-completion.png`: the three new WoW icons render within transparent relic medallions in the top bar.
+
+No broad simulation or full-run balance test was run. Expected local Steam-connect and missing BaseMod console-history messages did not affect the checks. Start a new run for fresh relic pools; saved runs retain their existing pools.

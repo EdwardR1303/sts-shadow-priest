@@ -54,5 +54,26 @@
     "DESCRIPTIONS": [
       "Each turn, you may play one Curse for #b0 Energy. It #yExhausts. NL Whenever you #yExhaust a Curse, gain #b2 #yHaste."
     ]
+  },
+  "shadowpriest:Misery": {
+    "NAME": "Misery",
+    "FLAVOR": "One affliction invites another.",
+    "DESCRIPTIONS": [
+      "Whenever you apply #yTouch to an enemy, also apply that many #yPain stacks. Extending existing DoTs does not trigger this."
+    ]
+  },
+  "shadowpriest:InescapableTorment": {
+    "NAME": "Inescapable Torment",
+    "FLAVOR": "Every burden becomes a weapon.",
+    "DESCRIPTIONS": [
+      "At combat start, gain #b1 #yMastery for each Curse in your permanent deck."
+    ]
+  },
+  "shadowpriest:SharedSuffering": {
+    "NAME": "Shared Suffering",
+    "FLAVOR": "No one suffers alone.",
+    "DESCRIPTIONS": [
+      "At combat start, apply #b5 #yPain to ALL enemies."
+    ]
   }
 }
