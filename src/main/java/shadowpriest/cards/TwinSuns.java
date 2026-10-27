@@ -13,5 +13,5 @@ public class TwinSuns extends PriestCard {
     @Override public void use(AbstractPlayer p, AbstractMonster m) { int strength=m.hasPower("Strength")?m.getPower("Strength").amount:0;
         if(strength>0)addToBot(new ApplyPowerAction(p,p,new HastePower(p,strength+magicNumber),strength+magicNumber)); }
     @Override public void upgrade() { if(!upgraded) { upgradeName(); upgradeMagicNumber(1);upgradeText(); } }
-    
+
 }

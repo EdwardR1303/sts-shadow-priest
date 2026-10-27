@@ -17,5 +17,5 @@ public class VoidEntropy extends PriestCard {
         }});
         addToBot(new DrawCardAction(p,magicNumber)); }
     @Override public void upgrade() { if(!upgraded) { upgradeName(); upgradeMagicNumber(1); } }
-    
+
 }

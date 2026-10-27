@@ -12,5 +12,5 @@ public class EventHorizon extends PriestCard {
     public EventHorizon() { super(ID,2,CardType.POWER,CardRarity.RARE,CardTarget.SELF); baseMagicNumber=magicNumber=2; }
     @Override public void use(AbstractPlayer p, AbstractMonster m) { addToBot(new ApplyPowerAction(p,p,new EventHorizonPower(p,magicNumber),magicNumber)); }
     @Override public void upgrade() { if(!upgraded) { upgradeName(); upgradeMagicNumber(1); } }
-    
+
 }

@@ -17,5 +17,5 @@ public class MaladyOfTheMind extends PriestCard {
             isDone=true;
         }}); }
     @Override public void upgrade() { if(!upgraded) { upgradeName(); upgradeMagicNumber(1);upgradeText(); } }
-    
+
 }

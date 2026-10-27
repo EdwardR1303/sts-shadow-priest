@@ -20,5 +20,5 @@ public class DarkReinforcement extends PriestCard {
             isDone=true;
         }}); }
     @Override public void upgrade() { if(!upgraded) { upgradeName(); upgradeText(); } }
-    
+
 }

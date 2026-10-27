@@ -13,5 +13,5 @@ public class VoidSurge extends PriestCard {
     @Override public void use(AbstractPlayer p, AbstractMonster m) { addToBot(new DamageAction(m,new DamageInfo(p,damage,damageTypeForTurn),AbstractGameAction.AttackEffect.FIRE));
         addToBot(new shadowpriest.actions.GainInsanityAction(magicNumber)); }
     @Override public void upgrade() { if(!upgraded) { upgradeName(); upgradeDamage(3);upgradeMagicNumber(10); } }
-    
+
 }

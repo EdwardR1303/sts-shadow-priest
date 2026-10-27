@@ -15,5 +15,5 @@ public class MentalDecay extends PriestCard {
         AbstractCard curse=new RetainedDecay();
         addToBot(new MakeTempCardInHandAction(curse,1,false)); }
     @Override public void upgrade() { if(!upgraded) { upgradeName(); upgradeMagicNumber(5); } }
-    
+
 }

@@ -69,7 +69,7 @@ Two Common slots provide accessible starting pieces, five Uncommons leave room f
 
 #### Malady of the Mind ?
 
-- **Cost:** 1 
+- **Cost:** 1
 - **Effect:** Double the Madness on your target enemy. Exhaust.
 - **Upgrade:** Triple
 - **Rules:** Similar to how Silent's Catalyst works, but with Madness
@@ -100,7 +100,7 @@ Two Common slots provide accessible starting pieces, five Uncommons leave room f
 
 ### Attacks
 
-#### Void Ray ? 
+#### Void Ray ?
 
 - **Cost:** 1
 - **Effect:** Deal 15 damage. Exhaust a curse in your hand. If you exhausted a curse, permanently increase the damage of Void Ray by 10. Exhaust.
@@ -111,7 +111,7 @@ Two Common slots provide accessible starting pieces, five Uncommons leave room f
 
 ### Skills
 
-#### Mental Decay ? 
+#### Mental Decay ?
 
 - **Cost:** 1
 - **Effect:** Apply 10 Madness to all enemies. Gain a Decay curse with Retain.
