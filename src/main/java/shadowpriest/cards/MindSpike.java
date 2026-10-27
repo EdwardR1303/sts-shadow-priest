@@ -14,7 +14,8 @@ public class MindSpike extends PriestCard {
         tags.add(CardTags.STRIKE); tags.add(CardTags.STARTER_STRIKE);
     }
     @Override public void use(AbstractPlayer p, AbstractMonster m) {
-        addToBot(new DamageAction(m, new DamageInfo(p, damage, damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
+        addToBot(shadowpriest.vfx.ShadowFx.hit(shadowpriest.vfx.ShadowSpellEffect.Style.SPIKE, p, m));
+        addToBot(new DamageAction(m, new DamageInfo(p, damage, damageTypeForTurn), AbstractGameAction.AttackEffect.NONE));
         addToBot(new com.megacrit.cardcrawl.actions.AbstractGameAction() {
             public void update() { shadowpriest.relics.VoidformRelic r = shadowpriest.relics.VoidformRelic.current();
                 if (r != null) r.gainInsanity(10); isDone = true; }

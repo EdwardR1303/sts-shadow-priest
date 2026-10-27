@@ -10,7 +10,8 @@ import shadowpriest.powers.*;
 public class VoidSurge extends PriestCard {
     public static final String ID="shadowpriest:VoidSurge";
     public VoidSurge() { super(ID,1,CardType.ATTACK,CardRarity.COMMON,CardTarget.ENEMY); baseDamage=6;baseMagicNumber=magicNumber=40; }
-    @Override public void use(AbstractPlayer p, AbstractMonster m) { addToBot(new DamageAction(m,new DamageInfo(p,damage,damageTypeForTurn),AbstractGameAction.AttackEffect.FIRE));
+    @Override public void use(AbstractPlayer p, AbstractMonster m) { addToBot(shadowpriest.vfx.ShadowFx.hit(shadowpriest.vfx.ShadowSpellEffect.Style.BOLT, p, m));
+        addToBot(new DamageAction(m,new DamageInfo(p,damage,damageTypeForTurn),AbstractGameAction.AttackEffect.NONE));
         addToBot(new shadowpriest.actions.GainInsanityAction(magicNumber)); }
     @Override public void upgrade() { if(!upgraded) { upgradeName(); upgradeDamage(3);upgradeMagicNumber(10); } }
 

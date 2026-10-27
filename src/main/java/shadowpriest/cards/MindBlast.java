@@ -23,7 +23,8 @@ public class MindBlast extends PriestCard {
         isDamageModified = damage != baseDamage;
     }
     @Override public void use(AbstractPlayer p, AbstractMonster m) {
-        addToBot(new DamageAction(m, new DamageInfo(p, damage, damageTypeForTurn), AbstractGameAction.AttackEffect.FIRE));
+        addToBot(shadowpriest.vfx.ShadowFx.hit(shadowpriest.vfx.ShadowSpellEffect.Style.BLAST, p, m));
+        addToBot(new DamageAction(m, new DamageInfo(p, damage, damageTypeForTurn), AbstractGameAction.AttackEffect.NONE));
         addToBot(new shadowpriest.actions.GainInsanityAction(10));
     }
     @Override public void upgrade() {

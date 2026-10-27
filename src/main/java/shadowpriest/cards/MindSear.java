@@ -17,8 +17,10 @@ public class MindSear extends PriestCard {
     }
     @Override public void use(AbstractPlayer p, AbstractMonster m) {
         int repeats = spendX(p) + (upgraded ? 1 : 0);
-        for (int i = 0; i < repeats; i++)
-            addToBot(new DamageAllEnemiesAction(p, multiDamage, damageTypeForTurn, AbstractGameAction.AttackEffect.FIRE, true));
+        for (int i = 0; i < repeats; i++) {
+            addToBot(shadowpriest.vfx.ShadowFx.sear(p));
+            addToBot(new DamageAllEnemiesAction(p, multiDamage, damageTypeForTurn, AbstractGameAction.AttackEffect.NONE, true));
+        }
     }
     @Override public void upgrade() {
         if (!upgraded) { upgradeName(); upgradeText(); }

@@ -12,6 +12,8 @@ Version 0.1.0 is a playable prototype with 75 collectible cards: four starters, 
 
 The priest wears Transcendence-inspired regalia, glows purple in Voidform, and displays Insanity beneath the energy orb. Card portraits use matching WoW icons or thematic original art; Protected Channel currently reuses the original Shadow Committal illustration. Ordinary Voidform ends with a full Recharge turn. Surrender to Madness can sustain it for combat at the cost of a preventable or cleanseable damage penalty. All ten class reward relics are implemented, including Misery, Inescapable Torment, Shared Suffering, and Improved Voidform's carryover until three Attack plays. Start a new run to populate their reward pools. Full-run balance testing remains necessary. See the [setup and defense revision](docs/card-batch-08.md) and [relic implementation](docs/relic-implementation.md) for implementation and validation details.
 
+The [first combat FX pass](docs/combat-fx.md) adds violet projectiles, channels, bursts, Void Ray's Hyperbeam-style blast, and a Voidform entry aura.
+
 ## Build and play on Windows
 
 Install the Steam game and subscribe to ModTheSpire, BaseMod, and StSLib, then run:

@@ -27,7 +27,8 @@ public class VoidVolley extends PriestCard {
                     volley.calculateCardDamage(target);
                     // Effects, not card plays: resolve each hit and maintenance before selecting the next target.
                     addToTop(VoidBolt.addStacks(p, target, volley.magicNumber));
-                    addToTop(new DamageAction(target, new DamageInfo(p, volley.damage, volley.damageTypeForTurn), AttackEffect.FIRE));
+                    addToTop(new DamageAction(target, new DamageInfo(p, volley.damage, volley.damageTypeForTurn), AttackEffect.NONE));
+                    addToTop(shadowpriest.vfx.ShadowFx.hit(shadowpriest.vfx.ShadowSpellEffect.Style.BOLT, p, target));
                 }
                 isDone = true;
             }

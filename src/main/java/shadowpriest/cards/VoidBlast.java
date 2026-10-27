@@ -19,7 +19,8 @@ public class VoidBlast extends PriestCard {
         int touch = m.hasPower(ShadowDotPower.TOUCH) ? m.getPower(ShadowDotPower.TOUCH).amount : 0;
         int pain = m.hasPower(ShadowDotPower.PAIN) ? m.getPower(ShadowDotPower.PAIN).amount : 0;
         int madness = MadnessPower.stacks(m);
-        addToBot(new DamageAction(m, new DamageInfo(p, damage, damageTypeForTurn), AbstractGameAction.AttackEffect.FIRE));
+        addToBot(shadowpriest.vfx.ShadowFx.hit(shadowpriest.vfx.ShadowSpellEffect.Style.BLAST, p, m));
+        addToBot(new DamageAction(m, new DamageInfo(p, damage, damageTypeForTurn), AbstractGameAction.AttackEffect.NONE));
         for (AbstractMonster enemy : AbstractDungeon.getMonsters().monsters) {
             if (enemy == m || enemy.isDeadOrEscaped()) continue;
             if (touch > 0) addToBot(ShadowDotPower.apply(enemy, p, ShadowDotPower.TOUCH, touch));

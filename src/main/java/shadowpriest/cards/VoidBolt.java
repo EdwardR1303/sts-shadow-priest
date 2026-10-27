@@ -16,7 +16,8 @@ public class VoidBolt extends PriestCard {
         baseDamage = 8; baseMagicNumber = magicNumber = 1;
     }
     @Override public void use(AbstractPlayer p, AbstractMonster m) {
-        addToBot(new DamageAction(m, new DamageInfo(p, damage, damageTypeForTurn), AbstractGameAction.AttackEffect.FIRE));
+        addToBot(shadowpriest.vfx.ShadowFx.hit(shadowpriest.vfx.ShadowSpellEffect.Style.BOLT, p, m));
+        addToBot(new DamageAction(m, new DamageInfo(p, damage, damageTypeForTurn), AbstractGameAction.AttackEffect.NONE));
         addToBot(addStacks(p, m, magicNumber));
     }
     static boolean alive(AbstractMonster m) {

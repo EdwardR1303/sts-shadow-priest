@@ -16,8 +16,10 @@ public class MindFlayInsanity extends PriestCard {
     @Override public void use(AbstractPlayer p, AbstractMonster m) {
         final int repeats = spendX(p) + (upgraded ? 1 : 0);
         if (repeats > 0) addToBot(VoidBolt.addStacks(p, m, repeats));
-        for (int i = 0; i < repeats; i++)
-            addToBot(new DamageAction(m, new DamageInfo(p, damage, damageTypeForTurn), AbstractGameAction.AttackEffect.FIRE));
+        for (int i = 0; i < repeats; i++) {
+            addToBot(shadowpriest.vfx.ShadowFx.hit(shadowpriest.vfx.ShadowSpellEffect.Style.TORRENT, p, m));
+            addToBot(new DamageAction(m, new DamageInfo(p, damage, damageTypeForTurn), AbstractGameAction.AttackEffect.NONE));
+        }
     }
     @Override public void upgrade() {
         if (!upgraded) { upgradeName(); upgradeText(); }

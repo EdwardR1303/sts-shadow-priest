@@ -24,7 +24,8 @@ public class VoidTorrent extends PriestCard {
                         // Recalculate from each hit's base, never from the previous modified damage.
                         torrent.baseDamage = hitBase;
                         torrent.calculateCardDamage(m);
-                        addToTop(new DamageAction(m, new DamageInfo(p, torrent.damage, torrent.damageTypeForTurn), AttackEffect.FIRE));
+                        addToTop(new DamageAction(m, new DamageInfo(p, torrent.damage, torrent.damageTypeForTurn), AttackEffect.NONE));
+                        addToTop(shadowpriest.vfx.ShadowFx.hit(shadowpriest.vfx.ShadowSpellEffect.Style.TORRENT, p, m));
                     }
                     isDone = true;
                 }

@@ -17,7 +17,8 @@ public class MindFlay extends PriestCard {
     }
     @Override public void use(AbstractPlayer p, AbstractMonster m) {
         for (int i = 0; i < magicNumber; i++) {
-            addToBot(new DamageAction(m, new DamageInfo(p, damage, damageTypeForTurn), AbstractGameAction.AttackEffect.FIRE));
+            addToBot(shadowpriest.vfx.ShadowFx.hit(shadowpriest.vfx.ShadowSpellEffect.Style.FLAY, p, m));
+            addToBot(new DamageAction(m, new DamageInfo(p, damage, damageTypeForTurn), AbstractGameAction.AttackEffect.NONE));
             addToBot(new AbstractGameAction() { public void update() {
                 if (VoidBolt.alive(m)) for (AbstractPower power : m.powers) if (power instanceof ShadowDotPower) {
                     power.stackPower(1); power.updateDescription();

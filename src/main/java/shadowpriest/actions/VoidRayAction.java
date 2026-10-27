@@ -27,7 +27,7 @@ public final class VoidRayAction extends AbstractGameAction {
     private void resolve(AbstractCard curse){
         AbstractPlayer p=AbstractDungeon.player;
         if(enemy!=null&&!enemy.isDeadOrEscaped()&&enemy.currentHealth>0){
-            AbstractDungeon.effectList.add(new com.megacrit.cardcrawl.vfx.combat.FlashAtkImgEffect(enemy.hb.cX,enemy.hb.cY,AttackEffect.FIRE));
+            shadowpriest.vfx.ShadowFx.show(shadowpriest.vfx.ShadowSpellEffect.Style.RAY,p,enemy);
             enemy.damage(new DamageInfo(p,damage,card.damageTypeForTurn));
         }
         // Finish in the same update even on a lethal final hit; victory clears queued actions.

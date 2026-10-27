@@ -17,6 +17,9 @@ public class VoidformPower extends AbstractPower implements AlternateCardCostMod
         this.permanent = permanent;
         type = PowerType.BUFF; isTurnBased = !permanent; loadRegion("doubleDamage"); updateDescription();
     }
+    @Override public void onInitialApplication() {
+        shadowpriest.vfx.ShadowFx.show(shadowpriest.vfx.ShadowSpellEffect.Style.ASCEND, owner, owner);
+    }
     public void makePermanent() { permanent = true; isTurnBased = false; updateDescription(); }
     @Override public float atDamageFinalGive(float damage, DamageInfo.DamageType type, AbstractCard card) {
         return VoidformRelic.isActive() && card.type == AbstractCard.CardType.ATTACK ? damage * 1.5f : damage;
