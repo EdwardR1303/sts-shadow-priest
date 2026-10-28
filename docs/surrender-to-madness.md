@@ -1,3 +1,5 @@
+> Updated in 0.1.2: Surrender?s penalty is now a buff that Artifact cannot prevent and debuff cleansing cannot remove. The notes below record the original implementation. See [the current balance pass](beta-balance-0.1.2.md).
+
 # Surrender to Madness
 
 An implemented Rare Skill that turns a temporary burst into a commitment for the rest of combat. The class now supplies 24 reward cards: ten Commons, nine Uncommons, and five Rares.

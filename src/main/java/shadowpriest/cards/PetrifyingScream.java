@@ -10,6 +10,6 @@ import com.evacipated.cardcrawl.mod.stslib.actions.common.StunMonsterAction;
 public class PetrifyingScream extends PriestCard {
     public static final String ID = "shadowpriest:PetrifyingScream";
     public PetrifyingScream() { super(ID, 2, CardType.SKILL, CardRarity.RARE, CardTarget.ENEMY); exhaust = true; }
-    @Override public void use(AbstractPlayer p, AbstractMonster m) { addToBot(new StunMonsterAction(m, p)); }
-    @Override public void upgrade() { if (!upgraded) { upgradeName(); upgradeBaseCost(1); } }
+    @Override public void use(AbstractPlayer p, AbstractMonster m) { if(upgraded){for(AbstractMonster enemy:com.megacrit.cardcrawl.dungeons.AbstractDungeon.getMonsters().monsters)if(VoidBolt.alive(enemy))addToBot(new StunMonsterAction(enemy,p));}else addToBot(new StunMonsterAction(m, p)); }
+    @Override public void upgrade() { if (!upgraded) { upgradeName(); target=CardTarget.ALL_ENEMY;upgradeText(); } }
 }

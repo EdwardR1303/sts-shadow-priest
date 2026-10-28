@@ -23,6 +23,9 @@ public abstract class PriestCard extends CustomCard {
         rawDescription = CardCrawlGame.languagePack.getCardStrings(cardID).UPGRADE_DESCRIPTION;
         initializeDescription();
     }
+    @Override public void applyPowers() { super.applyPowers(); FormulaPreview.update(this,null); }
+    @Override public void calculateCardDamage(com.megacrit.cardcrawl.monsters.AbstractMonster m) { super.calculateCardDamage(m); FormulaPreview.update(this,m); }
+    @Override public void resetAttributes() { super.resetAttributes(); FormulaPreview.update(this,null); }
     protected int spendX(com.megacrit.cardcrawl.characters.AbstractPlayer p) {
         int x = shadowpriest.mechanics.Channeling.effective(this);
         if (p.hasRelic("Chemical X")) p.getRelic("Chemical X").flash();

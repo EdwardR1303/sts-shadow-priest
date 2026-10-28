@@ -28,3 +28,7 @@ Friends should subscribe to this item and all requirements, launch Steam's Play 
 ## 0.1.1 release
 
 Published October 27, 2026 with purple DoT health-bar previews. Both the Maven and mod-manifest versions are 0.1.1; patch notes are in `CHANGELOG.md` and the Workshop Change Notes tab. The upload completed successfully and the 0.1.1 notes were verified while signed out. The packaged version and preview class were verified. SHA256: `EF2833CC01B02C401BBACBB44D23DBD1E0D39EE36878EE01FC101B0BBC0A45CB`. Release packaging passed 31 unit tests; the feature's 24 focused game checks had already passed and were not repeated for the version change.
+
+## 0.1.2 release
+
+Published October 28, 2026 with the accepted Haste and card balance pass. The official uploader reported success for the existing public item 3828572814. Version 0.1.2 is present in Maven and the packaged mod manifest. SHA256: `BEEA2AFB0D72CEFFEE993DE05B8C1D3C7C6FF26AA33C0E7CCB86494CEC8E587F`. Validation: 31 unit tests, 57 focused real-engine assertions, catalog schema validation, and four visually reviewed card renders. No full-run simulation. The local Steam mods JAR was updated to the same artifact.

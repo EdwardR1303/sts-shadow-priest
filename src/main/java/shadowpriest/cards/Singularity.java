@@ -9,10 +9,8 @@ import shadowpriest.powers.*;
 
 public class Singularity extends PriestCard {
     public static final String ID="shadowpriest:Singularity";
-    public Singularity() { super(ID,2,CardType.ATTACK,CardRarity.UNCOMMON,CardTarget.ENEMY); baseDamage=16;baseMagicNumber=magicNumber=3; }
+    public Singularity() { super(ID,2,CardType.ATTACK,CardRarity.UNCOMMON,CardTarget.ENEMY); baseDamage=0;baseMagicNumber=magicNumber=3; }
     @Override public void use(AbstractPlayer p, AbstractMonster m) { final Singularity attackCard=this;
-        addToBot(shadowpriest.vfx.ShadowFx.hit(shadowpriest.vfx.ShadowSpellEffect.Style.BLAST, p, m));
-        addToBot(new DamageAction(m,new DamageInfo(p,damage,damageTypeForTurn),AbstractGameAction.AttackEffect.NONE));
         addToBot(new AbstractGameAction(){public void update(){
             if(VoidBolt.alive(m)){
                 int stacks=0;
@@ -28,20 +26,17 @@ public class Singularity extends PriestCard {
             }
             isDone=true;
         }}); }
-    @Override public void upgrade() { if(!upgraded) { upgradeName(); upgradeDamage(6);upgradeMagicNumber(2); } }
+    @Override public void upgrade() { if(!upgraded) { upgradeName(); upgradeMagicNumber(2); } }
     @Override public void applyPowers() { super.applyPowers(); FormulaPreview.set(this, null); }
     @Override public void resetAttributes() { super.resetAttributes(); FormulaPreview.set(this, null); }
     @Override public void calculateCardDamage(AbstractMonster target) {
         super.calculateCardDamage(target);
-        FormulaPreview.set(this, target == null ? null : previewBonus(target) + " bonus damage");
+        FormulaPreview.set(this, target == null ? null : previewBonus(target) + " damage");
     }
     public int previewBonus(AbstractMonster target) {
         int stacks = 0;
         for (String id : new String[]{ShadowDotPower.TOUCH, ShadowDotPower.PAIN, MadnessPower.POWER_ID})
             if (target.hasPower(id)) stacks += Math.max(0, target.getPower(id).amount);
-        // The initial hit queues Searing Nightmare before the consumption action.
-        if (!target.hasPower("Artifact") && AbstractDungeon.player.hasPower(SearingNightmarePower.POWER_ID))
-            stacks += AbstractDungeon.player.getPower(SearingNightmarePower.POWER_ID).amount;
         return stacks <= 0 ? 0 : bonusDamage(target, stacks);
     }
     public int bonusDamage(AbstractMonster target,int stacks){

@@ -10,7 +10,7 @@ import shadowpriest.actions.GainInsanityAction;
 
 public class SearingNightmare extends PriestCard {
     public static final String ID="shadowpriest:SearingNightmare";
-    public SearingNightmare() { super(ID,2,CardType.POWER,CardRarity.RARE,CardTarget.SELF);baseMagicNumber=magicNumber=1; }
+    public SearingNightmare() { super(ID,2,CardType.POWER,CardRarity.RARE,CardTarget.SELF);baseMagicNumber=magicNumber=2; }
     @Override public void use(AbstractPlayer p,AbstractMonster m) { addToBot(new ApplyPowerAction(p,p,new SearingNightmarePower(p,magicNumber),magicNumber)); }
     @Override public void upgrade() { if(!upgraded) { upgradeName();upgradeBaseCost(1); } }
     @Override public float getTitleFontSize(){return 20f;}

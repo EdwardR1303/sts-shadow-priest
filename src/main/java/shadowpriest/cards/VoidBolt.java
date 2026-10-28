@@ -13,7 +13,7 @@ public class VoidBolt extends PriestCard {
     public static final String ID = "shadowpriest:VoidBolt";
     public VoidBolt() {
         super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
-        baseDamage = 8; baseMagicNumber = magicNumber = 1;
+        baseDamage = 10; baseMagicNumber = magicNumber = 1;
     }
     @Override public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot(shadowpriest.vfx.ShadowFx.hit(shadowpriest.vfx.ShadowSpellEffect.Style.BOLT, p, m));
@@ -38,6 +38,6 @@ public class VoidBolt extends PriestCard {
         };
     }
     @Override public void upgrade() {
-        if (!upgraded) { upgradeName(); upgradeDamage(2); upgradeMagicNumber(1); }
+        if (!upgraded) { upgradeName(); upgradeDamage(3); upgradeMagicNumber(1); }
     }
 }

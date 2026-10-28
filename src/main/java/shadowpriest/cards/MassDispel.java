@@ -22,9 +22,10 @@ public class MassDispel extends PriestCard {
                     if (enemy.hasPower(StrengthPower.POWER_ID) && enemy.getPower(StrengthPower.POWER_ID).amount > 0)
                         addToBot(new RemoveSpecificPowerAction(enemy, p, StrengthPower.POWER_ID));
                 }
+                if(upgraded)addToBot(new com.megacrit.cardcrawl.actions.unique.RemoveDebuffsAction(p));
                 isDone = true;
             }
         });
     }
-    @Override public void upgrade() { if (!upgraded) { upgradeName(); upgradeBaseCost(1); } }
+    @Override public void upgrade() { if (!upgraded) { upgradeName(); upgradeText(); } }
 }

@@ -17,7 +17,7 @@ public class ShadowWordDeath extends PriestCard {
     }
     @Override public float getTitleFontSize() { return 16f; }
     @Override public void use(AbstractPlayer p, AbstractMonster m) {
-        for (int i = 0; i < (upgraded ? 2 : 1); i++)
+        for (int i = 0; i < (upgraded ? shadowpriest.mechanics.Repetitions.add(2) : 1); i++)
             addToBot(new shadowpriest.actions.DeathHitAction(p, m, new DamageInfo(p, damage, damageTypeForTurn), magicNumber));
     }
     @Override public void upgrade() {

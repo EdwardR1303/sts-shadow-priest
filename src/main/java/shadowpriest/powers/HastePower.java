@@ -10,9 +10,9 @@ public class HastePower extends AbstractPower {
   region48=small;region128=large;updateDescription();}
  @Override public void atEndOfTurn(boolean isPlayer){
   // Round the loss up: 5 -> 2 -> 1 -> 0. All sources share this rule.
-  if(isPlayer&&amount>0)addToBot(new ReducePowerAction(owner,owner,this,amount-amount/2));
+  if(isPlayer&&amount>0&&!owner.hasPower(PowerInfusionPower.POWER_ID))addToBot(new ReducePowerAction(owner,owner,this,amount-amount/2));
  }
  @Override public void updateDescription(){
-  description="X-cost cards have #b"+amount+" additional effective X, including at zero energy. Stacks with Chemical X. NL At the end of your turn, lose half your Haste (rounded up).";
+  description="Cards with explicit repetitions repeat #b"+amount+" additional times. X-cost cards gain that much effective X, including at zero energy. Applied once; excludes durations, recurring triggers, and for-each effects. NL At turn end, lose half your Haste (rounded up), unless protected by Power Infusion.";
  }
 }

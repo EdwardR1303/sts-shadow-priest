@@ -269,3 +269,7 @@ Incremental Maven verification passed **31 unit tests**, including three archive
 Touch, Pain, and Madness now show their next natural ticks as purple enemy HP-bar segments through StSLib. The preview updates with current stacks and Mastery, bypasses Block, and handles per-tick Intangible, Buffer, and the shared remaining Invincible allowance without mutating combat state. Vanilla Poison remains green. See [preview rules and limits](dot-health-preview.md).
 
 Incremental Maven verification passed 31 unit tests. The isolated `-DotPreviewOnly` review passed 24 checks, including comparisons against resolved damage and captures of partial, lethal, mixed Poison, and Intangible bars. All four captures were visually inspected at 1920 x 1080. No full-run simulation was performed.
+
+## Beta balance pass (October 28, 2026)
+
+Version 0.1.2 passed 31 unit tests and 57 focused real-game assertions using `-BetaBalanceOnly`. Coverage includes single-hit Singularity, Haste repetitions and base-game compatibility, Penance healing, two protected decay boundaries, actual HP-loss Catharsis counters, stacking post-Block Tithe, non-Dexterity Protected Channel, Surrender/Artifact/Mass Dispel, free Volley with entry energy, upgraded Stun, numerical buffs and formula previews. Four card renders were reviewed for text fit and green Haste counts. The card catalog passed schema validation. No full-run simulation was performed; see [the accepted rules](beta-balance-0.1.2.md).

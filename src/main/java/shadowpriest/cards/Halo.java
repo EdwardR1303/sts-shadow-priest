@@ -9,7 +9,7 @@ public class Halo extends PriestCard {
     public static final String ID = "shadowpriest:Halo";
     public Halo() {
         super(ID, 1, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
-        baseMagicNumber = magicNumber = 3;
+        baseMagicNumber = magicNumber = 4;
     }
     @Override public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot(new ApplyPowerAction(p, p, new HaloPower(p, magicNumber), 3));

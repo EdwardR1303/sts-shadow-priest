@@ -13,7 +13,7 @@ public class TitheEvasion extends PriestCard {
  public TitheEvasion() { super(ID,1,CardType.POWER,CardRarity.COMMON,CardTarget.SELF); baseMagicNumber=magicNumber=1; }
  @Override public void use(AbstractPlayer p, AbstractMonster m) { final int value=magicNumber;
  addToBot(new AbstractGameAction(){ public void update(){
- if(value>Benefit.granted.get(p)){ Benefit.granted.set(p,value); addToTop(new ApplyPowerAction(p,p,new TitheEvasionPower(p,value),value)); }
+ addToTop(new ApplyPowerAction(p,p,new TitheEvasionPower(p,value),value));
  isDone=true;
  }}); }
  @Override public void upgrade() { if (!upgraded) { upgradeName(); upgradeMagicNumber(1); } }
@@ -21,6 +21,5 @@ public class TitheEvasion extends PriestCard {
  public static class Benefit { public static com.evacipated.cardcrawl.modthespire.lib.SpireField<Integer> granted=new com.evacipated.cardcrawl.modthespire.lib.SpireField<>(()->0); }
  @com.evacipated.cardcrawl.modthespire.lib.SpirePatch(clz=AbstractPlayer.class,method="preBattlePrep")
  public static class Reset { @com.evacipated.cardcrawl.modthespire.lib.SpirePostfixPatch public static void after(AbstractPlayer __instance){Benefit.granted.set(__instance,0);} }
- @Override public boolean canUse(AbstractPlayer p,AbstractMonster m){ if(!super.canUse(p,m)) return false;
- if(Benefit.granted.get(p)>=magicNumber){cantUseMessage="Tithe Evasion already granted this protection this combat.";return false;} return true; }
+
 }

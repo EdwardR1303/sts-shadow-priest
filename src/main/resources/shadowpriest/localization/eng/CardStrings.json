@@ -98,7 +98,8 @@
   },
   "shadowpriest:MassDispel": {
     "NAME": "Mass Dispel",
-    "DESCRIPTION": "Remove ALL enemies' Block, Artifact, and positive Strength."
+    "DESCRIPTION": "Remove ALL enemies' Block, Artifact, and positive Strength.",
+    "UPGRADE_DESCRIPTION": "Remove all enemies' Block, Artifact, and positive Strength. NL Remove your debuffs."
   },
   "shadowpriest:VampiricEmbrace": {
     "NAME": "Vampiric Embrace",
@@ -110,7 +111,7 @@
   },
   "shadowpriest:VoidVolley": {
     "NAME": "Void Volley",
-    "DESCRIPTION": "X times: deal !D! damage to a random enemy, then add !M! stack(s) to each existing shadowpriest:DoT."
+    "DESCRIPTION": "Deal !D! damage to random enemies X times. Each hit adds !M! to its existing shadowpriest:DoTs. NL When you enter shadowpriest:Voidform with this in hand, play it for free."
   },
   "shadowpriest:VoidTorrent": {
     "NAME": "Void Torrent",
@@ -148,7 +149,8 @@
   },
   "shadowpriest:PetrifyingScream": {
     "NAME": "Petrifying Scream",
-    "DESCRIPTION": "Stun the target for 1 turn. NL Exhaust."
+    "DESCRIPTION": "Stun an enemy for 1 turn. NL Exhaust.",
+    "UPGRADE_DESCRIPTION": "Stun ALL enemies for 1 turn. NL Exhaust."
   },
   "shadowpriest:ShadowCommittal": {
     "NAME": "Shadow Committal",
@@ -164,7 +166,7 @@
   },
   "shadowpriest:VoidShield": {
     "NAME": "Void Shield",
-    "DESCRIPTION": "Gain !B! Block, plus 1 Block per !M! Insanity. NL shadowpriest:Voidform counts as 100 Insanity."
+    "DESCRIPTION": "Gain !B! Block, plus 1 Block per !M! Insanity."
   },
   "shadowpriest:Insight": {
     "NAME": "Shadowy Insight",
@@ -195,7 +197,7 @@
   },
   "shadowpriest:TitheEvasion": {
     "NAME": "Tithe Evasion",
-    "DESCRIPTION": "Lose !M! less HP from Shadow Word: Death and Shadow Mend. NL Does not stack."
+    "DESCRIPTION": "During your turn, lose !M! less HP from each damage source, after Block."
   },
   "shadowpriest:Dragonwrath": {
     "NAME": "Dragonwrath",
@@ -228,7 +230,7 @@
   },
   "shadowpriest:PowerInfusion": {
     "NAME": "Power Infusion",
-    "DESCRIPTION": "Gain !M! shadowpriest:Haste. NL Exhaust."
+    "DESCRIPTION": "Gain !M! shadowpriest:Haste. NL Haste does not decay for 2 turns. NL Exhaust."
   },
   "shadowpriest:ShadowCrash": {
     "NAME": "Shadow Crash",
@@ -245,8 +247,8 @@
   },
   "shadowpriest:Catharsis": {
     "NAME": "Catharsis",
-    "DESCRIPTION": "Deal damage equal to your missing HP (!D!). NL Exhaust.",
-    "UPGRADE_DESCRIPTION": "Retain. NL Deal damage equal to your missing HP (!D!). NL Exhaust."
+    "DESCRIPTION": "Deal 3 damage per HP lost this combat, or 5 for HP lost while this card was in your hand. NL Exhaust.",
+    "UPGRADE_DESCRIPTION": "Retain. NL Deal 3 damage per HP lost this combat, or 5 for HP lost while this card was in your hand. NL Exhaust."
   },
   "shadowpriest:SearingNightmare": {
     "NAME": "Searing Nightmare",
@@ -297,8 +299,8 @@
   },
   "shadowpriest:Singularity": {
     "NAME": "Singularity",
-    "DESCRIPTION": "Deal !D! damage. NL Consume all target DoTs. Deal !M! + shadowpriest:Mastery damage per stack consumed. NL Bonus ignores Strength.",
-    "UPGRADE_DESCRIPTION": "Deal !D! damage. NL Consume all target DoTs. Deal !M! + shadowpriest:Mastery damage per stack consumed. NL Bonus ignores Strength."
+    "DESCRIPTION": "Remove all shadowpriest:DoTs from the target. Deal !M! damage per stack removed, increased by shadowpriest:Mastery.",
+    "UPGRADE_DESCRIPTION": "Remove all shadowpriest:DoTs from the target. Deal !M! damage per stack removed, increased by shadowpriest:Mastery."
   },
   "shadowpriest:TwinSuns": {
     "NAME": "Twin Suns",
