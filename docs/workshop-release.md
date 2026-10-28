@@ -24,3 +24,7 @@ Steam's Required Items are configured on the listing separately from the uploade
 Incremental Maven verification passed 31 unit tests. Upload completed successfully on October 27, 2026, followed by an update crediting Nishiki in the listing and mod launcher. The final uploaded JAR SHA256 was `AFFAA820785FB0976B15DC097D0A7BB0598A83861C701916EE7DE31A326700DB`; the preview was 332071 bytes. The public description, Subscribe control, and all three Required Items were checked while signed out. No broad simulation was run for packaging; the preceding focused game/UI checks are recorded in `playtest-results.md`.
 
 Friends should subscribe to this item and all requirements, launch Steam's Play With Mods option, enable Shadow Priest/BaseMod/StSLib, and begin a Standard run. Developers should avoid loading both a local and Workshop copy of the same mod. Local playtest saves remain separate from the ordinary Steam launch profile.
+
+## 0.1.1 release
+
+Published October 27, 2026 with purple DoT health-bar previews. Both the Maven and mod-manifest versions are 0.1.1; patch notes are in `CHANGELOG.md` and the Workshop Change Notes tab. The upload completed successfully and the 0.1.1 notes were verified while signed out. The packaged version and preview class were verified. SHA256: `EF2833CC01B02C401BBACBB44D23DBD1E0D39EE36878EE01FC101B0BBC0A45CB`. Release packaging passed 31 unit tests; the feature's 24 focused game checks had already passed and were not repeated for the version change.

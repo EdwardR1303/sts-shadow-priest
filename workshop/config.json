@@ -1,7 +1,7 @@
 {
   "title": "The Shadow Priest -- Beta",
   "visibility": "public",
-  "changeNote": "Updated feedback instructions to use Steam comments and discussions. No gameplay changes.",
+  "changeNote": "0.1.1 - Purple DoT damage preview\n\n- Enemy health bars now show upcoming Touch, Pain, and Madness damage in purple. A fully purple remaining bar indicates enough DoT damage to deplete that HP.\n- Updates immediately with current stacks and Mastery, including negative Mastery. Accounts for Intangible, Buffer, and the Heart's remaining damage cap.\n- Normal Poison keeps its green preview.\n- Preview covers the next natural DoT ticks, not Halo or future card plays. Enemy revivals and phase transitions still work normally.\n\nQuality-of-life update only; no card or balance changes. Restart the game after Steam downloads the update.",
   "tags": [
     "Character",
     "Cards",

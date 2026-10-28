@@ -3,7 +3,7 @@
   "name": "Shadow Priest",
   "author_list": ["Nishiki"],
   "description": "A custom Shadow Priest with a dedicated card pool, Mastery-scaled afflictions, on-demand Voidform, and Legendary weapons. Survive the setup and unleash your power.",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "sts_version": "12-18-2022",
   "mts_version": "3.30.0",
   "dependencies": ["basemod", "stslib"]
