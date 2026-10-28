@@ -263,3 +263,9 @@ Incremental Maven verification passed 28 unit tests. The UI-only `-DetailsOveral
 Added a read-only Combat Details browser to the main menu. Saved reports open in Overall with the same combat, turn, metric, and source breakdown controls. Listing and loading run in the background; unsupported or unreadable files are skipped. Both ISO timestamps and the older Date.toString timestamps sort correctly. Opening archives does not replace the active tracker or change dungeon screen state.
 
 Incremental Maven verification passed **31 unit tests**, including three archive tests for ordering, legacy dates, full report loading, read-only access, invalid/future reports, path validation, and empty history. The menu-only `-HistoryOnly` review passed **16 checks** covering the actual menu button, asynchronous discovery, row selection, Overall totals, combat/turn views, selecting a second run, and Back/Escape navigation. All four screenshots were visually reviewed at 1920 x 1080. The review created and removed two isolated fixture reports; no combat or full-run simulation was performed.
+
+## Purple DoT health preview (October 27, 2026)
+
+Touch, Pain, and Madness now show their next natural ticks as purple enemy HP-bar segments through StSLib. The preview updates with current stacks and Mastery, bypasses Block, and handles per-tick Intangible, Buffer, and the shared remaining Invincible allowance without mutating combat state. Vanilla Poison remains green. See [preview rules and limits](dot-health-preview.md).
+
+Incremental Maven verification passed 31 unit tests. The isolated `-DotPreviewOnly` review passed 24 checks, including comparisons against resolved damage and captures of partial, lethal, mixed Poison, and Intangible bars. All four captures were visually inspected at 1920 x 1080. No full-run simulation was performed.

@@ -10,7 +10,9 @@ import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 
 /** Touch/Pain amount is remaining natural ticks. */
-public class ShadowDotPower extends AbstractPower {
+public class ShadowDotPower extends AbstractPower implements com.evacipated.cardcrawl.mod.stslib.powers.interfaces.HealthBarRenderPower {
+    @Override public int getHealthBarAmount() { return shadowpriest.mechanics.DotHealthPreview.amount(this); }
+    @Override public com.badlogic.gdx.graphics.Color getColor() { return shadowpriest.mechanics.DotHealthPreview.PURPLE; }
     public static final String TOUCH = "shadowpriest:Touch";
     public static final String PAIN = "shadowpriest:Pain";
     public static final int MAX_TURNS = 5;

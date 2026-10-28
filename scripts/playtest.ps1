@@ -1,10 +1,12 @@
 param(
+    [switch]$DotPreviewOnly,
     [switch]$SkipBuild, [switch]$Debug, [switch]$SmokeTest, [switch]$CardBatchOnly, [switch]$LatestBatchOnly, [switch]$ReworkOnly, [switch]$DefensiveReworkOnly, [switch]$SupportOnly, [switch]$RelicOnly, [switch]$RelicArtOnly, [switch]$SetupOnly, [switch]$DetailsOnly, [switch]$BarrierOnly, [switch]$DetailsOverallOnly, [switch]$VengeanceOnly, [switch]$FinalBatchOnly, [switch]$RelicCompletionOnly, [switch]$BalanceFollowupOnly, [switch]$MindDecayOnly, [switch]$HistoryOnly,
     [ValidateRange(640, 7680)][int]$Width = 3840,
     [ValidateRange(480, 4320)][int]$Height = 2160,
     [switch]$Windowed
 )
 $ErrorActionPreference = 'Stop'
+if ($DotPreviewOnly) { $SmokeTest = $true }
 if ($RelicArtOnly) { $RelicOnly = $true }
 if ($HistoryOnly -or $MindDecayOnly -or $BalanceFollowupOnly -or $RelicCompletionOnly -or $FinalBatchOnly -or $VengeanceOnly -or $SetupOnly -or $DetailsOnly -or $BarrierOnly -or $DetailsOverallOnly) { $SmokeTest = $true }
 if ($ReworkOnly -or $DefensiveReworkOnly -or $SupportOnly -or $RelicOnly) { $SmokeTest = $true }
@@ -56,6 +58,7 @@ if ($SupportOnly) { $arguments += '-Dshadowpriest.supportonly=true' }
 if ($RelicOnly) { $arguments += '-Dshadowpriest.reliconly=true' }
 if ($RelicArtOnly) { $arguments += '-Dshadowpriest.relicartonly=true' }
 if ($HistoryOnly) { $arguments += '-Dshadowpriest.historyonly=true' }
+if ($DotPreviewOnly) { $arguments += '-Dshadowpriest.dotpreviewonly=true' }
 if ($MindDecayOnly) { $arguments += '-Dshadowpriest.minddecayonly=true' }
 if ($BalanceFollowupOnly) { $arguments += '-Dshadowpriest.balancefollowuponly=true' }
 if ($RelicCompletionOnly) { $arguments += '-Dshadowpriest.reliccompletiononly=true' }

@@ -3,7 +3,9 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
-public class MadnessPower extends AbstractPower {
+public class MadnessPower extends AbstractPower implements com.evacipated.cardcrawl.mod.stslib.powers.interfaces.HealthBarRenderPower {
+ @Override public int getHealthBarAmount(){return shadowpriest.mechanics.DotHealthPreview.amount(this);}
+ @Override public com.badlogic.gdx.graphics.Color getColor(){return shadowpriest.mechanics.DotHealthPreview.PURPLE;}
  public static final String POWER_ID="shadowpriest:Madness";
  public MadnessPower(AbstractCreature owner,int amount){this.owner=owner;this.amount=amount;ID=POWER_ID;name="Madness";type=PowerType.DEBUFF;AbilityPowerArt.apply(this,"shadow_word_madness.jpg");updateDescription();}
  public static int stacks(AbstractCreature target){return target!=null&&target.hasPower(POWER_ID)?Math.max(0,target.getPower(POWER_ID).amount):0;}
