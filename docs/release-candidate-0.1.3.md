@@ -1,6 +1,6 @@
-# 0.1.3 local release candidate
+# 0.1.3 candidate and release record
 
-This candidate includes the local observation fixes, expanded Details metrics, low-pick card revisions, and the five accepted Curse/setup revisions. It is not yet published to Steam Workshop. The changelog and Workshop change note are prepared; publication follows local run feedback.
+This candidate includes the local observation fixes, expanded Details metrics, low-pick card revisions, and the five accepted Curse/setup revisions. Published to Steam Workshop on October 29, 2026 following the user's instruction to proceed. The uploaded artifact matches the tested candidate.
 
 ## Final card revisions
 
@@ -18,4 +18,4 @@ Use `scripts/playtest.ps1 -SkipBuild -LowPickOnly -Windowed -Width 1600 -Height 
 
 Completed: 35 unit tests and 94 focused real-engine assertions passed. The card catalog validates against its schema. Reviewed the game-rendered upgraded cards for text fit. No full-run simulation was run. Results are preserved locally in `.local/release-0.1.3-focused-results.txt`.
 
-Release gate: play a local run with the combined changes and review balance before uploading. The normal desktop playtest shortcut builds and launches the local candidate in the isolated playtest profile. Workshop subscribers remain on 0.1.2 until publication.
+Publication was authorized after candidate preparation; no additional full-run validation is claimed. The normal desktop playtest shortcut builds and launches the local version in the isolated playtest profile. Steam's official uploader confirmed the update to the existing public listing. SHA256: `AC708C957563CADCA620EDF97956E0B8E56825E08E07E46AF6820113DD76D6DF`.

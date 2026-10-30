@@ -12,7 +12,7 @@
 - Shadow Weaving grants flat end-turn Block without Dexterity or Frail modifiers. Mind Decay now costs 1 HP at turn start and retains its combat-end safeguard.
 - Singularity shows damage first and has new effects that scale at 50 and 100 damage. X-value previews are hidden outside combat. Cleaned up Idol of N'Zoth and Tithe Evasion wording and fixed Idol of Yogg-Saron's third energy icon.
 
-Local playtesting is pending. These changes are not yet on Steam Workshop.
+Restart the game after Steam downloads this update. Existing runs use the new card rules; balance testing continues.
 
 ## 0.1.2 — October 28, 2026
 

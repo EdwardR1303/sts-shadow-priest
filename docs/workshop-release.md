@@ -32,3 +32,7 @@ Published October 27, 2026 with purple DoT health-bar previews. Both the Maven a
 ## 0.1.2 release
 
 Published October 28, 2026 with the accepted Haste and card balance pass. The official uploader reported success for the existing public item 3828572814. Version 0.1.2 is present in Maven and the packaged mod manifest. SHA256: `BEEA2AFB0D72CEFFEE993DE05B8C1D3C7C6FF26AA33C0E7CCB86494CEC8E587F`. Validation: 31 unit tests, 57 focused real-engine assertions, catalog schema validation, and four visually reviewed card renders. No full-run simulation. The local Steam mods JAR was updated to the same artifact.
+
+## 0.1.3 release
+
+Published October 29, 2026 with expanded Details metrics, card balance and Curse support, and presentation fixes. The official uploader confirmed a successful update to item 3828572814. Maven and the packaged mod manifest both report 0.1.3. SHA256: `AC708C957563CADCA620EDF97956E0B8E56825E08E07E46AF6820113DD76D6DF`, unchanged from the tested local candidate. Release packaging passed 35 unit tests; the candidate previously passed 94 focused engine assertions and catalog validation. No additional full-run simulation was performed. The user authorized publication after candidate preparation.
