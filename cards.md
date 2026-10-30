@@ -83,9 +83,10 @@ X/Y/Z = **Attacks/Skills/Powers**. Counts beside each rarity heading include dra
 #### Tentacle Slam
 
 - **Cost:** 2 energy
-- **Effect:** Deal 8 damage to an enemy. Apply 3 Vampiric Touch stacks to it and all enemies between you and it.
-- **Upgrade:** Deal 10 damage, cost becomes 1 energy.
-- **Rules:** Only the selected enemy takes direct damage, before Touch is applied. Applications add stacks up to 5. Position is measured between the player and selected enemy, in either direction. Psychic Link can trigger the newly applied Touch after this Attack.
+- **Effect:** Deal 8 damage to an enemy. Apply 3 Touch to it and all enemies between you and it. Devour: Refund energy spent on this cast.
+- **Upgrade:** Base damage becomes 10; cost becomes 1 energy. Devour still refunds only Energy actually spent on this cast.
+- **Rules:** Consume the Curse before the hit, then refund the Energy actually paid for this play. Free plays refund zero; Voidform and other cost discounts reduce the refund. Refund before damage so a final killing hit cannot skip it. Damage remains 8/10. Keep existing Touch targeting and application order. Haste does not repeat the refund.
+- **Status:** Implemented in 0.1.5; focused engine checks passed and first local playthrough reviewed. Ongoing balance testing.
 
 #### Void Bolt
 - **Cost:** 1 energy
@@ -97,18 +98,18 @@ X/Y/Z = **Attacks/Skills/Powers**. Counts beside each rarity heading include dra
 #### Unfurling Darkness
 
 - **Cost:** 1 energy
-- **Effect:** Deal 5 damage. Apply 3 Touch. Gain 10 Insanity.
-- **Upgrade:** Cost becomes 0 energy.
-- **Rules:** Damage, then apply Touch to the surviving target, then explicit Insanity. Explicit gain does not require HP loss or a successful application.
-- **Status:** Implemented; full-run balance testing remains.
+- **Effect:** Deal 5 damage. Apply 3 Touch. Gain 10 Insanity. Devour: Apply 3 Touch to ALL other enemies.
+- **Upgrade:** Cost becomes 0 energy; effects remain unchanged.
+- **Rules:** Preserve damage, target Touch application, and explicit Insanity. The bonus applies Touch to other living enemies without dealing additional direct damage. Each application follows the normal Artifact and Misery rules. The spread can still resolve if the direct hit kills the selected target while other enemies remain.
+- **Status:** Implemented in 0.1.5; focused engine checks passed and first local playthrough reviewed. Ongoing balance testing.
 
 #### Shadow Word: Madness
 
 - **Cost:** 1 energy
-- **Effect:** Deal 6 damage. Apply Madness equal to HP removed.
-- **Upgrade:** Deal 10 damage.
-- **Rules:** Use only actual enemy HP removed by this direct hit, capped at HP before the hit. Exclude Block absorption, overkill, DoTs, and Psychic Link. Apply Madness afterward if the target survives; Artifact can block it. Do not trigger an immediate Madness tick. The initial hit counts only DoTs already present when it hits.
-- **Status:** Implemented.
+- **Effect:** Deal 9 damage. Apply Madness equal to HP removed. Add a Mind Decay to your hand.
+- **Upgrade:** Deal 13 damage instead; application and Curse generation remain unchanged.
+- **Rules:** Preserve the existing HP-removed calculation: count only actual enemy HP removed by this direct hit, excluding Block absorption, overkill, DoTs, and Psychic Link. Apply Madness afterward to a surviving target; Artifact can block it. Generate one combat-only Mind Decay before the hit so lethal damage cannot skip creation, regardless of whether Madness is applied. A full hand sends the Curse to discard. No immediate Madness tick.
+- **Status:** Implemented in 0.1.5; focused engine checks passed and first local playthrough reviewed. Ongoing balance testing.
 
 #### Shadow Word: Torment
 
@@ -121,10 +122,10 @@ X/Y/Z = **Attacks/Skills/Powers**. Counts beside each rarity heading include dra
 #### Mind Trauma
 
 - **Cost:** 1 energy
-- **Effect:** Deal 6 damage. Apply 6 Madness. Gain 10 Insanity.
-- **Upgrade:** Deal 9 damage and apply 9 Madness; explicit Insanity remains 10.
-- **Rules:** Damage, then Madness on the surviving target, then explicit Insanity. Madness does not require HP loss; Artifact can block it. Explicit Insanity still resolves, including on a killing hit, in addition to the universal 10 per direct Attack hit. Both gains obey the shared cap and ready, active, and Recharge restrictions.
-- **Status:** Implemented locally for 0.1.3; full-run balance testing pending.
+- **Effect:** Deal 6 damage. Apply 6 Madness. Gain 10 Insanity. Devour: Apply 6 additional Madness.
+- **Upgrade:** Deal 9 damage and apply 9 base Madness; explicit Insanity remains 10. Devour bonus remains 6.
+- **Rules:** Resolve Devour before applying Madness and combine the application into 12/15 stacks when paid, with one Artifact check. Damage remains 6/9. The additional Madness causes no immediate tick or extra direct hit. Explicit and hit-based Insanity follow their existing rules.
+- **Status:** Implemented in 0.1.5; focused engine checks passed and first local playthrough reviewed. Ongoing balance testing.
 
 #### Void Surge
 
@@ -156,10 +157,10 @@ X/Y/Z = **Attacks/Skills/Powers**. Counts beside each rarity heading include dra
 #### Shadow Mend
 
 - **Cost:** 1 energy
-- **Effect:** Heal 10 HP. Add 2 to your Shadow Mend debt. At the start of each turn, lose HP equal to your debt.
-- **Upgrade:** Add 1 debt instead of 2; healing remains 10 HP.
-- **Rules:** Each cast adds its debt to one debuff lasting this combat. Starting next turn, resolve the combined debt as one HP-loss event each turn; it does not decay. Artifact can prevent a debt application and debuff cleansing can remove accumulated debt, without undoing healing. Tithe Evasion reduces the combined event once, not once per cast. Purify Disease does not remove this debt.
-- **Status:** Implemented; full-run balance testing remains.
+- **Effect:** Heal 10 HP. Add 2 to your Shadow Mend debt. Devour: Do not gain Shadow Mend debt.
+- **Upgrade:** Add only 1 debt when Devour does not activate; healing remains 10.
+- **Rules:** Choose and exhaust the Curse before deciding whether this cast adds debt. Successful Devour prevents only this cast's debt; it does not clear existing debt. Do not briefly apply and remove debt or consume Artifact for debt that was prevented. Existing debt timing and healing restrictions remain unchanged.
+- **Status:** Implemented in 0.1.5; focused engine checks passed and first local playthrough reviewed. Ongoing balance testing.
 
 #### Fade
 
@@ -172,10 +173,10 @@ X/Y/Z = **Attacks/Skills/Powers**. Counts beside each rarity heading include dra
 #### Purify Disease
 
 - **Cost:** 0 energy
-- **Effect:** Remove Weak, Frail, and Vulnerable from yourself. Exhaust a Curse from your hand. Exhaust.
-- **Upgrade:** Also gain 1 Artifact after cleansing; does not gain Retain.
-- **Rules:** Playable without a Curse or any of the named debuffs. Remove only Weak, Frail, and Vulnerable, not Surrender to Madness's penalty or Shadow Mend debt. If Curses are in hand, exhaust one; visibly choose when multiple are available. Curse exhaustion is combat-only and triggers normal exhaust effects, including Void Vengeance. The upgrade grants Artifact after cleansing, even if no debuffs or Curses were present. Artifact can prevent a subsequent debuff application, including new Shadow Mend debt. Purify Disease itself Exhausts in both versions.
-- **Status:** Implemented locally for 0.1.3; full-run balance testing pending.
+- **Effect:** Remove Weak, Frail, and Vulnerable from yourself. Devour: Gain 1 Artifact. Exhaust.
+- **Upgrade:** Gain Retain; all other effects remain unchanged.
+- **Rules:** Cleanse first, then exhaust a Curse if available and grant Artifact only when Devour succeeds. Playable without a Curse or the named debuffs. Choose when multiple Curses are in hand. Do not remove Shadow Mend debt or Surrender's deadline. The upgrade no longer grants unconditional Artifact. Both versions Exhaust; upgrading only improves timing.
+- **Status:** Implemented in 0.1.5; focused engine checks passed and first local playthrough reviewed. Ongoing balance testing.
 
 #### Dispel Magic
 
@@ -226,19 +227,18 @@ X/Y/Z = **Attacks/Skills/Powers**. Counts beside each rarity heading include dra
 #### Focused Will
 
 - **Cost:** 1 energy
-- **Effect:** Gain 7 Block. Gain 10 Insanity.
-- **Upgrade:** Gain 10 Block and 15 Insanity.
-- **Rules:** Block with Dexterity once, then immediate explicit Insanity. No enemy Attack prerequisite or pending trigger.
-- **Status:** Implemented; full-run balance testing remains.
+- **Effect:** Gain 7 Block. Gain 10 Insanity. Devour: Gain 7 additional Block.
+- **Upgrade:** Base Block becomes 10 and Insanity becomes 15; Devour bonus remains 7.
+- **Rules:** Consume before the Block grant and add the bonus to base Block, for 14/17 before modifiers. Apply Dexterity and normal Block modifiers once to the combined grant. Insanity remains unconditional and obeys the usual restrictions. Does not Exhaust itself.
+- **Status:** Implemented in 0.1.5; focused engine checks passed and first local playthrough reviewed. Ongoing balance testing.
 
 #### Madness Overwhelming
 
 - **Cost:** 1 energy
-- **Effect:** Apply 5 Madness, plus 5 for each Power played this combat.
-- **Upgrade:** Apply 8 Madness, plus 8 for each Power played this combat.
-- **Rules:** Count actual Power plays, including free plays through Foresight+, excluding automatic Legendary equipment. Display the current calculated application. Artifact can block the combined application.
-- **Status:** Implemented; full-run balance testing remains.
-
+- **Effect:** Apply 10 Madness, plus 5 for each Power played this combat. Add a Mind Decay to your discard pile.
+- **Upgrade:** Apply 15 Madness, plus 8 for each Power played this combat. Curse generation remains unchanged.
+- **Rules:** Preserve the existing Power-play count, including free Power plays through Foresight+ and excluding automatic Legendary equipment. Display the current calculated application. Artifact can block the combined Madness application. Generate one combat-only Mind Decay regardless of whether the application succeeds; no immediate Madness tick. Creating the Curse in discard delays access until it is drawn or otherwise retrieved.
+- **Status:** Implemented in 0.1.5; focused engine checks passed and first local playthrough reviewed. Ongoing balance testing.
 
 ### Powers
 
@@ -418,10 +418,10 @@ X/Y/Z = **Attacks/Skills/Powers**. Counts beside each rarity heading include dra
 #### Twin Suns
 
 - **Cost:** 1 energy
-- **Effect:** If the target has positive Strength, gain that much Haste.
-- **Upgrade:** If the target has positive Strength, gain that much Haste plus 1.
-- **Rules:** Does not Exhaust or reduce enemy Strength. Zero or negative Strength grants nothing, including when upgraded. Use current positive Strength at play.
-- **Status:** Implemented; full-run balance testing remains.
+- **Effect:** If the target has positive Strength, gain that much Haste. Devour: Gain 2 Haste.
+- **Upgrade:** If the target has positive Strength, gain that much Haste plus 1. Devour bonus remains 2.
+- **Rules:** The Devour bonus is independent of enemy Strength and works at zero or negative Strength. With positive Strength, add both rewards. The upgrade's existing extra 1 still requires positive enemy Strength. Does not Exhaust or reduce enemy Strength. Apply normal Haste decay; Void Vengeance's separate reward can also trigger.
+- **Status:** Implemented in 0.1.5; focused engine checks passed and first local playthrough reviewed. Ongoing balance testing.
 
 #### Malady of the Mind
 
@@ -510,20 +510,20 @@ X/Y/Z = **Attacks/Skills/Powers**. Counts beside each rarity heading include dra
 #### Void Ray
 
 - **Cost:** 1 energy
-- **Effect:** Deal 15 damage. Exhaust a Curse in your hand. If you do, permanently increase this card's damage by 5. Exhaust.
-- **Upgrade:** Deal 23 damage. Exhaust a Curse in your hand. If you do, permanently increase this card's damage by 8. Exhaust.
-- **Rules:** Choose a Curse visibly before resolving the hit; damage then exhaust and permanent growth finish together, including on a lethal hit. No Curse means damage without growth. Exhaust is combat-only, triggers normal Curse-exhaust effects, and is not intercepted by Strange Spoon. Growth applies after this hit and only to this card's permanent-deck identity and matching combat copies; temporary copies with new identities do not grow the original. Store earned growth in misc for normal saves and copies. Upgrading adds 8 base damage without losing earlier growth.
-- **Status:** Implemented; full-run balance testing remains.
-
+- **Effect:** Deal 15 damage. Devour: Permanently increase this card's damage by 5. Exhaust.
+- **Upgrade:** Deal 23 damage; Devour permanently increases damage by 8 instead.
+- **Rules:** Wording conversion only. Preserve the current visible Curse selection and lethal-hit handling. Deal damage before applying permanent growth; the bonus does not increase this hit. Exhaust the selected Curse only for combat, trigger normal exhaust reactions, and preserve existing permanent-card identity and copy rules. The final Exhaust applies to Void Ray itself.
+- **Status:** Implemented in 0.1.5; focused engine checks passed and first local playthrough reviewed. Ongoing balance testing.
 
 ### Skills
 
 #### Surrender to Madness
-- **Cost:** 3 energy
-- **Effect:** For the rest of combat: enter Voidform, your Attacks cost 0 energy, and take double damage from enemy Attacks. Exhaust.
-- **Upgrade:** Draw 2 cards after entering; cost remains 3 energy.
-- **Rules:** Bypass Insanity and Recharge. Extend an existing ordinary Voidform rather than entering again. Invalidate ready activation cards. Fixed-cost playable Attacks cost zero for the rest of combat, including cards drawn later; X-cost Attacks keep their normal energy spending, Haste, and Chemical X behavior. Do not mutate underlying card costs. Additional Surrenders are unplayable once permanent form is active. Treat the doubled incoming Attack damage as a buff inseparable from the bargain: Artifact does not prevent it, and Mass Dispel or Orange Pellets cannot cleanse it. Double normal incoming Attack damage before Block; non-Attack and HP-loss damage are unchanged. The upgraded draw occurs after activation and only on successful Surrender. Works without the starter relic.
-- **Status:** Implemented locally October 29, 2026; full-run balance testing pending.
+
+- **Cost:** 0 energy
+- **Effect:** Playable only after leaving Voidform twice this combat (0/2). Enter permanent Voidform. Gain 2 Strength and 2 Mastery now and at the start of each turn. Die at the end of your fifth turn. Exhaust.
+- **Upgrade:** Gain 3 Strength and 3 Mastery immediately and at each subsequent turn start instead.
+- **Rules:** Track completed Voidform activations per combat, advancing only when an active Voidform actually ends. Entering or refreshing Voidform does not count. Show progress inline as (0/2), (1/2), or (2/2), capped for display; reset it each combat. Once unlocked, Surrender can bypass Recharge. Grant the stats immediately on successful activation, then at the start of each subsequent player turn. Permanent Voidform retains its normal Attack damage bonus and 1-energy discount; this proposal does not make all Attacks free. The casting turn is turn one of five. Show a visible countdown starting at 5; resolve friendly end-of-turn effects, including DoTs, before the final death check. Winning combat cancels the countdown. Do not allow another Surrender to restart the timer or repeat its activation reward while already surrendered. Stats and countdown do not carry between combats. The playability check blocks both ordinary play and forced use before two exits. The deadline bypasses all revival effects and damage prevention.
+- **Status:** Implemented in 0.1.5; focused engine checks passed and first local playthrough reviewed. Ongoing balance testing.
 
 #### Mass Dispel
 - **Cost:** 2 energy
@@ -633,7 +633,7 @@ X/Y/Z = **Attacks/Skills/Powers**. Counts beside each rarity heading include dra
 
 #### Mind Decay
 
-- **Type:** Curse; generated by Mental Decay and Malady of the Mind, never a reward or random event Curse.
+- **Type:** Curse; generated by Shadow Word: Madness, Madness Overwhelming, Mental Decay, and Malady of the Mind, never a reward or random event Curse.
 - **Cost:** Unplayable.
 - **Effect:** Retain. At the start of your turn, lose 1 HP.
 - **Upgrade:** None.
@@ -658,3 +658,7 @@ X/Y/Z = **Attacks/Skills/Powers**. Counts beside each rarity heading include dra
 ### Formula previews
 
 During combat, formula cards show their currently calculated output in parentheses. Target-dependent results update when hovering a target. Haste-modified repetition counts and effective X appear in green. Conditional future outcomes remain conditional; previews do not promise future triggers or damage through prevention.
+
+### Conditional highlights
+
+Gold borders indicate an available conditional benefit: Devour with a Curse in hand, Bulwark below 35% HP, either Piety draw condition, useful cleansing/dispelling, Twin Suns against positive Strength, Shadow Word: Death lethal direct hits, and Surrender after two completed Voidforms. Targeted borders use the hovered enemy, or any qualifying enemy when no target is hovered. Relevant clauses turn gold; target-specific text waits for a hovered enemy. Formula-only scaling keeps its numerical previews. Death previews account for hit count, Haste, Block, Intangible, Buffer, and Invincible; Malleable is conservatively excluded rather than promising lethal through changing Block.

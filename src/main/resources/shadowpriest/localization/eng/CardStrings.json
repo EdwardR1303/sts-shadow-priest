@@ -25,7 +25,7 @@
   },
   "shadowpriest:ShadowMend": {
     "NAME": "Shadow Mend",
-    "DESCRIPTION": "Heal 10 HP. NL Gain !M! shadowpriest:Debt."
+    "DESCRIPTION": "Heal 10 HP. NL Gain !M! shadowpriest:Debt. NL shadowpriest:Devour: Do not gain shadowpriest:Debt."
   },
   "shadowpriest:Fade": {
     "NAME": "Fade",
@@ -83,7 +83,7 @@
   },
   "shadowpriest:ShadowWordMadness": {
     "NAME": "Shadow Word: Madness",
-    "DESCRIPTION": "Deal !D! damage. NL Apply shadowpriest:Madness equal to HP removed."
+    "DESCRIPTION": "Deal !D! damage. NL Apply shadowpriest:Madness equal to HP removed. NL Add a Mind Decay to your hand."
   },
   "shadowpriest:Halo": {
     "NAME": "Halo",
@@ -91,7 +91,7 @@
   },
   "shadowpriest:TentacleSlam": {
     "NAME": "Tentacle Slam",
-    "DESCRIPTION": "Deal !D! damage. NL Apply !M! shadowpriest:Touch to the target and enemies between you and it."
+    "DESCRIPTION": "Deal !D! damage. NL Apply !M! shadowpriest:Touch to the target and enemies between you and it. NL shadowpriest:Devour: Refund Energy spent on this cast."
   },
   "shadowpriest:VoidBlast": {
     "NAME": "Void Blast",
@@ -100,7 +100,7 @@
   "shadowpriest:MassDispel": {
     "NAME": "Mass Dispel",
     "DESCRIPTION": "Remove ALL enemies' Block, Artifact, and positive Strength.",
-    "UPGRADE_DESCRIPTION": "Remove all enemies' Block, Artifact, and positive Strength. NL Remove your debuffs."
+    "UPGRADE_DESCRIPTION": "Remove ALL enemies' Block, Artifact, and positive Strength. NL Remove your debuffs."
   },
   "shadowpriest:VampiricEmbrace": {
     "NAME": "Vampiric Embrace",
@@ -120,8 +120,8 @@
   },
   "shadowpriest:SurrenderToMadness": {
     "NAME": "Surrender to Madness",
-    "DESCRIPTION": "For the rest of combat: enter shadowpriest:Voidform, your Attacks cost 0, and take double damage from enemy Attacks. NL Exhaust.",
-    "UPGRADE_DESCRIPTION": "For the rest of combat: enter shadowpriest:Voidform, your Attacks cost 0, and take double damage from enemy Attacks. NL Draw 2 cards. NL Exhaust."
+    "DESCRIPTION": "Playable only after leaving shadowpriest:Voidform twice this combat (0/2). NL Enter permanent shadowpriest:Voidform. Gain !M! Strength and !M! shadowpriest:Mastery now and at the start of each turn. NL Die at the end of your fifth turn. NL Exhaust.",
+    "UPGRADE_DESCRIPTION": "Playable only after leaving shadowpriest:Voidform twice this combat (0/2). NL Enter permanent shadowpriest:Voidform. Gain !M! Strength and !M! shadowpriest:Mastery now and at the start of each turn. NL Die at the end of your fifth turn. NL Exhaust."
   },
   "shadowpriest:Penance": {
     "NAME": "Penance",
@@ -133,13 +133,13 @@
   },
   "shadowpriest:PurifyDisease": {
     "NAME": "Purify Disease",
-    "DESCRIPTION": "Remove Weak, Frail, and Vulnerable from yourself. NL Exhaust a Curse from your hand. NL Exhaust.",
-    "UPGRADE_DESCRIPTION": "Remove Weak, Frail, and Vulnerable from yourself. NL Exhaust a Curse from your hand. NL Gain 1 Artifact. NL Exhaust."
+    "DESCRIPTION": "Remove Weak, Frail, and Vulnerable from yourself. NL shadowpriest:Devour: Gain 1 Artifact. NL Exhaust.",
+    "UPGRADE_DESCRIPTION": "Retain. NL Remove Weak, Frail, and Vulnerable from yourself. NL shadowpriest:Devour: Gain 1 Artifact. NL Exhaust."
   },
   "shadowpriest:DispelMagic": {
     "NAME": "Dispel Magic",
-    "DESCRIPTION": "Remove ALL Block from the target. If any was removed, gain 1 Dexterity.",
-    "UPGRADE_DESCRIPTION": "Remove ALL Block and Artifact. Gain 1 Dexterity if Block was removed and 1 shadowpriest:Mastery if Artifact was removed."
+    "DESCRIPTION": "Remove ALL Block. NL If Block was removed, gain 1 Dexterity.",
+    "UPGRADE_DESCRIPTION": "Remove ALL Block and Artifact. NL If Block was removed, gain 1 Dexterity. NL If Artifact was removed, gain 1 shadowpriest:Mastery."
   },
   "shadowpriest:BodyAndSoul": {
     "NAME": "Body and Soul",
@@ -224,7 +224,7 @@
   },
   "shadowpriest:UnfurlingDarkness": {
     "NAME": "Unfurling Darkness",
-    "DESCRIPTION": "Deal !D! damage. NL Apply !M! shadowpriest:Touch. NL Gain 10 Insanity."
+    "DESCRIPTION": "Deal !D! damage. NL Apply !M! shadowpriest:Touch. NL Gain 10 Insanity. NL shadowpriest:Devour: Apply !M! shadowpriest:Touch to ALL other enemies."
   },
   "shadowpriest:DarkVoid": {
     "NAME": "Dark Void",
@@ -267,7 +267,7 @@
   },
   "shadowpriest:MindTrauma": {
     "NAME": "Mind Trauma",
-    "DESCRIPTION": "Deal !D! damage. NL Apply !M! shadowpriest:Madness. NL Gain 10 Insanity."
+    "DESCRIPTION": "Deal !D! damage. NL Apply !M! shadowpriest:Madness. NL Gain 10 Insanity. NL shadowpriest:Devour: Apply 6 additional shadowpriest:Madness."
   },
   "shadowpriest:VoidTendrils": {
     "NAME": "Void Tendrils",
@@ -279,7 +279,7 @@
   },
   "shadowpriest:FocusedWill": {
     "NAME": "Focused Will",
-    "DESCRIPTION": "Gain !B! Block. NL Gain !M! Insanity."
+    "DESCRIPTION": "Gain !B! Block. NL Gain !M! Insanity. NL shadowpriest:Devour: Gain 7 additional Block."
   },
   "shadowpriest:ShadowWeaving": {
     "NAME": "Shadow Weaving",
@@ -296,8 +296,8 @@
   },
   "shadowpriest:MadnessOverwhelming": {
     "NAME": "Madness Overwhelming",
-    "DESCRIPTION": "Apply !M! shadowpriest:Madness. NL Increases by 5 for each Power played this combat.",
-    "UPGRADE_DESCRIPTION": "Apply !M! shadowpriest:Madness. NL Increases by 8 for each Power played this combat."
+    "DESCRIPTION": "Apply !M! shadowpriest:Madness. NL Increases by 5 for each Power played this combat. NL Add a Mind Decay to your discard pile.",
+    "UPGRADE_DESCRIPTION": "Apply !M! shadowpriest:Madness. NL Increases by 8 for each Power played this combat. NL Add a Mind Decay to your discard pile."
   },
   "shadowpriest:Singularity": {
     "NAME": "Singularity",
@@ -306,8 +306,8 @@
   },
   "shadowpriest:TwinSuns": {
     "NAME": "Twin Suns",
-    "DESCRIPTION": "If the enemy has positive Strength, gain that much shadowpriest:Haste.",
-    "UPGRADE_DESCRIPTION": "If the enemy has positive Strength, gain that much shadowpriest:Haste plus !M!."
+    "DESCRIPTION": "If the enemy has positive Strength, gain that much shadowpriest:Haste. NL shadowpriest:Devour: Gain 2 shadowpriest:Haste.",
+    "UPGRADE_DESCRIPTION": "If the enemy has positive Strength, gain that much shadowpriest:Haste plus !M!. NL shadowpriest:Devour: Gain 2 shadowpriest:Haste."
   },
   "shadowpriest:MaladyOfTheMind": {
     "NAME": "Malady of the Mind",
@@ -326,8 +326,8 @@
   },
   "shadowpriest:VoidRay": {
     "NAME": "Void Ray",
-    "DESCRIPTION": "Deal !D! damage. NL Exhaust a Curse in your hand to permanently increase this card's damage by !M!. NL Exhaust.",
-    "UPGRADE_DESCRIPTION": "Deal !D! damage. NL Exhaust a Curse in your hand to permanently increase this card's damage by !M!. NL Exhaust."
+    "DESCRIPTION": "Deal !D! damage. NL shadowpriest:Devour: Permanently increase this card's damage by !M!. NL Exhaust.",
+    "UPGRADE_DESCRIPTION": "Deal !D! damage. NL shadowpriest:Devour: Permanently increase this card's damage by !M!. NL Exhaust."
   },
   "shadowpriest:MentalDecay": {
     "NAME": "Mental Decay",

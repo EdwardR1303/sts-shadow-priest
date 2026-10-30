@@ -26,7 +26,7 @@ public class VoidformPower extends AbstractPower implements AlternateCardCostMod
         return VoidformRelic.isActive() && card.type == AbstractCard.CardType.ATTACK ? damage * 1.5f : damage;
     }
     @Override public void updateDescription() {
-        description = (permanent?"Attacks cost #b0 Energy and deal #b50% more damage ":"Attacks cost #b1 less and deal #b50% more damage ")
+        description = "Attacks cost #b1 less and deal #b50% more damage "
             + (permanent ? "for the rest of combat." : com.megacrit.cardcrawl.dungeons.AbstractDungeon.player.hasRelic(shadowpriest.relics.ImprovedVoidform.ID) ? "until the end of a turn after at least three Attack cards are played during this activation." : "this turn.") + " X costs are unchanged.";
     }
     // Surrender also works after a starter swap or when acquired by another character.
@@ -35,11 +35,11 @@ public class VoidformPower extends AbstractPower implements AlternateCardCostMod
         return permanent && VoidformRelic.current() == null && card.type == AbstractCard.CardType.ATTACK
             && card.cost >= 0 && card.costForTurn >= 0;
     }
-    @Override public int getAlternateResource(AbstractCard card) { return costEffectActive(card) ? Math.max(0,card.costForTurn) : 0; }
+    @Override public int getAlternateResource(AbstractCard card) { return costEffectActive(card) ? 1 : 0; }
     @Override public boolean prioritizeAlternateCost(AbstractCard card) { return true; }
     @Override public boolean canSplitCost(AbstractCard card) { return true; }
-    @Override public int spendAlternateCost(AbstractCard card, int amount) { return costEffectActive(card) ? 0 : amount; }
+    @Override public int spendAlternateCost(AbstractCard card, int amount) { return costEffectActive(card) ? Math.max(0,amount-1) : amount; }
     @Override public String replaceCostString(AbstractCard card, String text, Color color) {
-        return costEffectActive(card) && !card.freeToPlay() ? "0" : text;
+        return costEffectActive(card) && !card.freeToPlay() ? Integer.toString(Math.max(0,card.costForTurn-1)) : text;
     }
 }

@@ -2,7 +2,7 @@
 A new character for Slay the Spire 1, inspired by World of Warcraft's Shadow Priest. Set up your afflictions, survive the pressure, and choose the perfect moment to unleash Voidform.
 
 [h2]Embrace the Void[/h2]
-Spread Touch, Pain, and Madness across your enemies. Build Insanity through aggression, afflictions, and taking damage, then choose when to enter Voidform for cheaper, stronger Attacks. Mastery strengthens your DoTs; Haste amplifies your X-cost cards.
+Spread Touch, Pain, and Madness across your enemies. Build Insanity through aggression, afflictions, and taking damage, then choose when to enter Voidform for cheaper, stronger Attacks. Mastery strengthens your DoTs; Haste amplifies X-cost cards and repeated effects. Devour consumes Curses from your hand to unlock bonus effects.
 
 [h2]Find your path[/h2]
 [list]
@@ -10,7 +10,7 @@ Spread Touch, Pain, and Madness across your enemies. Build Insanity through aggr
 [*]Madness: build an uncapped debuff into a growing nightmare.
 [*]Voidform burst: survive the setup, then unload a devastating turn.
 [*]Haste and channeling: turn X-cost spells into repeated waves of damage and support.
-[*]Curses and sacrifice: find rewards in the cards and self-inflicted pain others avoid.
+[*]Curses and sacrifice: generate afflictions of your own, then Devour them for powerful bonuses.
 [*]Sustain and protection: combine shields, healing, and defensive engines to outlast your enemies.
 [/list]
 These paths can overlap. Experiment, adapt, and make the darkness your own.
@@ -20,7 +20,7 @@ These paths can overlap. Experiment, adapt, and make the darkness your own.
 [*]75 collectible cards.
 [*]11 class relics, including the starter.
 [*]Custom character artwork, card portraits, and combat effects.
-[*]Combat Details: damage dealt, damage taken, Block, source percentages, turn breakdowns, and Overall reports. Browse recorded runs from the main menu.
+[*]Combat Details: damage dealt, damage taken, Block, healing, Insanity, source percentages, turn breakdowns, and Overall reports. Browse recorded runs from the main menu.
 [/list]
 
 [h2]Some discoveries are Legendary...[/h2]

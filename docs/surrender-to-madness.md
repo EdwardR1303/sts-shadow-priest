@@ -1,52 +1,34 @@
-> Updated in 0.1.2: Surrender?s penalty is now a buff that Artifact cannot prevent and debuff cleansing cannot remove. The notes below record the original implementation. See [the current balance pass](beta-balance-0.1.2.md).
-
 # Surrender to Madness
 
-An implemented Rare Skill that turns a temporary burst into a commitment for the rest of combat. The class now supplies 24 reward cards: ten Commons, nine Uncommons, and five Rares.
+Current 0.1.5 design, accepted October 30, 2026. Supersedes the prior free-Attack/doubled-damage bargain.
 
 | Property | Base | Upgrade |
 | --- | --- | --- |
-| Cost | 3 energy | 2 energy |
+| Cost | 0 energy | Unchanged |
 | Type / rarity | Skill / Rare | Unchanged |
-| Benefit | Enter Voidform for the rest of combat | Unchanged |
-| Penalty | Take double damage from enemy Attacks | Unchanged |
+| Requirement | Leave Voidform twice this combat | Unchanged |
+| Benefit | Permanent Voidform; gain 2 Strength and 2 Mastery immediately and at each subsequent turn start | Gain 3 of each instead |
+| Deadline | Die at the end of your fifth turn, including the casting turn | Unchanged |
 | Exhaust | Yes | Yes |
 
-## Voidform lifecycle
+## Unlock and lifecycle
 
-Surrender enters immediately when its queued effect resolves, without requiring 100 Insanity or a ready activation card. It can override the ordinary recovery restriction. If already in ordinary Voidform, it extends that same Power; the damage bonus and discount do not stack and this is not another entry into Voidform.
+Show completed exits inline as `(0/2)`, `(1/2)`, or `(2/2)`. Entering or refreshing an active Voidform does not count. Improved Voidform counts once when its extended activation actually ends. Progress resets each combat. Both ordinary card play and forced use are blocked until two exits have occurred. Additional Surrenders cannot be played or refresh an existing bargain.
 
-The existing benefits remain: Attack cards cost one less, with a floor of zero, and deal 50% more damage. X costs are unchanged. Because Surrender is a Skill, ordinary Voidform does not discount it. Its permanent state and its damage penalty both last only for the current combat.
+Once unlocked, Surrender can enter during Recharge or extend an existing active form. Entering triggers the usual entry effects; extending does not trigger them again. Invalidate ready activation cards. Voidform keeps its normal 50% Attack damage bonus and one-energy Attack discount; fixed-cost Attacks are no longer universally free, and X costs remain unchanged. The completed-exit tracker lives in the Voidform relic state; without that mechanic there is no progress to unlock Surrender.
 
-Surrender clears stored Insanity, invalidates any ready activation charge, and prevents further Insanity gain or activation-card delivery while the form remains active. It does not end at turn boundaries or enter the normal recovery phase. Additional Surrender copies are unplayable after the first resolves, even if the penalty is subsequently removed. Queued duplicate effects cannot apply the bargain twice.
+## Deadline
 
-Combat cleanup clears this state and restores the ordinary charge/expiry/recovery lifecycle. The card also supplies its own lasting Voidform benefit and cost discount without the starter relic, supporting starter swaps and externally acquired copies. With the starter equipped, only its existing cost provider supplies the discount.
+The Surrender buff shows five remaining turn endings when played. Grant the initial stats immediately, then grant them at the start of each subsequent player turn. Count the casting turn as turn one. At the fifth turn ending, allow friendly end-of-turn effects, including natural DoT ticks, to resolve before checking the deadline. Winning combat cancels it.
 
-## Preventing or removing the penalty
+The deadline is unavoidable death, not damage or HP loss. Block, Intangible, Artifact, debuff cleansing, Fairy in a Bottle, Lizard Tail, and Guardian Angel cannot prevent it. The revival effects are bypassed, not consumed. The bargain does not double incoming damage. All stats, progress, and countdown state are combat-only.
 
-The damage penalty is a separate, non-turn-based debuff, independent of the Voidform buff and permanent-state flag.
+## Validation
 
-- Artifact already present can block its initial application, consuming one charge.
-- Artifact acquired afterward does not remove the existing penalty.
-- Orange Pellets can cleanse the penalty while preserving lasting Voidform.
-- Preventing or cleansing the penalty does not permit another Surrender play.
+The focused engine suite verifies the ordinary and forced-use gate, entry versus exit counting, Recharge, immediate and next-turn stats, normal Attack discount, duplicate protection, combat reset, all five turn endings, death despite revival effects, and a real final-turn DoT victory before the deadline. Card renders verify locked and ready text. See [Devour batch notes](devour-batch-2026-10-30.md).
 
-This deliberately follows normal debuff prevention/cleansing rules, replacing the earlier proposal to make the drawback inseparable from the benefit.
+These checks establish mechanics, not boss-fight balance. Full-run testing should check whether two completed Voidforms unlock the card early enough and whether five turns offer a useful but demanding finishing window.
 
-## Damage and defenses
+## Artwork
 
-The debuff doubles normal incoming Attack damage before Block through the engine's damage calculation, so enemy intent previews include it. For example, a ten-damage Attack becomes twenty, then seven Block reduces the HP loss to thirteen. Each hit of a multihit Attack is modified separately. Other ordinary modifiers such as Vulnerable combine normally.
-
-HP-loss and non-Attack damage are unchanged. Intangible still caps Attack damage, Fade reduces the resulting HP loss, and Desperate Prayer can heal a doubled hit afterward if the player survives. Surrender does not change DoT damage or add a new ticking effect.
-
-## Relic design compatibility
-
-The non-starter relics in `relics.md` are still designs, not implemented mechanics. When Idol of Yogg-Saron is implemented, Surrender from an inactive state should count as one entry and grant its energy; extending an already active Voidform must not grant another entry reward. This interaction is not claimed as tested in the current build.
-
-Evaluate exposed and cleansed builds separately during full runs. High-impact combinations to assess include upfront entry energy, sustained Psychic Link/Embrace support, and playing Surrender only when the current hand can end combat immediately. Correctness tests do not establish A20 Heart balance.
-
-## Artwork and validation
-
-The card and penalty Power use the archived WoW Surrender to Madness icon, `achievement_boss_generalvezax_01`, verified in the [ability's archived infobox](https://warcraft.wiki.gg/wiki/Surrender_to_Madness). Current tooltip endpoints for the removed spell returned no entity, so the historical reference was used. The unchanged source image is displayed through the shared card frame and credited in [Warcraft artwork](../licenses/Warcraft-artwork.txt).
-
-See [playtest results](playtest-results.md) for completed unit and actual-game checks, including Artifact, real Orange Pellets activation, damage calculations, and turn transitions.
+The card and countdown use the existing archived WoW Surrender to Madness icon, credited in [Warcraft artwork](../licenses/Warcraft-artwork.txt).

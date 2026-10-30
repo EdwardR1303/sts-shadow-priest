@@ -25,3 +25,7 @@ Desktop.ini
 .env
 .env.*
 !.env.example
+
+# Python helper caches
+__pycache__/
+*.pyc

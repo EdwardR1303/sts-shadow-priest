@@ -990,39 +990,40 @@
       "tags": [
         "DOT_APPLICATION"
       ],
-      "designIntent": "Provide common Madness access through useful direct damage.",
+      "designIntent": "Inflict Madness at the expense of your own mind. Increasing damage from 6/10 to 9/13 also strengthens the Madness application, while a retained Curse provides immediate or future Devour fuel.",
       "base": {
         "cost": 1,
         "target": "ENEMY",
-        "text": "Deal 6 damage. Apply Madness equal to HP removed.",
+        "text": "Deal 9 damage. Apply Madness equal to HP removed. Add a Mind Decay to your hand.",
         "stats": {
-          "damage": 6
+          "damage": 9,
+          "curses": 1
         },
         "keywords": [],
         "effects": [
-          "Deal 6 damage. Apply Madness equal to HP removed."
+          "Deal 9 damage. Apply Madness equal to HP removed. Add a Mind Decay to your hand."
         ]
       },
       "upgrade": {
-        "summary": "Deal 10 damage.",
+        "summary": "Deal 13 damage instead; application and Curse generation remain unchanged.",
         "card": {
           "cost": 1,
           "target": "ENEMY",
-          "text": "Deal 10 damage. Apply Madness equal to HP removed.",
+          "text": "Deal 13 damage. Apply Madness equal to HP removed. Add a Mind Decay to your hand.",
           "stats": {
-            "damage": 10
+            "damage": 13,
+            "curses": 1
           },
           "keywords": [],
           "effects": [
-            "Deal 10 damage. Apply Madness equal to HP removed."
+            "Deal 13 damage. Apply Madness equal to HP removed. Add a Mind Decay to your hand."
           ]
         }
       },
       "rulesNotes": [
-        "Use only actual enemy HP removed by this direct hit, capped at HP before the hit. Exclude Block absorption, overkill, DoTs, and Psychic Link. Apply Madness afterward if the target survives; Artifact can block it. Do not trigger an immediate Madness tick. The initial hit generates ten Insanity regardless of existing DoTs.",
-        "Shared keyword definitions in keywords.md apply. Implemented in the keyword and card rework."
+        "Preserve the existing HP-removed calculation: count only actual enemy HP removed by this direct hit, excluding Block absorption, overkill, DoTs, and Psychic Link. Apply Madness afterward to a surviving target; Artifact can block it. Generate one combat-only Mind Decay before the hit so lethal damage cannot skip creation, regardless of whether Madness is applied. A full hand sends the Curse to discard. No immediate Madness tick."
       ],
-      "balanceNotes": "Prototype values; full-run balance testing remains after implementation.",
+      "balanceNotes": "Accepted October 30, 2026. Implemented in 0.1.5; focused verification and first local playthrough completed. Ongoing balance testing.",
       "art": {
         "wowAbility": "Shadow Word: Madness",
         "icon": "inv12_ability_priest_powerwordmadness_eye",
@@ -1093,45 +1094,44 @@
       ],
       "startingCopies": 0,
       "tags": [],
-      "designIntent": "Spread Touch through positional targeting while dealing one direct hit.",
+      "designIntent": "Feed the tentacle to make this a repeatable offensive Curse spender.",
       "base": {
         "cost": 2,
         "target": "ENEMY",
-        "text": "Deal 8 damage. Apply 3 Touch to the target and enemies between you and it.",
+        "text": "Deal 8 damage. Apply 3 Touch to the target and enemies between you and it. Devour: Refund Energy spent on this cast.",
         "stats": {
           "damage": 8,
           "duration": 3
         },
-        "keywords": [],
+        "keywords": [
+          "DEVOUR"
+        ],
         "effects": [
-          "Deal one normal Attack hit to the selected enemy.",
-          "Add 3 Touch stacks to the target and intervening enemies, capped at 5."
+          "Deal 8 damage. Apply 3 Touch to the target and enemies between you and it. Devour: Refund Energy spent on this cast."
         ]
       },
       "upgrade": {
-        "summary": "+2 damage and cost reduced to 1.",
+        "summary": "Base damage becomes 10; cost becomes 1 energy. Devour still refunds only Energy actually spent on this cast.",
         "card": {
           "cost": 1,
           "target": "ENEMY",
-          "text": "Deal 10 damage. Apply 3 Touch to the target and enemies between you and it.",
+          "text": "Deal 10 damage. Apply 3 Touch to the target and enemies between you and it. Devour: Refund Energy spent on this cast.",
           "stats": {
             "damage": 10,
             "duration": 3
           },
-          "keywords": [],
+          "keywords": [
+            "DEVOUR"
+          ],
           "effects": [
-            "Deal one normal Attack hit to the selected enemy.",
-            "Add 3 Touch stacks to the target and intervening enemies, capped at 5."
+            "Deal 10 damage. Apply 3 Touch to the target and enemies between you and it. Devour: Refund Energy spent on this cast."
           ]
         }
       },
       "rulesNotes": [
-        "Measure position between player and target in either direction.",
-        "The hit precedes application and generates ten Insanity regardless of Touch.",
-        "Psychic Link can trigger newly applied Touch afterward.",
-        "Artifact blocks each enemy application normally."
+        "Consume the Curse before the hit, then refund the Energy actually paid for this play. Free plays refund zero; Voidform and other cost discounts reduce the refund. Refund before damage so a final killing hit cannot skip it. Damage remains 8/10. Keep existing Touch targeting and application order. Haste does not repeat the refund."
       ],
-      "balanceNotes": "Initial reviewed values; evaluate in full runs and A20 Heart encounters.",
+      "balanceNotes": "Accepted October 30, 2026. Implemented in 0.1.5; focused verification and first local playthrough completed. Ongoing balance testing.",
       "art": {
         "wowAbility": "Tentacle Slam",
         "icon": "inv12_ability_priest_tentacleslam",
@@ -1462,43 +1462,48 @@
       ],
       "startingCopies": 0,
       "tags": [],
-      "designIntent": "Commit to sustained Voidform offense at the risk of doubled incoming Attack damage, or build around preventing the drawback.",
+      "designIntent": "Earn a zero-cost all-in transformation through two completed Voidforms. Usually unavailable in short hallway fights, situational in longer elite fights, and a powerful late-fight boss option with immediate action available.",
       "base": {
-        "cost": 3,
+        "cost": 0,
         "target": "SELF",
-        "text": "For the rest of combat: enter Voidform, your Attacks cost 0 energy, and take double damage from enemy Attacks. Exhaust.",
+        "text": "Playable only after leaving Voidform twice this combat (0/2). Enter permanent Voidform. Gain 2 Strength and 2 Mastery now and at the start of each turn. Die at the end of your fifth turn. Exhaust.",
         "stats": {
-          "incomingAttackMultiplier": 2
+          "requiredVoidformExits": 2,
+          "strength": 2,
+          "mastery": 2,
+          "turnsUntilDeath": 5
         },
         "keywords": [
           "EXHAUST"
         ],
         "effects": [
-          "For the rest of combat: enter Voidform, your Attacks cost 0 energy, and take double damage from enemy Attacks. Exhaust."
+          "Playable only after leaving Voidform twice this combat (0/2). Enter permanent Voidform. Gain 2 Strength and 2 Mastery now and at the start of each turn. Die at the end of your fifth turn. Exhaust."
         ]
       },
       "upgrade": {
-        "summary": "Draw 2 cards after entering; cost remains 3 energy.",
+        "summary": "Gain 3 Strength and 3 Mastery immediately and at each subsequent turn start instead.",
         "card": {
-          "cost": 3,
+          "cost": 0,
           "target": "SELF",
-          "text": "For the rest of combat: enter Voidform, your Attacks cost 0 energy, and take double damage from enemy Attacks. Draw 2 cards. Exhaust.",
+          "text": "Playable only after leaving Voidform twice this combat (0/2). Enter permanent Voidform. Gain 3 Strength and 3 Mastery now and at the start of each turn. Die at the end of your fifth turn. Exhaust.",
           "stats": {
-            "incomingAttackMultiplier": 2,
-            "draw": 2
+            "requiredVoidformExits": 2,
+            "strength": 3,
+            "mastery": 3,
+            "turnsUntilDeath": 5
           },
           "keywords": [
             "EXHAUST"
           ],
           "effects": [
-            "For the rest of combat: enter Voidform, your Attacks cost 0 energy, and take double damage from enemy Attacks. Draw 2 cards. Exhaust."
+            "Playable only after leaving Voidform twice this combat (0/2). Enter permanent Voidform. Gain 3 Strength and 3 Mastery now and at the start of each turn. Die at the end of your fifth turn. Exhaust."
           ]
         }
       },
       "rulesNotes": [
-        "Bypass Insanity and Recharge. Extend an existing ordinary Voidform rather than entering again. Invalidate ready activation cards. Fixed-cost playable Attacks cost zero for the rest of combat, including cards drawn later; X-cost Attacks keep their normal energy spending, Haste, and Chemical X behavior. Do not mutate underlying card costs. Additional Surrenders are unplayable once permanent form is active. Treat the doubled incoming Attack damage as a buff inseparable from the bargain: Artifact does not prevent it, and Mass Dispel or Orange Pellets cannot cleanse it. Double normal incoming Attack damage before Block; non-Attack and HP-loss damage are unchanged. The upgraded draw occurs after activation and only on successful Surrender. Works without the starter relic."
+        "Track completed Voidform activations per combat, advancing only when an active Voidform actually ends. Entering or refreshing Voidform does not count. Show progress inline as (0/2), (1/2), or (2/2), capped for display; reset it each combat. Once unlocked, Surrender can bypass Recharge. Grant the stats immediately on successful activation, then at the start of each subsequent player turn. Permanent Voidform retains its normal Attack damage bonus and 1-energy discount; this proposal does not make all Attacks free. The casting turn is turn one of five. Show a visible countdown starting at 5; resolve friendly end-of-turn effects, including DoTs, before the final death check. Winning combat cancels the countdown. Do not allow another Surrender to restart the timer or repeat its activation reward while already surrendered. Stats and countdown do not carry between combats. The playability check blocks both ordinary play and forced use before two exits. The deadline bypasses all revival effects and damage prevention."
       ],
-      "balanceNotes": "Accepted October 29, 2026; implemented locally, awaiting full-run playtesting.",
+      "balanceNotes": "Accepted October 30, 2026. Implemented in 0.1.5; focused verification and first local playthrough completed. Ongoing balance testing.",
       "art": {
         "wowAbility": "Surrender to Madness",
         "icon": "achievement_boss_generalvezax_01",
@@ -1632,41 +1637,45 @@
         "DEFENSE",
         "CLEANSE"
       ],
-      "designIntent": "Provide a cheap, targeted answer to common debilitating debuffs.",
+      "designIntent": "A useful cleanse without setup, with Curse consumption providing future debuff protection. Retain helps align both uses.",
       "base": {
         "cost": 0,
         "target": "SELF",
-        "text": "Remove Weak, Frail, and Vulnerable from yourself. Exhaust a Curse from your hand. Exhaust.",
-        "stats": {},
+        "text": "Remove Weak, Frail, and Vulnerable from yourself. Devour: Gain 1 Artifact. Exhaust.",
+        "stats": {
+          "devourArtifact": 1
+        },
         "keywords": [
-          "EXHAUST"
+          "EXHAUST",
+          "DEVOUR"
         ],
         "effects": [
-          "Remove Weak, Frail, and Vulnerable from yourself. Exhaust a Curse from your hand. Exhaust."
+          "Remove Weak, Frail, and Vulnerable from yourself. Devour: Gain 1 Artifact. Exhaust."
         ]
       },
       "upgrade": {
-        "summary": "Also gain 1 Artifact after cleansing; does not gain Retain.",
+        "summary": "Gain Retain; all other effects remain unchanged.",
         "card": {
           "cost": 0,
           "target": "SELF",
-          "text": "Remove Weak, Frail, and Vulnerable from yourself. Exhaust a Curse from your hand. Gain 1 Artifact. Exhaust.",
+          "text": "Retain. Remove Weak, Frail, and Vulnerable from yourself. Devour: Gain 1 Artifact. Exhaust.",
           "stats": {
-            "artifact": 1
+            "devourArtifact": 1
           },
           "keywords": [
-            "EXHAUST"
+            "EXHAUST",
+            "DEVOUR",
+            "RETAIN"
           ],
           "effects": [
-            "Remove Weak, Frail, and Vulnerable from yourself. Exhaust a Curse from your hand. Gain 1 Artifact. Exhaust."
+            "Retain. Remove Weak, Frail, and Vulnerable from yourself. Devour: Gain 1 Artifact. Exhaust."
           ]
         }
       },
       "rulesNotes": [
-        "Playable without a Curse or any of the named debuffs. Remove only Weak, Frail, and Vulnerable, not Surrender to Madness's penalty or Shadow Mend debt. If Curses are in hand, exhaust one; visibly choose when multiple are available. Curse exhaustion is combat-only and triggers normal exhaust effects, including Void Vengeance. The upgrade grants Artifact after cleansing, even if no debuffs or Curses were present. Artifact can prevent a subsequent debuff application, including new Shadow Mend debt. Purify Disease itself Exhausts in both versions.",
-        "Implemented locally for 0.1.3; full-run balance testing pending."
+        "Cleanse first, then exhaust a Curse if available and grant Artifact only when Devour succeeds. Playable without a Curse or the named debuffs. Choose when multiple Curses are in hand. Do not remove Shadow Mend debt or Surrender's deadline. The upgrade no longer grants unconditional Artifact. Both versions Exhaust; upgrading only improves timing."
       ],
-      "balanceNotes": "Accepted October 29, 2026; implemented locally, awaiting full-run playtesting.",
+      "balanceNotes": "Accepted October 30, 2026. Implemented in 0.1.5; focused verification and first local playthrough completed. Ongoing balance testing.",
       "art": {
         "wowAbility": "Purify Disease",
         "icon": "spell_holy_nullifydisease",
@@ -2118,40 +2127,44 @@
       ],
       "startingCopies": 0,
       "tags": [],
-      "designIntent": "Trade immediate healing for accumulating health loss on later turns.",
+      "designIntent": "Sacrifice an affliction to heal without creating another. The bonus prevents only the new debt from this cast.",
       "base": {
         "cost": 1,
         "target": "SELF",
-        "text": "Heal 10 HP. Add 2 to your Shadow Mend debt. At the start of each turn, lose HP equal to your debt.",
+        "text": "Heal 10 HP. Gain 2 Debt. Devour: Do not gain Debt.",
         "stats": {
           "heal": 10,
           "debt": 2
         },
-        "keywords": [],
+        "keywords": [
+          "DEVOUR"
+        ],
         "effects": [
-          "Heal 10 HP. Add 2 to your Shadow Mend debt. At the start of each turn, lose HP equal to your debt."
+          "Heal 10 HP. Gain 2 Debt. Devour: Do not gain Debt."
         ]
       },
       "upgrade": {
-        "summary": "Add 1 debt instead of 2; healing remains 10 HP.",
+        "summary": "Add only 1 debt when Devour does not activate; healing remains 10.",
         "card": {
           "cost": 1,
           "target": "SELF",
-          "text": "Heal 10 HP. Add 1 to your Shadow Mend debt. At the start of each turn, lose HP equal to your debt.",
+          "text": "Heal 10 HP. Gain 1 Debt. Devour: Do not gain Debt.",
           "stats": {
             "heal": 10,
             "debt": 1
           },
-          "keywords": [],
+          "keywords": [
+            "DEVOUR"
+          ],
           "effects": [
-            "Heal 10 HP. Add 1 to your Shadow Mend debt. At the start of each turn, lose HP equal to your debt."
+            "Heal 10 HP. Gain 1 Debt. Devour: Do not gain Debt."
           ]
         }
       },
       "rulesNotes": [
-        "Each cast adds its debt to one debuff lasting this combat. Starting next turn, resolve the combined debt as one HP-loss event each turn; it does not decay. Artifact can prevent a debt application and debuff cleansing can remove accumulated debt, without undoing healing. Tithe Evasion reduces the combined event once, not once per cast. Purify Disease does not remove this debt."
+        "Choose and exhaust the Curse before deciding whether this cast adds debt. Successful Devour prevents only this cast's debt; it does not clear existing debt. Do not briefly apply and remove debt or consume Artifact for debt that was prevented. Existing debt timing and healing restrictions remain unchanged."
       ],
-      "balanceNotes": "Implemented; validate full-run balance, including repeated use and A20 Heart performance.",
+      "balanceNotes": "Accepted October 30, 2026. Implemented in 0.1.5; focused verification and first local playthrough completed. Ongoing balance testing.",
       "art": {
         "wowAbility": "Shadow Mend",
         "icon": "spell_shadow_shadowmend",
@@ -2656,43 +2669,48 @@
       ],
       "startingCopies": 0,
       "tags": [],
-      "designIntent": "Reliable setup, defense, and usable Voidform timing; accepted October 26, 2026.",
+      "designIntent": "Consume a Curse to turn single-target setup into multi-target setup.",
       "base": {
         "cost": 1,
         "target": "ENEMY",
-        "text": "Deal 5 damage. Apply 3 Touch. Gain 10 Insanity.",
+        "text": "Deal 5 damage. Apply 3 Touch. Gain 10 Insanity. Devour: Apply 3 Touch to ALL other enemies.",
         "stats": {
           "damage": 5,
           "touch": 3,
-          "insanity": 10
+          "insanity": 10,
+          "devourTouch": 3
         },
-        "keywords": [],
+        "keywords": [
+          "DEVOUR"
+        ],
         "effects": [
-          "Deal 5 damage. Apply 3 Touch. Gain 10 Insanity."
+          "Deal 5 damage. Apply 3 Touch. Gain 10 Insanity. Devour: Apply 3 Touch to ALL other enemies."
         ]
       },
       "upgrade": {
-        "summary": "Cost becomes 0 energy.",
+        "summary": "Cost becomes 0 energy; effects remain unchanged.",
         "card": {
           "cost": 0,
           "target": "ENEMY",
-          "text": "Deal 5 damage. Apply 3 Touch. Gain 10 Insanity.",
+          "text": "Deal 5 damage. Apply 3 Touch. Gain 10 Insanity. Devour: Apply 3 Touch to ALL other enemies.",
           "stats": {
             "damage": 5,
             "touch": 3,
-            "insanity": 10
+            "insanity": 10,
+            "devourTouch": 3
           },
-          "keywords": [],
+          "keywords": [
+            "DEVOUR"
+          ],
           "effects": [
-            "Deal 5 damage. Apply 3 Touch. Gain 10 Insanity."
+            "Deal 5 damage. Apply 3 Touch. Gain 10 Insanity. Devour: Apply 3 Touch to ALL other enemies."
           ]
         }
       },
       "rulesNotes": [
-        "Damage, then apply Touch to the surviving target, then explicit Insanity. Explicit gain does not require HP loss or a successful application.",
-        "All Insanity sources obey the shared ready, active, and Recharge restrictions."
+        "Preserve damage, target Touch application, and explicit Insanity. The bonus applies Touch to other living enemies without dealing additional direct damage. Each application follows the normal Artifact and Misery rules. The spread can still resolve if the direct hit kills the selected target while other enemies remain."
       ],
-      "balanceNotes": "Accepted starting values. Focused mechanics tests do not establish full-run balance.",
+      "balanceNotes": "Accepted October 30, 2026. Implemented in 0.1.5; focused verification and first local playthrough completed. Ongoing balance testing.",
       "art": {
         "wowAbility": "Unfurling Darkness",
         "icon": "spell_priest_shadow-mend",
@@ -3174,43 +3192,48 @@
       ],
       "startingCopies": 0,
       "tags": [],
-      "designIntent": "Reliable setup, defense, and usable Voidform timing; accepted October 26, 2026.",
+      "designIntent": "Turn your own affliction into the enemy's Madness, linking the two packages.",
       "base": {
         "cost": 1,
         "target": "ENEMY",
-        "text": "Deal 6 damage. Apply 6 Madness. Gain 10 Insanity.",
+        "text": "Deal 6 damage. Apply 6 Madness. Gain 10 Insanity. Devour: Apply 6 additional Madness.",
         "stats": {
           "damage": 6,
           "madness": 6,
-          "insanity": 10
+          "insanity": 10,
+          "devourMadness": 6
         },
-        "keywords": [],
+        "keywords": [
+          "DEVOUR"
+        ],
         "effects": [
-          "Deal 6 damage. Apply 6 Madness. Gain 10 Insanity."
+          "Deal 6 damage. Apply 6 Madness. Gain 10 Insanity. Devour: Apply 6 additional Madness."
         ]
       },
       "upgrade": {
-        "summary": "Deal 9 damage and apply 9 Madness; explicit Insanity remains 10.",
+        "summary": "Deal 9 damage and apply 9 base Madness; explicit Insanity remains 10. Devour bonus remains 6.",
         "card": {
           "cost": 1,
           "target": "ENEMY",
-          "text": "Deal 9 damage. Apply 9 Madness. Gain 10 Insanity.",
+          "text": "Deal 9 damage. Apply 9 Madness. Gain 10 Insanity. Devour: Apply 6 additional Madness.",
           "stats": {
             "damage": 9,
             "madness": 9,
-            "insanity": 10
+            "insanity": 10,
+            "devourMadness": 6
           },
-          "keywords": [],
+          "keywords": [
+            "DEVOUR"
+          ],
           "effects": [
-            "Deal 9 damage. Apply 9 Madness. Gain 10 Insanity."
+            "Deal 9 damage. Apply 9 Madness. Gain 10 Insanity. Devour: Apply 6 additional Madness."
           ]
         }
       },
       "rulesNotes": [
-        "Damage, then Madness on the surviving target, then explicit Insanity. Madness does not require HP loss; Artifact can block it. Explicit Insanity still resolves, including on a killing hit, in addition to the universal 10 per direct Attack hit. Both gains obey the shared cap and ready, active, and Recharge restrictions.",
-        "Implemented locally for 0.1.3; full-run balance testing pending."
+        "Resolve Devour before applying Madness and combine the application into 12/15 stacks when paid, with one Artifact check. Damage remains 6/9. The additional Madness causes no immediate tick or extra direct hit. Explicit and hit-based Insanity follow their existing rules."
       ],
-      "balanceNotes": "Accepted starting values. Focused mechanics tests do not establish full-run balance.",
+      "balanceNotes": "Accepted October 30, 2026. Implemented in 0.1.5; focused verification and first local playthrough completed. Ongoing balance testing.",
       "art": {
         "wowAbility": "Mind Trauma",
         "icon": "spell_shadow_mindflay",
@@ -3331,41 +3354,46 @@
       ],
       "startingCopies": 0,
       "tags": [],
-      "designIntent": "Reliable setup, defense, and usable Voidform timing; accepted October 26, 2026.",
+      "designIntent": "Turn intrusive thoughts into resolve. Establish a repeatable Common defensive spender.",
       "base": {
         "cost": 1,
         "target": "SELF",
-        "text": "Gain 7 Block. Gain 10 Insanity.",
+        "text": "Gain 7 Block. Gain 10 Insanity. Devour: Gain 7 additional Block.",
         "stats": {
           "block": 7,
-          "insanity": 10
+          "insanity": 10,
+          "devourBlock": 7
         },
-        "keywords": [],
+        "keywords": [
+          "DEVOUR"
+        ],
         "effects": [
-          "Gain 7 Block. Gain 10 Insanity."
+          "Gain 7 Block. Gain 10 Insanity. Devour: Gain 7 additional Block."
         ]
       },
       "upgrade": {
-        "summary": "Gain 10 Block and 15 Insanity.",
+        "summary": "Base Block becomes 10 and Insanity becomes 15; Devour bonus remains 7.",
         "card": {
           "cost": 1,
           "target": "SELF",
-          "text": "Gain 10 Block. Gain 15 Insanity.",
+          "text": "Gain 10 Block. Gain 15 Insanity. Devour: Gain 7 additional Block.",
           "stats": {
             "block": 10,
-            "insanity": 15
+            "insanity": 15,
+            "devourBlock": 7
           },
-          "keywords": [],
+          "keywords": [
+            "DEVOUR"
+          ],
           "effects": [
-            "Gain 10 Block. Gain 15 Insanity."
+            "Gain 10 Block. Gain 15 Insanity. Devour: Gain 7 additional Block."
           ]
         }
       },
       "rulesNotes": [
-        "Block with Dexterity once, then immediate explicit Insanity. No enemy Attack prerequisite or pending trigger.",
-        "All Insanity sources obey the shared ready, active, and Recharge restrictions."
+        "Consume before the Block grant and add the bonus to base Block, for 14/17 before modifiers. Apply Dexterity and normal Block modifiers once to the combined grant. Insanity remains unconditional and obeys the usual restrictions. Does not Exhaust itself."
       ],
-      "balanceNotes": "Accepted starting values. Focused mechanics tests do not establish full-run balance.",
+      "balanceNotes": "Accepted October 30, 2026. Implemented in 0.1.5; focused verification and first local playthrough completed. Ongoing balance testing.",
       "art": {
         "wowAbility": "Focused Will",
         "icon": "ability_priest_focusedwill",
@@ -3533,38 +3561,42 @@
       ],
       "startingCopies": 0,
       "tags": [],
-      "designIntent": "Apply 5 Madness, plus 5 for each Power played this combat.",
+      "designIntent": "Raise the initial application from 5/8 to 10/15 while retaining the existing 5/8-per-Power scaling. Make the card more useful before Powers are established, with a delayed affliction as the price.",
       "base": {
         "cost": 1,
         "target": "ENEMY",
-        "text": "Apply 5 Madness, plus 5 for each Power played this combat.",
+        "text": "Apply 10 Madness. Increases by 5 for each Power played this combat. Add a Mind Decay to your discard pile.",
         "stats": {
-          "magic": 5
+          "madness": 10,
+          "madnessPerPower": 5,
+          "curses": 1
         },
         "keywords": [],
         "effects": [
-          "Apply 5 Madness, plus 5 for each Power played this combat."
+          "Apply 10 Madness. Increases by 5 for each Power played this combat. Add a Mind Decay to your discard pile."
         ]
       },
       "upgrade": {
-        "summary": "Apply 8 Madness, plus 8 for each Power played this combat.",
+        "summary": "Apply 15 Madness, plus 8 for each Power played this combat. Curse generation remains unchanged.",
         "card": {
           "cost": 1,
           "target": "ENEMY",
-          "text": "Apply 8 Madness, plus 8 for each Power played this combat.",
+          "text": "Apply 15 Madness. Increases by 8 for each Power played this combat. Add a Mind Decay to your discard pile.",
           "stats": {
-            "magic": 8
+            "madness": 15,
+            "madnessPerPower": 8,
+            "curses": 1
           },
           "keywords": [],
           "effects": [
-            "Apply 8 Madness, plus 8 for each Power played this combat."
+            "Apply 15 Madness. Increases by 8 for each Power played this combat. Add a Mind Decay to your discard pile."
           ]
         }
       },
       "rulesNotes": [
-        "Count actual Power plays, including free plays through Foresight+, excluding automatic Legendary equipment. Display the current calculated application. Artifact can block the combined application."
+        "Preserve the existing Power-play count, including free Power plays through Foresight+ and excluding automatic Legendary equipment. Display the current calculated application. Artifact can block the combined Madness application. Generate one combat-only Mind Decay regardless of whether the application succeeds; no immediate Madness tick. Creating the Curse in discard delays access until it is drawn or otherwise retrieved."
       ],
-      "balanceNotes": "Accepted October 27, 2026; test in full runs before further tuning.",
+      "balanceNotes": "Accepted October 30, 2026. Implemented in 0.1.5; focused verification and first local playthrough completed. Ongoing balance testing.",
       "art": {
         "wowAbility": "Original Shadow Priest concept",
         "icon": "madness_overwhelming.png",
@@ -3633,38 +3665,44 @@
       ],
       "startingCopies": 0,
       "tags": [],
-      "designIntent": "If the target has positive Strength, gain that much Haste.",
+      "designIntent": "Feed the Void for a burst of speed. Give this situational card a Curse-fueled use against enemies without Strength.",
       "base": {
         "cost": 1,
         "target": "ENEMY",
-        "text": "If the target has positive Strength, gain that much Haste.",
+        "text": "If the enemy has positive Strength, gain that much Haste. Devour: Gain 2 Haste.",
         "stats": {
-          "magic": 0
+          "magic": 0,
+          "devourHaste": 2
         },
-        "keywords": [],
+        "keywords": [
+          "DEVOUR"
+        ],
         "effects": [
-          "If the target has positive Strength, gain that much Haste."
+          "If the enemy has positive Strength, gain that much Haste. Devour: Gain 2 Haste."
         ]
       },
       "upgrade": {
-        "summary": "If the target has positive Strength, gain that much Haste plus 1.",
+        "summary": "If the target has positive Strength, gain that much Haste plus 1. Devour bonus remains 2.",
         "card": {
           "cost": 1,
           "target": "ENEMY",
-          "text": "If the target has positive Strength, gain that much Haste plus 1.",
+          "text": "If the enemy has positive Strength, gain that much Haste plus 1. Devour: Gain 2 Haste.",
           "stats": {
-            "magic": 1
+            "magic": 1,
+            "devourHaste": 2
           },
-          "keywords": [],
+          "keywords": [
+            "DEVOUR"
+          ],
           "effects": [
-            "If the target has positive Strength, gain that much Haste plus 1."
+            "If the enemy has positive Strength, gain that much Haste plus 1. Devour: Gain 2 Haste."
           ]
         }
       },
       "rulesNotes": [
-        "Does not Exhaust or reduce enemy Strength. Zero or negative Strength grants nothing, including when upgraded. Use current positive Strength at play."
+        "The Devour bonus is independent of enemy Strength and works at zero or negative Strength. With positive Strength, add both rewards. The upgrade's existing extra 1 still requires positive enemy Strength. Does not Exhaust or reduce enemy Strength. Apply normal Haste decay; Void Vengeance's separate reward can also trigger."
       ],
-      "balanceNotes": "Accepted October 27, 2026; test in full runs before further tuning.",
+      "balanceNotes": "Accepted October 30, 2026. Implemented in 0.1.5; focused verification and first local playthrough completed. Ongoing balance testing.",
       "art": {
         "wowAbility": "Original Shadow Priest concept",
         "icon": "twin_suns.png",
@@ -3834,40 +3872,46 @@
       ],
       "startingCopies": 0,
       "tags": [],
-      "designIntent": "Deal 15 damage. Exhaust a Curse in your hand. If you do, permanently increase this card's damage by 5. Exhaust.",
+      "designIntent": "Keep the Rare long-term Devour payoff while Common and Uncommon cards provide immediate rewards.",
       "base": {
         "cost": 1,
         "target": "ENEMY",
-        "text": "Deal 15 damage. Exhaust a Curse in your hand. If you do, permanently increase this card's damage by 5. Exhaust.",
+        "text": "Deal 15 damage. Devour: Permanently increase this card's damage by 5. Exhaust.",
         "stats": {
-          "magic": 5,
-          "damage": 15
+          "damage": 15,
+          "magic": 5
         },
-        "keywords": [],
+        "keywords": [
+          "DEVOUR",
+          "EXHAUST"
+        ],
         "effects": [
-          "Deal 15 damage. Exhaust a Curse in your hand. If you do, permanently increase this card's damage by 5. Exhaust."
+          "Deal 15 damage. Devour: Permanently increase this card's damage by 5. Exhaust."
         ]
       },
       "upgrade": {
-        "summary": "Deal 23 damage. Exhaust a Curse in your hand. If you do, permanently increase this card's damage by 8. Exhaust.",
+        "summary": "Deal 23 damage; Devour permanently increases damage by 8 instead.",
         "card": {
           "cost": 1,
           "target": "ENEMY",
-          "text": "Deal 23 damage. Exhaust a Curse in your hand. If you do, permanently increase this card's damage by 8. Exhaust.",
+          "text": "Deal 23 damage. Devour: Permanently increase this card's damage by 8. Exhaust.",
           "stats": {
-            "magic": 8,
-            "damage": 23
+            "damage": 23,
+            "magic": 8
           },
-          "keywords": [],
+          "keywords": [
+            "DEVOUR",
+            "EXHAUST"
+          ],
           "effects": [
-            "Deal 23 damage. Exhaust a Curse in your hand. If you do, permanently increase this card's damage by 8. Exhaust."
+            "Deal 23 damage. Devour: Permanently increase this card's damage by 8. Exhaust."
           ]
         }
       },
       "rulesNotes": [
-        "Choose a Curse visibly before resolving the hit; damage then exhaust and permanent growth finish together, including on a lethal hit. No Curse means damage without growth. Exhaust is combat-only, triggers normal Curse-exhaust effects, and is not intercepted by Strange Spoon. Growth applies after this hit and only to this card's permanent-deck identity and matching combat copies; temporary copies with new identities do not grow the original. Store earned growth in misc for normal saves and copies. Upgrading adds 8 base damage without losing earlier growth."
+        "Wording conversion only. Preserve the current visible Curse selection and lethal-hit handling. Deal damage before applying permanent growth; the bonus does not increase this hit. Exhaust the selected Curse only for combat, trigger normal exhaust reactions, and preserve existing permanent-card identity and copy rules. The final Exhaust applies to Void Ray itself."
       ],
-      "balanceNotes": "Accepted October 27, 2026; test in full runs before further tuning.",
+      "balanceNotes": "Accepted October 30, 2026. Implemented in 0.1.5; focused verification and first local playthrough completed. Ongoing balance testing.",
       "art": {
         "wowAbility": "Void Ray",
         "icon": "inv_12_dh_void_ability_voidray",

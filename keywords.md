@@ -36,7 +36,7 @@ Reaching 100 grants one 0-cost, Retain, Exhaust **Enter Voidform** card; enterin
 
 ### Voidform
 
-A class stance. Attacks deal 50% more damage and cost 1 less energy, to a minimum of 0. X-cost cards receive the Attack damage bonus but no energy discount. Ordinary Voidform ends at the end of your turn, resets Insanity to 0, and causes Recharge. Improved Voidform carries it across turns until at least three Attack cards have been played during that activation, then ends it at that turn's end. Recharge begins only when the stance actually ends. Surrender to Madness remains permanent and makes fixed-cost Attacks free for the rest of combat; X-cost Attacks still spend energy normally.
+A class stance. Attacks deal 50% more damage and cost 1 less energy, to a minimum of 0. X-cost cards receive the Attack damage bonus but no energy discount. Ordinary Voidform ends at the end of your turn, resets Insanity to 0, and causes Recharge. Improved Voidform carries it across turns until at least three Attack cards have been played during that activation, then ends it at that turn's end. Recharge begins only when the stance actually ends. Surrender to Madness requires leaving Voidform twice in the same combat. It grants permanent Voidform with the normal one-energy discount, immediate and start-of-turn Strength/Mastery, and an unavoidable five-turn death deadline. The casting turn counts as turn one; winning combat cancels the deadline. X-cost Attacks still spend energy normally.
 
 ### Recharge
 
@@ -73,3 +73,7 @@ Protected Channel explicitly uses effective X, including Haste and Chemical X. B
 ### Barrier
 
 A tracked portion of your total Block that persists between turns and absorbs damage before ordinary Block. Its buff counter shows the remaining reserve. Additional Block does not increase this reserve and expires normally. Recasting refreshes to the modified card value without stacking or reducing a stronger reserve. Retention does not count as gaining Block. At zero reserve, remove the buff. Independent Blur, Barricade, and Val'anyr can still retain ordinary Block; Calipers removes only ordinary Block.
+
+### Devour
+
+Exhaust a Curse from your hand to trigger this bonus effect. Without a Curse, resolve the base card without the bonus. Consume one actual hand Curse per activation; choose when multiple are available. Exhaustion is combat-only and triggers normal Curse-exhaust rewards, including Void Vengeance. Haste never multiplies Devour activations. Consume before resolving conditional damage, Block, or debt prevention. Void Ray preserves its special ordering: choose before the hit, then exhaust and permanently grow after the hit, including on lethal damage.

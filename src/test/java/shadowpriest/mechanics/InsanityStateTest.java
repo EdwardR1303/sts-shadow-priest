@@ -4,6 +4,15 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class InsanityStateTest {
+    @Test public void surrenderProgressCountsExitsNotEntriesOrExtraEndTurns() {
+        InsanityState s=new InsanityState();s.enterImmediately();
+        assertEquals(0,s.completedForms());s.endTurn();assertEquals(1,s.completedForms());
+        s.endTurn();assertEquals(1,s.completedForms());s.enterImmediately();
+        s.endTurn(true);assertEquals(1,s.completedForms());
+        s.attackPlayed();s.attackPlayed();s.attackPlayed();s.endTurn(true);
+        assertEquals(2,s.completedForms());s.surrender();s.endTurn();
+        assertEquals(2,s.completedForms());s.reset();assertEquals(0,s.completedForms());
+    }
     @Test public void improvedFormCarriesPartialAttackCountAndOnlyThenStartsRecovery() {
         InsanityState s=new InsanityState(); s.gain(100); s.activate(s.charge());
         s.attackPlayed(); s.attackPlayed(); s.endTurn(true);

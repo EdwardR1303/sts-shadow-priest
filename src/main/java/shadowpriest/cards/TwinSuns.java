@@ -10,8 +10,15 @@ import shadowpriest.powers.*;
 public class TwinSuns extends PriestCard {
     public static final String ID="shadowpriest:TwinSuns";
     public TwinSuns() { super(ID,1,CardType.SKILL,CardRarity.UNCOMMON,CardTarget.ENEMY); baseMagicNumber=magicNumber=0; }
-    @Override public void use(AbstractPlayer p, AbstractMonster m) { int strength=m.hasPower("Strength")?m.getPower("Strength").amount:0;
-        if(strength>0)addToBot(new ApplyPowerAction(p,p,new HastePower(p,strength+magicNumber),strength+magicNumber)); }
+    @Override public void use(AbstractPlayer p, AbstractMonster m) {
+        int strength=m!=null&&m.hasPower("Strength")?m.getPower("Strength").amount:0;
+        final int baseHaste=strength>0?strength+magicNumber:0;
+        addToBot(new shadowpriest.actions.DevourAction(devoured->{
+            int haste=baseHaste+(devoured?2:0);
+            return haste>0?java.util.Collections.singletonList(new ApplyPowerAction(p,p,new HastePower(p,haste),haste))
+                :java.util.Collections.emptyList();
+        }));
+    }
     @Override public void upgrade() { if(!upgraded) { upgradeName(); upgradeMagicNumber(1);upgradeText(); } }
 
 }

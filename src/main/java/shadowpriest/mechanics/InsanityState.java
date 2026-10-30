@@ -12,6 +12,8 @@ public final class InsanityState {
     private int charge;
     private int recoveryStarts;
     private int attacksPlayed;
+    private int completedForms;
+    public int completedForms() { return completedForms; }
     public int attacksPlayed() { return attacksPlayed; }
     public void attackPlayed() { if (active && !surrendered) attacksPlayed = Math.min(3, attacksPlayed + 1); }
 
@@ -58,9 +60,9 @@ public final class InsanityState {
     public void endTurn() { endTurn(false); }
     public void endTurn(boolean improved) {
         if (surrendered || (improved && attacksPlayed < 3)) return;
-        if (active) { insanity = 0; active = false; recoveryStarts = 2; charge++; }
+        if (active) { completedForms++; insanity = 0; active = false; recoveryStarts = 2; charge++; }
     }
-    public void reset() { attacksPlayed = 0; insanity = 0; active = false; surrendered = false; recoveryStarts = 0; charge++; }
+    public void reset() { completedForms = 0; attacksPlayed = 0; insanity = 0; active = false; surrendered = false; recoveryStarts = 0; charge++; }
 
     public static int effectiveCost(int original, boolean attack, boolean active) {
         return active && attack && original > 0 ? original - 1 : original;

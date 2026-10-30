@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.1.5 - October 30, 2026
+
+- Added **Devour**: exhaust a Curse from your hand to activate a bonus. Cards still resolve their base effects without a Curse; choose which Curse when multiple are available. Haste does not multiply Devour, and normal Curse-exhaust rewards still apply.
+- Eight Devour cards: Tentacle Slam refunds Energy actually spent; Unfurling Darkness spreads Touch to other enemies; Mind Trauma applies 6 additional Madness; Shadow Mend avoids this cast's debt; Purify Disease grants 1 Artifact; Focused Will gains 7 additional base Block; Twin Suns gains 2 Haste; Void Ray retains its permanent damage growth with the new keyword. Purify Disease's upgrade now grants Retain instead of unconditional Artifact.
+- Shadow Word: Madness deals 9/13 damage and adds a Mind Decay to hand. Madness Overwhelming applies 10/15 initial Madness plus the existing 5/8 per Power played, and adds a Mind Decay to discard. Generated Curses last only for combat.
+- Reworked **Surrender to Madness**: costs 0 and is playable only after leaving Voidform twice this combat, with an inline progress counter. Enter permanent Voidform and gain 2/3 Strength and Mastery immediately and at each subsequent turn start. Die at the end of your fifth turn, including the casting turn. Win before the deadline; final-turn DoT lethal counts. This death bypasses revival and damage prevention. Surrender no longer doubles incoming damage or makes every Attack free; it retains Voidform's normal one-energy Attack discount.
+- Added gold card borders and conditional text highlights for Devour, Bulwark, Piety, Dispel Magic, Mass Dispel, Purify Disease, Twin Suns, Shadow Word: Death's predicted direct lethal, and Surrender's unlock. Target-dependent highlights follow the hovered enemy.
+
+Restart the game after Steam downloads this update. Start a new run to try the full package; existing cards use the revised rules. First local playthrough feedback was positive; beta balance testing continues.
+
 ## 0.1.4 - October 30, 2026
 
 - Fixed saved Details runs disappearing from history when an unattributed effect had no source ID. Existing affected reports now load without changing their files or damage totals; new sources receive a stable fallback ID.
