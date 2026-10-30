@@ -1,5 +1,5 @@
 param(
-    [switch]$DotPreviewOnly, [switch]$BetaBalanceOnly, [switch]$ObservationsOnly, [switch]$InsanityDetailsOnly, [switch]$LowPickOnly,
+    [switch]$DotPreviewOnly, [switch]$BetaBalanceOnly, [switch]$ObservationsOnly, [switch]$InsanityDetailsOnly, [switch]$LowPickOnly, [switch]$PotionDetailsOnly,
     [switch]$SkipBuild, [switch]$Debug, [switch]$SmokeTest, [switch]$CardBatchOnly, [switch]$LatestBatchOnly, [switch]$ReworkOnly, [switch]$DefensiveReworkOnly, [switch]$SupportOnly, [switch]$RelicOnly, [switch]$RelicArtOnly, [switch]$SetupOnly, [switch]$DetailsOnly, [switch]$BarrierOnly, [switch]$DetailsOverallOnly, [switch]$VengeanceOnly, [switch]$FinalBatchOnly, [switch]$RelicCompletionOnly, [switch]$BalanceFollowupOnly, [switch]$MindDecayOnly, [switch]$HistoryOnly,
     [ValidateRange(640, 7680)][int]$Width = 3840,
     [ValidateRange(480, 4320)][int]$Height = 2160,
@@ -11,6 +11,7 @@ if ($BetaBalanceOnly) { $SmokeTest = $true }
 if ($ObservationsOnly) { $SmokeTest = $true }
 if ($InsanityDetailsOnly) { $SmokeTest = $true }
 if ($LowPickOnly) { $SmokeTest = $true }
+if ($PotionDetailsOnly) { $SmokeTest = $true }
 if ($RelicArtOnly) { $RelicOnly = $true }
 if ($HistoryOnly -or $MindDecayOnly -or $BalanceFollowupOnly -or $RelicCompletionOnly -or $FinalBatchOnly -or $VengeanceOnly -or $SetupOnly -or $DetailsOnly -or $BarrierOnly -or $DetailsOverallOnly) { $SmokeTest = $true }
 if ($ReworkOnly -or $DefensiveReworkOnly -or $SupportOnly -or $RelicOnly) { $SmokeTest = $true }
@@ -67,6 +68,7 @@ if ($BetaBalanceOnly) { $arguments += '-Dshadowpriest.betabalanceonly=true' }
 if ($ObservationsOnly) { $arguments += '-Dshadowpriest.observationsonly=true' }
 if ($InsanityDetailsOnly) { $arguments += '-Dshadowpriest.insanitydetailsonly=true' }
 if ($LowPickOnly) { $arguments += '-Dshadowpriest.lowpickonly=true' }
+if ($PotionDetailsOnly) { $arguments += '-Dshadowpriest.potiondetailsonly=true' }
 if ($MindDecayOnly) { $arguments += '-Dshadowpriest.minddecayonly=true' }
 if ($BalanceFollowupOnly) { $arguments += '-Dshadowpriest.balancefollowuponly=true' }
 if ($RelicCompletionOnly) { $arguments += '-Dshadowpriest.reliccompletiononly=true' }

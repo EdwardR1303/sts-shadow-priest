@@ -63,3 +63,15 @@ For a menu-only archive review, use `scripts/playtest.ps1 -SkipBuild -HistoryOnl
 Reports recorded before the October 29 local revision retain their original HP-only damage totals. Missing absorbed damage, overkill and healing cannot be reconstructed; these reports, and Overall views containing them, show a legacy-data notice. New combats record the additional fields even when resuming an older run.
 
 For the narrow Insanity attribution and Yogg-Saron tooltip review, run `scripts/playtest.ps1 -SkipBuild -InsanityDetailsOnly -Windowed -Width 1600 -Height 900`.
+
+## Missing-source archive compatibility fix (0.1.4)
+
+An engine damage owner can have no creature ID, notably the player. Before this fix, an unattributed player effect could serialize without a source ID; the archive then rejected the entire otherwise-valid run. The source constructor now assigns a stable fallback identity, and the history loader repairs older missing/blank IDs in memory without rewriting reports or inferring a card attribution. Missing source objects and other malformed data still fail validation.
+
+Verified October 30, 2026 against the live archive using both the published 0.1.3 JAR and fixed classes: 10 visible/4 skipped became 14 visible/0 skipped. The latest A5 report retained all 31 combats and 5,055 total damage, including 2,291 for Void Torrent+ and 86 for Void Torrent. The fix passed 38 unit tests, including previously failing regression cases for new sources and old reports. No engine simulation was needed for this archive-loading fix. Published in 0.1.4 on October 30, 2026.
+
+The full audit covered 33 user reports: 14 live-game and 19 local playtest reports. The old loader hid 4 live reports (A1, A2, A3, A5) and 9 local reports; the corrected loader lists all 33 with zero skipped. File hashes confirm that the audit and loader did not rewrite any report.
+
+Potion actions queued through the standard potion helpers now carry a potion source; nested actions inherit it. Fairy in a Bottle direct revival healing has a scoped potion context. Recurring power effects (such as Regeneration) retain power attribution, and potion buffs do not take credit from subsequent card hits. Historical unknown effects retain their honest label rather than being guessed as a particular potion.
+
+Validation: 38 unit tests and 17 focused real-engine assertions passed, including Fire/Explosive damage, absorbed Block and overkill, Block and Blood Potions, Fairy revival, nested action inheritance, archive reload, and combat-ending Fire Potion damage. Run `scripts/playtest.ps1 -SkipBuild -PotionDetailsOnly -Windowed -Width 1600 -Height 900` to reproduce the focused checks.

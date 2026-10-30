@@ -36,3 +36,7 @@ Published October 28, 2026 with the accepted Haste and card balance pass. The of
 ## 0.1.3 release
 
 Published October 29, 2026 with expanded Details metrics, card balance and Curse support, and presentation fixes. The official uploader confirmed a successful update to item 3828572814. Maven and the packaged mod manifest both report 0.1.3. SHA256: `AC708C957563CADCA620EDF97956E0B8E56825E08E07E46AF6820113DD76D6DF`, unchanged from the tested local candidate. Release packaging passed 35 unit tests; the candidate previously passed 94 focused engine assertions and catalog validation. No additional full-run simulation was performed. The user authorized publication after candidate preparation.
+
+## 0.1.4 release
+
+Published October 30, 2026 as a Details hotfix. The official uploader confirmed a successful update to item 3828572814. SHA256: `2FEA17FEDA1830ED6E21B26D9436C9059D9AEA545E09FC15B0D5A47399F78F58`. Maven and the packaged manifest report 0.1.4. Validation passed 38 unit tests and 17 focused game assertions, plus a read-only audit of all 33 live/local reports. The fix restores 13 formerly hidden reports and adds potion attribution without balance changes.

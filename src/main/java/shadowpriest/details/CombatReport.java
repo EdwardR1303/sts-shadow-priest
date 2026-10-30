@@ -10,6 +10,13 @@ public final class CombatReport {
         public boolean player;
         public Source(String id, String name, String kind, boolean player) {
             this.id=id; this.name=name; this.kind=kind; this.player=player;
+            ensureId();
+        }
+        /** Some engine owners (notably the player) have no creature ID. Keep the
+         * observed source distinct without inventing a card attribution. */
+        void ensureId() {
+            if(id==null || id.trim().isEmpty())
+                id="unattributed:"+(player?"player:":"other:")+kind+":"+name;
         }
     }
     public static final class Event {

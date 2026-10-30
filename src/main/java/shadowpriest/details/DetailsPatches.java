@@ -54,6 +54,20 @@ public final class DetailsPatches {
     @SpirePatch(clz=AbstractRelic.class,method="addToBot")
     @SpirePatch(clz=AbstractRelic.class,method="addToTop")
     public static class Relic { @SpirePrefixPatch public static void before(AbstractRelic __instance,AbstractGameAction action){DetailsTracker.tag(action,DetailsTracker.relic(__instance));} }
+    @SpirePatch(clz=com.megacrit.cardcrawl.potions.AbstractPotion.class,method="addToBot")
+    @SpirePatch(clz=com.megacrit.cardcrawl.potions.AbstractPotion.class,method="addToTop")
+    public static class Potion {
+        @SpirePrefixPatch public static void before(com.megacrit.cardcrawl.potions.AbstractPotion __instance,AbstractGameAction action){
+            DetailsTracker.tag(action,DetailsTracker.potion(__instance));
+        }
+    }
+    // Fairy heals synchronously during player damage instead of queuing an action.
+    // Scope its use so the enemy's lethal hit cannot receive the healing credit.
+    @SpirePatch(clz=com.megacrit.cardcrawl.potions.FairyPotion.class,method="use")
+    public static class Fairy {
+        @SpirePrefixPatch public static void before(com.megacrit.cardcrawl.potions.FairyPotion __instance){DetailsTracker.pushPotion(__instance);}
+        @SpirePostfixPatch public static void after(){DetailsTracker.popPotion();}
+    }
     @SpirePatch(clz=AbstractCard.class,method="addToBot")
     @SpirePatch(clz=AbstractCard.class,method="addToTop")
     public static class CardAction { @SpirePrefixPatch public static void before(AbstractCard __instance,AbstractGameAction action){DetailsTracker.tag(action,DetailsTracker.card(__instance));} }

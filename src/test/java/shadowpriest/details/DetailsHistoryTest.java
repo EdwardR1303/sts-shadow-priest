@@ -35,4 +35,34 @@ public class DetailsHistoryTest {
         assertTrue(DetailsHistory.scan(root().resolve("missing")).entries.isEmpty());write(new Run());
         DetailsHistory.Catalog c=DetailsHistory.scan(root());assertTrue(c.entries.isEmpty());assertEquals(0,c.skipped);
     }
+    @Test public void missingSourceIdDoesNotHideAnOtherwiseValidRun()throws Exception{
+        Run run=report("2026-10-30T06:57:07Z");CombatReport combat=run.combats.get(0);
+        combat.recordDamage(new Source("shadowpriest:VoidTorrent+","Void Torrent+","card",true),76,0,35,"Snake Plant",null);
+        Source unknown=new Source("temporary","Unattributed player effect","unknown",true);
+        unknown.id=null; // The player creature has no ID; old reports omitted this JSON field.
+        combat.recordDamage(unknown,20,0,0,"Darkling",null);write(run);
+        byte[] original=Files.readAllBytes(root().resolve(run.id+".json"));
+        DetailsHistory.Catalog catalog=DetailsHistory.scan(root());
+        assertEquals(1,catalog.entries.size());assertEquals(0,catalog.skipped);
+        Run loaded=DetailsHistory.load(root(),run.id);assertNotNull(loaded);
+        assertEquals(158,loaded.overall().total(Metric.DAMAGE_DEALT,0));
+        Row top=loaded.overall().rows(Metric.DAMAGE_DEALT,0).get(0);
+        assertEquals("Void Torrent+",top.source.name);assertEquals(111,top.amount);assertEquals(35,top.overkill);
+        Source restored=loaded.combats.get(0).events.get(2).source;
+        assertNotNull(restored.id);assertFalse(restored.id.isEmpty());assertEquals(unknown.name,restored.name);
+        assertEquals("unknown",restored.kind);assertTrue(restored.player);
+        assertArrayEquals(original,Files.readAllBytes(root().resolve(run.id+".json")));
+    }
+    @Test public void newSourcesAlwaysHaveStableDistinctFallbackIds(){
+        Source first=new Source(null,"Unattributed player effect","unknown",true);
+        Source same=new Source(" ","Unattributed player effect","unknown",true);
+        assertNotNull(first.id);assertFalse(first.id.trim().isEmpty());assertEquals(first.id,same.id);
+        assertNotEquals(first.id,new Source(null,"Another effect","unknown",true).id);
+        assertNotEquals(first.id,new Source(null,first.name,"unknown",false).id);
+        assertEquals("known",new Source("known",first.name,"unknown",true).id);
+    }
+    @Test public void missingSourceObjectStillRejectsCorruptReport()throws Exception{
+        Run broken=report("2026-10-30T06:57:07Z");broken.combats.get(0).events.get(0).source=null;write(broken);
+        assertNull(DetailsHistory.load(root(),broken.id));assertEquals(1,DetailsHistory.scan(root()).skipped);
+    }
 }

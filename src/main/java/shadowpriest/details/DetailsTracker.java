@@ -99,6 +99,9 @@ public final class DetailsTracker implements CustomSavable<String> {
         return new Source(id,name,dot?"dot":"power",dot || p.owner==AbstractDungeon.player);
     }
     public static Source relic(AbstractRelic r){return new Source(r.relicId,r.name,"relic",true);}
+    public static Source potion(com.megacrit.cardcrawl.potions.AbstractPotion p){return new Source(p.ID,p.name,"potion",true);}
+    public static void pushPotion(com.megacrit.cardcrawl.potions.AbstractPotion potion){contexts.push(new Tag(potion(potion),null));}
+    public static void popPotion(){if(!contexts.isEmpty())contexts.pop();}
     public static void pushCard(AbstractCard card){contexts.push(new Tag(card(card),null));}
     public static void popCard(){if(!contexts.isEmpty())contexts.pop();}
     public static void queue(AbstractGameAction action){

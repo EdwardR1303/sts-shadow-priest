@@ -50,6 +50,7 @@ public final class CombatSmokeTest {
     public static void update() {
         if (finished) return;
         try {
+            if(Boolean.getBoolean("shadowpriest.potiondetailsonly")&&PotionDetailsSmokeTest.handleCompletion())return;
             if(Boolean.getBoolean("shadowpriest.lowpickonly")) CurseRevisionSmokeTest.handleSelection();
             if(Boolean.getBoolean("shadowpriest.finalbatchonly")){
                 if(FinalBatchSmokeTest.handleCompletion())return;
@@ -101,6 +102,7 @@ public final class CombatSmokeTest {
         p = AbstractDungeon.player; m = AbstractDungeon.getMonsters().monsters.get(0); relic = VoidformRelic.current();
         check(p instanceof ShadowPriest && relic != null, "Custom character and starting relic load");
         check(p.masterDeck.size() == 10, "Ten-card starter deck loads");
+        if(Boolean.getBoolean("shadowpriest.potiondetailsonly")){PotionDetailsSmokeTest.append(steps);return;}
         if(Boolean.getBoolean("shadowpriest.lowpickonly")){LowPickSmokeTest.append(steps);CurseRevisionSmokeTest.append(steps);return;}
         if(Boolean.getBoolean("shadowpriest.insanitydetailsonly")){InsanityDetailsSmokeTest.append(steps);return;}
         if(Boolean.getBoolean("shadowpriest.observationsonly")){ObservationsSmokeTest.append(steps);return;}

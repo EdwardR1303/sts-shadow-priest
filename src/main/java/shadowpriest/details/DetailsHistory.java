@@ -48,8 +48,12 @@ public final class DetailsHistory {
             if(run==null||run.schemaVersion!=1||!id.equals(run.id)||run.startedAt==null||run.combats==null)return null;
             for(CombatReport c:run.combats) {
                 if(c==null||c.encounter==null||c.outcome==null||c.turns<1||c.events==null||c.readyTurns==null||c.activationTurns==null)return null;
-                for(Event e:c.events)
-                    if(e==null||e.metric==null||e.source==null||e.source.id==null||e.source.name==null||e.amount<0||e.blocked<0||e.overkill<0)return null;
+                for(Event e:c.events) {
+                    if(e==null||e.metric==null||e.source==null||e.source.name==null||e.amount<0||e.blocked<0||e.overkill<0)return null;
+                    // Gson bypasses Source's constructor for older JSON. Repair
+                    // identity in memory only; one unknown effect must not hide a run.
+                    e.source.ensureId();
+                }
             }
             return run;
         } catch(Exception ignored) { return null; }

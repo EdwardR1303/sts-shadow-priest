@@ -1,6 +1,12 @@
 # Changelog
 
-## 0.1.3 — Local release candidate, not yet published
+## 0.1.4 - October 30, 2026
+
+- Fixed saved Details runs disappearing from history when an unattributed effect had no source ID. Existing affected reports now load without changing their files or damage totals; new sources receive a stable fallback ID.
+- Details now credits queued potion damage, Block, and healing by potion name, including Fire, Explosive, Block, and Blood Potions. Fairy in a Bottle revival healing is also attributed correctly. Ongoing power effects retain their own source names.
+- Existing unattributed entries remain labeled as such; historical potion identities are not guessed. No card balance changes.
+
+## 0.1.3 - October 29, 2026
 
 - More Curse support: Blood Magic deals 15/20 damage, applies 3/5 Touch and Pain, and adds a Pain Curse to discard. Mental Fortitude replaces its Strength penalty with a Doubt in hand; its upgrade costs 1. Purify Disease can exhaust a Curse from hand and still works without one; its upgrade grants 1 Artifact. Malady of the Mind costs 0 and adds a Mind Decay to discard, even if its Madness multiplication is blocked.
 - Mind Trauma deals 6/9 damage and applies 6/9 Madness, retaining its additional 10 Insanity. Shadow Word: Torment applies 3/5 Madness as well as Pain. Encroaching Shadows applies 5/7 Madness.
