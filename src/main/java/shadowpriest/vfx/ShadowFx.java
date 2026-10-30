@@ -11,6 +11,17 @@ import shadowpriest.vfx.ShadowSpellEffect.Style;
 public final class ShadowFx {
     private static long lastMinorSound;
     private ShadowFx() { }
+    public static AbstractGameAction singularity(AbstractCreature target,int damage) {
+        return new AbstractGameAction(){
+            @Override public void update(){
+                if(target!=null&&!target.isDeadOrEscaped()){
+                    AbstractDungeon.effectsQueue.add(new ShadowSpellEffect(target.hb.cX,target.hb.cY,damage));
+                    CardCrawlGame.sound.playV("ATTACK_HEAVY",.6f+.2f*ShadowSpellEffect.collapseTier(damage));
+                }
+                isDone=true;
+            }
+        };
+    }
     public static AbstractGameAction hit(Style style, AbstractCreature source, AbstractCreature target) {
         return new AbstractGameAction() {
             @Override public void update() { show(style, source, target); isDone = true; }

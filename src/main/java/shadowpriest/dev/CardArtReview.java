@@ -11,6 +11,34 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 
 /** Opt-in game-rendered review images; never called by normal gameplay. */
 final class CardArtReview {
+    static void yoggDescription(String description){
+        FrameBuffer frame=new FrameBuffer(Pixmap.Format.RGBA8888,600,260,false);SpriteBatch batch=new SpriteBatch();frame.begin();
+        try{
+            Gdx.gl.glClearColor(.055f,.045f,.085f,1);Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+            batch.setProjectionMatrix(new Matrix4().setToOrtho2D(0,0,600,260));batch.begin();
+            com.megacrit.cardcrawl.helpers.FontHelper.renderSmartText(batch,com.megacrit.cardcrawl.helpers.FontHelper.tipBodyFont,description,35,190,530,34,Color.WHITE);
+            batch.end();Pixmap pixels=ScreenUtils.getFrameBufferPixmap(0,0,600,260),flipped=new Pixmap(600,260,Pixmap.Format.RGBA8888);
+            try{for(int x=0;x<600;x++)for(int y=0;y<260;y++)flipped.drawPixel(x,259-y,pixels.getPixel(x,y));
+                Gdx.files.local("card-review").mkdirs();PixmapIO.writePNG(Gdx.files.local("card-review/yogg-energy-description.png"),flipped);
+            }finally{pixels.dispose();flipped.dispose();}
+        }finally{frame.end();batch.dispose();frame.dispose();}
+    }
+    static void singularityFx(){
+        FrameBuffer frame=new FrameBuffer(Pixmap.Format.RGBA8888,1200,700,false);
+        SpriteBatch batch=new SpriteBatch();frame.begin();
+        try{
+            Gdx.gl.glClearColor(.04f,.02f,.07f,1);Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+            batch.setProjectionMatrix(new Matrix4().setToOrtho2D(0,0,1200,700));batch.begin();
+            for(int tier=0;tier<3;tier++)for(int stage=0;stage<2;stage++){
+                shadowpriest.vfx.ShadowSpellEffect effect=new shadowpriest.vfx.ShadowSpellEffect(200+tier*400,stage==0?510:180,tier*50);
+                effect.duration=(.65f+.15f*tier)*(stage==0?.65f:.2f);effect.render(batch);
+            }
+            batch.end();Pixmap pixels=ScreenUtils.getFrameBufferPixmap(0,0,1200,700),flipped=new Pixmap(1200,700,Pixmap.Format.RGBA8888);
+            try{for(int x=0;x<1200;x++)for(int y=0;y<700;y++)flipped.drawPixel(x,699-y,pixels.getPixel(x,y));
+                Gdx.files.local("card-review").mkdirs();PixmapIO.writePNG(Gdx.files.local("card-review/observations-singularity-fx.png"),flipped);
+            }finally{pixels.dispose();flipped.dispose();}
+        }finally{frame.end();batch.dispose();frame.dispose();}
+    }
     private static String pendingCombat, capturedCombat;
     private static int captureFrames;
 

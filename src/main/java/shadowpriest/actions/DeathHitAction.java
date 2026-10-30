@@ -10,19 +10,18 @@ public class DeathHitAction extends AbstractGameAction {
     private final AbstractPlayer player;
     private final AbstractMonster monster;
     private final DamageInfo info;
-    private final int threshold;
-    public DeathHitAction(AbstractPlayer player, AbstractMonster monster, DamageInfo info, int threshold) {
-        this.player = player; this.monster = monster; this.info = info; this.threshold = threshold;
+    private final com.megacrit.cardcrawl.cards.AbstractCard card;
+    public DeathHitAction(AbstractPlayer player, AbstractMonster monster, DamageInfo info, com.megacrit.cardcrawl.cards.AbstractCard card) {
+        this.player = player; this.monster = monster; this.info = info; this.card=card;
         actionType = ActionType.DAMAGE;
     }
     @Override public void update() {
-        if (monster != null && !monster.isDeadOrEscaped() && !player.isDead) {
-            boolean backlash = monster.currentHealth * 100L > monster.maxHealth * (long) threshold;
+        if (monster!=null && !monster.isDeadOrEscaped() && !monster.isDying && !monster.halfDead && !player.isDead) {
             int before = monster.currentHealth;
             monster.damage(info);
-            if (backlash && monster.currentHealth < before) {
-                PriestHpLossAction.damage(player, 3);
-            }
+            if(monster.currentHealth<=0 || monster.isDying || monster.halfDead){
+                if(!card.purgeOnUse)card.returnToHand=true;
+            }else if(monster.currentHealth<before)PriestHpLossAction.damage(player,2);
         }
         isDone = true;
     }

@@ -27,10 +27,12 @@ public class DotTickAction extends DamageAction {
         AbstractPlayer p = AbstractDungeon.player;
         int healing = touch && p.hasPower(VampiricEmbracePower.POWER_ID)
             ? p.getPower(VampiricEmbracePower.POWER_ID).amount : 0;
+        shadowpriest.details.CombatReport.Source healSource=healing>0
+            ?shadowpriest.details.DetailsTracker.power(p.getPower(VampiricEmbracePower.POWER_ID)):null;
         super.update();
         // Resolve synchronously: a final killing blow can clear the queued actions/powers.
         if (!healed && healing > 0 && victim.currentHealth < before && !p.isDead && p.currentHealth > 0) {
-            healed = true; p.heal(healing);
+            healed = true; shadowpriest.details.DetailsTracker.heal(p,healing,healSource);
         }
     }
 }

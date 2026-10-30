@@ -19,7 +19,7 @@ public class Singularity extends PriestCard {
                 if(stacks>0){
                     int hit=attackCard.bonusDamage(m,stacks);
                     addToTop(new DamageAction(m,new DamageInfo(p,hit,damageTypeForTurn),AttackEffect.NONE));
-                    addToTop(shadowpriest.vfx.ShadowFx.hit(shadowpriest.vfx.ShadowSpellEffect.Style.COLLAPSE, p, m));
+                    addToTop(shadowpriest.vfx.ShadowFx.singularity(m,hit));
                     for(String id:new String[]{ShadowDotPower.TOUCH,ShadowDotPower.PAIN,MadnessPower.POWER_ID})
                         if(m.hasPower(id))addToTop(new RemoveSpecificPowerAction(m,p,id));
                 }

@@ -63,7 +63,7 @@ There is no standard card-style upgrade field. If a relic replaces or improves a
 
 ### Idol of N'Zoth
 
-- **Effect:** Whenever you play a Power or equip your Legendary at combat start, gain 1 Mastery.
+- **Effect:** Whenever you play a Power, gain 1 Mastery.
 - **Rules:** Each actual Power card play grants 1 Mastery after its effects. A successful automatic Legendary equipment activation also grants 1 Mastery, once per combat. Temporary copies and failed/duplicate equipment attempts do not qualify. This equipment interaction is specific to N'Zoth; it does not turn automatic equipment into a card play for other effects. Mastery lasts for combat.
 - **Status:** Implemented, including Legendary equipment; Rare class reward pool.
 

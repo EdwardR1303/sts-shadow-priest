@@ -2,9 +2,9 @@ package shadowpriest.details;
 
 import java.util.*;
 
-/** Serializable, engine-independent combat ledger. Amounts are actual HP lost / Block added. */
+/** Serializable combat ledger: HP damage, separate absorbs/overkill, actual Block and healing. */
 public final class CombatReport {
-    public enum Metric { DAMAGE_DEALT, DAMAGE_TAKEN, BLOCK }
+    public enum Metric { DAMAGE_DEALT, DAMAGE_TAKEN, BLOCK, HEALING, INSANITY }
     public static final class Source {
         public String id, name, kind;
         public boolean player;
@@ -13,7 +13,7 @@ public final class CombatReport {
         }
     }
     public static final class Event {
-        public int turn, amount;
+        public int turn, amount, blocked, overkill;
         public Metric metric;
         public Source source;
         public String target, trigger;
@@ -24,7 +24,7 @@ public final class CombatReport {
     }
     public static final class Row {
         public final Source source;
-        public long amount;
+        public long amount, blocked, overkill;
         public int events;
         Row(Source source) { this.source=source; }
         public double percent(long total) { return total==0 ? 0 : 100.0*amount/total; }
@@ -36,9 +36,10 @@ public final class CombatReport {
         /** Derived view only: never appended to the saved combat list or counted as another fight. */
         public CombatReport overall() {
             CombatReport total=new CombatReport(0,0,"Overall");
-            total.turns=0;
+            total.turns=0;total.extendedMetrics=true;total.insanityRecorded=true;
             for(CombatReport combat:combats){
-                total.turns+=combat.turns;
+                total.turns+=combat.turns;total.extendedMetrics &= combat.extendedMetrics;
+                total.insanityRecorded &= combat.insanityRecorded;
                 total.events.addAll(combat.events);
                 total.readyTurns.addAll(combat.readyTurns);
                 total.activationTurns.addAll(combat.activationTurns);
@@ -58,6 +59,7 @@ public final class CombatReport {
         }
     }
     public int floor, act, turns=1, attempt=1;
+    public boolean extendedMetrics,insanityRecorded;
     public String encounter, outcome="In progress";
     public List<Event> events=new ArrayList<>();
     public List<Integer> readyTurns=new ArrayList<>(), activationTurns=new ArrayList<>();
@@ -65,20 +67,27 @@ public final class CombatReport {
     public void record(Metric metric, Source source, int amount, String target, String trigger) {
         if (amount>0) events.add(new Event(turns,metric,source,amount,target,trigger));
     }
-    public long total(Metric metric, int turn) {
+    public void recordDamage(Source source,int hp,int blocked,int overkill,String target,String trigger) {
+        if((long)hp+blocked+overkill<=0)return;
+        Event e=new Event(turns,Metric.DAMAGE_DEALT,source,hp,target,trigger);
+        e.blocked=blocked;e.overkill=overkill;events.add(e);
+    }
+    public long total(Metric metric, int turn) {return total(metric,turn,true);}
+    public long total(Metric metric, int turn, boolean includeBlocked) {
         long sum=0;
-        for(Event e:events) if(e.metric==metric && (turn==0 || e.turn==turn)) sum+=e.amount;
+        for(Event e:events) if(e.metric==metric && (turn==0 || e.turn==turn)) sum+=(long)e.amount+e.overkill+(includeBlocked?e.blocked:0);
         return sum;
     }
-    public List<Row> rows(Metric metric, int turn) {
+    public List<Row> rows(Metric metric,int turn){return rows(metric,turn,true);}
+    public List<Row> rows(Metric metric, int turn, boolean includeBlocked) {
         Map<String,Row> rows=new LinkedHashMap<>();
         for(Event e:events) if(e.metric==metric && (turn==0 || e.turn==turn)) {
             String key=e.source.kind+":"+e.source.id;
             Row row=rows.get(key);
             if(row==null) {row=new Row(e.source);rows.put(key,row);}
-            row.amount+=e.amount;row.events++;
+            row.amount+=(long)e.amount+e.overkill+(includeBlocked?e.blocked:0);row.blocked+=includeBlocked?e.blocked:0;row.overkill+=e.overkill;row.events++;
         }
-        List<Row> sorted=new ArrayList<>(rows.values());
+        List<Row> sorted=new ArrayList<>(rows.values());sorted.removeIf(row->row.amount==0);
         sorted.sort(Comparator.comparingLong((Row row)->row.amount).reversed().thenComparing(row->row.source.name));
         return sorted;
     }

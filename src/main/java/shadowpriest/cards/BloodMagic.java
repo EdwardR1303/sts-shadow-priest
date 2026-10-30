@@ -10,8 +10,8 @@ import shadowpriest.actions.GainInsanityAction;
 
 public class BloodMagic extends PriestCard {
     public static final String ID="shadowpriest:BloodMagic";
-    public BloodMagic() { super(ID,2,CardType.ATTACK,CardRarity.COMMON,CardTarget.ENEMY);baseDamage=14;baseMagicNumber=magicNumber=2; }
-    @Override public void use(AbstractPlayer p,AbstractMonster m) { addToBot(new DamageAction(m,new DamageInfo(p,damage,damageTypeForTurn),AbstractGameAction.AttackEffect.FIRE));addToBot(ShadowDotPower.apply(m,p,ShadowDotPower.TOUCH,magicNumber));addToBot(ShadowDotPower.apply(m,p,ShadowDotPower.PAIN,magicNumber)); }
-    @Override public void upgrade() { if(!upgraded) { upgradeName();upgradeDamage(4);upgradeMagicNumber(1); } }
+    public BloodMagic() { super(ID,2,CardType.ATTACK,CardRarity.COMMON,CardTarget.ENEMY);baseDamage=15;baseMagicNumber=magicNumber=3;cardsToPreview=new com.megacrit.cardcrawl.cards.curses.Pain(); }
+    @Override public void use(AbstractPlayer p,AbstractMonster m) { addToBot(new DamageAction(m,new DamageInfo(p,damage,damageTypeForTurn),AbstractGameAction.AttackEffect.FIRE));addToBot(ShadowDotPower.apply(m,p,ShadowDotPower.TOUCH,magicNumber));addToBot(ShadowDotPower.apply(m,p,ShadowDotPower.PAIN,magicNumber));addToBot(new MakeTempCardInDiscardAction(new com.megacrit.cardcrawl.cards.curses.Pain(),1)); }
+    @Override public void upgrade() { if(!upgraded) { upgradeName();upgradeDamage(5);upgradeMagicNumber(2); } }
 
 }

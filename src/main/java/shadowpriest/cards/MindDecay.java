@@ -31,7 +31,7 @@ public class MindDecay extends CustomCard {
         AbstractPlayer p = AbstractDungeon.player;
         // This hook also visits draw/discard piles. Only copies already in hand qualify.
         if (!combatOngoing() || !p.hand.contains(this)) return;
-        DamageAction penalty = new DamageAction(p, new DamageInfo(p, 2, DamageInfo.DamageType.THORNS), AbstractGameAction.AttackEffect.POISON) {
+        DamageAction penalty = new DamageAction(p, new DamageInfo(p, 1, DamageInfo.DamageType.HP_LOSS), AbstractGameAction.AttackEffect.POISON) {
             @Override public void update() {
                 // Earlier queued start-of-turn effects can finish the encounter.
                 if (!combatOngoing()) { isDone = true; return; }

@@ -20,12 +20,12 @@ public final class DetailsScreen extends CustomScreen {
     public static final DetailsScreen INSTANCE=new DetailsScreen();
     private static final Color BG=new Color(.055f,.045f,.085f,1), PANEL=new Color(.105f,.085f,.15f,1);
     private static final Color MUTED=new Color(.68f,.65f,.76f,1), GOLD=new Color(.94f,.78f,.45f,1);
-    private static final Color[] COLORS={new Color(.66f,.40f,.95f,1),new Color(.92f,.38f,.43f,1),new Color(.29f,.68f,.87f,1)};
-    private static final String[] TITLES={"Damage dealt","Damage taken","Block generated"};
+    private static final Color[] COLORS={new Color(.66f,.40f,.95f,1),new Color(.92f,.38f,.43f,1),new Color(.29f,.68f,.87f,1),new Color(.35f,.85f,.52f,1),new Color(.88f,.36f,.90f,1)};
+    private static final String[] TITLES={"Damage dealt","Damage taken","Block generated","Healing done","Insanity gained"};
     private AbstractDungeon.CurrentScreen returnScreen;
     private int combatIndex,turn,turnOffset,rowOffset;
     private Metric metric=Metric.DAMAGE_DEALT;
-    private boolean overall;
+    private boolean overall,excludeBlocked;
     private Run archivedRun;
     private Runnable archiveBack;
     private float x,y,s;
@@ -85,7 +85,8 @@ public final class DetailsScreen extends CustomScreen {
             if(click(28,690,44,40)&&combatIndex>0){combatIndex--;turn=turnOffset=rowOffset=0;}
             if(click(1288,690,44,40)&&combatIndex<run.combats.size()-1){combatIndex++;turn=turnOffset=rowOffset=0;}
         }
-        for(int i=0;i<3;i++)if(click(28+i*440,568,424,100))selectMetric(Metric.values()[i]);
+        for(int i=0;i<Metric.values().length;i++)if(click(28+i*264,568,248,100))selectMetric(Metric.values()[i]);
+        if(click(300,100,320,30)){excludeBlocked=!excludeBlocked;rowOffset=0;}
         c=report();
         if(click(28,480,244,42))selectTurn(0);
         int choices=overall?run.combats.size():c.turns;
@@ -96,7 +97,7 @@ public final class DetailsScreen extends CustomScreen {
         }
         if(click(28,65,108,35))turnOffset=Math.max(0,turnOffset-8);
         if(click(164,65,108,35))turnOffset=Math.min(Math.max(0,choices-8),turnOffset+8);
-        int max=Math.max(0,c.rows(metric,turn).size()-8);
+        int max=Math.max(0,c.rows(metric,turn,!excludeBlocked).size()-8);
         if(click(1118,65,96,35))rowOffset=Math.max(0,rowOffset-8);
         if(click(1228,65,104,35))rowOffset=Math.min(max,rowOffset+8);
         if(inside(28,108,244,364)){
@@ -132,13 +133,13 @@ public final class DetailsScreen extends CustomScreen {
             text(sb,fit("Floor "+c.floor+"  |  "+c.encounter,82),90,716,Color.WHITE,1);
             text(sb,(combatIndex+1)+" / "+run.combats.size()+" combats  |  "+c.outcome+"  |  "+c.turns+" turns",90,684,MUTED,.75f);
         }
-        for(int i=0;i<3;i++){
-            Metric m=Metric.values()[i];float left=28+i*440;
-            rect(sb,left,568,424,100,PANEL);
-            rect(sb,left,568,424,metric==m?4:1,COLORS[i]);
+        for(int i=0;i<Metric.values().length;i++){
+            Metric m=Metric.values()[i];float left=28+i*264;
+            rect(sb,left,568,248,100,PANEL);
+            rect(sb,left,568,248,metric==m?4:1,COLORS[i]);
             text(sb,TITLES[i],left+16,642,metric==m?COLORS[i]:MUTED,.85f);
-            text(sb,String.format(Locale.ROOT,"%,d",c.total(m,0)),left+16,599,Color.WHITE,1.2f);
-            right(sb,String.format(Locale.ROOT,"%.1f / turn",c.perTurn(m)),left+408,600,MUTED,.8f);
+            text(sb,String.format(Locale.ROOT,"%,d",c.total(m,0,!excludeBlocked)),left+16,613,Color.WHITE,1.2f);
+            right(sb,String.format(Locale.ROOT,"%.1f / turn",c.total(m,0,!excludeBlocked)/(double)Math.max(1,c.turns)),left+232,586,MUTED,.72f);
         }
         text(sb,overall?"COMBATS":"TURN",28,540,MUTED,.8f);
         text(sb,TITLES[metric.ordinal()]+" by source  /  "+(overall?"Overall":turn==0?"All turns":"Turn "+turn),300,540,Color.WHITE,.9f);
@@ -148,15 +149,22 @@ public final class DetailsScreen extends CustomScreen {
             int n=turnOffset+i+1;if(n>(overall?run.combats.size():c.turns))break;
             CombatReport fight=overall?run.combats.get(n-1):c;
             button(sb,overall?n+". Floor "+fight.floor:"Turn "+n,28,428-i*43,244,39,!overall&&turn==n);
-            right(sb,Long.toString(fight.total(metric,overall?0:n)),258,454-i*43,MUTED,.75f);
+            right(sb,Long.toString(fight.total(metric,overall?0:n,!excludeBlocked)),258,454-i*43,MUTED,.75f);
         }
-        List<Row> rows=c.rows(metric,turn);long total=c.total(metric,turn);
+        List<Row> rows=c.rows(metric,turn,!excludeBlocked);long total=c.total(metric,turn,!excludeBlocked);
         rowOffset=Math.min(rowOffset,Math.max(0,rows.size()-8));
         for(int i=0;i<8 && rowOffset+i<rows.size();i++){
             Row row=rows.get(rowOffset+i);float bottom=476-i*43;
             rect(sb,300,bottom,1032,37,PANEL);
             Color bar=COLORS[metric.ordinal()].cpy();bar.a=.33f;
             rect(sb,300,bottom,(float)(1032.0*row.amount/rows.get(0).amount),37,bar);
+            if(row.blocked>0){
+                float width=(float)(1032.0*row.blocked/rows.get(0).amount);
+                rect(sb,300+(float)(1032.0*(row.amount-row.blocked)/rows.get(0).amount),bottom,width,37,new Color(.82f,.70f,1f,.65f));
+            }
+            if(inside(300,bottom,1032,37)&&metric==Metric.DAMAGE_DEALT)
+                TipHelper.renderGenericTip(InputHelper.mX,InputHelper.mY+150*s,row.source.name,
+                    "HP damage: "+(row.amount-row.blocked-row.overkill)+" NL Block absorbed: "+row.blocked+" NL Overkill: "+row.overkill);
             text(sb,(rowOffset+i+1)+".  "+fit(row.source.name,57),312,bottom+25,Color.WHITE,.78f);
             right(sb,String.format(Locale.ROOT,"%,d     %5.1f%%",row.amount,row.percent(total)),1318,bottom+25,Color.WHITE,.78f);
         }
@@ -165,7 +173,8 @@ public final class DetailsScreen extends CustomScreen {
         String voidform=overall?String.format(Locale.ROOT,"Voidform: %d entries  |  %.2f / combat  |  %d charges earned",c.activationTurns.size(),c.activationTurns.size()/(double)run.combats.size(),c.readyTurns.size())
             :"Voidform: "+c.activationTurns.size()+" entries  |  First ready: "+first(c.readyTurns)+"  |  First entry: "+first(c.activationTurns);
         text(sb,voidform,300,142,GOLD,.72f);
-        text(sb,"HP damage excludes Block and overkill. Block counts actual gains.",300,111,MUTED,.72f);
+        button(sb,(excludeBlocked?"[x]":"[ ]")+" Exclude blocked damage",300,100,320,30,excludeBlocked);
+        text(sb,metric==Metric.INSANITY?(c.insanityRecorded?"Actual gains only. Overflow and blocked gains are excluded.":"Legacy data: Insanity gains were not recorded in some combats."):c.extendedMetrics?"Light bars: absorbed. Includes overkill. Healing: HP restored.":"Legacy data: absorbs, overkill and healing may be missing.",634,121,MUTED,.63f);
         text(sb,(overall?"Averages use all recorded turns. Select a combat on the left for its turns.":"Enemy actions belong to the preceding player turn."),300,82,MUTED,.72f);
         button(sb,"Up",1118,65,96,35,false);button(sb,"Down",1228,65,104,35,false);
         text(sb,viewingArchive()?"Read-only saved report  |  Seed: "+run.seed:DetailsStore.error==null?"Saved to details/"+run.id+".json":DetailsStore.error,28,28,DetailsStore.error==null?MUTED:COLORS[1],.64f);
@@ -206,7 +215,7 @@ public final class DetailsScreen extends CustomScreen {
         @Override protected void onHover(){
             super.onHover();
             TipHelper.renderGenericTip(Math.min(x,Settings.WIDTH-360*Settings.scale),Settings.HEIGHT-110*Settings.scale,"Details",
-                "Damage dealt, damage taken, and Block generated by turn and source. NL Open during combat, on the map, or from combat rewards.");
+                "Damage dealt, damage taken, Block generated, healing done, and Insanity gained by turn and source. NL Open during combat, on the map, or from combat rewards.");
         }
     }
 }

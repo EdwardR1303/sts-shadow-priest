@@ -1,6 +1,6 @@
 # Combat Details
 
-From the main menu, click **Combat Details** in the upper-right to browse saved runs. Runs are listed newest first with local date/time, character, Ascension, seed, and the last recorded fight. Select a run to open its **Overall** report, then use the existing combat, turn, and metric controls. **Back** or Escape returns to the list; Close or Escape from the list returns to the menu. **Refresh** reloads the archive.
+From the main menu, click **Details** beneath Play (or beneath the Continue/Abandon Run group when a save exists) to browse saved runs. Runs are listed newest first with local date/time, character, Ascension, seed, and the last recorded fight. Select a run to open its **Overall** report, then use the existing combat, turn, and metric controls. **Back** or Escape returns to the list; Close or Escape from the list returns to the menu. **Refresh** reloads the archive.
 
 History is read-only: it does not load a game save or replace the current run's tracker. A last-combat Victory means that fight was won, not necessarily the whole run. Empty runs are omitted; unreadable or unsupported reports are skipped with a count. Listing and report loading happen in the background.
 
@@ -8,7 +8,7 @@ Click the purple **bar-chart button in the top bar** to inspect the current or p
 
 Details renders above the game's Victory, Defeat, and Spoils banners and other dungeon overlays. The underlying banner is preserved and becomes visible again when the report closes.
 
-Choose **Damage dealt**, **Damage taken**, or **Block generated**, then **All turns** or an individual turn. Sources appear in descending order with their amount and percentage of the selected total. The three tiles show combat totals and averages per player turn. Arrow buttons move between encounters. Scroll or use the paging buttons for long fights and long source lists.
+Choose **Damage dealt**, **Damage taken**, **Block generated**, **Healing done**, or **Insanity gained**, then **All turns** or an individual turn. Sources appear in descending order with their amount and percentage of the selected total. The five tiles show combat totals and averages per player turn. Arrow buttons move between encounters. Scroll or use the paging buttons for long fights and long source lists.
 
 Click **Overall** at the top to aggregate every recorded combat in the current run, including the current fight. The metric tiles show run totals and averages calculated as total amount divided by total recorded player turns (including zero-event turns). Source bars combine matching sources across combats, with percentages of the selected run total. The left column lists combats and their totals for the selected metric; click one to inspect its turns, or use **Combat** to return to the selected encounter. Overall shows total Voidform entries, entries per recorded combat, and charges earned instead of combat-local first-entry timing.
 
@@ -19,12 +19,14 @@ The footer also shows Voidform entry count, first readiness turn, and first entr
 
 ## What the numbers mean
 
-- Damage dealt counts HP actually removed from enemies by player-owned damage. It excludes enemy Block, prevention, and overkill. Attacks, natural DoT ticks, Psychic Link's triggered Touch ticks, and Halo have distinct source rows.
+- Damage dealt includes actual enemy HP lost, damage absorbed by enemy Block, and overkill from resolved hits. The lighter section of a source bar shows the absorbed portion. **Exclude blocked damage** removes that portion from totals, shares, averages and sorting without altering the saved data. Hover a damage row to see HP damage, absorbed damage, and overkill. Buffer, Intangible, and Invincible prevention are not overkill. Attacks, natural DoT ticks, Psychic Link's triggered Touch ticks, and Halo have distinct source rows.
 - Damage taken counts HP actually removed from the player, after Block and damage prevention. Self-damage appears under its card or debuff. Guardian Angel's prevented damage is excluded. Healing does not subtract from damage taken; this is not net HP change.
+- Insanity gained counts points actually added to the bar, after the 100-point cap and ready/active/Recharge restrictions. It excludes overflow and forced Voidform entry. Sources include card hits and explicit card gains, natural DoT ticks, Psychic Link ticks, powers, relics, and HP loss. Damage-taken sources have a separate labeled row, so an Attack and its self-damage can be distinguished. Turn, combat, Overall and archived views use the same source totals and percentages. Older combats without Insanity recording show a missing-data notice.
+- Healing done counts actual HP restored to the player during recorded combat, excluding overhealing and prevented healing. Card and Power sources remain separate; Vampiric Embrace receives credit for its Touch-triggered heals. Healing never subtracts from damage taken.
 - Block generated counts Block actually added after modifiers and the 999 cap. Refreshing Barrier counts only the new Block added. Retaining existing Block does not generate more Block.
 - A turn includes the player turn, its end-of-turn effects, and the following enemy actions. Start-of-turn effects belong to the new player turn. Zero-event turns count toward the average. Combat-start effects belong to turn 1.
 - Card sources combine copies of the same card, but separate upgraded cards. Repeated attacks, including Dragonwrath repeats, are credited to the repeated card. The ledger retains individual events, target names, and triggered-tick attribution.
-- Enemy attacks are grouped by enemy type/name; power and relic effects have separate rows when their queued actions expose the source. Effects without an identifiable source are explicitly labeled **Unattributed effect** or **Unattributed player effect**. External mods that bypass the engine's damage/Block methods are outside this observer's coverage.
+- Enemy attacks are grouped by enemy type/name; power and relic effects have separate rows when their queued actions expose the source. Effects without an identifiable source are explicitly labeled **Unattributed effect** or **Unattributed player effect**. External mods that bypass the engine's damage/Block/healing methods are outside this observer's coverage.
 
 This is a combat meter. Card reward offers, pick rates, draw/play ratios, and win rates per card are not collected in this version.
 
@@ -48,12 +50,16 @@ Existing saves can use the feature from their next combat after relaunch. Histor
 
 ```powershell
 ./scripts/build.ps1
-./scripts/playtest.ps1 -SkipBuild -DetailsOnly -Width 1920 -Height 1080 -Windowed
+./scripts/playtest.ps1 -SkipBuild -ObservationsOnly -Width 1920 -Height 1080 -Windowed
 ```
 
-`-DetailsOnly` runs focused observation and screen checks in the real patched game, using isolated test saves. It exports report screenshots to `.smoketest/card-review/` and results to `.smoketest/smoke-results.txt`. It does not simulate a full run. Unit tests cover aggregation, sorting, turn filters/averages, overkill, JSON round-tripping, and reload replacement.
+`-ObservationsOnly` runs the current focused observation and screen checks in the real patched game, using isolated test saves. It exports report screenshots to `.smoketest/card-review/` and results to `.smoketest/smoke-results.txt`. It does not simulate a full run. Unit tests cover aggregation, sorting, turn filters/averages, overkill, JSON round-tripping, and reload replacement.
 
 
 For a short Overall UI review without replaying combat scenarios, use `-DetailsOverallOnly`. It renders an isolated two-combat fixture, checks the Overall/Combat buttons and combat drill-down, and exports `combat-details-overall*.png`. Unit tests verify weighted averages, source totals/percentages, current-combat updates, zero-event turns, and restored/replayed history. This mode does not simulate a run.
 
 For a menu-only archive review, use `scripts/playtest.ps1 -SkipBuild -HistoryOnly -Windowed -Width 1920 -Height 1080`. It creates two temporary reports in the isolated smoke-test profile, reviews the menu/list/Overall/turn views, checks archive isolation and Back/Escape navigation, and removes its fixtures. It does not start a dungeon or simulate combat.
+
+Reports recorded before the October 29 local revision retain their original HP-only damage totals. Missing absorbed damage, overkill and healing cannot be reconstructed; these reports, and Overall views containing them, show a legacy-data notice. New combats record the additional fields even when resuming an older run.
+
+For the narrow Insanity attribution and Yogg-Saron tooltip review, run `scripts/playtest.ps1 -SkipBuild -InsanityDetailsOnly -Windowed -Width 1600 -Height 900`.

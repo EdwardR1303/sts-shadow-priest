@@ -104,11 +104,11 @@ public final class SetupBalanceSmokeTest {
         q.add(()->{check(p.currentBlock==14&&stacks(m,ShadowDotPower.PAIN)==2&&!n.hasPower(ShadowDotPower.PAIN),"Tendrils applies Dexterity per enemy and Pain only to attackers");reset();play(up(new FocusedWill()),null,1);});
         q.add(()->{check(p.currentBlock==10&&r.state.amount()==15,"Focused Will grants upgraded Block and immediate Insanity");reset();play(new ShadowWeaving(),null,1);});
         q.add(()->{p.powers.add(new DexterityPower(p,4));dots(m,1);dots(n,1);DotTiming.tick();});
-        q.add(()->{check(p.currentBlock==16&&ShadowDotPower.count(m)==0&&ShadowDotPower.count(n)==0,"Weaving counts six final-tick DoTs and applies Dexterity once");p.currentBlock=0;DotTiming.tick();});
+        q.add(()->{check(p.currentBlock==12&&ShadowDotPower.count(m)==0&&ShadowDotPower.count(n)==0,"Weaving counts six final-tick DoTs without Dexterity");p.currentBlock=0;DotTiming.tick();});
         q.add(()->{check(p.currentBlock==0,"Weaving grants no Dexterity-only Block with no DoTs");reset();play(up(new ShadowWeaving()),null,1);});
         q.add(()->{play(new ShadowWeaving(),null,1);});
         q.add(()->{dots(m,2);p.powers.add(new DexterityPower(p,4));DotTiming.tick();});
-        q.add(()->{check(p.currentBlock==19,"Stacked Weaving combines coefficients into one grant");reset();play(new PowerWordBarrier(),null,3);});
+        q.add(()->{check(p.currentBlock==15,"Stacked Weaving combines coefficients into one grant");reset();play(new PowerWordBarrier(),null,3);});
         q.add(()->{p.powers.add(new ShadowWeavingPower(p,3));dots(m,2);DotTiming.tick();play(new VoidTendrils(),null,1);});
         q.add(()->{check(p.currentBlock==47&&BarrierPower.remaining(p)==30,"Barrier allows ordinary Weaving and Tendrils gains without refilling its reserve");reset();play(new SearingNightmare(),null,2);});
         q.add(()->{check(p.hasPower(SearingNightmarePower.POWER_ID)&&p.hand.isEmpty(),"Searing Nightmare is a played persistent Power");m.currentBlock=100;play(new MindSear(),null,3);});

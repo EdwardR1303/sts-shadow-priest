@@ -10,7 +10,7 @@ import shadowpriest.powers.*;
 
 public class Serendipity extends PriestCard {
  public static final String ID="shadowpriest:Serendipity";
- public Serendipity() { super(ID,0,CardType.SKILL,CardRarity.RARE,CardTarget.SELF); exhaust=true; }
+ public Serendipity() { super(ID,0,CardType.SKILL,CardRarity.RARE,CardTarget.SELF); exhaust=true;selfRetain=true; }
  @Override public void use(AbstractPlayer p, AbstractMonster m) { addToBot(new shadowpriest.actions.SerendipityAction()); }
  @Override public void upgrade() { if (!upgraded) { upgradeName(); exhaust=false; upgradeText(); } }
 

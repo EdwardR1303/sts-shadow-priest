@@ -7,7 +7,7 @@ public class ShadowyPreparation extends PriestRelic {
     @Override public boolean canSpawn(){return super.canSpawn()&&VoidformRelic.current()!=null;}
     @Override public void atBattleStart(){
         VoidformRelic relic=VoidformRelic.current();
-        if(relic!=null){int n=(int)AbstractDungeon.getMonsters().monsters.stream().filter(m->!m.isDeadOrEscaped()).count();flash();relic.gainInsanity(10*n);}
+        if(relic!=null){int n=(int)AbstractDungeon.getMonsters().monsters.stream().filter(m->!m.isDeadOrEscaped()).count();flash();relic.gainInsanity(10*n,shadowpriest.details.DetailsTracker.relic(this));}
     }
     @Override public AbstractRelic makeCopy(){return new ShadowyPreparation();}
 }

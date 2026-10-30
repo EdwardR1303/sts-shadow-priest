@@ -54,8 +54,8 @@ public final class DetailsHistoryReview {
         });
         steps.add(()->{
             check(CardArtReview.capturedCombat("history-menu-button"),"Main menu Details button rendered");
-            InputHelper.mX=(int)(Settings.WIDTH-160*Settings.scale);InputHelper.mY=(int)(Settings.HEIGHT-135*Settings.scale);
-            InputHelper.justClickedLeft=true;DetailsHistoryScreen.MenuUpdate.before(CardCrawlGame.mainMenuScreen);
+            com.megacrit.cardcrawl.screens.mainMenu.MenuButton button=CardCrawlGame.mainMenuScreen.buttons.stream().filter(b->b.result==DetailsHistoryScreen.DETAILS_HISTORY).findFirst().get();
+            button.hb.clicked=true;button.update();
             check(DetailsHistoryScreen.isOpen(),"Main-menu button opens archive without a dungeon");
         });
         steps.add(()->{
@@ -75,7 +75,7 @@ public final class DetailsHistoryReview {
         steps.add(()->{
             check(CardArtReview.capturedCombat("history-overall"),"Saved Overall report rendered");
             click(120,449);check(!DetailsScreen.INSTANCE.isOverall(),"Saved combat drill-down works");
-            click(120,449);click(1100,610);CardArtReview.requestCombat("history-turn-block");
+            click(120,449);click(800,610);CardArtReview.requestCombat("history-turn-block");
         });
         steps.add(()->{
             check(CardArtReview.capturedCombat("history-turn-block"),"Saved combat turn and Block view rendered");

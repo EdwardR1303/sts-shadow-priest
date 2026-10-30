@@ -40,6 +40,7 @@ public final class MindDecayTimingSmokeTest {
     }
     public static void append(Queue<Runnable> q) {
         q.add(() -> {
+            CardArtReview.singularityFx();
             p=AbstractDungeon.player;m=AbstractDungeon.getMonsters().monsters.get(0);
             p.powers.clear();p.loseBlock();p.currentHealth=p.maxHealth=500;m.powers.clear();
             for(CardGroup g:new CardGroup[]{p.hand,p.drawPile,p.discardPile,p.exhaustPile,p.limbo})g.clear();
@@ -51,17 +52,17 @@ public final class MindDecayTimingSmokeTest {
             hp=p.currentHealth;plays=AbstractDungeon.actionManager.cardsPlayedThisCombat.size();p.applyStartOfTurnCards();
         });
         q.add(() -> {
-            check(p.currentHealth==hp-2,"Only the copy in hand ticks; draw/discard copies do not");
+            check(p.currentHealth==hp-1,"Only the copy in hand ticks; draw/discard copies do not");
             check(p.hand.contains(curse) && AbstractDungeon.actionManager.cardsPlayedThisCombat.size()==plays,"Start penalty neither plays nor removes the retained Curse");
             p.addBlock(2);p.powers.add(new BlurPower(p,1));hp=p.currentHealth;nextTurn();
         });
         q.add(() -> {
-            check(p.currentHealth==hp && p.currentBlock==0,"Retained Block absorbs damage on an actual next turn");
+            check(p.currentHealth==hp-1 && p.currentBlock==2,"Retained Block is preserved while Mind Decay removes one HP on an actual next turn");
             check(p.hand.contains(curse) && p.drawPile.size()>20,"Curse is retained without reshuffle or redraw");
             p.hand.addToTop(new MindDecay());hp=p.currentHealth;VoidformRelic.current().reset();nextTurn();
         });
         q.add(() -> {
-            check(p.currentHealth==hp-4,"Two retained copies each tick once on the next turn");
+            check(p.currentHealth==hp-2,"Two retained copies each tick once on the next turn");
             check(VoidformRelic.current().state.amount()==10,"Each unblocked penalty grants normal damage-taken Insanity");
             p.hand.clear();p.drawPile.removeCard(drawn);p.drawPile.addToTop(drawn);hp=p.currentHealth;
             AbstractDungeon.actionManager.addToBottom(new DrawCardAction(p,1));

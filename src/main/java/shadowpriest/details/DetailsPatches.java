@@ -63,6 +63,10 @@ public final class DetailsPatches {
         @SpirePrefixPatch public static void before(AbstractCreature __instance,DamageInfo info){DetailsTracker.beforeDamage(__instance,info);}
         @SpirePostfixPatch public static void after(){DetailsTracker.afterDamage();}
         @SpireInstrumentPatch public static ExprEditor instrument(){return new ExprEditor(){
+            @Override public void edit(MethodCall call)throws CannotCompileException{
+                if(call.getMethodName().equals("decrementBlock"))
+                    call.replace("{ int before=$0.currentBlock; $_=$proceed($$); shadowpriest.details.DetailsTracker.absorbed($0,before-$0.currentBlock); }");
+            }
             @Override public void edit(FieldAccess field)throws CannotCompileException{
                 if(field.isWriter() && field.getFieldName().equals("currentHealth"))
                     field.replace("{ shadowpriest.details.DetailsTracker.healthWrite($0, $0.currentHealth, $1); $proceed($$); }");
@@ -76,5 +80,12 @@ public final class DetailsPatches {
         @SpirePrefixPatch public static void before(AbstractCreature __instance){BlockState.before.set(__instance,__instance.currentBlock);}
         @SpirePostfixPatch public static void after(AbstractCreature __instance){DetailsTracker.block(__instance,BlockState.before.get(__instance));}
     }
+    @SpirePatch(clz=AbstractCreature.class,method="heal",paramtypez={int.class,boolean.class})
+    public static class Healing {
+        @SpirePrefixPatch public static void before(AbstractCreature __instance){HealingState.before.set(__instance,__instance.currentHealth);}
+        @SpirePostfixPatch public static void after(AbstractCreature __instance){DetailsTracker.healed(__instance,HealingState.before.get(__instance));}
+    }
+    @SpirePatch(clz=AbstractCreature.class,method=SpirePatch.CLASS)
+    public static class HealingState {public static SpireField<Integer> before=new SpireField<>(()->0);}
     private DetailsPatches(){}
 }

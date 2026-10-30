@@ -266,37 +266,40 @@
       "base": {
         "cost": 2,
         "target": "SELF",
-        "text": "Gain 12 Block and 1 Blur.",
+        "text": "Gain 12 Block and 1 Blur. Below 35% HP, repeat this effect once.",
         "stats": {
           "block": 12,
-          "blur": 1
+          "blur": 1,
+          "lowHealthThresholdPercent": 35,
+          "lowHealthGrants": 2
         },
         "keywords": [],
         "effects": [
-          "Gain 12 Block and 1 Blur."
+          "Gain 12 Block and 1 Blur. Below 35% HP, repeat this effect once."
         ]
       },
       "upgrade": {
-        "summary": "Gain 16 Block instead.",
+        "summary": "Gain 16 Block per grant instead.",
         "card": {
           "cost": 2,
           "target": "SELF",
-          "text": "Gain 16 Block and 1 Blur.",
+          "text": "Gain 16 Block and 1 Blur. Below 35% HP, repeat this effect once.",
           "stats": {
             "block": 16,
-            "blur": 1
+            "blur": 1,
+            "lowHealthThresholdPercent": 35,
+            "lowHealthGrants": 2
           },
           "keywords": [],
           "effects": [
-            "Gain 16 Block and 1 Blur."
+            "Gain 16 Block and 1 Blur. Below 35% HP, repeat this effect once."
           ]
         }
       },
       "rulesNotes": [
-        "Dexterity applies once. Blur retains Block, not cards.",
-        "All Insanity sources obey the shared ready, active, and Recharge restrictions."
+        "Check current HP once when played, strictly below 35% of maximum HP. At low HP, grant Block and Blur twice: 24/32 Block before modifiers and 2 Blur. Dexterity and other normal card Block modifiers apply to each grant. This is one card play with one conditional repeat, unaffected by Haste and incapable of recursively repeating. At or above 35%, grant only 12/16 Block and 1 Blur. Blur retains Block, not cards. Preview the current total Block and Blur in combat."
       ],
-      "balanceNotes": "Accepted starting values. Focused mechanics tests do not establish full-run balance.",
+      "balanceNotes": "Accepted October 29, 2026; implemented locally, awaiting full-run playtesting.",
       "art": {
         "wowAbility": "Bulwark",
         "icon": "",
@@ -473,40 +476,38 @@
       "base": {
         "cost": 0,
         "target": "ENEMY",
-        "text": "Deal 10 damage. If the enemy was above 20% HP before the hit, lose 3 HP if the hit removes enemy HP.",
+        "text": "Deal 10 damage. If the target loses HP and survives, lose 2 HP. If this kills, return it to your hand.",
         "stats": {
           "damage": 10,
           "hits": 1,
-          "healthThresholdPercent": 20,
-          "backlash": 3
+          "backlash": 2
         },
         "keywords": [],
         "effects": [
-          "Deal 10 damage. If the enemy was above 20% HP before the hit, lose 3 HP if the hit removes enemy HP."
+          "Deal 10 damage. If the target loses HP and survives, lose 2 HP. If this kills, return it to your hand."
         ]
       },
       "upgrade": {
-        "summary": "A second hit; threshold rises to 30%.",
+        "summary": "Deal 10 damage twice. Check backlash after each hit; the kill return is unchanged.",
         "card": {
           "cost": 0,
           "target": "ENEMY",
-          "text": "Deal 10 damage twice. Each hit: if the enemy was above 30% HP before the hit, lose 3 HP if it removes enemy HP.",
+          "text": "Deal 10 damage twice. Each hit: if the target loses HP and survives, lose 2 HP. If this kills, return it to your hand.",
           "stats": {
             "damage": 10,
             "hits": 2,
-            "healthThresholdPercent": 30,
-            "backlash": 3
+            "backlash": 2
           },
           "keywords": [],
           "effects": [
-            "Deal 10 damage twice. Each hit: if the enemy was above 30% HP before the hit, lose 3 HP if it removes enemy HP."
+            "Deal 10 damage twice. Each hit: if the target loses HP and survives, lose 2 HP. If this kills, return it to your hand."
           ]
         }
       },
       "rulesNotes": [
-        "Implementation edge cases: docs/card-batch-01.md."
+        "Check survival after each direct hit. Preserve the existing HP-damage condition: fully blocked or prevented hits cause no backlash. A killing hit causes no backlash, stops remaining hits, and returns the actual played card once through normal card cleanup. Reset the return flag on each play. A kill from Psychic Link or another separate effect does not qualify. Haste adds hits only to the upgraded version. Purged replays cannot leave a card in hand; normal forced Exhaust or Rebound still takes precedence. Backlash uses normal HP-loss prevention and Insanity reactions."
       ],
-      "balanceNotes": "First reward-card batch; numbers require human full-run balance testing.",
+      "balanceNotes": "Accepted October 29, 2026; implemented locally, awaiting full-run playtesting.",
       "art": {
         "wowAbility": "Shadow Word: Death",
         "icon": "",
@@ -528,15 +529,15 @@
       "base": {
         "cost": 1,
         "target": "ENEMY",
-        "text": "Deal 10 damage, plus 2 per unique DoT on the target. Gain 10 Insanity.",
+        "text": "Deal 10 damage, plus 2 per unique DoT on the target. Gain 10 Insanity per unique DoT on the target.",
         "stats": {
           "damage": 10,
           "bonusPerDot": 2,
-          "insanity": 10
+          "insanityPerDot": 10
         },
         "keywords": [],
         "effects": [
-          "Deal 10 damage, plus 2 per unique DoT on the target. Gain 10 Insanity."
+          "Deal 10 damage, plus 2 per unique DoT on the target. Gain 10 Insanity per unique DoT on the target."
         ]
       },
       "upgrade": {
@@ -544,23 +545,22 @@
         "card": {
           "cost": 1,
           "target": "ENEMY",
-          "text": "Deal 12 damage, plus 4 per unique DoT on the target. Gain 10 Insanity.",
+          "text": "Deal 12 damage, plus 4 per unique DoT on the target. Gain 10 Insanity per unique DoT on the target.",
           "stats": {
             "damage": 12,
             "bonusPerDot": 4,
-            "insanity": 10
+            "insanityPerDot": 10
           },
           "keywords": [],
           "effects": [
-            "Deal 12 damage, plus 4 per unique DoT on the target. Gain 10 Insanity."
+            "Deal 12 damage, plus 4 per unique DoT on the target. Gain 10 Insanity per unique DoT on the target."
           ]
         }
       },
       "rulesNotes": [
-        "Snapshot unique DoTs before the hit. Explicit Insanity follows damage even if the target dies, in addition to the universal ten per hit.",
-        "All Insanity sources obey the shared ready, active, and Recharge restrictions."
+        "Snapshot unique DoTs before the hit. Explicit Insanity follows damage even if the target dies, in addition to the universal ten per hit: 10/20/30/40 total for zero/one/two/three DoTs. All gains obey the shared cap and ready, active, and Recharge restrictions. Hovering a target previews damage and explicit bonus Insanity."
       ],
-      "balanceNotes": "Accepted starting values. Focused mechanics tests do not establish full-run balance.",
+      "balanceNotes": "Accepted October 29, 2026; implemented locally, awaiting full-run playtesting.",
       "art": {
         "wowAbility": "Mind Blast",
         "icon": "",
@@ -1466,7 +1466,7 @@
       "base": {
         "cost": 3,
         "target": "SELF",
-        "text": "Enter Voidform for the rest of combat. Take double damage from enemy Attacks for the rest of combat. Exhaust.",
+        "text": "For the rest of combat: enter Voidform, your Attacks cost 0 energy, and take double damage from enemy Attacks. Exhaust.",
         "stats": {
           "incomingAttackMultiplier": 2
         },
@@ -1474,30 +1474,31 @@
           "EXHAUST"
         ],
         "effects": [
-          "Enter Voidform for the rest of combat. Take double damage from enemy Attacks for the rest of combat. Exhaust."
+          "For the rest of combat: enter Voidform, your Attacks cost 0 energy, and take double damage from enemy Attacks. Exhaust."
         ]
       },
       "upgrade": {
-        "summary": "Cost becomes 2 energy; the benefit and damage penalty are unchanged.",
+        "summary": "Draw 2 cards after entering; cost remains 3 energy.",
         "card": {
-          "cost": 2,
+          "cost": 3,
           "target": "SELF",
-          "text": "Enter Voidform for the rest of combat. Take double damage from enemy Attacks for the rest of combat. Exhaust.",
+          "text": "For the rest of combat: enter Voidform, your Attacks cost 0 energy, and take double damage from enemy Attacks. Draw 2 cards. Exhaust.",
           "stats": {
-            "incomingAttackMultiplier": 2
+            "incomingAttackMultiplier": 2,
+            "draw": 2
           },
           "keywords": [
             "EXHAUST"
           ],
           "effects": [
-            "Enter Voidform for the rest of combat. Take double damage from enemy Attacks for the rest of combat. Exhaust."
+            "For the rest of combat: enter Voidform, your Attacks cost 0 energy, and take double damage from enemy Attacks. Draw 2 cards. Exhaust."
           ]
         }
       },
       "rulesNotes": [
-        "Bypass Insanity and Recharge. Extend an existing ordinary Voidform rather than entering again. Invalidate ready activation cards. Additional Surrenders are unplayable once permanent form is active. Treat the doubled incoming Attack damage as a buff inseparable from the bargain: Artifact does not prevent it, and Mass Dispel or Orange Pellets cannot cleanse it. Double normal incoming Attack damage before Block; non-Attack and HP-loss damage are unchanged. Lasts for combat and works without the starter relic."
+        "Bypass Insanity and Recharge. Extend an existing ordinary Voidform rather than entering again. Invalidate ready activation cards. Fixed-cost playable Attacks cost zero for the rest of combat, including cards drawn later; X-cost Attacks keep their normal energy spending, Haste, and Chemical X behavior. Do not mutate underlying card costs. Additional Surrenders are unplayable once permanent form is active. Treat the doubled incoming Attack damage as a buff inseparable from the bargain: Artifact does not prevent it, and Mass Dispel or Orange Pellets cannot cleanse it. Double normal incoming Attack damage before Block; non-Attack and HP-loss damage are unchanged. The upgraded draw occurs after activation and only on successful Surrender. Works without the starter relic."
       ],
-      "balanceNotes": "Accepted October 28, 2026. Full-run balance testing remains.",
+      "balanceNotes": "Accepted October 29, 2026; implemented locally, awaiting full-run playtesting.",
       "art": {
         "wowAbility": "Surrender to Madness",
         "icon": "achievement_boss_generalvezax_01",
@@ -1635,38 +1636,37 @@
       "base": {
         "cost": 0,
         "target": "SELF",
-        "text": "Remove Weak, Frail, and Vulnerable from yourself. Exhaust.",
+        "text": "Remove Weak, Frail, and Vulnerable from yourself. Exhaust a Curse from your hand. Exhaust.",
         "stats": {},
         "keywords": [
           "EXHAUST"
         ],
         "effects": [
-          "Remove all Weak, Frail, and Vulnerable from the player.",
-          "Exhaust."
+          "Remove Weak, Frail, and Vulnerable from yourself. Exhaust a Curse from your hand. Exhaust."
         ]
       },
       "upgrade": {
-        "summary": "Gain Retain.",
+        "summary": "Also gain 1 Artifact after cleansing; does not gain Retain.",
         "card": {
           "cost": 0,
           "target": "SELF",
-          "text": "Retain. Remove Weak, Frail, and Vulnerable from yourself. Exhaust.",
-          "stats": {},
+          "text": "Remove Weak, Frail, and Vulnerable from yourself. Exhaust a Curse from your hand. Gain 1 Artifact. Exhaust.",
+          "stats": {
+            "artifact": 1
+          },
           "keywords": [
-            "RETAIN",
             "EXHAUST"
           ],
           "effects": [
-            "Remove all Weak, Frail, and Vulnerable from the player.",
-            "Exhaust."
+            "Remove Weak, Frail, and Vulnerable from yourself. Exhaust a Curse from your hand. Gain 1 Artifact. Exhaust."
           ]
         }
       },
       "rulesNotes": [
-        "Only the named debuffs are removed.",
-        "Does not remove Surrender exposure, negative stats, or other debuffs."
+        "Playable without a Curse or any of the named debuffs. Remove only Weak, Frail, and Vulnerable, not Surrender to Madness's penalty or Shadow Mend debt. If Curses are in hand, exhaust one; visibly choose when multiple are available. Curse exhaustion is combat-only and triggers normal exhaust effects, including Void Vengeance. The upgrade grants Artifact after cleansing, even if no debuffs or Curses were present. Artifact can prevent a subsequent debuff application, including new Shadow Mend debt. Purify Disease itself Exhausts in both versions.",
+        "Implemented locally for 0.1.3; full-run balance testing pending."
       ],
-      "balanceNotes": "Zero energy compensates for a situational draw. Retain lets the upgrade wait for the relevant turn.",
+      "balanceNotes": "Accepted October 29, 2026; implemented locally, awaiting full-run playtesting.",
       "art": {
         "wowAbility": "Purify Disease",
         "icon": "spell_holy_nullifydisease",
@@ -1736,38 +1736,37 @@
       "designIntent": "Reliable setup, defense, and usable Voidform timing; accepted October 26, 2026.",
       "base": {
         "cost": 0,
-        "target": "ENEMY",
-        "text": "Until your next turn, the target deals 1 less Attack damage, plus 1 less per unique DoT on it.",
+        "target": "ALL_ENEMY",
+        "text": "Until your next turn, ALL enemies deal 1 less Attack damage, plus 1 less per unique DoT on them.",
         "stats": {
           "baseReduction": 1,
           "reductionPerDot": 1
         },
         "keywords": [],
         "effects": [
-          "Until your next turn, the target deals 1 less Attack damage, plus 1 less per unique DoT on it."
+          "Until your next turn, ALL enemies deal 1 less Attack damage, plus 1 less per unique DoT on them."
         ]
       },
       "upgrade": {
         "summary": "Base reduction becomes 2.",
         "card": {
           "cost": 0,
-          "target": "ENEMY",
-          "text": "Until your next turn, the target deals 2 less Attack damage, plus 1 less per unique DoT on it.",
+          "target": "ALL_ENEMY",
+          "text": "Until your next turn, ALL enemies deal 2 less Attack damage, plus 1 less per unique DoT on them.",
           "stats": {
             "baseReduction": 2,
             "reductionPerDot": 1
           },
           "keywords": [],
           "effects": [
-            "Until your next turn, the target deals 2 less Attack damage, plus 1 less per unique DoT on it."
+            "Until your next turn, ALL enemies deal 2 less Attack damage, plus 1 less per unique DoT on them."
           ]
         }
       },
       "rulesNotes": [
-        "Snapshot unique DoTs when played. Reduction applies per Attack hit, floors damage at zero, stacks for this turn, and is blocked by Artifact.",
-        "All Insanity sources obey the shared ready, active, and Recharge restrictions."
+        "Snapshot unique DoTs separately for each living enemy when played. Each enemy receives its own debuff application, independently blocked by Artifact. Reduction applies per Attack hit, floors damage at zero, stacks for this turn, and expires after the enemy turn. The combat preview shows the current reduction, or a range when enemies differ."
       ],
-      "balanceNotes": "Accepted starting values. Focused mechanics tests do not establish full-run balance.",
+      "balanceNotes": "Accepted October 29, 2026; implemented locally, awaiting full-run playtesting.",
       "art": {
         "wowAbility": "Mind Soothe",
         "icon": "spell_holy_mindsooth",
@@ -1850,44 +1849,37 @@
       "base": {
         "cost": 2,
         "target": "SELF",
-        "text": "Gain 2 Dexterity and 2 Mastery. Lose 2 Strength.",
+        "text": "Gain 2 Dexterity and 2 Mastery. Add a Doubt Curse to your hand.",
         "stats": {
           "dexterity": 2,
-          "mastery": 2,
-          "strength": -2
+          "mastery": 2
         },
         "keywords": [],
         "effects": [
-          "Gain 2 Dexterity.",
-          "Gain 2 Mastery.",
-          "Lose 2 Strength."
+          "Gain 2 Dexterity and 2 Mastery. Add a Doubt Curse to your hand."
         ]
       },
       "upgrade": {
-        "summary": "Gain 3 Dexterity and 3 Mastery; retain the 2 Strength loss.",
+        "summary": "Cost becomes 1 energy; effect remains unchanged.",
         "card": {
-          "cost": 2,
+          "cost": 1,
           "target": "SELF",
-          "text": "Gain 3 Dexterity and 3 Mastery. Lose 2 Strength.",
+          "text": "Gain 2 Dexterity and 2 Mastery. Add a Doubt Curse to your hand.",
           "stats": {
-            "dexterity": 3,
-            "mastery": 3,
-            "strength": -2
+            "dexterity": 2,
+            "mastery": 2
           },
           "keywords": [],
           "effects": [
-            "Gain 3 Dexterity.",
-            "Gain 3 Mastery.",
-            "Lose 2 Strength."
+            "Gain 2 Dexterity and 2 Mastery. Add a Doubt Curse to your hand."
           ]
         }
       },
       "rulesNotes": [
-        "Repeatable, without Exhaust; stats last for combat.",
-        "Lose Strength through normal stat-debuff rules, including Artifact.",
-        "Mastery may be negative; damaging DoT ticks floor at zero."
+        "Repeatable; does not Exhaust. Stats last for combat. Each play generates one combat-only Doubt; it no longer reduces Strength. Curse creation is not a debuff application and cannot be prevented by Artifact. Creation is not a draw and does not trigger Dark Reinforcement. Full hands send the Curse to discard. The permanent deck is unchanged, so generated Curses do not increase Inescapable Torment's starting bonus.",
+        "Implemented locally for 0.1.3; full-run balance testing pending."
       ],
-      "balanceNotes": "Implemented; validate full-run balance, including repeated use and A20 Heart performance.",
+      "balanceNotes": "Accepted October 29, 2026; implemented locally, awaiting full-run playtesting.",
       "art": {
         "wowAbility": "Mental Fortitude",
         "icon": "ability_priest_clarityofpower",
@@ -2076,37 +2068,37 @@
       "base": {
         "cost": 2,
         "target": "ENEMY",
-        "text": "Deal 14 damage. Apply 2 Touch and 2 Pain.",
+        "text": "Deal 15 damage. Apply 3 Touch and 3 Pain. Add a Pain curse to your discard pile.",
         "stats": {
-          "damage": 14,
-          "touch": 2,
-          "pain": 2
+          "damage": 15,
+          "touch": 3,
+          "pain": 3
         },
         "keywords": [],
         "effects": [
-          "Deal 14 damage. Apply 2 Touch and 2 Pain."
+          "Deal 15 damage. Apply 3 Touch and 3 Pain. Add a Pain curse to your discard pile."
         ]
       },
       "upgrade": {
-        "summary": "Deal 18 damage; apply 3 Touch and 3 Pain.",
+        "summary": "Deal 20 damage; apply 5 Touch and 5 Pain. Add a Pain curse to your discard pile.",
         "card": {
           "cost": 2,
           "target": "ENEMY",
-          "text": "Deal 18 damage. Apply 3 Touch and 3 Pain.",
+          "text": "Deal 20 damage. Apply 5 Touch and 5 Pain. Add a Pain Curse to your discard pile.",
           "stats": {
-            "damage": 18,
-            "touch": 3,
-            "pain": 3
+            "damage": 20,
+            "touch": 5,
+            "pain": 5
           },
           "keywords": [],
           "effects": [
-            "Deal 18 damage. Apply 3 Touch and 3 Pain."
+            "Deal 20 damage. Apply 5 Touch and 5 Pain. Add a Pain Curse to your discard pile."
           ]
         }
       },
       "rulesNotes": [
-        "Damage first, then independent Touch and Pain applications on a surviving target. Each can consume Artifact. No self-damage. Replaces both the old implementation and the earlier 18/24-damage draft.",
-        "All Insanity sources obey the shared ready, active, and Recharge restrictions."
+        "Damage first, then independent Touch and Pain applications on a surviving target, then add one combat-only Pain Curse to your discard pile. Each debuff application can consume Artifact. Curse creation does not depend on either application succeeding. The card causes no immediate self-damage; the generated Curse retains its normal effect when later drawn. Creation is not a draw and does not change the permanent deck.",
+        "Implemented locally for 0.1.3; full-run balance testing pending."
       ],
       "balanceNotes": "Accepted starting values. Focused mechanics tests do not establish full-run balance.",
       "art": {
@@ -2284,13 +2276,13 @@
       "base": {
         "cost": 1,
         "target": "SELF",
-        "text": "During your turn, lose 1 less HP from each damage source, after Block. Stacks.",
+        "text": "During your turn, lose 1 less HP from each damage source. Stacks.",
         "stats": {
           "reduction": 1
         },
         "keywords": [],
         "effects": [
-          "During your turn, lose 1 less HP from each damage source, after Block. Stacks."
+          "During your turn, lose 1 less HP from each damage source. Stacks."
         ]
       },
       "upgrade": {
@@ -2298,20 +2290,20 @@
         "card": {
           "cost": 1,
           "target": "SELF",
-          "text": "During your turn, lose 2 less HP from each damage source, after Block. Stacks.",
+          "text": "During your turn, lose 2 less HP from each damage source. Stacks.",
           "stats": {
             "reduction": 2
           },
           "keywords": [],
           "effects": [
-            "During your turn, lose 2 less HP from each damage source, after Block. Stacks."
+            "During your turn, lose 2 less HP from each damage source. Stacks."
           ]
         }
       },
       "rulesNotes": [
         "Add benefits from all copies. Covers start-of-turn, card-play and end-of-turn damage/HP loss, including Thorns, Beat of Death, Curses and self-damage. Damage consumes Block normally before this reduces remaining HP loss, floored at zero. No protection during the enemy phase. Fully prevented HP loss grants neither Insanity nor Catharsis damage."
       ],
-      "balanceNotes": "Accepted October 28, 2026. Full-run balance testing remains.",
+      "balanceNotes": "Local playtest revision accepted October 29, 2026; not yet published.",
       "art": {
         "wowAbility": "Tithe Evasion",
         "icon": "spell_nzinsanity_bloodthirst",
@@ -2435,32 +2427,35 @@
       "base": {
         "cost": 0,
         "target": "SELF",
-        "text": "Choose one: Discard all Skills and draw that many Attacks; or discard all Attacks and draw that many Skills. Exhaust.",
+        "text": "Retain. Choose one: Discard all Skills and draw that many Attacks; or discard all Attacks and draw that many Skills. Exhaust.",
         "stats": {},
         "keywords": [
-          "EXHAUST"
+          "EXHAUST",
+          "RETAIN"
         ],
         "effects": [
-          "Choose one: Discard all Skills and draw that many Attacks; or discard all Attacks and draw that many Skills. Exhaust."
+          "Retain. Choose one: Discard all Skills and draw that many Attacks; or discard all Attacks and draw that many Skills. Exhaust."
         ]
       },
       "upgrade": {
-        "summary": "Remove Exhaust.",
+        "summary": "Remove Exhaust; keep Retain.",
         "card": {
           "cost": 0,
           "target": "SELF",
-          "text": "Choose one: Discard all Skills and draw that many Attacks; or discard all Attacks and draw that many Skills.",
+          "text": "Retain. Choose one: Discard all Skills and draw that many Attacks; or discard all Attacks and draw that many Skills.",
           "stats": {},
-          "keywords": [],
+          "keywords": [
+            "RETAIN"
+          ],
           "effects": [
-            "Choose one: Discard all Skills and draw that many Attacks; or discard all Attacks and draw that many Skills."
+            "Retain. Choose one: Discard all Skills and draw that many Attacks; or discard all Attacks and draw that many Skills."
           ]
         }
       },
       "rulesNotes": [
-        "Exclude the played Serendipity from the hand and discard count. Count cards actually discarded. Draw random matching cards from the draw pile only, without reshuffling, subject to hand capacity and available matches. Other Serendipity copies are ordinary Skills for this effect."
+        "Retain in both versions. Exclude the played Serendipity from the hand and discard count. Count cards actually discarded. Draw random matching cards from the draw pile only, without reshuffling, subject to hand capacity and available matches. Other Serendipity copies are ordinary Skills for this effect."
       ],
-      "balanceNotes": "Implemented; validate full-run balance, including repeated use and A20 Heart performance.",
+      "balanceNotes": "Accepted October 29, 2026; implemented locally, awaiting full-run playtesting.",
       "art": {
         "wowAbility": "Serendipity",
         "icon": "spell_holy_serendipity",
@@ -3130,37 +3125,38 @@
       "base": {
         "cost": 1,
         "target": "ENEMY",
-        "text": "Deal 6 damage. Apply 3 Pain.",
+        "text": "Deal 7 damage. Apply 3 Pain and 3 Madness.",
         "stats": {
-          "damage": 6,
-          "pain": 3
+          "damage": 7,
+          "pain": 3,
+          "madness": 3
         },
         "keywords": [],
         "effects": [
-          "Deal 6 damage. Apply 3 Pain."
+          "Deal 7 damage. Apply 3 Pain and 3 Madness."
         ]
       },
       "upgrade": {
-        "summary": "Deal 9 damage and apply 5 Pain.",
+        "summary": "Deal 10 damage and apply 5 Pain and 5 Madness.",
         "card": {
           "cost": 1,
           "target": "ENEMY",
-          "text": "Deal 9 damage. Apply 5 Pain.",
+          "text": "Deal 10 damage. Apply 5 Pain and 5 Madness.",
           "stats": {
-            "damage": 9,
-            "pain": 5
+            "damage": 10,
+            "pain": 5,
+            "madness": 5
           },
           "keywords": [],
           "effects": [
-            "Deal 9 damage. Apply 5 Pain."
+            "Deal 10 damage. Apply 5 Pain and 5 Madness."
           ]
         }
       },
       "rulesNotes": [
-        "Damage first, then Pain on the surviving target. Application requires no HP loss and respects Artifact.",
-        "All Insanity sources obey the shared ready, active, and Recharge restrictions."
+        "Damage first, then Pain, then Madness on a surviving target. Neither application requires HP loss. Each application independently respects Artifact; Pain keeps its five-stack cap."
       ],
-      "balanceNotes": "Accepted starting values. Focused mechanics tests do not establish full-run balance.",
+      "balanceNotes": "Accepted October 29, 2026; implemented locally, awaiting full-run playtesting.",
       "art": {
         "wowAbility": "Original Shadow Priest spell",
         "icon": "shadow_word_torment.png",
@@ -3182,37 +3178,37 @@
       "base": {
         "cost": 1,
         "target": "ENEMY",
-        "text": "Deal 4 damage. Apply 4 Madness. Gain 10 Insanity.",
+        "text": "Deal 6 damage. Apply 6 Madness. Gain 10 Insanity.",
         "stats": {
-          "damage": 4,
-          "madness": 4,
+          "damage": 6,
+          "madness": 6,
           "insanity": 10
         },
         "keywords": [],
         "effects": [
-          "Deal 4 damage. Apply 4 Madness. Gain 10 Insanity."
+          "Deal 6 damage. Apply 6 Madness. Gain 10 Insanity."
         ]
       },
       "upgrade": {
-        "summary": "Deal 7 damage and apply 6 Madness.",
+        "summary": "Deal 9 damage and apply 9 Madness; explicit Insanity remains 10.",
         "card": {
           "cost": 1,
           "target": "ENEMY",
-          "text": "Deal 7 damage. Apply 6 Madness. Gain 10 Insanity.",
+          "text": "Deal 9 damage. Apply 9 Madness. Gain 10 Insanity.",
           "stats": {
-            "damage": 7,
-            "madness": 6,
+            "damage": 9,
+            "madness": 9,
             "insanity": 10
           },
           "keywords": [],
           "effects": [
-            "Deal 7 damage. Apply 6 Madness. Gain 10 Insanity."
+            "Deal 9 damage. Apply 9 Madness. Gain 10 Insanity."
           ]
         }
       },
       "rulesNotes": [
-        "Damage, then Madness on the surviving target, then explicit Insanity. Madness does not require HP loss; Artifact can block it. Explicit Insanity still resolves.",
-        "All Insanity sources obey the shared ready, active, and Recharge restrictions."
+        "Damage, then Madness on the surviving target, then explicit Insanity. Madness does not require HP loss; Artifact can block it. Explicit Insanity still resolves, including on a killing hit, in addition to the universal 10 per direct Attack hit. Both gains obey the shared cap and ready, active, and Recharge restrictions.",
+        "Implemented locally for 0.1.3; full-run balance testing pending."
       ],
       "balanceNotes": "Accepted starting values. Focused mechanics tests do not establish full-run balance.",
       "art": {
@@ -3288,36 +3284,36 @@
       "base": {
         "cost": 1,
         "target": "ENEMY",
-        "text": "Gain 6 Block. Apply 3 Madness.",
+        "text": "Gain 6 Block. Apply 5 Madness.",
         "stats": {
           "block": 6,
-          "madness": 3
+          "madness": 5
         },
         "keywords": [],
         "effects": [
-          "Gain 6 Block. Apply 3 Madness."
+          "Gain 6 Block. Apply 5 Madness."
         ]
       },
       "upgrade": {
-        "summary": "Gain 9 Block and apply 5 Madness.",
+        "summary": "Gain 9 Block and apply 7 Madness.",
         "card": {
           "cost": 1,
           "target": "ENEMY",
-          "text": "Gain 9 Block. Apply 5 Madness.",
+          "text": "Gain 9 Block. Apply 7 Madness.",
           "stats": {
             "block": 9,
-            "madness": 5
+            "madness": 7
           },
           "keywords": [],
           "effects": [
-            "Gain 9 Block. Apply 5 Madness."
+            "Gain 9 Block. Apply 7 Madness."
           ]
         }
       },
       "rulesNotes": [
         "Block resolves first with Dexterity once. Artifact can prevent Madness but not Block. No immediate DoT tick."
       ],
-      "balanceNotes": "Accepted October 28, 2026. Full-run balance testing remains.",
+      "balanceNotes": "Local playtest revision accepted October 29, 2026; not yet published.",
       "art": {
         "wowAbility": "Encroaching Shadows",
         "icon": "spell_shadow_painspike",
@@ -3416,10 +3412,9 @@
         }
       },
       "rulesNotes": [
-        "Count Touch, Pain, and Madness once each per living enemy before natural ticks, including final one-stack ticks. Combine the total into one Block grant with Dexterity once. No DoTs means no Block, including no Dexterity-only grant. Copies add coefficients before the one grant. Barrier allows this ordinary Block gain without increasing its reserve.",
-        "All Insanity sources obey the shared ready, active, and Recharge restrictions."
+        "Count Touch, Pain, and Madness once each per living enemy before natural ticks, including final one-stack ticks. Combine the total into one flat Block grant, like Orichalcum: Dexterity, Frail, and card Block modifiers do not change it. No DoTs means no Block. Copies add coefficients before the one grant. Barrier allows this ordinary Block gain without increasing its reserve."
       ],
-      "balanceNotes": "Accepted starting values. Focused mechanics tests do not establish full-run balance.",
+      "balanceNotes": "Local playtest revision accepted October 29, 2026; not yet published.",
       "art": {
         "wowAbility": "Shadow Weaving (archived Priest talent)",
         "icon": "spell_shadow_blackplague",
@@ -3587,40 +3582,40 @@
       ],
       "startingCopies": 0,
       "tags": [],
-      "designIntent": "Deal 16 damage. Remove all DoTs from the target. Deal 3 damage per stack removed, increased by Mastery.",
+      "designIntent": "Consume a substantial DoT setup for one large finisher, with no initial hit.",
       "base": {
         "cost": 2,
         "target": "ENEMY",
-        "text": "Remove all DoTs from the target. Deal 3 damage per stack removed, increased by Mastery.",
+        "text": "Deal 3 damage per DoT stack on the target, increased by Mastery. Remove all its DoTs before dealing damage.",
         "stats": {
           "magic": 3,
           "damage": 0
         },
         "keywords": [],
         "effects": [
-          "Remove all DoTs from the target. Deal 3 damage per stack removed, increased by Mastery."
+          "Deal 3 damage per DoT stack on the target, increased by Mastery. Remove all its DoTs before dealing damage."
         ]
       },
       "upgrade": {
-        "summary": "Remove all DoTs from the target. Deal 5 damage per stack removed, increased by Mastery.",
+        "summary": "Deal 5 damage per DoT stack on the target, increased by Mastery. Remove all its DoTs before dealing damage.",
         "card": {
           "cost": 2,
           "target": "ENEMY",
-          "text": "Remove all DoTs from the target. Deal 5 damage per stack removed, increased by Mastery.",
+          "text": "Deal 5 damage per DoT stack on the target, increased by Mastery. Remove all its DoTs before dealing damage.",
           "stats": {
             "magic": 5,
             "damage": 0
           },
           "keywords": [],
           "effects": [
-            "Remove all DoTs from the target. Deal 5 damage per stack removed, increased by Mastery."
+            "Deal 5 damage per DoT stack on the target, increased by Mastery. Remove all its DoTs before dealing damage."
           ]
         }
       },
       "rulesNotes": [
-        "Consume all current Touch, Pain and Madness. Resolve one hit for stacks multiplied by max(0, coefficient + Mastery). Strength does not modify it. Normal Attack modifiers, including Voidform, Weak and Vulnerable, apply. Block applies normally. No stacks means no hit or hit-based Insanity; otherwise one hit grants 10 Insanity. Other debuffs are unchanged. Hit-triggered effects may reapply Madness after consumption. Hovering the target shows calculated damage."
+        "Consume all current Touch, Pain and Madness. Resolve one hit for stacks multiplied by max(0, coefficient + Mastery). Strength does not modify it. Normal Attack modifiers, including Voidform, Weak and Vulnerable, apply. Block applies normally. No stacks means no hit or hit-based Insanity; otherwise one hit grants 10 Insanity. Other debuffs are unchanged. Hit-triggered effects may reapply Madness after consumption. Hovering the target shows calculated damage beside the first sentence. Singularity FX uses the calculated hit: below 50 small, 50–99 medium, and 100+ dramatic."
       ],
-      "balanceNotes": "Accepted October 28, 2026. Full-run balance testing remains.",
+      "balanceNotes": "Local playtest revision accepted October 29, 2026; not yet published.",
       "art": {
         "wowAbility": "Singularity",
         "icon": "ability_argus_blightorb",
@@ -3689,34 +3684,39 @@
       "tags": [],
       "designIntent": "Double the target's Madness. Exhaust.",
       "base": {
-        "cost": 1,
+        "cost": 0,
         "target": "ENEMY",
-        "text": "Double the target's Madness. Exhaust.",
+        "text": "Double the target's Madness. Add a Mind Decay to your discard pile. Exhaust.",
         "stats": {
           "magic": 2
         },
-        "keywords": [],
+        "keywords": [
+          "EXHAUST"
+        ],
         "effects": [
-          "Double the target's Madness. Exhaust."
+          "Double the target's Madness. Add a Mind Decay to your discard pile. Exhaust."
         ]
       },
       "upgrade": {
-        "summary": "Triple the target's Madness. Exhaust.",
+        "summary": "Triple the target's Madness. Add a Mind Decay to your discard pile. Exhaust.",
         "card": {
-          "cost": 1,
+          "cost": 0,
           "target": "ENEMY",
-          "text": "Triple the target's Madness. Exhaust.",
+          "text": "Triple the target's Madness. Add a Mind Decay to your discard pile. Exhaust.",
           "stats": {
             "magic": 3
           },
-          "keywords": [],
+          "keywords": [
+            "EXHAUST"
+          ],
           "effects": [
-            "Triple the target's Madness. Exhaust."
+            "Triple the target's Madness. Add a Mind Decay to your discard pile. Exhaust."
           ]
         }
       },
       "rulesNotes": [
-        "Add stacks equal to current Madness times (multiplier minus one) when the effect resolves. Artifact blocks the addition. Creates no missing Madness and does not immediately tick it."
+        "Add stacks equal to current Madness times (multiplier minus one) when the effect resolves. Artifact blocks the addition. Creates no missing Madness and does not immediately tick it. Generate one combat-only Mind Decay regardless of whether Madness increased, including when the target has no Madness or Artifact blocks the addition. Creation is not a draw and does not change the permanent deck. Mind Decay is the retained Curse defined below; Mental Decay is a separate rare Skill.",
+        "Implemented locally for 0.1.3; full-run balance testing pending."
       ],
       "balanceNotes": "Accepted October 27, 2026; test in full runs before further tuning.",
       "art": {
@@ -3885,38 +3885,38 @@
       ],
       "startingCopies": 0,
       "tags": [],
-      "designIntent": "Apply 10 Madness to ALL enemies. Add a Decay with Retain to your hand.",
+      "designIntent": "Spread Madness at the cost of a retained Mind Decay Curse.",
       "base": {
         "cost": 1,
         "target": "ALL_ENEMY",
-        "text": "Apply 10 Madness to ALL enemies. Add a Decay with Retain to your hand.",
+        "text": "Apply 10 Madness to ALL enemies. Add a Mind Decay to your hand.",
         "stats": {
           "magic": 10
         },
         "keywords": [],
         "effects": [
-          "Apply 10 Madness to ALL enemies. Add a Decay with Retain to your hand."
+          "Apply 10 Madness to ALL enemies. Add a Mind Decay to your hand."
         ]
       },
       "upgrade": {
-        "summary": "Apply 15 Madness to ALL enemies. Add a Decay with Retain to your hand.",
+        "summary": "Apply 15 Madness to ALL enemies. Add a Mind Decay to your hand.",
         "card": {
           "cost": 1,
           "target": "ALL_ENEMY",
-          "text": "Apply 15 Madness to ALL enemies. Add a Decay with Retain to your hand.",
+          "text": "Apply 15 Madness to ALL enemies. Add a Mind Decay to your hand.",
           "stats": {
             "magic": 15
           },
           "keywords": [],
           "effects": [
-            "Apply 15 Madness to ALL enemies. Add a Decay with Retain to your hand."
+            "Apply 15 Madness to ALL enemies. Add a Mind Decay to your hand."
           ]
         }
       },
       "rulesNotes": [
-        "Generate one combat-only Decay, preserving its normal end-turn HP loss and giving it Retain. Creation is not a draw. Full hands send the Curse to discard; Retain survives redraw and copying. Artifact blocks each enemy's application separately."
+        "Generate one combat-only Mind Decay: an Unplayable Curse with Retain that causes 1 HP loss at the start of your turn. Its penalty is not a card play. Creation is not a draw. Full hands send the Curse to discard; Retain survives redraw and copying. Artifact blocks each enemy's Madness application separately."
       ],
-      "balanceNotes": "Accepted October 27, 2026; test in full runs before further tuning.",
+      "balanceNotes": "Local playtest revision accepted October 29, 2026; not yet published.",
       "art": {
         "wowAbility": "Mental Decay",
         "icon": "ability_kaztik_dominatemind",

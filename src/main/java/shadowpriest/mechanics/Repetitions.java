@@ -46,6 +46,7 @@ public final class Repetitions {
     }
     @SpirePatch(clz=AbstractCard.class,method="applyPowers")
     @SpirePatch(clz=AbstractCard.class,method="calculateCardDamage")
+    @SpirePatch(clz=AbstractCard.class,method="resetAttributes")
     public static class Refresh {
         @SpirePostfixPatch public static void after(AbstractCard __instance){
             String old=__instance.rawDescription;
@@ -59,7 +60,9 @@ public final class Repetitions {
         @SpirePrefixPatch public static void before(AbstractCard __instance) {
             AbstractCard c=__instance;
             if(c.rawDescription==null)return;
-            if(c.cost==-1 && !c.rawDescription.contains("!shadowpriest:EffectiveX!"))
+            boolean combat=AbstractDungeon.player!=null && AbstractDungeon.currMapNode!=null && AbstractDungeon.getCurrRoom().phase==com.megacrit.cardcrawl.rooms.AbstractRoom.RoomPhase.COMBAT;
+            if(!combat)c.rawDescription=c.rawDescription.replace(" NL (X = !shadowpriest:EffectiveX!)", "");
+            if(combat && c.cost==-1 && !c.rawDescription.contains("!shadowpriest:EffectiveX!"))
                 c.rawDescription+=" NL (X = !shadowpriest:EffectiveX!)";
             if(base(c)>=0) {
                 c.rawDescription=c.rawDescription.replace("twice", "!shadowpriest:Repeats! times")

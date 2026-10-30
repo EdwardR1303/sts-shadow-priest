@@ -25,9 +25,9 @@ public class MindBlast extends PriestCard {
     @Override public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot(shadowpriest.vfx.ShadowFx.hit(shadowpriest.vfx.ShadowSpellEffect.Style.BLAST, p, m));
         addToBot(new DamageAction(m, new DamageInfo(p, damage, damageTypeForTurn), AbstractGameAction.AttackEffect.NONE));
-        addToBot(new shadowpriest.actions.GainInsanityAction(10));
+        addToBot(new shadowpriest.actions.GainInsanityAction(10 * ShadowDotPower.count(m)));
     }
     @Override public void upgrade() {
-        if (!upgraded) { upgradeName(); upgradeDamage(2); upgradeMagicNumber(2); }
+        if (!upgraded) { upgradeName(); upgradeDamage(2); upgradeMagicNumber(2); upgradeText(); }
     }
 }

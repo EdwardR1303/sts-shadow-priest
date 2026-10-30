@@ -31,6 +31,7 @@ public final class DetailsTracker implements CustomSavable<String> {
     }
     private static final class DamageFrame {
         final AbstractCreature target; final DamageInfo info; final Tag tag;
+        int hp,blocked,overkill;
         DamageFrame(AbstractCreature target,DamageInfo info,Tag tag){this.target=target;this.info=info;this.tag=tag;}
     }
     public static Run run(){return run;}
@@ -50,7 +51,7 @@ public final class DetailsTracker implements CustomSavable<String> {
         if(AbstractDungeon.getMonsters()!=null)
             for(AbstractMonster m:AbstractDungeon.getMonsters().monsters)enemies.add(m.name);
         combat=run.begin(AbstractDungeon.floorNum,AbstractDungeon.actNum,enemies.length()==0?"Combat":enemies.toString());
-        active=true;firstTurn=true;dirty=true;tags.clear();contexts.clear();damage.clear();
+        combat.extendedMetrics=true;combat.insanityRecorded=true;active=true;firstTurn=true;dirty=true;tags.clear();contexts.clear();damage.clear();
     }
     public static void startTurn(){
         if(!active)return;
@@ -78,6 +79,14 @@ public final class DetailsTracker implements CustomSavable<String> {
     }
     public static void ready(){if(active){combat.readyTurns.add(combat.turns);dirty=true;}}
     public static void activated(){if(active){combat.activationTurns.add(combat.turns);dirty=true;}}
+    /** Count only accepted gains; a forced Voidform entry is not generated Insanity. */
+    public static void insanity(int amount,Source explicitSource,boolean fromHpLoss){
+        if(!active||amount<=0)return;
+        Tag tag=explicitSource!=null?new Tag(explicitSource,null):!damage.isEmpty()?damage.peek().tag:currentTag();
+        if(tag==null)tag=new Tag(UNKNOWN,null);
+        if(fromHpLoss)tag=new Tag(new Source(tag.source.id+"@hp-loss",tag.source.name+" (damage taken)",tag.source.kind,tag.source.player),"HP loss");
+        record(Metric.INSANITY,tag,amount,AbstractDungeon.player.name);
+    }
     private static Tag currentTag(){
         if(!contexts.isEmpty())return contexts.peek();
         return AbstractDungeon.actionManager==null?null:tags.get(AbstractDungeon.actionManager.currentAction);
@@ -118,13 +127,31 @@ public final class DetailsTracker implements CustomSavable<String> {
         }
         damage.push(new DamageFrame(target,info,tag));
     }
-    public static void afterDamage(){if(!damage.isEmpty())damage.pop();}
+    public static void afterDamage(){
+        if(damage.isEmpty())return;
+        DamageFrame frame=damage.pop();
+        if(active && frame.target!=AbstractDungeon.player && (frame.info.owner==AbstractDungeon.player || (frame.info.owner==null && frame.tag.source.player))){
+            combat.recordDamage(frame.tag.source,frame.hp,frame.blocked,frame.overkill,frame.target.name,frame.tag.trigger);dirty=true;
+        }
+    }
+    public static void absorbed(AbstractCreature target,int amount){
+        if(active&&!damage.isEmpty()&&damage.peek().target==target)damage.peek().blocked+=Math.max(0,amount);
+    }
+    public static void healed(AbstractCreature target,int before){
+        if(active && target==AbstractDungeon.player){
+            Tag tag=currentTag();record(Metric.HEALING,tag==null?new Tag(UNKNOWN,null):tag,Math.max(0,target.currentHealth-before),target.name);
+        }
+    }
+    public static void heal(AbstractCreature target,int amount,Source source){
+        contexts.push(new Tag(source,null));
+        try{target.heal(amount);}finally{contexts.pop();}
+    }
     public static void healthWrite(AbstractCreature target,int before,int after){
         if(!active || damage.isEmpty() || damage.peek().target!=target)return;
         DamageFrame frame=damage.peek();int amount=hpLost(before,after);
         if(target==AbstractDungeon.player)record(Metric.DAMAGE_TAKEN,frame.tag,amount,target.name);
         else if(frame.info.owner==AbstractDungeon.player || (frame.info.owner==null && frame.tag.source.player))
-            record(Metric.DAMAGE_DEALT,frame.tag,amount,target.name);
+            {frame.hp+=amount;if(before>0)frame.overkill+=Math.max(0,-after);}
     }
     public static void block(AbstractCreature target,int before){
         if(active && target==AbstractDungeon.player){

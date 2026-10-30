@@ -54,7 +54,7 @@ public final class DetailsSmokeTest {
             check(c().rows(Metric.DAMAGE_DEALT,0).stream().filter(row->row.source.name.equals("Mind Flay")).findFirst().get().events==3,"Multi-hit records three distinct damage events");
             m.currentBlock=100;before=total(Metric.DAMAGE_DEALT);play(new MindSpike());
         });
-        q.add(()->{check(total(Metric.DAMAGE_DEALT)==before,"Fully blocked Attack adds no HP damage");
+        q.add(()->{check(total(Metric.DAMAGE_DEALT)==before+6,"Fully blocked Attack adds absorbed damage");
             m.powers.add(new ShadowDotPower(m,ShadowDotPower.TOUCH,3));
             m.powers.add(new ShadowDotPower(m,ShadowDotPower.PAIN,3));m.powers.add(new MadnessPower(m,6));
             ((ShadowDotPower)m.getPower(ShadowDotPower.TOUCH)).naturalTick();
@@ -136,7 +136,7 @@ public final class DetailsSmokeTest {
             before=total(Metric.DAMAGE_DEALT);m.currentHealth=2;play(new MindSpike());
         });
         q.add(()->{
-            check(total(Metric.DAMAGE_DEALT)==before+2,"Killing hit counts remaining HP, not overkill");
+            check(total(Metric.DAMAGE_DEALT)==before+6,"Killing hit includes overkill");
             m=AbstractDungeon.getMonsters().monsters.get(1);
             DetailsTracker.save();DetailsStore.flush();runId=DetailsTracker.run().id;
             Run saved=DetailsStore.load(runId);

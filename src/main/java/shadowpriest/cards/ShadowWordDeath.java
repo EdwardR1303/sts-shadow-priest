@@ -13,14 +13,15 @@ public class ShadowWordDeath extends PriestCard {
     public static final String ID = "shadowpriest:ShadowWordDeath";
     public ShadowWordDeath() {
         super(ID, 0, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
-        baseDamage = 10; baseMagicNumber = magicNumber = 20;
+        baseDamage = 10;
     }
     @Override public float getTitleFontSize() { return 16f; }
     @Override public void use(AbstractPlayer p, AbstractMonster m) {
+        returnToHand=false;
         for (int i = 0; i < (upgraded ? shadowpriest.mechanics.Repetitions.add(2) : 1); i++)
-            addToBot(new shadowpriest.actions.DeathHitAction(p, m, new DamageInfo(p, damage, damageTypeForTurn), magicNumber));
+            addToBot(new shadowpriest.actions.DeathHitAction(p, m, new DamageInfo(p, damage, damageTypeForTurn), this));
     }
     @Override public void upgrade() {
-        if (!upgraded) { upgradeName(); upgradeMagicNumber(10); upgradeText(); }
+        if (!upgraded) { upgradeName(); upgradeText(); }
     }
 }

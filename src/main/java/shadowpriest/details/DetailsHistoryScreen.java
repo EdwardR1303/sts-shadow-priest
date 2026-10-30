@@ -8,6 +8,8 @@ import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import com.megacrit.cardcrawl.screens.mainMenu.MainMenuScreen;
+import com.megacrit.cardcrawl.screens.mainMenu.MenuButton;
+import basemod.ReflectionHacks;
 import java.nio.file.Paths;
 import java.time.Instant;
 import java.time.ZoneId;
@@ -39,9 +41,6 @@ public final class DetailsHistoryScreen {
     public static void close(){
         if(DetailsScreen.INSTANCE.viewingArchive())DetailsScreen.INSTANCE.dismiss();
         open=false;scan=null;loading=null;InputHelper.pressedEscape=false;InputHelper.justClickedLeft=false;
-    }
-    private static boolean menuAvailable(MainMenuScreen menu){
-        return menu.screen==MainMenuScreen.CurScreen.MAIN_MENU&&!menu.isSettingsUp&&!menu.isFadingOut;
     }
     private static void update(){
         layout();
@@ -101,13 +100,41 @@ public final class DetailsHistoryScreen {
     private static void rect(SpriteBatch sb,float a,float b,float w,float h,Color c){sb.setColor(c);sb.draw(ImageMaster.WHITE_SQUARE_IMG,x+a*s,y+b*s,w*s,h*s);}
     private static void text(SpriteBatch sb,String value,float a,float b,Color c,float scale){FontHelper.tipBodyFont.getData().setScale(scale);FontHelper.renderFontLeftTopAligned(sb,FontHelper.tipBodyFont,value,x+a*s,y+b*s,c);FontHelper.tipBodyFont.getData().setScale(1);}
     private static void button(SpriteBatch sb,String label,float a,float b,float w,float h){rect(sb,a,b,w,h,inside(a,b,w,h)?new Color(.25f,.17f,.36f,1):PANEL);text(sb,label,a+12,b+h-10,Color.WHITE,.82f);}
-    private static void menuButtonLayout(){s=Settings.scale;x=Settings.WIDTH-280*s;y=Settings.HEIGHT-160*s;}
+    @SpireEnum public static MenuButton.ClickResult DETAILS_HISTORY;
+    @SpirePatch(clz=MenuButton.class,method="setLabel")
+    public static class Label {
+        @SpirePostfixPatch public static void after(MenuButton __instance){
+            if(__instance.result==DETAILS_HISTORY)ReflectionHacks.setPrivate(__instance,MenuButton.class,"label","Details");
+        }
+    }
+    @SpirePatch(clz=MainMenuScreen.class,method="setMainMenuButtons")
+    public static class AddButton {
+        @SpirePostfixPatch public static void after(MainMenuScreen __instance){
+            int index=__instance.buttons.size();
+            for(int i=0;i<__instance.buttons.size();i++){
+                MenuButton.ClickResult r=__instance.buttons.get(i).result;
+                if(r==MenuButton.ClickResult.PLAY||r==MenuButton.ClickResult.ABANDON_RUN){index=i;break;}
+            }
+            __instance.buttons.add(index,new MenuButton(DETAILS_HISTORY,index));
+            for(int i=index+1;i<__instance.buttons.size();i++){
+                MenuButton b=__instance.buttons.get(i);ReflectionHacks.setPrivate(b,MenuButton.class,"index",i);
+                b.hb.move(b.hb.cX,MenuButton.START_Y+i*MenuButton.SPACE_Y*(Settings.isTouchScreen||Settings.isMobile?2:1));
+            }
+        }
+    }
+    @SpirePatch(clz=MenuButton.class,method="buttonEffect")
+    public static class OpenButton {
+        @SpirePrefixPatch public static SpireReturn<Void> before(MenuButton __instance){
+            if(__instance.result==DETAILS_HISTORY){open();return SpireReturn.Return(null);}
+            return SpireReturn.Continue();
+        }
+    }
 
     @SpirePatch(clz=MainMenuScreen.class,method="update")
     public static class MenuUpdate {
         @SpirePrefixPatch public static SpireReturn<Void> before(MainMenuScreen __instance){
             if(open){update();return SpireReturn.Return(null);}
-            if(menuAvailable(__instance)){menuButtonLayout();if(click(0,0,240,50)){open();return SpireReturn.Return(null);}}
+
             return SpireReturn.Continue();
         }
     }
@@ -115,7 +142,7 @@ public final class DetailsHistoryScreen {
     public static class MenuRender {
         @SpirePostfixPatch public static void after(MainMenuScreen __instance,SpriteBatch sb){
             if(open)render(sb);
-            else if(menuAvailable(__instance)){float old=sb.getPackedColor();menuButtonLayout();button(sb,"Combat Details",0,0,240,50);sb.setColor(old);}
+
         }
     }
 }

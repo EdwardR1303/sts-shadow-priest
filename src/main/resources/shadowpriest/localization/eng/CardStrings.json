@@ -21,7 +21,7 @@
   },
   "shadowpriest:Bulwark": {
     "NAME": "Bulwark",
-    "DESCRIPTION": "Gain !B! Block. NL Block is not removed at the start of your next turn."
+    "DESCRIPTION": "Gain !B! Block and 1 Blur. NL Below 35% HP, repeat this effect once."
   },
   "shadowpriest:ShadowMend": {
     "NAME": "Shadow Mend",
@@ -37,12 +37,13 @@
   },
   "shadowpriest:ShadowWordDeath": {
     "NAME": "Shadow Word: Death",
-    "DESCRIPTION": "Deal !D! damage. NL If the enemy is above !M!% HP before the hit, lose 3 HP if it loses HP.",
-    "UPGRADE_DESCRIPTION": "Deal !D! damage twice. NL Each hit: if the enemy is above !M!% HP before the hit, lose 3 HP if it loses HP."
+    "DESCRIPTION": "Deal !D! damage. NL If this kills, return it to your hand. Otherwise, if it deals HP damage, lose 2 HP.",
+    "UPGRADE_DESCRIPTION": "Deal !D! damage twice. NL Each hit: lose 2 HP if the target loses HP and survives. NL If this kills, return it to your hand."
   },
   "shadowpriest:MindBlast": {
     "NAME": "Mind Blast",
-    "DESCRIPTION": "Deal !D! damage, plus !M! per unique shadowpriest:DoT on the target. NL Gain 10 Insanity."
+    "DESCRIPTION": "Deal 10 damage plus !M! per unique shadowpriest:DoT. NL Gain 10 Insanity per unique shadowpriest:DoT.",
+    "UPGRADE_DESCRIPTION": "Deal 12 damage plus !M! per unique shadowpriest:DoT. NL Gain 10 Insanity per unique shadowpriest:DoT."
   },
   "shadowpriest:Dispersion": {
     "NAME": "Dispersion",
@@ -119,7 +120,8 @@
   },
   "shadowpriest:SurrenderToMadness": {
     "NAME": "Surrender to Madness",
-    "DESCRIPTION": "Enter shadowpriest:Voidform for the rest of combat. NL Take double damage from enemy Attacks. NL Exhaust."
+    "DESCRIPTION": "For the rest of combat: enter shadowpriest:Voidform, your Attacks cost 0, and take double damage from enemy Attacks. NL Exhaust.",
+    "UPGRADE_DESCRIPTION": "For the rest of combat: enter shadowpriest:Voidform, your Attacks cost 0, and take double damage from enemy Attacks. NL Draw 2 cards. NL Exhaust."
   },
   "shadowpriest:Penance": {
     "NAME": "Penance",
@@ -131,8 +133,8 @@
   },
   "shadowpriest:PurifyDisease": {
     "NAME": "Purify Disease",
-    "DESCRIPTION": "Remove Weak, Frail, and Vulnerable from yourself. NL Exhaust.",
-    "UPGRADE_DESCRIPTION": "Retain. NL Remove Weak, Frail, and Vulnerable from yourself. NL Exhaust."
+    "DESCRIPTION": "Remove Weak, Frail, and Vulnerable from yourself. NL Exhaust a Curse from your hand. NL Exhaust.",
+    "UPGRADE_DESCRIPTION": "Remove Weak, Frail, and Vulnerable from yourself. NL Exhaust a Curse from your hand. NL Gain 1 Artifact. NL Exhaust."
   },
   "shadowpriest:DispelMagic": {
     "NAME": "Dispel Magic",
@@ -162,7 +164,7 @@
   },
   "shadowpriest:BloodMagic": {
     "NAME": "Blood Magic",
-    "DESCRIPTION": "Deal !D! damage. NL Apply !M! shadowpriest:Touch and !M! shadowpriest:Pain."
+    "DESCRIPTION": "Deal !D! damage. NL Apply !M! shadowpriest:Touch and !M! shadowpriest:Pain. NL Add a *Pain Curse to your discard pile."
   },
   "shadowpriest:VoidShield": {
     "NAME": "Void Shield",
@@ -184,8 +186,8 @@
   },
   "shadowpriest:Serendipity": {
     "NAME": "Serendipity",
-    "DESCRIPTION": "Choose: Discard all Skills to draw that many Attacks, or discard all Attacks to draw that many Skills. NL Exhaust.",
-    "UPGRADE_DESCRIPTION": "Choose: Discard all Skills to draw that many Attacks, or discard all Attacks to draw that many Skills."
+    "DESCRIPTION": "Retain. NL Choose: Discard all Skills to draw that many Attacks, or discard all Attacks to draw that many Skills. NL Exhaust.",
+    "UPGRADE_DESCRIPTION": "Retain. NL Choose: Discard all Skills to draw that many Attacks, or discard all Attacks to draw that many Skills."
   },
   "shadowpriest:SerendipityAttack": {
     "NAME": "Seek Attacks",
@@ -197,7 +199,7 @@
   },
   "shadowpriest:TitheEvasion": {
     "NAME": "Tithe Evasion",
-    "DESCRIPTION": "During your turn, lose !M! less HP from each damage source, after Block."
+    "DESCRIPTION": "During your turn, lose !M! less HP from each damage source."
   },
   "shadowpriest:Dragonwrath": {
     "NAME": "Dragonwrath",
@@ -213,12 +215,12 @@
   },
   "shadowpriest:MentalFortitude": {
     "NAME": "Mental Fortitude",
-    "DESCRIPTION": "Gain !M! Dexterity and !M! shadowpriest:Mastery. NL Lose 2 Strength."
+    "DESCRIPTION": "Gain !M! Dexterity and !M! shadowpriest:Mastery. NL Add a *Doubt to your hand."
   },
   "shadowpriest:MindSoothe": {
     "NAME": "Mind Soothe",
-    "DESCRIPTION": "Until your next turn, the target deals 1 less Attack damage, plus 1 less per unique shadowpriest:DoT.",
-    "UPGRADE_DESCRIPTION": "Until your next turn, the target deals 2 less Attack damage, plus 1 less per unique shadowpriest:DoT."
+    "DESCRIPTION": "Until your next turn, ALL enemies deal 1 less Attack damage, plus 1 less per unique shadowpriest:DoT on them.",
+    "UPGRADE_DESCRIPTION": "Until your next turn, ALL enemies deal 2 less Attack damage, plus 1 less per unique shadowpriest:DoT on them."
   },
   "shadowpriest:UnfurlingDarkness": {
     "NAME": "Unfurling Darkness",
@@ -261,7 +263,7 @@
   },
   "shadowpriest:ShadowWordTorment": {
     "NAME": "Shadow Word: Torment",
-    "DESCRIPTION": "Deal !D! damage. NL Apply !M! shadowpriest:Pain."
+    "DESCRIPTION": "Deal !D! damage. NL Apply !M! shadowpriest:Pain and !M! shadowpriest:Madness."
   },
   "shadowpriest:MindTrauma": {
     "NAME": "Mind Trauma",
@@ -299,8 +301,8 @@
   },
   "shadowpriest:Singularity": {
     "NAME": "Singularity",
-    "DESCRIPTION": "Remove all shadowpriest:DoTs from the target. Deal !M! damage per stack removed, increased by shadowpriest:Mastery.",
-    "UPGRADE_DESCRIPTION": "Remove all shadowpriest:DoTs from the target. Deal !M! damage per stack removed, increased by shadowpriest:Mastery."
+    "DESCRIPTION": "Deal !M! damage per shadowpriest:DoT stack on the target, increased by shadowpriest:Mastery. NL Remove all its shadowpriest:DoTs before dealing damage.",
+    "UPGRADE_DESCRIPTION": "Deal !M! damage per shadowpriest:DoT stack on the target, increased by shadowpriest:Mastery. NL Remove all its shadowpriest:DoTs before dealing damage."
   },
   "shadowpriest:TwinSuns": {
     "NAME": "Twin Suns",
@@ -309,8 +311,8 @@
   },
   "shadowpriest:MaladyOfTheMind": {
     "NAME": "Malady of the Mind",
-    "DESCRIPTION": "Double the enemy's shadowpriest:Madness. NL Exhaust.",
-    "UPGRADE_DESCRIPTION": "Triple the enemy's shadowpriest:Madness. NL Exhaust."
+    "DESCRIPTION": "Double the enemy's shadowpriest:Madness. NL Add a *Mind *Decay to your discard pile. NL Exhaust.",
+    "UPGRADE_DESCRIPTION": "Triple the enemy's shadowpriest:Madness. NL Add a *Mind *Decay to your discard pile. NL Exhaust."
   },
   "shadowpriest:VoidEntropy": {
     "NAME": "Void Entropy",
@@ -339,6 +341,6 @@
   },
   "shadowpriest:MindDecay": {
     "NAME": "Mind Decay",
-    "DESCRIPTION": "Unplayable. Retain. NL At the start of your turn, take 2 damage."
+    "DESCRIPTION": "Retain. NL At the start of your turn, lose 1 HP."
   }
 }

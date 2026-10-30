@@ -62,6 +62,7 @@ public class VoidformRelic extends CustomRelic implements AlternateCardCostModif
             && ((VoidformPower)AbstractDungeon.player.getPower(VoidformPower.POWER_ID)).permanent;
     }
     public static int effectiveCost(AbstractCard card, int cost) {
+        if(isPermanent() && card.type==AbstractCard.CardType.ATTACK && card.cost>=0 && cost>=0)return 0;
         return InsanityState.effectiveCost(cost, card.type == AbstractCard.CardType.ATTACK && card.cost >= 0, isActive());
     }
     // BaseMod pays one point of each Attack's cost before energy. Nothing is written to the card,
@@ -69,10 +70,10 @@ public class VoidformRelic extends CustomRelic implements AlternateCardCostModif
     @Override public boolean costEffectActive(AbstractCard card) {
         return state.active() && card.type == AbstractCard.CardType.ATTACK && card.cost >= 0 && card.costForTurn >= 0;
     }
-    @Override public int getAlternateResource(AbstractCard card) { return costEffectActive(card) ? 1 : 0; }
+    @Override public int getAlternateResource(AbstractCard card) { return costEffectActive(card) ? (isPermanent()?Math.max(0,card.costForTurn):1) : 0; }
     @Override public boolean prioritizeAlternateCost(AbstractCard card) { return true; }
     @Override public boolean canSplitCost(AbstractCard card) { return true; }
-    @Override public int spendAlternateCost(AbstractCard card, int amount) { return costEffectActive(card) ? Math.max(0, amount - 1) : amount; }
+    @Override public int spendAlternateCost(AbstractCard card, int amount) { return costEffectActive(card) ? (isPermanent()?0:Math.max(0, amount - 1)) : amount; }
     @Override public String replaceCostString(AbstractCard card, String text, Color color) {
         return costEffectActive(card) && !card.freeToPlay() ? Integer.toString(effectiveCost(card, card.costForTurn)) : text;
     }
@@ -91,12 +92,19 @@ public class VoidformRelic extends CustomRelic implements AlternateCardCostModif
         if (AbstractDungeon.currMapNode == null || AbstractDungeon.getCurrRoom() == null
             || AbstractDungeon.getCurrRoom().phase != AbstractRoom.RoomPhase.COMBAT) return;
         boolean wasReady = state.ready();
+        int before=state.amount();
         state.gainFromHpLoss(damageAmount);
+        shadowpriest.details.DetailsTracker.insanity(state.amount()-before,null,true);
         updateInsanityDisplay(wasReady);
     }
     public void gainInsanity(int amount) {
+        gainInsanity(amount,null);
+    }
+    public void gainInsanity(int amount,shadowpriest.details.CombatReport.Source source) {
         boolean wasReady = state.ready();
+        int before=state.amount();
         state.gain(amount);
+        shadowpriest.details.DetailsTracker.insanity(state.amount()-before,source,false);
         updateInsanityDisplay(wasReady);
     }
     private void updateInsanityDisplay(boolean wasReady) {

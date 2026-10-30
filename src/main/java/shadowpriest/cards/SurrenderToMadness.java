@@ -9,6 +9,7 @@ import shadowpriest.powers.VoidformPower;
 import shadowpriest.relics.VoidformRelic;
 
 public class SurrenderToMadness extends PriestCard {
+    @Override public float getTitleFontSize(){return 18f;}
     public static final String ID = "shadowpriest:SurrenderToMadness";
     public SurrenderToMadness() {
         super(ID, 3, CardType.SKILL, CardRarity.RARE, CardTarget.SELF); exhaust = true;
@@ -25,6 +26,7 @@ public class SurrenderToMadness extends PriestCard {
             @Override public void update() {
                 // Resolve in the queue so duplicated plays cannot apply the bargain twice.
                 if (!VoidformRelic.isPermanent()) {
+                    if(upgraded)addToTop(new com.megacrit.cardcrawl.actions.common.DrawCardAction(p,2));
                     VoidformRelic relic = VoidformRelic.current();
                     if (relic != null) relic.surrender();
                     else if (!VoidformRelic.isActive()) shadowpriest.relics.IdolOfYoggSaron.enteredVoidform();
@@ -38,5 +40,5 @@ public class SurrenderToMadness extends PriestCard {
             }
         });
     }
-    @Override public void upgrade() { if (!upgraded) { upgradeName(); upgradeBaseCost(2); } }
+    @Override public void upgrade() { if (!upgraded) { upgradeName(); upgradeText(); } }
 }

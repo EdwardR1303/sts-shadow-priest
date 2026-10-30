@@ -49,7 +49,7 @@ public final class DetailsHistory {
             for(CombatReport c:run.combats) {
                 if(c==null||c.encounter==null||c.outcome==null||c.turns<1||c.events==null||c.readyTurns==null||c.activationTurns==null)return null;
                 for(Event e:c.events)
-                    if(e==null||e.metric==null||e.source==null||e.source.id==null||e.source.name==null||e.amount<0)return null;
+                    if(e==null||e.metric==null||e.source==null||e.source.id==null||e.source.name==null||e.amount<0||e.blocked<0||e.overkill<0)return null;
             }
             return run;
         } catch(Exception ignored) { return null; }

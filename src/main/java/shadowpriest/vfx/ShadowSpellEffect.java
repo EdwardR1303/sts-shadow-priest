@@ -16,6 +16,14 @@ public final class ShadowSpellEffect extends AbstractGameEffect {
     private final Style style;
     private final float sx, sy, tx, ty;
     private final AtlasRegion laser, spark;
+    private int collapseTier;
+
+    public static int collapseTier(int damage) { return damage>=100?2:damage>=50?1:0; }
+    public ShadowSpellEffect(float tx,float ty,int damage) {
+        this(Style.COLLAPSE,tx,ty,tx,ty);
+        collapseTier=collapseTier(damage);
+        startingDuration=duration=.65f+.15f*collapseTier;
+    }
 
     public ShadowSpellEffect(Style style, float sx, float sy, float tx, float ty) {
         this.style = style; this.sx = sx; this.sy = sy; this.tx = tx; this.ty = ty;
@@ -63,16 +71,29 @@ public final class ShadowSpellEffect extends AbstractGameEffect {
                             sy + MathUtils.sin(aim) * Settings.WIDTH, 450 + 25 * MathUtils.sin(t * 60), alpha);
                     orb(sb, sx, sy, 160, alpha);
                     break;
-                case COLLAPSE:
-                    circle(sb, tx, ty, 230 * (1 - t) + 20, alpha, t * 240);
-                    circle(sb, tx, ty, 160 * (1 - t) + 12, alpha * .7f, -t * 300);
-                    for (int i = 0; i < 10; i++) {
-                        float angle = i * MathUtils.PI2 / 10 + t * 5;
-                        float radius = (1 - t) * 110 * Settings.scale;
-                        orb(sb, tx + MathUtils.cos(angle) * radius, ty + MathUtils.sin(angle) * radius, 27, alpha);
+                case COLLAPSE: {
+                    float size=140+collapseTier*120;
+                    float pull=Math.max(0,1-t/.72f);
+                    collapseRing(sb,tx,ty,size*2*pull+12,alpha);
+                    for(int ring=0;ring<=collapseTier;ring++)
+                        collapseRing(sb,tx,ty,size*(1.4f-ring*.3f)*pull+10,alpha*.65f);
+                    int strands=8+collapseTier*8;
+                    for (int i = 0; i < strands; i++) {
+                        float angle = i * MathUtils.PI2 / strands + t * 3;
+                        float radius = pull * size * Settings.scale;
+                        float px=tx+MathUtils.cos(angle)*radius,py=ty+MathUtils.sin(angle)*radius;
+                        beam(sb,px,py,tx+MathUtils.cos(angle+.35f)*radius*.65f,
+                            ty+MathUtils.sin(angle+.35f)*radius*.65f,6+collapseTier*3,alpha*.7f);
+                        orb(sb,px,py,15+collapseTier*7,alpha);
                     }
-                    orb(sb, tx, ty, 35 + 100 * t, alpha);
+                    orb(sb,tx,ty,(35+size*.5f)*(1-pull),alpha);
+                    if(t>.72f){
+                        float burst=(t-.72f)/.28f;
+                        collapseRing(sb,tx,ty,size*2*burst,(1-burst)*.9f);
+                        orb(sb,tx,ty,size*(1-burst),1-burst);
+                    }
                     break;
+                }
                 case ASCEND:
                     circle(sb, tx, ty, 80 + 340 * t, alpha * .8f, t * 90);
                     for (int i = 0; i < 9; i++) {
@@ -98,6 +119,20 @@ public final class ShadowSpellEffect extends AbstractGameEffect {
         sb.draw(laser, x1, y1 - h / 2, 0, h / 2, length, h, 1, 1, angle);
         sb.setColor(.9f, .65f, 1f, alpha);
         sb.draw(laser, x1, y1 - h / 8, 0, h / 8, length, h / 4, 1, 1, angle);
+    }
+    private void collapseRing(SpriteBatch sb,float x,float y,float diameter,float alpha){
+        float radius=diameter*Settings.scale/2;
+        for(int i=0;i<64;i++){
+            float a=i*MathUtils.PI2/64,b=(i+1)*MathUtils.PI2/64;
+            float x1=x+MathUtils.cos(a)*radius,y1=y+MathUtils.sin(a)*radius;
+            float dx=(MathUtils.cos(b)-MathUtils.cos(a))*radius,dy=(MathUtils.sin(b)-MathUtils.sin(a))*radius;
+            float length=(float)Math.sqrt(dx*dx+dy*dy),angle=MathUtils.atan2(dy,dx)*MathUtils.radiansToDegrees;
+            for(int layer=0;layer<2;layer++){
+                float width=(layer==0?6:1.5f)*Settings.scale;
+                sb.setColor(layer==0?.45f:.85f,layer==0?.1f:.5f,1,alpha*(layer==0?.3f:.9f));
+                sb.draw(ImageMaster.WHITE_SQUARE_IMG,x1,y1-width/2,0,width/2,length+Settings.scale,width,1,1,angle,0,0,1,1,false,false);
+            }
+        }
     }
     private void orb(SpriteBatch sb, float x, float y, float size, float alpha) {
         float s = size * Settings.scale;

@@ -10,7 +10,7 @@ import shadowpriest.actions.GainInsanityAction;
 
 public class EncroachingShadows extends PriestCard {
     public static final String ID="shadowpriest:EncroachingShadows";
-    public EncroachingShadows() { super(ID,1,CardType.SKILL,CardRarity.COMMON,CardTarget.ENEMY);baseBlock=6;baseMagicNumber=magicNumber=3; }
+    public EncroachingShadows() { super(ID,1,CardType.SKILL,CardRarity.COMMON,CardTarget.ENEMY);baseBlock=6;baseMagicNumber=magicNumber=5; }
     @Override public void use(AbstractPlayer p,AbstractMonster m) { addToBot(new GainBlockAction(p,p,block));addToBot(new ApplyPowerAction(m,p,new MadnessPower(m,magicNumber),magicNumber)); }
     @Override public void upgrade() { if(!upgraded) { upgradeName();upgradeBlock(3);upgradeMagicNumber(2); } }
     @Override public float getTitleFontSize(){return 19f;}

@@ -1,7 +1,6 @@
 package shadowpriest.powers;
 
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -18,9 +17,7 @@ public final class ShadowWeavingPower extends AbstractPower {
         int count=0;
         for(AbstractMonster m:AbstractDungeon.getMonsters().monsters) if(!m.isDeadOrEscaped()) count+=ShadowDotPower.count(m);
         if(count==0)return;
-        AbstractCard calculation=new shadowpriest.cards.PowerWordShield();
-        calculation.baseBlock=count*amount;calculation.applyPowers();
-        addToBot(new GainBlockAction(owner,owner,calculation.block));
+        addToBot(new GainBlockAction(owner,owner,count*amount));
     }
     @Override public void updateDescription() { description="At turn end, gain #b"+amount+" Block per active DoT across ALL enemies, as one combined Block grant."; }
 }

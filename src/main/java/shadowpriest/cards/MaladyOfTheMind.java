@@ -9,13 +9,13 @@ import shadowpriest.powers.*;
 
 public class MaladyOfTheMind extends PriestCard {
     public static final String ID="shadowpriest:MaladyOfTheMind";
-    public MaladyOfTheMind() { super(ID,1,CardType.SKILL,CardRarity.UNCOMMON,CardTarget.ENEMY); baseMagicNumber=magicNumber=2;exhaust=true; }
+    public MaladyOfTheMind() { super(ID,0,CardType.SKILL,CardRarity.UNCOMMON,CardTarget.ENEMY); baseMagicNumber=magicNumber=2;exhaust=true;cardsToPreview=new MindDecay(); }
     @Override public float getTitleFontSize() { return 18f; }
     @Override public void use(AbstractPlayer p, AbstractMonster m) { addToBot(new AbstractGameAction(){public void update(){
             int stacks=MadnessPower.stacks(m)*(magicNumber-1);
             if(VoidBolt.alive(m)&&stacks>0)addToTop(new ApplyPowerAction(m,p,new MadnessPower(m,stacks),stacks));
             isDone=true;
-        }}); }
+        }});addToBot(new MakeTempCardInDiscardAction(new MindDecay(),1)); }
     @Override public void upgrade() { if(!upgraded) { upgradeName(); upgradeMagicNumber(1);upgradeText(); } }
 
 }

@@ -12,9 +12,17 @@ final class FormulaPreview {
         String result=null;
         boolean handled=true;
         if(inCombat())switch(card.cardID){
-            case MindBlast.ID: result=target==null?null:card.damage+" damage";break;
+            case MindBlast.ID: result=target==null?null:card.damage+" damage, "+(10*shadowpriest.powers.ShadowDotPower.count(target))+" bonus Insanity";break;
             case Insight.ID: result=target==null?null:shadowpriest.powers.ShadowDotPower.count(target)+" cards";break;
-            case MindSoothe.ID: result=target==null?null:(shadowpriest.powers.ShadowDotPower.count(target)+(card.upgraded?2:1))+" less damage per hit";break;
+            case MindSoothe.ID:
+                int min=Integer.MAX_VALUE,max=0;
+                for(com.megacrit.cardcrawl.monsters.AbstractMonster m:AbstractDungeon.getMonsters().monsters)if(VoidBolt.alive(m)){
+                    int reduction=shadowpriest.powers.ShadowDotPower.count(m)+(card.upgraded?2:1);min=Math.min(min,reduction);max=Math.max(max,reduction);
+                }
+                result=max==0?null:(min==max?Integer.toString(min):min+"-"+max)+" less damage per hit";break;
+            case Bulwark.ID:
+                int grants=Bulwark.empowered(AbstractDungeon.player)?2:1;
+                result=card.block*grants+" total Block, "+grants+" Blur";break;
             case MaladyOfTheMind.ID: result=target==null?null:(shadowpriest.powers.MadnessPower.stacks(target)*(card.magicNumber-1))+" Madness to apply";break;
             case MadnessOverwhelming.ID: result=((MadnessOverwhelming)card).application()+" Madness";break;
             case VoidTendrils.ID:
@@ -22,11 +30,10 @@ final class FormulaPreview {
                 result=(enemies*card.block)+" total Block";break;
             case ShadowWeaving.ID:
                 int dots=0;for(com.megacrit.cardcrawl.monsters.AbstractMonster m:AbstractDungeon.getMonsters().monsters)if(VoidBolt.alive(m))dots+=shadowpriest.powers.ShadowDotPower.count(m);
-                PowerWordShield calculation=new PowerWordShield();calculation.baseBlock=dots*card.magicNumber;calculation.applyPowers();
-                result=(dots==0?0:calculation.block)+" Block at current DoTs";break;
+                result=(dots*card.magicNumber)+" Block at current DoTs";break;
             default:handled=false;
         }
-        else handled=card instanceof MindBlast || card instanceof Insight || card instanceof MindSoothe || card instanceof MaladyOfTheMind || card instanceof MadnessOverwhelming || card instanceof VoidTendrils || card instanceof ShadowWeaving;
+        else handled=card instanceof MindBlast || card instanceof Insight || card instanceof MindSoothe || card instanceof Bulwark || card instanceof MaladyOfTheMind || card instanceof MadnessOverwhelming || card instanceof VoidTendrils || card instanceof ShadowWeaving;
         if(handled)set(card,result);
     }
     static boolean inCombat() {
@@ -37,7 +44,8 @@ final class FormulaPreview {
         CardStrings strings = CardCrawlGame.languagePack.getCardStrings(card.cardID);
         String base = card.upgraded && strings.UPGRADE_DESCRIPTION != null
                 && !strings.UPGRADE_DESCRIPTION.isEmpty() ? strings.UPGRADE_DESCRIPTION : strings.DESCRIPTION;
-        String text = base + (result == null || !inCombat() ? "" : " NL (" + result + ")");
+        String suffix=result==null||!inCombat()?"":" ("+result+")";
+        String text=card instanceof Singularity ? base.replace(" NL Remove",suffix+" NL Remove") : base+(suffix.isEmpty()?"":" NL"+suffix);
         if (!text.equals(card.rawDescription)) { card.rawDescription = text; card.initializeDescription(); }
     }
 }

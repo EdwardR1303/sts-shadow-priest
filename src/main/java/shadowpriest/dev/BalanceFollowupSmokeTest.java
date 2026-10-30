@@ -78,13 +78,13 @@ public final class BalanceFollowupSmokeTest {
         });
         q.add(() -> {
             check(p.hand.contains(curse) && !p.discardPile.contains(curse) && p.drawPile.size()>=20,"Curse remains retained with enough draw cards to prevent reshuffle");
-            check(p.currentHealth==hp,"Retained Block absorbs Mind Decay's start-of-turn damage");
+            check(p.currentHealth==hp-1,"Mind Decay bypasses retained Block for one HP");
             check(AbstractDungeon.actionManager.cardsPlayedThisCombat.size()==plays,"Curse start-of-turn penalty is not a card play");
             check(!curse.dontTriggerOnUseCard,"Retained Curse has no stale autoplay flag");
             p.getRelic(VoidformRelic.ID).atPreBattle(); nextTurn();
         });
         q.add(() -> {
-            check(p.hand.contains(curse) && p.currentHealth==hp-2,"Same Curse survives another turn and deals two unblocked damage");
+            check(p.hand.contains(curse) && p.currentHealth==hp-2,"Same Curse survives another turn and loses one more HP");
             check(VoidformRelic.current().state.amount()==5,"Unblocked Curse damage generates normal damage-taken Insanity");
             VoidVengeance vengeance=new VoidVengeance(); vengeance.instantObtain(p,p.relics.size(),false); vengeance.atPreBattle();
             play(curse,null,0);

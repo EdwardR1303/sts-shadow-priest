@@ -31,14 +31,14 @@
     "NAME": "Idol of N'Zoth",
     "FLAVOR": "Every promise leaves a mark.",
     "DESCRIPTIONS": [
-      "Whenever you play a Power or equip your Legendary at combat start, gain #b1 #yMastery."
+      "Whenever you play a #yPower, gain #b1 #yMastery."
     ]
   },
   "shadowpriest:IdolOfYoggSaron": {
     "NAME": "Idol of Yogg-Saron",
     "FLAVOR": "Let the laughter in.",
     "DESCRIPTIONS": [
-      "Whenever you enter #yVoidform, gain [E] [E] [E]."
+      "Whenever you enter #yVoidform, gain [E] [E] [E] ."
     ]
   },
   "shadowpriest:ImprovedVoidform": {

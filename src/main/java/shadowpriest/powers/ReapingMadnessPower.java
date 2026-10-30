@@ -13,7 +13,7 @@ public class ReapingMadnessPower extends AbstractPower {
     }
     @Override public void atEndOfTurn(boolean isPlayer) {
         VoidformRelic relic = VoidformRelic.current();
-        if (isPlayer && relic != null) { flash(); relic.gainInsanity(amount); }
+        if (isPlayer && relic != null) { flash(); relic.gainInsanity(amount,shadowpriest.details.DetailsTracker.power(this)); }
     }
     @Override public void updateDescription() {
         description = "At the end of your turn, gain #b" + amount + " Insanity. Cannot gain while Voidform is ready, active, or recovering.";

@@ -36,7 +36,7 @@ Reaching 100 grants one 0-cost, Retain, Exhaust **Enter Voidform** card; enterin
 
 ### Voidform
 
-A class stance. Attacks deal 50% more damage and cost 1 less energy, to a minimum of 0. X-cost cards receive the Attack damage bonus but no energy discount. Ordinary Voidform ends at the end of your turn, resets Insanity to 0, and causes Recharge. Improved Voidform carries it across turns until at least three Attack cards have been played during that activation, then ends it at that turn's end. Recharge begins only when the stance actually ends. Surrender to Madness remains permanent.
+A class stance. Attacks deal 50% more damage and cost 1 less energy, to a minimum of 0. X-cost cards receive the Attack damage bonus but no energy discount. Ordinary Voidform ends at the end of your turn, resets Insanity to 0, and causes Recharge. Improved Voidform carries it across turns until at least three Attack cards have been played during that activation, then ends it at that turn's end. Recharge begins only when the stance actually ends. Surrender to Madness remains permanent and makes fixed-cost Attacks free for the rest of combat; X-cost Attacks still spend energy normally.
 
 ### Recharge
 

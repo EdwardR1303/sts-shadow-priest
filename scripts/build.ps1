@@ -8,7 +8,8 @@ try {
     $env:JAVA_HOME = $config.javaHome
     Push-Location $repo
     try {
-        & "$($config.mavenHome)/bin/mvn.cmd" --batch-mode --no-transfer-progress clean verify
+        # Incremental builds avoid deleting/recreating the OneDrive-synced target tree.
+        & "$($config.mavenHome)/bin/mvn.cmd" --batch-mode --no-transfer-progress verify
         if ($LASTEXITCODE -ne 0) { throw "Build failed ($LASTEXITCODE)." }
     } finally { Pop-Location }
     if ($Deploy) {
