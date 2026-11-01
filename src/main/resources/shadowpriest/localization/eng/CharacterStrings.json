@@ -1,10 +1,10 @@
 {
   "shadowpriest:CharacterID": {
-    "NAMES": ["The Shadow Priest", "the Shadow Priest"],
+    "NAMES": ["Xal'atath, the Shadow Priest", "Xal'atath"],
     "TEXT": [
-      "A patient wielder of shadow. NL Afflict your enemies, survive the setup, and unleash Voidform.",
+      "The Harbinger walks no mortal path. NL Afflict your enemies, survive the setup, and unleash Voidform.",
       " NL You gather the whispers into one final word.",
-      "The figures turn toward you. NL ~Join~ ~us,~ ~shadow~ ~priest.~"
+      "The figures turn toward you. NL ~Join~ ~us,~ ~Xal'atath.~"
     ]
   }
 }

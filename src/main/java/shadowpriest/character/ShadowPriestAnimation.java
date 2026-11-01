@@ -20,6 +20,7 @@ public final class ShadowPriestAnimation extends AbstractAnimation {
         private static final Texture SPRITE = loadSprite();
         private static final ShaderProgram SHADER = loadShader("priest.frag");
         private static final ShaderProgram MIST = loadShader("mist.frag");
+        private static final ShaderProgram ORB = loadShader("void-orb.frag");
         private static Texture loadSprite() {
             Texture texture = ImageMaster.loadImage("shadowpriest/images/character/shadow_priest.png");
             texture.setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
@@ -49,13 +50,20 @@ public final class ShadowPriestAnimation extends AbstractAnimation {
         float height = 350f * s;
         float width = height * Assets.SPRITE.getWidth() / Assets.SPRITE.getHeight();
         float left = x - width * 0.5f;
-        // The generated image has a small transparent margin beneath the feet.
-        float bottom = y - 8f * s + MathUtils.sin(time * 1.7f) * 2f * s;
+        // Bare feet remain visibly above the combat floor throughout the hover.
+        float bottom = y + 18f * s + MathUtils.sin(time * 1.7f) * 6f * s;
         float oldColor = batch.getPackedColor();
         int oldSrc = batch.getBlendSrcFunc(), oldDst = batch.getBlendDstFunc();
         ShaderProgram oldShader = batch.getShader();
         ShaderProgram shader = Assets.SHADER;
         try {
+            batch.setShader(Assets.ORB);
+            Assets.ORB.setUniformf("u_time", time);
+            Assets.ORB.setUniformf("u_form", form);
+            Assets.ORB.setUniformf("u_shadow", 1f);
+            batch.setColor(1f, 1f, 1f, .45f * (1f - mist));
+            batch.draw(ImageMaster.WHITE_SQUARE_IMG, x - 65f*s, y - 7f*s, 130f*s, 22f*s);
+            batch.flush();
             batch.setShader(shader);
             shader.setUniformf("u_form", form);
             if (form > 0f) {
@@ -78,6 +86,20 @@ public final class ShadowPriestAnimation extends AbstractAnimation {
             batch.setColor(1f, 1f, 1f, 1f - mist);
             draw(batch, left, bottom, width, height);
             batch.flush();
+            // Independent phases keep the shoulder orbs alive while the body hovers.
+            batch.setShader(Assets.ORB);
+            Assets.ORB.setUniformf("u_time", time);
+            Assets.ORB.setUniformf("u_form", form);
+            Assets.ORB.setUniformf("u_shadow", 0f);
+            batch.setColor(1f, 1f, 1f, 1f - mist);
+            for (int side = -1; side <= 1; side += 2) {
+                float phase = time * (1.3f + form * .7f) + side * 1.8f;
+                float size = (58f + form * 8f) * s;
+                float ox = x + side * 83f*s + MathUtils.sin(phase) * 5f*s;
+                float oy = bottom + 335f*s + MathUtils.cos(phase) * 8f*s;
+                batch.draw(ImageMaster.WHITE_SQUARE_IMG, ox-size/2f, oy-size/2f, size, size);
+            }
+            batch.flush();
             if (mist > 0f) {
                 batch.setShader(Assets.MIST);
                 Assets.MIST.setUniformf("u_time", time);
@@ -96,6 +118,6 @@ public final class ShadowPriestAnimation extends AbstractAnimation {
 
     private void draw(SpriteBatch batch, float x, float y, float width, float height) {
         batch.draw(Assets.SPRITE, x, y, width, height, 0, 0,
-            Assets.SPRITE.getWidth(), Assets.SPRITE.getHeight(), flipX, flipY);
+            Assets.SPRITE.getWidth(), Assets.SPRITE.getHeight(), !flipX, flipY);
     }
 }

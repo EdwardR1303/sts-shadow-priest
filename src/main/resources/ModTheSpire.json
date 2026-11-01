@@ -1,11 +1,11 @@
 {
   "modid": "shadowpriest",
-  "name": "Shadow Priest",
+  "name": "Xal'atath, the Shadow Priest",
   "author_list": [
     "Nishiki"
   ],
-  "description": "A custom Shadow Priest with a dedicated card pool, Mastery-scaled afflictions, on-demand Voidform, and Legendary weapons. Survive the setup and unleash your power.",
-  "version": "0.1.5",
+  "description": "Play as Xal'atath, the Shadow Priest. Master afflictions, on-demand Voidform, Haste, and Devour across 75 cards and 11 class relics. Survive the setup and unleash your power.",
+  "version": "1.0.0",
   "sts_version": "12-18-2022",
   "mts_version": "3.30.0",
   "dependencies": [

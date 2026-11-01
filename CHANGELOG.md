@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.0.0 - October 31, 2026
+
+- Released as **Xal'atath, the Shadow Priest**; removed the Beta label from the public listing and updated the mod-launcher name.
+- Replaced the generic priest with matching Xal'atath illustrations for combat, character selection, rest sites, defeat, and Heart victory, including her signature cheek runes and bare feet.
+- Added a visible floating idle pose and independently animated shadow orbs above her shoulders. Voidform brightens her purple aura and empowers the orbs; Dispersion fades into animated shadow mist.
+- Updated the Workshop preview and character flavor text. Internal character IDs remain unchanged for existing saves and run history.
+- The full release includes 75 collectible cards, 11 class relics, Devour and Curse synergies, and Combat Details. Card and relic balance is unchanged from 0.1.5.
+- Developer tooling: added a short presentation review and a backed-up unlock script for the isolated local playtest profile. Local test launches suppress Steam achievement uploads; normal Workshop players retain normal progression.
+
 ## 0.1.5 - October 30, 2026
 
 - Added **Devour**: exhaust a Curse from your hand to activate a bonus. Cards still resolve their base effects without a Curse; choose which Curse when multiple are available. Haste does not multiply Devour, and normal Curse-exhaust rewards still apply.
@@ -30,7 +39,7 @@ Restart the game after Steam downloads this update. Start a new run to try the f
 
 Restart the game after Steam downloads this update. Existing runs use the new card rules; balance testing continues.
 
-## 0.1.2 — October 28, 2026
+## 0.1.2 â€” October 28, 2026
 
 - Haste now increases explicit card repetitions, including Mind Flay, Penance, Shadow Word: Death+ and base-game cards such as Dagger Spray. Modified counts are green. X receives Haste once; for-each effects, Halo duration and Dragonwrath replay triggers are unchanged.
 - Power Infusion protects all Haste from decay for two turns; additional casts refresh the protection.
@@ -46,7 +55,7 @@ Restart the game after Steam downloads this update. Existing runs use the new ca
 
 Restart the game after Steam downloads this update. Existing runs use the new card rules; balance testing continues.
 
-## 0.1.1 — October 27, 2026
+## 0.1.1 â€” October 27, 2026
 
 - Enemy health bars now show upcoming Touch, Pain, and Madness damage in purple. A fully purple remaining bar indicates enough DoT damage to deplete that HP.
 - Preview updates with current stacks and Mastery, including negative Mastery, and accounts for Intangible, Buffer, and the Heart's remaining damage cap.
@@ -55,6 +64,6 @@ Restart the game after Steam downloads this update. Existing runs use the new ca
 
 Quality-of-life update only; no card or balance changes. Restart after Steam downloads the update. Validated with 31 unit tests and 24 focused game checks; see [preview rules](docs/dot-health-preview.md).
 
-## 0.1.0 — October 27, 2026
+## 0.1.0 â€” October 27, 2026
 
 Initial public beta: 75 collectible cards, 11 class relics, custom character artwork and combat effects, and Combat Details with saved-run history.

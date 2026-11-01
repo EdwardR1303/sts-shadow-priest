@@ -1,4 +1,5 @@
 param(
+    [switch]$PresentationOnly,
     [switch]$DevourVictoryOnly, [switch]$DevourOnly, [switch]$DotPreviewOnly, [switch]$BetaBalanceOnly, [switch]$ObservationsOnly, [switch]$InsanityDetailsOnly, [switch]$LowPickOnly, [switch]$PotionDetailsOnly,
     [switch]$SkipBuild, [switch]$Debug, [switch]$SmokeTest, [switch]$CardBatchOnly, [switch]$LatestBatchOnly, [switch]$ReworkOnly, [switch]$DefensiveReworkOnly, [switch]$SupportOnly, [switch]$RelicOnly, [switch]$RelicArtOnly, [switch]$SetupOnly, [switch]$DetailsOnly, [switch]$BarrierOnly, [switch]$DetailsOverallOnly, [switch]$VengeanceOnly, [switch]$FinalBatchOnly, [switch]$RelicCompletionOnly, [switch]$BalanceFollowupOnly, [switch]$MindDecayOnly, [switch]$HistoryOnly,
     [ValidateRange(640, 7680)][int]$Width = 3840,
@@ -6,6 +7,7 @@ param(
     [switch]$Windowed
 )
 $ErrorActionPreference = 'Stop'
+if ($PresentationOnly) { $SmokeTest = $true }
 if ($DevourVictoryOnly) { $DevourOnly = $true }
 if ($DevourOnly) { $SmokeTest = $true }
 if ($DotPreviewOnly) { $SmokeTest = $true }
@@ -57,6 +59,7 @@ $borderless = (-not $Windowed).ToString().ToLowerInvariant()
 $arguments = @('-Xmx1G', '-Dshadowpriest.playtest=true')
 if ($Debug) { $arguments += '-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005' }
 if ($SmokeTest) { $arguments += '-Dshadowpriest.smoketest=true' }
+if ($PresentationOnly) { $arguments += '-Dshadowpriest.presentationonly=true' }
 if ($DevourOnly) { $arguments += '-Dshadowpriest.devouronly=true' }
 if ($DevourVictoryOnly) { $arguments += '-Dshadowpriest.devourvictory=true' }
 if ($CardBatchOnly) { $arguments += '-Dshadowpriest.cardbatchonly=true' }

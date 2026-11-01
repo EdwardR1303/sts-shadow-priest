@@ -1,18 +1,22 @@
-# Shadow Priest for Slay the Spire
+# Xal'atath, the Shadow Priest
 
-A custom Slay the Spire 1 character inspired by World of Warcraft's Shadow Priest archetype.
+Play as Xal'atath in Slay the Spire 1, inspired by World of Warcraft's Shadow Priest archetype.
 
-Play the public beta on [Steam Workshop](https://steamcommunity.com/sharedfiles/filedetails/?id=3828572814). Subscribe to the required mods listed there, launch **Play With Mods**, and choose **The Shadow Priest**. Maintainer instructions: [publishing updates](docs/workshop-release.md).
+Play version 1.0 on [Steam Workshop](https://steamcommunity.com/sharedfiles/filedetails/?id=3828572814). Subscribe to the required mods listed there, launch **Play With Mods**, and choose **Xal'atath, the Shadow Priest**. Maintainer instructions: [publishing updates](docs/workshop-release.md).
 
 Survive while applying distinct damage-over-time debuffs. Attack hits and DoT ticks generate Insanity. At 100 Insanity, gain a retained activation card and choose when to unleash a temporary Voidform with cheaper, stronger Attack cards.
 
-The [Voidform activation card](docs/voidform-activation.md) costs 0 energy, has Retain, and exhausts when played. The prototype holds one charge at a time.
+The [Voidform activation card](docs/voidform-activation.md) costs 0 energy, has Retain, and exhausts when played. The character holds one charge at a time.
 
 ## Project status
 
-Version 0.1.2 is a playable beta with 75 collectible cards: four starters, 68 ordinary reward cards (28 Common, 26 Uncommon, 14 Rare), and three automatically equipped Legendaries. The latest pass expands Haste to explicit repetitions, revises Singularity and Catharsis, improves several underpicked cards, and adds formula previews. See [the balance pass](docs/beta-balance-0.1.2.md) and [release notes](CHANGELOG.md). Touch and Pain cap at five stacks; Madness has no cap and ticks for half its stacks rounded up. All three tick at player turn end and scale with Mastery. Direct Attack hits generate 10 Insanity independently of DoTs; each natural or triggered DoT tick grants 1. Mind Spike also grants 10 explicitly. Each damage event that removes the priest's HP in combat grants another 5 Insanity, including self-damage.
+Version 1.0.0 includes 75 collectible cards: four starters, 68 ordinary reward cards (28 Common, 26 Uncommon, 14 Rare), and three automatically equipped Legendaries, plus 11 class relics. See the [release notes](CHANGELOG.md).
 
-The priest wears Transcendence-inspired regalia, glows purple in Voidform, and displays Insanity beneath the energy orb. Card portraits use matching WoW icons or thematic original art; Protected Channel currently reuses the original Shadow Committal illustration. Ordinary Voidform ends with a full Recharge turn. Surrender to Madness can sustain it for combat at the cost of a damage penalty that Artifact and debuff cleansing cannot remove. All ten class reward relics are implemented, including Misery, Inescapable Torment, Shared Suffering, and Improved Voidform's carryover until three Attack plays. Start a new run to populate their reward pools. Full-run balance testing remains necessary. See the [setup and defense revision](docs/card-batch-08.md) and [relic implementation](docs/relic-implementation.md) for implementation and validation details.
+Touch and Pain cap at five stacks; Madness has no cap and ticks for half its stacks rounded up. All three tick at player turn end and scale with Mastery. Attack hits generate 10 Insanity; each DoT tick generates 1, and damage events that remove your HP generate 5. Haste amplifies explicit repetitions. Devour exhausts a Curse from your hand to activate a card's bonus.
+
+Xal'atath floats barefoot with her signature cheek runes and animated shoulder orbs. Voidform adds a purple glow; Dispersion dissolves her into shadow mist. Matching artwork appears at selection, rest sites, defeat, and Heart victory. See the [character presentation pass](docs/art/xalatath.md).
+
+Ordinary Voidform ends with a full Recharge turn. Surrender to Madness becomes playable after leaving Voidform twice, sustaining the form and scaling Strength and Mastery at the cost of a five-turn deadline. All ten class reward relics are implemented, including Improved Voidform's carryover until three Attack plays. The [Devour revision](docs/devour-batch-2026-10-30.md) and [relic implementation](docs/relic-implementation.md) document their rules.
 
 The [first combat FX pass](docs/combat-fx.md) adds violet projectiles, channels, bursts, Void Ray's Hyperbeam-style blast, and a Voidform entry aura.
 
@@ -30,7 +34,7 @@ Install the Steam game and subscribe to ModTheSpire, BaseMod, and StSLib, then r
 ./scripts/playtest.ps1 -SkipBuild
 ```
 
-Setup discovers the game and installs checksum-verified portable Java 8 and Maven under local app data, without global PATH changes. Playtesting defaults to **3840 x 2160 borderless** and uses separate saves in `.playtest/`. Choose **The Shadow Priest** in a Standard run.
+Setup discovers the game and installs checksum-verified portable Java 8 and Maven under local app data, without global PATH changes. Playtesting defaults to **3840 x 2160 borderless** and uses separate saves in `.playtest/`. Choose **Xal'atath, the Shadow Priest** in a Standard run.
 
 For a smaller window, add `-Width 1920 -Height 1080 -Windowed`. VS Code also has setup, build, playtest, and deploy tasks. See [development and testing](docs/development.md) for details.
 
@@ -47,7 +51,7 @@ For a desktop launcher, run `./scripts/install-desktop-shortcut.ps1` once, then 
 - [Card design guide](docs/card-design-guide.md): start designing cards in [the JSON catalog](design/cards.json), with [a reusable template](design/card-template.json), complete upgrades, and VS Code validation.
 - [Barrier reserve](docs/barrier-reserve.md): persistent Block that absorbs damage first and allows ordinary Block gains.
 - [Combat Details](docs/details.md): top-bar damage/Block meter, Overall run aggregates, per-turn source breakdowns, Voidform timing, and persistent JSON reports.
-- [Surrender to Madness](docs/surrender-to-madness.md): permanent combat Voidform, the original design history; 0.1.2 makes its penalty immune to Artifact and debuff cleansing.
+- [Surrender to Madness](docs/devour-batch-2026-10-30.md): the current two-exit condition, permanent Voidform, and five-turn deadline.
 - [Fifth reward-card batch](docs/card-batch-05.md): eight cards, positive/negative Mastery, dodge, stun, and artwork sources.
 - [Fourth reward-card batch](docs/card-batch-04.md): Void Bolt, Void Volley, escalating Void Torrent, and fully native rare rewards.
 - [Third reward-card batch](docs/card-batch-03.md): capped fixed-damage DoTs, Tentacle Slam, additive Void Blast, Mass Dispel, and stacking Embrace.

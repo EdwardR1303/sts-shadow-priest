@@ -1,6 +1,24 @@
 # Steam Workshop release
 
-Listing: [The Shadow Priest -- Beta](https://steamcommunity.com/sharedfiles/filedetails/?id=3828572814)
+Listing: [Xal'atath, the Shadow Priest](https://steamcommunity.com/sharedfiles/filedetails/?id=3828572814)
+
+## 1.0.0 release
+
+Published October 31, 2026 as **Xal'atath, the Shadow Priest**, retiring the Beta
+label. The official uploader confirmed success for the existing public item
+3828572814. The signed-out listing showed the new title and Subscribe control,
+and its Change Notes included 1.0.0 after upload. Nishiki's credit, the Legendary
+teaser, and the dependency links remain; the description contains no GitHub link.
+
+The release includes the complete Xal'atath presentation pass and unchanged 0.1.5
+card/relic balance. Internal save IDs are preserved. Both Maven and the packaged
+mod manifest report 1.0.0. SHA256:
+`0D368DA37A804D0F79AAF3F0314738F311D0AAB9210E0CBB85D9750AFD819911`.
+Validation: 39 unit tests; the preceding focused presentation review passed all
+four checks, with normal/Voidform/Dispersion renders visually inspected.
+The staged JAR was checked for the five final art assets, correct metadata and
+absence of private test data. No full-run simulation was repeated for packaging.
+Local playtest and existing Steam mods copies were updated to the same artifact.
 
 The first public beta is version 0.1.0. The Workshop item ID is committed in `workshop/config.json`; keep it unchanged so updates retain the listing and subscribers. Listing copy lives in `workshop/description.txt`. The preview is a JPEG encoding of the existing character-selection portrait.
 
@@ -23,7 +41,7 @@ Steam's Required Items are configured on the listing separately from the uploade
 
 Incremental Maven verification passed 31 unit tests. Upload completed successfully on October 27, 2026, followed by an update crediting Nishiki in the listing and mod launcher. The final uploaded JAR SHA256 was `AFFAA820785FB0976B15DC097D0A7BB0598A83861C701916EE7DE31A326700DB`; the preview was 332071 bytes. The public description, Subscribe control, and all three Required Items were checked while signed out. No broad simulation was run for packaging; the preceding focused game/UI checks are recorded in `playtest-results.md`.
 
-Friends should subscribe to this item and all requirements, launch Steam's Play With Mods option, enable Shadow Priest/BaseMod/StSLib, and begin a Standard run. Developers should avoid loading both a local and Workshop copy of the same mod. Local playtest saves remain separate from the ordinary Steam launch profile.
+Friends should subscribe to this item and all requirements, launch Steam's Play With Mods option, enable Xal'atath, the Shadow Priest/BaseMod/StSLib, and begin a Standard run. Developers should avoid loading both a local and Workshop copy of the same mod. Local playtest saves remain separate from the ordinary Steam launch profile.
 
 ## 0.1.1 release
 

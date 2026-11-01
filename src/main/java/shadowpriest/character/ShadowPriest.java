@@ -133,7 +133,7 @@ public class ShadowPriest extends CustomPlayer {
                 SHOULDER_1,
                 CORPSE,
                 getLoadout(),
-                0.0F, -10.0F, 220.0F, 310.0F, //Match the tall regalia silhouette.
+                0.0F, -10.0F, 220.0F, 310.0F, //Keep combat targeting stable across cosmetic changes.
                 new EnergyManager(ENERGY_PER_TURN));
         // AbstractPlayer renders corpses at their native size. Fit the full-resolution
         // source to game units once at load time, preserving the generated original.

@@ -1,5 +1,8 @@
 # Shadow Priest combat artwork
 
+The current character presentation is [Xal'atath](art/xalatath.md), added October 31, 2026.
+The original Tier 2 artwork pass below is retained as historical documentation.
+
 Added October 23, 2026 at the owner's request. The combat character is a shadowy priest in Tier 2 / Transcendence-inspired regalia. The tall halo, crescent shoulders, blue inlays, and gold trim remain readable at combat scale.
 
 ## Asset and rendering
