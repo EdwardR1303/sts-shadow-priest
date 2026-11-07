@@ -50,12 +50,12 @@ public final class SupportBalanceSmokeTest {
         q.add(()->{p.relics.add(new com.megacrit.cardcrawl.relics.ChemicalX());p.powers.add(new DexterityPower(p,2));p.powers.add(new ProtectedChannelPower(p,3));play(new MindSear(),null,0);});
         q.add(()->{check(m.currentHealth==980&&p.currentBlock==20,"Haste plus Chemical X drive four hits and four Dexterity-modified Protected Channel blocks");reset();new Valanyr().equip(p);});
         q.add(()->{angel=(GuardianAngelPower)p.getPower(GuardianAngelPower.POWER_ID);
-            check(p.currentBlock==5&&p.hasPower("Barricade")&&angel.available(),"Val'anyr grants Block retention and independent Guardian Angel");
+            check(p.currentBlock==0&&p.hasPower("Barricade")&&angel.available(),"Val'anyr grants Block retention and independent Guardian Angel");
             check(p.getPower(ValanyrPower.POWER_ID).name.equals("Barricade (Val'anyr)")&&angel.name.equals("Guardian Angel"),"Both buffs have separate visible names");
             LegendaryEquipment.State.equipped.set(p,Valanyr.ID);CardArtReview.card(new PowerInfusion(),"power-infusion-decay");
             CardArtReview.requestCombat("valanyr-separate-buffs");AbstractDungeon.actionManager.addToBottom(new WaitAction(0.8f));});
         q.add(()->{check(CardArtReview.capturedCombat("valanyr-separate-buffs"),"Separate Val'anyr buffs captured in combat");p.loseBlock();});
-        q.add(()->{check(!p.hasPower(ValanyrPower.POWER_ID)&&!p.hasPower("Barricade")&&p.hasPower(GuardianAngelPower.POWER_ID),"Depleted ward disappears while Guardian Angel remains");
+        q.add(()->{check(p.hasPower(ValanyrPower.POWER_ID)&&p.hasPower("Barricade")&&p.hasPower(GuardianAngelPower.POWER_ID),"Barricade and Guardian Angel both remain at zero Block");
             p.damage(new DamageInfo(m,999,DamageInfo.DamageType.NORMAL));check(p.currentHealth==1&&!angel.available(),"Guardian Angel consumes itself on lethal damage");
             p.currentHealth=10;p.damage(new DamageInfo(m,4,DamageInfo.DamageType.NORMAL));check(p.currentHealth==6,"Consumed rescue does not prevent subsequent damage");});
         q.add(()->{check(!p.hasPower(GuardianAngelPower.POWER_ID),"Spent Guardian Angel icon is removed");reset();new Valanyr().equip(p);});
@@ -80,9 +80,9 @@ public final class SupportBalanceSmokeTest {
         }
         q.add(()->{reset();up(new Xalatath()).equip(p);play(up(new PowerInfusion()),null,0);});
         q.add(()->{int sum=0;for(String id:new String[]{"Strength","Dexterity",MasteryPower.POWER_ID})if(p.hasPower(id))sum+=p.getPower(id).amount;
-            check(sum==10&&haste()==2,"Xalatath+ grants ten permanent points and leaves Power Infusion Haste independent");nextTurn();});
+            check(sum==12&&haste()==2,"Xalatath+ grants twelve permanent points and leaves Power Infusion Haste independent");nextTurn();});
         q.add(()->{int sum=0;for(String id:new String[]{"Strength","Dexterity",MasteryPower.POWER_ID})if(p.hasPower(id))sum+=p.getPower(id).amount;
-            check(sum==10&&haste()==1,"Xalatath does not reroll or accumulate at turn start while Haste decays");
+            check(sum==12&&haste()==1,"Xalatath does not reroll or accumulate at turn start while Haste decays");
             CardArtReview.card(new Xalatath(),"xalatath-three-stats");});
     }
 }

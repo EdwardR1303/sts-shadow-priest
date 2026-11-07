@@ -273,3 +273,67 @@ Incremental Maven verification passed 31 unit tests. The isolated `-DotPreviewOn
 ## Beta balance pass (October 28, 2026)
 
 Version 0.1.2 passed 31 unit tests and 57 focused real-game assertions using `-BetaBalanceOnly`. Coverage includes single-hit Singularity, Haste repetitions and base-game compatibility, Penance healing, two protected decay boundaries, actual HP-loss Catharsis counters, stacking post-Block Tithe, non-Dexterity Protected Channel, Surrender/Artifact/Mass Dispel, free Volley with entry energy, upgraded Stun, numerical buffs and formula previews. Four card renders were reviewed for text fit and green Haste counts. The card catalog passed schema validation. No full-run simulation was performed; see [the accepted rules](beta-balance-0.1.2.md).
+
+
+## November 4, 2026: local balance candidate
+
+Implemented the 32 accepted card revisions from cards.md, synchronized design/cards.json and the shared keyword definitions, and refreshed descriptions, previews and conditional highlights. Void Shield is now Void Shift and Shadow Committal is now Shadowy Committal; their internal IDs remain unchanged for existing decks. Void Shift uses its original WoW ability icon (source recorded in licenses/Warcraft-artwork.txt).
+
+Validation: incremental `scripts/build.ps1` passed all 39 unit tests. `scripts/playtest.ps1 -NovemberOnly -SkipBuild -Width 1920 -Height 1080 -Windowed` passed 78 checks in a controlled real-game encounter. No full-run simulation was used. The suite covers:
+
+- Tentacle Slam's stun and separate Artifact checks; Unfurling Darkness's AoE and once-total explicit Insanity.
+- Focused Will converting existing and newly gained Block to Barrier without generating more Block; Void Shift's flat transfer despite Dexterity/Frail.
+- Shadowy Insight's shared turn lock, upgraded draw, conditional printed Exhaust, and preservation of forced Exhaust/Corruption.
+- Draw versus Devour rewards, Vampiric Embrace healing, and removal of Dark Reinforcement's old Mastery reward.
+- Stacking Atonement, Exhaust, and Artifact; multiplicative Body and Soul stacking at 51% and 60.8%.
+- Protected Channel counting primary X units, including AoE waves, Dark Evangelism, Crystalline Reflection, Haste/Chemical X at zero Energy, and an off-color Malaise+ without double-counting its two debuffs.
+- Mind Sear's per-hit Madness; Mind Flay: Insanity's extra ticks, unchanged stacks after bonus ticks, Touch healing and Insanity generation.
+- Power Infusion duration and recast preservation; Halo healing once per pulse; Mass Dispel removing negative stats while preserving Surrender.
+- Left-to-right Committal+/Volley plays, free costs, no retroactive stat benefit; Shadow Mend+, Dark Void's hand Curse, tutor eligibility and Val'anyr's opening Block.
+
+Rendered and inspected six cards: Shadowy Committal+, Mind Flay: Insanity+, Shadowy Insight+, Protected Channel, Tentacle Slam and Void Shift. Descriptions fit and Void Shift's new icon loads. JSON schema validation and whitespace checks passed.
+
+The verified JAR is staged only in `.playtest/mods/shadowpriest.jar` for the existing 4K desktop launcher. Previous local JAR backed up under `.local/build-backups/`. Workshop and Steam's live mod folder were not updated; release metadata remains 1.0.0. Human full-run balance testing is pending.
+
+JAR SHA-256: `2530158D861E3D1A901C7BDCE760552890BD25F65E50F59B8405CF2BC1D976D7`. Full controlled-check output is archived in `.local/november-balance-results.txt`.
+
+
+## November 4, 2026: Dragonwrath damage segments
+
+Details keeps repeat damage in the original source row and colors the Dragonwrath portion orange. Absorbed repeat damage is pale orange; other absorbed damage keeps its light segment. Hover text shows the repeated amount, share, and absorbed portion. Turn, combat, Overall, saved history, and the Exclude blocked damage toggle use the same accounting, including overkill. Explicit bonus DoT ticks queued by the repeated card preserve the repeat marker; independently attributed passive powers retain their own attribution. Earlier untagged events are not retroactively guessed.
+
+Validation: 42 unit tests passed, including aggregation, sorting, filtering, history round-trip and legacy behavior. The short Details review passed 15 checks, including one actual guaranteed Dragonwrath replay (12 total damage, 8 absorbed, 6 repeated, 2 of the repeated damage absorbed), plus the rendered Overall view. The orange/light segments were visually inspected. No full-run simulation was used.
+
+The rebuilt local JAR is ready in target/shadowpriest.jar for the desktop launcher. A running local playtest was detected, so its loaded JAR was left alone; restart through the desktop shortcut to pick up the change. Nothing published.
+
+JAR SHA-256: `01DDB993969A02ED32CC20D018EA398E30096EE583FEBA0A3EEC55D95DEA7E81`. Focused output: `.local/dragonwrath-details-results.txt`.
+
+
+## November 4, 2026: Xal'atath and Val'anyr buffs
+
+Xal'atath rolls four times in both versions. Each roll grants 2 of one random Strength/Dexterity/Mastery stat, or 3 upgraded: 8/12 total stat points. Val'anyr grants Barricade for the entire combat, including after Block reaches zero. Its base version grants no opening Block; its upgrade grants a flat 10. Guardian Angel remains a separate, unchanged once-per-combat lethal rescue. Card text, cards.md, design/cards.json and Legendary documentation are synchronized.
+
+Incremental build: 42 unit tests passed. `scripts/playtest.ps1 -LegendaryBalanceOnly -SkipBuild -Width 1920 -Height 1080 -Windowed` passed 21 focused checks: seeded base/upgraded rolls, persistence without rerolls, zero-Block equipment, retention through real turn boundaries before and after exact depletion, explicit Block removal, independent Guardian Angel consumption, and upgraded Block ignoring Dexterity. Rendered upgraded Xal'atath and both Val'anyr cards were inspected. The old Block-depletion patch class was removed from incremental build output and verified absent from the JAR. No full-run simulation was used.
+
+The verified JAR is staged in `.playtest/mods/shadowpriest.jar`. No game was running at staging time. Nothing pushed or published; release metadata remains 1.0.0. SHA-256: `8FFAE928DFE0A49AEE20D9B107CD364A37A673EBC49234F397D3C8EAC6F71B7C`. Full focused output: `.local/legendary-balance-results.txt`.
+
+
+## November 4, 2026: Mind Flay: Insanity bonus-tick nerf
+
+Both versions now trigger only Touch and Pain as bonus ticks. Stack additions still affect every existing DoT, including Madness; normal Madness turn-end damage and decay are unchanged. Descriptions, cards.md and design/cards.json match.
+
+Incremental build passed 42 unit tests. The isolated `-FlayOnly` controlled encounter passed 13 focused checks, including base/upgraded cards against 100 Madness, zero-Energy Haste/Chemical X, Mastery, Touch healing, Protected Channel, expected Insanity, a Madness-only target, and normal Madness ticking afterward. No full-run simulation was used. Upgraded card text was rendered for inspection. Output archived in `.local/flay-touch-pain-results.txt`.
+
+Verified JAR: `9289F5B132CFD3BBF05527DD8AA8377FFA3A94FE9C2A7CA84A53F10288E06DD1`. A normal local game was running, so its loaded JAR was left untouched. The desktop shortcut will load the rebuilt target JAR on restart. Nothing pushed or published.
+
+## November 4, 2026: Dragonwrath contribution beside the damage total
+
+The Damage dealt summary now appends Dragonwrath damage in orange parentheses when its contribution is positive, for example `428 (45)`. This is part of the displayed total, not extra damage. Combat and Overall reports, including saved reports with repeat attribution, honor the Exclude blocked damage toggle. The combined number scales down when needed to fit its tile.
+
+Incremental build passed all 42 unit tests, with assertions for the summary contribution, blocked filtering, overkill, saved Overall reports, turn selection, and untagged legacy events. No game simulation was run for this small display change. The rebuilt local JAR is available to the desktop launcher; nothing pushed or published.
+
+## November 6, 2026: 1.0.1 release acceptance
+
+The user completed local playtesting of the latest changes and authorized main/Workshop publication. The November 4 candidate and its subsequent Legendary, Mind Flay: Insanity, and Dragonwrath Details changes are included. Discussion-only defensive proposals and the unreviewed Improved Voidform draft are excluded.
+
+Release packaging passed all 42 unit tests, catalog schema validation, card tallies, whitespace checks, and staged-artifact inspection. No long simulation or additional game encounter was run. The official uploader confirmed success for Workshop item 3828572814; public-page verification was rate-limited. JAR SHA256: `C941040B4EDFB2AD59D333B1D35C9E7D32E3239FC00215FB7A21441DE92E907B`. A running local game was preserved.

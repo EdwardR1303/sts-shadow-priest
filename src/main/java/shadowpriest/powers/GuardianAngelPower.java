@@ -4,7 +4,7 @@ import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 
-/** Val'anyr's one-use rescue, independent of its breakable Block retention. */
+/** Val'anyr's one-use rescue, independent of its combat-long Block retention. */
 public class GuardianAngelPower extends AbstractPower {
     public static final String POWER_ID = "shadowpriest:GuardianAngel";
     private boolean spent;

@@ -10,14 +10,14 @@ import shadowpriest.actions.GainInsanityAction;
 
 public class VoidTendrils extends PriestCard {
     public static final String ID="shadowpriest:VoidTendrils";
-    public VoidTendrils() { super(ID,1,CardType.SKILL,CardRarity.COMMON,CardTarget.ALL_ENEMY);baseBlock=4;baseMagicNumber=magicNumber=2; }
+    public VoidTendrils() { super(ID,1,CardType.SKILL,CardRarity.COMMON,CardTarget.ALL_ENEMY);baseBlock=6;baseMagicNumber=magicNumber=2; }
     @Override public void use(AbstractPlayer p,AbstractMonster m) {
         for(AbstractMonster enemy:AbstractDungeon.getMonsters().monsters) if(VoidBolt.alive(enemy)) {
             addToBot(new GainBlockAction(p,p,block));
             if(attacking(enemy)) addToBot(ShadowDotPower.apply(enemy,p,ShadowDotPower.PAIN,magicNumber));
         }
  }
-    @Override public void upgrade() { if(!upgraded) { upgradeName();upgradeBlock(1);upgradeMagicNumber(1); } }
+    @Override public void upgrade() { if(!upgraded) { upgradeName();upgradeBlock(2);upgradeMagicNumber(1); } }
     public static boolean attacking(AbstractMonster m) {
         return m.intent==AbstractMonster.Intent.ATTACK || m.intent==AbstractMonster.Intent.ATTACK_BUFF
             || m.intent==AbstractMonster.Intent.ATTACK_DEBUFF || m.intent==AbstractMonster.Intent.ATTACK_DEFEND;

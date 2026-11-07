@@ -51,10 +51,10 @@ X/Y/Z = **Attacks/Skills/Powers**. Counts beside each rarity heading include dra
 
 #### Mind Flay
 - **Cost:** 1 energy
-- **Effect:** Deal 2 damage 3 times. After each hit, extend the target's Touch and Pain by 1.
+- **Effect:** Deal 3 damage 3 times. After each hit, extend the target's Touch and Pain by 1.
 - **Upgrade:** Deal damage 4 times; each hit still extends by 1.
 - **Rules:** Resolve each hit and its extension before the next. Extend only existing Touch and Pain, up to 5; do not affect Madness or trigger Misery. No HP loss required. Stop on death. Haste adds repetitions once, with a green count. Each hit generates Insanity; Psychic Link triggers once per card play.
-- **Status:** Implemented in 0.1.2; full-run balance testing remains.
+- **Status:** Released in 1.0.1 after local playtesting; structured catalog synchronized.
 
 #### Blood Magic
 
@@ -75,41 +75,41 @@ X/Y/Z = **Attacks/Skills/Powers**. Counts beside each rarity heading include dra
 #### Mind Blast
 
 - **Cost:** 1 energy
-- **Effect:** Deal 10 damage, plus 2 per unique DoT on the target. Gain 10 Insanity per unique DoT on the target.
-- **Upgrade:** Base damage becomes 12; per-DoT damage becomes 4.
+- **Effect:** Deal 10 damage, plus 3 per unique DoT on the target. Gain 10 Insanity per unique DoT on the target.
+- **Upgrade:** Base damage becomes 14; per-DoT damage becomes 5.
 - **Rules:** Snapshot unique DoTs before the hit. Explicit Insanity follows damage even if the target dies, in addition to the universal ten per hit: 10/20/30/40 total for zero/one/two/three DoTs. All gains obey the shared cap and ready, active, and Recharge restrictions. Hovering a target previews damage and explicit bonus Insanity.
-- **Status:** Implemented locally October 29, 2026; full-run balance testing pending.
+- **Status:** Released in 1.0.1 after local playtesting; structured catalog synchronized.
 
 #### Tentacle Slam
 
 - **Cost:** 2 energy
-- **Effect:** Deal 8 damage to an enemy. Apply 3 Touch to it and all enemies between you and it. Devour: Refund energy spent on this cast.
-- **Upgrade:** Base damage becomes 10; cost becomes 1 energy. Devour still refunds only Energy actually spent on this cast.
-- **Rules:** Consume the Curse before the hit, then refund the Energy actually paid for this play. Free plays refund zero; Voidform and other cost discounts reduce the refund. Refund before damage so a final killing hit cannot skip it. Damage remains 8/10. Keep existing Touch targeting and application order. Haste does not repeat the refund.
-- **Status:** Implemented in 0.1.5; focused engine checks passed and first local playthrough reviewed. Ongoing balance testing.
+- **Effect:** Deal 8 damage to an enemy. Apply 3 Touch to it and all enemies between you and it. Devour: Stun the target for 1 turn.
+- **Upgrade:** Base damage becomes 10; cost becomes 1 energy.
+- **Rules:** Consume one Curse before resolving the card. Deal damage, apply Touch to surviving eligible enemies, then, if Devour succeeded, stun the surviving selected target for one turn. Touch applications and the stun independently respect Artifact, in that order. Devour neither refunds Energy nor repeats the card. Touch spread can still resolve if the selected target dies while other enemies remain.
+- **Status:** Released in 1.0.1 after local playtesting; structured catalog synchronized.
 
 #### Void Bolt
 - **Cost:** 1 energy
-- **Effect:** Deal 10 damage. Add 1 stack to each existing DoT on the target.
-- **Upgrade:** Deal 13 damage and add 2 stacks instead.
+- **Effect:** Deal 11 damage. Add 1 stack to each existing DoT on the target.
+- **Upgrade:** Deal 15 damage and add 2 stacks instead.
 - **Rules:** Damage happens first. Extend existing Touch/Pain up to 5 and add Madness only if already present. Never create a missing DoT or increase future applications. Duration extension follows Mind Flay: Insanity; additional Madness is an application that Artifact can block.
-- **Status:** Implemented in 0.1.2; full-run balance testing remains.
+- **Status:** Released in 1.0.1 after local playtesting; structured catalog synchronized.
 
 #### Unfurling Darkness
 
 - **Cost:** 1 energy
-- **Effect:** Deal 5 damage. Apply 3 Touch. Gain 10 Insanity. Devour: Apply 3 Touch to ALL other enemies.
+- **Effect:** Deal 7 damage. Apply 3 Touch. Gain 10 Insanity. Devour: Affect ALL enemies.
 - **Upgrade:** Cost becomes 0 energy; effects remain unchanged.
-- **Rules:** Preserve damage, target Touch application, and explicit Insanity. The bonus applies Touch to other living enemies without dealing additional direct damage. Each application follows the normal Artifact and Misery rules. The spread can still resolve if the direct hit kills the selected target while other enemies remain.
-- **Status:** Implemented in 0.1.5; focused engine checks passed and first local playthrough reviewed. Ongoing balance testing.
+- **Rules:** Consume one Curse before resolving effects. Without Devour, hit the selected enemy once and apply Touch if it survives. With Devour, hit each living enemy once and apply Touch to each survivor; the original target is not hit a second time. Touch follows normal Artifact and Misery rules. Gain the explicit 10 Insanity once total per card play, in addition to normal Insanity from each direct hit. This remains one Attack play, so Psychic Link and other card-play effects trigger once. Haste does not repeat Devour. The AoE can continue after the original target dies while other enemies remain.
+- **Status:** Released in 1.0.1 after local playtesting; structured catalog synchronized.
 
 #### Shadow Word: Madness
 
 - **Cost:** 1 energy
-- **Effect:** Deal 9 damage. Apply Madness equal to HP removed. Add a Mind Decay to your hand.
-- **Upgrade:** Deal 13 damage instead; application and Curse generation remain unchanged.
+- **Effect:** Deal 10 damage. Apply Madness equal to HP removed. Add a Mind Decay to your hand.
+- **Upgrade:** Deal 15 damage instead; application and Curse generation remain unchanged.
 - **Rules:** Preserve the existing HP-removed calculation: count only actual enemy HP removed by this direct hit, excluding Block absorption, overkill, DoTs, and Psychic Link. Apply Madness afterward to a surviving target; Artifact can block it. Generate one combat-only Mind Decay before the hit so lethal damage cannot skip creation, regardless of whether Madness is applied. A full hand sends the Curse to discard. No immediate Madness tick.
-- **Status:** Implemented in 0.1.5; focused engine checks passed and first local playthrough reviewed. Ongoing balance testing.
+- **Status:** Released in 1.0.1 after local playtesting; structured catalog synchronized.
 
 #### Shadow Word: Torment
 
@@ -158,17 +158,17 @@ X/Y/Z = **Attacks/Skills/Powers**. Counts beside each rarity heading include dra
 
 - **Cost:** 1 energy
 - **Effect:** Heal 10 HP. Add 2 to your Shadow Mend debt. Devour: Do not gain Shadow Mend debt.
-- **Upgrade:** Add only 1 debt when Devour does not activate; healing remains 10.
-- **Rules:** Choose and exhaust the Curse before deciding whether this cast adds debt. Successful Devour prevents only this cast's debt; it does not clear existing debt. Do not briefly apply and remove debt or consume Artifact for debt that was prevented. Existing debt timing and healing restrictions remain unchanged.
-- **Status:** Implemented in 0.1.5; focused engine checks passed and first local playthrough reviewed. Ongoing balance testing.
+- **Upgrade:** Heal 14 HP; still add 2 debt unless Devour prevents it.
+- **Rules:** Choose and exhaust one Curse before deciding whether this cast adds debt. Successful Devour prevents only this cast's debt; it does not clear existing debt. Both versions add 2 debt without Devour. Do not briefly apply and remove prevented debt or consume Artifact for it. Combined debt causes HP loss at each subsequent player turn start and lasts for combat. Healing obeys normal restrictions.
+- **Status:** Released in 1.0.1 after local playtesting; structured catalog synchronized.
 
 #### Fade
 
 - **Cost:** 0 energy
-- **Effect:** Until your next turn, lose 1 less HP whenever you would lose HP.
-- **Upgrade:** Reduce each HP-loss event by 2 instead.
+- **Effect:** Until your next turn, lose 2 less HP whenever you would lose HP.
+- **Upgrade:** Reduce each HP-loss event by 4 instead.
 - **Rules:** Preserves existing stacking and HP-loss coverage, including self-damage. No upfront Block. Fully prevented damage generates no damage-taken Insanity.
-- **Status:** Implemented; full-run balance testing remains.
+- **Status:** Released in 1.0.1 after local playtesting; structured catalog synchronized.
 
 #### Purify Disease
 
@@ -186,59 +186,59 @@ X/Y/Z = **Attacks/Skills/Powers**. Counts beside each rarity heading include dra
 - **Rules:** Check Block and Artifact separately. Each condition grants its stat at most once per cast, regardless of the amount removed. Stats last for combat. Removing Block or Artifact is not a debuff application and is not prevented by Artifact.
 - **Status:** Implemented.
 
-#### Void Shield
+#### Void Shift
 - **Cost:** 1 energy
-- **Effect:** Gain 5 Block, plus 1 Block per 10 Insanity.
-- **Upgrade:** Base Block becomes 8; gain 1 additional Block per 5 Insanity instead.
-- **Rules:** Round the Insanity quotient down. Add Dexterity once through the base component, with no second Dexterity application to the resource bonus. Grant combined Block once with normal Block modifiers. No Insanity gain. Ready or active Voidform uses 100; Recharge keeps the base Block. At 0/50/100 Insanity, base values are 5/10/15 or upgraded 8/18/28. Removing the text that says voidform counts as 100 insanity, instead display the actual calculated block gained in parenthesis.
-- **Status:** Implemented in 0.1.2; full-run balance testing remains.
+- **Effect:** Remove ALL Block from the target enemy. Gain that much Block.
+- **Upgrade:** Gain Retain.
+- **Rules:** Remove the target's current Block and grant the amount actually removed as flat Block to the player. Dexterity, Frail, and other card Block modifiers do not alter the transfer; the normal player Block cap still applies. Removal is not damage or a debuff and bypasses Artifact. With no enemy Block, remove and gain zero. Display the current transfer amount when hovering a target. Gained Block is ordinary Block, not Barrier. This replaces Void Shield; preserve its internal card ID for saves.
+- **Status:** Released in 1.0.1 after local playtesting; structured catalog synchronized.
 
 #### Shadowy Insight
 
 - **Cost:** 0 energy
-- **Effect:** Draw 1 card per unique DoT on the target. Only one Shadowy Insight can be played each turn. Exhaust.
-- **Upgrade:** Remove Exhaust; the shared once-per-turn limit remains.
-- **Rules:** Snapshot the target's unique DoTs when played, then draw normally. A successful play locks all copies, upgraded or not, for the rest of the turn, even if it draws zero cards. Reset at the start of your next turn and on combat reset. The limit is shared, not per copy.
-- **Status:** Implemented.
+- **Effect:** Draw 1 card per unique DoT on the target. Only one Shadowy Insight can be played each turn. Exhaust. Devour: Do not Exhaust this card.
+- **Upgrade:** Draw 1 additional card.
+- **Rules:** Lock all copies for the turn when this card is played, including when the draw count is zero. Snapshot unique DoTs, then choose and exhaust a Curse already in hand before drawing. A Curse drawn by this card cannot pay for its own Devour. Draw the snapshot count, plus one if upgraded. Successful Devour prevents this play's printed Exhaust only; both versions otherwise Exhaust. Other forced Exhaust or card-removal effects retain their normal behavior. Reset the shared lock at the next player turn and combat reset. Haste does not increase this for-each draw count or Devour.
+- **Status:** Released in 1.0.1 after local playtesting; structured catalog synchronized.
 
 #### Mind Soothe
 
 - **Cost:** 0 energy
-- **Effect:** Until your next turn, ALL enemies deal 1 less Attack damage, plus 1 less per unique DoT on them.
-- **Upgrade:** Base reduction becomes 2.
+- **Effect:** Until your next turn, ALL enemies deal 2 less Attack damage, plus 1 less per unique DoT on them.
+- **Upgrade:** Base reduction becomes 3; reduction per unique DoT becomes 2.
 - **Rules:** Snapshot unique DoTs separately for each living enemy when played. Each enemy receives its own debuff application, independently blocked by Artifact. Reduction applies per Attack hit, floors damage at zero, stacks for this turn, and expires after the enemy turn. The combat preview shows the current reduction, or a range when enemies differ.
-- **Status:** Implemented locally October 29, 2026; full-run balance testing pending.
+- **Status:** Released in 1.0.1 after local playtesting; structured catalog synchronized.
 
 #### Void Tendrils
 
 - **Cost:** 1 energy
-- **Effect:** Gain 4 Block for each enemy. Apply 2 Pain to ALL attacking enemies.
-- **Upgrade:** Gain 5 Block per enemy and apply 3 Pain.
+- **Effect:** Gain 6 Block for each enemy. Apply 2 Pain to ALL attacking enemies.
+- **Upgrade:** Gain 8 Block per enemy and apply 3 Pain.
 - **Rules:** Count living enemies. Grant Block separately per enemy, applying Dexterity and other Block modifiers to every grant. Check attack intents when played, including attack/buff, attack/debuff, and attack/defend. Only those enemies receive Pain. Artifact blocks application, not Block.
-- **Status:** Implemented; full-run balance testing remains.
+- **Status:** Released in 1.0.1 after local playtesting; structured catalog synchronized.
 
 #### Encroaching Shadows
 - **Cost:** 1 energy
-- **Effect:** Gain 6 Block. Apply 5 Madness.
-- **Upgrade:** Gain 9 Block and apply 7 Madness.
+- **Effect:** Gain 8 Block. Apply 8 Madness.
+- **Upgrade:** Gain 11 Block and apply 11 Madness.
 - **Rules:** Block resolves first with Dexterity once. Artifact can prevent Madness but not Block. No immediate DoT tick.
-- **Status:** Implemented in 0.1.2; full-run balance testing remains.
+- **Status:** Released in 1.0.1 after local playtesting; structured catalog synchronized.
 
 #### Focused Will
 
 - **Cost:** 1 energy
-- **Effect:** Gain 7 Block. Gain 10 Insanity. Devour: Gain 7 additional Block.
-- **Upgrade:** Base Block becomes 10 and Insanity becomes 15; Devour bonus remains 7.
-- **Rules:** Consume before the Block grant and add the bonus to base Block, for 14/17 before modifiers. Apply Dexterity and normal Block modifiers once to the combined grant. Insanity remains unconditional and obeys the usual restrictions. Does not Exhaust itself.
-- **Status:** Implemented in 0.1.5; focused engine checks passed and first local playthrough reviewed. Ongoing balance testing.
+- **Effect:** Gain 8 Block. Gain 10 Insanity. Devour: Convert all your Block to Barrier.
+- **Upgrade:** Gain 11 Block and 15 Insanity instead.
+- **Rules:** Consume one Curse before resolving the card. Grant the card's Block with Dexterity and normal Block modifiers once, then gain Insanity under the usual restrictions. If Devour succeeded, set the Barrier reserve to the player's current total Block, including this card's grant and any existing Barrier. Conversion does not add Block, reapply modifiers, or count as another Block-gain event. At zero Block, create no Barrier. This is one card play with one Devour, no repeats, and no recursion. Future ordinary Block gains do not increase the reserve.
+- **Status:** Released in 1.0.1 after local playtesting; structured catalog synchronized.
 
 #### Madness Overwhelming
 
 - **Cost:** 1 energy
-- **Effect:** Apply 10 Madness, plus 5 for each Power played this combat. Add a Mind Decay to your discard pile.
+- **Effect:** Apply 10 Madness, plus 5 for each Power played this combat. Add a Mind Decay to your hand.
 - **Upgrade:** Apply 15 Madness, plus 8 for each Power played this combat. Curse generation remains unchanged.
-- **Rules:** Preserve the existing Power-play count, including free Power plays through Foresight+ and excluding automatic Legendary equipment. Display the current calculated application. Artifact can block the combined Madness application. Generate one combat-only Mind Decay regardless of whether the application succeeds; no immediate Madness tick. Creating the Curse in discard delays access until it is drawn or otherwise retrieved.
-- **Status:** Implemented in 0.1.5; focused engine checks passed and first local playthrough reviewed. Ongoing balance testing.
+- **Rules:** Count actual Power plays this combat, including free Power plays through Foresight+ and Shadowy Committal+, but excluding automatic Legendary equipment. Display the current calculated Madness application. Artifact can block the combined application; it causes no immediate tick. Generate one combat-only Mind Decay in hand regardless of whether Madness succeeds. A full hand sends the Curse to discard. Creation is not a draw; a Curse successfully placed in hand is immediately available to later Devour cards.
+- **Status:** Released in 1.0.1 after local playtesting; structured catalog synchronized.
 
 ### Powers
 
@@ -259,10 +259,10 @@ X/Y/Z = **Attacks/Skills/Powers**. Counts beside each rarity heading include dra
 
 #### Tithe Evasion
 - **Cost:** 1 energy
-- **Effect:** During your turn, lose 1 less HP from each damage source. Stacks.
-- **Upgrade:** Reduce 2 instead.
-- **Rules:** Add benefits from all copies. Covers start-of-turn, card-play and end-of-turn damage/HP loss, including Thorns, Beat of Death, Curses and self-damage. Damage consumes Block normally before this reduces remaining HP loss, floored at zero. No protection during the enemy phase. Fully prevented HP loss grants neither Insanity nor Catharsis damage.
-- **Status:** Implemented in 0.1.2; full-run balance testing remains.
+- **Effect:** During your turn, lose 2 less HP from each damage source. Stacks.
+- **Upgrade:** Cost becomes 0 energy.
+- **Rules:** Each copy adds 2 HP-loss prevention during the player turn, including start-of-turn, card-play and end-of-turn effects. Covers damaging Curses, self-damage, Thorns and Beat of Death. Block is consumed normally before reducing remaining HP loss, floored at zero. Prevented HP loss grants neither damage-taken Insanity nor Catharsis damage. Provides no protection during the enemy phase, generates no healing, and cannot prevent Surrender's death deadline. Both versions have the same prevention; upgrading changes only cost.
+- **Status:** Released in 1.0.1 after local playtesting; structured catalog synchronized.
 
 #### Shadow Weaving
 
@@ -279,42 +279,41 @@ X/Y/Z = **Attacks/Skills/Powers**. Counts beside each rarity heading include dra
 #### Atonement
 
 - **Cost:** 1 energy
-- **Effect:** Deal 5 damage. Apply 2 Atonement.
-- **Upgrade:** Deal 7 damage and apply 3 Atonement.
-- **Rules:** Atonement is a combat-long, Artifact-blockable debuff, not a DoT. Each direct Attack hit grants its fixed Block value, including fully blocked hits, without Dexterity scaling. Damage happens before application: replaying Atonement triggers the existing benefit. Applications do not stack; use the higher value (2 becomes 3, never 5 or a downgrade). No Exhaust. Equal or weaker reapplications do not consume Artifact. DoTs, Halo, and retaliation do not trigger it.
-- **Status:** Implemented; full-run balance testing remains.
+- **Effect:** Deal 6 damage. Apply 3 Atonement. Exhaust.
+- **Upgrade:** Deal 9 damage and apply 5 Atonement instead.
+- **Rules:** Atonement is a combat-long debuff, not a DoT. Applications add their amounts; every application independently respects Artifact. Each direct Attack hit on the afflicted enemy grants fixed Block equal to its current Atonement, including fully blocked hits, without Dexterity scaling. Damage happens before application, so another Atonement card triggers any existing benefit before adding stacks. Both versions Exhaust. DoTs, Halo and retaliation do not trigger Atonement. Its Block is ordinary Block and does not increase an existing Barrier reserve.
+- **Status:** Released in 1.0.1 after local playtesting; structured catalog synchronized.
 
 #### Mind Flay: Insanity
 
 - **Cost:** X energy
-- **Effect:** Add X stacks to each existing DoT. Deal 6 damage X times.
-- **Upgrade:** Add X+1 stacks to each existing DoT and deal damage X+1 times.
-- **Rules:** Add stacks only to existing Touch, Pain, and Madness before the hits. Touch/Pain cap at 5; their extension bypasses Artifact and does not trigger Misery. Additional Madness follows normal application rules, including Artifact. Never create a missing DoT. Use effective X from the Haste definition, adding the upgraded extra repetition afterward.
-- **Status:** Implemented with shared Haste support.
-- **Playtest feedback:** Raised damage per hit from 4 to 6 after the completed run; evaluate this baseline in further runs.
+- **Effect:** Add X stacks to each existing DoT on the target. Deal 6 damage X times. Trigger its Touch and Pain X times.
+- **Upgrade:** Add X+1 stacks, deal damage X+1 times, and trigger its Touch and Pain X+1 times.
+- **Rules:** Calculate effective X once, including Haste and Chemical X, then add the upgraded extra repetition once. First add that many stacks to each existing DoT; never create a missing DoT. Touch/Pain extension respects their caps, bypasses Artifact and does not trigger Misery. Additional Madness follows normal application rules, including Artifact. Resolve the Attack hits, then the rounds of bonus Touch and Pain ticks against a surviving target. Never trigger bonus Madness ticks; its stacks still increase with the other existing DoTs and its natural turn-end tick is unchanged. Bonus ticks use current Mastery, remove no stacks, and do not add further stacks. They grant normal tick-based Insanity and eligible Touch healing, but do not count as Attack hits or extra card plays. Psychic Link triggers once for the card play. Skip further damage and ticks once the target is dead.
+- **Status:** Released in 1.0.1 after local playtesting; structured catalog synchronized.
 
 #### Mind Sear
 
 - **Cost:** X energy
-- **Effect:** Deal 6 damage to ALL enemies X times.
+- **Effect:** Deal 6 damage to ALL enemies X times. After each hit, apply 2 Madness.
 - **Upgrade:** Repeat the damage X+1 times.
-- **Rules:** Uses effective X with Haste and Chemical X. No built-in Madness application. Each actual enemy hit grants ten Insanity; dead targets generate no additional hits.
-- **Status:** Implemented; full-run balance testing remains.
+- **Rules:** Calculate effective X once using Haste and Chemical X; the upgrade adds one damage wave afterward. Each wave hits every living enemy once. After each hit, apply 2 Madness to that enemy if it survives, even if the hit was fully blocked. Artifact independently checks each application. Each actual enemy hit grants normal hit-based Insanity; dead targets generate no additional hits or applications. Printed Madness application and Searing Nightmare are separate effects. Protected Channel counts waves, not enemies hit or Madness applications.
+- **Status:** Released in 1.0.1 after local playtesting; structured catalog synchronized.
 
 #### Void Volley
 - **Cost:** X energy
-- **Effect:** Hurl X Void Bolts at random enemies. Each deals 10 damage, then adds 1 stack to each existing DoT on its target. When you enter Voidform with this in hand, play it for free.
-- **Upgrade:** Each bolt deals 13 damage and adds 2 stacks.
-- **Rules:** Each copy already in hand on actual Voidform entry plays once for free after entry effects, using current energy plus Haste and Chemical X without spending energy. Counts as one Attack play and discards normally. Extending an existing form does not trigger it. Psychic Link triggers once; each hit generates Insanity normally. Select a living target for each bolt. Never create missing DoTs; Touch/Pain cap at 5. At zero energy, only external X bonuses generate bolts. Voidform amplifies damage without discounting X. Remains Uncommon.
-- **Status:** Implemented in 0.1.2; full-run balance testing remains.
+- **Effect:** Hurl X Void Bolts at random enemies. Each deals 11 damage, then adds 1 stack to each existing DoT on its target. When you enter Voidform with this in hand, play it for free.
+- **Upgrade:** Each bolt deals 15 damage and adds 2 stacks.
+- **Rules:** Use the same 11/15 damage and 1/2-stack extension values as Void Bolt. Each copy in hand at actual Voidform entry is eligible once for the shared left-to-right automatic-play sequence with Shadowy Committal+. Finish each card before starting the next; cards drawn afterward do not join the sequence. If still in hand when its turn arrives, play it for free using current Energy plus Haste and Chemical X without spending Energy. It counts as one Attack play and discards normally. Extending an existing form does not trigger it. Psychic Link triggers once; each actual hit follows normal Insanity rules. Select a living target for each bolt and resolve its damage and extension before selecting the next. Never create missing DoTs; extension follows Void Bolt's cap and Artifact rules. At zero Energy, only external X bonuses generate bolts. Voidform amplifies damage without discounting X.
+- **Status:** Released in 1.0.1 after local playtesting; structured catalog synchronized.
 
-#### Dark Void ?
+#### Dark Void
 
 - **Cost:** 1 energy
-- **Effect:** Deal 6 damage to ALL enemies. Apply 3 Pain to each enemy that loses HP. Add a Pain curse to your discard pile.
-- **Upgrade:** Deal 10 damage and apply 5 Pain instead. Curse remains the same.
-- **Rules:** Check actual HP removed by this card's direct hit separately for each enemy. Do not apply Pain if Block or damage reduction prevents all HP loss. Apply to surviving qualifying targets; Artifact can block the application. Psychic Link and other incidental damage do not satisfy the condition.
-- **Status:** Implemented.
+- **Effect:** Deal 6 damage to ALL enemies. Apply 3 Pain to each enemy that loses HP. Add a Mind Decay to your hand.
+- **Upgrade:** Deal 10 damage and apply 5 Pain instead.
+- **Rules:** Generate one combat-only Mind Decay before damage so a combat-ending hit cannot skip creation. A full hand sends it to discard; creation is not a draw. Generate one Curse per card play regardless of enemy count or successful Pain applications. Check actual HP removed by this card's direct hit separately for each enemy. Apply Pain only to surviving targets that lost HP; Artifact can block each application. Psychic Link and other incidental damage do not satisfy the condition.
+- **Status:** Released in 1.0.1 after local playtesting; structured catalog synchronized.
 
 #### Penance
 - **Cost:** 1 energy
@@ -351,11 +350,11 @@ X/Y/Z = **Attacks/Skills/Powers**. Counts beside each rarity heading include dra
 - **Status:** Implemented; full-run balance testing remains.
 
 #### Power Infusion
-- **Cost:** 1 energy
+- **Cost:** 0 energy
 - **Effect:** Gain 2 Haste. Haste does not decay for 2 turns. Exhaust.
-- **Upgrade:** Cost 0 energy.
-- **Rules:** Copies add Haste. Skip the next two end-of-turn Haste decays, including the casting turn; subsequent casts refresh this protection to two, never add duration. This protects the entire combined Haste pool. With no other sources: 2 Haste on the casting turn and next two turns, then decay to 1 at the third turn end. Haste is not consumed by plays and works at zero energy.
-- **Status:** Implemented in 0.1.2; full-run balance testing remains.
+- **Upgrade:** Prevent Haste decay for 3 turns instead.
+- **Rules:** Copies add 2 Haste. Skip the next two end-of-turn Haste decays, or three when upgraded, including the casting turn. Recasts set protection to the greater of its remaining duration and the new cast's duration; they neither add durations nor shorten existing protection. This protects the entire combined Haste pool. With no other sources, a base cast keeps 2 Haste for the casting turn and the next two turns, then decays to 1 at the third turn end; an upgraded cast delays that first decay until the fourth turn end. Haste is not consumed by plays and works at zero Energy. Both versions cost 0 and Exhaust.
+- **Status:** Released in 1.0.1 after local playtesting; structured catalog synchronized.
 
 #### Shadow Crash
 
@@ -367,10 +366,10 @@ X/Y/Z = **Attacks/Skills/Powers**. Counts beside each rarity heading include dra
 
 #### Halo
 - **Cost:** 1 energy
-- **Effect:** Gain a Halo aura. At the end of your turn, deal 4 damage to ALL enemies for 3 turns.
-- **Upgrade:** Each pulse deals 6 damage instead.
-- **Rules:** The first pulse occurs at the end of the casting turn, followed by two more pulses. Each cast creates a separate aura with its own damage and remaining duration. Pulses hit enemies present when they trigger, respect Block, ignore Strength and Voidform's damage bonus, and generate no Insanity. Halo is not a DoT and does not trigger Psychic Link. As a Skill, it receives no Voidform cost discount.
-- **Status:** Implemented in 0.1.2; full-run balance testing remains.
+- **Effect:** Gain a Halo aura. At the end of your turn, heal 2 HP and deal 4 damage to ALL enemies for 3 turns.
+- **Upgrade:** Each pulse heals 3 HP and deals 6 damage instead.
+- **Rules:** The first pulse occurs at the end of the casting turn, followed by two more pulses. Each cast creates a separate aura with its own damage, healing and duration. Heal once per aura pulse, not once per enemy, immediately before that pulse's damage so lethal damage cannot discard the heal. Healing obeys normal restrictions and stops when combat ends; Details counts only actual HP restored. Damage hits enemies present at the pulse, respects Block, ignores Strength and Voidform's damage bonus, and generates no Insanity. Halo is not a DoT, does not trigger Psychic Link or Vampiric Embrace, and gains no extra pulses from Haste. As a Skill, it receives no Voidform cost discount.
+- **Status:** Released in 1.0.1 after local playtesting; structured catalog synchronized.
 
 #### Dispersion
 
@@ -381,10 +380,10 @@ X/Y/Z = **Attacks/Skills/Powers**. Counts beside each rarity heading include dra
 #### Crystalline Reflection
 
 - **Cost:** X energy
-- **Effect:** Gain 5 Block X times. Gain X Thorns until your next turn.
-- **Upgrade:** Gain 7 Block per instance instead.
+- **Effect:** Gain 6 Block X times. Gain X Thorns until your next turn.
+- **Upgrade:** Gain 8 Block per instance instead.
 - **Rules:** Use effective X for both Block instances and temporary Thorns. Apply Dexterity and ordinary Block modifiers separately to each Block instance. Thorns retaliates against enemy Attack hits, including hits fully absorbed by Block; it does not trigger on enemy card plays, DoT ticks, or HP loss. At the start of your next turn, remove only these temporary Thorns, preserving permanent sources. Expiry is a buff-side duration rule, not an Artifact-blockable debuff.
-- **Status:** Implemented.
+- **Status:** Released in 1.0.1 after local playtesting; structured catalog synchronized.
 
 #### Desperate Prayer
 
@@ -412,7 +411,7 @@ X/Y/Z = **Attacks/Skills/Powers**. Counts beside each rarity heading include dra
 - **Cost:** 1 energy
 - **Effect:** Choose a DoT application card from your draw pile. Put it into your hand. It costs 0 this turn. Exhaust.
 - **Upgrade:** Cost becomes 0 energy.
-- **Rules:** Choose visibly even with one option. Direct applications include conditional Shadow Word: Madness, Dark Void, and Void Blast; the chosen card retains its normal application conditions. Existing-only extension and enabling Powers such as Searing Nightmare are excluded. Search only the draw pile; no shuffle or on-draw triggers. A full hand sends the chosen card to discard. Cost resets normally after this turn. The accepted roster currently has no eligible X-cost application cards.
+- **Rules:** Choose visibly even with one option. Direct applications include conditional Shadow Word: Madness, Dark Void, and Void Blast; the chosen card retains its normal application conditions. Existing-only extension and enabling Powers such as Searing Nightmare are excluded. Search only the draw pile; no shuffle or on-draw triggers. A full hand sends the chosen card to discard. Cost resets normally after this turn. Mind Sear qualifies as a direct DoT application after its accepted rework. If retrieved, its X cost remains X; setting a retrieved card's cost to zero does not grant free repetitions or change effective X.
 - **Status:** Implemented; full-run balance testing remains.
 
 #### Twin Suns
@@ -447,8 +446,8 @@ X/Y/Z = **Attacks/Skills/Powers**. Counts beside each rarity heading include dra
 - **Cost:** 2 energy
 - **Effect:** Each incoming Attack hit has a 20% chance to miss.
 - **Upgrade:** Increase the chance to 30%.
-- **Rules:** Roll independently for each hit, including each hit of a multihit Attack. A miss prevents that hit's damage before Block is consumed. Copies do not add their chances: track the highest benefit granted this combat, with equal or weaker copies unplayable, following Fortitude's rule. The upgrade replaces 20% with 30%. Reset after combat.
-- **Status:** Implemented; full-run balance testing remains.
+- **Rules:** Each copy independently contributes a 20% miss chance, or 30% when upgraded, for each incoming Attack hit. Combined miss chance is 1 minus the product of each copy's hit chance: two upgrades give 51%; two upgrades and one base copy give 60.8%. Roll independently per incoming hit, including multihits. A miss prevents damage before consuming Block. Additional copies remain playable and preserve their individual upgrade values. The effect does not prevent DoTs or HP-loss effects. Reset the accumulated benefits after combat.
+- **Status:** Released in 1.0.1 after local playtesting; structured catalog synchronized.
 
 #### Insidious Ire
 
@@ -465,19 +464,19 @@ X/Y/Z = **Attacks/Skills/Powers**. Counts beside each rarity heading include dra
 - **Upgrade:** Cost becomes 1 energy.
 
 #### Protected Channel
-- **Cost:** 2 energy
-- **Effect:** Gain 6 Block. Whenever you play an X-cost card, gain 3 Block X times.
-- **Upgrade:** Ongoing Block becomes 5 per instance; upfront stays 6.
-- **Rules:** Dexterity applies once to the upfront grant, but never to triggered Block. Other normal Block modifiers still apply. Use effective X including Haste and Chemical X exactly once, excluding printed X+1 upgrades. Trigger once per X-card play after its effects. Free repeats preserve X. Additional ordinary Block does not increase Barrier reserve.
-- **Status:** Implemented in 0.1.2; full-run balance testing remains.
+- **Cost:** 1 energy
+- **Effect:** Gain 6 Block. Whenever you play an X-cost card, gain 3 Block per X-based tick.
+- **Upgrade:** Ongoing Block becomes 5 per tick; upfront Block stays 6.
+- **Rules:** A tick is one repetition or unit of the card's primary X-based effect, including non-damaging effects. Compute effective X once from Energy, Haste and Chemical X, then include a printed extra primary-effect unit such as X+1 once. Mind Sear counts damage waves, regardless of enemy count. Mind Flay: Insanity counts its primary repetitions once, not its separate stack additions and DoT ticks. Crystalline Reflection counts its Block repetitions, not its additional Thorns. Dark Evangelism counts its X-based Mastery units, even when granted together. Thus effective X=3 gives three grants for each base card; Mind Sear+, Mind Flay: Insanity+ and Dark Evangelism+ give four, while Crystalline Reflection+ still gives three. Dexterity applies once to the upfront Block and never to triggered Block; other ordinary Block modifiers still apply. Copies stack their ongoing values. Free X plays work at zero Energy using the same bonuses; preserved-X replays do not add bonuses again. Triggered Block is ordinary Block and does not increase Barrier.
+- **Status:** Released in 1.0.1 after local playtesting; structured catalog synchronized.
 
 #### Dark Reinforcement
 
 - **Cost:** 1 energy
 - **Effect:** Whenever you draw a Curse, gain 1 Energy and draw 1 card.
-- **Upgrade:** Whenever you draw a Curse, gain 1 Energy, draw 1 card, and gain 1 Mastery.
-- **Rules:** Actual draws only. Creation, retention, tutors that put cards into hand, and Necronomicurse returning do not trigger. Copies stack energy/draw; only upgraded copies add Mastery. Additional draws use normal draw, shuffle, and hand-limit rules.
-- **Status:** Implemented; full-run balance testing remains.
+- **Upgrade:** Also trigger when you Devour a Curse.
+- **Rules:** Each copy grants 1 Energy and draws 1 card on an actual Curse draw. Upgraded copies also grant those benefits when a Curse is successfully Devoured. Drawing and later Devouring the same Curse are separate qualifying events. Base copies do not reward Devour. Creation, retention, tutors that put cards into hand, and Necronomicurse returning are not draws. Ordinary Curse exhaustion is not Devour. Copies stack the benefits for events they support. No Mastery is granted. Additional draws use normal draw, shuffle and hand-limit rules.
+- **Status:** Released in 1.0.1 after local playtesting; structured catalog synchronized.
 
 
 ## Rare (4/5/5)
@@ -526,11 +525,11 @@ X/Y/Z = **Attacks/Skills/Powers**. Counts beside each rarity heading include dra
 - **Status:** Implemented in 0.1.5; focused engine checks passed and first local playthrough reviewed. Ongoing balance testing.
 
 #### Mass Dispel
-- **Cost:** 2 energy
+- **Cost:** 1 energy
 - **Effect:** Remove all enemies' Block, Artifact, and positive Strength.
 - **Upgrade:** Removes all negative effects from yourself as well.
-- **Rules:** Preserve negative Strength and powers that generate future Strength or Block. Removal is not blocked by Artifact. Does not Exhaust. Any debuff that artifact would have prevented or removed by the Pellets relic are removed with the upgraded Mass Dispel effect.
-- **Status:** Implemented in 0.1.2; full-run balance testing remains.
+- **Rules:** Remove enemy Block, Artifact and positive Strength while preserving negative Strength and powers that generate future Strength or Block. Removal bypasses Artifact. The upgrade additionally removes removable player Debuffs, including negative Strength, Dexterity and Mastery. It never removes protected mechanics such as Surrender's deadline. Both versions can be played when no eligible effects are present and do not Exhaust.
+- **Status:** Released in 1.0.1 after local playtesting; structured catalog synchronized.
 
 #### Petrifying Scream
 - **Cost:** 2 energy
@@ -559,26 +558,28 @@ X/Y/Z = **Attacks/Skills/Powers**. Counts beside each rarity heading include dra
 ### Powers
 
 #### Searing Nightmare
-- **Cost:** 2 energy
-- **Effect:** Your direct Attack hits apply 2 Madness to the enemy hit.
-- **Upgrade:** Cost becomes 1 energy.
-- **Rules:** Each direct Attack hit applies two Madness to a surviving target, including fully blocked hits. AoE checks each enemy and multihits trigger per hit. Artifact blocks each application. Copies stack the coefficient. DoTs, Psychic Link, Halo and retaliation do not trigger it. Playing the Power itself deals no damage and applies no DoT.
-- **Status:** Implemented in 0.1.2; full-run balance testing remains.
 
-#### Shadow Committal
+- **Cost:** 1 energy
+- **Effect:** Your direct Attack hits apply 2 Madness to the enemy hit.
+- **Upgrade:** Apply 4 Madness instead.
+- **Rules:** Each direct Attack hit applies 2 Madness, or 4 when upgraded, to a surviving enemy, including fully blocked hits. AoE checks each enemy and multihits trigger per hit. Artifact checks each application. Copies add their coefficients. DoTs, Psychic Link, Halo and retaliation do not trigger it. Playing this Power deals no damage and applies no DoT itself. Both versions cost 1; upgrading changes the application amount.
+- **Status:** Released in 1.0.1 after local playtesting; structured catalog synchronized.
+
+#### Shadowy Committal
 
 - **Cost:** 3 energy
 - **Effect:** During Voidform, playing an Attack grants 1 Strength, a Skill grants 1 Dexterity, and a Power grants 1 Mastery. These stats last for the rest of combat.
-- **Upgrade:** Cost becomes 2 energy.
-- **Rules:** Resolve the stat gain after the triggering card. This Power's own initial play does not trigger its newly applied effect. Copies stack. Sample Voidform eligibility when the card is played, so an activation card played outside Voidform does not retroactively qualify. Keep the proposed values for testing, including interactions with Surrender to Madness and the cost of setting up multiple Powers.
-- **Status:** Implemented; full-run balance testing remains.
+- **Upgrade:** When you enter Voidform with this in hand, play it for free.
+- **Rules:** Resolve stat gains after the triggering card. This Power's own initial play does not trigger its newly applied effect, but already active copies can reward later Power plays. Copies stack. Sample Voidform eligibility when a card is played. The upgrade retains its 3-energy manual cost and auto-plays free only if it was in hand when Voidform was entered. Snapshot eligible Shadowy Committal+ and Void Volley cards together in visible left-to-right hand order; finish each card before the next. Play each eligible card at most once if still in hand. Newly drawn cards do not join the sequence, and extending an existing form does not retrigger it. Automatic plays count as normal card plays; only subsequently played cards benefit from a newly resolved Committal. Rename the display name while preserving Shadow Committal's internal ID.
+- **Status:** Released in 1.0.1 after local playtesting; structured catalog synchronized.
 
 #### Vampiric Embrace
 
 - **Cost:** 2 energy
-- **Effect:** Whenever Vampiric Touch removes enemy HP, heal 1 HP.
-- **Upgrade:** Heal 2 HP instead.
-- **Rules:** Includes natural and Psychic Link ticks, separately for each enemy. Multiple Embrace copies add their healing. No per-turn cap. A fully prevented tick grants no healing; a damaging tick grants the fixed heal regardless of damage amount. Pain, Madness, Halo, and direct attacks do not trigger it. Normal healing restrictions still apply.
+- **Effect:** Whenever Vampiric Touch removes enemy HP, heal 1 HP. Whenever you Devour a Curse, heal 1 HP.
+- **Upgrade:** Heal 2 HP on both conditions instead.
+- **Rules:** Touch healing includes natural ticks and bonus ticks from Psychic Link or Mind Flay: Insanity, separately for each enemy. A fully prevented tick grants no healing; an actual HP-removing Touch tick grants the fixed heal regardless of damage amount. Separately, each successfully Devoured Curse grants the fixed heal once; ordinary Curse exhaustion does not qualify. Multiple Embrace copies add their healing for both conditions. No per-turn cap. Pain, Madness, Halo and direct Attack damage do not trigger Touch healing. Normal healing restrictions apply.
+- **Status:** Released in 1.0.1 after local playtesting; structured catalog synchronized.
 
 #### Dark Evangelism
 
@@ -614,26 +615,26 @@ X/Y/Z = **Attacks/Skills/Powers**. Counts beside each rarity heading include dra
 
 - **Cost:** Unplayable; equips automatically before the opening hand.
 - **Effect:** Randomly gain 2 Strength, 2 Dexterity, or 2 Mastery, 4 times.
-- **Upgrade:** Roll 5 times instead.
-- **Rules:** Each roll independently has a one-third chance for Strength, Dexterity, or Mastery. Roll only at combat start; rolls can all select the same stat. All gains last for combat. Haste is excluded. Equipment activation is not a Power play.
+- **Upgrade:** Each of the 4 rolls grants 3 of the chosen stat instead of 2.
+- **Rules:** Both versions roll exactly 4 times. Each roll independently has a one-third chance for Strength, Dexterity, or Mastery and grants 2 of the chosen stat (3 upgraded), for 8/12 total stat points. Roll only at combat start; rolls can all select the same stat. All gains last for combat. Haste is excluded. Equipment activation is not a Power play.
 - **Art:** The actual WoW dagger model render floats beside the priest; the card has an orange Legendary frame.
-- **Status:** Implemented; full-run balance testing remains.
+- **Status:** Released in 1.0.1 after local playtesting; structured catalog synchronized.
 
 #### Val'anyr, Hammer of the Ancient Kings
 
 - **Cost:** Unplayable; equips automatically before the opening hand.
-- **Effect:** Gain 5 Block. Retain Block until it is depleted. Once per combat, lethal damage leaves you at 1 HP.
-- **Upgrade:** Start with 10 Block instead.
-- **Rules:** Starting Block is flat. Reaching exactly zero Block permanently breaks this weapon's retention for the combat, even if you later regain Block; other Blur or Barricade effects remain. The lethal rescue is independent of the retention and can prevent lethal HP loss. It does not protect against a following hit. Equipment activation is not a Power play.
-- **Buff display:** Val'anyr displays two independent buffs: Barricade (Val'anyr), using the base-game Barricade icon, and Guardian Angel, using WoW's Guardian Spirit icon. The first disappears when Block is depleted; Guardian Angel remains until its once-per-combat lethal rescue is spent. Neither effect refreshes the other.
+- **Effect:** Gain Barricade for combat. Once per combat, lethal damage leaves you at 1 HP.
+- **Upgrade:** Also start with 10 Block.
+- **Rules:** Base grants no opening Block; upgraded opening Block is a flat 10. Barricade lasts for the entire combat and survives reaching zero Block, so subsequently gained Block is still retained; other Blur or Barricade effects remain independent. The lethal rescue is independent of the retention and can prevent lethal HP loss. It does not protect against a following hit. Equipment activation is not a Power play.
+- **Buff display:** Val'anyr displays two independent buffs: Barricade (Val'anyr), using the base-game Barricade icon, and Guardian Angel, using WoW's Guardian Spirit icon. Barricade remains for the entire combat, including at zero Block; Guardian Angel remains until its once-per-combat lethal rescue is spent. Neither effect refreshes the other.
 - **Art:** The actual WoW mace model render floats beside the priest; the card has an orange Legendary frame.
-- **Status:** Implemented; full-run balance testing remains.
+- **Status:** Released in 1.0.1 after local playtesting; structured catalog synchronized.
 
 ## Generated Curses (excluded from collectible tallies)
 
 #### Mind Decay
 
-- **Type:** Curse; generated by Shadow Word: Madness, Madness Overwhelming, Mental Decay, and Malady of the Mind, never a reward or random event Curse.
+- **Type:** Curse; generated by Shadow Word: Madness, Madness Overwhelming, Dark Void, Mental Decay, and Malady of the Mind, never a reward or random event Curse.
 - **Cost:** Unplayable.
 - **Effect:** Retain. At the start of your turn, lose 1 HP.
 - **Upgrade:** None.
@@ -650,7 +651,7 @@ X/Y/Z = **Attacks/Skills/Powers**. Counts beside each rarity heading include dra
 ## Class design rules
 
 - Legendary cards use the agreed [boss-reward and uniqueness rules](docs/legendary-cards.md): only one Legendary may be in the permanent deck at a time. Owning one excludes all Legendaries from rewards and further acquisition. Each named Legendary can be acquired only once per run and cannot be duplicated into the permanent deck. Equipment activates once per combat before the opening hand, without a Power play or drawable copy. Temporary copies and forced plays cannot activate another Legendary. Legendary support is implemented.
-- Shared DoT, Mastery, Madness, Insanity, Voidform, Recharge, application, extension, and Haste rules are defined in [keywords.md](keywords.md). The agreed keyword revision is implemented.
+- Shared DoT, Mastery, Madness, Insanity, Voidform, Recharge, application, extension, and Haste rules are defined in [keywords.md](keywords.md). November 4 keyword revisions are implemented locally; full-run balance testing remains.
 - Touch and Pain cap at 5 stacks. Madness has no cap, deals half its stacks rounded up plus Mastery each natural tick, and loses exactly 1 stack. None of these applications triggers an immediate tick unless explicitly stated.
 - Insidious Ire is the agreed class-card exception that applies Vulnerable after a start-of-turn three-DoT check. Access through events, relics, colorless cards, or other outside sources remains allowed.
 - Sustain is an intended reward for building and setting up the Touch, Psychic Link, and Embrace engine. Validate it against the A20 Heart as well as ordinary encounters; controlled mechanics checks do not establish full-run balance.

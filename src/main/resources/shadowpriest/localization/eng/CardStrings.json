@@ -25,7 +25,8 @@
   },
   "shadowpriest:ShadowMend": {
     "NAME": "Shadow Mend",
-    "DESCRIPTION": "Heal 10 HP. NL Gain !M! shadowpriest:Debt. NL shadowpriest:Devour: Do not gain shadowpriest:Debt."
+    "DESCRIPTION": "Heal 10 HP. NL Gain 2 shadowpriest:Debt. NL shadowpriest:Devour: Do not gain shadowpriest:Debt.",
+    "UPGRADE_DESCRIPTION": "Heal 14 HP. NL Gain 2 shadowpriest:Debt. NL shadowpriest:Devour: Do not gain shadowpriest:Debt."
   },
   "shadowpriest:Fade": {
     "NAME": "Fade",
@@ -43,7 +44,7 @@
   "shadowpriest:MindBlast": {
     "NAME": "Mind Blast",
     "DESCRIPTION": "Deal 10 damage plus !M! per unique shadowpriest:DoT. NL Gain 10 Insanity per unique shadowpriest:DoT.",
-    "UPGRADE_DESCRIPTION": "Deal 12 damage plus !M! per unique shadowpriest:DoT. NL Gain 10 Insanity per unique shadowpriest:DoT."
+    "UPGRADE_DESCRIPTION": "Deal 14 damage plus !M! per unique shadowpriest:DoT. NL Gain 10 Insanity per unique shadowpriest:DoT."
   },
   "shadowpriest:Dispersion": {
     "NAME": "Dispersion",
@@ -61,13 +62,13 @@
   },
   "shadowpriest:MindFlayInsanity": {
     "NAME": "Mind Flay: Insanity",
-    "DESCRIPTION": "Add X stacks to each existing shadowpriest:DoT. NL Deal !D! damage X times.",
-    "UPGRADE_DESCRIPTION": "Add X+1 stacks to each existing shadowpriest:DoT. NL Deal !D! damage X+1 times."
+    "DESCRIPTION": "Add X stacks to each existing shadowpriest:DoT. NL Deal !D! damage X times. NL Trigger its shadowpriest:Touch and shadowpriest:Pain X times.",
+    "UPGRADE_DESCRIPTION": "Add X+1 stacks to each existing shadowpriest:DoT. NL Deal !D! damage X+1 times. NL Trigger its shadowpriest:Touch and shadowpriest:Pain X+1 times."
   },
   "shadowpriest:MindSear": {
     "NAME": "Mind Sear",
-    "DESCRIPTION": "Deal !D! damage to ALL enemies X times.",
-    "UPGRADE_DESCRIPTION": "Deal !D! damage to ALL enemies X+1 times."
+    "DESCRIPTION": "Deal !D! damage to ALL enemies X times. NL After each hit, apply 2 shadowpriest:Madness.",
+    "UPGRADE_DESCRIPTION": "Deal !D! damage to ALL enemies X+1 times. NL After each hit, apply 2 shadowpriest:Madness."
   },
   "shadowpriest:PsychicLink": {
     "NAME": "Psychic Link",
@@ -87,11 +88,12 @@
   },
   "shadowpriest:Halo": {
     "NAME": "Halo",
-    "DESCRIPTION": "At the end of your turn, deal !M! damage to ALL enemies for 3 turns. NL Each cast creates a separate aura."
+    "DESCRIPTION": "At turn end, heal 2 HP and deal !M! damage to ALL enemies for 3 turns.",
+    "UPGRADE_DESCRIPTION": "At turn end, heal 3 HP and deal !M! damage to ALL enemies for 3 turns."
   },
   "shadowpriest:TentacleSlam": {
     "NAME": "Tentacle Slam",
-    "DESCRIPTION": "Deal !D! damage. NL Apply !M! shadowpriest:Touch to the target and enemies between you and it. NL shadowpriest:Devour: Refund Energy spent on this cast."
+    "DESCRIPTION": "Deal !D! damage. NL Apply !M! shadowpriest:Touch to the target and enemies between you and it. NL shadowpriest:Devour: Stun the target for 1 turn."
   },
   "shadowpriest:VoidBlast": {
     "NAME": "Void Blast",
@@ -104,7 +106,7 @@
   },
   "shadowpriest:VampiricEmbrace": {
     "NAME": "Vampiric Embrace",
-    "DESCRIPTION": "Whenever shadowpriest:Touch removes enemy HP, heal !M! HP."
+    "DESCRIPTION": "Whenever shadowpriest:Touch removes enemy HP or you shadowpriest:Devour a Curse, heal !M! HP."
   },
   "shadowpriest:VoidBolt": {
     "NAME": "Void Bolt",
@@ -129,7 +131,7 @@
   },
   "shadowpriest:Atonement": {
     "NAME": "Atonement",
-    "DESCRIPTION": "Deal !D! damage. NL Apply !M! shadowpriest:Atonement."
+    "DESCRIPTION": "Deal !D! damage. NL Apply !M! shadowpriest:Atonement. NL Exhaust."
   },
   "shadowpriest:PurifyDisease": {
     "NAME": "Purify Disease",
@@ -143,7 +145,7 @@
   },
   "shadowpriest:BodyAndSoul": {
     "NAME": "Body and Soul",
-    "DESCRIPTION": "Each enemy Attack hit has a !M!% chance to miss. NL Does not stack."
+    "DESCRIPTION": "Each enemy Attack hit has a !M!% chance to miss. NL Copies combine multiplicatively."
   },
   "shadowpriest:InsidiousIre": {
     "NAME": "Insidious Ire",
@@ -155,8 +157,9 @@
     "UPGRADE_DESCRIPTION": "Stun ALL enemies for 1 turn. NL Exhaust."
   },
   "shadowpriest:ShadowCommittal": {
-    "NAME": "Shadow Committal",
-    "DESCRIPTION": "In shadowpriest:Voidform, playing an Attack grants 1 Strength, a Skill grants 1 Dexterity, and a Power grants 1 shadowpriest:Mastery."
+    "NAME": "Shadowy Committal",
+    "DESCRIPTION": "In shadowpriest:Voidform, playing an Attack grants 1 Strength, a Skill grants 1 Dexterity, and a Power grants 1 shadowpriest:Mastery.",
+    "UPGRADE_DESCRIPTION": "In shadowpriest:Voidform, playing an Attack grants 1 Strength, a Skill grants 1 Dexterity, and a Power grants 1 shadowpriest:Mastery. NL When you enter shadowpriest:Voidform with this in hand, play it for free."
   },
   "shadowpriest:FlashHeal": {
     "NAME": "Flash Heal",
@@ -167,13 +170,14 @@
     "DESCRIPTION": "Deal !D! damage. NL Apply !M! shadowpriest:Touch and !M! shadowpriest:Pain. NL Add a *Pain Curse to your discard pile."
   },
   "shadowpriest:VoidShield": {
-    "NAME": "Void Shield",
-    "DESCRIPTION": "Gain !B! Block, plus 1 Block per !M! Insanity."
+    "NAME": "Void Shift",
+    "DESCRIPTION": "Remove ALL Block from the target. Gain that much Block.",
+    "UPGRADE_DESCRIPTION": "Retain. NL Remove ALL Block from the target. Gain that much Block."
   },
   "shadowpriest:Insight": {
     "NAME": "Shadowy Insight",
-    "DESCRIPTION": "Draw 1 card per unique shadowpriest:DoT on the target. NL One Shadowy Insight per turn. NL Exhaust.",
-    "UPGRADE_DESCRIPTION": "Draw 1 card per unique shadowpriest:DoT on the target. NL One Shadowy Insight per turn."
+    "DESCRIPTION": "Draw 1 card per unique shadowpriest:DoT. NL One Shadowy Insight per turn. NL Exhaust. NL shadowpriest:Devour: Do not Exhaust this card.",
+    "UPGRADE_DESCRIPTION": "Draw 1 card per unique shadowpriest:DoT, plus 1. NL One Shadowy Insight per turn. NL Exhaust. NL shadowpriest:Devour: Do not Exhaust this card."
   },
   "shadowpriest:PowerWordBarrier": {
     "NAME": "Power Word: Barrier",
@@ -207,11 +211,13 @@
   },
   "shadowpriest:Xalatath": {
     "NAME": "Xal'atath",
-    "DESCRIPTION": "Legendary. NL At combat start, randomly gain 2 Strength, Dexterity, or shadowpriest:Mastery !M! times."
+    "DESCRIPTION": "Legendary. NL At combat start, randomly gain 2 Strength, Dexterity, or shadowpriest:Mastery !M! times.",
+    "UPGRADE_DESCRIPTION": "Legendary. NL At combat start, randomly gain 3 Strength, Dexterity, or shadowpriest:Mastery !M! times."
   },
   "shadowpriest:Valanyr": {
     "NAME": "Val'anyr",
-    "DESCRIPTION": "Legendary. NL Start with !M! Block. Retain Block until it is depleted. NL Once per combat, lethal damage leaves you at 1 HP."
+    "DESCRIPTION": "Legendary. NL Gain Barricade. NL Once per combat, lethal damage leaves you at 1 HP.",
+    "UPGRADE_DESCRIPTION": "Legendary. NL Start with !M! Block. NL Gain Barricade. NL Once per combat, lethal damage leaves you at 1 HP."
   },
   "shadowpriest:MentalFortitude": {
     "NAME": "Mental Fortitude",
@@ -219,20 +225,21 @@
   },
   "shadowpriest:MindSoothe": {
     "NAME": "Mind Soothe",
-    "DESCRIPTION": "Until your next turn, ALL enemies deal 1 less Attack damage, plus 1 less per unique shadowpriest:DoT on them.",
-    "UPGRADE_DESCRIPTION": "Until your next turn, ALL enemies deal 2 less Attack damage, plus 1 less per unique shadowpriest:DoT on them."
+    "DESCRIPTION": "Until your next turn, ALL enemies deal 2 less Attack damage, plus 1 less per unique shadowpriest:DoT on them.",
+    "UPGRADE_DESCRIPTION": "Until your next turn, ALL enemies deal 3 less Attack damage, plus 2 less per unique shadowpriest:DoT on them."
   },
   "shadowpriest:UnfurlingDarkness": {
     "NAME": "Unfurling Darkness",
-    "DESCRIPTION": "Deal !D! damage. NL Apply !M! shadowpriest:Touch. NL Gain 10 Insanity. NL shadowpriest:Devour: Apply !M! shadowpriest:Touch to ALL other enemies."
+    "DESCRIPTION": "Deal !D! damage. NL Apply !M! shadowpriest:Touch. NL Gain 10 Insanity. NL shadowpriest:Devour: Affect ALL enemies."
   },
   "shadowpriest:DarkVoid": {
     "NAME": "Dark Void",
-    "DESCRIPTION": "Deal !D! damage to ALL enemies. NL Apply !M! shadowpriest:Pain to each that loses HP."
+    "DESCRIPTION": "Deal !D! damage to ALL enemies. NL Apply !M! shadowpriest:Pain to each that loses HP. NL Add a Mind Decay to your hand."
   },
   "shadowpriest:PowerInfusion": {
     "NAME": "Power Infusion",
-    "DESCRIPTION": "Gain !M! shadowpriest:Haste. NL Haste does not decay for 2 turns. NL Exhaust."
+    "DESCRIPTION": "Gain !M! shadowpriest:Haste. NL Haste does not decay for 2 turns. NL Exhaust.",
+    "UPGRADE_DESCRIPTION": "Gain !M! shadowpriest:Haste. NL Haste does not decay for 3 turns. NL Exhaust."
   },
   "shadowpriest:ShadowCrash": {
     "NAME": "Shadow Crash",
@@ -245,7 +252,7 @@
   },
   "shadowpriest:ProtectedChannel": {
     "NAME": "Protected Channel",
-    "DESCRIPTION": "Gain !B! Block. NL Whenever you play an X-cost card, gain !M! Block X times."
+    "DESCRIPTION": "Gain !B! Block. NL Whenever you play an X-cost card, gain !M! Block per X-based tick."
   },
   "shadowpriest:Catharsis": {
     "NAME": "Catharsis",
@@ -279,7 +286,7 @@
   },
   "shadowpriest:FocusedWill": {
     "NAME": "Focused Will",
-    "DESCRIPTION": "Gain !B! Block. NL Gain !M! Insanity. NL shadowpriest:Devour: Gain 7 additional Block."
+    "DESCRIPTION": "Gain !B! Block. NL Gain !M! Insanity. NL shadowpriest:Devour: Convert all your Block to shadowpriest:Barrier."
   },
   "shadowpriest:ShadowWeaving": {
     "NAME": "Shadow Weaving",
@@ -296,8 +303,8 @@
   },
   "shadowpriest:MadnessOverwhelming": {
     "NAME": "Madness Overwhelming",
-    "DESCRIPTION": "Apply !M! shadowpriest:Madness. NL Increases by 5 for each Power played this combat. NL Add a Mind Decay to your discard pile.",
-    "UPGRADE_DESCRIPTION": "Apply !M! shadowpriest:Madness. NL Increases by 8 for each Power played this combat. NL Add a Mind Decay to your discard pile."
+    "DESCRIPTION": "Apply !M! shadowpriest:Madness. NL Increases by 5 for each Power played this combat. NL Add a Mind Decay to your hand.",
+    "UPGRADE_DESCRIPTION": "Apply !M! shadowpriest:Madness. NL Increases by 8 for each Power played this combat. NL Add a Mind Decay to your hand."
   },
   "shadowpriest:Singularity": {
     "NAME": "Singularity",
@@ -322,7 +329,7 @@
   "shadowpriest:DarkReinforcement": {
     "NAME": "Dark Reinforcement",
     "DESCRIPTION": "Whenever you draw a Curse, gain 1 Energy and draw 1 card.",
-    "UPGRADE_DESCRIPTION": "Whenever you draw a Curse, gain 1 Energy, draw 1 card, and gain 1 shadowpriest:Mastery."
+    "UPGRADE_DESCRIPTION": "Whenever you draw or shadowpriest:Devour a Curse, gain 1 Energy and draw 1 card."
   },
   "shadowpriest:VoidRay": {
     "NAME": "Void Ray",

@@ -2,6 +2,30 @@
 
 Listing: [Xal'atath, the Shadow Priest](https://steamcommunity.com/sharedfiles/filedetails/?id=3828572814)
 
+## 1.0.1 release
+
+Published November 6, 2026 after the user accepted the locally playtested balance
+candidate. The official uploader confirmed a successful update to public item
+3828572814. Patch notes cover the accepted card/Devour/defensive changes,
+Xal'atath and Val'anyr improvements, Touch/Pain-only bonus ticks for Mind Flay:
+Insanity, and Dragonwrath segments and summary contributions in Details.
+The proposed Bulwark redesign and unreviewed Improved Voidform draft are excluded.
+
+Both Maven and the packaged manifest report 1.0.1. SHA256:
+`C941040B4EDFB2AD59D333B1D35C9E7D32E3239FC00215FB7A21441DE92E907B`.
+Release validation passed all 42 unit tests, card catalog schema validation,
+rarity/type tallies, whitespace checks, and artifact inspection. The prior
+focused engine checks and user playtesting are recorded in playtest-results.md;
+no additional game simulation was run for release packaging. The staged JAR
+matches target/shadowpriest.jar, includes the new artwork and classes, and omits
+removed patch classes and private playtest data. The Workshop item ID, title,
+Nishiki credit, public visibility, and description without GitHub callouts remain.
+
+Steam confirmed upload success. Independent public-page verification was blocked
+by HTTP 429 rate limiting, so public Change Notes visibility was not confirmed
+at publication time. An active local playtest was detected and its loaded JAR
+was left untouched; restarting through the desktop shortcut uses the new build.
+
 ## 1.0.0 release
 
 Published October 31, 2026 as **Xal'atath, the Shadow Priest**, retiring the Beta

@@ -12,8 +12,9 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 public class HaloPower extends AbstractPower {
     private static long serial;
     public final int pulseDamage;
+    public final int pulseHealing;
     public HaloPower(AbstractCreature owner, int damage) {
-        this.owner = owner; amount = 3; pulseDamage = damage;
+        this.owner = owner; amount = 3; pulseDamage = damage; pulseHealing=damage/2;
         ID = "shadowpriest:Halo:" + serial++;
         name = "Halo (" + damage + ")"; type = PowerType.BUFF; isTurnBased = true;
         AbilityPowerArt.apply(this, "halo.jpg"); updateDescription();
@@ -23,6 +24,8 @@ public class HaloPower extends AbstractPower {
         flash();
         addToBot(new AbstractGameAction() {
             @Override public void update() {
+                if(AbstractDungeon.getCurrRoom().isBattleOver){isDone=true;return;}
+                shadowpriest.details.DetailsTracker.heal(owner,pulseHealing,shadowpriest.details.DetailsTracker.power(HaloPower.this));
                 for (AbstractMonster m : AbstractDungeon.getMonsters().monsters)
                     if (!m.isDeadOrEscaped()) addToBot(new DamageAction(m,
                         new DamageInfo(owner, pulseDamage, DamageInfo.DamageType.THORNS), AttackEffect.FIRE));
@@ -32,7 +35,7 @@ public class HaloPower extends AbstractPower {
         });
     }
     @Override public void updateDescription() {
-        description = "At the end of your turn, deal #b" + pulseDamage + " damage to ALL enemies. #b" + amount
+        description = "At the end of your turn, heal #b"+pulseHealing+" HP and deal #b" + pulseDamage + " damage to ALL enemies. #b" + amount
             + " pulse(s) remaining. Respects Block. Generates no Insanity. Each cast is a separate aura.";
     }
 }

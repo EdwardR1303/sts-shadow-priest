@@ -10,13 +10,13 @@ import shadowpriest.actions.DevourAction;
 public final class ConditionalCards {
     private static boolean predicting;
     public static boolean devours(AbstractCard c) {
-        return c instanceof TentacleSlam || c instanceof UnfurlingDarkness || c instanceof MindTrauma
+        return c instanceof Insight || c instanceof TentacleSlam || c instanceof UnfurlingDarkness || c instanceof MindTrauma
             || c instanceof ShadowMend || c instanceof PurifyDisease || c instanceof FocusedWill
             || c instanceof TwinSuns || c instanceof VoidRay;
     }
     private static boolean supported(AbstractCard c) {
         return devours(c)||c instanceof SurrenderToMadness||c instanceof Bulwark||c instanceof Piety
-            ||c instanceof DispelMagic||c instanceof MassDispel||c instanceof ShadowWordDeath;
+            ||c instanceof VoidShield||c instanceof DispelMagic||c instanceof MassDispel||c instanceof ShadowWordDeath;
     }
     public static AbstractMonster hovered() {
         if(!FormulaPreview.inCombat())return null;
@@ -38,6 +38,7 @@ public final class ConditionalCards {
     private static boolean targetBonus(AbstractCard c,AbstractMonster m) {
         if(!VoidBolt.alive(m))return false;
         if(c instanceof ShadowWordDeath)return lethal((ShadowWordDeath)c,m);
+        if(c instanceof VoidShield)return m.currentBlock>0;
         if(c instanceof DispelMagic)return m.currentBlock>0||(c.upgraded&&m.hasPower("Artifact"));
         return c instanceof TwinSuns&&positiveStrength(m);
     }

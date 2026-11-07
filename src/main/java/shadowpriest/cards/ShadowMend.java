@@ -15,11 +15,11 @@ public class ShadowMend extends PriestCard {
   final int debt=magicNumber;
   addToBot(new shadowpriest.actions.DevourAction(devoured->{
    java.util.List<AbstractGameAction> effects=new java.util.ArrayList<>();
-   effects.add(new HealAction(p,p,10));
+   effects.add(new HealAction(p,p,upgraded?14:10));
    if(!devoured)effects.add(new ApplyPowerAction(p,p,new ShadowMendDebtPower(p,debt),debt));
    return effects;
   }));
  }
- @Override public void upgrade() { if (!upgraded) { upgradeName(); upgradeMagicNumber(-1); } }
+ @Override public void upgrade() { if (!upgraded) { upgradeName(); upgradeText(); } }
 
 }

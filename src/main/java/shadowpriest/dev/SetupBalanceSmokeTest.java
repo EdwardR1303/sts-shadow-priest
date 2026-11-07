@@ -94,12 +94,9 @@ public final class SetupBalanceSmokeTest {
         q.add(()->{check(p.currentBlock==0,"Atonement ignores DoT ticks and is not a fourth DoT");reset();m.powers.add(new ArtifactPower(m,1));play(new Atonement(),m,1);});
         q.add(()->{check(!m.hasPower(AtonementPower.POWER_ID)&&!m.hasPower("Artifact"),"Artifact blocks initial Atonement");reset();play(new Fade(),null,0);});
         q.add(()->{p.damage(new DamageInfo(m,1,DamageInfo.DamageType.NORMAL));check(p.currentHealth==500&&r.state.amount()==0,"Zero-cost Fade prevents one HP and no damage-taken Insanity");reset();
-            VoidShield shield=new VoidShield();check(shield.totalBlock()==5,"Void Shield has a five Block floor");r.gainInsanity(50);check(shield.totalBlock()==10,"Void Shield adds five at fifty Insanity");
-            p.powers.add(new DexterityPower(p,4));check(shield.totalBlock()==14,"Void Shield applies Dexterity once");shield.upgrade();check(shield.totalBlock()==22,"Upgraded Shield uses eight plus one per five plus Dexterity");
-            r.gainInsanity(50);r.activate(r.state.charge());});
-        q.add(()->{VoidShield shield=up(new VoidShield());check(shield.totalBlock()==32,"Active Voidform supplies the hundred-Insanity Shield value");r.onPlayerEndTurn();});
-        q.add(()->{play(up(new VoidShield()),null,1);});
-        q.add(()->{check(p.currentBlock==12&&r.state.amount()==0,"Recharge Shield retains base Block and generates no Insanity");reset();
+            VoidShield shield=new VoidShield();m.addBlock(20);p.powers.add(new DexterityPower(p,4));
+            shield.upgrade();check(shield.selfRetain,"Void Shift+ Retains");play(shield,m,1);});
+        q.add(()->{check(p.currentBlock==20&&m.currentBlock==0,"Void Shift transfers enemy Block without Dexterity");reset();
             m.setMove((byte)0,AbstractMonster.Intent.ATTACK,6);m.createIntent();n.setMove((byte)0,AbstractMonster.Intent.BUFF);n.createIntent();p.powers.add(new DexterityPower(p,3));play(new VoidTendrils(),null,1);});
         q.add(()->{check(p.currentBlock==14&&stacks(m,ShadowDotPower.PAIN)==2&&!n.hasPower(ShadowDotPower.PAIN),"Tendrils applies Dexterity per enemy and Pain only to attackers");reset();play(up(new FocusedWill()),null,1);});
         q.add(()->{check(p.currentBlock==10&&r.state.amount()==15,"Focused Will grants upgraded Block and immediate Insanity");reset();play(new ShadowWeaving(),null,1);});

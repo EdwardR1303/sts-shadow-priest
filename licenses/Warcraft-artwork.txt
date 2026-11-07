@@ -471,3 +471,9 @@ Source icons are unchanged; PriestRelic renders the transparent medallion shape.
 Mind Decay uses original generated artwork, not an official WoW icon.
 Resource: shadowpriest/images/cards/icons/mind_decay.png
 Prompt and tool: docs/mind-decay-art-prompt.json
+
+Void Shift (spell_priest_voidshift), retrieved November 4, 2026
+Resource: shadowpriest/images/cards/icons/void_shift.jpg
+Source: https://wow.zamimg.com/images/wow/icons/large/spell_priest_voidshift.jpg
+Reference: https://www.wowhead.com/spell=108968/void-shift
+Replaces Void Shield artwork following the card redesign; original icon stored unchanged.

@@ -13,7 +13,7 @@ public class MadnessOverwhelming extends PriestCard {
     @Override public float getTitleFontSize() { return 16f; }
     @Override public void use(AbstractPlayer p, AbstractMonster m) { int stacks=application();
         addToBot(new ApplyPowerAction(m,p,new MadnessPower(m,stacks),stacks));
-        addToBot(new MakeTempCardInDiscardAction(new MindDecay(),1)); }
+        addToBot(new MakeTempCardInHandAction(new MindDecay(),1)); }
     @Override public void upgrade() { if(!upgraded) { upgradeName(); upgradeMagicNumber(5);upgradeText(); } }
     public int application() { return baseMagicNumber+(upgraded?8:5)*shadowpriest.mechanics.CombatPowerPlays.count(); }
     @Override public void applyPowers() { super.applyPowers(); magicNumber=application(); isMagicNumberModified=magicNumber!=baseMagicNumber; }

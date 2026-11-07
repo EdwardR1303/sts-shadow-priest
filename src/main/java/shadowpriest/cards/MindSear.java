@@ -19,7 +19,14 @@ public class MindSear extends PriestCard {
         int repeats = spendX(p) + (upgraded ? 1 : 0);
         for (int i = 0; i < repeats; i++) {
             addToBot(shadowpriest.vfx.ShadowFx.sear(p));
-            addToBot(new DamageAllEnemiesAction(p, multiDamage, damageTypeForTurn, AbstractGameAction.AttackEffect.NONE, true));
+            for(AbstractMonster enemy:AbstractDungeon.getMonsters().monsters)if(VoidBolt.alive(enemy)){
+                final int hit=multiDamage[AbstractDungeon.getMonsters().monsters.indexOf(enemy)];
+                addToBot(new DamageAction(enemy,new DamageInfo(p,hit,damageTypeForTurn),AbstractGameAction.AttackEffect.NONE));
+                addToBot(new AbstractGameAction(){public void update(){
+                    if(VoidBolt.alive(enemy))addToTop(new ApplyPowerAction(enemy,p,new MadnessPower(enemy,2),2));
+                    isDone=true;
+                }});
+            }
         }
     }
     @Override public void upgrade() {

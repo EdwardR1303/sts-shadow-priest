@@ -13,7 +13,7 @@ public class VoidVolley extends PriestCard {
     public static final String ID = "shadowpriest:VoidVolley";
     public VoidVolley() {
         super(ID, -1, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.ALL_ENEMY);
-        baseDamage = 10; baseMagicNumber = magicNumber = 1;
+        baseDamage = 11; baseMagicNumber = magicNumber = 1;
     }
     @Override public void use(AbstractPlayer p, AbstractMonster m) {
         int repeats = spendX(p);
@@ -35,18 +35,8 @@ public class VoidVolley extends PriestCard {
             }
         });
     }
-    public static void onVoidformEntry() {
-        final java.util.ArrayList<AbstractCard> cards=new java.util.ArrayList<>();
-        for(AbstractCard c:AbstractDungeon.player.hand.group)if(c instanceof VoidVolley)cards.add(c);
-        AbstractDungeon.actionManager.addToBottom(new AbstractGameAction(){public void update(){
-            for(AbstractCard c:cards)if(AbstractDungeon.player.hand.contains(c)){
-                c.freeToPlayOnce=true;
-                AbstractDungeon.actionManager.addCardQueueItem(new com.megacrit.cardcrawl.cards.CardQueueItem(c,null,com.megacrit.cardcrawl.ui.panels.EnergyPanel.totalCount,true,true),true);
-            }
-            isDone=true;
-        }});
-    }
+    public static void onVoidformEntry() { shadowpriest.mechanics.VoidformEntryCards.enter(); }
     @Override public void upgrade() {
-        if (!upgraded) { upgradeName(); upgradeDamage(3); upgradeMagicNumber(1); }
+        if (!upgraded) { upgradeName(); upgradeDamage(4); upgradeMagicNumber(1); }
     }
 }

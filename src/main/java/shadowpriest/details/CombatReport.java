@@ -4,6 +4,7 @@ import java.util.*;
 
 /** Serializable combat ledger: HP damage, separate absorbs/overkill, actual Block and healing. */
 public final class CombatReport {
+    public static final String DRAGONWRATH_TRIGGER="Dragonwrath";
     public enum Metric { DAMAGE_DEALT, DAMAGE_TAKEN, BLOCK, HEALING, INSANITY }
     public static final class Source {
         public String id, name, kind;
@@ -32,6 +33,8 @@ public final class CombatReport {
     public static final class Row {
         public final Source source;
         public long amount, blocked, overkill;
+        /** Displayed repeated damage, including overkill and optionally Block absorption. */
+        public long dragonwrath, dragonwrathBlocked;
         public int events;
         Row(Source source) { this.source=source; }
         public double percent(long total) { return total==0 ? 0 : 100.0*amount/total; }
@@ -86,6 +89,12 @@ public final class CombatReport {
         return sum;
     }
     public List<Row> rows(Metric metric,int turn){return rows(metric,turn,true);}
+    public long dragonwrathTotal(int turn,boolean includeBlocked) {
+        long sum=0;
+        for(Event e:events) if(e.metric==Metric.DAMAGE_DEALT && (turn==0 || e.turn==turn) && DRAGONWRATH_TRIGGER.equals(e.trigger))
+            sum+=(long)e.amount+e.overkill+(includeBlocked?e.blocked:0);
+        return sum;
+    }
     public List<Row> rows(Metric metric, int turn, boolean includeBlocked) {
         Map<String,Row> rows=new LinkedHashMap<>();
         for(Event e:events) if(e.metric==metric && (turn==0 || e.turn==turn)) {
@@ -93,6 +102,10 @@ public final class CombatReport {
             Row row=rows.get(key);
             if(row==null) {row=new Row(e.source);rows.put(key,row);}
             row.amount+=(long)e.amount+e.overkill+(includeBlocked?e.blocked:0);row.blocked+=includeBlocked?e.blocked:0;row.overkill+=e.overkill;row.events++;
+            if(metric==Metric.DAMAGE_DEALT && DRAGONWRATH_TRIGGER.equals(e.trigger)){
+                row.dragonwrath+=(long)e.amount+e.overkill+(includeBlocked?e.blocked:0);
+                row.dragonwrathBlocked+=includeBlocked?e.blocked:0;
+            }
         }
         List<Row> sorted=new ArrayList<>(rows.values());sorted.removeIf(row->row.amount==0);
         sorted.sort(Comparator.comparingLong((Row row)->row.amount).reversed().thenComparing(row->row.source.name));

@@ -5,7 +5,7 @@
     "Nishiki"
   ],
   "description": "Play as Xal'atath, the Shadow Priest. Master afflictions, on-demand Voidform, Haste, and Devour across 75 cards and 11 class relics. Survive the setup and unleash your power.",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "sts_version": "12-18-2022",
   "mts_version": "3.30.0",
   "dependencies": [

@@ -150,10 +150,10 @@ public final class BalanceFollowupSmokeTest {
             torrent.upgrade();EnergyPanel.totalCount=2;torrent.calculateCardDamage(m);check(torrent.previewDamage(m,2)==15,"Upgraded Torrent previews five then ten");
             check(torrent.baseDamage==5 && torrent.damage==5,"Preview does not overwrite Torrent first hit");
             CardArtReview.card(torrent,"followup-torrent-plus");
-            VoidformRelic.current().gainInsanity(50);p.powers.add(new DexterityPower(p,3));VoidShield shield=new VoidShield();shield.applyPowers();
-            check(shield.totalBlock()==13 && shield.block==8 && shield.rawDescription.contains("(13 total Block)"),"Shield previews formula total while preserving base Block number");
-            shield.upgrade();shield.applyPowers();check(shield.totalBlock()==21,"Upgraded Shield previews eight plus Dexterity plus ten Insanity Block");
-            CardArtReview.card(shield,"followup-shield-plus");expected=shield.totalBlock();play(shield,null,1);
+            p.powers.add(new DexterityPower(p,3));m.addBlock(21);VoidShield shield=new VoidShield();shield.calculateCardDamage(m);
+            check(shield.rawDescription.contains("(21 Block)"),"Void Shift previews the exact enemy Block transfer");
+            shield.upgrade();check(shield.selfRetain,"Upgraded Void Shift has Retain");
+            CardArtReview.card(shield,"followup-shift-plus");expected=21;play(shield,m,1);
         });
         q.add(() -> check(p.currentBlock==expected,"Void Shield gain matches parenthetical total"));
     }

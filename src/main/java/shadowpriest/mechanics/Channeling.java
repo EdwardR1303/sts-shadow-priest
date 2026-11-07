@@ -22,6 +22,16 @@ public final class Channeling {
             + (p.hasPower(HastePower.POWER_ID)?p.getPower(HastePower.POWER_ID).amount:0)
             + (p.hasRelic("Chemical X")?2:0);
     }
+    public static int primaryTicks(AbstractCard c) {
+        int extra=0;
+        if(c.upgraded)switch(c.cardID){
+            case "shadowpriest:MindSear": case "shadowpriest:MindFlayInsanity": case "shadowpriest:DarkEvangelism":
+            case "Tempest": case "Multi-Cast": case "Doppelganger": case "Malaise": case "Collect": case "ConjureBlade":
+                extra=1;break;
+            default:break;
+        }
+        return effective(c)+extra;
+    }
     public static void preserve(AbstractCard from, AbstractCard to) {
         if (from.cost == -1) Fields.repeat.set(to, effective(from));
     }

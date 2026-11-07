@@ -20,9 +20,25 @@ public final class OverallDetailsReview {
     }
     public static void append(Queue<Runnable> q){
         q.add(()->{
+            com.megacrit.cardcrawl.characters.AbstractPlayer p=AbstractDungeon.player;
+            com.megacrit.cardcrawl.monsters.AbstractMonster enemy=AbstractDungeon.getMonsters().monsters.get(0);
+            p.powers.clear();p.powers.add(new shadowpriest.powers.DragonwrathPower(p,100));
+            enemy.powers.clear();enemy.currentHealth=enemy.maxHealth=1000;enemy.currentBlock=8;
+            com.megacrit.cardcrawl.ui.panels.EnergyPanel.totalCount=1;
+            shadowpriest.cards.MindSpike card=new shadowpriest.cards.MindSpike();p.hand.addToTop(card);
+            p.useCard(card,enemy,1);
+        });
+        q.add(()->{
+            Row row=DetailsTracker.current().rows(Metric.DAMAGE_DEALT,0).stream().filter(r->r.source.id.equals("shadowpriest:MindSpike")).findFirst().orElse(null);
+            check(row!=null&&row.amount==12&&row.blocked==8&&row.dragonwrath==6&&row.dragonwrathBlocked==2,
+                "Actual Dragonwrath replay keeps card credit and separates HP/absorbed damage");
+            AbstractDungeon.player.powers.clear();
+        });
+        q.add(()->{
             Run run=DetailsTracker.run();saved=new ArrayList<>(run.combats);run.combats.clear();
             CombatReport first=run.begin(1,1,"Cultist");first.turns=5;first.outcome="Victory";
-            first.record(Metric.DAMAGE_DEALT,new Source("spike","Mind Spike","card",true),24,"Cultist",null);
+            first.recordDamage(new Source("spike","Mind Spike","card",true),24,6,0,"Cultist",null);
+            first.recordDamage(new Source("spike","Mind Spike","card",true),12,8,2,"Cultist",DRAGONWRATH_TRIGGER);
             first.record(Metric.DAMAGE_DEALT,new Source("touch","Vampiric Touch","dot",true),30,"Cultist",null);
             first.record(Metric.BLOCK,new Source("shield","Power Word: Shield","card",true),36,"Player",null);
             first.record(Metric.DAMAGE_TAKEN,new Source("cultist","Cultist","enemy",false),12,"Player",null);
@@ -36,7 +52,7 @@ public final class OverallDetailsReview {
             DetailsScreen.INSTANCE.show();click(970,773);
             AbstractDungeon.dynamicBanner.appearInstantly(Settings.HEIGHT*.8f,"Spoils!");
             check(DetailsScreen.INSTANCE.isOverall(),"Overall button opens the run aggregate");
-            check(run.overall().total(Metric.DAMAGE_DEALT,0)==102&&run.overall().turns==7,"UI fixture combines both combats and their turns");
+            check(run.overall().total(Metric.DAMAGE_DEALT,0)==130&&run.overall().turns==7,"UI fixture combines both combats and their turns");
             CardArtReview.requestCombat("details-overall");
         });
         q.add(()->{});q.add(()->{});

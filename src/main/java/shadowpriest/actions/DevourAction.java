@@ -36,7 +36,13 @@ public final class DevourAction extends AbstractGameAction {
     private void resolve(AbstractCard curse) {
         AbstractPlayer p=AbstractDungeon.player;
         boolean consumed=curse!=null && curse.type==AbstractCard.CardType.CURSE && p.hand.contains(curse);
-        if(consumed) p.hand.moveToExhaustPile(curse);
+        if(consumed){
+            p.hand.moveToExhaustPile(curse);
+            com.megacrit.cardcrawl.powers.AbstractPower reinforcement=p.getPower(shadowpriest.powers.DarkReinforcementPower.POWER_ID);
+            if(reinforcement instanceof shadowpriest.powers.DarkReinforcementPower)((shadowpriest.powers.DarkReinforcementPower)reinforcement).onDevour();
+            com.megacrit.cardcrawl.powers.AbstractPower embrace=p.getPower(shadowpriest.powers.VampiricEmbracePower.POWER_ID);
+            if(embrace!=null)shadowpriest.details.DetailsTracker.heal(p,embrace.amount,shadowpriest.details.DetailsTracker.power(embrace));
+        }
         List<AbstractGameAction> actions=effects.apply(consumed);
         for(int i=actions.size()-1;i>=0;i--) addToTop(actions.get(i));
         isDone=true;

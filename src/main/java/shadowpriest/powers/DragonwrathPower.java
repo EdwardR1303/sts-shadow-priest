@@ -13,6 +13,7 @@ public class DragonwrathPower extends AbstractPower {
  if(card.type!=AbstractCard.CardType.ATTACK || card.purgeOnUse || AbstractDungeon.miscRng.random(99)>=amount) return;
  flash();shadowpriest.legendary.LegendaryEquipment.pulse=1f;
  final AbstractCard copy=card.makeStatEquivalentCopy(); final int x=card.energyOnUse;
+ shadowpriest.details.DetailsTracker.markDragonwrath(copy);
  final com.megacrit.cardcrawl.core.AbstractCreature selected=card instanceof shadowpriest.cards.Penance?com.evacipated.cardcrawl.mod.stslib.cards.targeting.SelfOrEnemyTargeting.getTarget(card):action.target;
  final AbstractMonster originalTarget=selected instanceof AbstractMonster?(AbstractMonster)selected:null;
  shadowpriest.mechanics.Channeling.preserve(card,copy);

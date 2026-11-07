@@ -20,6 +20,7 @@ public class MindFlayInsanity extends PriestCard {
             addToBot(shadowpriest.vfx.ShadowFx.hit(shadowpriest.vfx.ShadowSpellEffect.Style.TORRENT, p, m));
             addToBot(new DamageAction(m, new DamageInfo(p, damage, damageTypeForTurn), AbstractGameAction.AttackEffect.NONE));
         }
+        if(repeats>0)addToBot(new shadowpriest.actions.TriggerDotsAction(m,repeats));
     }
     @Override public void upgrade() {
         if (!upgraded) { upgradeName(); upgradeText(); }

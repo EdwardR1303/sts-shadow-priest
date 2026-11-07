@@ -4,6 +4,7 @@ import basemod.TopPanelItem;
 import basemod.abstracts.CustomScreen;
 import com.badlogic.gdx.graphics.*;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.evacipated.cardcrawl.modthespire.lib.SpireEnum;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -20,6 +21,9 @@ public final class DetailsScreen extends CustomScreen {
     public static final DetailsScreen INSTANCE=new DetailsScreen();
     private static final Color BG=new Color(.055f,.045f,.085f,1), PANEL=new Color(.105f,.085f,.15f,1);
     private static final Color MUTED=new Color(.68f,.65f,.76f,1), GOLD=new Color(.94f,.78f,.45f,1);
+    private static final Color DRAGONWRATH=new Color(1f,.43f,.08f,.72f), ABSORBED=new Color(.88f,.85f,.96f,.65f), DRAGONWRATH_ABSORBED=new Color(1f,.78f,.52f,.82f);
+    private static final Color DRAGONWRATH_TEXT=new Color(1f,.43f,.08f,1);
+    private final GlyphLayout totalLayout=new GlyphLayout();
     private static final Color[] COLORS={new Color(.66f,.40f,.95f,1),new Color(.92f,.38f,.43f,1),new Color(.29f,.68f,.87f,1),new Color(.35f,.85f,.52f,1),new Color(.88f,.36f,.90f,1)};
     private static final String[] TITLES={"Damage dealt","Damage taken","Block generated","Healing done","Insanity gained"};
     private AbstractDungeon.CurrentScreen returnScreen;
@@ -138,7 +142,7 @@ public final class DetailsScreen extends CustomScreen {
             rect(sb,left,568,248,100,PANEL);
             rect(sb,left,568,248,metric==m?4:1,COLORS[i]);
             text(sb,TITLES[i],left+16,642,metric==m?COLORS[i]:MUTED,.85f);
-            text(sb,String.format(Locale.ROOT,"%,d",c.total(m,0,!excludeBlocked)),left+16,613,Color.WHITE,1.2f);
+            metricTotal(sb,c.total(m,0,!excludeBlocked),m==Metric.DAMAGE_DEALT?c.dragonwrathTotal(0,!excludeBlocked):0,left+16,613);
             right(sb,String.format(Locale.ROOT,"%.1f / turn",c.total(m,0,!excludeBlocked)/(double)Math.max(1,c.turns)),left+232,586,MUTED,.72f);
         }
         text(sb,overall?"COMBATS":"TURN",28,540,MUTED,.8f);
@@ -158,13 +162,21 @@ public final class DetailsScreen extends CustomScreen {
             rect(sb,300,bottom,1032,37,PANEL);
             Color bar=COLORS[metric.ordinal()].cpy();bar.a=.33f;
             rect(sb,300,bottom,(float)(1032.0*row.amount/rows.get(0).amount),37,bar);
+            double pixels=1032.0/rows.get(0).amount;
+            long repeatedUnblocked=row.dragonwrath-row.dragonwrathBlocked;
+            if(repeatedUnblocked>0)
+                rect(sb,300+(float)(pixels*(row.amount-row.blocked-repeatedUnblocked)),bottom,(float)(pixels*repeatedUnblocked),37,DRAGONWRATH);
             if(row.blocked>0){
                 float width=(float)(1032.0*row.blocked/rows.get(0).amount);
-                rect(sb,300+(float)(1032.0*(row.amount-row.blocked)/rows.get(0).amount),bottom,width,37,new Color(.82f,.70f,1f,.65f));
+                rect(sb,300+(float)(1032.0*(row.amount-row.blocked)/rows.get(0).amount),bottom,width,37,ABSORBED);
             }
+            if(row.dragonwrathBlocked>0)
+                rect(sb,300+(float)(pixels*(row.amount-row.dragonwrathBlocked)),bottom,(float)(pixels*row.dragonwrathBlocked),37,DRAGONWRATH_ABSORBED);
             if(inside(300,bottom,1032,37)&&metric==Metric.DAMAGE_DEALT)
                 TipHelper.renderGenericTip(InputHelper.mX,InputHelper.mY+150*s,row.source.name,
-                    "HP damage: "+(row.amount-row.blocked-row.overkill)+" NL Block absorbed: "+row.blocked+" NL Overkill: "+row.overkill);
+                    "HP damage: "+(row.amount-row.blocked-row.overkill)+" NL Block absorbed: "+row.blocked+" NL Overkill: "+row.overkill
+                    +(row.dragonwrath>0?" NL Dragonwrath: "+row.dragonwrath+" ("+String.format(Locale.ROOT,"%.1f",100.0*row.dragonwrath/row.amount)+"%)"
+                        +" NL Dragonwrath absorbed: "+row.dragonwrathBlocked:""));
             text(sb,(rowOffset+i+1)+".  "+fit(row.source.name,57),312,bottom+25,Color.WHITE,.78f);
             right(sb,String.format(Locale.ROOT,"%,d     %5.1f%%",row.amount,row.percent(total)),1318,bottom+25,Color.WHITE,.78f);
         }
@@ -174,7 +186,9 @@ public final class DetailsScreen extends CustomScreen {
             :"Voidform: "+c.activationTurns.size()+" entries  |  First ready: "+first(c.readyTurns)+"  |  First entry: "+first(c.activationTurns);
         text(sb,voidform,300,142,GOLD,.72f);
         button(sb,(excludeBlocked?"[x]":"[ ]")+" Exclude blocked damage",300,100,320,30,excludeBlocked);
-        text(sb,metric==Metric.INSANITY?(c.insanityRecorded?"Actual gains only. Overflow and blocked gains are excluded.":"Legacy data: Insanity gains were not recorded in some combats."):c.extendedMetrics?"Light bars: absorbed. Includes overkill. Healing: HP restored.":"Legacy data: absorbs, overkill and healing may be missing.",634,121,MUTED,.63f);
+        text(sb,metric==Metric.INSANITY?(c.insanityRecorded?"Actual gains only. Overflow and blocked gains are excluded.":"Legacy data: Insanity gains were not recorded in some combats.")
+            :metric==Metric.DAMAGE_DEALT?(c.extendedMetrics?"Orange: Dragonwrath. Light: blocked. Includes overkill.":"Orange: Dragonwrath. Legacy absorbs/overkill may be missing.")
+            :c.extendedMetrics?"Light bars: absorbed. Includes overkill. Healing: HP restored.":"Legacy data: absorbs, overkill and healing may be missing.",634,121,MUTED,.63f);
         text(sb,(overall?"Averages use all recorded turns. Select a combat on the left for its turns.":"Enemy actions belong to the preceding player turn."),300,82,MUTED,.72f);
         button(sb,"Up",1118,65,96,35,false);button(sb,"Down",1228,65,104,35,false);
         text(sb,viewingArchive()?"Read-only saved report  |  Seed: "+run.seed:DetailsStore.error==null?"Saved to details/"+run.id+".json":DetailsStore.error,28,28,DetailsStore.error==null?MUTED:COLORS[1],.64f);
@@ -197,6 +211,18 @@ public final class DetailsScreen extends CustomScreen {
         FontHelper.tipBodyFont.getData().setScale(size);
         FontHelper.renderFontRightTopAligned(sb,FontHelper.tipBodyFont,value,x+a*s,y+b*s,color);
         FontHelper.tipBodyFont.getData().setScale(1);
+    }
+    private void metricTotal(SpriteBatch sb,long total,long repeated,float a,float b){
+        String value=String.format(Locale.ROOT,"%,d",total);
+        String suffix=repeated>0?String.format(Locale.ROOT," (%,d)",repeated):"";
+        FontHelper.tipBodyFont.getData().setScale(1.2f);
+        totalLayout.setText(FontHelper.tipBodyFont,value+suffix);
+        float size=1.2f*Math.min(1f,216*s/Math.max(1f,totalLayout.width));
+        FontHelper.tipBodyFont.getData().setScale(size);
+        totalLayout.setText(FontHelper.tipBodyFont,value);
+        float offset=totalLayout.width/s;
+        text(sb,value,a,b,Color.WHITE,size);
+        if(!suffix.isEmpty())text(sb,suffix,a+offset,b,DRAGONWRATH_TEXT,size);
     }
     private void button(SpriteBatch sb,String label,float a,float b,float w,float h,boolean selected){
         rect(sb,a,b,w,h,selected?new Color(.25f,.17f,.36f,1):inside(a,b,w,h)?new Color(.2f,.16f,.27f,1):PANEL);

@@ -10,7 +10,7 @@ The [Voidform activation card](docs/voidform-activation.md) costs 0 energy, has 
 
 ## Project status
 
-Version 1.0.0 includes 75 collectible cards: four starters, 68 ordinary reward cards (28 Common, 26 Uncommon, 14 Rare), and three automatically equipped Legendaries, plus 11 class relics. See the [release notes](CHANGELOG.md).
+Version 1.0.1 includes 75 collectible cards: four starters, 68 ordinary reward cards (28 Common, 26 Uncommon, 14 Rare), and three automatically equipped Legendaries, plus 11 class relics. See the [release notes](CHANGELOG.md).
 
 Touch and Pain cap at five stacks; Madness has no cap and ticks for half its stacks rounded up. All three tick at player turn end and scale with Mastery. Attack hits generate 10 Insanity; each DoT tick generates 1, and damage events that remove your HP generate 5. Haste amplifies explicit repetitions. Devour exhausts a Curse from your hand to activate a card's bonus.
 

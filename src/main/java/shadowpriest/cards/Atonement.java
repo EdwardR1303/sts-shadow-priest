@@ -10,16 +10,16 @@ import shadowpriest.actions.GainInsanityAction;
 
 public class Atonement extends PriestCard {
     public static final String ID="shadowpriest:Atonement";
-    public Atonement() { super(ID,1,CardType.ATTACK,CardRarity.UNCOMMON,CardTarget.ENEMY);baseDamage=5;baseMagicNumber=magicNumber=2; }
+    public Atonement() { super(ID,1,CardType.ATTACK,CardRarity.UNCOMMON,CardTarget.ENEMY);baseDamage=6;baseMagicNumber=magicNumber=3;exhaust=true; }
     @Override public void use(AbstractPlayer p,AbstractMonster m) {
         addToBot(new DamageAction(m,new DamageInfo(p,damage,damageTypeForTurn),AbstractGameAction.AttackEffect.FIRE));
         final int benefit=magicNumber;
         addToBot(new AbstractGameAction(){@Override public void update(){
-            if(VoidBolt.alive(m) && (!m.hasPower(AtonementPower.POWER_ID) || m.getPower(AtonementPower.POWER_ID).amount<benefit))
+            if(VoidBolt.alive(m))
                 addToTop(new ApplyPowerAction(m,p,new AtonementPower(m,benefit),benefit));
             isDone=true;
         }});
     }
-    @Override public void upgrade() { if(!upgraded) { upgradeName();upgradeDamage(2);upgradeMagicNumber(1); } }
+    @Override public void upgrade() { if(!upgraded) { upgradeName();upgradeDamage(3);upgradeMagicNumber(2); } }
 
 }

@@ -15,6 +15,6 @@ public class Halo extends PriestCard {
         addToBot(new ApplyPowerAction(p, p, new HaloPower(p, magicNumber), 3));
     }
     @Override public void upgrade() {
-        if (!upgraded) { upgradeName(); upgradeMagicNumber(2); }
+        if (!upgraded) { upgradeName(); upgradeMagicNumber(2); upgradeText(); }
     }
 }

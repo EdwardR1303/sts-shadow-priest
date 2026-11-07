@@ -11,12 +11,12 @@ public class DarkReinforcement extends PriestCard {
     public static final String ID="shadowpriest:DarkReinforcement";
     public DarkReinforcement() { super(ID,1,CardType.POWER,CardRarity.UNCOMMON,CardTarget.SELF);  }
     @Override public float getTitleFontSize() { return 18f; }
-    @Override public void use(AbstractPlayer p, AbstractMonster m) { final boolean mastery=upgraded;
+    @Override public void use(AbstractPlayer p, AbstractMonster m) { final boolean devour=upgraded;
         addToBot(new AbstractGameAction(){public void update(){
             if(p.getPower(DarkReinforcementPower.POWER_ID) instanceof DarkReinforcementPower){
                 DarkReinforcementPower power=(DarkReinforcementPower)p.getPower(DarkReinforcementPower.POWER_ID);
-                power.stackPower(1); if(mastery)power.mastery++;power.updateDescription();
-            }else addToTop(new ApplyPowerAction(p,p,new DarkReinforcementPower(p,mastery),1));
+                power.stackPower(1); if(devour)power.devourCopies++;power.updateDescription();
+            }else addToTop(new ApplyPowerAction(p,p,new DarkReinforcementPower(p,devour),1));
             isDone=true;
         }}); }
     @Override public void upgrade() { if(!upgraded) { upgradeName(); upgradeText(); } }

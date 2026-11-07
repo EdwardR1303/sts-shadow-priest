@@ -1,5 +1,47 @@
 # Changelog
 
+## 1.0.1 - November 6, 2026
+
+Playtested balance update with stronger Devour combinations, revised defensive options, Legendary improvements, and clearer Dragonwrath reporting.
+
+### Devour and Curse support
+
+- Tentacle Slam now stuns its target on Devour instead of refunding Energy.
+- Unfurling Darkness deals 7 damage and, on Devour, deals its damage and applies Touch to ALL enemies. Its explicit 10 Insanity is granted once per play; its upgrade still costs 0.
+- Focused Will grants 8/11 Block and 10/15 Insanity. Devour converts ALL current Block into persistent Barrier without generating extra Block.
+- Shadowy Insight now uses Devour to avoid its printed Exhaust. The upgrade draws one additional card. The shared once-per-turn limit remains, and the Curse must already be in hand before drawing.
+- Dark Reinforcement+ rewards both drawing and Devouring a Curse with 1 Energy and 1 card; it no longer grants Mastery. Vampiric Embrace also heals when you Devour.
+- Madness Overwhelming now creates its Mind Decay in hand. Dark Void deals 6/10 AoE damage and adds a Mind Decay to hand. Shadow Word: Madness deals 10/15 damage.
+- Shadow Mend+ heals 14 instead of 10, while both versions gain 2 Debt unless Devour prevents it.
+
+### Defense, healing, and support
+
+- Void Shield is now **Void Shift**: for 1 Energy, remove an enemy's Block and gain the amount removed. Its upgrade grants Retain. The transfer is not modified by Dexterity or Frail.
+- Fade prevents 2/4 HP loss per event until your next turn. Mind Soothe reduces all enemies' Attack damage by 2/3 plus 1/2 per unique DoT on each target.
+- Void Tendrils grants 6/8 Block per enemy. Encroaching Shadows grants 8/11 Block and applies 8/11 Madness. Crystalline Reflection grants 6/8 Block per repetition.
+- Atonement deals 6/9 damage, applies 3/5 stacking Atonement, and Exhausts.
+- Halo heals 2/3 HP once per pulse in addition to its existing AoE damage. Body and Soul copies now stack multiplicatively.
+- Tithe Evasion prevents 2 HP loss per event during your turn; its upgrade now costs 0.
+- Protected Channel costs 1 Energy and grants Block per primary X-based repetition, including non-damaging cards and printed X+1 upgrades. AoE targets do not multiply its triggers, and triggered Block does not gain Dexterity.
+- Power Infusion costs 0 in both versions and protects Haste from decay for 2/3 turn ends. Mass Dispel costs 1 in both versions.
+
+### Damage and Voidform
+
+- Mind Flay deals 3 damage per hit before its existing upgrade. Mind Blast deals 10/14 base damage plus 3/5 per unique DoT.
+- Mind Flay: Insanity now triggers extra Touch and Pain ticks for each repetition, without consuming their stacks. It still extends all existing DoTs, but its bonus ticks never trigger Madness.
+- Mind Sear applies 2 Madness after each hit, including hits absorbed by Block. Searing Nightmare costs 1 and applies 2/4 Madness per qualifying hit.
+- Void Bolt and Void Volley deal 11/15 damage per bolt.
+- Shadow Committal is now **Shadowy Committal**. Its upgrade automatically plays for free when already in hand on entering Voidform. It and Void Volley resolve from left to right in hand order, completing each play before starting the next.
+
+### Legendaries and Combat Details
+
+- Xal'atath rolls four times in both versions; its upgrade grants 3 of the rolled stat each time instead of 2.
+- Val'anyr now grants Barricade for the entire combat, even after Block reaches zero. The base version grants no opening Block; its upgrade grants 10. Guardian Angel remains independent.
+- Details colors Dragonwrath's recorded damage contribution orange within each source bar, with a lighter orange segment for absorbed damage. The Damage dealt total also shows the contribution in orange parentheses, such as 428 (45); it is included in the total.
+- Dragonwrath breakdowns work across combat, turn, Overall, and saved reports, respecting the blocked-damage filter and overkill. Older reports without repeat attribution cannot reconstruct that contribution.
+
+Existing card and character IDs are preserved. Restart Slay the Spire after Steam downloads the update. Validation includes 42 passing unit tests, prior focused engine checks, and local playtesting; no full-run simulation was repeated for release packaging.
+
 ## 1.0.0 - October 31, 2026
 
 - Released as **Xal'atath, the Shadow Priest**; removed the Beta label from the public listing and updated the mod-launcher name.

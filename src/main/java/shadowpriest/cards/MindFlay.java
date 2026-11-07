@@ -13,7 +13,7 @@ public class MindFlay extends PriestCard {
     public static final String ID = "shadowpriest:MindFlay";
     public MindFlay() {
         super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
-        baseDamage = 2; baseMagicNumber = magicNumber = 3;
+        baseDamage = 3; baseMagicNumber = magicNumber = 3;
     }
     @Override public void use(AbstractPlayer p, AbstractMonster m) {
         for (int i = 0; i < shadowpriest.mechanics.Repetitions.add(magicNumber); i++) {

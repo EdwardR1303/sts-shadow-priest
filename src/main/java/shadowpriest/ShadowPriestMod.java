@@ -52,8 +52,8 @@ public class ShadowPriestMod implements EditCharactersSubscriber, EditCardsSubsc
     }
     @Override public void receiveEditKeywords() {
         BaseMod.addKeyword("shadowpriest", "Devour", new String[]{"devour"}, "Exhaust a Curse from your hand to trigger this bonus effect.");
-        BaseMod.addKeyword("shadowpriest", "Barrier", new String[]{"barrier"}, "Persistent Block that absorbs damage before other Block. Other Block gains do not increase it. Recasting refills the reserve to the card value after modifiers, without stacking or reducing a stronger reserve.");
-        BaseMod.addKeyword("shadowpriest", "Atonement", new String[]{"atonement"}, "A debuff: your direct Attack hits on this enemy grant Block equal to its amount. No Dexterity scaling. Does not stack; stronger applications replace weaker ones. Not a DoT.");
+        BaseMod.addKeyword("shadowpriest", "Barrier", new String[]{"barrier"}, "Persistent Block that absorbs damage before other Block. Ordinary Block gains do not increase it; explicit conversion does. Recasting Power Word: Barrier refills the reserve to the card value after modifiers, without stacking or reducing a stronger reserve.");
+        BaseMod.addKeyword("shadowpriest", "Atonement", new String[]{"atonement"}, "A debuff: your direct Attack hits on this enemy grant Block equal to its amount. No Dexterity scaling. Applications stack. Not a DoT.");
         BaseMod.addKeyword("shadowpriest", "Insanity", new String[]{"insanity"}, "Gain #b10 per direct Attack hit and #b1 per DoT tick, including triggered ticks. HP-damaging events grant #b5. At #b100, receive Enter Voidform. No gain while ready, active, or in Recharge.");
         BaseMod.addKeyword("Legendary", new String[]{"legendary"}, "Only one Legendary may be in your deck. Equips once at combat start without drawing or playing a card. Cannot be duplicated into your deck.");
         BaseMod.addKeyword("shadowpriest", "Shadow Mend Debt", new String[]{"debt"}, "At the start of each turn, lose HP equal to your combined debt. Lasts for combat.");
@@ -63,7 +63,7 @@ public class ShadowPriestMod implements EditCharactersSubscriber, EditCardsSubsc
         BaseMod.addKeyword("shadowpriest", "Extend", new String[]{"extend"}, "Add stacks to existing Touch and Pain. Never creates a missing DoT. Does not consume Artifact.");
         BaseMod.addKeyword("shadowpriest", "Haste", new String[]{"haste"}, "Each stack adds #b1 to explicit card repetitions or effective X, once. Works at zero energy. Does not change for-each effects, durations, or recurring triggers. At turn end, lose half (rounded up), unless protected by Power Infusion.");
         BaseMod.addKeyword("shadowpriest", "Recharge", new String[]{"recharge"}, "After Voidform ends, no Insanity can be gained until the end of the following player turn.");
-        BaseMod.addKeyword("shadowpriest", "DoT", new String[]{"dot", "dots"}, "Touch, Pain, and Madness. Each counts once per enemy. Tick at turn end, ignoring Block and Attack modifiers; Mastery increases their damage. Each tick, including triggered ticks, grants #b1 Insanity.");
+        BaseMod.addKeyword("shadowpriest", "DoT", new String[]{"dot", "dots"}, "Touch, Pain, and Madness. Each counts once per enemy. Tick at turn end, ignoring Block and Attack modifiers; Mastery increases their damage. Each tick, including triggered ticks, grants #b1 Insanity. Bonus ticks do not remove stacks.");
         BaseMod.addKeyword("shadowpriest", "Mastery", new String[]{"mastery"}, "Each point adds #b1 damage to damaging DoT ticks. Can be negative; tick damage cannot fall below zero.");
         BaseMod.addKeyword("shadowpriest", "Voidform", new String[]{"voidform"}, "Attacks cost #b1 less and deal #b50% more damage. X costs are unchanged. Normally ends at turn end; Surrender to Madness extends it for the rest of combat.");
     }

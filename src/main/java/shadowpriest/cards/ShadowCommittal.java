@@ -11,5 +11,5 @@ public class ShadowCommittal extends PriestCard {
     public ShadowCommittal() { super(ID, 3, CardType.POWER, CardRarity.RARE, CardTarget.SELF); baseMagicNumber = magicNumber = 1; }
     @Override public float getTitleFontSize() { return 20f; }
     @Override public void use(AbstractPlayer p, AbstractMonster m) { addToBot(new ApplyPowerAction(p, p, new ShadowCommittalPower(p, magicNumber), magicNumber)); }
-    @Override public void upgrade() { if (!upgraded) { upgradeName(); upgradeBaseCost(2); } }
+    @Override public void upgrade() { if (!upgraded) { upgradeName(); upgradeText(); } }
 }

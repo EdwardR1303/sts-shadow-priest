@@ -12,6 +12,6 @@ public class VampiricEmbracePower extends AbstractPower {
     }
     @Override public void updateDescription() {
         description = "Whenever Vampiric Touch removes enemy HP, heal #b" + amount
-            + " HP. Includes Psychic Link ticks on each enemy. Multiple copies stack. No per-turn cap.";
+            + " HP. Also heal that much whenever you Devour a Curse. Includes bonus Touch ticks on each enemy. Multiple copies stack. No per-turn cap.";
     }
 }

@@ -55,12 +55,12 @@ The inventory-icon card portraits were replaced with full weapon illustrations i
 
 ## Xal'atath stat rolls
 
-Each of the four rolls (five upgraded) independently grants 2 Strength, Dexterity, or Mastery with equal one-third probabilities. All gains last for combat. Haste was removed from the pool when its shared half-decay rule was introduced. Rolls occur only at combat start, not each turn. This supersedes the original four-stat pool and permanent-Haste behavior.
+Both versions roll four times. Each roll independently grants 2 Strength, Dexterity, or Mastery (3 upgraded), with equal one-third probabilities. This grants 8 total stat points at base and 12 upgraded. All gains last for combat. Haste was removed from the pool when its shared half-decay rule was introduced. Rolls occur only at combat start, not each turn. This supersedes the original four-stat pool and permanent-Haste behavior.
 
 The earlier Haste addition passed 238 in-game checks across the equipment and keyword suites, including all-Haste rolls, both temporary/permanent application orders, turn-end expiry, and zero-energy X casts. That earlier build also passed 12 unit tests.
 
 ## Separate Val'anyr buffs
 
-Val'anyr displays two independent buffs: Barricade (Val'anyr), using the base-game Barricade icon, and Guardian Angel, using WoW's Guardian Spirit icon. The first disappears when Block is depleted; Guardian Angel remains until its once-per-combat lethal rescue is spent. Neither effect refreshes the other. The Block grant (5/10) and rescue behavior are unchanged. The worn-out retention icon is removed rather than remaining as a combined weapon buff.
+Val'anyr displays two independent buffs: Barricade (Val'anyr), using the base-game Barricade icon, and Guardian Angel, using WoW's Guardian Spirit icon. Barricade lasts for the entire combat, including at zero Block; Guardian Angel remains until its once-per-combat lethal rescue is spent. Neither effect refreshes the other. The base weapon grants no opening Block; the upgrade grants a flat 10. The rescue behavior is unchanged.
 
 Validation of the split powers and revised Haste is recorded in [the support balance pass](support-balance-pass.md).

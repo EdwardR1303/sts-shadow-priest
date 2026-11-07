@@ -8,7 +8,7 @@ import shadowpriest.relics.VoidformRelic;
 public class ShadowCommittalPower extends AbstractPower {
     public static final String POWER_ID = "shadowpriest:ShadowCommittal";
     public ShadowCommittalPower(AbstractCreature owner, int amount) {
-        this.owner = owner; this.amount = amount; ID = POWER_ID; name = "Shadow Committal"; type = PowerType.BUFF;
+        this.owner = owner; this.amount = amount; ID = POWER_ID; name = "Shadowy Committal"; type = PowerType.BUFF;
         AbilityPowerArt.apply(this, "shadow_committal.png"); updateDescription();
     }
     @Override public void onUseCard(AbstractCard card, UseCardAction action) {

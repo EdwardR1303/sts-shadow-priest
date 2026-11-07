@@ -118,14 +118,14 @@ public final class FinalBatchSmokeTest {
         q.add(()->{check(r.state.attacksPlayed()==1,"Improved activation tracks attacks");play(new VoidEntropy(),null);});
         q.add(()->{check(r.state.attacksPlayed()==1&&EnergyPanel.totalCount==1,"Active Entropy neither resets activation nor retriggers entry energy");reset();play(up(new DarkReinforcement()),null);});
         q.add(()->{play(new DarkReinforcement(),null);});
-        q.add(()->{DarkReinforcementPower power=(DarkReinforcementPower)p.getPower(DarkReinforcementPower.POWER_ID);check(power.amount==2&&power.mastery==1,"Mixed Reinforcement copies stack benefits independently");
+        q.add(()->{DarkReinforcementPower power=(DarkReinforcementPower)p.getPower(DarkReinforcementPower.POWER_ID);check(power.amount==2&&power.devourCopies==1,"Mixed Reinforcement copies stack benefits independently");
             p.hand.clear();p.drawPile.clear();p.discardPile.clear();p.drawPile.addToTop(new MindSpike());p.drawPile.addToTop(new MindSpike());p.drawPile.addToTop(new Regret());EnergyPanel.totalCount=0;add(new DrawCardAction(p,1));});
-        q.add(()->{check(p.hand.size()==3&&EnergyPanel.totalCount==2&&MasteryPower.current()==1,"Actual Curse draw grants stacked energy/draw and upgraded-only Mastery");
+        q.add(()->{check(p.hand.size()==3&&EnergyPanel.totalCount==2&&MasteryPower.current()==0,"Actual Curse draw grants stacked energy/draw and no Mastery");
             p.hand.clear();EnergyPanel.totalCount=0;play(new MentalDecay(),null);});
         q.add(()->{check(MadnessPower.stacks(m)==10&&MadnessPower.stacks(n)==10,"Mental Decay applies Madness to every enemy");
             curse=p.hand.group.stream().filter(c->c instanceof MindDecay).findFirst().orElse(null);
             check(curse!=null&&curse.selfRetain&&curse.makeStatEquivalentCopy().selfRetain,"Generated Mind Decay retains through copying");
-            check(EnergyPanel.totalCount==2&&MasteryPower.current()==1,"Creating Curse does not trigger Reinforcement");
+            check(EnergyPanel.totalCount==2&&MasteryPower.current()==0,"Creating Curse does not trigger Reinforcement");
             hp=p.currentHealth;for(int i=0;i<12;i++)p.drawPile.addToTop(new MindSpike());nextTurn();});
         q.add(()->{check(p.hand.contains(curse)&&p.currentHealth==hp-1,"Mind Decay remains in hand and deals its start-of-turn damage");
             reset();m.powers.add(new ArtifactPower(m,1));play(up(new MentalDecay()),null);});

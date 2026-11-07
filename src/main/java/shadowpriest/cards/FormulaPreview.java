@@ -12,12 +12,13 @@ final class FormulaPreview {
         String result=null;
         boolean handled=true;
         if(inCombat())switch(card.cardID){
+            case VoidShield.ID: result=target==null?null:target.currentBlock+" Block";break;
             case MindBlast.ID: result=target==null?null:card.damage+" damage, "+(10*shadowpriest.powers.ShadowDotPower.count(target))+" bonus Insanity";break;
-            case Insight.ID: result=target==null?null:shadowpriest.powers.ShadowDotPower.count(target)+" cards";break;
+            case Insight.ID: result=target==null?null:(shadowpriest.powers.ShadowDotPower.count(target)+(card.upgraded?1:0))+" cards";break;
             case MindSoothe.ID:
                 int min=Integer.MAX_VALUE,max=0;
                 for(com.megacrit.cardcrawl.monsters.AbstractMonster m:AbstractDungeon.getMonsters().monsters)if(VoidBolt.alive(m)){
-                    int reduction=shadowpriest.powers.ShadowDotPower.count(m)+(card.upgraded?2:1);min=Math.min(min,reduction);max=Math.max(max,reduction);
+                    int reduction=MindSoothe.reduction(m,card.upgraded);min=Math.min(min,reduction);max=Math.max(max,reduction);
                 }
                 result=max==0?null:(min==max?Integer.toString(min):min+"-"+max)+" less damage per hit";break;
             case Bulwark.ID:
@@ -33,7 +34,7 @@ final class FormulaPreview {
                 result=(dots*card.magicNumber)+" Block at current DoTs";break;
             default:handled=false;
         }
-        else handled=card instanceof MindBlast || card instanceof Insight || card instanceof MindSoothe || card instanceof Bulwark || card instanceof MaladyOfTheMind || card instanceof MadnessOverwhelming || card instanceof VoidTendrils || card instanceof ShadowWeaving;
+        else handled=card instanceof VoidShield || card instanceof MindBlast || card instanceof Insight || card instanceof MindSoothe || card instanceof Bulwark || card instanceof MaladyOfTheMind || card instanceof MadnessOverwhelming || card instanceof VoidTendrils || card instanceof ShadowWeaving;
         if(handled)set(card,result);
     }
     static boolean inCombat() {

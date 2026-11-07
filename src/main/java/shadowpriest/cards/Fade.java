@@ -13,12 +13,12 @@ public class Fade extends PriestCard {
     public static final String ID = "shadowpriest:Fade";
     public Fade() {
         super(ID, 0, CardType.SKILL, CardRarity.COMMON, CardTarget.SELF);
-        baseMagicNumber = magicNumber = 1;
+        baseMagicNumber = magicNumber = 2;
     }
     @Override public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot(new ApplyPowerAction(p, p, new FadePower(p, magicNumber), magicNumber));
     }
     @Override public void upgrade() {
-        if (!upgraded) { upgradeName(); upgradeMagicNumber(1); }
+        if (!upgraded) { upgradeName(); upgradeMagicNumber(2); }
     }
 }

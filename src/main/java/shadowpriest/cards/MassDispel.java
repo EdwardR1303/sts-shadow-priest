@@ -11,7 +11,7 @@ import com.megacrit.cardcrawl.powers.StrengthPower;
 
 public class MassDispel extends PriestCard {
     public static final String ID = "shadowpriest:MassDispel";
-    public MassDispel() { super(ID, 2, CardType.SKILL, CardRarity.RARE, CardTarget.ALL_ENEMY); }
+    public MassDispel() { super(ID, 1, CardType.SKILL, CardRarity.RARE, CardTarget.ALL_ENEMY); }
     @Override public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot(new AbstractGameAction() {
             @Override public void update() {

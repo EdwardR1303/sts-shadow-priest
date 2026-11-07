@@ -5,6 +5,47 @@ import static org.junit.Assert.*;
 import static shadowpriest.details.CombatReport.*;
 
 public class ExtendedMetricsTest {
+    @Test public void dragonwrathSlicesKeepTotalsAndExcludeBlockedConsistently(){
+        CombatReport c=new CombatReport(1,1,"Cultist");
+        c.recordDamage(spike,20,6,0,"Cultist",null);
+        c.recordDamage(spike,10,8,2,"Cultist",DRAGONWRATH_TRIGGER);
+        c.recordDamage(flay,40,0,0,"Cultist",null);
+        Row all=c.rows(Metric.DAMAGE_DEALT,0).get(0);
+        assertEquals("spike",all.source.id);
+        assertEquals(46,all.amount);assertEquals(20,all.dragonwrath);assertEquals(8,all.dragonwrathBlocked);
+        assertEquals(14,all.blocked);assertEquals(2,all.overkill);
+        assertEquals(86,c.total(Metric.DAMAGE_DEALT,0));
+        assertEquals(20,c.dragonwrathTotal(0,true));
+        Row filtered=c.rows(Metric.DAMAGE_DEALT,0,false).get(1);
+        assertEquals("spike",filtered.source.id);assertEquals(32,filtered.amount);
+        assertEquals(12,filtered.dragonwrath);assertEquals(0,filtered.dragonwrathBlocked);assertEquals(0,filtered.blocked);
+        assertEquals(72,c.total(Metric.DAMAGE_DEALT,0,false));
+        assertEquals(12,c.dragonwrathTotal(0,false));
+    }
+    @Test public void dragonwrathSurvivesHistoryOverallAndTurnSelection(){
+        Run r=new Run();CombatReport first=r.begin(1,1,"Cultist");
+        first.recordDamage(spike,7,0,0,"Cultist",DRAGONWRATH_TRIGGER);
+        first.turns=2;first.recordDamage(spike,3,9,0,"Cultist",null);
+        r.begin(2,1,"Slimes").recordDamage(spike,5,4,1,"Slime",DRAGONWRATH_TRIGGER);
+        Run saved=DetailsStore.JSON.fromJson(DetailsStore.JSON.toJson(r),Run.class);
+        Row overall=saved.overall().rows(Metric.DAMAGE_DEALT,0).get(0);
+        assertEquals(29,overall.amount);assertEquals(17,overall.dragonwrath);assertEquals(4,overall.dragonwrathBlocked);
+        assertEquals(17,saved.overall().dragonwrathTotal(0,true));
+        assertEquals(13,saved.overall().dragonwrathTotal(0,false));
+        assertEquals(7,saved.combats.get(0).dragonwrathTotal(1,true));
+        assertEquals(0,saved.combats.get(0).dragonwrathTotal(2,true));
+        assertEquals(7,saved.combats.get(0).rows(Metric.DAMAGE_DEALT,1).get(0).dragonwrath);
+        assertEquals(0,saved.combats.get(0).rows(Metric.DAMAGE_DEALT,2).get(0).dragonwrath);
+    }
+    @Test public void untaggedReplaysAndUnrelatedTriggersAreNotGuessed(){
+        CombatReport c=new CombatReport(1,1,"Legacy");
+        c.recordDamage(spike,10,5,0,"Cultist",null);
+        c.recordDamage(spike,5,0,0,"Cultist","Psychic Link");
+        c.record(Metric.BLOCK,spike,12,"Priest",DRAGONWRATH_TRIGGER);
+        assertEquals(0,c.rows(Metric.DAMAGE_DEALT,0).get(0).dragonwrath);
+        assertEquals(0,c.rows(Metric.BLOCK,0).get(0).dragonwrath);
+        assertEquals(0,c.dragonwrathTotal(0,true));
+    }
     @Test public void insanityUsesSharedSortingTurnsAndSavedOverall(){
         Run run=new Run();CombatReport c=run.begin(1,1,"Cultist");c.insanityRecorded=true;
         c.record(Metric.INSANITY,new Source("prep","Preparation","relic",true),10,"Priest",null);

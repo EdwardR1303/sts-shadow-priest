@@ -40,7 +40,7 @@ final class StarterCardArt {
             case ShadowMend.ID: icon = "cards/icons/shadow_mend.jpg"; break;
             case PowerWordBarrier.ID: icon = "cards/icons/power_word_barrier.jpg"; break;
             case TitheEvasion.ID: icon = "cards/icons/tithe_evasion.jpg"; break;
-            case VoidShield.ID: icon = "cards/icons/void_shield.jpg"; break;
+            case VoidShield.ID: icon = "cards/icons/void_shift.jpg"; break;
             case MindSoothe.ID: icon = "cards/icons/mind_soothe.jpg"; break;
             case MentalFortitude.ID: icon = "cards/icons/mental_fortitude.jpg"; break;
             case Piety.ID: icon = "cards/icons/piety.jpg"; break;

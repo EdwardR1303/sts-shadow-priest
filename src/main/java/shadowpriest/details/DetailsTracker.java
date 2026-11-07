@@ -22,6 +22,7 @@ public final class DetailsTracker implements CustomSavable<String> {
     private static boolean active, firstTurn, dirty;
     private static long lastSave;
     private static final Map<AbstractGameAction,Tag> tags=new WeakHashMap<>();
+    private static final Set<AbstractCard> dragonwrathCopies=Collections.newSetFromMap(new WeakHashMap<>());
     private static final Deque<Tag> contexts=new ArrayDeque<>();
     private static final Deque<DamageFrame> damage=new ArrayDeque<>();
     private static final Source UNKNOWN=new Source("unknown","Unattributed effect","unknown",false);
@@ -39,7 +40,7 @@ public final class DetailsTracker implements CustomSavable<String> {
     public static boolean active(){return active;}
     public static void resetRun(){
         save();run=null;combat=null;active=false;dirty=false;
-        tags.clear();contexts.clear();damage.clear();
+        tags.clear();contexts.clear();damage.clear();dragonwrathCopies.clear();
     }
     public static void begin(){
         if(!(AbstractDungeon.player instanceof ShadowPriest))return;
@@ -51,7 +52,7 @@ public final class DetailsTracker implements CustomSavable<String> {
         if(AbstractDungeon.getMonsters()!=null)
             for(AbstractMonster m:AbstractDungeon.getMonsters().monsters)enemies.add(m.name);
         combat=run.begin(AbstractDungeon.floorNum,AbstractDungeon.actNum,enemies.length()==0?"Combat":enemies.toString());
-        combat.extendedMetrics=true;combat.insanityRecorded=true;active=true;firstTurn=true;dirty=true;tags.clear();contexts.clear();damage.clear();
+        combat.extendedMetrics=true;combat.insanityRecorded=true;active=true;firstTurn=true;dirty=true;tags.clear();contexts.clear();damage.clear();dragonwrathCopies.clear();
     }
     public static void startTurn(){
         if(!active)return;
@@ -102,18 +103,25 @@ public final class DetailsTracker implements CustomSavable<String> {
     public static Source potion(com.megacrit.cardcrawl.potions.AbstractPotion p){return new Source(p.ID,p.name,"potion",true);}
     public static void pushPotion(com.megacrit.cardcrawl.potions.AbstractPotion potion){contexts.push(new Tag(potion(potion),null));}
     public static void popPotion(){if(!contexts.isEmpty())contexts.pop();}
-    public static void pushCard(AbstractCard card){contexts.push(new Tag(card(card),null));}
+    public static void markDragonwrath(AbstractCard copy){dragonwrathCopies.add(copy);}
+    public static void pushCard(AbstractCard card){contexts.push(new Tag(card(card),dragonwrathCopies.contains(card)?CombatReport.DRAGONWRATH_TRIGGER:null));}
     public static void popCard(){if(!contexts.isEmpty())contexts.pop();}
     public static void queue(AbstractGameAction action){
         if(!active || tags.containsKey(action))return;
         Tag tag=currentTag();if(tag!=null)tags.put(action,tag);
     }
     public static void tag(AbstractGameAction action,Source source){
-        if(active && !tags.containsKey(action))tags.put(action,new Tag(source,null));
+        if(active && !tags.containsKey(action)){
+            Tag parent=currentTag();
+            String trigger=parent!=null && "card".equals(source.kind) && source.id.equals(parent.source.id)
+                && CombatReport.DRAGONWRATH_TRIGGER.equals(parent.trigger)?parent.trigger:null;
+            tags.put(action,new Tag(source,trigger));
+        }
     }
     public static <T extends AbstractGameAction>T dot(T action,AbstractPower power){
         if(!active)return action;
-        Source source=power(power);Tag parent=currentTag();String trigger=null;
+        Source source=power(power);Tag parent=currentTag();
+        String trigger=parent!=null&&CombatReport.DRAGONWRATH_TRIGGER.equals(parent.trigger)?parent.trigger:null;
         if(parent!=null && parent.source.id.equals("shadowpriest:PsychicLink")){
             trigger=parent.source.name;
             source=new Source(source.id+"@"+parent.source.id,source.name+" ("+trigger+")","dot",true);
